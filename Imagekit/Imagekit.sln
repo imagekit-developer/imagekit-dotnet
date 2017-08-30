@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagekit", "Imagekit\Imagek
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagekit.Sample", "Imagekit.Sample\Imagekit.Sample.csproj", "{AF2DADCF-83B3-4266-B926-8F5B0DC1732D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagekit.Tests", "Imagekit.Tests\Imagekit.Tests.csproj", "{3AC553DF-B385-4A8D-875C-F351756310E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AF2DADCF-83B3-4266-B926-8F5B0DC1732D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF2DADCF-83B3-4266-B926-8F5B0DC1732D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF2DADCF-83B3-4266-B926-8F5B0DC1732D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC553DF-B385-4A8D-875C-F351756310E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC553DF-B385-4A8D-875C-F351756310E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC553DF-B385-4A8D-875C-F351756310E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC553DF-B385-4A8D-875C-F351756310E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
