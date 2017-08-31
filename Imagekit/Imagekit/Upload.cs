@@ -35,29 +35,28 @@ namespace Imagekit
                 { "signature",Sign},
                 {"file", imageObject }
             };
-            try
-            {
+            
                 var response = FormUpload.MultipartFormDataPost(Secret.Address, postParameters);
-               // Console.WriteLine(response.StatusDescription);
+                var encoding = ASCIIEncoding.ASCII;
+                using (var reader = new System.IO.StreamReader(response.GetResponseStream(), encoding))
+                {
+                    string responseText = reader.ReadToEnd();
+                }
+                
 
 
-            }
-            catch (WebException wex)
-            {
-                var msg = GetServerErrorMessage(wex);
-                //Console.WriteLine(msg);
-            }
-           // Console.ReadLine();
+            
+            //catch (WebException wex)
+            //{
+            //    var msg = GetServerErrorMessage(wex);
+            //}
         }
         public void Picture(byte[] Image, string folder, string filename)
         {
 
         }
 
-        public void Picture(string Imagepath, string folder)
-        {
-
-        }
+       
 #region Stuff
         public static FileParameter GetImageFileParameter(string imagePath)
         {
