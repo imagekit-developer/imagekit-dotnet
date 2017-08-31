@@ -1,4 +1,5 @@
 ﻿using Imagekit.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -13,11 +14,11 @@ namespace Imagekit
 {
     public class Upload
     {
-        public void File()
-        {
+        //public void File()
+        //{
 
-        }
-        public static void Picture(string Imagepath, string folder, string filename,bool UseUniqueFileName=true)
+        //}
+        public static ImagekitResponse Picture(string Imagepath, string folder, string filename,bool UseUniqueFileName=true)
         {
             var imageObject = GetImageFileParameter(Imagepath);
             var TimeStamp = Utils.ToUnixTime(DateTime.UtcNow);
@@ -41,6 +42,7 @@ namespace Imagekit
                 using (var reader = new System.IO.StreamReader(response.GetResponseStream(), encoding))
                 {
                     string responseText = reader.ReadToEnd();
+                    return JsonConvert.DeserializeObject<ImagekitResponse>(responseText);
                 }
                 
 
@@ -51,14 +53,37 @@ namespace Imagekit
             //    var msg = GetServerErrorMessage(wex);
             //}
         }
-        public void Picture(byte[] Image, string folder, string filename)
+        public static ImagekitResponse Picture(byte[] Image, string folder, string filename, bool UseUniqueFileName = true)
         {
+            var imageObject = GetImageFileParameter(Image);
+            var TimeStamp = Utils.ToUnixTime(DateTime.UtcNow);
+            string Ser = string.Format("apiKey={0}&filename={1}&timestamp={2}", Secret.ApiKey, filename, TimeStamp);
+            var Sign = Utils.EncodeHMACSHA1(Ser, Encoding.ASCII.GetBytes(Secret.ApiPrivate));
 
+            var postParameters = new Dictionary<string, object>
+            {
+
+                {"folder" ,folder},
+                {"apiKey" , Secret.ApiKey},
+                {"useUniqueFilename",UseUniqueFileName.ToString() },
+                { "filename",filename },
+                { "timestamp",TimeStamp },
+                { "signature",Sign},
+                {"file", imageObject }
+            };
+
+            var response = FormUpload.MultipartFormDataPost(Secret.Address, postParameters);
+            var encoding = ASCIIEncoding.ASCII;
+            using (var reader = new System.IO.StreamReader(response.GetResponseStream(), encoding))
+            {
+                string responseText = reader.ReadToEnd();
+                return JsonConvert.DeserializeObject<ImagekitResponse>(responseText);
+            }
         }
 
        
 #region Stuff
-        public static FileParameter GetImageFileParameter(string imagePath)
+        internal static FileParameter GetImageFileParameter(string imagePath)
         {
             var img = System.Drawing.Image.FromFile(imagePath);
             var ms = new MemoryStream();
@@ -82,7 +107,14 @@ namespace Imagekit
             return fileParam;
         }
 
-        public static string GetServerErrorMessage(WebException wex)
+        internal static FileParameter GetImageFileParameter(byte[] arr)
+        {
+            string extention = "jpeg";
+            var fileParam = new FileParameter(arr, "image", $"image/{extention}");
+            return fileParam;
+        }
+
+        internal static string GetServerErrorMessage(WebException wex)
         {
             string error;
             if (wex.Response == null) return null;
