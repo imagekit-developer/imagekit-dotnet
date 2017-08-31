@@ -5,7 +5,7 @@ This is the Imagekit integration library for .NET
 These instructions will help you to interact with Imagekit.io services in .NET using the brand new Imagekit integration library.
 
 ### Installing
-There ate a couple of ways to get started with this integration library.
+There are a couple of ways to get started with this integration library.
 
 Way one:
 Open up your project, navigate to Nuget package manager console and add Imagekit.
@@ -16,12 +16,14 @@ Also you can search for [Imagekit](https://www.nuget.org/packages/Imagekit/1.0.0
 
 Way two:
 1-Clone this repo or download the zip file.
+
 2-Add it to your solution
+
 3-Reference your host project to Imagekit.
 
 ### Usage
 Now that everything's installed and set up, you can start using ImageKit on your .NET project!
-First, Add this reference where you want to use imagekit
+First, add this reference where you want to use imagekit
 ```
 using Imagekit;
 ```
@@ -35,11 +37,10 @@ After that you can upload your image:
 ```
 Upload.Picture(photo, "/path/", "name.jpg",true);
 ```
-Notice: photo is your photo which can be a byte array (byte[]) of your photo or local path on your disk(string). "/path/" is the desired path of uploaded file. "name.jpg" is the desired name of uploaded file. The last parameter is "useUniqueName" which is  an optional parameter with the default value of true.
+Notice: photo is your photo which can be a byte array (byte[]) of your photo or local path on your disk(string). "/path/" is the desired path of uploaded file. "name.jpg" is the desired name of uploaded file. The last parameter is "useUniqueName" which is an optional parameter with the default value of true.
 
-Done! You uploaded your picture.
+Done; You uploaded your picture.
 Whoa! It was fast, wasn't it?
-
 
 ## Credits
 
@@ -47,7 +48,7 @@ Whoa! It was fast, wasn't it?
 
 ## Contributing
 
-This library is an open source project, so all the modifications and contributings are welcome! Just make a fork of this repo, do your changes and make a pull request. We'll check your code ASAP.
+This library is an open source project, so all the modifications and contributions are welcome! Just make a fork of this repo, do your changes and make a pull request. We'll check your code ASAP.
 
 ## Support
 
