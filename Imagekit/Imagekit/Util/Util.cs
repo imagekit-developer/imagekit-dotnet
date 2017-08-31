@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Imagekit.Util
 {
-    class Utils
+    internal class Utils
     {
         public static long ToUnixTime(DateTime dateTime)
         {

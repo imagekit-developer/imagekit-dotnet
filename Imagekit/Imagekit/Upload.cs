@@ -13,10 +13,10 @@ namespace Imagekit
 {
     public class Upload
     {
-        public void File()
-        {
+        //public void File()
+        //{
 
-        }
+        //}
         public static void Picture(string Imagepath, string folder, string filename,bool UseUniqueFileName=true)
         {
             var imageObject = GetImageFileParameter(Imagepath);
@@ -80,7 +80,7 @@ namespace Imagekit
 
        
 #region Stuff
-        public static FileParameter GetImageFileParameter(string imagePath)
+        internal static FileParameter GetImageFileParameter(string imagePath)
         {
             var img = System.Drawing.Image.FromFile(imagePath);
             var ms = new MemoryStream();
@@ -104,14 +104,14 @@ namespace Imagekit
             return fileParam;
         }
 
-        public static FileParameter GetImageFileParameter(byte[] arr)
+        internal static FileParameter GetImageFileParameter(byte[] arr)
         {
             string extention = "jpeg";
             var fileParam = new FileParameter(arr, "image", $"image/{extention}");
             return fileParam;
         }
 
-        public static string GetServerErrorMessage(WebException wex)
+        internal static string GetServerErrorMessage(WebException wex)
         {
             string error;
             if (wex.Response == null) return null;
