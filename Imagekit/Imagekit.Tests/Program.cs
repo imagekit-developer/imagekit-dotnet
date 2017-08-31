@@ -18,7 +18,7 @@ namespace Imagekit.Tests
             var ms = new MemoryStream();
             img.Save(ms, ImageFormat.Gif);
             var arr = ms.ToArray();
-            Upload.Picture(arr, "/avatar/", "Shit.jpg");
+            var a = Upload.Picture(arr, "/avatar/", "Shit.jpg");
             Console.ReadLine();
         }
     }

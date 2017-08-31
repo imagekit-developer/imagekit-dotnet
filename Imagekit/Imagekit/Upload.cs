@@ -1,4 +1,5 @@
 ﻿using Imagekit.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -17,7 +18,7 @@ namespace Imagekit
         //{
 
         //}
-        public static void Picture(string Imagepath, string folder, string filename,bool UseUniqueFileName=true)
+        public static ImagekitResponse Picture(string Imagepath, string folder, string filename,bool UseUniqueFileName=true)
         {
             var imageObject = GetImageFileParameter(Imagepath);
             var TimeStamp = Utils.ToUnixTime(DateTime.UtcNow);
@@ -41,6 +42,7 @@ namespace Imagekit
                 using (var reader = new System.IO.StreamReader(response.GetResponseStream(), encoding))
                 {
                     string responseText = reader.ReadToEnd();
+                    return JsonConvert.DeserializeObject<ImagekitResponse>(responseText);
                 }
                 
 
@@ -51,7 +53,7 @@ namespace Imagekit
             //    var msg = GetServerErrorMessage(wex);
             //}
         }
-        public static void Picture(byte[] Image, string folder, string filename, bool UseUniqueFileName = true)
+        public static ImagekitResponse Picture(byte[] Image, string folder, string filename, bool UseUniqueFileName = true)
         {
             var imageObject = GetImageFileParameter(Image);
             var TimeStamp = Utils.ToUnixTime(DateTime.UtcNow);
@@ -75,6 +77,7 @@ namespace Imagekit
             using (var reader = new System.IO.StreamReader(response.GetResponseStream(), encoding))
             {
                 string responseText = reader.ReadToEnd();
+                return JsonConvert.DeserializeObject<ImagekitResponse>(responseText);
             }
         }
 
