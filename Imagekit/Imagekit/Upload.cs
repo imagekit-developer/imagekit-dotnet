@@ -51,9 +51,31 @@ namespace Imagekit
             //    var msg = GetServerErrorMessage(wex);
             //}
         }
-        public void Picture(byte[] Image, string folder, string filename)
+        public static void Picture(byte[] Image, string folder, string filename, bool UseUniqueFileName = true)
         {
+            var imageObject = GetImageFileParameter(Image);
+            var TimeStamp = Utils.ToUnixTime(DateTime.UtcNow);
+            string Ser = string.Format("apiKey={0}&filename={1}&timestamp={2}", Secret.ApiKey, filename, TimeStamp);
+            var Sign = Utils.EncodeHMACSHA1(Ser, Encoding.ASCII.GetBytes(Secret.ApiPrivate));
 
+            var postParameters = new Dictionary<string, object>
+            {
+
+                {"folder" ,folder},
+                {"apiKey" , Secret.ApiKey},
+                {"useUniqueFilename",UseUniqueFileName.ToString() },
+                { "filename",filename },
+                { "timestamp",TimeStamp },
+                { "signature",Sign},
+                {"file", imageObject }
+            };
+
+            var response = FormUpload.MultipartFormDataPost(Secret.Address, postParameters);
+            var encoding = ASCIIEncoding.ASCII;
+            using (var reader = new System.IO.StreamReader(response.GetResponseStream(), encoding))
+            {
+                string responseText = reader.ReadToEnd();
+            }
         }
 
        
@@ -78,6 +100,13 @@ namespace Imagekit
             {
                 extention = "jpeg";
             }
+            var fileParam = new FileParameter(arr, "image", $"image/{extention}");
+            return fileParam;
+        }
+
+        public static FileParameter GetImageFileParameter(byte[] arr)
+        {
+            string extention = "jpeg";
             var fileParam = new FileParameter(arr, "image", $"image/{extention}");
             return fileParam;
         }
