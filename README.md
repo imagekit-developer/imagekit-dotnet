@@ -10,7 +10,7 @@ There are a couple of ways to get started with this integration library.
 Way one:
 Open up your project, navigate to Nuget package manager console and add Imagekit.
 ```
-Install-Package Imagekit -Version 1.0.0
+Install-Package Imagekit
 ```
 Also you can search for [Imagekit](https://www.nuget.org/packages/Imagekit/1.0.0) in Nuget GUI.
 
