@@ -44,6 +44,7 @@ ImagekitResponse R = Upload.Picture(photo, "/path/", "name.jpg",true);
 ```
 **Notice**: *photo* is your photo which can be a byte array *(byte[])* or your photo or local path on your disk*(string)* or a URL to an existing picture on the web *(URi)*. *"/path/"* is the desired path of uploaded file*(string)*. *"name.jpg"* is the desired name of uploaded file*(string)*. The last parameter is "useUniqueName" which is an optional parameter *(bool)* with the default value of *true*.
 This method retunes you an object with the type of **ImagekitResponse** which is the information about the uploaded file.
+
 | Name  | Description | Type | Sample output |
 | ------------- | ------------- |------|------|
 | ImagePath  | The path of uploaded picture from your root URL  | string | "/avatar/sample_HJN0fTUtb.jpg" |
