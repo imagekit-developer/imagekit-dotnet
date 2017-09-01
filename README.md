@@ -3,7 +3,7 @@ This is the Imagekit integration library for .NET
 
 ### Features
 This library will help you to upload your images and files to Imagekit as easy as possible. Currectly you can upload images or files via URL(URi), Path to existing file in your hard disk(string) and byte arrays(byte[]) which are default format of uploaded files in ASP.NET .
-Also you can make [feature request](#Support) or [contribute](#Contributing) for things you need.
+Also you can make [feature request](#support) or [contribute](#contributing) for things you need.
 
 ## Getting Started
 These instructions will help you to interact with Imagekit.io services in .NET using the brand new Imagekit integration library.
@@ -42,7 +42,7 @@ After that you can upload your image:
 ```
 ImagekitResponse R = Upload.Picture(photo, "/path/", "name.jpg",true);
 ```
-**Notice**: *photo* is your photo which can be a byte array *(byte[])* or your photo or local path on your disk*(string)* or a URL to an existing picture on the web *(URi)*. *"/path/"* is the desired path of uploaded file*(string)*. *"name.jpg"* is the desired name of uploaded file*(string)*. The last parameter is "useUniqueName" which is an optional parameter *(bool)* with the default value of *true*.
+**Notice**: *photo* is your photo which can be a byte array *(byte[])* or your photo or local path on your disk*(string)* or a URL to an existing picture on the web *(URi)*. *"/path/"* is the desired path of uploaded file*(string)* . *"name.jpg"* is the desired name of uploaded file*(string)*. The last parameter is "useUniqueName" which is an optional parameter *(bool)* with the default value of *true*.
 
 This method retunes you an object with the type of **ImagekitResponse** which is the information about the uploaded file.
 
