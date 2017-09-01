@@ -1,3 +1,9 @@
+<p align="left">
+    <a href="https://www.nuget.org/packages/Imagekit">
+        <img src="https://img.shields.io/nuget/v/imagekit.svg"
+             alt="Nuget">
+    </a>
+</p>
 # DotNET Imagekit.io integration
 This is the Imagekit.io integration library for .NET
 
