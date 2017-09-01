@@ -2,7 +2,7 @@
 This is the Imagekit integration library for .NET
 
 ### Features
-This library will help you to upload your images and files to Imagekit as easy as possible. Currectly you can upload images or files via URL(URi), Path to existing file in your hard disk(string) and byte arrays(byte[]) which are default format of uploaded files in ASP.NET .
+This library will help you to upload your images and files to Imagekit as easy as possible. Currectly you can upload images or files via URL *(URi)*, Path to existing file in your hard disk *(string)*  and byte arrays *(byte[])* which are default format of uploaded files in ASP.NET .
 Also you can make [feature request](#support) or [contribute](#contributing) for things you need.
 
 ## Getting Started
@@ -29,17 +29,18 @@ Way two:
 ### Usage
 Now that everything's installed and set up, you can start using ImageKit on your .NET project!
 First, add this reference where you want to use imagekit
-```
+```cs
 using Imagekit;
 ```
 Then, initialize the imagekit service using this code, when your app starts(example: ASP: Global.asax, WPF: app.xaml.cs): 
-```
+```cs
 ConnectionHelper.Initialize("API-public", "API-Private", "ID");
 ```
 Notice: API-public is your API public key, API-private is your API private key, and ID is your imagekit ID. You can get all of them from your [Imagekit dashboard](https://imagekit.io/dashboard).
 
-After that you can upload your image:
-```
+####Upload pictures
+now you can upload your image using this code:
+```cs
 ImagekitResponse R = Upload.Picture(photo, "/path/", "name.jpg",true);
 ```
 **Notice**: *photo* is your photo which can be a byte array *(byte[])* or your photo or local path on your disk *(string)* or a URL to an existing picture on the web *(URi)*. *"/path/"* is the desired path of uploaded file *(string)* . *"name.jpg"* is the desired name of uploaded file *(string)*. The last parameter is "useUniqueName" which is an optional parameter *(bool)* with the default value of *true*.
