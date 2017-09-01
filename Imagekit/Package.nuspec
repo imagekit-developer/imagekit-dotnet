@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Imagekit</id>
+    <version>1.2.0</version>
+    <authors>Mohsens22</authors>
+    <owners>Mohsens22, Imagekit.io</owners>
+    <licenseUrl>https://github.com/imagekit-developer/dotnet-imagekit-integration/blob/dev/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/imagekit-developer/dotnet-imagekit-integration</projectUrl>
+    <iconUrl>https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAfmAAAAJGY4Zjg3MmQxLTI5NDEtNGJlYi1iMWU0LTZkNDZkMDQ1MGMyNQ.png</iconUrl>
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes>Initial release</releaseNotes>
+    <description>DotNET integration of ImageKit</description>
+    <copyright>Copyright © 2017 Imagekit</copyright>
+    <tags>Imagekit CDN </tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="10.0.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Imagekit\bin\Release\Imagekit.dll" target="lib"/>
+  </files>
+</package>
