@@ -43,15 +43,24 @@ After that you can upload your image:
 ImagekitResponse R = Upload.Picture(photo, "/path/", "name.jpg",true);
 ```
 **Notice**: *photo* is your photo which can be a byte array *(byte[])* or your photo or local path on your disk*(string)* or a URL to an existing picture on the web *(URi)*. *"/path/"* is the desired path of uploaded file*(string)*. *"name.jpg"* is the desired name of uploaded file*(string)*. The last parameter is "useUniqueName" which is an optional parameter *(bool)* with the default value of *true*.
+
 This method retunes you an object with the type of **ImagekitResponse** which is the information about the uploaded file.
 
 | Name  | Description | Type | Sample output |
 | ------------- | ------------- |------|------|
-| ImagePath  | The path of uploaded picture from your root URL  | string | "/avatar/sample_HJN0fTUtb.jpg" |
-
+| ImagePath  | The path of uploaded picture in your media library  | string | "/avatar/sample_HJN0fTUtb.jpg" |
+| Size  | Size of uploaded photo in bytes  | int | 7117 |
+| Height  | Height of uploaded photo  | int | 200 |
+| Width  | Width of uploaded photo  | int | 200 |
+| ID  | The unique ID of your saved picture  | string | "HkiFvuZKZ/avatar/sample_HJN0fTUtb.jpg/original" |
+| FileFolder  | The real path of uploaded picture in imagekit servers  | string | "/HkiFvuZKZ/avatar/sample_HJN0fTUtb.jpg/" |
+| Thumbnail  | The thumbnail URL of uploaded picture  | string | "https://ik.imagekit.io/xeamo/tr:n-media_library_thumbnail/avatar/sample_HJN0fTUtb.jpg" |
+| URL  | The public URL to your picture | string | "https://ik.imagekit.io/xeamo/avatar/sample_HJN0fTUtb.jpg" |
+| Name  | The name of uploaded picture in your media library  | string | "sample_HJN0fTUtb.jpg" |
+| Transformation  | The applied transformation to your picture  | string | "" |
 
 Done; You uploaded your picture.
-Whoa! It was fast, wasn't it?
+Whoa! It was so fast, wasn't it?
 
 ## Credits
 
