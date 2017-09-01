@@ -1,4 +1,4 @@
-[NuGet](https://img.shields.io/nuget/v/imagekit.svg)]
+[![NuGet](https://img.shields.io/nuget/v/imagekit.svg)]()
 # DotNET Imagekit.io integration
 This is the Imagekit.io integration library for .NET
 
