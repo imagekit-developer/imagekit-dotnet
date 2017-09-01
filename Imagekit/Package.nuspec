@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Imagekit</id>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
     <authors>Mohsens22</authors>
     <owners>Mohsens22, Imagekit.io</owners>
     <licenseUrl>https://github.com/imagekit-developer/dotnet-imagekit-integration/blob/dev/LICENSE</licenseUrl>
