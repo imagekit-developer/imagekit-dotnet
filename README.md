@@ -1,11 +1,7 @@
+[NuGet](https://img.shields.io/nuget/v/imagekit.svg)]
 # DotNET Imagekit.io integration
 This is the Imagekit.io integration library for .NET
-<p align="left">
-    <a href="https://www.nuget.org/packages/Imagekit">
-        <img src="https://img.shields.io/nuget/v/imagekit.svg"
-             alt="Nuget">
-    </a>
-</p>
+
 ### Features
 This library will help you to upload your images to Imagekit.io as easy as possible. Currectly you can upload images  via URL *(URi)*, Path to existing file in your hard disk *(string)*  and byte arrays *(byte[])* which are default format of uploaded files in ASP.NET .
 Also you can make [feature request](#support) or [contribute](#contributing) for things you need.
