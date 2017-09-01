@@ -1,6 +1,10 @@
 # DotNET Imagekit integration
 This is the Imagekit integration library for .NET
 
+### Features
+This library will help you to upload your images and files to Imagekit as easy as possible. Currectly you can upload images or files via URL(URi), Path to existing file in your hard disk(string) and byte arrays(byte[]) which are default format of uploaded files in ASP.NET .
+Also you can make [feature request](#Support) or [contribute](#Contributing) for things you need.
+
 ## Getting Started
 These instructions will help you to interact with Imagekit.io services in .NET using the brand new Imagekit integration library.
 
@@ -15,6 +19,7 @@ Install-Package Imagekit
 Also you can search for [Imagekit](https://www.nuget.org/packages/Imagekit/1.0.0) in Nuget GUI.
 
 Way two:
+
 1-Clone this repo or download the zip file.
 
 2-Add it to your solution
@@ -35,16 +40,21 @@ Notice: API-public is your API public key, API-private is your API private key, 
 
 After that you can upload your image:
 ```
-Upload.Picture(photo, "/path/", "name.jpg",true);
+ImagekitResponse R = Upload.Picture(photo, "/path/", "name.jpg",true);
 ```
-Notice: photo is your photo which can be a byte array (byte[]) of your photo or local path on your disk(string). "/path/" is the desired path of uploaded file. "name.jpg" is the desired name of uploaded file. The last parameter is "useUniqueName" which is an optional parameter with the default value of true.
+**Notice**: *photo* is your photo which can be a byte array *(byte[])* or your photo or local path on your disk*(string)* or a URL to an existing picture on the web *(URi)*. *"/path/"* is the desired path of uploaded file*(string)*. *"name.jpg"* is the desired name of uploaded file*(string)*. The last parameter is "useUniqueName" which is an optional parameter *(bool)* with the default value of *true*.
+This method retunes you an object with the type of **ImagekitResponse** which is the information about the uploaded file.
+| Name  | Description | Type | Sample output |
+| ------------- | ------------- |------|------|
+| ImagePath  | The path of uploaded picture from your root URL  | string | "/avatar/sample_HJN0fTUtb.jpg" |
+
 
 Done; You uploaded your picture.
 Whoa! It was fast, wasn't it?
 
 ## Credits
 
-* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) - JSON parser
+* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)
 
 ## Contributing
 
@@ -59,7 +69,7 @@ Also you can post the issues in the [issues](https://github.com/imagekit-develop
 
 * **Mohsen Seifi** - *Core development* - [@mohsens22](https://github.com/mohsens22)
 
-See also the list of [contributors](https://github.com/github.com/imagekit-developer/dotnet-imagekit-integration/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/imagekit-developer/dotnet-imagekit-integration/contributors) who participated in this project.
 
 ## License
 
