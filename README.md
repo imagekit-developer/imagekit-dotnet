@@ -2,7 +2,7 @@
 This is the Imagekit integration library for .NET
 
 ### Features
-This library will help you to upload your images and files to Imagekit as easy as possible. Currectly you can upload images or files via URL *(URi)*, Path to existing file in your hard disk *(string)*  and byte arrays *(byte[])* which are default format of uploaded files in ASP.NET .
+This library will help you to upload your images to Imagekit as easy as possible. Currectly you can upload images  via URL *(URi)*, Path to existing file in your hard disk *(string)*  and byte arrays *(byte[])* which are default format of uploaded files in ASP.NET .
 Also you can make [feature request](#support) or [contribute](#contributing) for things you need.
 
 ## Getting Started
@@ -16,7 +16,7 @@ Open up your project, navigate to Nuget package manager console and add Imagekit
 ```
 Install-Package Imagekit
 ```
-Also you can search for [Imagekit](https://www.nuget.org/packages/Imagekit/1.0.0) in Nuget GUI.
+Also you can search for [Imagekit](https://www.nuget.org/packages/Imagekit) in Nuget GUI.
 
 Way two:
 
