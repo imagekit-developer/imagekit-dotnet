@@ -1,18 +1,19 @@
-# DotNET Imagekit integration
-This is the Imagekit integration library for .NET
+[![NuGet](https://img.shields.io/nuget/v/imagekit.svg)]()
+# DotNET Imagekit.io integration
+This is the Imagekit.io integration library for .NET
 
 ### Features
-This library will help you to upload your images to Imagekit as easy as possible. Currectly you can upload images  via URL *(URi)*, Path to existing file in your hard disk *(string)*  and byte arrays *(byte[])* which are default format of uploaded files in ASP.NET .
+This library will help you to upload your images to Imagekit.io as easy as possible. Currectly you can upload images  via URL *(URi)*, Path to existing file in your hard disk *(string)*  and byte arrays *(byte[])* which are default format of uploaded files in ASP.NET .
 Also you can make [feature request](#support) or [contribute](#contributing) for things you need.
 
 ## Getting Started
-These instructions will help you to interact with Imagekit.io services in .NET using the brand new Imagekit integration library.
+These instructions will help you to interact with Imagekit.io services in .NET using the brand new Imagekit.io integration library.
 
 ### Installing
 There are a couple of ways to get started with this integration library.
 
 Way one:
-Open up your project, navigate to Nuget package manager console and add Imagekit.
+Open up your project, navigate to Nuget package manager console and add Imagekit package.
 ```
 Install-Package Imagekit
 ```
@@ -27,16 +28,16 @@ Way two:
 3-Reference your host project to Imagekit.
 
 ### Usage
-Now that everything's installed and set up, you can start using ImageKit on your .NET project!
-First, add this reference where you want to use imagekit
+Now that everything's installed and set up, you can start using ImageKit.io on your .NET project!
+First, add this reference where you want to use imagekit.io services:
 ```cs
 using Imagekit;
 ```
-Then, initialize the imagekit service using this code, when your app starts(example: ASP: Global.asax, WPF: app.xaml.cs): 
+Then, initialize the imagekit.io service using this code, when your app starts(example: ASP: Global.asax, WPF: app.xaml.cs): 
 ```cs
 ConnectionHelper.Initialize("API-public", "API-Private", "ID");
 ```
-Notice: API-public is your API public key, API-private is your API private key, and ID is your imagekit ID. You can get all of them from your [Imagekit dashboard](https://imagekit.io/dashboard).
+Notice: API-public is your API public key, API-private is your API private key, and ID is your imagekit.io ID. You can get all of them from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
 
 #### Upload pictures
 now you can upload your image using this code:
@@ -54,7 +55,7 @@ This method retunes you an object with the type of **ImagekitResponse** which is
 | Height  | Height of uploaded photo  | int | 200 |
 | Width  | Width of uploaded photo  | int | 200 |
 | ID  | The unique ID of your saved picture  | string | "HkiFvuZKZ/avatar/sample_HJN0fTUtb.jpg/original" |
-| FileFolder  | The real path of uploaded picture in imagekit servers  | string | "/HkiFvuZKZ/avatar/sample_HJN0fTUtb.jpg/" |
+| FileFolder  | The real path of uploaded picture in imagekit.io servers  | string | "/HkiFvuZKZ/avatar/sample_HJN0fTUtb.jpg/" |
 | Thumbnail  | The thumbnail URL of uploaded picture  | string | "https://ik.imagekit.io/xeamo/tr:n-media_library_thumbnail/avatar/sample_HJN0fTUtb.jpg" |
 | URL  | The public URL to your picture | string | "https://ik.imagekit.io/xeamo/avatar/sample_HJN0fTUtb.jpg" |
 | Name  | The name of uploaded picture in your media library  | string | "sample_HJN0fTUtb.jpg" |
