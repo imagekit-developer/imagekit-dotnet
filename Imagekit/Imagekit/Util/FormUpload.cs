@@ -1,127 +1,213 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+
 
 namespace Imagekit.Util
 {
-    // Implements multipart/form-data POST in C# http://www.ietf.org/rfc/rfc2388.txt
-    // http://www.briangrinstead.com/blog/multipart-form-post-in-c
-    internal static class FormUpload
+    public class FormUpload
     {
-        
-        private static readonly Encoding encoding = Encoding.UTF8;
-
-        public const string UserAgent =
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393";
-
-        public static HttpWebResponse MultipartFormDataPost(string postUrl, Dictionary<string, object> postFormData)
+        private static string CreateFormDataBoundary()
         {
-            string formDataBoundary = $"----------{Guid.NewGuid():N}";
-            var contentType = "multipart/form-data; boundary=" + formDataBoundary;
-
-            var formData = GetMultipartFormData(postFormData, formDataBoundary);
-
-            return PostForm(postUrl, contentType, formData);
+            return "---------------------------" + DateTime.Now.Ticks.ToString("x");
         }
 
-        private static HttpWebResponse PostForm(string postUrl, string contentType, byte[] formData)
+        public static string ExecutePostRequest(
+          Uri url,
+          Dictionary<string, object> postData,
+          FileInfo fileToUpload,
+          string fileMimeType,
+          string fileFormKey
+        )
         {
-            var request = WebRequest.Create(postUrl) as HttpWebRequest;
-
-            if (request == null)
-            {
-                throw new NullReferenceException("request is not a http request");
-            }
-
-            // Set up the request properties.
+            string details = "";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url.AbsoluteUri);
             request.Method = "POST";
-            request.ContentType = contentType;
-            request.UserAgent = UserAgent;
-            request.CookieContainer = new CookieContainer();
-            request.ContentLength = formData.Length;
-
-            // Send the form data to the request.
-            using (var requestStream = request.GetRequestStream())
+            request.KeepAlive = true;
+            string boundary = CreateFormDataBoundary();
+            request.ContentType = "multipart/form-data; boundary=" + boundary;
+            Stream requestStream = request.GetRequestStream();
+            postData.WriteMultipartFormData(requestStream, boundary);
+            if (fileToUpload != null)
             {
-                requestStream.Write(formData, 0, formData.Length);
-                requestStream.Close();
+                fileToUpload.WriteMultipartFormData(requestStream, boundary, fileMimeType, fileFormKey);
+            }
+            byte[] endBytes = System.Text.Encoding.UTF8.GetBytes("--" + boundary + "--");
+            requestStream.Write(endBytes, 0, endBytes.Length);
+            requestStream.Close();
+            try { 
+                using (WebResponse response = request.GetResponse())
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                details = reader.ReadToEnd();
+            
+            }
+            catch (WebException ex)
+            {
+                details = GetServerErrorMessage(ex);
             }
 
-            return request.GetResponse() as HttpWebResponse;
+            return details;
+
         }
+
+        private static string GetServerErrorMessage(WebException wex)
+        {
+            string error;
+            if (wex.Response == null) return null;
+            var errorResponse = (HttpWebResponse)wex.Response;
+            var respnseStream = errorResponse.GetResponseStream();
+            if (respnseStream == null) return null;
+            using (var reader = new StreamReader(respnseStream))
+            {
+                error = reader.ReadToEnd();
+                reader.Close();
+            }
+            Console.WriteLine(error);
+            return error;
+        }
+    }
+
+    public static class DictionaryExtensions
+    {
+        /// <summary>
+        /// Template for a multipart/form-data item.
+        /// </summary>
+        public const string FormDataTemplate = "--{0}\r\nContent-Disposition: form-data; name=\"{1}\"\r\n\r\n{2}\r\n";
 
         /// <summary>
-        ///     Gets All the form name-value pairs and writes them to a byte array
+        /// Writes a dictionary to a stream as a multipart/form-data set.
         /// </summary>
-        /// <param name="postParameters">name-value pairs of Form</param>
-        /// <param name="boundary"></param>
-        /// <returns>All Data persisted into a byte[] ready to be sent in web request</returns>
-        private static byte[] GetMultipartFormData(Dictionary<string, object> postParameters, string boundary)
+        /// <param name="dictionary">The dictionary of form values to write to the stream.</param>
+        /// <param name="stream">The stream to which the form data should be written.</param>
+        /// <param name="mimeBoundary">The MIME multipart form boundary string.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown if <paramref name="stream" /> or <paramref name="mimeBoundary" /> is <see langword="null" />.
+        /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown if <paramref name="mimeBoundary" /> is empty.
+        /// </exception>
+        /// <remarks>
+        /// If <paramref name="dictionary" /> is <see langword="null" /> or empty,
+        /// nothing wil be written to the stream.
+        /// </remarks>
+        public static void WriteMultipartFormData(
+          this Dictionary<string, object> dictionary,
+          Stream stream,
+          string mimeBoundary)
         {
-            Stream formDataStream = new MemoryStream();
-            var needsCLRF = false;
-
-            foreach (var param in postParameters)
+            if (dictionary == null || dictionary.Count == 0)
             {
-                // CRLF to allows multiple parameters to be added.
-                // Skip it on the first parameter, add it to subsequent parameters.
-                if (needsCLRF)
-                    formDataStream.Write(encoding.GetBytes("\r\n"), 0, encoding.GetByteCount("\r\n"));
-
-                needsCLRF = true;
-
-                if (param.Value is FileParameter)
-                {
-                    var fileToUpload = (FileParameter)param.Value;
-
-                    // Add just the first part of this param, since we will write the file data directly to the Stream
-                    string header =
-                        $"--{boundary}\r\nContent-Disposition: form-data; name=\"{param.Key}\"; filename=\"{fileToUpload.FileName ?? param.Key}\"\r\nContent-Type: {fileToUpload.ContentType ?? "application/octet-stream"}\r\n\r\n";
-
-                    formDataStream.Write(encoding.GetBytes(header), 0, encoding.GetByteCount(header));
-
-                    // Write the file data directly to the Stream, rather than serializing it to a string.
-                    formDataStream.Write(fileToUpload.File, 0, fileToUpload.File.Length);
-                }
-                else
-                {
-                    string postData =
-                        $"--{boundary}\r\nContent-Disposition: form-data; name=\"{param.Key}\"\r\n\r\n{param.Value}";
-                    formDataStream.Write(encoding.GetBytes(postData), 0, encoding.GetByteCount(postData));
-                }
+                return;
             }
-
-            // Add the end of the request.  Start with a newline
-            var footer = "\r\n--" + boundary + "--\r\n";
-            formDataStream.Write(encoding.GetBytes(footer), 0, encoding.GetByteCount(footer));
-
-            // Dump the Stream into a byte[]
-            formDataStream.Position = 0;
-            var formData = new byte[formDataStream.Length];
-            formDataStream.Read(formData, 0, formData.Length);
-            formDataStream.Close();
-
-            return formData;
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream");
+            }
+            if (mimeBoundary == null)
+            {
+                throw new ArgumentNullException("mimeBoundary");
+            }
+            if (mimeBoundary.Length == 0)
+            {
+                throw new ArgumentException("MIME boundary may not be empty.", "mimeBoundary");
+            }
+            foreach (string key in dictionary.Keys)
+            {
+                string item = String.Format(FormDataTemplate, mimeBoundary, key, dictionary[key]);
+                byte[] itemBytes = System.Text.Encoding.UTF8.GetBytes(item);
+                stream.Write(itemBytes, 0, itemBytes.Length);
+            }
         }
+    }
 
-        public class FileParameter
+    /// <summary>
+    /// Extension methods for <see cref="System.IO.FileInfo"/>.
+    /// </summary>
+    public static class FileInfoExtensions
+    {
+        /// <summary>
+        /// Template for a file item in multipart/form-data format.
+        /// </summary>
+        public const string HeaderTemplate = "--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\nContent-Type: {3}\r\n\r\n";
+
+        /// <summary>
+        /// Writes a file to a stream in multipart/form-data format.
+        /// </summary>
+        /// <param name="file">The file that should be written.</param>
+        /// <param name="stream">The stream to which the file should be written.</param>
+        /// <param name="mimeBoundary">The MIME multipart form boundary string.</param>
+        /// <param name="mimeType">The MIME type of the file.</param>
+        /// <param name="formKey">The name of the form parameter corresponding to the file upload.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown if any parameter is <see langword="null" />.
+        /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown if <paramref name="mimeBoundary" />, <paramref name="mimeType" />,
+        /// or <paramref name="formKey" /> is empty.
+        /// </exception>
+        /// <exception cref="System.IO.FileNotFoundException">
+        /// Thrown if <paramref name="file" /> does not exist.
+        /// </exception>
+        public static void WriteMultipartFormData(
+          this FileInfo file,
+          Stream stream,
+          string mimeBoundary,
+          string mimeType,
+          string formKey)
         {
-            public byte[] File { get; set; }
-            public string FileName { get; set; }
-            public string ContentType { get; set; }
-            public FileParameter(byte[] file) : this(file, null) { }
-            public FileParameter(byte[] file, string filename) : this(file, filename, null) { }
-            public FileParameter(byte[] file, string filename, string contenttype)
+            if (file == null)
             {
-                File = file;
-                FileName = filename;
-                ContentType = contenttype;
+                throw new ArgumentNullException("file");
             }
+            if (!file.Exists)
+            {
+                throw new FileNotFoundException("Unable to find file to write to stream.", file.FullName);
+            }
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream");
+            }
+            if (mimeBoundary == null)
+            {
+                throw new ArgumentNullException("mimeBoundary");
+            }
+            if (mimeBoundary.Length == 0)
+            {
+                throw new ArgumentException("MIME boundary may not be empty.", "mimeBoundary");
+            }
+            if (mimeType == null)
+            {
+                throw new ArgumentNullException("mimeType");
+            }
+            if (mimeType.Length == 0)
+            {
+                throw new ArgumentException("MIME type may not be empty.", "mimeType");
+            }
+            if (formKey == null)
+            {
+                throw new ArgumentNullException("formKey");
+            }
+            if (formKey.Length == 0)
+            {
+                throw new ArgumentException("Form key may not be empty.", "formKey");
+            }
+            string header = String.Format(HeaderTemplate, mimeBoundary, formKey, file.Name, mimeType);
+            byte[] headerbytes = Encoding.UTF8.GetBytes(header);
+            stream.Write(headerbytes, 0, headerbytes.Length);
+            using (FileStream fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read))
+            {
+                byte[] buffer = new byte[1024];
+                int bytesRead = 0;
+                while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+                {
+                    stream.Write(buffer, 0, bytesRead);
+                }
+                fileStream.Close();
+            }
+            byte[] newlineBytes = Encoding.UTF8.GetBytes("\r\n");
+            stream.Write(newlineBytes, 0, newlineBytes.Length);
         }
     }
 }
