@@ -73,7 +73,7 @@ ImagekitResponse Properties:
 #### Upload Image By URL
 Uploads an image with the URL "http://www.example.com/image.jpg" in the folder "/images" in your storage.
 ```cs
-ImagekitResponse R = api.Upload("http://www.example.com/image.jpg", "/images", "my-name.jpg", false);
+ImagekitResponse R = api.UploadViaURL("http://www.example.com/image.jpg", "/images", "my-name.jpg", false);
 ```
 
 #### Delete Image
