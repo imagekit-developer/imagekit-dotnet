@@ -47,8 +47,11 @@ Api api = new Api(client);
 To Upload an image with the name "my-image" in the folder "/images" in your storage.
 ```cs
 ImagekitResponse R = api.Upload(imagePath, "/images", "my-name.jpg", false);
+or 
+byte[] imageArray = System.IO.File.ReadAllBytes(imagePath);
+ImagekitResponse R = api.Upload(imageArray, "/images", "my-name.jpg", false);
 ```
-**Notice**: *photo* is your photo or local path on your disk *(string)*. The last parameter is "useUniqueName" which is an optional parameter *(bool)* with the default value of *true*.
+**Notice**: *imagePath* is the file which can be byte array (byte[]) or local path on your disk *(string)*. The last parameter is "useUniqueName" which is an optional parameter *(bool)* with the default value of *true*.
 
 ImagekitResponse Properties:
 
@@ -97,7 +100,8 @@ Invalidate an image with the URL "https://ik.imagekit.io/imagekitId/images/my-na
 ```cs
 PurgeAPIResponse R = api.PurgeFile("https://ik.imagekit.io/imagekitId/images/my-name.jpg?tr=h-200");
 ```
-**Notice** Image invalidation is transformation sensitive. You'll have to submit different requests for original and transformed images. Check out the [rate limits](https://docs.imagekit.io/#rate-limits). 
+**Notice** Image invalidation is transformation sensitive. You'll have to submit different requests for original and transformed images. Check out the [rate limits](https://docs.imagekit.io/#rate-limits).
+
 PurgeAPIResponse Properties:
 
 | Name  | Description | Type | Sample output |

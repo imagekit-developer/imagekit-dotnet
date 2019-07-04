@@ -11,15 +11,13 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>Imagekit</PackageId>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>2.1.0</PackageVersion>
     <Authors>Imagekit</Authors>
     <DevelopmentDependency>true</DevelopmentDependency>
     <PackageLicenseUrl>https://github.com/imagekit-developer/dotnet-imagekit-integration/blob/master/LICENSE</PackageLicenseUrl>
     <Owners>imagekit</Owners>
     <PackageProjectUrl>http://imagekit.io</PackageProjectUrl>
-    <PackageReleaseNotes>- Major Release 
-- Fixed Upload by URL
-- Added Delete File, Purge File, ListMediaFiles, GetMetadata API support. </PackageReleaseNotes>
+    <PackageReleaseNotes>- Added Upload by bytes[] support.</PackageReleaseNotes>
     <PackageTags>Image Resize Crop SmartCrop Rotate Quality Watermark Gif Jpg Jpeg Bitmap PNG Tiff Webp Webm Svg Optimization</PackageTags>
     <Description>Library to Integrate Imagekit.io Service.</Description>
     <Copyright>© ImageKit Private Limited 2019</Copyright>

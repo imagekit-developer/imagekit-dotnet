@@ -141,6 +141,31 @@ namespace Imagekit
 
         }
 
+        public ImagekitResponse Upload(byte[] byteImage, string folder, string filename, bool useUniqueFileName = true)
+        {
+            if (string.IsNullOrEmpty(folder))
+            {
+                folder = "/";
+            }
+            Uri uploadUrl = new Uri(Utils.GetProtocol(false) + "//" + Utils.getImageUploadAPI((string)options["imagekitId"]));
+            var TimeStamp = Utils.ToUnixTime(DateTime.UtcNow);
+            string str = string.Format("apiKey={0}&filename={1}&timestamp={2}", (string)options["apiKey"], filename, TimeStamp);
+            var signature = Utils.calculateSignature(str, Encoding.ASCII.GetBytes((string)options["apiSecret"]));
+            var postParameters = new Dictionary<string, object>
+            {
+                {"apiKey", (string)options["apiKey"]},
+                {"filename",filename },
+                {"folder", folder},
+                {"signature", signature},
+                {"timestamp",TimeStamp },
+                {"useUniqueFilename", useUniqueFileName }
+            };
+
+            string responseText = FormUpload.ExecutePostRequest(uploadUrl, postParameters, byteImage, "image/jpeg", "file");
+            return JsonConvert.DeserializeObject<ImagekitResponse>(responseText);
+
+        }
+
         public ImagekitResponse UploadViaURL(string url, string folder, string filename, bool useUniqueFileName = true)
         {
             string apiUrl = Utils.GetProtocol(true) + "//" + Utils.getImageUploadURLAPI((string)options["imagekitId"]);

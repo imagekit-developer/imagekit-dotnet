@@ -49,7 +49,44 @@ namespace Imagekit.Util
             }
 
             return details;
+        }
 
+        public static string ExecutePostRequest(
+          Uri url,
+          Dictionary<string, object> postData,
+          byte[] byteImage,
+          string fileMimeType,
+          string fileFormKey
+        )
+        {
+            string details = "";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url.AbsoluteUri);
+            request.Method = "POST";
+            request.KeepAlive = true;
+            string boundary = CreateFormDataBoundary();
+            request.ContentType = "multipart/form-data; boundary=" + boundary;
+            Stream requestStream = request.GetRequestStream();
+            postData.WriteMultipartFormData(requestStream, boundary);
+            if (byteImage != null)
+            {
+                byteImage.WriteMultipartFormData(requestStream, boundary, fileMimeType, fileFormKey);
+            }
+            byte[] endBytes = System.Text.Encoding.UTF8.GetBytes("--" + boundary + "--");
+            requestStream.Write(endBytes, 0, endBytes.Length);
+            requestStream.Close();
+            try
+            {
+                using (WebResponse response = request.GetResponse())
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                    details = reader.ReadToEnd();
+
+            }
+            catch (WebException ex)
+            {
+                details = GetServerErrorMessage(ex);
+            }
+
+            return details;
         }
 
         private static string GetServerErrorMessage(WebException wex)
@@ -206,6 +243,58 @@ namespace Imagekit.Util
                 }
                 fileStream.Close();
             }
+            byte[] newlineBytes = Encoding.UTF8.GetBytes("\r\n");
+            stream.Write(newlineBytes, 0, newlineBytes.Length);
+        }
+
+        public static void WriteMultipartFormData(
+          this byte[] byteImage,
+          Stream stream,
+          string mimeBoundary,
+          string mimeType,
+          string formKey)
+        {
+            if (byteImage == null)
+            {
+                throw new ArgumentNullException("file");
+            }
+            if (byteImage.Length == 0)
+            {
+                throw new ArgumentException("Base64 may not be empty.", "byteImage");
+            }
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream");
+            }
+            if (mimeBoundary == null)
+            {
+                throw new ArgumentNullException("mimeBoundary");
+            }
+            if (mimeBoundary.Length == 0)
+            {
+                throw new ArgumentException("MIME boundary may not be empty.", "mimeBoundary");
+            }
+            if (mimeType == null)
+            {
+                throw new ArgumentNullException("mimeType");
+            }
+            if (mimeType.Length == 0)
+            {
+                throw new ArgumentException("MIME type may not be empty.", "mimeType");
+            }
+            if (formKey == null)
+            {
+                throw new ArgumentNullException("formKey");
+            }
+            if (formKey.Length == 0)
+            {
+                throw new ArgumentException("Form key may not be empty.", "formKey");
+            }
+            string header = String.Format(HeaderTemplate, mimeBoundary, formKey, "image", "image/jpeg");
+            byte[] headerbytes = Encoding.UTF8.GetBytes(header);
+            stream.Write(headerbytes, 0, headerbytes.Length);
+
+            stream.Write(byteImage, 0, byteImage.Length);
             byte[] newlineBytes = Encoding.UTF8.GetBytes("\r\n");
             stream.Write(newlineBytes, 0, newlineBytes.Length);
         }
