@@ -3,6 +3,8 @@
 
 New version of the DotNet SDK for [ImageKit.io](https://imagekit.io) that implements the new APIs and interface for performing different file operations.
 
+**Note**: For older version of SDK, please checkout branch v1.x.
+
 ImageKit is a complete image optimization and transformation solution that comes with an [image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your existing infrastructure - storages like AWS S3, web servers, your CDN and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
 
 
