@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Imagekit</RootNamespace>
+    <AssemblyName>Imagekit</AssemblyName>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <PackageVersion>3.0.1</PackageVersion>
+    <Copyright>© ImageKit Private Limited 2019</Copyright>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <PackageIconUrl>https://imagekit.io/favicon.ico</PackageIconUrl>
+    <PackageLicense>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicense>
+    <Owners>Imagekit</Owners>
+    <PackageProjectUrl>http://imagekit.io</PackageProjectUrl>
+    <PackageTags>Image Resize Crop SmartCrop Rotate Quality Watermark Gif Jpg Jpeg Bitmap PNG Tiff Webp Webm Svg Optimization</PackageTags>
+    <Title>Imagekit.io DotNet Library</Title>
+    <Description>Library to Integrate Imagekit.io Service.</Description>
+    <PackageId>Imagekit</PackageId>
+    <PackOnBuild>true</PackOnBuild>
+    <ReleaseVersion>3.0.1</ReleaseVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <PackageLicenseUrl>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicenseUrl>
+  </PropertyGroup>
+  
+   
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+    
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <Reference Include="System" />
+    <Reference Include="System.Net" />
+  </ItemGroup>
+  
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45'">
+    <DefineConstants>NET45;NETFULL</DefineConstants>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>NETCORE;DEBUG;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+    <DefineConstants>NETCORE;RELEASE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+</Project>
+
+
+
+
