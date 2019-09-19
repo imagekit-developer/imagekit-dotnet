@@ -1,6 +1,7 @@
-[![NuGet](https://img.shields.io/nuget/v/imagekit.svg)]()
 # DotNET ImageKit.io integration
 This is the ImageKit.io integration library for .NET
+
+**Note**: For latest version of the SDK, please checkout master/v2.x branch.
 
 By using ImageKit, you can experience about 30% improvement in page load time thanks to the tons of image optimizations that work out of the box without you putting in any effort. Migrating to ImageKit is super simple and takes just a few minutes with our Plug-and-Play technology. Images are delivered across the globe using a CDN ensuring lightning fast experience for your users.
 
