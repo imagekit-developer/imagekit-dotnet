@@ -10,7 +10,21 @@ ImageKit is a complete image optimization and transformation solution that comes
 
 ## Installation
 
-`Install-Package Imagekit`
+Package Manager
+```
+Install-Package Imagekit
+```
+
+PackageReference
+```
+<PackageReference Include="Imagekit" Version="3.0.1">
+</PackageReference>
+```
+.Net CLI
+```
+dotnet add package Imagekit --version 3.0.1
+```
+
 
 Open up your project, navigate to Nuget package manager console and add Imagekit package.
 Also you can search for [Imagekit](https://www.nuget.org/packages/Imagekit) in Nuget GUI.
