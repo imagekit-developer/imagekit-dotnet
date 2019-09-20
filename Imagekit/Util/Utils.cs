@@ -16,7 +16,7 @@ namespace Imagekit.Util
         
         private static HttpClient httpClient = new HttpClient();
         public const string UserAgent =
-              "ImagekitDotNet/3.0.0";
+              "ImagekitDotNet/3.0.2";
 
         public static long ToUnixTime(DateTime dateTime)
         {
@@ -139,12 +139,24 @@ namespace Imagekit.Util
         public static HttpResponseMessage PostUpload(Uri uri, Dictionary<string, string> data, string file, string key)
         {
             HttpContent content = new StringContent(file);
-            if (IsLocalPath(file))
+            if (string.IsNullOrEmpty(file) || file.Length % 4 != 0
+               || file.Contains(" ") || file.Contains("\t") || file.Contains("\r") || file.Contains("\n"))
             {
-                var fileInfo = new FileInfo(file);
-                content = new StringContent(Convert.ToBase64String(File.ReadAllBytes(fileInfo.FullName)));
-            } 
-            
+                
+                if (IsLocalPath(file))
+                {
+                    var fileInfo = new FileInfo(file);
+                    try
+                    {
+                        content = new StringContent(Convert.ToBase64String(File.ReadAllBytes(fileInfo.FullName)));
+                    }
+                    catch (Exception)
+                    {
+                        content = new StringContent(file);
+                    }
+                }       
+            }
+
             try
             {
                 content.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
@@ -173,22 +185,6 @@ namespace Imagekit.Util
                 throw ex;
             }
         }
-
-        //public static bool IsBase64(this string base64String)
-        //{
-        //    if (string.IsNullOrEmpty(base64String) || base64String.Length % 4 != 0
-        //       || base64String.Contains(" ") || base64String.Contains("\t") || base64String.Contains("\r") || base64String.Contains("\n"))
-        //        return false;
-        //    try
-        //    {
-        //        Convert.FromBase64String(base64String);
-        //        return true;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
-        //    }
-        //}
 
         private static bool IsLocalPath(string p)
         {
