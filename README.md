@@ -30,6 +30,15 @@ Open up your project, navigate to Nuget package manager console, and add Imageki
 Also, you can search for [Imagekit](https://www.nuget.org/packages/Imagekit) in Nuget GUI.
 
 
+***Note***: If you get error like "the type or namespace 'ImageKit' couldn't be found", please remove IncludeAssets tag like below.
+```
+<PackageReference Include="Imagekit" Version="3.0.3">
+   <!-- Remove IncludeAssets to allow compiling against the assembly -->
+   <!--IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets-->
+<PrivateAssets>all</PrivateAssets>
+
+```
+
 ## Initialization
 Add this reference where you want to use imagekit.io services:
 ```cs
