@@ -5,7 +5,7 @@
     <RootNamespace>Imagekit</RootNamespace>
     <AssemblyName>Imagekit</AssemblyName>
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
-    <PackageVersion>3.0.3</PackageVersion>
+    <PackageVersion>3.0.4</PackageVersion>
     <Copyright>© ImageKit Private Limited 2019</Copyright>
     <DevelopmentDependency>true</DevelopmentDependency>
     <PackageIconUrl>https://imagekit.io/favicon.ico</PackageIconUrl>
@@ -17,9 +17,12 @@
     <Description>Library to Integrate Imagekit.io Service.</Description>
     <PackageId>Imagekit</PackageId>
     <PackOnBuild>true</PackOnBuild>
-    <ReleaseVersion>3.0.3</ReleaseVersion>
+    <ReleaseVersion>3.0.4</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <PackageLicenseUrl>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicenseUrl>
+    <Version>3.0.4</Version>
+    <RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   
    
@@ -41,7 +44,7 @@
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DefineConstants>NETCORE;DEBUG;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>

@@ -22,7 +22,7 @@
         public Imagekit FileType(string value = "all") { return Add("fileType", value); }
 
         public Imagekit FileName(string value) { return Add("fileName", value); }
-        public Imagekit UseUniqueFileName(string value = "true") { return Add("useUniqueFileName", value); }
+        public Imagekit UseUniqueFileName(bool value = true) { return Add("useUniqueFileName", value); }
         public Imagekit Folder(string value = "/") { return Add("folder", value); }
         public Imagekit IsPrivate(bool value = false) { return Add("isPrivate", value); }
         public Imagekit CustomCoordinates(string value) { return Add("customCoordinates", value); }

@@ -1,9 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagekit", "Imagekit\Imagekit.csproj", "{D7929DCF-13EC-4677-9859-D55DA9D752E4}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Imagekit", "Imagekit\Imagekit.csproj", "{D7929DCF-13EC-4677-9859-D55DA9D752E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{2BE98370-D0F5-499B-BFF2-D17E1D40498D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "..\TestProject\TestProject\TestProject.csproj", "{83E4490E-A753-4E5C-9224-DE3690F78B75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +16,16 @@ Global
 		{D7929DCF-13EC-4677-9859-D55DA9D752E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7929DCF-13EC-4677-9859-D55DA9D752E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7929DCF-13EC-4677-9859-D55DA9D752E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BE98370-D0F5-499B-BFF2-D17E1D40498D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BE98370-D0F5-499B-BFF2-D17E1D40498D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BE98370-D0F5-499B-BFF2-D17E1D40498D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BE98370-D0F5-499B-BFF2-D17E1D40498D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83E4490E-A753-4E5C-9224-DE3690F78B75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E4490E-A753-4E5C-9224-DE3690F78B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83E4490E-A753-4E5C-9224-DE3690F78B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E4490E-A753-4E5C-9224-DE3690F78B75}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCE1EF90-4EA0-4458-90C1-7F408AE6E292}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

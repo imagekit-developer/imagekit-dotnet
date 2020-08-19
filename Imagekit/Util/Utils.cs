@@ -13,10 +13,8 @@ namespace Imagekit.Util
 {
     public class Utils
     {
-        
         private static HttpClient httpClient = new HttpClient();
-        public const string UserAgent =
-              "ImagekitDotNet/3.0.2";
+        public const string UserAgent = "ImagekitDotNet/3.0.4";
 
         public static long ToUnixTime(DateTime dateTime)
         {
@@ -56,6 +54,7 @@ namespace Imagekit.Util
                 authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
                 httpClient.DefaultRequestHeaders.Authorization
                          = new AuthenticationHeaderValue("Basic", authInfo);
+                httpClient.DefaultRequestHeaders.UserAgent.Clear();
                 httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
                 if (method == "DELETE")
                 {
@@ -83,6 +82,7 @@ namespace Imagekit.Util
                 authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
                 httpClient.DefaultRequestHeaders.Authorization
                          = new AuthenticationHeaderValue("Basic", authInfo);
+                httpClient.DefaultRequestHeaders.UserAgent.Clear();
                 httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
                 if (method == "PATCH")
                 {
@@ -124,6 +124,7 @@ namespace Imagekit.Util
                 authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
                 httpClient.DefaultRequestHeaders.Authorization
                          = new AuthenticationHeaderValue("Basic", authInfo);
+                httpClient.DefaultRequestHeaders.UserAgent.Clear();
                 httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
                 return httpClient.PostAsync(uri, multiForm).Result;
 
@@ -142,7 +143,6 @@ namespace Imagekit.Util
             if (string.IsNullOrEmpty(file) || file.Length % 4 != 0
                || file.Contains(" ") || file.Contains("\t") || file.Contains("\r") || file.Contains("\n"))
             {
-                
                 if (IsLocalPath(file))
                 {
                     var fileInfo = new FileInfo(file);
@@ -168,15 +168,15 @@ namespace Imagekit.Util
                 {
                     multiForm.Add(new StringContent(pair.Value), pair.Key);
                 }
-                //multiForm.Add(new FormUrlEncodedContent(data), "data");
 
                 string authInfo = key + ":" + "";
                 authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
                 httpClient.DefaultRequestHeaders.Authorization
                          = new AuthenticationHeaderValue("Basic", authInfo);
-                 httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
-                return httpClient.PostAsync(uri, multiForm).Result;
+                httpClient.DefaultRequestHeaders.UserAgent.Clear();
+                httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
                 
+                return httpClient.PostAsync(uri, multiForm).Result;
             }
             catch (WebException ex)
             {

@@ -148,8 +148,6 @@ namespace Imagekit
             return false;
         }
 
-        
-
         public string GetSignature(string url, string expiryTimestamp)
         {
             if (string.IsNullOrEmpty((string)options["privateKey"]) || string.IsNullOrEmpty((string)options["urlEndpoint"])) { return ""; }

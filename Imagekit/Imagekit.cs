@@ -58,7 +58,6 @@ namespace Imagekit
             options.Remove("tags");
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "?" + string.Join("&", param));
             var response = Utils.Get(apiEndpoint, (string)options["privateKey"]);
-            response.EnsureSuccessStatusCode();
             var responseContent = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<List<ListAPIResponse>>(responseContent.Result);
         }
@@ -72,7 +71,6 @@ namespace Imagekit
             }
             Uri apiEndpoint = new Uri(Utils.GetFileApi() +"/" + fileId + "/details");
             var response = Utils.Get(apiEndpoint, (string)options["privateKey"]);
-            response.EnsureSuccessStatusCode();
             var responseContent = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<ListAPIResponse>(responseContent.Result);
         }
@@ -86,7 +84,6 @@ namespace Imagekit
             }
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId + "/metadata");
             HttpResponseMessage response = Utils.Get(apiEndpoint, (string)options["privateKey"]);
-            response.EnsureSuccessStatusCode();
             using (var responseContent = response.Content.ReadAsStringAsync())
             {
                 MetadataResponse resp = JsonConvert.DeserializeObject<MetadataResponse>(responseContent.Result);
@@ -104,7 +101,6 @@ namespace Imagekit
             }
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId);
             var response = Utils.Get(apiEndpoint, (string)options["privateKey"], "DELETE");
-            response.EnsureSuccessStatusCode();
             var responseContent = response.Content.ReadAsStringAsync();
             return responseContent.Result;
         }
@@ -151,9 +147,7 @@ namespace Imagekit
             string contentType = "application/json; charset=utf-8";
 
             var response = Utils.Post(apiEndpoint, postData, contentType, (string)options["privateKey"], "PATCH");
-            response.EnsureSuccessStatusCode();
             var responseContent = response.Content.ReadAsStringAsync();
-            Console.WriteLine(responseContent);
             return JsonConvert.DeserializeObject<ListAPIResponse>(responseContent.Result);
         }
 
@@ -168,7 +162,6 @@ namespace Imagekit
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/purge"); 
             string contentType = "application/json; charset=utf-8";
             var response = Utils.Post(apiEndpoint, postData, contentType, (string)options["privateKey"]);
-            response.EnsureSuccessStatusCode();
             var responseContent = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<PurgeAPIResponse>(responseContent.Result);
         }
@@ -182,7 +175,6 @@ namespace Imagekit
             }
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/purge/" + requestId);
             var response = Utils.Get(apiEndpoint, (string)options["privateKey"]);
-            response.EnsureSuccessStatusCode();
             var responseContent = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<PurgeCacheStatusResponse>(responseContent.Result);
         }
@@ -225,7 +217,7 @@ namespace Imagekit
             Uri apiEndpoint = new Uri(Utils.GetUploadApi());
 
             var response = Utils.PostUpload(apiEndpoint, getUploadData(), file, (string)options["privateKey"]);
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
             var responseContent = response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent.Result);
@@ -240,7 +232,6 @@ namespace Imagekit
             Uri apiEndpoint = new Uri(Utils.GetUploadApi());
 
             var response = Utils.PostUpload(apiEndpoint, getUploadData(), file, (string)options["privateKey"]);
-            response.EnsureSuccessStatusCode();
             var responseContent = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent.Result);
         }
@@ -262,9 +253,9 @@ namespace Imagekit
             {
                 postData.Add("isPrivate", (string)options["isPrivate"]);
             }
-            if (options.ContainsKey("useUniqueFileName") && !string.IsNullOrEmpty((string)options["useUniqueFileName"]))
+            if (options.ContainsKey("useUniqueFileName") && (bool)options["useUniqueFileName"] == false)
             {
-                postData.Add("useUniqueFileName", (string)options["useUniqueFileName"]);
+                postData.Add("useUniqueFileName", "false");
             }
             if (options.ContainsKey("customCoordinates") && !string.IsNullOrEmpty((string)options["customCoordinates"]))
             {
