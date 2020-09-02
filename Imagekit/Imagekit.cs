@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Imagekit
 {
-    public abstract partial class BaseImagekit
+    public abstract partial class BaseImagekit<T> where T : BaseImagekit<T>
     {
         public Dictionary<string, object> options = new Dictionary<string, object>();
 
@@ -245,48 +245,6 @@ namespace Imagekit
             return authParameters;
         }
 
-
-        public ImagekitResponse Upload(byte[] file)
-        {
-            return UploadAsync(file).Result;
-        }
-
-        public async Task<ImagekitResponse> UploadAsync(byte[] file)
-        {
-            Uri apiEndpoint = new Uri(Utils.GetUploadApi());
-
-            var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), file, (string)options["privateKey"]).ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
-        }
-
-        /// <summary>
-        /// Upload the file at the path.
-        /// </summary>
-        /// <param name="filePath">The local file path or remote URL for the file.</param>
-        /// <returns>The response body of the upload request.</returns>
-        public ImagekitResponse Upload(string filePath)
-        {
-            return UploadAsync(filePath).Result;
-        }
-
-        /// <summary>
-        /// Upload the file at the path.
-        /// </summary>
-        /// <param name="filePath">The local file path or remote URL for the file.</param>
-        /// <returns>The response body of the upload request.</returns>
-        public async Task<ImagekitResponse> UploadAsync(string filePath)
-        {
-            if (string.IsNullOrEmpty(filePath))
-            {
-                throw new ArgumentException(errorMessages.MISSING_UPLOAD_FILE_PARAMETER);
-            }
-            Uri apiEndpoint = new Uri(Utils.GetUploadApi());
-
-            var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), filePath, (string)options["privateKey"]).ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
-        }
 
         public Dictionary<string, string> getUploadData()
         {

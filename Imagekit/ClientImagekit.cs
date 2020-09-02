@@ -2,7 +2,7 @@ using System;
 
 namespace Imagekit
 {
-    public class ClientImagekit : BaseImagekit
+    public class ClientImagekit : BaseImagekit<ClientImagekit>
     {
         public ClientImagekit(
             string urlEndpoint,
