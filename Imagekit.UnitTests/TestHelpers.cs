@@ -105,7 +105,6 @@ namespace Imagekit.UnitTests
 
         public static Faker<ImagekitResponse> ImagekitResponseFaker = new Faker<ImagekitResponse>()
             .RuleFor(u => u.FileId, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.Field, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.Name, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.URL, (f, u) => f.Internet.UrlWithPath(fileExt: ".png"))
             .RuleFor(u => u.Thumbnail, (f, u) => f.Internet.UrlWithPath(fileExt: ".png"))
