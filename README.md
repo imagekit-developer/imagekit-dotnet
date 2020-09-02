@@ -17,12 +17,12 @@ Install-Package Imagekit
 
 PackageReference
 ```
-<PackageReference Include="Imagekit" Version="3.0.4">
+<PackageReference Include="Imagekit" Version="3.1.0">
 </PackageReference>
 ```
 .Net CLI
 ```
-dotnet add package Imagekit --version 3.0.4
+dotnet add package Imagekit --version 3.1.0
 ```
 
 
@@ -32,7 +32,7 @@ Also, you can search for [Imagekit](https://www.nuget.org/packages/Imagekit) in 
 
 ***Note***: If you get error like "the type or namespace 'ImageKit' couldn't be found", please remove IncludeAssets tag like below.
 ```
-<PackageReference Include="Imagekit" Version="3.0.4">
+<PackageReference Include="Imagekit" Version="3.1.0">
    <!-- Remove IncludeAssets to allow compiling against the assembly -->
    <!--IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets-->
 <PrivateAssets>all</PrivateAssets>
