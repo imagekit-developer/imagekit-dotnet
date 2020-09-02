@@ -44,6 +44,71 @@ namespace Imagekit
         }
 
 
+        public Dictionary<string, string> getUploadData(AuthParamResponse clientAuth = null)
+        {
+            if (!options.ContainsKey("fileName") || string.IsNullOrEmpty((string)options["fileName"]))
+            {
+                throw new ArgumentException(errorMessages.MISSING_UPLOAD_FILENAME_PARAMETER);
+            }
+
+            Dictionary<string, string> postData = new Dictionary<string, string>();
+            postData.Add("fileName", (string)options["fileName"]);
+            if (options.ContainsKey("folder") && !string.IsNullOrEmpty((string)options["folder"]))
+            {
+                postData.Add("folder", (string)options["folder"]);
+            }
+            if (options.ContainsKey("isPrivateFile") && (bool)options["isPrivateFile"] == true)
+            {
+                postData.Add("isPrivateFile", "true");
+            }
+            if (options.ContainsKey("useUniqueFileName") && (bool)options["useUniqueFileName"] == false)
+            {
+                postData.Add("useUniqueFileName", "false");
+            }
+            if (options.ContainsKey("customCoordinates") && !string.IsNullOrEmpty((string)options["customCoordinates"]))
+            {
+                postData.Add("customCoordinates", (string)options["customCoordinates"]);
+            }
+            if (options.ContainsKey("responseFields") && !string.IsNullOrEmpty((string)options["responseFields"]))
+            {
+                postData.Add("responseFields", (string)options["responseFields"]);
+            }
+            if (options.ContainsKey("tags") && !string.IsNullOrEmpty((string)options["tags"]))
+            {
+                postData.Add("tags", (string)options["tags"]);
+            }
+            if (clientAuth != null)
+            {
+                postData.Add("signature", clientAuth.signature);
+                postData.Add("expire", clientAuth.expire);
+                postData.Add("token", clientAuth.token);
+            }
+            return postData;
+        }
+    }
+
+    public class ServerImagekit : BaseImagekit<ServerImagekit>
+    {
+        public ServerImagekit(
+            string publicKey,
+            string privateKey,
+            string urlEndpoint,
+            string transformationPosition = "path"
+        ) : base(urlEndpoint, transformationPosition)
+        {
+            if (string.IsNullOrEmpty(publicKey))
+            {
+                throw new ArgumentNullException(nameof(publicKey));
+            }
+            if (string.IsNullOrEmpty(privateKey))
+            {
+                throw new ArgumentNullException(nameof(privateKey));
+            }
+
+            Add("publicKey", publicKey);
+            Add("privateKey", privateKey);
+        }
+
         public List<ListAPIResponse> ListFiles()
         {
             return ListFilesAsync().Result;
@@ -213,7 +278,7 @@ namespace Imagekit
             return JsonConvert.DeserializeObject<PurgeCacheStatusResponse>(responseContent);
         }
 
-        public AuthParamResponse GetAuthenticationParameters (string token = null, string expire = null)
+        public AuthParamResponse GetAuthenticationParameters(string token = null, string expire = null)
         {
             var DEFAULT_TIME_DIFF = 60 * 30;
 
@@ -245,41 +310,46 @@ namespace Imagekit
             return authParameters;
         }
 
-
-        public Dictionary<string, string> getUploadData()
+        public ImagekitResponse Upload(byte[] file)
         {
-            if (!options.ContainsKey("fileName") || string.IsNullOrEmpty((string)options["fileName"]))
-            {
-                throw new ArgumentException(errorMessages.MISSING_UPLOAD_FILENAME_PARAMETER);
-            }
+            return UploadAsync(file).Result;
+        }
 
-            Dictionary<string, string> postData = new Dictionary<string, string>();
-            postData.Add("fileName", (string)options["fileName"]);
-            if (options.ContainsKey("folder") && !string.IsNullOrEmpty((string)options["folder"]))
+        public async Task<ImagekitResponse> UploadAsync(byte[] file)
+        {
+            Uri apiEndpoint = new Uri(Utils.GetUploadApi());
+
+            var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), file, (string)options["privateKey"]).ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
+        }
+
+        /// <summary>
+        /// Upload the file at the path.
+        /// </summary>
+        /// <param name="filePath">The local file path or remote URL for the file.</param>
+        /// <returns>The response body of the upload request.</returns>
+        public ImagekitResponse Upload(string filePath)
+        {
+            return UploadAsync(filePath).Result;
+        }
+
+        /// <summary>
+        /// Upload the file at the path.
+        /// </summary>
+        /// <param name="filePath">The local file path or remote URL for the file.</param>
+        /// <returns>The response body of the upload request.</returns>
+        public async Task<ImagekitResponse> UploadAsync(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
             {
-                postData.Add("folder", (string)options["folder"]);
+                throw new ArgumentException(errorMessages.MISSING_UPLOAD_FILE_PARAMETER);
             }
-            if (options.ContainsKey("isPrivateFile") && !string.IsNullOrEmpty((string)options["isPrivateFile"]))
-            {
-                postData.Add("isPrivateFile", (string)options["isPrivateFile"]);
-            }
-            if (options.ContainsKey("useUniqueFileName") && (bool)options["useUniqueFileName"] == false)
-            {
-                postData.Add("useUniqueFileName", "false");
-            }
-            if (options.ContainsKey("customCoordinates") && !string.IsNullOrEmpty((string)options["customCoordinates"]))
-            {
-                postData.Add("customCoordinates", (string)options["customCoordinates"]);
-            }
-            if (options.ContainsKey("responseFields") && !string.IsNullOrEmpty((string)options["responseFields"]))
-            {
-                postData.Add("responseFields", (string)options["responseFields"]);
-            }
-            if (options.ContainsKey("tags") && !string.IsNullOrEmpty((string)options["tags"]))
-            {
-                postData.Add("tags", (string)options["tags"]);
-            }
-            return postData;
+            Uri apiEndpoint = new Uri(Utils.GetUploadApi());
+
+            var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), filePath, (string)options["privateKey"]).ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
         }
     }
 

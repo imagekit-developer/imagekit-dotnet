@@ -126,7 +126,7 @@ namespace Imagekit.Util
         }
 
 
-        private static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, HttpContent content, string key)
+        private static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, HttpContent content, string key = null)
         {
             try
             {
@@ -140,7 +140,14 @@ namespace Imagekit.Util
                     multiForm.Add(new StringContent(pair.Value), pair.Key);
                 }
 
-                if (!string.IsNullOrEmpty(key))
+                if (string.IsNullOrEmpty(key))
+                {
+                    if (!data.ContainsKey("signature") || !data.ContainsKey("token") | !data.ContainsKey("expire"))
+                    {
+                        throw new ArgumentException("Client authentication is missing", nameof(data));
+                    }
+                }
+                else
                 {
                     string authInfo = key + ":" + "";
                     authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
@@ -160,18 +167,18 @@ namespace Imagekit.Util
             }
         }
 
-        public static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, byte[] file, string key)
+        public static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, byte[] file, string key = null)
         {
             HttpContent content = new StringContent(Convert.ToBase64String(file));
             return await PostUploadAsync(uri, data, content, key).ConfigureAwait(false);
         }
 
-        public static HttpResponseMessage PostUpload(Uri uri, Dictionary<string, string> data, byte[] file, string key)
+        public static HttpResponseMessage PostUpload(Uri uri, Dictionary<string, string> data, byte[] file, string key = null)
         {
             return PostUploadAsync(uri, data, file, key).Result;
         }
 
-        public static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, string filePath, string key)
+        public static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, string filePath, string key = null)
         {
             HttpContent content = new StringContent(filePath);
             if (string.IsNullOrEmpty(filePath) || filePath.Length % 4 != 0
@@ -194,7 +201,7 @@ namespace Imagekit.Util
             return await PostUploadAsync(uri, data, content, key).ConfigureAwait(false);
         }
 
-        public static HttpResponseMessage PostUpload(Uri uri, Dictionary<string, string> data, string filePath, string key)
+        public static HttpResponseMessage PostUpload(Uri uri, Dictionary<string, string> data, string filePath, string key = null)
         {
             return PostUploadAsync(uri, data, filePath, key).Result;
         }

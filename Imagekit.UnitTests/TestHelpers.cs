@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Bogus;
 using Moq;
 using Moq.Protected;
+using Xunit;
 
 namespace Imagekit.UnitTests
 {
@@ -16,6 +17,11 @@ namespace Imagekit.UnitTests
         {
             Faker.DefaultStrictMode = true;
         }
+
+        public static Faker<AuthParamResponse> AuthParamResponseFaker = new Faker<AuthParamResponse>()
+            .RuleFor(u => u.token, (f, u) => Guid.NewGuid().ToString())
+            .RuleFor(u => u.expire, (f, u) => DateTimeOffset.UtcNow.AddMinutes(30).ToUnixTimeSeconds().ToString())
+            .RuleFor(u => u.signature, (f, u) => f.Random.Utf16String());
 
         public static Faker<MetadataResponse> MetadataResponseFaker = new Faker<MetadataResponse>()
             .RuleFor(u => u.Exif, (f, u) => ExifFaker.Generate())
@@ -121,9 +127,11 @@ namespace Imagekit.UnitTests
         /// <summary>
         /// Get a test http client that response to the specified request.
         /// </summary>
+        /// <param name="requestMatcher">An expression that matches the <see cref="HttpRequestMessage" /> sent in the request.</param>
         /// <param name="response">The response to return from the request.</param>
+        /// <param name="callback">The function to call with the <see cref="HttpRequestMessage" /> sent in the request.</param>
         /// <returns></returns>
-        public static HttpClient GetTestHttpClient(Expression requestMatcher, HttpResponseMessage response)
+        public static HttpClient GetTestHttpClient(Expression requestMatcher, HttpResponseMessage response, Action<HttpRequestMessage> callback)
         {
             var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
             handlerMock
@@ -134,6 +142,7 @@ namespace Imagekit.UnitTests
                     requestMatcher,
                     ItExpr.IsAny<CancellationToken>()
                 )
+                .Callback<HttpRequestMessage, CancellationToken>((msg, ct) => callback?.Invoke(msg))
                 // prepare the expected response of the mocked http call
                 .ReturnsAsync(response)
                 .Verifiable();
@@ -143,6 +152,18 @@ namespace Imagekit.UnitTests
             return httpClient;
         }
 
+
+        /// <summary>
+        /// Get a test http client that response to the specified request.
+        /// </summary>
+        /// <param name="response">The response to return from the request.</param>
+        /// <param name="callback">The function to call with the <see cref="HttpRequestMessage" /> sent in the request.</param>
+        /// <returns></returns>
+        public static HttpClient GetTestHttpClient(HttpResponseMessage response, Action<HttpRequestMessage> callback)
+        {
+            return GetTestHttpClient(ItExpr.IsAny<HttpRequestMessage>(), response, callback);
+        }
+
         /// <summary>
         /// Get a test http client that response to any request.
         /// </summary>
@@ -150,7 +171,52 @@ namespace Imagekit.UnitTests
         /// <returns></returns>
         public static HttpClient GetTestHttpClient(HttpResponseMessage response)
         {
-            return GetTestHttpClient(ItExpr.IsAny<HttpRequestMessage>(), response);
+            return GetTestHttpClient(ItExpr.IsAny<HttpRequestMessage>(), response, null);
+        }
+
+        public static Action<HttpRequestMessage> GetUploadRequestMessageValidator(
+            string fileUrl,
+            string fileName,
+            AuthParamResponse clientAuth = null
+        )
+        {
+            return async (msg) =>
+            {
+                var contentBodyLines = await GetMultipartFormBodyContent(msg);
+                CheckMultipartFormData(contentBodyLines, "file", fileUrl);
+                CheckMultipartFormData(contentBodyLines, "fileName", fileName);
+                if (clientAuth != null)
+                {
+                    CheckMultipartFormData(contentBodyLines, "signature", clientAuth.signature);
+                    CheckMultipartFormData(contentBodyLines, "token", clientAuth.token);
+                    CheckMultipartFormData(contentBodyLines, "expire", clientAuth.expire);
+                }
+            };
+        }
+
+        private static void CheckMultipartFormData(string[] contentBodyLines, string name, string expectedValue)
+        {
+            var index = Array.IndexOf(contentBodyLines, $"Content-Disposition: form-data; name={name}");
+            Assert.True(index >= 0, $"{name} form data not found");
+            Assert.Equal(expectedValue, contentBodyLines[index + 1]);
+        }
+
+        private static async Task<string[]> GetMultipartFormBodyContent(HttpRequestMessage msg)
+        {
+            var content = (MultipartFormDataContent)msg.Content;
+                Assert.NotNull(content);
+                var contentBody = await content.ReadAsStringAsync();
+                string[] contentBodyLines = null;
+                if (contentBody.IndexOf("\r\n") >= 0)
+                {
+                    contentBodyLines = contentBody.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
+                }
+                else if (contentBody.IndexOf("\n") >= 0)
+                {
+                    contentBodyLines = contentBody.Split("\n", StringSplitOptions.RemoveEmptyEntries);
+                }
+                Assert.NotNull(contentBodyLines);
+                return contentBodyLines;
         }
     }
 }
