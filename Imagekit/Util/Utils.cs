@@ -54,6 +54,11 @@ namespace Imagekit.Util
 
         public static HttpResponseMessage Get(Uri uri, string key, string method="GET")
         {
+            return GetAsync(uri, key, method).Result;
+        }
+
+        public static async Task<HttpResponseMessage> GetAsync(Uri uri, string key, string method="GET")
+        {
             try
             {
                 string authInfo = key + ":" + "";
@@ -64,9 +69,9 @@ namespace Imagekit.Util
                 httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
                 if (method == "DELETE")
                 {
-                    return httpClient.DeleteAsync(uri).Result;
+                    return await httpClient.DeleteAsync(uri).ConfigureAwait(false);
                 }
-                return httpClient.GetAsync(uri).Result;
+                return await httpClient.GetAsync(uri).ConfigureAwait(false);
             }
             catch (WebException ex)
             {
@@ -77,6 +82,17 @@ namespace Imagekit.Util
         }
 
         public static HttpResponseMessage Post(Uri uri, Dictionary<string, object> data, string contentType, string key, string method="POST")
+        {
+            return PostAsync(uri, data, contentType, key, method).Result;
+        }
+
+        public static async Task<HttpResponseMessage> PostAsync(
+            Uri uri,
+            Dictionary<string, object> data,
+            string contentType,
+            string key,
+            string method = "POST"
+        )
         {
             string json = JsonConvert.SerializeObject(data, Formatting.Indented);
             var content = new StringContent(json);
@@ -97,9 +113,9 @@ namespace Imagekit.Util
                     {
                         Content = content
                     };
-                    return httpClient.SendAsync(request).Result;
+                    return await httpClient.SendAsync(request).ConfigureAwait(false);
                 }
-                return httpClient.PostAsync(uri, content).Result;
+                return await httpClient.PostAsync(uri, content).ConfigureAwait(false);
             }
             catch (WebException ex)
             {

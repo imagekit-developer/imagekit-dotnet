@@ -46,7 +46,11 @@ namespace Imagekit
 
         public List<ListAPIResponse> ListFiles()
         {
+            return ListFilesAsync().Result;
+        }
 
+        public async Task<List<ListAPIResponse>> ListFilesAsync()
+        {
             string[] arr = { "limit", "skip", "name", "includeFolder", "tags", "fileType", "path" };
             var param = new List<string>();
             foreach (var item in options)
@@ -59,55 +63,73 @@ namespace Imagekit
             }
             options.Remove("tags");
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "?" + string.Join("&", param));
-            var response = Utils.Get(apiEndpoint, (string)options["privateKey"]);
-            var responseContent = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<ListAPIResponse>>(responseContent.Result);
+            var response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<List<ListAPIResponse>>(responseContent);
         }
 
 
         public ListAPIResponse GetFileDetails(string fileId)
+        {
+            return GetFileDetailsAsync(fileId).Result;
+        }
+
+        public async Task<ListAPIResponse> GetFileDetailsAsync(string fileId)
         {
             if (string.IsNullOrEmpty(fileId))
             {
                 throw new ArgumentException(errorMessages.FILE_ID_MISSING);
             }
             Uri apiEndpoint = new Uri(Utils.GetFileApi() +"/" + fileId + "/details");
-            var response = Utils.Get(apiEndpoint, (string)options["privateKey"]);
-            var responseContent = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<ListAPIResponse>(responseContent.Result);
+            var response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ListAPIResponse>(responseContent);
         }
 
 
         public MetadataResponse GetFileMetadata(string fileId)
+        {
+            return GetFileMetadataAsync(fileId).Result;
+        }
+
+        public async Task<MetadataResponse> GetFileMetadataAsync(string fileId)
         {
             if (string.IsNullOrEmpty(fileId))
             {
                 throw new ArgumentException(errorMessages.FILE_ID_MISSING);
             }
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId + "/metadata");
-            HttpResponseMessage response = Utils.Get(apiEndpoint, (string)options["privateKey"]);
-            using (var responseContent = response.Content.ReadAsStringAsync())
-            {
-                MetadataResponse resp = JsonConvert.DeserializeObject<MetadataResponse>(responseContent.Result);
-                resp.StatusCode = response.StatusCode.ToString();
-                return resp;
-            }
+            HttpResponseMessage response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            MetadataResponse resp = JsonConvert.DeserializeObject<MetadataResponse>(responseContent);
+            resp.StatusCode = response.StatusCode.ToString();
+            return resp;
         }
 
 
         public string DeleteFile(string fileId)
+        {
+            return DeleteFileAsync(fileId).Result;
+        }
+
+        public async Task<string> DeleteFileAsync(string fileId)
         {
             if (string.IsNullOrEmpty(fileId))
             {
                 throw new System.ArgumentException(errorMessages.FILE_ID_MISSING);
             }
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId);
-            var response = Utils.Get(apiEndpoint, (string)options["privateKey"], "DELETE");
-            var responseContent = response.Content.ReadAsStringAsync();
-            return responseContent.Result;
+            var response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"], "DELETE").ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return responseContent;
         }
 
         public ListAPIResponse UpdateFileDetails(string fileId)
+        {
+            return UpdateFileDetailsAsync(fileId).Result;
+        }
+
+        public async Task<ListAPIResponse> UpdateFileDetailsAsync(string fileId)
         {
             if (string.IsNullOrEmpty(fileId))
             {
@@ -148,12 +170,17 @@ namespace Imagekit
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId + "/details");
             string contentType = "application/json; charset=utf-8";
 
-            var response = Utils.Post(apiEndpoint, postData, contentType, (string)options["privateKey"], "PATCH");
-            var responseContent = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<ListAPIResponse>(responseContent.Result);
+            var response = await Utils.PostAsync(apiEndpoint, postData, contentType, (string)options["privateKey"], "PATCH").ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ListAPIResponse>(responseContent);
         }
 
         public PurgeAPIResponse PurgeCache(string url)
+        {
+            return PurgeCacheAsync(url).Result;
+        }
+
+        public async Task<PurgeAPIResponse> PurgeCacheAsync(string url)
         {
             if (string.IsNullOrEmpty(url))
             {
@@ -163,22 +190,27 @@ namespace Imagekit
             postData.Add("url", url);
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/purge");
             string contentType = "application/json; charset=utf-8";
-            var response = Utils.Post(apiEndpoint, postData, contentType, (string)options["privateKey"]);
-            var responseContent = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<PurgeAPIResponse>(responseContent.Result);
+            var response = await Utils.PostAsync(apiEndpoint, postData, contentType, (string)options["privateKey"]).ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<PurgeAPIResponse>(responseContent);
         }
 
 
         public PurgeCacheStatusResponse GetPurgeCacheStatus(string requestId)
+        {
+            return GetPurgeCacheStatusAsync(requestId).Result;
+        }
+
+        public async Task<PurgeCacheStatusResponse> GetPurgeCacheStatusAsync(string requestId)
         {
             if (string.IsNullOrEmpty(requestId))
             {
                 throw new ArgumentException(errorMessages.CACHE_PURGE_STATUS_ID_MISSING);
             }
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/purge/" + requestId);
-            var response = Utils.Get(apiEndpoint, (string)options["privateKey"]);
-            var responseContent = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<PurgeCacheStatusResponse>(responseContent.Result);
+            var response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<PurgeCacheStatusResponse>(responseContent);
         }
 
         public AuthParamResponse GetAuthenticationParameters (string token = null, string expire = null)
@@ -216,12 +248,16 @@ namespace Imagekit
 
         public ImagekitResponse Upload(byte[] file)
         {
+            return UploadAsync(file).Result;
+        }
+
+        public async Task<ImagekitResponse> UploadAsync(byte[] file)
+        {
             Uri apiEndpoint = new Uri(Utils.GetUploadApi());
 
-            var response = Utils.PostUpload(apiEndpoint, getUploadData(), file, (string)options["privateKey"]);
-            var responseContent = response.Content.ReadAsStringAsync();
-
-            return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent.Result);
+            var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), file, (string)options["privateKey"]).ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
         }
 
         /// <summary>
@@ -247,7 +283,7 @@ namespace Imagekit
             }
             Uri apiEndpoint = new Uri(Utils.GetUploadApi());
 
-            var response = Utils.PostUpload(apiEndpoint, getUploadData(), filePath, (string)options["privateKey"]);
+            var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), filePath, (string)options["privateKey"]).ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
         }
