@@ -4,40 +4,100 @@ namespace Imagekit
 {
     public class ImagekitResponse
     {
+        /// <summary>
+        /// Unique fileId. Store this fileld in your database, as this will be used to perform update action on this file.
+        /// </summary>
+        [JsonProperty("fileId")]
+        public string FileId { get; set; }
+
+        // TODO: is this actually a property that is ever returned or was this a type of fileId, which was previously missing?
         [JsonProperty("field")]
         public string Field { get; set; }
+
+        /// <summary>
+        /// The path of the file uploaded. It includes any folder that you specified while uploading.
+        /// </summary>
         [JsonProperty("filePath")]
         public string FilePath { get; set; }
+
+        /// <summary>
+        /// Type of file. It can either be `image` or `non-image`.
+        /// </summary>
         [JsonProperty("fileType")]
         public string FileType { get; set; }
+
+        /// <summary>
+        /// Size of the uploaded file in bytes.
+        /// </summary>
         [JsonProperty("size")]
         public int Size { get; set; }
+
+        /// <summary>
+        /// Height of the uploaded image file. Only applicable when file type is image.
+        /// </summary>
         [JsonProperty("height")]
         public int Height { get; set; }
+
+        /// <summary>
+        /// Width of the uploaded image file. Only applicable when file type is image.
+        /// </summary>
         [JsonProperty("width")]
         public int Width { get; set; }
+
+        /// <summary>
+        /// Array of tags associated with the image.
+        /// </summary>
         [JsonProperty("tags")]
         public string[] Tags { get; set; }
+
+        /// <summary>
+        /// Is the file marked as private. It can be either true or false.
+        /// </summary>
         [JsonProperty("isPrivateFile")]
         public bool IsPrivateFile { get; set; }
+
+        /// <summary>
+        /// Value of custom coordinates associated with the image in format x,y,width,height.
+        /// </summary>
         [JsonProperty("customCoordinates")]
         public bool CustomCoordinates { get; set; }
-        [JsonProperty("thumbnail")]
+
+        /// <summary>
+        /// In case of an image, a small thumbnail URL.
+        /// </summary>
+        [JsonProperty("thumbnailUrl")]
         public string Thumbnail { get; set; }
+
+        /// <summary>
+        /// The URL of the file.
+        /// </summary>
         [JsonProperty("url")]
         public string URL { get; set; }
+
+        /// <summary>
+        /// The name of the uploaded file.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// The metadata of the upload file. Use responseFields property in request to get the metadata returned in response of upload API.
+        /// </summary>
         [JsonProperty("metadata")]
         public MetadataResponse Metadata { get; set; }
+
         [JsonProperty("exception")]
         public bool exception { get; set; }
+
         [JsonProperty("statusNumber")]
         public int statusNumber { get; set; }
+
         [JsonProperty("statusCode")]
         public string statusCode { get; set; }
+
         [JsonProperty("message")]
         public string message { get; set; }
+
         [JsonProperty("help")]
         public string help { get; set; }
     }
@@ -86,12 +146,12 @@ namespace Imagekit
     public class Gps
     {
         public string GPSLatitudeRef { get; set; }
-        public int[] GPSLatitude { get; set; }
+        public double[] GPSLatitude { get; set; }
         public string GPSLongitudeRef { get; set; }
-        public int[] GPSLongitude { get; set; }
+        public double[] GPSLongitude { get; set; }
         public int GPSAltitudeRef { get; set; }
         public int GPSAltitude { get; set; }
-        public int[] GPSTimeStamp { get; set; }
+        public double[] GPSTimeStamp { get; set; }
         public string GPSImgDirectionRef { get; set; }
         public float GPSImgDirection { get; set; }
         public string GPSDateStamp { get; set; }

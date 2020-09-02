@@ -1,4 +1,8 @@
-﻿using System;
+﻿// I've left this file with the name `Imagekit.cs` and the obsolete Imagekit in the same file to
+// make the github differences easier to see for the PR. Any subsequent PR can rename this file
+// and split out the obsolete Imagekit into its own file.
+
+using System;
 using System.Linq;
 using Imagekit.Util;
 using Newtonsoft.Json;
@@ -6,19 +10,19 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Imagekit
 {
-    public partial class Imagekit
+    public abstract partial class BaseImagekit
     {
-       
         public Dictionary<string, object> options = new Dictionary<string, object>();
 
-        public Imagekit(string publicKey, string privateKey, string urlEndpoint, string transformationPosition = "path")
+        public BaseImagekit(string urlEndpoint, string transformationPosition = "path")
         {
-            if (string.IsNullOrEmpty(urlEndpoint) || string.IsNullOrEmpty(publicKey) || string.IsNullOrEmpty(privateKey))
+            if (string.IsNullOrEmpty(urlEndpoint))
             {
-                throw new ArgumentException(errorMessages.MANDATORY_INITIALIZATION_MISSING);
+                throw new ArgumentNullException(nameof(urlEndpoint));
             }
 
             Regex rgx = new Regex(@"\b(path|query)\b");
@@ -28,12 +32,10 @@ namespace Imagekit
             }
 
             Add("urlEndpoint", urlEndpoint);
-            Add("publicKey", publicKey);
-            Add("privateKey", privateKey);
             Add("transformationPosition", transformationPosition);
         }
 
-        
+
         public string Generate()
         {
             Transformation transformation = (Transformation)options["transformation"];
@@ -41,10 +43,10 @@ namespace Imagekit
             return new Url(options).UrlBuilder(tranformationString);
         }
 
-        
+
         public List<ListAPIResponse> ListFiles()
         {
-            
+
             string[] arr = { "limit", "skip", "name", "includeFolder", "tags", "fileType", "path" };
             var param = new List<string>();
             foreach (var item in options)
@@ -62,7 +64,7 @@ namespace Imagekit
             return JsonConvert.DeserializeObject<List<ListAPIResponse>>(responseContent.Result);
         }
 
-        
+
         public ListAPIResponse GetFileDetails(string fileId)
         {
             if (string.IsNullOrEmpty(fileId))
@@ -75,7 +77,7 @@ namespace Imagekit
             return JsonConvert.DeserializeObject<ListAPIResponse>(responseContent.Result);
         }
 
-        
+
         public MetadataResponse GetFileMetadata(string fileId)
         {
             if (string.IsNullOrEmpty(fileId))
@@ -92,7 +94,7 @@ namespace Imagekit
             }
         }
 
-       
+
         public string DeleteFile(string fileId)
         {
             if (string.IsNullOrEmpty(fileId))
@@ -124,7 +126,7 @@ namespace Imagekit
                 {
                     throw new ArgumentException(errorMessages.UPDATE_DATA_TAGS_INVALID);
                 }
-                
+
             } else if (options.ContainsKey("tagsList"))
             {
                 string[] tags = (string[])options["tagsList"];
@@ -159,14 +161,14 @@ namespace Imagekit
             }
             Dictionary<string, object> postData = new Dictionary<string, object>();
             postData.Add("url", url);
-            Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/purge"); 
+            Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/purge");
             string contentType = "application/json; charset=utf-8";
             var response = Utils.Post(apiEndpoint, postData, contentType, (string)options["privateKey"]);
             var responseContent = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<PurgeAPIResponse>(responseContent.Result);
         }
 
-        
+
         public PurgeCacheStatusResponse GetPurgeCacheStatus(string requestId)
         {
             if (string.IsNullOrEmpty(requestId))
@@ -217,23 +219,37 @@ namespace Imagekit
             Uri apiEndpoint = new Uri(Utils.GetUploadApi());
 
             var response = Utils.PostUpload(apiEndpoint, getUploadData(), file, (string)options["privateKey"]);
-            //response.EnsureSuccessStatusCode();
             var responseContent = response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent.Result);
         }
 
-        public ImagekitResponse Upload(string file)
+        /// <summary>
+        /// Upload the file at the path.
+        /// </summary>
+        /// <param name="filePath">The local file path or remote URL for the file.</param>
+        /// <returns>The response body of the upload request.</returns>
+        public ImagekitResponse Upload(string filePath)
         {
-            if (string.IsNullOrEmpty(file))
+            return UploadAsync(filePath).Result;
+        }
+
+        /// <summary>
+        /// Upload the file at the path.
+        /// </summary>
+        /// <param name="filePath">The local file path or remote URL for the file.</param>
+        /// <returns>The response body of the upload request.</returns>
+        public async Task<ImagekitResponse> UploadAsync(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
             {
                 throw new ArgumentException(errorMessages.MISSING_UPLOAD_FILE_PARAMETER);
             }
             Uri apiEndpoint = new Uri(Utils.GetUploadApi());
 
-            var response = Utils.PostUpload(apiEndpoint, getUploadData(), file, (string)options["privateKey"]);
-            var responseContent = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent.Result);
+            var response = Utils.PostUpload(apiEndpoint, getUploadData(), filePath, (string)options["privateKey"]);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
         }
 
         public Dictionary<string, string> getUploadData()
@@ -249,9 +265,9 @@ namespace Imagekit
             {
                 postData.Add("folder", (string)options["folder"]);
             }
-            if (options.ContainsKey("isPrivate") && !string.IsNullOrEmpty((string)options["isPrivate"]))
+            if (options.ContainsKey("isPrivateFile") && !string.IsNullOrEmpty((string)options["isPrivateFile"]))
             {
-                postData.Add("isPrivate", (string)options["isPrivate"]);
+                postData.Add("isPrivateFile", (string)options["isPrivateFile"]);
             }
             if (options.ContainsKey("useUniqueFileName") && (bool)options["useUniqueFileName"] == false)
             {
@@ -270,6 +286,23 @@ namespace Imagekit
                 postData.Add("tags", (string)options["tags"]);
             }
             return postData;
+        }
+    }
+
+    // Leaving this for backwards compatibility.
+    // Renaming the class:
+    // a) solves the issue where Imagekit must always be fully qualified since the name is the same as the assembly
+    // b) allows for clarification between a server-side imagekit and a client-side imagekit
+    [Obsolete("Use ServerImagekit")]
+    public class Imagekit : ServerImagekit
+    {
+        public Imagekit(
+            string publicKey,
+            string privateKey,
+            string urlEndpoint,
+            string transformationPosition = "path"
+        ) : base(publicKey, privateKey, urlEndpoint, transformationPosition)
+        {
         }
     }
 }
