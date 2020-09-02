@@ -10,10 +10,6 @@ namespace Imagekit
         [JsonProperty("fileId")]
         public string FileId { get; set; }
 
-        // TODO: is this actually a property that is ever returned or was this a type of fileId, which was previously missing?
-        [JsonProperty("field")]
-        public string Field { get; set; }
-
         /// <summary>
         /// The path of the file uploaded. It includes any folder that you specified while uploading.
         /// </summary>
