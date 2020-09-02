@@ -18,3 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The `Imagekit.Imagekit` class is deprecated; use `ServerImagekit` instead
 - Fix issue where `isPrivateFile` was not included on upload
 - Fix issue where type of `Gps.GPSLatitude`, `Gps.GPSLongitude`, and `GPSTimeStamp` was incorrect
+- Some of the `ArgumentException`s are now `ArgumentNullException` and set the `ParamName` property of the exception. This is not a binary breaking change as `ArgumentNullException` inherits from `ArgumentException`, but if you are specifically looking for the `ArgumentException` type exactly, you may see a runtime issue, although this is very unlikely.

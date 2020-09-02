@@ -177,6 +177,7 @@ namespace Imagekit.UnitTests
         public static Action<HttpRequestMessage> GetUploadRequestMessageValidator(
             string fileUrl,
             string fileName,
+            string publicKey = null,
             AuthParamResponse clientAuth = null
         )
         {
@@ -190,6 +191,7 @@ namespace Imagekit.UnitTests
                     CheckMultipartFormData(contentBodyLines, "signature", clientAuth.signature);
                     CheckMultipartFormData(contentBodyLines, "token", clientAuth.token);
                     CheckMultipartFormData(contentBodyLines, "expire", clientAuth.expire);
+                    CheckMultipartFormData(contentBodyLines, "publicKey", publicKey);
                 }
             };
         }

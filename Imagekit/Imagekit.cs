@@ -18,19 +18,24 @@ namespace Imagekit
     {
         public Dictionary<string, object> options = new Dictionary<string, object>();
 
-        public BaseImagekit(string urlEndpoint, string transformationPosition = "path")
+        public BaseImagekit(string publicKey, string urlEndpoint, string transformationPosition = "path")
         {
+            if (string.IsNullOrEmpty(publicKey))
+            {
+                throw new ArgumentNullException(nameof(publicKey));
+            }
             if (string.IsNullOrEmpty(urlEndpoint))
             {
                 throw new ArgumentNullException(nameof(urlEndpoint));
             }
 
-            Regex rgx = new Regex(@"\b(path|query)\b");
-            if(!rgx.IsMatch(transformationPosition))
+            Regex rgx = new Regex("^(path|query)$");
+            if (transformationPosition == null || !rgx.IsMatch(transformationPosition))
             {
-                throw new ArgumentException(errorMessages.INVALID_TRANSFORMATION_POSITION);
+                throw new ArgumentException(errorMessages.INVALID_TRANSFORMATION_POSITION, nameof(transformationPosition));
             }
 
+            Add("publicKey", publicKey);
             Add("urlEndpoint", urlEndpoint);
             Add("transformationPosition", transformationPosition);
         }
@@ -82,6 +87,7 @@ namespace Imagekit
                 postData.Add("signature", clientAuth.signature);
                 postData.Add("expire", clientAuth.expire);
                 postData.Add("token", clientAuth.token);
+                postData.Add("publicKey", (string)options["publicKey"]);
             }
             return postData;
         }
@@ -94,18 +100,13 @@ namespace Imagekit
             string privateKey,
             string urlEndpoint,
             string transformationPosition = "path"
-        ) : base(urlEndpoint, transformationPosition)
+        ) : base(publicKey, urlEndpoint, transformationPosition)
         {
-            if (string.IsNullOrEmpty(publicKey))
-            {
-                throw new ArgumentNullException(nameof(publicKey));
-            }
             if (string.IsNullOrEmpty(privateKey))
             {
                 throw new ArgumentNullException(nameof(privateKey));
             }
 
-            Add("publicKey", publicKey);
             Add("privateKey", privateKey);
         }
 
