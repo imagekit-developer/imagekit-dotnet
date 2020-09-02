@@ -2,7 +2,6 @@
 {
     public class errorMessages
     {
-        public const string MANDATORY_INITIALIZATION_MISSING = "{ \"message\": \"Missing publicKey or privateKey or urlEndpoint during ImageKit initialization\", \"help\": \"\" }";
         public const string INVALID_TRANSFORMATION_POSITION = "{ \"message\": \"Invalid transformationPosition parameter\", \"help\": \"\" }";
         public const string CACHE_PURGE_URL_MISSING = "{ \"message\": \"Missing URL parameter for this request\", \"help\": \"\" }";
         public const string CACHE_PURGE_STATUS_ID_MISSING = "{ message: \"Missing Request ID parameter for this request\", \"help\": \"\" }";

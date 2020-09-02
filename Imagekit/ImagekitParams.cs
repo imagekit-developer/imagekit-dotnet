@@ -1,32 +1,32 @@
 ﻿namespace Imagekit
 
 {
-    public partial class Imagekit
+    public partial class BaseImagekit<T>
     {
-        
-        public Imagekit Path(string value) { return Add("path", value); }
-        public Imagekit Src(string value) { return Add("src", value); }
-        public Imagekit UrlEndpoint(string value) { return Add("urlEndpoint", value); }
-        public Imagekit Url(Transformation value) { return Add("transformation", value); }
-        public Imagekit QueryParameters(params string[] value) { return Add("queryParameters", value); }
-        public Imagekit TransformationPosition(string value) { return Add("transformationPosition", value); }
-        public Imagekit Signed(bool value=true) { return Add("signed", value); }
-        public Imagekit ExpireSeconds(int value) { return Add("expireSeconds", value); }
 
-        public Imagekit Limit(int value = 1000) { return Add("limit", value); }
-        public Imagekit Skip(int value = 0) { return Add("skip", value); }
-        public Imagekit Name(string value) { return Add("name", value); }
-        public Imagekit IncludeFolder(bool value = false) { return Add("includeFolder", value); }
-        public Imagekit Tags(string value) { return Add("tags", value); }
-        public Imagekit Tags(params string[] value) { return Add("tagsList", value); }
-        public Imagekit FileType(string value = "all") { return Add("fileType", value); }
+        public T Path(string value) { return Add("path", value); }
+        public T Src(string value) { return Add("src", value); }
+        public T UrlEndpoint(string value) { return Add("urlEndpoint", value); }
+        public T Url(Transformation value) { return Add("transformation", value); }
+        public T QueryParameters(params string[] value) { return Add("queryParameters", value); }
+        public T TransformationPosition(string value) { return Add("transformationPosition", value); }
+        public T Signed(bool value=true) { return Add("signed", value); }
+        public T ExpireSeconds(int value) { return Add("expireSeconds", value); }
 
-        public Imagekit FileName(string value) { return Add("fileName", value); }
-        public Imagekit UseUniqueFileName(bool value = true) { return Add("useUniqueFileName", value); }
-        public Imagekit Folder(string value = "/") { return Add("folder", value); }
-        public Imagekit IsPrivate(bool value = false) { return Add("isPrivate", value); }
-        public Imagekit CustomCoordinates(string value) { return Add("customCoordinates", value); }
-        public Imagekit ResponseFields(string value) { return Add("responseFields", value); }
+        public T Limit(int value = 1000) { return Add("limit", value); }
+        public T Skip(int value = 0) { return Add("skip", value); }
+        public T Name(string value) { return Add("name", value); }
+        public T IncludeFolder(bool value = false) { return Add("includeFolder", value); }
+        public T Tags(string value) { return Add("tags", value); }
+        public T Tags(params string[] value) { return Add("tagsList", value); }
+        public T FileType(string value = "all") { return Add("fileType", value); }
+
+        public T FileName(string value) { return Add("fileName", value); }
+        public T UseUniqueFileName(bool value = true) { return Add("useUniqueFileName", value); }
+        public T Folder(string value = "/") { return Add("folder", value); }
+        public T IsPrivate(bool value = false) { return Add("isPrivateFile", value); }
+        public T CustomCoordinates(string value) { return Add("customCoordinates", value); }
+        public T ResponseFields(string value) { return Add("responseFields", value); }
 
 
 
@@ -35,14 +35,14 @@
         /// </summary>
         /// <param name="key">The name.</param>
         /// <param name="value">The value.</param>
-        public Imagekit Add(string key, object value)
+        public T Add(string key, object value)
         {
             if (options.ContainsKey(key))
                 options[key] = value;
             else
                 options.Add(key, value);
 
-            return this;
+            return (T)this;
         }
     }
 }

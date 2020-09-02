@@ -1,5 +1,5 @@
 [![NuGet](https://img.shields.io/nuget/v/imagekit.svg)]()
-# DotNET (NET45/Core2.0) SDK v2.x for ImageKit 
+# DotNET (NET45/Standard) SDK v2.x for ImageKit
 
 The new version of the DotNet SDK for [ImageKit.io](https://imagekit.io) that implements the new APIs and interface for performing different file operations.
 
@@ -17,12 +17,12 @@ Install-Package Imagekit
 
 PackageReference
 ```
-<PackageReference Include="Imagekit" Version="3.0.4">
+<PackageReference Include="Imagekit" Version="3.1.0">
 </PackageReference>
 ```
 .Net CLI
 ```
-dotnet add package Imagekit --version 3.0.4
+dotnet add package Imagekit --version 3.1.0
 ```
 
 
@@ -32,7 +32,7 @@ Also, you can search for [Imagekit](https://www.nuget.org/packages/Imagekit) in 
 
 ***Note***: If you get error like "the type or namespace 'ImageKit' couldn't be found", please remove IncludeAssets tag like below.
 ```
-<PackageReference Include="Imagekit" Version="3.0.4">
+<PackageReference Include="Imagekit" Version="3.1.0">
    <!-- Remove IncludeAssets to allow compiling against the assembly -->
    <!--IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets-->
 <PrivateAssets>all</PrivateAssets>
@@ -44,7 +44,7 @@ Add this reference where you want to use imagekit.io services:
 ```cs
 using Imagekit;
 
-Imagekit.Imagekit imagekit = new Imagekit.Imagekit(publicKey, privateKey, urlEndPoint, "path");
+ServerImagekit imagekit = new ServerImagekit(publicKey, privateKey, urlEndPoint, "path");
 ```
 
 **Note**: You can get the apiKey, apiSecret, and ImagekitId from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
@@ -58,12 +58,12 @@ You can use this DotNET SDK for three different kinds of functions - URL generat
 
 This method allows you to create a URL using the `path` where the image exists and the URL endpoint (`urlEndpoint`) you want to use to access the image. You can refer to the documentation [here](https://docs.imagekit.io/integration/url-endpoints) to read more about URL endpoints in ImageKit and the section about [image origins](https://docs.imagekit.io/integration/configure-origin) to understand about paths with different kinds of origins.
 
-```
+```csharp
 string imageURL = imagekit.Url(new Transformation().Width(400).Height(300))
-.Path("/default-image.jpg")
-.UrlEndpoint("https://ik.imagekit.io/your_imagekit_id/endpoint")
-.TransformationPosition("query")
-.Generate();
+    .Path("/default-image.jpg")
+    .UrlEndpoint("https://ik.imagekit.io/your_imagekit_id/endpoint")
+    .TransformationPosition("query")
+    .Generate();
 ```
 
 This results in a URL like
@@ -77,10 +77,10 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jp
 This method allows you to add transformation parameters to an existing, complete URL that is already mapped to ImageKit using the `src` parameter. This method should be used if you have the complete URL mapped to ImageKit stored in your database.
 
 
-```
+```csharp
 string imageURL = imagekit.Url(new Transformation().Width(400).Height(300))
-.Src("https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg")
-.Generate();
+    .Src("https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg")
+    .Generate();
 ```
 
 This results in a URL like
@@ -94,7 +94,7 @@ The `.Url()` method accepts the following parameters.
 
 | Option           | Description                    |
 | :----------------| :----------------------------- |
-| urlEndpoint      | Optional. The base URL to be appended before the path of the image. If not specified, the URL Endpoint specified at the time of SDK initialization is used. For example, https://ik.imagekit.io/your_imagekit_id/endpoint/ |
+| urlEndpoint      | Optional. The base URL to be appended before the path of the image. If not specified, the URL Endpoint specified at the time of SDK initialization is used. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/` |
 | path             | Conditional. This is the path at which the image exists. For example, `/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
 | src              | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
 | transformation   | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as different objects of the array. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
@@ -108,7 +108,7 @@ The `.Url()` method accepts the following parameters.
 #### Examples of generating URLs
 
 **1. Chained Transformations as a query parameter**
-```
+```csharp
 Transformation transformation = new Transformation()
     .Width(400).Height(300)
     .Chain()
@@ -127,12 +127,13 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300,w-40
 
 **2. Sharpening and contrast transforms and a progressive JPG image**
 
-There are some transforms like [Sharpening](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation) that can be added to the URL with or without any other value. 
+There are some transforms like [Sharpening](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation) that can be added to the URL with or without any other value.
 
 ```cs
 string src = "https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg";
 
-Transformation trans = new Transformation().Format("jpg")
+Transformation trans = new Transformation()
+    .Format("jpg")
     .Progressive(true)
     .EffectSharpen()
     .EffectContrast(1);
@@ -223,9 +224,9 @@ The `upload()` method requires at least the `file` and the `fileName` parameter 
 
 Sample usage
 ```cs
-ImagekitResponse resp = imagekit.FileName("my_file_name.jpg")
-    .Upload(<url|base_64|binary>);
-});
+ImagekitResponse resp = await imagekit
+    .FileName("my_file_name.jpg")
+    .UploadAsync(<url|base_64|binary>);
 ```
 
 **Note**: Upload argument can be a URL or byte array (byte[]) or Base64String of a file.
@@ -233,14 +234,17 @@ ImagekitResponse resp = imagekit.FileName("my_file_name.jpg")
 
 ### File Management
 
-The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-api) to manage your files. 
+The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-api) to manage your files.
 
 **1. List & Search Files**
 
 Accepts an object specifying the parameters to be used to list and search files. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
 
 ```cs
-List<ListAPIResponse> resp = imagekit.Skip(0).Limit(10).ListFiles();
+List<ListAPIResponse> resp = await imagekit
+    .Skip(0)
+    .Limit(10)
+    .ListFilesAsync();
 ```
 
 **2. Get File Details**
@@ -248,7 +252,7 @@ List<ListAPIResponse> resp = imagekit.Skip(0).Limit(10).ListFiles();
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).
 
 ```cs
-ListAPIResponse resp = imagekit.GetFileDetails(fileId);
+ListAPIResponse resp = await imagekit.GetFileDetailsAsync(fileId);
 ```
 
 **3. Get File Metadata**
@@ -256,16 +260,19 @@ ListAPIResponse resp = imagekit.GetFileDetails(fileId);
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files).
 
 ```cs
-MetadataResponse resp = imagekit.GetFileMetadata(fileId);
+MetadataResponse resp = await imagekit.GetFileMetadataAsync(fileId);
 ```
 
 **4. Update File Details**
 
-Update parameters associated with the File as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/update-file-details). 
+Update parameters associated with the File as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/update-file-details).
 
 ```cs
 string[] tags = { "one", "two" };
-ListAPIResponse resp = imagekit.Tags(tags).CustomCoordinates("10,10,100,100").UpdateFileDetails(fileId);
+ListAPIResponse resp = await imagekit
+    .Tags(tags)
+    .CustomCoordinates("10,10,100,100")
+    .UpdateFileDetailsAsync(fileId);
 ```
 
 **5. Delete File**
@@ -273,7 +280,7 @@ ListAPIResponse resp = imagekit.Tags(tags).CustomCoordinates("10,10,100,100").Up
 Delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file). The method accepts the file ID of the File that has to be deleted.
 
 ```cs
-string resp = imagekit.DeleteFile(fileId);
+string resp = await imagekit.DeleteFileAsync(fileId);
 ```
 
 **6. Purge Cache**
@@ -281,7 +288,7 @@ string resp = imagekit.DeleteFile(fileId);
 Programmatically issue a cache clear request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache). Accepts the full URL of the File for which the cache has to be cleared.
 
 ```cs
-var PurgeAPIResponse = imagekit.PurgeCache("full_url");
+PurgeAPIResponse resp = await imagekit.PurgeCacheAsync("full_url");
 ```
 
 **7. Purge Cache Status**
@@ -289,7 +296,7 @@ var PurgeAPIResponse = imagekit.PurgeCache("full_url");
 Get the purge cache request status using the request ID returned when a purge cache request gets submitted as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache-status)
 
 ```cs
-PurgeCacheStatusResponse resp = imagekit.GetPurgeCacheStatus("cache_request_id");
+PurgeCacheStatusResponse resp = await imagekit.GetPurgeCacheStatusAsync("cache_request_id");
 ```
 
 ### Authentication Parameter Generation
@@ -298,16 +305,16 @@ In case you are looking to implement client-side file upload, you are going to n
 
 *Note: The Private API Key should never be exposed in any client-side code. You must always generate these authentication parameters on the server-side*
 
-```
+```csharp
 AuthParamResponse resp = imagekit.GetAuthenticationParameters();
 ```
 
 Returns
-```
+```json
 {
-    token : "unique_token",
-    expire : "valid_expiry_timestamp",
-    signature : "generated_signature"
+    "token" : "unique_token",
+    "expire" : "valid_expiry_timestamp",
+    "signature" : "generated_signature"
 }
 ```
 
@@ -317,8 +324,12 @@ Both the `token` and `expire` parameters are optional. If not specified, the SDK
 
 For any feedback or to report any issues or general implementation support, please reach out to [support@imagekit.io](mailto:support@imagekit.io)
 
+## Contributing
+
+### Testing
+
+To generate a code coverage report, install [ReportGenerator](https://github.com/danielpalme/ReportGenerator) and use the VSCode task or run the generate task on the command line.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) File for details
-
-

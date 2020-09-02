@@ -1,0 +1,123 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Imagekit.UnitTests/Imagekit.UnitTests.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "${workspaceRoot}/Imagekit/Imagekit.csproj",
+                "-f",
+                "netstandard2.1"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "panel": "shared",
+                "clear": true
+            },
+            "problemMatcher": {
+                "base": "$msCompile",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ]
+            }
+        },
+        {
+            "label": "test",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "test",
+                "${workspaceRoot}/Imagekit.UnitTests/Imagekit.UnitTests.csproj",
+                "--logger",
+                "html",
+                "/p:Configuration=Debug",
+                "/p:CollectCoverage=true",
+                "/p:CoverletOutputFormat=cobertura%2clcov",
+                "/p:Exclude=[*Tests]*"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
+        },
+        {
+            "label": "generate test coverage report",
+            "group": "none",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "reportgenerator",
+                "\"-reports:${workspaceRoot}/Imagekit.UnitTests/coverage.cobertura.xml\"",
+                "\"-targetdir:${workspaceRoot}/Imagekit.UnitTests/CoverageReport\"",
+                "-reportTypes:htmlInline"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/Imagekit.UnitTests"
+            },
+            "dependsOn": [
+                "test"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "open test coverage report",
+            "group": "none",
+            "osx": {
+                "command": "open"
+            },
+            "windows": {
+                "command": "start"
+            },
+            "type": "shell",
+            "args": [
+                "${workspaceRoot}/Imagekit.UnitTests/CoverageReport/index.htm"
+            ],
+            "problemMatcher": [],
+            "dependsOn": [
+                "generate test coverage report"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
+        }
+    ]
+}
