@@ -24,7 +24,7 @@
         public T FileName(string value) { return Add("fileName", value); }
         public T UseUniqueFileName(bool value = true) { return Add("useUniqueFileName", value); }
         public T Folder(string value = "/") { return Add("folder", value); }
-        public T IsPrivate(bool value = false) { return Add("isPrivateFile", value); }
+        public T isPrivateFile(bool value = false) { return Add("isPrivateFile", value); }
         public T CustomCoordinates(string value) { return Add("customCoordinates", value); }
         public T ResponseFields(string value) { return Add("responseFields", value); }
 
