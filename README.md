@@ -1,9 +1,9 @@
 [![NuGet](https://img.shields.io/nuget/v/imagekit.svg)]()
-# DotNET (NET45/Standard) SDK v2.x for ImageKit
+# DotNET (NET45/Standard) SDK for ImageKit
 
 The new version of the DotNet SDK for [ImageKit.io](https://imagekit.io) that implements the new APIs and interface for performing different file operations.
 
-**Note**: For the older version of SDK, please checkout branch v1.x.
+**Note**: For the older version of SDK, please checkout branch v2.x.
 
 ImageKit is a complete image optimization and transformation solution that comes with an [image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
 
