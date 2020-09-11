@@ -5,7 +5,7 @@
     <RootNamespace>Imagekit</RootNamespace>
     <AssemblyName>Imagekit</AssemblyName>
     <TargetFrameworks>netstandard2.1;netstandard2.0;net45</TargetFrameworks>
-    <PackageVersion>3.1.0</PackageVersion>
+    <PackageVersion>3.1.1</PackageVersion>
     <Copyright>© ImageKit Private Limited 2019</Copyright>
     <DevelopmentDependency>true</DevelopmentDependency>
     <PackageIconUrl>https://imagekit.io/favicon.ico</PackageIconUrl>
@@ -17,19 +17,19 @@
     <Description>Library to Integrate Imagekit.io Service.</Description>
     <PackageId>Imagekit</PackageId>
     <PackOnBuild>true</PackOnBuild>
-    <ReleaseVersion>3.1.0</ReleaseVersion>
+    <ReleaseVersion>3.1.1</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <PackageLicenseUrl>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicenseUrl>
-    <Version>3.1.0</Version>
+    <Version>3.1.1</Version>
     <RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-   
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
-    
+
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
     <Reference Include="System" />
     <Reference Include="System.Net" />
@@ -38,14 +38,14 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.1'">
 	<DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_1</DefineConstants>
   </PropertyGroup>
-	
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45'">
     <DefineConstants>NET45;NETFULL</DefineConstants>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
