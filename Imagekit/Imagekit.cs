@@ -82,6 +82,14 @@ namespace Imagekit
             {
                 postData.Add("tags", (string)options["tags"]);
             }
+            else if (options.ContainsKey("tagsList"))
+            {
+                var tags = (string[])options["tagsList"];
+                if (tags.Any())
+                {
+                    postData.Add("tags", string.Join(",", tags));
+                }
+            }
             if (clientAuth != null)
             {
                 postData.Add("signature", clientAuth.signature);
@@ -201,30 +209,35 @@ namespace Imagekit
             {
                 throw new ArgumentException(errorMessages.FILE_ID_MISSING);
             }
-            if (!options.ContainsKey("tagsList") && !options.ContainsKey("customCoordinates"))
+            // If one of these is not provided, this request does nothing
+            if (!options.ContainsKey("tags") && !options.ContainsKey("tagsList") && !options.ContainsKey("customCoordinates"))
             {
                 throw new ArgumentException(errorMessages.UPDATE_DATA_MISSING);
             }
-            Dictionary<string, object> postData = new Dictionary<string, object>();
-            if (options.ContainsKey("tags")) {
-                if ((string)options["tags"] == "null"){
-                    postData.Add("tags", "null");
-                    options.Remove("tags");
-                } else
-                {
-                    throw new ArgumentException(errorMessages.UPDATE_DATA_TAGS_INVALID);
-                }
 
-            } else if (options.ContainsKey("tagsList"))
+            Dictionary<string, object> postData = new Dictionary<string, object>();
+
+            if (options.ContainsKey("tags"))
+            {
+                var tags = (string)options["tags"];
+                if (tags != null && tags != "null")
+                {
+                    var tagsArray = tags.Split(",", StringSplitOptions.RemoveEmptyEntries);
+                    postData.Add("tags", tagsArray);
+                }
+                options.Remove("tags");
+            }
+            else if (options.ContainsKey("tagsList"))
             {
                 string[] tags = (string[])options["tagsList"];
-                if (!tags.Any())
+                if (tags == null || !tags.Any())
                 {
                     throw new ArgumentException(errorMessages.UPDATE_DATA_TAGS_INVALID);
                 }
                 postData.Add("tags", tags);
                 options.Remove("tagsList");
             }
+
             if (options.ContainsKey("customCoordinates")) {
                 if(string.IsNullOrEmpty((string)options["customCoordinates"]))
                 {
