@@ -222,7 +222,7 @@ namespace Imagekit
                 var tags = (string)options["tags"];
                 if (tags != null && tags != "null")
                 {
-                    var tagsArray = tags.Split(",", StringSplitOptions.RemoveEmptyEntries);
+                    var tagsArray = tags.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                     postData.Add("tags", tagsArray);
                 }
                 options.Remove("tags");
