@@ -82,7 +82,7 @@ namespace Imagekit.UnitTests
                 Content = new StringContent(JsonConvert.SerializeObject(responseObj))
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse,
-                TestHelpers.GetUploadRequestMessageValidator(fileUrl, fileName, GOOD_PUBLICKEY, auth));
+                TestHelpers.GetUploadRequestMessageValidator(fileUrl, fileName, publicKey: GOOD_PUBLICKEY, clientAuth: auth));
             Util.Utils.SetHttpClient(httpClient);
 
             var imagekit = new ClientImagekit(GOOD_PUBLICKEY, GOOD_URLENDPOINT)
@@ -104,7 +104,7 @@ namespace Imagekit.UnitTests
                 Content = new StringContent(JsonConvert.SerializeObject(responseObj))
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse,
-                TestHelpers.GetUploadRequestMessageValidator(fileUrl, fileName, GOOD_PUBLICKEY, auth));
+                TestHelpers.GetUploadRequestMessageValidator(fileUrl, fileName, publicKey: GOOD_PUBLICKEY, clientAuth: auth));
             Util.Utils.SetHttpClient(httpClient);
 
             var imagekit = new ClientImagekit(GOOD_PUBLICKEY, GOOD_URLENDPOINT)

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Bogus;
 using Moq;
 using Moq.Protected;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace Imagekit.UnitTests
@@ -17,6 +19,30 @@ namespace Imagekit.UnitTests
         {
             Faker.DefaultStrictMode = true;
         }
+
+        public static Faker<ListAPIResponse> ListAPIResponseFaker = new Faker<ListAPIResponse>()
+            .RuleFor(u => u.FileId, (f, u) => Guid.NewGuid().ToString())
+            .RuleFor(u => u.Type, (f, u) => f.Random.ArrayElement(new string[] { "file", "folder" }))
+            .RuleFor(u => u.Name, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.FilePath, (f, u) => f.System.FilePath())
+            .RuleFor(u => u.Tags, (f, u) => f.Random.ArrayElement(new string[][]
+            {
+                null, // No tags
+                new string[] { f.Random.Utf16String() }, // 1 tag
+                new string[] { f.Random.Utf16String(), f.Random.Utf16String() } // 2 tags
+            }))
+            .RuleFor(u => u.IsPrivateFile, (f, u) => f.Random.Bool())
+            .RuleFor(u => u.CustomCoordinates, (f, u) => f.Random.ArrayElement(new string[]
+            {
+                null, // No custom coordinates
+                $"{f.Random.Int()},{f.Random.Int()},{f.Random.Int()},{f.Random.Int()}" // x,y,width,height
+            }))
+            .RuleFor(u => u.Url, (f, u) => f.Internet.UrlWithPath(fileExt: ".png"))
+            .RuleFor(u => u.Thumbnail, (f, u) => f.Internet.UrlWithPath(fileExt: ".png"))
+            .RuleFor(u => u.FileType, (f, u) => f.Random.ArrayElement(new string[] { "image", "non-image" }))
+            .RuleFor(u => u.CreatedAt, (f, u) => f.Date.Past().ToString("YYYY-MM-DDTHH:mm:ss.sssZ"))
+            .RuleFor(u => u.message, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.help, (f, u) => f.Random.Utf16String());
 
         public static Faker<AuthParamResponse> AuthParamResponseFaker = new Faker<AuthParamResponse>()
             .RuleFor(u => u.token, (f, u) => Guid.NewGuid().ToString())
@@ -173,6 +199,22 @@ namespace Imagekit.UnitTests
             return GetTestHttpClient(ItExpr.IsAny<HttpRequestMessage>(), response, null);
         }
 
+        public static Action<HttpRequestMessage> GetUpdateFileDetailsMessageValidator(
+            string[] expectedTags,
+            string expectedCustomCoordinates
+        )
+        {
+            return async (msg) =>
+            {
+                var content = await msg.Content.ReadAsStringAsync();
+                dynamic jobj = JObject.Parse(content);
+                string[] actualTags = jobj.tags == null ? null : JsonConvert.DeserializeObject<string[]>(jobj.tags.ToString());
+                string coords = jobj.customCoordinates;
+                Assert.Equal(expectedTags, actualTags);
+                Assert.Equal(expectedCustomCoordinates, coords);
+            };
+        }
+
         public static Action<HttpRequestMessage> GetUploadRequestMessageValidator(
             string fileUrl,
             string fileName,
@@ -205,19 +247,19 @@ namespace Imagekit.UnitTests
         private static async Task<string[]> GetMultipartFormBodyContent(HttpRequestMessage msg)
         {
             var content = (MultipartFormDataContent)msg.Content;
-                Assert.NotNull(content);
-                var contentBody = await content.ReadAsStringAsync();
-                string[] contentBodyLines = null;
-                if (contentBody.IndexOf("\r\n") >= 0)
-                {
-                    contentBodyLines = contentBody.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
-                }
-                else if (contentBody.IndexOf("\n") >= 0)
-                {
-                    contentBodyLines = contentBody.Split("\n", StringSplitOptions.RemoveEmptyEntries);
-                }
-                Assert.NotNull(contentBodyLines);
-                return contentBodyLines;
+            Assert.NotNull(content);
+            var contentBody = await content.ReadAsStringAsync();
+            string[] contentBodyLines = null;
+            if (contentBody.IndexOf("\r\n") >= 0)
+            {
+                contentBodyLines = contentBody.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
+            }
+            else if (contentBody.IndexOf("\n") >= 0)
+            {
+                contentBodyLines = contentBody.Split("\n", StringSplitOptions.RemoveEmptyEntries);
+            }
+            Assert.NotNull(contentBodyLines);
+            return contentBodyLines;
         }
     }
 }

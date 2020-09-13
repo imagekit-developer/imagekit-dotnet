@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -113,6 +114,107 @@ namespace Imagekit.UnitTests
                 .FileName(fileName);
             var response = await imagekit.UploadAsync(fileUrl);
             Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
+        [Fact]
+        public void GetUploadData_TagsString()
+        {
+            var fileName = Guid.NewGuid().ToString();
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT)
+                .FileName(fileName)
+                .Tags("tag1,tag2");
+            var data = imagekit.getUploadData();
+            Assert.True(data.TryGetValue("tags", out string actualTags), "tags upload data not found");
+            Assert.Equal("tag1,tag2", actualTags);
+        }
+
+        [Fact]
+        public void GetUploadData_TagsArray()
+        {
+            var fileName = Guid.NewGuid().ToString();
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT)
+                .FileName(fileName)
+                .Tags("tag1", "tag2");
+            var data = imagekit.getUploadData();
+            Assert.True(data.TryGetValue("tags", out string actualTags), "tags upload data not found");
+            Assert.Equal("tag1,tag2", actualTags);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("null")]
+        [InlineData("tag1")]
+        [InlineData("tag1,tag2")]
+        public async Task UpdateFileDetailsAsync_TagsString(string tags)
+        {
+            var fileId = Guid.NewGuid().ToString();
+            var fileName = Guid.NewGuid().ToString();
+            var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
+            responseObj.Tags = tags == null ? null : tags.Split(",");
+            if (responseObj.Tags != null && responseObj.Tags[0] == "null")
+            {
+                responseObj.Tags = null;
+            }
+            responseObj.CustomCoordinates = null;
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse,
+                TestHelpers.GetUpdateFileDetailsMessageValidator(responseObj.Tags, null));
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT)
+                .FileName(fileName)
+                .Tags(tags);
+            var response = await imagekit.UpdateFileDetailsAsync(fileId);
+            Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
+        [Theory, MemberData(nameof(TagsArrays))]
+        public async Task UpdateFileDetailsAsync_TagsArray(string[] tags, bool isValid)
+        {
+            var fileId = Guid.NewGuid().ToString();
+            var fileName = Guid.NewGuid().ToString();
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT)
+                .FileName(fileName)
+                .Tags(tags);
+
+            if (isValid)
+            {
+                var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
+                responseObj.Tags = tags;
+                responseObj.CustomCoordinates = null;
+                var httpResponse = new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+                };
+                var httpClient = TestHelpers.GetTestHttpClient(httpResponse,
+                    TestHelpers.GetUpdateFileDetailsMessageValidator(responseObj.Tags, null));
+                Util.Utils.SetHttpClient(httpClient);
+
+                var response = await imagekit.UpdateFileDetailsAsync(fileId);
+                Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+            }
+            else
+            {
+                var ex = await Assert.ThrowsAsync<ArgumentException>(() => imagekit.UpdateFileDetailsAsync(fileId));
+                Assert.Equal(Util.errorMessages.UPDATE_DATA_TAGS_INVALID, ex.Message);
+            }
+        }
+
+        public static IEnumerable<object[]> TagsArrays
+        {
+            get
+            {
+                // string[] tags, bool isValid
+                yield return new object[] { null, false };
+                yield return new object[] { new string[] { }, false };
+                yield return new object[] { new string[] { "tag1" }, true };
+                yield return new object[] { new string[] { "tag1", "tag2" }, true };
+            }
         }
     }
 }

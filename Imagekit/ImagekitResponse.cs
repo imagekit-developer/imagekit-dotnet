@@ -246,26 +246,45 @@ namespace Imagekit
 
     public class ListAPIResponse
     {
+        /// <summary>The unique fileId of the uploaded file.</summary>
         [JsonProperty("fileId")]
         public string FileId { get; set; }
+        /// <summary>Type of item. It can either be `file` or `folder`.</summary>
         [JsonProperty("type")]
         public string Type { get; set; }
+        /// <summary>Name of the file or folder.</summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+        /// <summary>
+        /// The relative path of the file. In the case of an image, you can use this path
+        /// to construct different transformations.
+        /// </summary>
         [JsonProperty("filePath")]
         public string FilePath { get; set; }
+        /// <summary>Array of tags associated with the image. If no tags are set, this will be `null`.</summary>
         [JsonProperty("tags")]
         public string[] Tags { get; set; }
+        /// <summary>Is the file marked as private. It can be either `true` or `false`.</summary>
         [JsonProperty("isPrivateFile")]
         public bool IsPrivateFile { get; set; }
+        /// <summary>
+        /// Value of custom coordinates associated with the image in format `x,y,width,height`.
+        /// If customCoordinates are not defined, it will be `null`.
+        /// </summary>
         [JsonProperty("customCoordinates")]
         public string CustomCoordinates { get; set; }
+        /// <summary>A publicly accessible URL of the file.</summary>
         [JsonProperty("url")]
         public string Url { get; set; }
+        /// <summary>In case of an image, a small thumbnail URL.</summary>
         [JsonProperty("thumbnail")]
         public string Thumbnail { get; set; }
+        /// <summary>The type of file, it could be either `image` or `non-image`.</summary>
         [JsonProperty("fileType")]
         public string FileType { get; set; }
+        /// <summary>The date and time when the file was first uploaded. The format is `YYYY-MM-DDTHH:mm:ss.sssZ`</summary>
+        [JsonProperty("createdAt")]
+        public string CreatedAt { get; set; }
         [JsonProperty("message")]
         public string message { get; set; }
         [JsonProperty("help")]
