@@ -28,7 +28,7 @@ namespace Imagekit
 
         /// <summary>Crop Mode</summary>
         /// <param name="value"></param>
-        public Transformation CropMode(string value) { return Add("c", value); }
+        public Transformation CropMode(string value) { return Add("cm", value); }
 
         /// <summary></summary>
         /// <param name="value"></param>
