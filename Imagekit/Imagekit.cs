@@ -335,11 +335,21 @@ namespace Imagekit
             return authParameters;
         }
 
+        /// <summary>
+        /// Upload the file as byte[].
+        /// </summary>
+        /// <param name="file">File input as byte Array.</param>
+        /// <returns>The response body of the upload request.</returns>
         public ImagekitResponse Upload(byte[] file)
         {
             return UploadAsync(file).Result;
         }
 
+        /// <summary>
+        /// Upload the file as byte[].
+        /// </summary>
+        /// <param name="file">File input as byte Array.</param>
+        /// <returns>The response body of the upload request.</returns>
         public async Task<ImagekitResponse> UploadAsync(byte[] file)
         {
             Uri apiEndpoint = new Uri(Utils.GetUploadApi());

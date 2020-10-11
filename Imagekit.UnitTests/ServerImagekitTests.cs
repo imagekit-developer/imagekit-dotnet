@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -93,6 +94,18 @@ namespace Imagekit.UnitTests
                 .FileName(fileName);
             var response = imagekit.Upload(fileUrl);
             Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
+        [Fact]
+        public void Upload_Throws_IOException()
+        {
+            var fileName = Guid.NewGuid().ToString();
+            var fileUrl = @"c:\test\test.jpg";
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT)
+                .FileName(fileName);
+            Exception ex = Assert.Throws<AggregateException>(() => imagekit.Upload(fileUrl));
+            Assert.Equal("File Not Found.", ex.InnerException.Message);
         }
 
         [Fact]
@@ -215,6 +228,19 @@ namespace Imagekit.UnitTests
                 yield return new object[] { new string[] { "tag1" }, true };
                 yield return new object[] { new string[] { "tag1", "tag2" }, true };
             }
+        }
+
+        [Theory]
+        [InlineData("https://example.com", false)]
+        [InlineData("http://example.com", false)]
+        [InlineData("ftp://example.com", false)]
+        [InlineData(@"C:\test\test 1.jpg", true)]
+        [InlineData(@"C:\test\test.jpg", true)]
+        [InlineData(@"\\test.com\test.jpg", true)]
+        [InlineData("http:\\mysite\test.xml", false)]
+        public void IsLocalPathTest(string path, bool expected)
+        {
+            Assert.Equal(expected, Util.Utils.IsLocalPath(path));
         }
     }
 }
