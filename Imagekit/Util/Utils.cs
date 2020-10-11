@@ -180,17 +180,17 @@ namespace Imagekit.Util
             return PostUploadAsync(uri, data, file, key).Result;
         }
 
-        public static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, string filePath, string key = null)
+        public static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, string filePathOrURL, string key = null)
         {
-            HttpContent content = new StringContent(filePath);
+            HttpContent content = new StringContent(filePathOrURL);
             
-            if (IsLocalPath(filePath))
+            if (IsLocalPath(filePathOrURL))
             {
-                if (File.Exists(filePath))
+                if (File.Exists(filePathOrURL))
                 {
                     try
                     {
-                        var fileInfo = new FileInfo(filePath);
+                        var fileInfo = new FileInfo(filePathOrURL);
                         content = new StringContent(Convert.ToBase64String(File.ReadAllBytes(fileInfo.FullName)));
                     }
                     catch (IOException e)
@@ -213,9 +213,9 @@ namespace Imagekit.Util
             return await PostUploadAsync(uri, data, content, key).ConfigureAwait(false);
         }
 
-        public static HttpResponseMessage PostUpload(Uri uri, Dictionary<string, string> data, string filePath, string key = null)
+        public static HttpResponseMessage PostUpload(Uri uri, Dictionary<string, string> data, string filePathOrURL, string key = null)
         {
-            return PostUploadAsync(uri, data, filePath, key).Result;
+            return PostUploadAsync(uri, data, filePathOrURL, key).Result;
         }
 
         public static bool IsLocalPath(string p)

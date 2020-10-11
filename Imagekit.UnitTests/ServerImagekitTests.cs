@@ -229,7 +229,12 @@ namespace Imagekit.UnitTests
                 yield return new object[] { new string[] { "tag1", "tag2" }, true };
             }
         }
+    }
 
+
+    [Collection("Generic")]
+    public class ImagekitTests
+    {
         [Theory]
         [InlineData("https://example.com", false)]
         [InlineData("http://example.com", false)]

@@ -183,7 +183,7 @@ The complete list of transformations supported and their usage in ImageKit can b
 | FORMAT | f |
 | RADIUS | r |
 | BACKGROUND | bg |
-| BORDER | bo |
+| BORDER | b |
 | ROTATION | rt |
 | BLUR | bl |
 | NAMED | n |
@@ -226,10 +226,10 @@ Sample usage
 ```cs
 ImagekitResponse resp = await imagekit
     .FileName("my_file_name.jpg")
-    .UploadAsync(<url|base_64|binary>);
+    .UploadAsync(<fullPath|url|base_64|binary>);
 ```
 
-**Note**: Upload argument can be a URL or byte array (byte[]) or Base64String of a file.
+**Note**: Upload argument can be a local fullPath or URL or byte array (byte[]) or Base64String of a file.
 
 
 ### File Management

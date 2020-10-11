@@ -56,11 +56,15 @@ namespace Imagekit
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation Border(string value) { return Add("bo", value); }
+        public Transformation Border(string value) { return Add("b", value); }
 
         /// <summary></summary>
         /// <param name="value"></param>
         public Transformation Rotation(object value) { return Add("rt", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation Rotate(object value) { return Add("rt", value); }
 
         /// <summary></summary>
         /// <param name="value"></param>

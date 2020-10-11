@@ -22,11 +22,11 @@ namespace Imagekit
         {
             if (string.IsNullOrEmpty(publicKey))
             {
-                throw new ArgumentNullException(nameof(publicKey));
+                throw new ArgumentNullException(errorMessages.MANDATORY_PUBLIC_KEY_MISSING);
             }
             if (string.IsNullOrEmpty(urlEndpoint))
             {
-                throw new ArgumentNullException(nameof(urlEndpoint));
+                throw new ArgumentNullException(errorMessages.MANDATORY_URL_ENDPOINT_KEY_MISSING);
             }
 
             Regex rgx = new Regex("^(path|query)$");
@@ -362,29 +362,29 @@ namespace Imagekit
         }
 
         /// <summary>
-        /// Upload the file at the path.
+        /// The local file fullpath or remote URL for the file.
         /// </summary>
-        /// <param name="filePath">The local file path or remote URL for the file.</param>
+        /// <param name="file">The local file path or remote URL for the file.</param>
         /// <returns>The response body of the upload request.</returns>
-        public ImagekitResponse Upload(string filePath)
+        public ImagekitResponse Upload(string file)
         {
-            return UploadAsync(filePath).Result;
+            return UploadAsync(file).Result;
         }
 
         /// <summary>
-        /// Upload the file at the path.
+        /// The local file fullpath or remote URL for the file.
         /// </summary>
-        /// <param name="filePath">The local file path or remote URL for the file.</param>
+        /// <param name="file">The local file path or remote URL for the file.</param>
         /// <returns>The response body of the upload request.</returns>
-        public async Task<ImagekitResponse> UploadAsync(string filePath)
+        public async Task<ImagekitResponse> UploadAsync(string file)
         {
-            if (string.IsNullOrEmpty(filePath))
+            if (string.IsNullOrEmpty(file))
             {
                 throw new ArgumentException(errorMessages.MISSING_UPLOAD_FILE_PARAMETER);
             }
             Uri apiEndpoint = new Uri(Utils.GetUploadApi());
 
-            var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), filePath, (string)options["privateKey"]).ConfigureAwait(false);
+            var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), file, (string)options["privateKey"]).ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             ImagekitResponse resp = JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
