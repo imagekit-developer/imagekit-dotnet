@@ -123,8 +123,7 @@ namespace Imagekit.Util
             }
             catch (WebException ex)
             {
-                Console.WriteLine("\nException!");
-                Console.WriteLine("Message :{0} ", ex.Message);
+                Console.WriteLine("\nException :{0} ", ex.Message);
                 throw ex;
             }
         }
@@ -165,8 +164,7 @@ namespace Imagekit.Util
             }
             catch (WebException ex)
             {
-                Console.WriteLine("\nException!");
-                Console.WriteLine("Message :{0} ", ex.Message);
+                Console.WriteLine("\nException :{0} ", ex.Message);
                 throw ex;
             }
         }
@@ -182,45 +180,58 @@ namespace Imagekit.Util
             return PostUploadAsync(uri, data, file, key).Result;
         }
 
-        public static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, string filePath, string key = null)
+        public static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, string filePathOrURL, string key = null)
         {
-            HttpContent content = new StringContent(filePath);
-            if (string.IsNullOrEmpty(filePath) || filePath.Length % 4 != 0
-               || filePath.Contains(" ") || filePath.Contains("\t") || filePath.Contains("\r") || filePath.Contains("\n"))
+            HttpContent content = new StringContent(filePathOrURL);
+            
+            if (IsLocalPath(filePathOrURL))
             {
-                if (IsLocalPath(filePath))
+                if (File.Exists(filePathOrURL))
                 {
-                    var fileInfo = new FileInfo(filePath);
                     try
                     {
+                        var fileInfo = new FileInfo(filePathOrURL);
                         content = new StringContent(Convert.ToBase64String(File.ReadAllBytes(fileInfo.FullName)));
                     }
-                    catch (Exception)
+                    catch (IOException e)
                     {
-                        content = new StringContent(filePath);
+                        Console.WriteLine($"[IO Exception] {e.StackTrace}");
+                        throw new IOException(@"[IO Exception]", e);
                     }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"[Exception] {e}");
+                        throw new Exception(@"[Exception]", e);
+                    }
+                } 
+                else
+                {
+                    throw new FileNotFoundException("File Not Found.");
                 }
             }
 
             return await PostUploadAsync(uri, data, content, key).ConfigureAwait(false);
         }
 
-        public static HttpResponseMessage PostUpload(Uri uri, Dictionary<string, string> data, string filePath, string key = null)
+        public static HttpResponseMessage PostUpload(Uri uri, Dictionary<string, string> data, string filePathOrURL, string key = null)
         {
-            return PostUploadAsync(uri, data, filePath, key).Result;
+            return PostUploadAsync(uri, data, filePathOrURL, key).Result;
         }
 
-        private static bool IsLocalPath(string p)
+        public static bool IsLocalPath(string p)
         {
             if (p.StartsWith("http:\\", StringComparison.Ordinal))
             {
                 return false;
-            }
-            if (p.StartsWith("https:\\", StringComparison.Ordinal))
+            } 
+            else if (p.StartsWith("https:\\", StringComparison.Ordinal))
             {
                 return false;
             }
-
+            else if (p.StartsWith("ftp:\\", StringComparison.Ordinal))
+            {
+                return false;
+            }
             return new Uri(p).IsFile;
         }
 

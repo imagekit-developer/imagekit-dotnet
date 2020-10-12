@@ -82,156 +82,234 @@ namespace Imagekit
         [JsonProperty("metadata")]
         public MetadataResponse Metadata { get; set; }
 
-        [JsonProperty("exception")]
-        public bool exception { get; set; }
-
-        [JsonProperty("statusNumber")]
-        public int statusNumber { get; set; }
-
-        [JsonProperty("statusCode")]
-        public string statusCode { get; set; }
-
-        [JsonProperty("message")]
-        public string message { get; set; }
-
-        [JsonProperty("help")]
-        public string help { get; set; }
-    }
-
-    public class MetadataResponse
-    {
-        public int errorMessage;
-        [JsonProperty("format")]
-        public string Format { get; set; }
-        [JsonProperty("size")]
-        public int Size { get; set; }
-        [JsonProperty("height")]
-        public int Height { get; set; }
-        [JsonProperty("width")]
-        public int Width { get; set; }
-        [JsonProperty("hasColorProfile")]
-        public bool HasColorProfile { get; set; }
-        [JsonProperty("quality")]
-        public int Quality { get; set; }
-        [JsonProperty("hasTransparency")]
-        public bool HasTransparency { get; set; }
-        [JsonProperty("exif")]
-        public Exif Exif { get; set; }
+        /// <summary>
+        /// The exception status
+        /// </summary>
         [JsonProperty("exception")]
         public bool Exception { get; set; }
-        [JsonProperty("statusNumber")]
-        public int StatusNumber { get; set; }
+
+        /// <summary>
+        /// Status code of the API response
+        /// </summary>
         [JsonProperty("statusCode")]
-        public string StatusCode { get; set; }
+        public int StatusCode { get; set; }
+
+        /// <summary>
+        /// Error message from the API
+        /// </summary>
         [JsonProperty("message")]
         public string Message { get; set; }
+
+        /// <summary>
+        /// Help message in case of error
+        /// </summary>
         [JsonProperty("help")]
-        public string help { get; set; }
-        [JsonProperty("image")]
-        public ImageData Image { get; set; }
-        [JsonProperty("thumbnail")]
-        public Thumbnail Thumbnail { get; set; }
-        [JsonProperty("gps")]
-        public Gps Gps { get; set; }
-        [JsonProperty("interoperability")]
-        public object Interoperability { get; set; }
-        [JsonProperty("makernote")]
-        public object Makernote { get; set; }
+        public string Help { get; set; }
+    }
+    
+    public class MetadataResponse
+    {
+        /// <summary>
+        /// Format of the image
+        /// </summary>
+        [JsonProperty("format")]
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Size of the image
+        /// </summary>
+        [JsonProperty("size")]
+        public int Size { get; set; }
+
+        /// <summary>
+        /// Image Height
+        /// </summary>
+        [JsonProperty("height")]
+        public int Height { get; set; }
+
+        /// <summary>
+        /// Image Width
+        /// </summary>
+        [JsonProperty("width")]
+        public int Width { get; set; }
+
+        /// <summary>
+        /// Color Profile Status
+        /// </summary>
+        [JsonProperty("hasColorProfile")]
+        public bool HasColorProfile { get; set; }
+
+        /// <summary>
+        /// Image Quality
+        /// </summary>
+        [JsonProperty("quality")]
+        public int Quality { get; set; }
+
+        /// <summary>
+        /// Image Density
+        /// </summary>
+        [JsonProperty("density")]
+        public int Density { get; set; }
+
+        /// <summary>
+        /// Image Transparency in case of PNG
+        /// </summary>
+        [JsonProperty("hasTransparency")]
+        public bool HasTransparency { get; set; }
+
+        /// <summary>
+        /// Phash value of the Image
+        /// </summary>
+        [JsonProperty("phash")]
+        public string PHash { get; set; }
+
+        /// <summary>
+        /// Exif data of the Image
+        /// </summary>
+        [JsonProperty("exif")]
+        public object Exif { get; set; }
+
+        /// <summary>
+        /// Exception status of API
+        /// </summary>
+        [JsonProperty("exception")]
+        public bool Exception { get; set; }
+
+        /// <summary>
+        /// Status code of the API
+        /// </summary>
+        [JsonProperty("statusCode")]
+        public int StatusCode { get; set; }
+
+        /// <summary>
+        /// Error message from the API
+        /// </summary>
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Help message incase of Error
+        /// </summary>
+        [JsonProperty("help")]
+        public string Help { get; set; }
+
+        /// <summary>
+        /// Type of the Error
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
     }
 
-    public class Gps
-    {
-        public string GPSLatitudeRef { get; set; }
-        public double[] GPSLatitude { get; set; }
-        public string GPSLongitudeRef { get; set; }
-        public double[] GPSLongitude { get; set; }
-        public int GPSAltitudeRef { get; set; }
-        public int GPSAltitude { get; set; }
-        public double[] GPSTimeStamp { get; set; }
-        public string GPSImgDirectionRef { get; set; }
-        public float GPSImgDirection { get; set; }
-        public string GPSDateStamp { get; set; }
-    }
-
-    public class Exif
-    {
-        public string ExifVersion { get; set; }
-        public int Flash { get; set; }
-        public string FlashpixVersion { get; set; }
-        public int ColorSpace { get; set; }
-        public int ExifImageWidth { get; set; }
-        public int ExifImageHeight { get; set; }
-    }
-
-    public class Thumbnail
-    {
-        public int Compression { get; set; }
-        public int XResolution { get; set; }
-        public int YResolution { get; set; }
-        public int ResolutionUnit { get; set; }
-        public int ThumbnailOffset { get; set; }
-        public int ThumbnailLength { get; set; }
-    }
-    public class ImageData
-    {
-        public string ImageDescription { get; set; }
-        public int Orientation { get; set; }
-        public int XResolution { get; set; }
-        public int YResolution { get; set; }
-        public int ResolutionUnit { get; set; }
-        public string Software { get; set; }
-        public string ModifyDate { get; set; }
-        public string Artist { get; set; }
-        public string Copyright { get; set; }
-        public int ExifOffset { get; set; }
-    }
 
     public class PurgeAPIResponse
     {
+        /// <summary>
+        /// Request ID for Purge status
+        /// </summary>
         [JsonProperty("requestId")]
         public string RequestId { get; set; }
+        /// <summary>
+        /// Exception status of API
+        /// </summary>
         [JsonProperty("exception")]
-        public bool exception { get; set; }
-        [JsonProperty("statusNumber")]
-        public int statusNumber { get; set; }
+        public bool Exception { get; set; }
+
+        /// <summary>
+        /// Status code of the API
+        /// </summary>
         [JsonProperty("statusCode")]
-        public string statusCode { get; set; }
+        public int StatusCode { get; set; }
+
+        /// <summary>
+        /// Error message from the API
+        /// </summary>
         [JsonProperty("message")]
-        public string message { get; set; }
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Help message incase of Error
+        /// </summary>
         [JsonProperty("help")]
-        public string help { get; set; }
+        public string Help { get; set; }
+
+        /// <summary>
+        /// Type of the Error
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
     }
 
     public class PurgeCacheStatusResponse
     {
+        /// <summary>
+        /// Status of the Purge Cache Request
+        /// </summary>
         [JsonProperty("status")]
         public string Status { get; set; }
+        /// <summary>
+        /// Exception status of API
+        /// </summary>
         [JsonProperty("exception")]
-        public bool exception { get; set; }
-        [JsonProperty("statusNumber")]
-        public int statusNumber { get; set; }
+        public bool Exception { get; set; }
+
+        /// <summary>
+        /// Status code of the API
+        /// </summary>
         [JsonProperty("statusCode")]
-        public string statusCode { get; set; }
+        public int StatusCode { get; set; }
+
+        /// <summary>
+        /// Error message from the API
+        /// </summary>
         [JsonProperty("message")]
-        public string message { get; set; }
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Help message incase of Error
+        /// </summary>
         [JsonProperty("help")]
-        public string help { get; set; }
+        public string Help { get; set; }
+
+        /// <summary>
+        /// Type of the Error
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
     }
 
     public class DeleteAPIResponse
     {
         [JsonProperty("success")]
         public bool success { get; set; }
+        /// <summary>
+        /// Exception status of API
+        /// </summary>
         [JsonProperty("exception")]
-        public bool exception { get; set; }
-        [JsonProperty("statusNumber")]
-        public int statusNumber { get; set; }
+        public bool Exception { get; set; }
+
+        /// <summary>
+        /// Status code of the API
+        /// </summary>
         [JsonProperty("statusCode")]
-        public string statusCode { get; set; }
+        public int StatusCode { get; set; }
+
+        /// <summary>
+        /// Error message from the API
+        /// </summary>
         [JsonProperty("message")]
-        public string message { get; set; }
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Help message incase of Error
+        /// </summary>
         [JsonProperty("help")]
-        public string help { get; set; }
+        public string Help { get; set; }
+
+        /// <summary>
+        /// Type of the Error
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
     }
 
     public class AuthParamResponse
@@ -285,9 +363,20 @@ namespace Imagekit
         /// <summary>The date and time when the file was first uploaded. The format is `YYYY-MM-DDTHH:mm:ss.sssZ`</summary>
         [JsonProperty("createdAt")]
         public string CreatedAt { get; set; }
+        /// <summary>
+        /// Status code of the API request
+        /// </summary>
+        [JsonProperty("statusCode")]
+        public int StatusCode { get; set; }
+        /// <summary>
+        /// API error message
+        /// </summary>
         [JsonProperty("message")]
-        public string message { get; set; }
+        public string Message { get; set; }
+        /// <summary>
+        /// help message in case of error
+        /// </summary>
         [JsonProperty("help")]
-        public string help { get; set; }
+        public string Help { get; set; }
     }
 }

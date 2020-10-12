@@ -41,8 +41,9 @@ namespace Imagekit.UnitTests
             .RuleFor(u => u.Thumbnail, (f, u) => f.Internet.UrlWithPath(fileExt: ".png"))
             .RuleFor(u => u.FileType, (f, u) => f.Random.ArrayElement(new string[] { "image", "non-image" }))
             .RuleFor(u => u.CreatedAt, (f, u) => f.Date.Past().ToString("YYYY-MM-DDTHH:mm:ss.sssZ"))
-            .RuleFor(u => u.message, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.help, (f, u) => f.Random.Utf16String());
+            .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.StatusCode, (f, u) => 200)
+            .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String());
 
         public static Faker<AuthParamResponse> AuthParamResponseFaker = new Faker<AuthParamResponse>()
             .RuleFor(u => u.token, (f, u) => Guid.NewGuid().ToString())
@@ -50,65 +51,22 @@ namespace Imagekit.UnitTests
             .RuleFor(u => u.signature, (f, u) => f.Random.Utf16String());
 
         public static Faker<MetadataResponse> MetadataResponseFaker = new Faker<MetadataResponse>()
-            .RuleFor(u => u.Exif, (f, u) => ExifFaker.Generate())
-            .RuleFor(u => u.Image, (f, u) => ImageDataFaker.Generate())
-            .RuleFor(u => u.Thumbnail, (f, u) => ThumbnailFaker.Generate())
-            .RuleFor(u => u.Gps, (f, u) => GpsFaker.Generate())
-            .RuleFor(u => u.errorMessage, (f, u) => f.Random.Int())
+            .RuleFor(u => u.Exif, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Density, (f, u) => f.Random.Int())
             .RuleFor(u => u.Size, (f, u) => f.Random.Int())
             .RuleFor(u => u.Height, (f, u) => f.Random.Int())
             .RuleFor(u => u.Width, (f, u) => f.Random.Int())
             .RuleFor(u => u.Quality, (f, u) => f.Random.Int())
-            .RuleFor(u => u.StatusNumber, (f, u) => (int)f.PickRandom<HttpStatusCode>())
-            .RuleFor(u => u.StatusCode, (f, u) => u.StatusNumber.ToString())
+            .RuleFor(u => u.StatusCode, (f, u) => 200)
             .RuleFor(u => u.Format, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.PHash, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.help, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Type, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.HasColorProfile, (f, u) => f.Random.Bool())
             .RuleFor(u => u.HasTransparency, (f, u) => f.Random.Bool())
-            .RuleFor(u => u.Exception, (f, u) => f.Random.Bool())
-            .RuleFor(u => u.Interoperability, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.Makernote, (f, u) => f.Random.Utf16String());
+            .RuleFor(u => u.Exception, (f, u) => f.Random.Bool());
 
-        public static Faker<Exif> ExifFaker = new Faker<Exif>()
-            .RuleFor(u => u.Flash, (f, u) => f.Random.Int())
-            .RuleFor(u => u.ColorSpace, (f, u) => f.Random.Int())
-            .RuleFor(u => u.ExifImageWidth, (f, u) => f.Random.Int())
-            .RuleFor(u => u.ExifImageHeight, (f, u) => f.Random.Int())
-            .RuleFor(u => u.ExifVersion, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.FlashpixVersion, (f, u) => f.Random.Utf16String());
-
-        public static Faker<ImageData> ImageDataFaker = new Faker<ImageData>()
-            .RuleFor(u => u.Orientation, (f, u) => f.Random.Int())
-            .RuleFor(u => u.XResolution, (f, u) => f.Random.Int())
-            .RuleFor(u => u.YResolution, (f, u) => f.Random.Int())
-            .RuleFor(u => u.ResolutionUnit, (f, u) => f.Random.Int())
-            .RuleFor(u => u.ExifOffset, (f, u) => f.Random.Int())
-            .RuleFor(u => u.ImageDescription, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.Software, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.ModifyDate, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.Artist, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.Copyright, (f, u) => f.Random.Utf16String());
-
-        public static Faker<Thumbnail> ThumbnailFaker = new Faker<Thumbnail>()
-            .RuleFor(u => u.Compression, (f, u) => f.Random.Int())
-            .RuleFor(u => u.XResolution, (f, u) => f.Random.Int())
-            .RuleFor(u => u.YResolution, (f, u) => f.Random.Int())
-            .RuleFor(u => u.ResolutionUnit, (f, u) => f.Random.Int())
-            .RuleFor(u => u.ThumbnailOffset, (f, u) => f.Random.Int())
-            .RuleFor(u => u.ThumbnailLength, (f, u) => f.Random.Int());
-
-        public static Faker<Gps> GpsFaker = new Faker<Gps>()
-            .RuleFor(u => u.GPSLatitudeRef, (f, u) => f.Random.ArrayElement(new string[] { "N", "S" }))
-            .RuleFor(u => u.GPSLongitudeRef, (f, u) => f.Random.ArrayElement(new string[] { "W", "E" }))
-            .RuleFor(u => u.GPSImgDirectionRef, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.GPSDateStamp, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.GPSAltitudeRef, (f, u) => f.Random.Int())
-            .RuleFor(u => u.GPSAltitude, (f, u) => f.Random.Int())
-            .RuleFor(u => u.GPSImgDirection, (f, u) => f.Random.Float())
-            .RuleFor(u => u.GPSLatitude, (f, u) => CoordinateToRational(f.Address.Latitude()))
-            .RuleFor(u => u.GPSLongitude, (f, u) => CoordinateToRational(f.Address.Longitude()))
-            .RuleFor(u => u.GPSTimeStamp, (f, u) => GetRationalTime(f.Date.Timespan()));
 
         private static double[] GetRationalTime(TimeSpan time)
         {
@@ -142,11 +100,10 @@ namespace Imagekit.UnitTests
             .RuleFor(u => u.Tags, (f, u) => new string[] { f.Random.Utf16String(), f.Random.Utf16String() })
             .RuleFor(u => u.IsPrivateFile, (f, u) => f.Random.Bool())
             .RuleFor(u => u.CustomCoordinates, (f, u) => f.Random.Bool())
-            .RuleFor(u => u.exception, (f, u) => f.Random.Bool())
-            .RuleFor(u => u.statusNumber, (f, u) => (int)f.PickRandom<HttpStatusCode>())
-            .RuleFor(u => u.statusCode, (f, u) => u.statusNumber.ToString())
-            .RuleFor(u => u.message, (f, u) => f.Random.Utf16String())
-            .RuleFor(u => u.help, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Exception, (f, u) => f.Random.Bool())
+            .RuleFor(u => u.StatusCode, (f, u) => 200)
+            .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.Metadata, (f, u) => MetadataResponseFaker.Generate());
 
         /// <summary>
