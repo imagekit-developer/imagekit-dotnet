@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
@@ -38,6 +39,11 @@ namespace Imagekit.Util
             return (TimeStamp + seconds).ToString();
         }
 
+        public static string GetApiHost()
+        {
+            return Constants.HTTPS_PROTOCOL + Constants.API_HOST;
+        }
+
         public static string GetFileApi()
         {
             return Constants.HTTPS_PROTOCOL + Constants.API_HOST + Constants.FILE_API;
@@ -45,7 +51,7 @@ namespace Imagekit.Util
 
         public static string GetUploadApi()
         {
-            return Constants.HTTPS_PROTOCOL + Constants.API_HOST + Constants.UPLOAD_API;
+            return Constants.HTTPS_PROTOCOL + Constants.UPLOAD_API_HOST + Constants.UPLOAD_API;
         }
 
         public static string calculateSignature(string input, byte[] key)
@@ -235,5 +241,43 @@ namespace Imagekit.Util
             return new Uri(p).IsFile;
         }
 
+        public static bool IsValidURI(String uri)
+        {
+            Uri uriResult;
+            bool result = Uri.TryCreate(uri, UriKind.Absolute, out uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+            return result;
+        }
+
+        /// <summary>
+        /// Calculate Hamming Distance of two String
+        /// </summary>
+        /// <param name="firstHash"></param>
+        /// <param name="secondHash"></param>
+        /// <returns></returns>
+        public static int PHashDistance(string firstHash, string secondHash)
+        {
+            if (string.IsNullOrEmpty(firstHash) || string.IsNullOrEmpty(secondHash))
+            {
+                throw new ArgumentException(errorMessages.MISSING_PHASH_VALUE);
+            }
+
+            Regex rgx = new Regex("^[0-9a-fA-F]+$");
+            if (!rgx.IsMatch(firstHash) || !rgx.IsMatch(secondHash))
+            {
+                throw new ArgumentException(errorMessages.INVALID_PHASH_VALUE);
+            }
+            if (firstHash.Length != secondHash.Length)
+            {
+                throw new ArgumentException(errorMessages.UNEQUAL_STRING_LENGTH);
+            }
+
+            int distance =
+                firstHash.ToCharArray()
+                .Zip(secondHash.ToCharArray(), (c1, c2) => new { c1, c2 })
+                .Count(m => m.c1 != m.c2);
+
+            return distance;
+        }
     }
 }

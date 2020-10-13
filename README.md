@@ -257,10 +257,10 @@ ListAPIResponse resp = await imagekit.GetFileDetailsAsync(fileId);
 
 **3. Get File Metadata**
 
-Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files).
+Accepts the fileID/Uri and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files).
 
 ```cs
-MetadataResponse resp = await imagekit.GetFileMetadataAsync(fileId);
+MetadataResponse resp = await imagekit.GetFileMetadataAsync(<fileId|Uri>);
 ```
 
 **4. Update File Details**

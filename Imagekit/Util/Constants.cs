@@ -14,6 +14,7 @@
         public const string HTTPS_PROTOCOL = "https://";
         public const string HTTP_PROTOCOL = "http://";
         public const string API_HOST = "api.imagekit.io";
+        public const string UPLOAD_API_HOST = "upload.imagekit.io";
         public const string FILE_API = "/v1/files";
         public const string UPLOAD_API = "/v1/files/upload";
 

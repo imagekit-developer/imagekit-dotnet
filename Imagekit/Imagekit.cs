@@ -159,9 +159,9 @@ namespace Imagekit
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             ListAPIResponse resp = JsonConvert.DeserializeObject<ListAPIResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
+            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
             return resp;
         }
-
 
         public MetadataResponse GetFileMetadata(string fileId)
         {
@@ -177,29 +177,53 @@ namespace Imagekit
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId + "/metadata");
             HttpResponseMessage response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            MetadataResponse resp = JsonConvert.DeserializeObject<MetadataResponse>(responseContent);
+            resp.StatusCode = (int)response.StatusCode;
+            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            return resp;
+        }
+
+        public MetadataResponse GetFileMetadata(Uri url)
+        {
+            return GetFileMetadataAsync(url).Result;
+        }
+
+        public async Task<MetadataResponse> GetFileMetadataAsync(Uri uri)
+        {
+            if (!Utils.IsValidURI(uri.OriginalString))
+            {
+                throw new ArgumentException(errorMessages.INVALID_URI);
+            }
+            Uri apiEndpoint = new Uri(Utils.GetApiHost() + "/v1/metadata?url=" + uri.AbsoluteUri);
+            HttpResponseMessage response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var requestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
 
             MetadataResponse resp = JsonConvert.DeserializeObject<MetadataResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
+            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
             return resp;
-
         }
 
-
-        public string DeleteFile(string fileId)
+        public DeleteAPIResponse DeleteFile(string fileId)
         {
             return DeleteFileAsync(fileId).Result;
         }
 
-        public async Task<string> DeleteFileAsync(string fileId)
+        public async Task<DeleteAPIResponse> DeleteFileAsync(string fileId)
         {
             if (string.IsNullOrEmpty(fileId))
             {
-                throw new System.ArgumentException(errorMessages.FILE_ID_MISSING);
+                throw new ArgumentException(errorMessages.FILE_ID_MISSING);
             }
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId);
             HttpResponseMessage response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"], "DELETE").ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return responseContent;
+
+            DeleteAPIResponse resp = JsonConvert.DeserializeObject<DeleteAPIResponse>(responseContent);
+            resp.StatusCode = (int)response.StatusCode;
+            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            return resp;
         }
 
         public ListAPIResponse UpdateFileDetails(string fileId)
@@ -258,6 +282,7 @@ namespace Imagekit
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             ListAPIResponse resp = JsonConvert.DeserializeObject<ListAPIResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
+            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
             return resp;
         }
 
@@ -280,6 +305,7 @@ namespace Imagekit
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             PurgeAPIResponse resp = JsonConvert.DeserializeObject<PurgeAPIResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
+            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
             return resp;
         }
 
@@ -300,9 +326,16 @@ namespace Imagekit
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             PurgeCacheStatusResponse resp = JsonConvert.DeserializeObject<PurgeCacheStatusResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
+            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
             return resp;
         }
 
+        /// <summary>
+        /// Generate Auth params for client-side upload 
+        /// </summary>
+        /// <param name="token">Random Token String)</param>
+        /// <param name="expire">Expire time for the token</param>
+        /// <returns>Returns Authparams including token, expiry time & signature.</returns>
         public AuthParamResponse GetAuthenticationParameters(string token = null, string expire = null)
         {
             var DEFAULT_TIME_DIFF = 60 * 30;
@@ -358,6 +391,7 @@ namespace Imagekit
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             ImagekitResponse resp = JsonConvert.DeserializeObject<ImagekitResponse>(responseContent); 
             resp.StatusCode = (int)response.StatusCode;
+            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
             return resp;
         }
 
@@ -388,7 +422,20 @@ namespace Imagekit
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             ImagekitResponse resp = JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
+            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
             return resp;
+        }
+
+
+        /// <summary>
+        /// Calculate pHash Distance(hamming-distance) of two pHash Strings.
+        /// </summary>
+        /// <param name="firstPhash">String pHash value of an image</param>
+        /// <param name="secondPhash">String pHash value of second image</param>
+        /// <returns></returns>
+        public int PHashDistance(string firstPhash, string secondPhash)
+        {
+            return Utils.PHashDistance(firstPhash, secondPhash);
         }
     }
 
