@@ -22,11 +22,11 @@ namespace Imagekit
         {
             if (string.IsNullOrEmpty(publicKey))
             {
-                throw new ArgumentNullException(errorMessages.MANDATORY_PUBLIC_KEY_MISSING);
+                throw new ArgumentNullException(nameof(publicKey));
             }
             if (string.IsNullOrEmpty(urlEndpoint))
             {
-                throw new ArgumentNullException(errorMessages.MANDATORY_URL_ENDPOINT_KEY_MISSING);
+                throw new ArgumentNullException(nameof(urlEndpoint));
             }
 
             Regex rgx = new Regex("^(path|query)$");
@@ -93,7 +93,7 @@ namespace Imagekit
             if (clientAuth != null)
             {
                 postData.Add("signature", clientAuth.signature);
-                postData.Add("expire", clientAuth.expire);
+                postData.Add("expire", clientAuth.expire.ToString());
                 postData.Add("token", clientAuth.token);
                 postData.Add("publicKey", (string)options["publicKey"]);
             }
@@ -159,7 +159,7 @@ namespace Imagekit
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             ListAPIResponse resp = JsonConvert.DeserializeObject<ListAPIResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
             return resp;
         }
 
@@ -179,7 +179,7 @@ namespace Imagekit
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             MetadataResponse resp = JsonConvert.DeserializeObject<MetadataResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
             return resp;
         }
 
@@ -201,7 +201,7 @@ namespace Imagekit
 
             MetadataResponse resp = JsonConvert.DeserializeObject<MetadataResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
             return resp;
         }
 
@@ -222,7 +222,7 @@ namespace Imagekit
 
             DeleteAPIResponse resp = JsonConvert.DeserializeObject<DeleteAPIResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
             return resp;
         }
 
@@ -278,11 +278,11 @@ namespace Imagekit
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId + "/details");
             string contentType = "application/json; charset=utf-8";
 
-            var response = await Utils.PostAsync(apiEndpoint, postData, contentType, (string)options["privateKey"], "PATCH").ConfigureAwait(false);
+            HttpResponseMessage response = await Utils.PostAsync(apiEndpoint, postData, contentType, (string)options["privateKey"], "PATCH").ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             ListAPIResponse resp = JsonConvert.DeserializeObject<ListAPIResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
             return resp;
         }
 
@@ -301,11 +301,11 @@ namespace Imagekit
             postData.Add("url", url);
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/purge");
             string contentType = "application/json; charset=utf-8";
-            var response = await Utils.PostAsync(apiEndpoint, postData, contentType, (string)options["privateKey"]).ConfigureAwait(false);
+            HttpResponseMessage response = await Utils.PostAsync(apiEndpoint, postData, contentType, (string)options["privateKey"]).ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             PurgeAPIResponse resp = JsonConvert.DeserializeObject<PurgeAPIResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
             return resp;
         }
 
@@ -322,11 +322,11 @@ namespace Imagekit
                 throw new ArgumentException(errorMessages.CACHE_PURGE_STATUS_ID_MISSING);
             }
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/purge/" + requestId);
-            var response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
+            HttpResponseMessage response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             PurgeCacheStatusResponse resp = JsonConvert.DeserializeObject<PurgeCacheStatusResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
             return resp;
         }
 
@@ -387,11 +387,11 @@ namespace Imagekit
         {
             Uri apiEndpoint = new Uri(Utils.GetUploadApi());
 
-            var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), file, (string)options["privateKey"]).ConfigureAwait(false);
+            HttpResponseMessage response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), file, (string)options["privateKey"]).ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             ImagekitResponse resp = JsonConvert.DeserializeObject<ImagekitResponse>(responseContent); 
             resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
             return resp;
         }
 
@@ -418,13 +418,14 @@ namespace Imagekit
             }
             Uri apiEndpoint = new Uri(Utils.GetUploadApi());
 
-            var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), file, (string)options["privateKey"]).ConfigureAwait(false);
+            HttpResponseMessage response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), file, (string)options["privateKey"]).ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             ImagekitResponse resp = JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
             resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
+            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
             return resp;
         }
+        
 
 
         /// <summary>

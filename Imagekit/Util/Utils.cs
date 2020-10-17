@@ -62,12 +62,12 @@ namespace Imagekit.Util
             return myhmacsha1.ComputeHash(stream).Aggregate("", (s, e) => s + String.Format("{0:x2}", e), s => s);
         }
 
-        public static HttpResponseMessage Get(Uri uri, string key, string method="GET")
+        public static HttpResponseMessage Get(Uri uri, string key, string method = "GET")
         {
             return GetAsync(uri, key, method).Result;
         }
 
-        public static async Task<HttpResponseMessage> GetAsync(Uri uri, string key, string method="GET")
+        public static async Task<HttpResponseMessage> GetAsync(Uri uri, string key, string method = "GET")
         {
             try
             {
@@ -91,7 +91,7 @@ namespace Imagekit.Util
             }
         }
 
-        public static HttpResponseMessage Post(Uri uri, Dictionary<string, object> data, string contentType, string key, string method="POST")
+        public static HttpResponseMessage Post(Uri uri, Dictionary<string, object> data, string contentType, string key, string method = "POST")
         {
             return PostAsync(uri, data, contentType, key, method).Result;
         }
@@ -189,7 +189,7 @@ namespace Imagekit.Util
         public static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, string filePathOrURL, string key = null)
         {
             HttpContent content = new StringContent(filePathOrURL);
-            
+
             if (IsLocalPath(filePathOrURL))
             {
                 if (File.Exists(filePathOrURL))
@@ -209,7 +209,7 @@ namespace Imagekit.Util
                         Console.WriteLine($"[Exception] {e}");
                         throw new Exception(@"[Exception]", e);
                     }
-                } 
+                }
                 else
                 {
                     throw new FileNotFoundException("File Not Found.");
@@ -229,7 +229,7 @@ namespace Imagekit.Util
             if (p.StartsWith("http:\\", StringComparison.Ordinal))
             {
                 return false;
-            } 
+            }
             else if (p.StartsWith("https:\\", StringComparison.Ordinal))
             {
                 return false;
@@ -267,11 +267,14 @@ namespace Imagekit.Util
             {
                 throw new ArgumentException(errorMessages.INVALID_PHASH_VALUE);
             }
+
             if (firstHash.Length != secondHash.Length)
             {
                 throw new ArgumentException(errorMessages.UNEQUAL_STRING_LENGTH);
             }
 
+            firstHash = HexToBinary(firstHash);
+            secondHash = HexToBinary(secondHash);
             int distance =
                 firstHash.ToCharArray()
                 .Zip(secondHash.ToCharArray(), (c1, c2) => new { c1, c2 })
@@ -279,5 +282,13 @@ namespace Imagekit.Util
 
             return distance;
         }
+
+        public static string HexToBinary(string hexstring)
+        {
+            return String.Join(String.Empty, hexstring.Select(
+                c => Convert.ToString(Convert.ToInt32(c.ToString(), 16), 2).PadLeft(4, '0')
+            ));
+        }
+
     }
 }

@@ -8,9 +8,9 @@ namespace Imagekit
 {
     public class Url
     {
-        
+
         public Dictionary<string, object> options = new Dictionary<string, object>();
-        
+
         private bool isSrcParameterUsedForURL;
         private Uri parsedURL, parsedHost;
 
@@ -26,7 +26,8 @@ namespace Imagekit
             if (options.ContainsKey("path") && options.ContainsKey("src"))
             {
                 throw new ArgumentException("Either path or src is required.");
-            } else if(options.ContainsKey("path"))
+            }
+            else if (options.ContainsKey("path"))
             {
                 string path = AddLeadingSlash((string)options["path"]);
                 parsedURL = new Uri((string)options["urlEndpoint"] + path);
@@ -34,18 +35,20 @@ namespace Imagekit
                 urlObject.Add("protocol", parsedHost.Scheme);
                 urlObject.Add("host", options["urlEndpoint"].ToString().Replace(parsedHost.Scheme + "://", ""));
                 urlObject.Add("pathname", path.Split('?')[0]);
-            } else if (options.ContainsKey("src"))
+            }
+            else if (options.ContainsKey("src"))
             {
                 parsedURL = new Uri((string)options["src"]);
                 isSrcParameterUsedForURL = true;
                 urlObject.Add("protocol", parsedURL.Scheme);
                 urlObject.Add("host", parsedURL.Host);
                 urlObject.Add("pathname", parsedURL.AbsolutePath);
-            } else
+            }
+            else
             {
                 throw new ArgumentException("Either path or src is required.");
             }
-            
+
             //Create correct query parameters
             List<string> queryParameters = new List<string>();
             // Parse queyr params which are part of the URL
@@ -84,16 +87,16 @@ namespace Imagekit
                     urlObject["pathname"] = "/tr:" + transformationString + urlObject["pathname"];
                 }
             }
-               
+
             urlObject["host"] = RemoveTrailingSlash(urlObject["host"]);
-            
+
 
             if (queryParameters.Count > 0)
             {
                 urlObject["query"] = string.Join("&", queryParameters);
             }
-            
-            if ( options.ContainsKey("signed") && options["signed"].Equals(true))
+
+            if (options.ContainsKey("signed") && options["signed"].Equals(true))
             {
                 string expiryTimestamp = options.ContainsKey("expireSeconds") ? Utils.GetSignatureTimestamp((int)options["expireSeconds"]) : Constants.DEFAULT_TIMESTAMP;
                 if (expiryTimestamp != Constants.DEFAULT_TIMESTAMP)
@@ -107,7 +110,7 @@ namespace Imagekit
                 {
                     urlObject["query"] = string.Join("&", queryParameters);
                 }
-                
+
             }
 
             return GenrateUrl(urlObject);
@@ -132,10 +135,8 @@ namespace Imagekit
 
         public string AddLeadingSlash(string str)
         {
-            if (!str[0].Equals('/'))
-            {
-                str = "/" + str;
-            }
+            str = str.TrimStart('/');
+            str = "/" + str;
             return str;
         }
 
@@ -155,11 +156,12 @@ namespace Imagekit
 
         public string GetSignature(string url, string expiryTimestamp)
         {
-            if (string.IsNullOrEmpty((string)options["privateKey"]) || string.IsNullOrEmpty((string)options["urlEndpoint"])) 
-            { 
-                throw new ArgumentNullException(errorMessages.PRIVATE_KEY_MISSING); 
+            var endPoint = RemoveTrailingSlash((string)options["urlEndpoint"]);
+            if (string.IsNullOrEmpty((string)options["privateKey"]) || string.IsNullOrEmpty((string)options["urlEndpoint"]))
+            {
+                throw new ArgumentNullException(errorMessages.PRIVATE_KEY_MISSING);
             }
-            string str = Regex.Replace(url, options["urlEndpoint"] + "/", "") + expiryTimestamp;
+            string str = Regex.Replace(url, endPoint + "/", "") + expiryTimestamp;
             return Utils.calculateSignature(str, Encoding.ASCII.GetBytes((string)options["privateKey"]));
         }
     }

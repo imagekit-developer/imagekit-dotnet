@@ -26,7 +26,9 @@ namespace Imagekit
 
             var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(clientAuth), file).ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
+            ImagekitResponse resp = JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
+            resp.StatusCode = (int)response.StatusCode;
+            return resp;
         }
 
         /// <summary>
@@ -54,7 +56,9 @@ namespace Imagekit
 
             var response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(clientAuth), filePath).ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
+            ImagekitResponse resp = JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
+            resp.StatusCode = (int)response.StatusCode;
+            return resp;
         }
     }
 }
