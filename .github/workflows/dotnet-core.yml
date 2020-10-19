@@ -50,7 +50,7 @@ jobs:
         run: dotnet build $env:Solution_Name --configuration Release --no-restore
   
       - name: Tests
-        run: dotnet test $env:Solution_Name --configuration Debug --no-build --blame --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover 
+        run: dotnet test $env:Solution_Name --no-build --blame --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
         
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v1
