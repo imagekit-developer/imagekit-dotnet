@@ -1,0 +1,102 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  release:
+    types:
+      - published
+
+env:
+  # Disable the .NET logo in the console output.
+  DOTNET_NOLOGO: true
+  # Stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  # Disable sending usage data to Microsoft
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  GITHUB_FEED: https://nuget.pkg.github.com/cloudmeteor/index.json
+  GITHUB_USER: cloudmeteor
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NUGET_FEED: https://api.nuget.org/v3/index.json
+  NUGET_KEY: ${{ secrets.NUGET_APIKEY }}
+  ATTRIBUTE_NAME: nupkg
+  NUGET_OUTPUT_PATH: nuget-package
+
+jobs:
+  Build:
+    runs-on: windows-latest 
+    
+    env:
+      Solution_Name: Imagekit.sln
+
+    steps:
+      - name: Checkout the SDK's codebase
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: .NET Core Version
+        run: dotnet --version
+
+      - name: .NET Core Info
+        run: dotnet --info
+
+      - name: Restore the SDK's Nuget packages
+        run: dotnet restore $env:Solution_Name
+
+      - name: Build the SDK
+        run: dotnet build $env:Solution_Name --configuration Release --no-restore
+  
+      - name: Tests
+        run: dotnet test $env:Solution_Name --configuration Release --no-build --blame --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover 
+        
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./Imagekit.UnitTests/coverage.opencover.xml
+        
+      - name: Pack 
+        run: dotnet pack --configuration Release --no-build --include-symbols --include-source --verbosity normal --output ${{ env.NUGET_OUTPUT_PATH }}
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.ATTRIBUTE_NAME }}
+          path: ${{ env.NUGET_OUTPUT_PATH }}
+
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: Content verification has failed.
+          author_name: Content Verification
+          fields: message,author,action,eventName,ref,workflow
+          username: GitHub Actions
+          icon_emoji: ":github_actions:"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
+      
+      
+  Publish:
+    needs: Build
+    if: (github.event_name == 'release') || (github.ref == 'refs/tags/*')
+    runs-on: windows-latest
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.ATTRIBUTE_NAME }}
+
+      - name: .NET Core Version
+        run: dotnet --version
+
+      - name: .NET Core Info
+        run: dotnet --info
+
+      - name: Nuget push
+        run: dotnet nuget push "*.nupkg" -k ${{ secrets.NUGET_APIKEY }} --source ${{ env.NUGET_FEED }}
