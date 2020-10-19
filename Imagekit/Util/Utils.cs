@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
@@ -38,6 +39,11 @@ namespace Imagekit.Util
             return (TimeStamp + seconds).ToString();
         }
 
+        public static string GetApiHost()
+        {
+            return Constants.HTTPS_PROTOCOL + Constants.API_HOST;
+        }
+
         public static string GetFileApi()
         {
             return Constants.HTTPS_PROTOCOL + Constants.API_HOST + Constants.FILE_API;
@@ -45,7 +51,7 @@ namespace Imagekit.Util
 
         public static string GetUploadApi()
         {
-            return Constants.HTTPS_PROTOCOL + Constants.API_HOST + Constants.UPLOAD_API;
+            return Constants.HTTPS_PROTOCOL + Constants.UPLOAD_API_HOST + Constants.UPLOAD_API;
         }
 
         public static string calculateSignature(string input, byte[] key)
@@ -56,12 +62,12 @@ namespace Imagekit.Util
             return myhmacsha1.ComputeHash(stream).Aggregate("", (s, e) => s + String.Format("{0:x2}", e), s => s);
         }
 
-        public static HttpResponseMessage Get(Uri uri, string key, string method="GET")
+        public static HttpResponseMessage Get(Uri uri, string key, string method = "GET")
         {
             return GetAsync(uri, key, method).Result;
         }
 
-        public static async Task<HttpResponseMessage> GetAsync(Uri uri, string key, string method="GET")
+        public static async Task<HttpResponseMessage> GetAsync(Uri uri, string key, string method = "GET")
         {
             try
             {
@@ -85,7 +91,7 @@ namespace Imagekit.Util
             }
         }
 
-        public static HttpResponseMessage Post(Uri uri, Dictionary<string, object> data, string contentType, string key, string method="POST")
+        public static HttpResponseMessage Post(Uri uri, Dictionary<string, object> data, string contentType, string key, string method = "POST")
         {
             return PostAsync(uri, data, contentType, key, method).Result;
         }
@@ -183,7 +189,7 @@ namespace Imagekit.Util
         public static async Task<HttpResponseMessage> PostUploadAsync(Uri uri, Dictionary<string, string> data, string filePathOrURL, string key = null)
         {
             HttpContent content = new StringContent(filePathOrURL);
-            
+
             if (IsLocalPath(filePathOrURL))
             {
                 if (File.Exists(filePathOrURL))
@@ -203,7 +209,7 @@ namespace Imagekit.Util
                         Console.WriteLine($"[Exception] {e}");
                         throw new Exception(@"[Exception]", e);
                     }
-                } 
+                }
                 else
                 {
                     throw new FileNotFoundException("File Not Found.");
@@ -223,7 +229,7 @@ namespace Imagekit.Util
             if (p.StartsWith("http:\\", StringComparison.Ordinal))
             {
                 return false;
-            } 
+            }
             else if (p.StartsWith("https:\\", StringComparison.Ordinal))
             {
                 return false;
@@ -233,6 +239,55 @@ namespace Imagekit.Util
                 return false;
             }
             return new Uri(p).IsFile;
+        }
+
+        public static bool IsValidURI(String uri)
+        {
+            Uri uriResult;
+            bool result = Uri.TryCreate(uri, UriKind.Absolute, out uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+            return result;
+        }
+
+        /// <summary>
+        /// Calculate Hamming Distance of two String
+        /// </summary>
+        /// <param name="firstHash"></param>
+        /// <param name="secondHash"></param>
+        /// <returns></returns>
+        public static int PHashDistance(string firstHash, string secondHash)
+        {
+            if (string.IsNullOrEmpty(firstHash) || string.IsNullOrEmpty(secondHash))
+            {
+                throw new ArgumentException(errorMessages.MISSING_PHASH_VALUE);
+            }
+
+            Regex rgx = new Regex("^[0-9a-fA-F]+$");
+            if (!rgx.IsMatch(firstHash) || !rgx.IsMatch(secondHash))
+            {
+                throw new ArgumentException(errorMessages.INVALID_PHASH_VALUE);
+            }
+
+            if (firstHash.Length != secondHash.Length)
+            {
+                throw new ArgumentException(errorMessages.UNEQUAL_STRING_LENGTH);
+            }
+
+            firstHash = HexToBinary(firstHash);
+            secondHash = HexToBinary(secondHash);
+            int distance =
+                firstHash.ToCharArray()
+                .Zip(secondHash.ToCharArray(), (c1, c2) => new { c1, c2 })
+                .Count(m => m.c1 != m.c2);
+
+            return distance;
+        }
+
+        public static string HexToBinary(string hexstring)
+        {
+            return String.Join(String.Empty, hexstring.Select(
+                c => Convert.ToString(Convert.ToInt32(c.ToString(), 16), 2).PadLeft(4, '0')
+            ));
         }
 
     }

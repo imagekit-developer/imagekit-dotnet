@@ -43,6 +43,7 @@ namespace Imagekit.UnitTests
             .RuleFor(u => u.CreatedAt, (f, u) => f.Date.Past().ToString("YYYY-MM-DDTHH:mm:ss.sssZ"))
             .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.StatusCode, (f, u) => 200)
+            .RuleFor(u => u.XIkRequestId, (f, u) => null)
             .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String());
 
         public static Faker<AuthParamResponse> AuthParamResponseFaker = new Faker<AuthParamResponse>()
@@ -65,6 +66,7 @@ namespace Imagekit.UnitTests
             .RuleFor(u => u.Type, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.HasColorProfile, (f, u) => f.Random.Bool())
             .RuleFor(u => u.HasTransparency, (f, u) => f.Random.Bool())
+            .RuleFor(u => u.XIkRequestId, (f, u) => null)
             .RuleFor(u => u.Exception, (f, u) => f.Random.Bool());
 
 
@@ -104,6 +106,7 @@ namespace Imagekit.UnitTests
             .RuleFor(u => u.StatusCode, (f, u) => 200)
             .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.XIkRequestId, (f, u) => null)
             .RuleFor(u => u.Metadata, (f, u) => MetadataResponseFaker.Generate());
 
         /// <summary>

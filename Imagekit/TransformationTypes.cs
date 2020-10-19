@@ -68,7 +68,7 @@ namespace Imagekit
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation Blur(string value) { return Add("bl", value); }
+        public Transformation Blur(int value) { return Add("bl", value); }
 
         /// <summary>Add named transformation.</summary>
         /// <param name="value">named transformation.</param>
@@ -108,7 +108,7 @@ namespace Imagekit
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation OverylayTextFontFamily(string value) { return Add("otf", value); }
+        public Transformation OverlayTextFontFamily(string value) { return Add("otf", value); }
 
         /// <summary></summary>
         /// <param name="value"></param>
@@ -124,31 +124,83 @@ namespace Imagekit
 
         /// <summary></summary>
         /// <param name="value"></param>
+        public Transformation OverlayTextTransparency(int value) { return Add("oa", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation OverlayTextBackground(string value) { return Add("otbg", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation OverlayTextEncoded(string value) { return Add("ote", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation OverlayTextWidth(int value) { return Add("otw", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation OverlayTextPadding(int value) { return Add("otp", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation OverlayTextInnerAlignment(string value) { return Add("otia", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation OverlayRadius(int value) { return Add("or", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
         public Transformation OverlayBackground(string value) { return Add("obg", value); }
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation OverlayImageTrim(string value) { return Add("oit", value); }
+        public Transformation OverlayImageTrim(bool value) { return Add("oit", value.ToString().ToLower()); }
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation Progressive(bool value) { return Add("pr", value); }
+        public Transformation OverlayImageAspectRatio(string value) { return Add("oiar", value); }
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation Lossless(bool value) { return Add("lo", value); }
+        public Transformation OverlayImageBackground(string value) { return Add("oibg", value); }
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation Trim(string value) { return Add("t", value); }
+        public Transformation OverlayImageBorder(string value) { return Add("oib", value); }
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation Metadata(bool value) { return Add("md", value); }
+        public Transformation OverlayImageDPR(object value) { return Add("oidpr", value); }
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation ColorProfile(bool value) { return Add("cp", value); }
+        public Transformation OverlayImageQuality(int value) { return Add("oiq", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation OverlayImageCropping(string value) { return Add("oic", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation Progressive(bool value) { return Add("pr", value.ToString().ToLower()); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation Lossless(bool value) { return Add("lo", value.ToString().ToLower()); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation Trim(int value) { return Add("t", value); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation Metadata(bool value) { return Add("md", value.ToString().ToLower()); }
+
+        /// <summary></summary>
+        /// <param name="value"></param>
+        public Transformation ColorProfile(bool value) { return Add("cp", value.ToString().ToLower()); }
 
         /// <summary></summary>
         /// <param name="value"></param>
@@ -163,7 +215,7 @@ namespace Imagekit
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation EffectSharpen(string value) { return Add("e-sharpen", value); }
+        public Transformation EffectSharpen(int value) { return Add("e-sharpen", value); }
 
         /// <summary></summary>
         /// <param name="value"></param>
@@ -174,11 +226,10 @@ namespace Imagekit
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation EffectContrast(object value) { return Add("e-contrast", value); }
+        public Transformation EffectContrast(object value) { return Add("e-contrast", value.ToString().ToLower()); }
 
         /// <summary></summary>
-        public Transformation EffectGray() { return Add("e-grayscale", ""); }
-
+        public Transformation EffectGray() { return Add("e-grayscale", "true"); }
 
         /// <summary></summary>
         public Transformation Original() { return Add("orig", "true"); }
@@ -187,7 +238,7 @@ namespace Imagekit
         /// Pass an raw transformation string (including chained transformations)
         /// </summary>
         /// <param name="value">A raw transformation string.</param>
-        public Transformation RawTransformation(string value) { return Add("raw_transformation", value); }
+        public Transformation RawTransformation(string value) { return Add(value,""); }
 
 
 

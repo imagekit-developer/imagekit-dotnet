@@ -8,9 +8,9 @@ namespace Imagekit
 {
     public class Url
     {
-        
+
         public Dictionary<string, object> options = new Dictionary<string, object>();
-        
+
         private bool isSrcParameterUsedForURL;
         private Uri parsedURL, parsedHost;
 
@@ -19,41 +19,38 @@ namespace Imagekit
             options = client;
         }
 
-
         public string UrlBuilder(string transformationString)
         {
-            
             Dictionary<string, string> urlObject = new Dictionary<string, string>();
 
             if (options.ContainsKey("path") && options.ContainsKey("src"))
             {
                 throw new ArgumentException("Either path or src is required.");
-            } else if(options.ContainsKey("path"))
+            }
+            else if (options.ContainsKey("path"))
             {
-                if (!options["path"].ToString().StartsWith("/"))
-                {
-                    throw new ArgumentException("Path must start with \"/\".");
-                }
-                parsedURL = new Uri((string)options["urlEndpoint"] + (string)options["path"]);
+                string path = AddLeadingSlash((string)options["path"]);
+                parsedURL = new Uri((string)options["urlEndpoint"] + path);
                 parsedHost = new Uri((string)options["urlEndpoint"]);
                 urlObject.Add("protocol", parsedHost.Scheme);
                 urlObject.Add("host", options["urlEndpoint"].ToString().Replace(parsedHost.Scheme + "://", ""));
-                urlObject.Add("pathname", ((string)options["path"]).Split('?')[0]);
-            } else if (options.ContainsKey("src"))
+                urlObject.Add("pathname", path.Split('?')[0]);
+            }
+            else if (options.ContainsKey("src"))
             {
                 parsedURL = new Uri((string)options["src"]);
                 isSrcParameterUsedForURL = true;
                 urlObject.Add("protocol", parsedURL.Scheme);
                 urlObject.Add("host", parsedURL.Host);
                 urlObject.Add("pathname", parsedURL.AbsolutePath);
-            } else
+            }
+            else
             {
                 throw new ArgumentException("Either path or src is required.");
             }
 
-            
             //Create correct query parameters
-            SortedSet<string> queryParameters = new SortedSet<string>();
+            List<string> queryParameters = new List<string>();
             // Parse queyr params which are part of the URL
             if (parsedURL.Query != null && parsedURL.Query.Length > 1)
             {
@@ -79,44 +76,41 @@ namespace Imagekit
                 }
             }
 
-            if (isSrcParameterUsedForURL || AddAsQueryParameter())
+            if (!string.IsNullOrEmpty(transformationString))
             {
-                if (!string.IsNullOrEmpty(transformationString))
+                if (isSrcParameterUsedForURL || AddAsQueryParameter())
                 {
                     queryParameters.Add(GetParam(Constants.TRANSFORMATION_PARAMETER, transformationString));
                 }
-            } else if (!string.IsNullOrEmpty(transformationString))
-            {
-                urlObject["pathname"] = "/tr:" + transformationString + urlObject["pathname"];
+                else
+                {
+                    urlObject["pathname"] = "/tr:" + transformationString + urlObject["pathname"];
+                }
             }
 
             urlObject["host"] = RemoveTrailingSlash(urlObject["host"]);
-            urlObject["pathname"] = AddLeadingSlash(urlObject["pathname"]);
+
 
             if (queryParameters.Count > 0)
             {
                 urlObject["query"] = string.Join("&", queryParameters);
             }
-            
-            if ( options.ContainsKey("signed") && options["signed"].Equals(true))
+
+            if (options.ContainsKey("signed") && options["signed"].Equals(true))
             {
-                List<string> queryParametersSigned = new List<string>();
                 string expiryTimestamp = options.ContainsKey("expireSeconds") ? Utils.GetSignatureTimestamp((int)options["expireSeconds"]) : Constants.DEFAULT_TIMESTAMP;
                 if (expiryTimestamp != Constants.DEFAULT_TIMESTAMP)
                 {
-                    queryParametersSigned.Add(GetParam(Constants.TIMESTAMP_PARAMETER, expiryTimestamp));
+                    queryParameters.Add(GetParam(Constants.TIMESTAMP_PARAMETER, expiryTimestamp));
                 }
                 string intermediateURL = GenrateUrl(urlObject);
-                queryParametersSigned.Add(GetParam(Constants.SIGNATURE_PARAMETER, GetSignature(intermediateURL, expiryTimestamp)));
+                queryParameters.Add(GetParam(Constants.SIGNATURE_PARAMETER, GetSignature(intermediateURL, expiryTimestamp)));
 
                 if (queryParameters.Count > 0)
                 {
-                    urlObject["query"] = string.Join("&", queryParameters) + "&" + string.Join("&", queryParametersSigned);
-                } else
-                {
-                    urlObject["query"] = string.Join("&", queryParametersSigned);
+                    urlObject["query"] = string.Join("&", queryParameters);
                 }
-                
+
             }
 
             return GenrateUrl(urlObject);
@@ -141,16 +135,14 @@ namespace Imagekit
 
         public string AddLeadingSlash(string str)
         {
-            if (!str[0].Equals('/'))
-            {
-                str = "/" + str;
-            }
+            str = str.TrimStart('/');
+            str = "/" + str;
             return str;
         }
 
         public string GetParam(string key, string param)
         {
-            return $"{Uri.UnescapeDataString(key)}={Uri.UnescapeDataString(param)}";
+            return $"{Uri.EscapeDataString(key)}={Uri.EscapeDataString(param)}";
         }
 
         public bool AddAsQueryParameter()
@@ -164,11 +156,12 @@ namespace Imagekit
 
         public string GetSignature(string url, string expiryTimestamp)
         {
-            if (string.IsNullOrEmpty((string)options["privateKey"]) || string.IsNullOrEmpty((string)options["urlEndpoint"])) 
-            { 
-                throw new ArgumentNullException(errorMessages.PRIVATE_KEY_MISSING); 
+            var endPoint = RemoveTrailingSlash((string)options["urlEndpoint"]);
+            if (string.IsNullOrEmpty((string)options["privateKey"]) || string.IsNullOrEmpty((string)options["urlEndpoint"]))
+            {
+                throw new ArgumentNullException(errorMessages.PRIVATE_KEY_MISSING);
             }
-            string str = Regex.Replace(url, options["urlEndpoint"] + "/", "") + expiryTimestamp;
+            string str = Regex.Replace(url, endPoint + "/", "") + expiryTimestamp;
             return Utils.calculateSignature(str, Encoding.ASCII.GetBytes((string)options["privateKey"]));
         }
     }

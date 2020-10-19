@@ -192,11 +192,10 @@ namespace Imagekit
         public string getTrans()
         {
             List<string> transformations = new List<string>();
-            SortedSet<string> varParams = new SortedSet<string>();
+            List<string> varParams = new List<string>();
 
             foreach (var key in transformParams.Keys)
             {
-                //if (Regex.IsMatch(key, KEY_NAME_REGEX)) {}
                 string val = GetString(transformParams, key);
                 if (string.IsNullOrEmpty(val))
                 {
@@ -204,7 +203,12 @@ namespace Imagekit
                 }
                 else
                 {
-                    varParams.Add($"{key}-{GetString(transformParams, key)}");
+                    if(key == "oi" || key == "di")
+                    {
+                        val = (val.TrimStart('/')).TrimEnd('/');
+                        val = val.Replace("/","@@");
+                    }
+                    varParams.Add($"{key}-{val}");
                 }
             }
 
@@ -219,7 +223,7 @@ namespace Imagekit
         private string GetString(Dictionary<string, object> options, string key)
         {
             if (options.ContainsKey(key))
-                return ToString(options[key]).ToLower();
+                return ToString(options[key]);
             else
                 return null;
         }

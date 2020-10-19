@@ -105,6 +105,12 @@ namespace Imagekit
         /// </summary>
         [JsonProperty("help")]
         public string Help { get; set; }
+
+        /// <summary>
+        /// Request Id for API response debugging
+        /// </summary>
+        [JsonProperty("xikrequestid")]
+        public string XIkRequestId { get; set; }
     }
     
     public class MetadataResponse
@@ -198,16 +204,23 @@ namespace Imagekit
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
+
+        /// <summary>
+        /// Request Id for API response debugging
+        /// </summary>
+        [JsonProperty("xikrequestid")]
+        public string XIkRequestId { get; set; }
     }
 
 
     public class PurgeAPIResponse
     {
         /// <summary>
-        /// Request ID for Purge status
+        /// Request Id for Purge 
         /// </summary>
-        [JsonProperty("requestId")]
+        [JsonProperty("requestid")]
         public string RequestId { get; set; }
+
         /// <summary>
         /// Exception status of API
         /// </summary>
@@ -233,10 +246,10 @@ namespace Imagekit
         public string Help { get; set; }
 
         /// <summary>
-        /// Type of the Error
+        /// Request Id for API response debugging
         /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
+        [JsonProperty("xikrequestid")]
+        public string XIkRequestId { get; set; }
     }
 
     public class PurgeCacheStatusResponse
@@ -246,6 +259,7 @@ namespace Imagekit
         /// </summary>
         [JsonProperty("status")]
         public string Status { get; set; }
+
         /// <summary>
         /// Exception status of API
         /// </summary>
@@ -271,16 +285,14 @@ namespace Imagekit
         public string Help { get; set; }
 
         /// <summary>
-        /// Type of the Error
+        /// Request Id for API response debugging
         /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
+        [JsonProperty("xikrequestid")]
+        public string XIkRequestId { get; set; }
     }
 
     public class DeleteAPIResponse
     {
-        [JsonProperty("success")]
-        public bool success { get; set; }
         /// <summary>
         /// Exception status of API
         /// </summary>
@@ -306,10 +318,10 @@ namespace Imagekit
         public string Help { get; set; }
 
         /// <summary>
-        /// Type of the Error
+        /// Request Id for API response debugging
         /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
+        [JsonProperty("xikrequestid")]
+        public string XIkRequestId { get; set; }
     }
 
     public class AuthParamResponse
@@ -378,5 +390,10 @@ namespace Imagekit
         /// </summary>
         [JsonProperty("help")]
         public string Help { get; set; }
+        /// <summary>
+        /// Request Id for API response debugging
+        /// </summary>
+        [JsonProperty("xikrequestid")]
+        public string XIkRequestId { get; set; }
     }
 }

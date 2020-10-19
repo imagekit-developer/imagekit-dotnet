@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Imagekit.Util;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -232,9 +233,16 @@ namespace Imagekit.UnitTests
     }
 
 
-    [Collection("Generic")]
-    public class ImagekitTests
+    [Collection("UrlGenerationTests")]
+    public class ImagekitUrlGenerationTests
     {
+        private const string GOOD_PUBLICKEY = "test publickey";
+        private const string GOOD_PRIVATEKEY = "test privatekey";
+        private const string URLENDPOINT = "https://ik.imagekit.io/test_url_endpoint";
+        private const string SAMPLE_PATH = "/default-image.jpg";
+        private string SAMPLE_SRC_URL = "https://ik.imagekit.io/test_url_endpoint/default-image.jpg";
+        readonly ServerImagekit imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, URLENDPOINT);
+
         [Theory]
         [InlineData("https://example.com", false)]
         [InlineData("http://example.com", false)]
@@ -246,6 +254,281 @@ namespace Imagekit.UnitTests
         public void IsLocalPathTest(string path, bool expected)
         {
             Assert.Equal(expected, Util.Utils.IsLocalPath(path));
+        }
+
+        [Fact]
+        public void Url_WithoutUrl_Source()
+        {
+            Dictionary<string, object> option1 = new Dictionary<string, object>();
+            option1.Add("path", SAMPLE_PATH);
+            option1.Add("src", SAMPLE_SRC_URL);
+            Url u = new Url(option1);
+            Exception ex = Assert.Throws<ArgumentException>(() => u.UrlBuilder("ABC"));
+            Assert.Equal("Either path or src is required.", ex.Message);
+        }
+
+        [Fact]
+        public void Url_WithPath()
+        {
+            string imageURL = imagekit.Url(new Transformation()).Path(SAMPLE_PATH).Generate();
+            Assert.Equal(URLENDPOINT + "/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_WithSrc()
+        {
+            string imageURL = imagekit.Url(new Transformation()).Src(SAMPLE_SRC_URL).Generate();
+            Assert.Equal(URLENDPOINT + "/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_Signed()
+        {
+            string imageURL = imagekit.Url(new Transformation()).Path(SAMPLE_PATH).Signed(true).Generate();
+            Assert.Equal("https://ik.imagekit.io/test_url_endpoint/default-image.jpg?ik-s=d0f5c0d0c92c0072068b45d3d5a73ab6e306dbf8", imageURL);
+        }
+
+        [Fact]
+        public void Url_WithPath_Transformation()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400)).Path(SAMPLE_PATH).Generate();
+            Assert.Equal(URLENDPOINT + "/tr:h-300,w-400/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_WithSRC_Transform()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400)).Src(SAMPLE_SRC_URL).Generate();
+            Assert.Equal(URLENDPOINT + "/default-image.jpg?tr=h-300%2Cw-400", imageURL);
+        }
+
+        [Fact]
+        public void Url_WithPath_Multiple_LeadingSlash()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400)).Path("///default-image.jpg").Generate();
+            Assert.Equal(URLENDPOINT + "/tr:h-300,w-400/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_WithPath_Overidden_Endpoint()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400)).Path(SAMPLE_PATH).UrlEndpoint("https://ik.imagekit.io/test_url_endpoint_alt").Generate();
+            Assert.Equal(URLENDPOINT + "_alt/tr:h-300,w-400/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_WithPath_TransPositionAsQuery()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400)).TransformationPosition("query").Path(SAMPLE_PATH).Generate();
+            Assert.Equal(URLENDPOINT + "/default-image.jpg?tr=h-300%2Cw-400", imageURL);
+        }
+
+        [Fact]
+        public void Url_WithSrc_TransPositionAsQuery()
+        {
+            SAMPLE_SRC_URL = URLENDPOINT + "/default-image-alt.jpg";
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400)).TransformationPosition("query").Src(SAMPLE_SRC_URL).Generate();
+            Assert.Equal(URLENDPOINT + "/default-image-alt.jpg?tr=h-300%2Cw-400", imageURL);
+        }
+
+        [Fact]
+        public void Url_WithSrc_QueryParamMerge()
+        {
+            string[] queryParams = { "b=123", "a=test" };
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400)).QueryParameters(queryParams).Src(SAMPLE_SRC_URL).Generate();
+            Assert.Equal(URLENDPOINT + "/default-image.jpg?b=123&a=test&tr=h-300%2Cw-400", imageURL);
+        }
+
+        [Fact]
+        public void Url_With_CorrectChainTransformation()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400).Chain().Rotation(90)).Path(SAMPLE_PATH).Generate();
+            Assert.Equal(URLENDPOINT + "/tr:h-300,w-400:rt-90/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_With_Undocumented_CorrectChainTransformation()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400).Chain().RawTransformation("rndm_trnsf-abcd")).Path(SAMPLE_PATH).Generate();
+            Assert.Equal(URLENDPOINT + "/tr:h-300,w-400:rndm_trnsf-abcd/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_OverlayImage()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400).OverlayImage("overlay.jpg")).Path(SAMPLE_PATH).Generate();
+            Assert.Equal(URLENDPOINT + "/tr:h-300,w-400,oi-overlay.jpg/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_OverlayImage_With_Path()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400).OverlayImage("/path/to/overlay.jpg")).Path(SAMPLE_PATH).Generate();
+            Assert.Equal(URLENDPOINT + "/tr:h-300,w-400,oi-path@@to@@overlay.jpg/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_OverlayX()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400).OverlayX(10)).Path(SAMPLE_PATH).Generate();
+            Assert.Equal(URLENDPOINT + "/tr:h-300,w-400,ox-10/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_Border()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400).Border("20_FF0000")).Path(SAMPLE_PATH).Generate();
+            Assert.Equal(URLENDPOINT + "/tr:h-300,w-400,b-20_FF0000/default-image.jpg", imageURL);
+        }
+
+        [Fact]
+        public void Url_All_Combined()
+        {
+            var transformation = new Transformation()
+                .Height(300)
+                .Width(400)
+                .AspectRatio("4-3")
+                .Quality(40)
+                .Crop("force")
+                .CropMode("extract")
+                .Focus("left")
+                .Format("jpeg")
+                .Radius(50)
+                .Background("A94D34")
+                .Border("5-A94D34")
+                .Rotation(90)
+                .Blur(10)
+                .Named("some_name")
+                .OverlayX(35)
+                .OverlayY(35)
+                .OverlayFocus("bottom")
+                .OverlayHeight(20)
+                .OverlayWidth(20)
+                .OverlayImage("/folder/file.jpg")
+                .OverlayImageTrim(false)
+                .OverlayImageAspectRatio("4:3")
+                .OverlayImageBackground("0F0F0F")
+                .OverlayImageBorder("10_0F0F0F")
+                .OverlayImageDPR(2)
+                .OverlayImageQuality(50)
+                .OverlayImageCropping("force")
+                .OverlayText("two words")
+                .OverlayTextFontSize(20)
+                .OverlayTextFontFamily("Open Sans")
+                .OverlayTextColor("00FFFF")
+                .OverlayTextTransparency(5)
+                .OverlayTextTypography("b")
+                .OverlayBackground("00AAFF55")
+                .OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D")
+                .OverlayTextWidth(50)
+                .OverlayTextBackground("00AAFF55")
+                .OverlayTextPadding(40)
+                .OverlayTextInnerAlignment("left")
+                .OverlayRadius(10)
+                .Progressive(true)
+                .Lossless(true)
+                .Trim(5)
+                .Metadata(true)
+                .ColorProfile(true)
+                .DefaultImage("folder/file.jpg/")
+                .Dpr(3)
+                .EffectSharpen(10)
+                .EffectUsm("2-2-0.8-0.024")
+                .EffectContrast(true)
+                .EffectGray()
+                .Original();
+            string imageURL = imagekit.Url(transformation).Path("/test_path.jpg").Generate();
+            Assert.Equal(URLENDPOINT + "/tr:h-300,w-400,ar-4-3,q-40,c-force,cm-extract,fo-left,f-jpeg,r-50,bg-A94D34,b-5-A94D34,rt-90,bl-10,n-some_name,ox-35,oy-35,ofo-bottom,oh-20,ow-20,oi-folder@@file.jpg,oit-false,oiar-4:3,oibg-0F0F0F,oib-10_0F0F0F,oidpr-2,oiq-50,oic-force,ot-two words,ots-20,otf-Open Sans,otc-00FFFF,oa-5,ott-b,obg-00AAFF55,ote-b3ZlcmxheSBtYWRlIGVhc3k%3D,otw-50,otbg-00AAFF55,otp-40,otia-left,or-10,pr-true,lo-true,t-5,md-true,cp-true,di-folder@@file.jpg,dpr-3,e-sharpen-10,e-usm-2-2-0.8-0.024,e-contrast-true,e-grayscale-true,orig-true/test_path.jpg", imageURL);
+        }
+    }
+
+    [Collection("GenericUnitTests")]
+    public class ImagekitUnitTests
+    {
+        private const string GOOD_PUBLICKEY = "public_key_test";
+        private const string GOOD_PRIVATEKEY = "private_key_test";
+        private const string URLENDPOINT = "test endpointt";
+        readonly ServerImagekit imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, URLENDPOINT);
+
+        [Fact]
+        public void Authentication_Param_Check()
+        {
+            string token = "your_token";
+            string expire = "1582269249";
+            AuthParamResponse authParams = imagekit.GetAuthenticationParameters(token, expire);
+            Assert.Equal(token, authParams.token);
+            Assert.Equal(expire, authParams.expire);
+            Assert.Equal("e71bcd6031016b060d349d212e23e85c791decdd", authParams.signature);
+        }
+
+        [Fact]
+        public void SignUrl_Signature()
+        {
+            Dictionary<string, object> option = new Dictionary<string, object>();
+            option.Add("privateKey", "private_key_test");
+            option.Add("urlEndpoint", "https://test-domain.com/test-endpoint");
+            Url u = new Url(option);
+            string expiryTimestamp = "9999999999";
+            string url = "https://test-domain.com/test-endpoint/tr:w-100/test-signed-url.png";
+            Assert.Equal("41b3075c40bc84147eb71b8b49ae7fbf349d0f00", u.GetSignature(url, expiryTimestamp));
+        }
+
+        [Fact]
+        public void SignUrl_Signature1()
+        {
+            Dictionary<string, object> option = new Dictionary<string, object>();
+            option.Add("privateKey", "private_key_test");
+            option.Add("urlEndpoint", "https://test-domain.com/test-endpoint/");
+            Url u = new Url(option);
+            string expiryTimestamp = "9999999999";
+            string url = "https://test-domain.com/test-endpoint/tr:w-100/test-signed-url.png";
+            Assert.Equal("41b3075c40bc84147eb71b8b49ae7fbf349d0f00", u.GetSignature(url, expiryTimestamp));
+        }
+
+        [Theory]
+        [InlineData("33699c96619cc69e", "968e978414fe04ea", 30)]
+        [InlineData("63433b3ccf8e1ebe", "f5d2226cd9d32b16", 27)]
+        [InlineData("f5d2226cd9d32b16", "63433b3ccf8e1ebe", 27)]
+        [InlineData("33699c96619cc69e", "33699c96619cc69e", 0)]
+        [InlineData("2d5ad3936d2e015b", "2d6ed293db36a4fb", 17)]
+        [InlineData("a4a65595ac94518b", "7838873e791f8400", 37)]
+        [InlineData("f06830ca9f1e3e90", "2222222222222222", 30)]
+        public void Phash_Distance(string val1, string val2, int expected)
+        {
+            Assert.Equal(expected, imagekit.PHashDistance(val1, val2));
+        }
+
+        private const string VALID_PHASH_STRING = "f06830ca9f1e3e90";
+        private const string INVALID_ALPHA_NUMERIC_STRING = "INVALIDHEXSTRING";
+        private const string INVALID_CHARACTER_STRING = "a4a655~!!@94518b";
+        private const string INVALID_HEX_STRING_LEN = "42df";
+        [Theory]
+        [InlineData(null, VALID_PHASH_STRING, true)]
+        [InlineData(VALID_PHASH_STRING, "", true)]
+        [InlineData(INVALID_ALPHA_NUMERIC_STRING, VALID_PHASH_STRING, true)]
+        [InlineData(INVALID_CHARACTER_STRING, VALID_PHASH_STRING, true)]
+        [InlineData(VALID_PHASH_STRING, INVALID_HEX_STRING_LEN, true)]
+        [InlineData(VALID_PHASH_STRING, VALID_PHASH_STRING, false)]
+        public void Phash_Check(string val1, string val2, bool expectException)
+        {
+            if (expectException)
+            {
+                var ex = Assert.Throws<ArgumentException>(() => imagekit.PHashDistance(val1, val2));
+                if(val2 == INVALID_HEX_STRING_LEN)
+                {
+                    Assert.Equal(errorMessages.UNEQUAL_STRING_LENGTH, ex.Message);
+                } else if (val1 == INVALID_ALPHA_NUMERIC_STRING || val1 == INVALID_CHARACTER_STRING)
+                {
+                    Assert.Equal(errorMessages.INVALID_PHASH_VALUE, ex.Message);
+                } else
+                {
+                    Assert.Equal(errorMessages.MISSING_PHASH_VALUE, ex.Message);
+                }
+            }
+            else
+            {
+                Assert.Equal(0, imagekit.PHashDistance(val1, val2));
+            }
         }
     }
 }
