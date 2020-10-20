@@ -23,14 +23,12 @@ env:
   NUGET_KEY: ${{ secrets.NUGET_APIKEY }}
   ATTRIBUTE_NAME: nupkg
   NUGET_OUTPUT_PATH: nuget-package
+  Solution_Name: Imagekit.sln
 
 jobs:
   Build:
     runs-on: windows-latest 
     
-    env:
-      Solution_Name: Imagekit.sln
-
     steps:
       - name: Checkout the SDK's codebase
         uses: actions/checkout@v2
@@ -50,7 +48,7 @@ jobs:
         run: dotnet build $env:Solution_Name --configuration Release --no-restore
   
       - name: Tests
-        run: dotnet test $env:Solution_Name --no-build --blame --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        run: dotnet test Imagekit.UnitTests --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
         
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v1
