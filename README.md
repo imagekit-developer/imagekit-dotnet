@@ -1,12 +1,27 @@
-[![NuGet](https://img.shields.io/nuget/v/imagekit.svg)]()
-# DotNET (NET45/Standard) SDK for ImageKit
+[<img width="100" alt="ImageKit.io" src="https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg"/>](https://imagekit.io)
 
-The new version of the DotNet SDK for [ImageKit.io](https://imagekit.io) that implements the new APIs and interface for performing different file operations.
+# DotNET (NET45/Standard/Core) SDK for ImageKit
 
-**Note**: For the older version of SDK, please checkout branch v2.x.
+[![CI Pipeline](https://github.com/imagekit-developer/imagekit-dotnet/workflows/CI%20Pipeline/badge.svg?branch=master)](https://github.com/imagekit-developer/imagekit-dotnet)
+[![NuGet](https://img.shields.io/nuget/v/imagekit.svg)](https://www.nuget.org/packages/Imagekit) 
+[![codecov](https://codecov.io/gh/imagekit-developer/imagekit-dotnet/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-dotnet)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
+
+ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/features/image-transformations), [optimization](https://docs.imagekit.io/features/image-optimization), [file uploading](https://docs.imagekit.io/api-reference/upload-file-api) and other [ImageKit APIs](https://docs.imagekit.io/api-reference/api-introduction) from applications written in server-side C#.
 
 ImageKit is a complete image optimization and transformation solution that comes with an [image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
 
+##### Table of contents
+* [Installation](#installation)
+* [Initialization](#initialization)
+* [URL generation](#url-generation)
+* [File upload](#file-upload)
+* [File management](#file-management)
+* [Utility functions](#utility-functions)
+* [Rate limits](#rate-limits)
+* [Support](#support)
+* [Links](#links)
 
 ## Installation
 
@@ -171,48 +186,62 @@ The complete list of transformations supported and their usage in ImageKit can b
 
 | Supported Transformation Name | Translates to parameter |
 |-------------------------------|-------------------------|
-| HEIGHT | h |
-| WIDTH | w |
-| ASPECT_RATIO | ar |
-| QUALITY | q |
-| CROP | c |
-| CROP_MODE | cm |
-| X | x |
-| Y | y |
-| FOCUS | fo |
-| FORMAT | f |
-| RADIUS | r |
-| BACKGROUND | bg |
-| BORDER | b |
-| ROTATION | rt |
-| BLUR | bl |
-| NAMED | n |
-| OVERLAY_IMAGE | oi |
-| OVERLAY_X | ox |
-| OVERLAY_Y | oy |
-| OVERLAY_FOCUS | ofo |
-| OVERLAY_HEIGHT | oh |
-| OVERLAY_WIDTH | ow |
-| OVERLAY_TEXT | ot |
-| OVERLAY_TEXT_FONT_SIZE | ots |
-| OVERLAY_TEXT_FONT_FAMILY | otf |
-| OVERLAY_TEXT_COLOR | otc |
-| OVERLAY_ALPHA | oa |
-| OVERLAY_TEXT_TYPOGRAPHY | ott |
-| OVERLAY_BACKGROUND | obg |
-| OVERLAY_IMAGE_TRIM | oit |
-| PROGRESSIVE | pr |
-| LOSSLESS | lo |
-| TRIM | t |
-| METADATA | md |
-| COLOR_PROFILE | cp |
-| DEFAULT_IMAGE | di |
-| DPR | dpr |
-| EFFECT_SHARPEN | e-sharpen |
-| EFFECT_USM | e-usm |
-| EFFECT_CONTRAST | e-contrast |
-| EFFECT_GRAY | e-grayscale |
-| ORIGINAL | orig |
+| height | h |
+| width | w |
+| aspectRatio | ar |
+| quality | q |
+| crop | c |
+| cropMode | cm |
+| x | x |
+| y | y |
+| focus | fo |
+| format | f |
+| radius | r |
+| background | bg |
+| border | b |
+| rotation | rt |
+| blur | bl |
+| named | n |
+| overlayX | ox |
+| overlayY | oy |
+| overlayFocus | ofo |
+| overlayHeight | oh |
+| overlayWidth | ow |
+| overlayImage | oi |
+| overlayImageTrim | oit |
+| overlayImageAspectRatio | oiar |
+| overlayImageBackground | oibg |
+| overlayImageBorder | oib |
+| overlayImageDPR | oidpr |
+| overlayImageQuality | oiq |
+| overlayImageCropping | oic |
+| overlayImageTrim | oit |
+| overlayText | ot |
+| overlayTextFontSize | ots |
+| overlayTextFontFamily | otf |
+| overlayTextColor | otc |
+| overlayTextTransparency | oa |
+| overlayAlpha | oa |
+| overlayTextTypography | ott |
+| overlayBackground | obg |
+| overlayTextEncoded | ote |
+| overlayTextWidth | otw |
+| overlayTextBackground | otbg |
+| overlayTextPadding | otp |
+| overlayTextInnerAlignment | otia |
+| overlayRadius | or |
+| progressive | pr |
+| lossless | lo |
+| trim | t |
+| metadata | md |
+| colorProfile | cp |
+| defaultImage | di |
+| dpr | dpr |
+| effectSharpen | e-sharpen |
+| effectUSM | e-usm |
+| effectContrast | e-contrast |
+| effectGray | e-grayscale |
+| original | orig |
 
 
 
@@ -320,6 +349,47 @@ Returns
 
 Both the `token` and `expire` parameters are optional. If not specified, the SDK uses the [uuid](https://www.npmjs.com/package/uuid) package to generate a random token and also generates a valid expiry timestamp internally. The value of the `token` and `expire` used to generate the signature is always returned in the response, no matter if they are provided as an input to this method or not.
 
+### Distance calculation between two pHash values
+
+Perceptual hashing allows you to construct a hash value that uniquely identifies an input image based on an image's contents. [ImageKit.io metadata API](https://docs.imagekit.io/api-reference/metadata-api) returns the pHash value of an image in the response. You can use this value to [find a duplicate (or similar) image](https://docs.imagekit.io/api-reference/metadata-api#using-phash-to-find-similar-or-duplicate-images) by calculating the distance between the two images' pHash value.
+
+This SDK exposes `PHashDistance` function to calculate the distance between two pHash values. It accepts two pHash hexadecimal strings and returns a numeric value indicative of the level of difference between the two images.
+
+```
+public static int CalculateDistance() {
+    // asynchronously fetch metadata of two uploaded image files
+    // ...
+    // Extract pHash strings from both: say 'firstHash' and 'secondHash'
+    // ...
+    // Calculate the distance between them:
+    int distance = imagekit.PHashDistance(firstHash, secondHash);
+    return distance;
+}
+```
+#### Distance calculation examples
+
+```
+imagekit.PHashDistance('f06830ca9f1e3e90', 'f06830ca9f1e3e90');
+// output: 0 (same image)
+
+imagekit.PHashDistance('2d5ad3936d2e015b', '2d6ed293db36a4fb');
+// output: 17 (similar images)
+
+imagekit.PHashDistance('a4a65595ac94518b', '7838873e791f8400');
+// output: 37 (dissimilar images)
+```
+
+## Rate limits
+Except for upload API, all [ImageKit APIs are rate limited](https://docs.imagekit.io/api-reference/api-introduction/rate-limits) to protect the infrastructure from excessive request rates and to keep ImageKit.io fast and stable for everyone.
+
+When you exceed the rate limits for an endpoint, you will receive a `429` status code. The Dotnet library reads the [rate limiting response headers](https://docs.imagekit.io/api-reference/api-introduction/rate-limits#response-headers-to-understand-rate-limits) provided in API response and adds these in the error. Please sleep/pause for the number of milliseconds specified by the value of `X-RateLimit-Reset` property before making additional requests to that endpoint.
+
+| Property | Description |
+|----------|-------------|
+| `X-RateLimit-Limit` | The maximum number of requests that can be made to this endpoint in interval specified by `X-RateLimit-Interval` response header. |
+| `X-RateLimit-Reset` | The amount of time in milliseconds, before you can make another request to this endpoint. Pause/sleep your workflow for this duration. |
+| `X-RateLimit-Interval` | The duration of interval in milliseconds for which this rate limit was exceeded. |
+
 ## Support
 
 For any feedback or to report any issues or general implementation support, please reach out to [support@imagekit.io](mailto:support@imagekit.io)
@@ -332,4 +402,4 @@ To generate a code coverage report, install [ReportGenerator](https://github.com
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) File for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) File for details
