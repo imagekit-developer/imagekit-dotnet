@@ -51,6 +51,13 @@ namespace Imagekit.UnitTests
             .RuleFor(u => u.expire, (f, u) => DateTimeOffset.UtcNow.AddMinutes(30).ToUnixTimeSeconds().ToString())
             .RuleFor(u => u.signature, (f, u) => f.Random.Utf16String());
 
+        public static Faker<DeleteAPIResponse> DeleteAPIResponseFaker = new Faker<DeleteAPIResponse>()
+            .RuleFor(u => u.Exception, (f, u) => f.Random.Bool())
+            .RuleFor(u => u.StatusCode, (f, u) => 200)
+            .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.XIkRequestId, (f, u) => null);
+
         public static Faker<MetadataResponse> MetadataResponseFaker = new Faker<MetadataResponse>()
             .RuleFor(u => u.Exif, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.Density, (f, u) => f.Random.Int())

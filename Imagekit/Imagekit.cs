@@ -139,7 +139,18 @@ namespace Imagekit
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "?" + string.Join("&", param));
             var response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<List<ListAPIResponse>>(responseContent);
+            try
+            {
+                return JsonConvert.DeserializeObject<List<ListAPIResponse>>(responseContent);
+            } catch
+            {
+                ListAPIResponse resp = JsonConvert.DeserializeObject<ListAPIResponse>(responseContent);
+                resp.StatusCode = (int)response.StatusCode;
+                resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
+                List<ListAPIResponse> respList=new List<ListAPIResponse>();
+                respList.Add(resp);
+                return respList;
+            }
         }
 
 

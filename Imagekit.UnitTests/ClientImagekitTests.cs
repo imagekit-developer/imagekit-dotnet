@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -70,6 +71,16 @@ namespace Imagekit.UnitTests
         }
 
         [Fact]
+        public void Upload_Exception()
+        {
+            var fileName = Guid.NewGuid().ToString();
+            var auth = TestHelpers.AuthParamResponseFaker.Generate();
+            var imagekit = new ClientImagekit(GOOD_PUBLICKEY, GOOD_URLENDPOINT);
+            var ex = Assert.ThrowsAsync<ArgumentException>(async () => await imagekit.UploadAsync("", auth));
+            Assert.Equal(Util.errorMessages.MISSING_UPLOAD_FILE_PARAMETER, ex.Result.Message);
+        }
+
+        [Fact]
         public void Upload()
         {
             var fileName = Guid.NewGuid().ToString();
@@ -88,6 +99,29 @@ namespace Imagekit.UnitTests
             var imagekit = new ClientImagekit(GOOD_PUBLICKEY, GOOD_URLENDPOINT)
                 .FileName(fileName);
             var response = imagekit.Upload(fileUrl, auth);
+            Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
+        [Fact]
+        public void UploadBytes()
+        {
+            var fileName = Guid.NewGuid().ToString();
+            string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
+            byte[] bytes = Convert.FromBase64String(base64);
+            var auth = TestHelpers.AuthParamResponseFaker.Generate();
+            var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse,
+                TestHelpers.GetUploadRequestMessageValidator(base64, fileName, publicKey: GOOD_PUBLICKEY, clientAuth: auth));
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ClientImagekit(GOOD_PUBLICKEY, GOOD_URLENDPOINT)
+                .FileName(fileName);
+            var response = imagekit.Upload(bytes, auth);
             Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
         }
 

@@ -157,11 +157,14 @@ namespace Imagekit
         public string GetSignature(string url, string expiryTimestamp)
         {
             var endPoint = RemoveTrailingSlash((string)options["urlEndpoint"]);
-            if (string.IsNullOrEmpty((string)options["privateKey"]) || string.IsNullOrEmpty((string)options["urlEndpoint"]))
+            string str = Regex.Replace(url, endPoint + "/", "") + expiryTimestamp;
+            try
+            {
+                var privateKey = (string)options["privateKey"];
+            } catch
             {
                 throw new ArgumentNullException(errorMessages.PRIVATE_KEY_MISSING);
             }
-            string str = Regex.Replace(url, endPoint + "/", "") + expiryTimestamp;
             return Utils.calculateSignature(str, Encoding.ASCII.GetBytes((string)options["privateKey"]));
         }
     }

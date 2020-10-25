@@ -143,6 +143,27 @@ namespace Imagekit.UnitTests
         }
 
         [Fact]
+        public void GetUploadData_Generic()
+        {
+            var fileName = Guid.NewGuid().ToString();
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT)
+                .FileName(fileName)
+                .Folder("/test/")
+                .isPrivateFile(true)
+                .UseUniqueFileName(false)
+                .CustomCoordinates("10,10,100,100")
+                .ResponseFields("tags,customCoordinates,isPrivateFile")
+                .Tags("tag1,tag2");
+            var data = imagekit.getUploadData();
+            Assert.True(data.TryGetValue("responseFields", out string respFields), "ResponseFields upload data not found");
+            Assert.True(data.TryGetValue("useUniqueFileName", out string uniqueParam), "UseUniqueFileName upload not found");
+            Assert.True(data.TryGetValue("folder", out string folder), "folder upload not found");
+            Assert.Equal("tags,customCoordinates,isPrivateFile", respFields);
+            Assert.Equal("false", uniqueParam);
+            Assert.Equal("/test/", folder);
+        }
+
+        [Fact]
         public void GetUploadData_TagsArray()
         {
             var fileName = Guid.NewGuid().ToString();
@@ -152,6 +173,51 @@ namespace Imagekit.UnitTests
             var data = imagekit.getUploadData();
             Assert.True(data.TryGetValue("tags", out string actualTags), "tags upload data not found");
             Assert.Equal("tag1,tag2", actualTags);
+        }
+
+        [Fact]
+        public void GetUploadData_MissingFileName_Exception()
+        {
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT)
+                .Tags("tag1");
+            var ex = Assert.Throws<ArgumentException>(() => imagekit.getUploadData());
+            Assert.Equal(errorMessages.MISSING_UPLOAD_FILENAME_PARAMETER, ex.Message);
+        }
+
+        [Fact]
+        public void ListFiles()
+        {
+            var fileId = Guid.NewGuid().ToString();
+            var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var response = imagekit.ListFiles();
+            Assert.Equal(responseObj.StatusCode, response[0].StatusCode);
+        }
+
+        [Fact]
+        public async void DeleteApi_Response()
+        {
+            var fileId = Guid.NewGuid().ToString();
+            var responseObj = TestHelpers.DeleteAPIResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var response = await imagekit.DeleteFileAsync(fileId);
+            Assert.Equal(responseObj.StatusCode, response.StatusCode);
         }
 
         [Theory]
@@ -256,6 +322,19 @@ namespace Imagekit.UnitTests
             Assert.Equal(expected, Util.Utils.IsLocalPath(path));
         }
 
+        [Theory]
+        [InlineData("https://example.com/test.jpg", true)]
+        [InlineData("http://example.com/", true)]
+        [InlineData("ftp://example.com", false)]
+        [InlineData(@"C:\test\test 1.jpg", false)]
+        [InlineData(@"C:\test\test.jpg", false)]
+        [InlineData(@"\\test.com\test.jpg", false)]
+        [InlineData("http:\\mysite\test.xml", false)]
+        public void IsValidURITest(string url, bool expected)
+        {
+            Assert.Equal(expected, Util.Utils.IsValidURI(url));
+        }
+
         [Fact]
         public void Url_WithoutUrl_Source()
         {
@@ -289,6 +368,22 @@ namespace Imagekit.UnitTests
         }
 
         [Fact]
+        public void Url_Signed_Timestamp()
+        {
+            string imageURL = imagekit.Url(new Transformation()).Path(SAMPLE_PATH).Signed(true).ExpireSeconds(300).Generate();
+            Assert.Contains("https://ik.imagekit.io/test_url_endpoint/default-image.jpg?ik-t=", imageURL);
+        }
+        
+        [Fact]
+        public void Url_Signed_Without_priavteKey()
+        {
+            ClientImagekit imagekit1 = new ClientImagekit(GOOD_PUBLICKEY, URLENDPOINT)
+                .Path(SAMPLE_PATH).Signed(true).ExpireSeconds(300);
+            var ex = Assert.Throws<ArgumentNullException>(() => imagekit1.Url(new Transformation()).Path(SAMPLE_PATH).Signed(true).ExpireSeconds(300).Generate());
+            Assert.Equal(errorMessages.PRIVATE_KEY_MISSING, ex.ParamName);
+        }
+
+        [Fact]
         public void Url_WithPath_Transformation()
         {
             string imageURL = imagekit.Url(new Transformation().Height(300).Width(400)).Path(SAMPLE_PATH).Generate();
@@ -300,6 +395,13 @@ namespace Imagekit.UnitTests
         {
             string imageURL = imagekit.Url(new Transformation().Height(300).Width(400)).Src(SAMPLE_SRC_URL).Generate();
             Assert.Equal(URLENDPOINT + "/default-image.jpg?tr=h-300%2Cw-400", imageURL);
+        }
+
+        [Fact]
+        public void Url_WithSRC_Param_Transform()
+        {
+            string imageURL = imagekit.Url(new Transformation().Height(300).Width(400)).Src(SAMPLE_SRC_URL+"?a=test").Generate();
+            Assert.Equal(URLENDPOINT + "/default-image.jpg?a=test&tr=h-300%2Cw-400", imageURL);
         }
 
         [Fact]

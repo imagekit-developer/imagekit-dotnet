@@ -226,15 +226,15 @@ namespace Imagekit.Util
 
         public static bool IsLocalPath(string p)
         {
-            if (p.StartsWith("http:\\", StringComparison.Ordinal))
+            if (p.StartsWith("http:", StringComparison.Ordinal))
             {
                 return false;
             }
-            else if (p.StartsWith("https:\\", StringComparison.Ordinal))
+            else if (p.StartsWith("https:", StringComparison.Ordinal))
             {
                 return false;
             }
-            else if (p.StartsWith("ftp:\\", StringComparison.Ordinal))
+            else if (p.StartsWith("ftp:", StringComparison.Ordinal))
             {
                 return false;
             }
