@@ -1,7 +1,6 @@
-[<img width="100" alt="ImageKit.io" src="https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg"/>](https://imagekit.io)
+[<img width="250" alt="ImageKit.io" src="https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg"/>](https://imagekit.io)
 
 # DotNET (NET45/Standard/Core) SDK for ImageKit
-
 [![CI Pipeline](https://github.com/imagekit-developer/imagekit-dotnet/workflows/CI%20Pipeline/badge.svg?branch=master)](https://github.com/imagekit-developer/imagekit-dotnet)
 [![NuGet](https://img.shields.io/nuget/v/imagekit.svg)](https://www.nuget.org/packages/Imagekit) 
 [![codecov](https://codecov.io/gh/imagekit-developer/imagekit-dotnet/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-dotnet)
@@ -17,7 +16,6 @@ ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/
 * [File upload](#file-upload)
 * [File management](#file-management)
 * [Utility functions](#utility-functions)
-* [Rate limits](#rate-limits)
 * [Support](#support)
 * [Links](#links)
 
@@ -49,7 +47,6 @@ Also, you can search for [Imagekit](https://www.nuget.org/packages/Imagekit) in 
    <!-- Remove IncludeAssets to allow compiling against the assembly -->
    <!--IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets-->
 <PrivateAssets>all</PrivateAssets>
-
 ```
 
 ## Initialization
@@ -325,6 +322,10 @@ Get the purge cache request status using the request ID returned when a purge ca
 ```cs
 PurgeCacheStatusResponse resp = await imagekit.GetPurgeCacheStatusAsync("cache_request_id");
 ```
+
+## Utility functions
+
+We have included the following commonly used utility functions in this library.
 
 ### Authentication Parameter Generation
 
