@@ -10,8 +10,6 @@
 
 ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/features/image-transformations), [optimization](https://docs.imagekit.io/features/image-optimization), [file uploading](https://docs.imagekit.io/api-reference/upload-file-api) and other [ImageKit APIs](https://docs.imagekit.io/api-reference/api-introduction) from applications written in server-side C#.
 
-ImageKit is a complete image optimization and transformation solution that comes with an [image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
-
 ##### Table of contents
 * [Installation](#installation)
 * [Initialization](#initialization)
@@ -45,7 +43,7 @@ Open up your project, navigate to Nuget package manager console, and add Imageki
 Also, you can search for [Imagekit](https://www.nuget.org/packages/Imagekit) in Nuget GUI.
 
 
-***Note***: If you get error like "the type or namespace 'ImageKit' couldn't be found", please remove IncludeAssets tag like below.
+***Note***: If you get an error like "the type or namespace 'ImageKit' couldn't be found", please remove the `IncludeAssets` tag like below.
 ```
 <PackageReference Include="Imagekit" Version="3.1.1">
    <!-- Remove IncludeAssets to allow compiling against the assembly -->
@@ -62,16 +60,16 @@ using Imagekit;
 ServerImagekit imagekit = new ServerImagekit(publicKey, privateKey, urlEndPoint, "path");
 ```
 
-**Note**: You can get the apiKey, apiSecret, and ImagekitId from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
+**Note**: You can get the `apiKey`, `apiSecret`, and ImagekitId from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
 
 ## Usage
-You can use this DotNET SDK for three different kinds of functions - URL generation, file uploads, and file management. The usage of the SDK has been explained below.
+You can use this DotNET SDK for three different functions: URL generation, file uploads, and file management. The usage of the SDK has been explained below.
 
 ### URL Generation
 
 **1. Using image path and image hostname or endpoint**
 
-This method allows you to create a URL using the `path` where the image exists and the URL endpoint (`urlEndpoint`) you want to use to access the image. You can refer to the documentation [here](https://docs.imagekit.io/integration/url-endpoints) to read more about URL endpoints in ImageKit and the section about [image origins](https://docs.imagekit.io/integration/configure-origin) to understand about paths with different kinds of origins.
+This method allows you to create a URL using the `path` where the image exists and the URL endpoint (`urlEndpoint`) you want to use to access the image. You can refer to the documentation [here](https://docs.imagekit.io/integration/url-endpoints) to read more about URL endpoints in ImageKit and the section about [image origins](https://docs.imagekit.io/integration/configure-origin) to understand paths with different kinds of origins.
 
 ```csharp
 string imageURL = imagekit.Url(new Transformation().Width(400).Height(300))
@@ -112,10 +110,10 @@ The `.Url()` method accepts the following parameters.
 | urlEndpoint      | Optional. The base URL to be appended before the path of the image. If not specified, the URL Endpoint specified at the time of SDK initialization is used. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/` |
 | path             | Conditional. This is the path at which the image exists. For example, `/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
 | src              | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
-| transformation   | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as different objects of the array. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
-| transformationPostion | Optional. The default value is `path` that places the transformation string as a path parameter in the URL. It can also be specified as `query` which adds the transformation string as the query parameter `tr` in the URL. If you use the `src` parameter to create the URL, then the transformation string is always added as a query parameter. |
+| transformation   | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as the array's different objects. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
+| transformationPosition | Optional. The default value is `path` that places the transformation string as a URL path parameter. It can also be specified as `query`, which adds the transformation string as the URL's query parameter `tr`. If you use the `src` parameter to create the URL, then the transformation string is always added as a query parameter. |
 | queryParameters  | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful if you want to add some versioning parameter to your URLs. |
-| signed           | Optional. Boolean. Default is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL. This can only be used if you are creating the URL with the `urlEndpoint` and `path` parameters, and not with the `src` parameter. |
+| signed           | Optional. Boolean. Default is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL. This can only be used if you create the URL with the `urlEndpoint` and `path` parameters, not with the `src` parameter. |
 | expireSeconds    | Optional. Integer. Meant to be used along with the `signed` parameter to specify the time in seconds from now when the URL should expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly. |
 
 
@@ -286,10 +284,10 @@ ListAPIResponse resp = await imagekit.GetFileDetailsAsync(fileId);
 
 **3. Get File Metadata**
 
-Accepts the fileID/Uri and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files).
+Accepts the fileID/URI and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files).
 
 ```cs
-MetadataResponse resp = await imagekit.GetFileMetadataAsync(<fileId|Uri>);
+MetadataResponse resp = await imagekit.GetFileMetadataAsync(<fileId|URI>);
 ```
 
 **4. Update File Details**
@@ -378,28 +376,13 @@ imagekit.PHashDistance('2d5ad3936d2e015b', '2d6ed293db36a4fb');
 imagekit.PHashDistance('a4a65595ac94518b', '7838873e791f8400');
 // output: 37 (dissimilar images)
 ```
-
-## Rate limits
-Except for upload API, all [ImageKit APIs are rate limited](https://docs.imagekit.io/api-reference/api-introduction/rate-limits) to protect the infrastructure from excessive request rates and to keep ImageKit.io fast and stable for everyone.
-
-When you exceed the rate limits for an endpoint, you will receive a `429` status code. The Dotnet library reads the [rate limiting response headers](https://docs.imagekit.io/api-reference/api-introduction/rate-limits#response-headers-to-understand-rate-limits) provided in API response and adds these in the error. Please sleep/pause for the number of milliseconds specified by the value of `X-RateLimit-Reset` property before making additional requests to that endpoint.
-
-| Property | Description |
-|----------|-------------|
-| `X-RateLimit-Limit` | The maximum number of requests that can be made to this endpoint in interval specified by `X-RateLimit-Interval` response header. |
-| `X-RateLimit-Reset` | The amount of time in milliseconds, before you can make another request to this endpoint. Pause/sleep your workflow for this duration. |
-| `X-RateLimit-Interval` | The duration of interval in milliseconds for which this rate limit was exceeded. |
-
 ## Support
 
 For any feedback or to report any issues or general implementation support, please reach out to [support@imagekit.io](mailto:support@imagekit.io)
 
-## Contributing
-
-### Testing
-
-To generate a code coverage report, install [ReportGenerator](https://github.com/danielpalme/ReportGenerator) and use the VSCode task or run the generate task on the command line.
+## Links
+* [Documentation](https://docs.imagekit.io)
+* [Main website](https://imagekit.io)
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) File for details
