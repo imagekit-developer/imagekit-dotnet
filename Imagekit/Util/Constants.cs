@@ -16,7 +16,7 @@
         public const string API_HOST = "api.imagekit.io";
         public const string UPLOAD_API_HOST = "upload.imagekit.io";
         public const string FILE_API = "/v1/files";
-        public const string UPLOAD_API = "/v1/files/upload";
+        public const string UPLOAD_API = "/api/v1/files/upload";
 
     }
 }
