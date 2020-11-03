@@ -28,12 +28,12 @@ Install-Package Imagekit
 
 PackageReference
 ```
-<PackageReference Include="Imagekit" Version="3.1.1">
+<PackageReference Include="Imagekit" Version="3.1.2">
 </PackageReference>
 ```
 .Net CLI
 ```
-dotnet add package Imagekit --version 3.1.1
+dotnet add package Imagekit --version 3.1.2
 ```
 
 
