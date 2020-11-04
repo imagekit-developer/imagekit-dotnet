@@ -48,16 +48,16 @@ jobs:
         run: dotnet build $env:Solution_Name --configuration Release --no-restore
   
       - name: Tests
-        run: dotnet test Imagekit.UnitTests --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        run: dotnet test Imagekit.UnitTests --verbosity minimal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
         
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          verbose: true
+          verbose: false
           file: ./Imagekit.UnitTests/coverage.opencover.xml
         
       - name: Pack 
-        run: dotnet pack --configuration Release --no-build --include-symbols --include-source --verbosity normal --output ${{ env.NUGET_OUTPUT_PATH }}
+        run: dotnet pack --configuration Release --no-build --include-symbols --include-source --verbosity minimal --output ${{ env.NUGET_OUTPUT_PATH }}
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
@@ -97,4 +97,4 @@ jobs:
         run: dotnet --info
 
       - name: Nuget push
-        run: dotnet nuget push "*.nupkg" -k ${{ secrets.NUGET_APIKEY }} --source ${{ env.NUGET_FEED }} --skip-duplicates --no-symbols
+        run: dotnet nuget push "*.nupkg" -k ${{ secrets.NUGET_APIKEY }} --source ${{ env.NUGET_FEED }} --no-symbols --skip-duplicate
