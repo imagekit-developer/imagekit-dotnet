@@ -16,7 +16,7 @@ namespace Imagekit.Util
     public static class Utils
     {
         private static HttpClient httpClient = new HttpClient();
-        public const string UserAgent = "ImagekitDotNet/3.1.2";
+        public const string UserAgent = "ImagekitDotNet/" + Constants.SDK_VERSION; 
 
         /// <summary>
         /// For testing
