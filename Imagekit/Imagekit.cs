@@ -230,8 +230,11 @@ namespace Imagekit
             Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId);
             HttpResponseMessage response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"], "DELETE").ConfigureAwait(false);
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-            DeleteAPIResponse resp = JsonConvert.DeserializeObject<DeleteAPIResponse>(responseContent);
+            DeleteAPIResponse resp = new DeleteAPIResponse();
+            if (responseContent != "")
+            {
+                resp = JsonConvert.DeserializeObject<DeleteAPIResponse>(responseContent);
+            }
             resp.StatusCode = (int)response.StatusCode;
             resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
             return resp;
