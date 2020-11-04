@@ -97,4 +97,4 @@ jobs:
         run: dotnet --info
 
       - name: Nuget push
-        run: dotnet nuget push "*.nupkg" -k ${{ secrets.NUGET_APIKEY }} --source ${{ env.NUGET_FEED }}
+        run: dotnet nuget push "*.nupkg" -k ${{ secrets.NUGET_APIKEY }} --source ${{ env.NUGET_FEED }} --skip-duplicates --no-symbols
