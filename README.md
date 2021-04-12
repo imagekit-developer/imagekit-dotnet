@@ -28,26 +28,18 @@ Install-Package Imagekit
 
 PackageReference
 ```
-<PackageReference Include="Imagekit" Version="3.1.3">
+<PackageReference Include="Imagekit" Version="3.1.4">
 </PackageReference>
 ```
 .Net CLI
 ```
-dotnet add package Imagekit --version 3.1.3
+dotnet add package Imagekit --version 3.1.4
 ```
 
 
 Open up your project, navigate to Nuget package manager console, and add Imagekit package.
 Also, you can search for [Imagekit](https://www.nuget.org/packages/Imagekit) in Nuget GUI.
 
-
-***Note***: If you get an error like "the type or namespace 'ImageKit' couldn't be found", please remove the `IncludeAssets` tag like below.
-```
-<PackageReference Include="Imagekit" Version="3.1.3">
-   <!-- Remove IncludeAssets to allow compiling against the assembly -->
-   <!--IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets-->
-<PrivateAssets>all</PrivateAssets>
-```
 
 ## Initialization
 Add this reference where you want to use imagekit.io services:
