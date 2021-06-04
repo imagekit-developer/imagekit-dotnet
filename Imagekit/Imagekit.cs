@@ -125,7 +125,7 @@ namespace Imagekit
 
         public async Task<List<ListAPIResponse>> ListFilesAsync()
         {
-            string[] arr = { "limit", "skip", "name", "includeFolder", "tags", "fileType", "path" };
+            string[] arr = { "limit", "skip", "name", "includeFolder", "tags", "fileType", "path", "sort", "searchQuery" };
             var param = new List<string>();
             foreach (var item in options)
             {

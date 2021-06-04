@@ -51,6 +51,10 @@ ServerImagekit imagekit = new ServerImagekit(publicKey, privateKey, urlEndPoint,
 
 **Note**: You can get the `apiKey`, `apiSecret`, and ImagekitId from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
 
+## Demo application
+The fastest way to get started is by running the demo application in [Sample](/Sample) folder as per [README.md](/sample/README.md).
+
+
 ## Usage
 You can use this DotNET SDK for three different functions: URL generation, file uploads, and file management. The usage of the SDK has been explained below.
 

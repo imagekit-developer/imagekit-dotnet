@@ -3,7 +3,6 @@
 {
     public partial class BaseImagekit<T>
     {
-
         public T Path(string value) { return Add("path", value); }
         public T Src(string value) { return Add("src", value); }
         public T UrlEndpoint(string value) { return Add("urlEndpoint", value); }
@@ -20,6 +19,8 @@
         public T Tags(string value) { return Add("tags", value); }
         public T Tags(params string[] value) { return Add("tagsList", value); }
         public T FileType(string value = "all") { return Add("fileType", value); }
+        public T Sort(string value) { return Add("sort", value); }
+        public T SearchQuery(string value) { return Add("searchQuery", value); }
 
         public T FileName(string value) { return Add("fileName", value); }
         public T UseUniqueFileName(bool value = true) { return Add("useUniqueFileName", value); }

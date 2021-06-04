@@ -187,7 +187,6 @@ namespace Imagekit.UnitTests
         [Fact]
         public void ListFiles()
         {
-            var fileId = Guid.NewGuid().ToString();
             var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -201,6 +200,71 @@ namespace Imagekit.UnitTests
             var response = imagekit.ListFiles();
             Assert.Equal(responseObj.StatusCode, response[0].StatusCode);
         }
+
+
+        [Fact]
+        public void ListFilesWithAllParams()
+        {
+            var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT)
+                .FileType("image")
+                .Tags("tag1", "tag2")
+                .IncludeFolder(true)
+                .Name("new-dir")
+                .Sort("ASC_NAME")
+                .SearchQuery("name=\"test-image.jpg\"")
+                .Limit(1)
+                .Skip(1);
+            var response = imagekit.ListFiles();
+                
+            Assert.Equal(responseObj.StatusCode, response[0].StatusCode);
+        }
+
+        [Fact]
+        public void GetFileDetails()
+        {
+            var fileId = Guid.NewGuid().ToString();
+            var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var response = imagekit.GetFileDetails(fileId);
+            Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
+        [Fact]
+        public void GetFileDetailsWithURL()
+        {
+            var imageURL = "https://example.com/default.jpg";
+            var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var response = imagekit.GetFileDetails(imageURL);
+            response.FileId = responseObj.FileId;
+            Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
 
         [Fact]
         public async void DeleteApi_Response()
