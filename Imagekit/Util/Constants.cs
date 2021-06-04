@@ -17,7 +17,7 @@
         public const string UPLOAD_API_HOST = "upload.imagekit.io";
         public const string FILE_API = "/v1/files";
         public const string UPLOAD_API = "/api/v1/files/upload";
-        public const string SDK_VERSION = "3.1.4";
+        public const string SDK_VERSION = "3.1.5";
 
     }
 }
