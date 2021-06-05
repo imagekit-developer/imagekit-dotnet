@@ -64,6 +64,22 @@ namespace Imagekit.UnitTests
             .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.XIkRequestId, (f, u) => null);
 
+        public static Faker<PurgeAPIResponse> PurgeAPIResponseFaker = new Faker<PurgeAPIResponse>()
+            .RuleFor(u => u.RequestId, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Exception, (f, u) => f.Random.Bool())
+            .RuleFor(u => u.StatusCode, (f, u) => 200)
+            .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.XIkRequestId, (f, u) => null);
+
+        public static Faker<PurgeCacheStatusResponse> PurgeCacheStatusResponseFaker = new Faker<PurgeCacheStatusResponse>()
+            .RuleFor(u => u.Status, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Exception, (f, u) => f.Random.Bool())
+            .RuleFor(u => u.StatusCode, (f, u) => 200)
+            .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.XIkRequestId, (f, u) => null);
+
         public static Faker<MetadataResponse> MetadataResponseFaker = new Faker<MetadataResponse>()
             .RuleFor(u => u.Exif, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.Density, (f, u) => f.Random.Int())

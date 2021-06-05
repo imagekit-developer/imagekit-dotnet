@@ -1,10 +1,12 @@
 ﻿using System;
-using System.IO;
 using Imagekit;
+using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 class Program
 {
+    [ExcludeFromCodeCoverage]
     static void Main(string[] args)
     {
 
@@ -18,28 +20,28 @@ class Program
 
         /// Upload File
         string imagePath = @"C:\test.jpg";
-        var response = imagekit.UploadAsync(imagePath);
-        Console.WriteLine(JToken.FromObject(response).ToString());
+        var uploadResp = imagekit.UploadAsync(imagePath);
+        Console.WriteLine(JToken.FromObject(uploadResp).ToString());
 
 
         /// Upload base64 file
         var fileInfo = new FileInfo(imagePath);
         string base64 = Convert.ToBase64String(File.ReadAllBytes(fileInfo.FullName));
-        var response1 = imagekit.UseUniqueFileName(false)
+        var uploadBase64Resp = imagekit.UseUniqueFileName(false)
             .FileName("test-iamge.jpg")
             .isPrivateFile(false)
             .Upload(base64);
-        Console.WriteLine(JToken.FromObject(response1));
+        Console.WriteLine(JToken.FromObject(uploadBase64Resp));
 
 
         /// Upload By URL
         var imgURL = "https://ik.imagekit.io/demo/default-image.jpg?tr=h-100,w-200";
-        var response3 = imagekit
+        var uploadByURLResp = imagekit
             .FileName(imgURL)
             .UseUniqueFileName(false)
             .Tags("tag1,tag2,tag3")
             .Upload(imagePath);
-        Console.WriteLine(JToken.FromObject(response1));
+        Console.WriteLine(JToken.FromObject(uploadByURLResp));
 
 
         /// listing Files
@@ -59,7 +61,7 @@ class Program
         string path = "/default-image.jpg";
         Transformation trans = new Transformation().Width(400).Height(300);
         string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
-        Console.WriteLine("Url for first image transformed with height: 300, width: 400: ", imageURL);
+        Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {}", imageURL);
 
 
         /// Generating Signed URL
@@ -73,7 +75,7 @@ class Program
             .ExpireSeconds(600)
             .Signed()
             .Generate();
-            Console.WriteLine("Signed Url for first image transformed with height: 300, width: 400: ", signedUrl);
+            Console.WriteLine("Signed Url for first image transformed with height: 300, width: 400: - {}", signedUrl);
         }
         catch (Exception ex)
         {
@@ -96,7 +98,7 @@ class Program
         /// pHash Distance
         Console.WriteLine(MetadataResp1.PHash, MetadataResp2.PHash);
         var pHashDistance = imagekit.PHashDistance(MetadataResp1.PHash, MetadataResp2.PHash);
-        Console.WriteLine("pHash Distance: ", pHashDistance);
+        Console.WriteLine("pHash Distance: {}", pHashDistance);
 
 
         /// Update file details
@@ -107,10 +109,10 @@ class Program
 
         /// Purge cache & purge cache status
         var purgeCacheResponse = imagekit.PurgeCache(imgURL1);
-        Console.WriteLine("Cache purge request id: ", purgeCacheResponse.RequestId);
+        Console.WriteLine("Cache purge request id: {}", purgeCacheResponse.RequestId);
 
         var purgeCacheStatus = imagekit.GetPurgeCacheStatus(purgeCacheResponse.RequestId);
-        Console.WriteLine("Cache purge status: ", JToken.FromObject(purgeCacheStatus));
+        Console.WriteLine("Cache purge status: {}", JToken.FromObject(purgeCacheStatus));
 
 
         /// Delete File
@@ -120,7 +122,7 @@ class Program
 
         /// Get Authentication Token
         var authenticationParameters = imagekit.GetAuthenticationParameters("your_token");
-        Console.WriteLine("Authentication Parameters: ", JToken.FromObject(authenticationParameters).ToString());
+        Console.WriteLine("Authentication Parameters: {}", JToken.FromObject(authenticationParameters).ToString());
 
 
     }
