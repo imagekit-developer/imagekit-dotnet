@@ -28,16 +28,16 @@ Install-Package Imagekit
 
 PackageReference
 ```
-<PackageReference Include="Imagekit" Version="3.1.4">
+<PackageReference Include="Imagekit" Version="3.1.5">
 </PackageReference>
 ```
 .Net CLI
 ```
-dotnet add package Imagekit --version 3.1.4
+dotnet add package Imagekit --version 3.1.5
 ```
 
 
-Open up your project, navigate to Nuget package manager console, and add Imagekit package.
+Open up your project, navigate to the Nuget package manager console, and add the Imagekit package.
 Also, you can search for [Imagekit](https://www.nuget.org/packages/Imagekit) in Nuget GUI.
 
 
@@ -52,7 +52,7 @@ ServerImagekit imagekit = new ServerImagekit(publicKey, privateKey, urlEndPoint,
 **Note**: You can get the `apiKey`, `apiSecret`, and ImagekitId from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
 
 ## Demo application
-The fastest way to get started is by running the demo application in [Sample](/Imagekit/Sample) folder.
+The fastest way to get started is by running the demo application in the [Sample](/Imagekit/Sample) folder.
 
 
 ## Usage
@@ -105,7 +105,7 @@ The `.Url()` method accepts the following parameters.
 | src              | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
 | transformation   | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as the array's different objects. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
 | transformationPosition | Optional. The default value is `path` that places the transformation string as a URL path parameter. It can also be specified as `query`, which adds the transformation string as the URL's query parameter `tr`. If you use the `src` parameter to create the URL, then the transformation string is always added as a query parameter. |
-| queryParameters  | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful if you want to add some versioning parameter to your URLs. |
+| queryParameters  | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful if you want to add some versioning parameters to your URLs. |
 | signed           | Optional. Boolean. Default is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL. This can only be used if you create the URL with the `urlEndpoint` and `path` parameters, not with the `src` parameter. |
 | expireSeconds    | Optional. Integer. Meant to be used along with the `signed` parameter to specify the time in seconds from now when the URL should expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly. |
 
@@ -267,7 +267,9 @@ List<ListAPIResponse> resp = await imagekit
     .ListFilesAsync();
 ```
 
-```
+You can also use advanced [searching](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries) and sorting using `SearchQuery` and `Sort` function.
+
+```cs
 List<ListAPIResponse> resp = await imagekit
     .Skip(0)
     .Limit(3)
@@ -286,7 +288,7 @@ ListAPIResponse resp = await imagekit.GetFileDetailsAsync(fileId);
 
 **3. Get File Metadata**
 
-Accepts the fileID/URI and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files).
+Accepts the `fileId` or `URI` and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files).
 
 ```cs
 MetadataResponse resp = await imagekit.GetFileMetadataAsync(<fileId|URI>);
@@ -334,7 +336,7 @@ We have included the following commonly used utility functions in this library.
 
 ### Authentication Parameter Generation
 
-In case you are looking to implement client-side file upload, you are going to need a token, expiry timestamp, and a valid signature for that upload. The SDK provides a simple method that you can use in your code to generate these authentication parameters for you.
+If you are looking to implement client-side file upload, you will need a token, expiry timestamp, and a valid signature for that upload. The SDK provides a simple method that you can use in your code to generate these authentication parameters for you.
 
 *Note: The Private API Key should never be exposed in any client-side code. You must always generate these authentication parameters on the server-side*
 
