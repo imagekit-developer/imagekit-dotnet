@@ -187,6 +187,51 @@ namespace Imagekit.UnitTests
         [Fact]
         public void ListFiles()
         {
+            var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var response = imagekit.ListFiles()[0];
+            response.FileId = responseObj.FileId;
+            Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
+
+        [Fact]
+        public void ListFilesWithAllParams()
+        {
+            var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT)
+                .FileType("image")
+                .Tags("tag1", "tag2")
+                .IncludeFolder(true)
+                .Name("new-dir")
+                .Sort("ASC_NAME")
+                .SearchQuery("name=\"test-image.jpg\"")
+                .Limit(1)
+                .Skip(1);
+            var response = imagekit.ListFiles()[0];
+            response.FileId = responseObj.FileId;
+            Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
+        [Fact]
+        public void GetFileDetails()
+        {
             var fileId = Guid.NewGuid().ToString();
             var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
@@ -198,8 +243,65 @@ namespace Imagekit.UnitTests
             Util.Utils.SetHttpClient(httpClient);
 
             var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
-            var response = imagekit.ListFiles();
-            Assert.Equal(responseObj.StatusCode, response[0].StatusCode);
+            var response = imagekit.GetFileDetails(fileId);
+            response.FileId = responseObj.FileId;
+            Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
+        [Fact]
+        public void GetFileDetailsWithURL()
+        {
+            var imageURL = "https://example.com/default.jpg";
+            var responseObj = TestHelpers.ListAPIResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var response = imagekit.GetFileDetails(imageURL);
+            response.FileId = responseObj.FileId;
+            Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
+        [Fact]
+        public void PurgeCache()
+        {
+            var fileId = Guid.NewGuid().ToString();
+            var responseObj = TestHelpers.PurgeAPIResponseFaker.Generate();
+
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var response = imagekit.PurgeCache(fileId);
+            Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
+        }
+
+        [Fact]
+        public void PurgeCacheStatus()
+        {
+            var requestId = Guid.NewGuid().ToString();
+            var responseObj = TestHelpers.PurgeCacheStatusResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            Util.Utils.SetHttpClient(httpClient);
+
+            var imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var response = imagekit.GetPurgeCacheStatus(requestId);
+            Assert.Equal(JsonConvert.SerializeObject(responseObj), JsonConvert.SerializeObject(response));
         }
 
         [Fact]
@@ -553,7 +655,7 @@ namespace Imagekit.UnitTests
         readonly ServerImagekit imagekit = new ServerImagekit(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, URLENDPOINT);
 
         [Fact]
-        public void Authentication_Param_Check()
+        public void AuthenticationParamCheck()
         {
             string token = "your_token";
             string expire = "1582269249";
@@ -564,7 +666,20 @@ namespace Imagekit.UnitTests
         }
 
         [Fact]
-        public void SignUrl_Signature()
+        public void AuthenticationParamNullCheck()
+        {
+            string token = null;
+            string expire = "1582269249";
+            AuthParamResponse authParams = imagekit.GetAuthenticationParameters(token, expire);
+            Assert.NotEmpty(authParams.token);
+            Assert.IsType<String>(authParams.token);
+            Assert.Equal(expire, authParams.expire);
+            Assert.NotEmpty(authParams.signature);
+            Assert.IsType<String>(authParams.signature);
+        }
+
+        [Fact]
+        public void SignUrlSignature()
         {
             Dictionary<string, object> option = new Dictionary<string, object>();
             option.Add("privateKey", "private_key_test");
@@ -576,7 +691,7 @@ namespace Imagekit.UnitTests
         }
 
         [Fact]
-        public void SignUrl_Signature1()
+        public void SignUrlSignature1()
         {
             Dictionary<string, object> option = new Dictionary<string, object>();
             option.Add("privateKey", "private_key_test");
@@ -595,7 +710,7 @@ namespace Imagekit.UnitTests
         [InlineData("2d5ad3936d2e015b", "2d6ed293db36a4fb", 17)]
         [InlineData("a4a65595ac94518b", "7838873e791f8400", 37)]
         [InlineData("f06830ca9f1e3e90", "2222222222222222", 30)]
-        public void Phash_Distance(string val1, string val2, int expected)
+        public void PhashDistance(string val1, string val2, int expected)
         {
             Assert.Equal(expected, imagekit.PHashDistance(val1, val2));
         }

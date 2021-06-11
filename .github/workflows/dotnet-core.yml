@@ -56,7 +56,7 @@ jobs:
           file: ./Imagekit.UnitTests/coverage.opencover.xml
         
       - name: Pack 
-        run: dotnet pack --configuration Release --no-build --include-symbols --include-source --verbosity minimal --output ${{ env.NUGET_OUTPUT_PATH }}
+        run: dotnet pack --configuration Release --no-build --include-source --verbosity minimal --output ${{ env.NUGET_OUTPUT_PATH }}
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2

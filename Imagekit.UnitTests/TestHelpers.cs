@@ -40,7 +40,13 @@ namespace Imagekit.UnitTests
             .RuleFor(u => u.Url, (f, u) => f.Internet.UrlWithPath(fileExt: ".png"))
             .RuleFor(u => u.Thumbnail, (f, u) => f.Internet.UrlWithPath(fileExt: ".png"))
             .RuleFor(u => u.FileType, (f, u) => f.Random.ArrayElement(new string[] { "image", "non-image" }))
+            .RuleFor(u => u.Mime, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Size, (f, u) => f.Random.Int())
+            .RuleFor(u => u.Height, (f, u) => f.Random.Int())
+            .RuleFor(u => u.Width, (f, u) => f.Random.Int())
+            .RuleFor(u => u.HasAlpha, (f, u) => f.Random.Bool())
             .RuleFor(u => u.CreatedAt, (f, u) => f.Date.Past().ToString("YYYY-MM-DDTHH:mm:ss.sssZ"))
+            .RuleFor(u => u.UpdatedAt, (f, u) => f.Date.Past().ToString("YYYY-MM-DDTHH:mm:ss.sssZ"))
             .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.StatusCode, (f, u) => 200)
             .RuleFor(u => u.XIkRequestId, (f, u) => null)
@@ -52,6 +58,22 @@ namespace Imagekit.UnitTests
             .RuleFor(u => u.signature, (f, u) => f.Random.Utf16String());
 
         public static Faker<DeleteAPIResponse> DeleteAPIResponseFaker = new Faker<DeleteAPIResponse>()
+            .RuleFor(u => u.Exception, (f, u) => f.Random.Bool())
+            .RuleFor(u => u.StatusCode, (f, u) => 200)
+            .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.XIkRequestId, (f, u) => null);
+
+        public static Faker<PurgeAPIResponse> PurgeAPIResponseFaker = new Faker<PurgeAPIResponse>()
+            .RuleFor(u => u.RequestId, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Exception, (f, u) => f.Random.Bool())
+            .RuleFor(u => u.StatusCode, (f, u) => 200)
+            .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.Help, (f, u) => f.Random.Utf16String())
+            .RuleFor(u => u.XIkRequestId, (f, u) => null);
+
+        public static Faker<PurgeCacheStatusResponse> PurgeCacheStatusResponseFaker = new Faker<PurgeCacheStatusResponse>()
+            .RuleFor(u => u.Status, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.Exception, (f, u) => f.Random.Bool())
             .RuleFor(u => u.StatusCode, (f, u) => 200)
             .RuleFor(u => u.Message, (f, u) => f.Random.Utf16String())

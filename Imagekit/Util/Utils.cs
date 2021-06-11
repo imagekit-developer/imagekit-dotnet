@@ -15,8 +15,8 @@ namespace Imagekit.Util
 {
     public static class Utils
     {
-        private static HttpClient httpClient = new HttpClient();
-        public const string UserAgent = "ImagekitDotNet/" + Constants.SDK_VERSION; 
+        
+        public const string UserAgent = "ImagekitDotNet/" + Constants.SDK_VERSION;
 
         /// <summary>
         /// For testing
@@ -26,6 +26,15 @@ namespace Imagekit.Util
         {
             httpClient = client;
         }
+
+        internal static HttpClient SetHttpClient()
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.UserAgent.TryParseAdd(UserAgent);
+            return client;
+        }
+
+        private static HttpClient httpClient = SetHttpClient();
 
         public static long ToUnixTime(DateTime dateTime)
         {
@@ -75,8 +84,6 @@ namespace Imagekit.Util
                 authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
                 httpClient.DefaultRequestHeaders.Authorization
                          = new AuthenticationHeaderValue("Basic", authInfo);
-                httpClient.DefaultRequestHeaders.UserAgent.Clear();
-                httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
                 if (method == "DELETE")
                 {
                     return await httpClient.DeleteAsync(uri).ConfigureAwait(false);
@@ -114,8 +121,6 @@ namespace Imagekit.Util
                 authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
                 httpClient.DefaultRequestHeaders.Authorization
                          = new AuthenticationHeaderValue("Basic", authInfo);
-                httpClient.DefaultRequestHeaders.UserAgent.Clear();
-                httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
                 if (method == "PATCH")
                 {
                     var httpMethod = new HttpMethod("PATCH");
@@ -163,8 +168,6 @@ namespace Imagekit.Util
                     httpClient.DefaultRequestHeaders.Authorization
                             = new AuthenticationHeaderValue("Basic", authInfo);
                 }
-                httpClient.DefaultRequestHeaders.UserAgent.Clear();
-                httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
                 return await httpClient.PostAsync(uri, multiForm).ConfigureAwait(false);
 
             }
