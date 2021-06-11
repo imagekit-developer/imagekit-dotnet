@@ -52,7 +52,7 @@ ServerImagekit imagekit = new ServerImagekit(publicKey, privateKey, urlEndPoint,
 **Note**: You can get the `apiKey`, `apiSecret`, and ImagekitId from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
 
 ## Demo application
-The fastest way to get started is by running the demo application in [Sample](/Sample) folder as per [README.md](/sample/README.md).
+The fastest way to get started is by running the demo application in [Sample](/Imagekit/Sample) folder.
 
 
 ## Usage
