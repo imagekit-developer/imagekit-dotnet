@@ -61,7 +61,7 @@ class Program
         string path = "/default-image.jpg";
         Transformation trans = new Transformation().Width(400).Height(300);
         string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
-        Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {}", imageURL);
+        Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {0}", imageURL);
 
 
         /// Generating Signed URL
@@ -75,7 +75,7 @@ class Program
             .ExpireSeconds(600)
             .Signed()
             .Generate();
-            Console.WriteLine("Signed Url for first image transformed with height: 300, width: 400: - {}", signedUrl);
+            Console.WriteLine("Signed Url for first image transformed with height: 300, width: 400: - {0}", signedUrl);
         }
         catch (Exception ex)
         {
@@ -98,7 +98,7 @@ class Program
         /// pHash Distance
         Console.WriteLine(MetadataResp1.PHash, MetadataResp2.PHash);
         var pHashDistance = imagekit.PHashDistance(MetadataResp1.PHash, MetadataResp2.PHash);
-        Console.WriteLine("pHash Distance: {}", pHashDistance);
+        Console.WriteLine("pHash Distance: {0}", pHashDistance);
 
 
         /// Update file details
@@ -109,10 +109,10 @@ class Program
 
         /// Purge cache & purge cache status
         var purgeCacheResponse = imagekit.PurgeCache(imgURL1);
-        Console.WriteLine("Cache purge request id: {}", purgeCacheResponse.RequestId);
+        Console.WriteLine("Cache purge request id: {0}", purgeCacheResponse.RequestId);
 
         var purgeCacheStatus = imagekit.GetPurgeCacheStatus(purgeCacheResponse.RequestId);
-        Console.WriteLine("Cache purge status: {}", JToken.FromObject(purgeCacheStatus));
+        Console.WriteLine("Cache purge status: {0}", JToken.FromObject(purgeCacheStatus));
 
 
         /// Delete File
@@ -122,7 +122,7 @@ class Program
 
         /// Get Authentication Token
         var authenticationParameters = imagekit.GetAuthenticationParameters("your_token");
-        Console.WriteLine("Authentication Parameters: {}", JToken.FromObject(authenticationParameters).ToString());
+        Console.WriteLine("Authentication Parameters: {0}", JToken.FromObject(authenticationParameters).ToString());
 
 
     }

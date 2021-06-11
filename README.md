@@ -267,6 +267,15 @@ List<ListAPIResponse> resp = await imagekit
     .ListFilesAsync();
 ```
 
+```
+List<ListAPIResponse> resp = await imagekit
+    .Skip(0)
+    .Limit(3)
+    .Sort("DESC_SIZE")
+    .SearchQuery("tags IN [\"tag1\"]")
+    .ListFilesAsync();
+```
+
 **2. Get File Details**
 
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).
