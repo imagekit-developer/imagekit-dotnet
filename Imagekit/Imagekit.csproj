@@ -5,7 +5,7 @@
     <RootNamespace>Imagekit</RootNamespace>
     <AssemblyName>Imagekit</AssemblyName>
     <TargetFrameworks>netstandard2.1;netstandard2.0;net45</TargetFrameworks>
-    <PackageVersion>3.1.5</PackageVersion>
+    <PackageVersion>3.1.6</PackageVersion>
     <Copyright>© ImageKit Private Limited 2019</Copyright>
     <DevelopmentDependency>false</DevelopmentDependency>
     <PackageIconUrl>https://imagekit.io/favicon.ico</PackageIconUrl>
@@ -17,10 +17,10 @@
     <Description>Library to Integrate Imagekit.io Service.</Description>
     <PackageId>Imagekit</PackageId>
     <PackOnBuild>true</PackOnBuild>
-    <ReleaseVersion>3.1.5</ReleaseVersion>
+    <ReleaseVersion>3.1.6</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <PackageLicenseUrl>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicenseUrl>
-    <Version>3.1.5</Version>
+    <Version>3.1.6</Version>
     <RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReleaseNotes>-Fixes</PackageReleaseNotes>
