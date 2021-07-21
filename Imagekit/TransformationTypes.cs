@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Imagekit
 {
     public partial class Transformation
@@ -32,11 +34,11 @@ namespace Imagekit
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation X(object value) { return Add("x", value); }
+        public Transformation X(int value) { return Add("x", ConvertCoordinateParam(value)); }
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation Y(object value) { return Add("y", value); }
+        public Transformation Y(int value) { return Add("y", ConvertCoordinateParam(value)); }
 
         /// <summary></summary>
         /// <param name="value"></param>
@@ -80,11 +82,11 @@ namespace Imagekit
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation OverlayX(int value) { return Add("ox", value); }
+        public Transformation OverlayX(int value) { return Add("ox", ConvertCoordinateParam(value)); }
 
         /// <summary></summary>
         /// <param name="value"></param>
-        public Transformation OverlayY(int value) { return Add("oy", value); }
+        public Transformation OverlayY(int value) { return Add("oy", ConvertCoordinateParam(value)); }
 
         /// <summary></summary>
         /// <param name="value"></param>
@@ -240,7 +242,11 @@ namespace Imagekit
         /// <param name="value">A raw transformation string.</param>
         public Transformation RawTransformation(string value) { return Add(value,""); }
 
-
-
+        private string ConvertCoordinateParam(int paramValue)
+        {
+            return paramValue < 0 
+                ? $"N{Math.Abs(paramValue)}" 
+                : $"{paramValue}";
+        }
     }
 }
