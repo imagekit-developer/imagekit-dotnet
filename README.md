@@ -244,9 +244,7 @@ The `upload()` method requires at least the `file` and the `fileName` parameter 
 
 Sample usage
 ```cs
-ImagekitResponse resp = await imagekit
-    .FileName("my_file_name.jpg")
-    .UploadAsync(<fullPath|url|base_64|binary>);
+ResponseMetaData resp = await imagekit .UploadAsync(<fullPath|url|base_64|binary>,"my_file_name.jpg");
 ```
 
 **Note**: Upload argument can be a local fullPath or URL or byte array (byte[]) or Base64String of a file.
@@ -261,74 +259,351 @@ The SDK provides a simple interface for all the [media APIs mentioned here](http
 Accepts an object specifying the parameters to be used to list and search files. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
 
 ```cs
-List<ListAPIResponse> resp = await imagekit
-    .Skip(0)
-    .Limit(10)
-    .ListFilesAsync();
+ResponseMetaData resp = await imagekit.GetFileListRequestAsync();
 ```
 
-You can also use advanced [searching](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries) and sorting using `SearchQuery` and `Sort` function.
 
-```cs
-List<ListAPIResponse> resp = await imagekit
-    .Skip(0)
-    .Limit(3)
-    .Sort("DESC_SIZE")
-    .SearchQuery("tags IN [\"tag1\"]")
-    .ListFilesAsync();
-```
+
 
 **2. Get File Details**
 
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).
 
 ```cs
-ListAPIResponse resp = await imagekit.GetFileDetailsAsync(fileId);
+Task<ResponseMetaData> resp = await imagekit.GetFileDetailsAsync(fileId);
 ```
 
-**3. Get File Metadata**
+**3. Get File Versions**
 
-Accepts the `fileId` or `URI` and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files).
+Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-versions).
 
-```cs
-MetadataResponse resp = await imagekit.GetFileMetadataAsync(<fileId|URI>);
+```.net
+String fileId = "62a04834c10d49825c6de9e8";
+ResponseMetaData resultFileVersions = ImageKit.getFileVersions(fileId);
+
 ```
 
-**4. Update File Details**
+**4. Get File Version details**
 
-Update parameters associated with the File as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/update-file-details).
+Accepts the file ID and version ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-version-details).
 
-```cs
-string[] tags = { "one", "two" };
-ListAPIResponse resp = await imagekit
-    .Tags(tags)
-    .CustomCoordinates("10,10,100,100")
-    .UpdateFileDetailsAsync(fileId);
+```java
+String fileId = "62a04834c10d49825c6de9e8";
+String versionId = "62a04834c10d49825c6de9e8";
+ResponseMetaData resultFileVersionDetails = ImageKit.getFileVersionDetails(fileId, versionId);
+
 ```
 
-**5. Delete File**
+**5. Update File Details**
 
-Delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file). The method accepts the file ID of the File that has to be deleted.
+Accepts an object of class `FileUpdateRequest` specifying the parameters to be used to update file details. All parameters specified in the [documentation here] (https://docs.imagekit.io/api-reference/media-api/update-file-details) can be passed via their setter functions to get the results.
 
-```cs
-string resp = await imagekit.DeleteFileAsync(fileId);
+```java
+List<String> tags = new ArrayList<>();
+tags.add("Software");
+tags.add("Developer");
+tags.add("Engineer");
+
+List<String> aiTags = new ArrayList<>();
+aiTags.add("Plant");
+FileUpdateRequest fileUpdateRequest = new FileUpdateRequest("fileId");
+fileUpdateRequest.Tags(tags);
+fileUpdateRequest.AITags=aiTags;
+ResponseMetaData result=ImageKit.updateFileDetail(fileUpdateRequest);
+ 
 ```
 
-**6. Purge Cache**
+**6. Add tags**
 
-Programmatically issue a cache clear request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache). Accepts the full URL of the File for which the cache has to be cleared.
+Accepts an object of class `TagsRequest` specifying the parameters to be used to add tags. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/add-tags-bulk) can be passed via their setter functions to get the results.
 
-```cs
-PurgeAPIResponse resp = await imagekit.PurgeCacheAsync("full_url");
+```java
+List<String> fileIds = new ArrayList<>();
+fileIds.add("FileId");
+List<String> tags = new ArrayList<>();
+tags.add("tag-to-add-1");
+tags.add("tag-to-add-2");
+ResponseMetaData resultTags=ImageKit.addTags(new TagsRequest(fileIds, tags));
+
 ```
 
-**7. Purge Cache Status**
+**7. Remove tags**
 
-Get the purge cache request status using the request ID returned when a purge cache request gets submitted as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache-status)
+Accepts an object of class `TagsRequest` specifying the parameters to be used to remove tags. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk) can be passed via their setter functions to get the results.
 
-```cs
-PurgeCacheStatusResponse resp = await imagekit.GetPurgeCacheStatusAsync("cache_request_id");
+```java
+List<String> fileIds = new ArrayList<>();
+fileIds.add("FileId");
+List<String> tags = new ArrayList<>();
+tags.add("tag-to-remove-1");
+tags.add("tag-to-remove-2");
+ResponseMetaData resultTags=ImageKit.removeTags(new TagsRequest(fileIds, tags));
+
 ```
+
+**8. Remove AI tags**
+
+Accepts an object of class `AITagsRequest` specifying the parameters to be used to remove AI tags. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/remove-aitags-bulk) can be passed via their setter functions to get the results.
+
+```java
+List<String> fileIds = new ArrayList<>();
+fileIds.add("629f3de17eb0fe4053615450");
+List<String> aiTags = new ArrayList<>();
+aiTags.add("Rectangle");
+AITagsRequest aiTagsRequest =new AITagsRequest();
+aiTagsRequest.FileIds=fileIds;
+aiTagsRequest.AITags=aiTags;
+ResponseMetaData resultTags = ImageKit.getInstance().removeAITags(aiTagsRequest);
+
+```
+
+**9. Delete File**
+
+Accepts the file ID and delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file).
+
+```java
+String fileId="your-file-id";
+ResponseMetaData result=ImageKit.deleteFile(fileId);
+
+```
+
+**10. Delete FileVersion**
+
+Accepts an object of class `DeleteFileVersionRequest` specifying the parameters to be used to delete file version. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file-version) can be passed via their setter functions to get the results.
+
+```java
+DeleteFileVersionRequest deleteFileVersionRequest = new DeleteFileVersionRequest();
+deleteFileVersionRequest.FileId="629d95278482ba129fd17c97";
+deleteFileVersionRequest.VersionId="629d953ebd24e8ceca911a66";
+ResponseMetaData resultNoContent = ImageKit.deleteFileVersion(deleteFileVersionRequest);
+
+```
+
+**11. Delete files (bulk)**
+
+Accepts the file IDs to delete files as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-files-bulk).
+
+```java
+List<String> fileIds = new ArrayList<>();
+fileIds.add("your-file-id");
+fileIds.add("your-file-id");
+fileIds.add("your-file-id");
+
+ResponseMetaData result=ImageKit.bulkDeleteFiles(fileIds);
+
+```
+
+**12. Copy file**
+
+Accepts an object of class `CopyFileRequest` specifying the parameters to be used to copy file. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/copy-file) can be passed via their setter functions to get the results.
+
+```java
+CopyFileRequest copyFileRequest = new CopyFileRequest();
+copyFileRequest.SourceFilePath="/w2_image.png";
+copyFileRequest.DestinationPath="/Gallery/";
+copyFileRequest.IncludeFileVersions=true;
+ResultNoContent resultNoContent = ImageKit.copyFile(copyFileRequest);
+
+```
+
+**13. Move file**
+
+Accepts an object of class `MoveFileRequest` specifying the parameters to be used to move file. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/move-file) can be passed via their setter functions to get the results.
+
+```java
+MoveFileRequest moveFileRequest = new MoveFileRequest();
+moveFileRequest.SourceFilePath="/Gallery/w2_image.png";
+moveFileRequest.DestinationPath="/";
+ResponseMetaData resultNoContent = ImageKit.moveFile(moveFileRequest);
+
+```
+
+**14. Rename file**
+
+Accepts an object of class `RenameFileRequest` specifying the parameters to be used to rename file. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/rename-file) can be passed via their setter functions to get the results.
+
+```java
+RenameFileRequest renameFileRequest = new RenameFileRequest();
+renameFileRequest.FilePath="/w2_image.png";
+renameFileRequest.NewFileName="w2_image_s.png";
+renameFileRequest.setPurgeCache=true;
+ResponseMetaData resultRenameFile = ImageKit.renameFile(renameFileRequest);
+ 
+```
+
+**15. Restore file Version**
+
+Accepts the fileId and versionId to restore file version as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/restore-file-version).
+
+```java
+ResponseMetaData result = ImageKit.restoreFileVersion("fileId", "versionId");
+
+```
+
+**16. Create Folder**
+
+Accepts an object of class `CreateFolderRequest` specifying the parameters to be used to create folder. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/create-folder) can be passed via their setter functions to get the results.
+
+```java
+CreateFolderRequest createFolderRequest = new CreateFolderRequest();
+createFolderRequest.FolderName="test1";
+createFolderRequest.ParentFolderPath="/";
+ResponseMetaData resultEmptyBlock = ImageKit.createFolder(createFolderRequest);
+
+```
+
+**17. Delete Folder**
+
+Accepts an object of class `DeleteFolderRequest` specifying the parameters to be used to delete folder. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/delete-folder) can be passed via their setter functions to get the results.
+
+```java
+DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest();
+deleteFolderRequest.FolderPath="/test1";
+ResultNoContent resultNoContent = ImageKit.deleteFolder(deleteFolderRequest);
+
+```
+
+**18. Copy Folder**
+
+Accepts an object of class `CopyFolderRequest` specifying the parameters to be used to copy folder. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/copy-folder) can be passed via their setter functions to get the results.
+
+```java
+CopyFolderRequest copyFolderRequest = new CopyFolderRequest();
+copyFolderRequest.SourceFolderPath="/Gallery/test";
+copyFolderRequest.DestinationPath="/";
+ResponseMetaData resultOfFolderActions = ImageKit.copyFolder(copyFolderRequest);
+
+```
+
+**19. Move Folder**
+
+Accepts an object of class `MoveFolderRequest` specifying the parameters to be used to move folder. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/move-folder) can be passed via their setter functions to get the results.
+
+```java
+MoveFolderRequest moveFolderRequest = new MoveFolderRequest();
+moveFolderRequest.SourceFolderPath="/Gallery/test";
+moveFolderRequest.DestinationPath="/";
+ResponseMetaData resultOfFolderActions = ImageKit.moveFolder(moveFolderRequest);
+
+```
+
+**20. Get Bulk Job Status**
+
+Accepts the jobId to get bulk job status as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/copy-move-folder-status).
+
+```java
+String jobId = "629f44ac7eb0fe8173622d4b";
+ResponseMetaData resultBulkJobStatus = ImageKit.getBulkJobStatus(jobId);
+
+```
+
+**21. Purge Cache**
+
+Accepts a full URL of the file for which the cache has to be cleared as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache).
+
+```java
+ResponseMetaData result=ImageKit.purgeCache("https://ik.imagekit.io/imagekit-id/default-image.jpg");
+
+```
+
+**22. Purge Cache Status**
+
+Accepts a request ID and fetch purge cache status as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache-status)
+
+```java
+String requestId="cache-requestId";
+ResponseMetaData result=ImageKit.getPurgeCacheStatus(requestId);
+
+```
+
+**23. Get File Metadata**
+
+Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
+
+```java
+String fileId="your-file-id";
+ResponseMetaData result=ImageKit.getFileMetadata(fileId);
+
+```
+
+Another way to get metadata from a remote file URL as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-from-remote-url). This file should be accessible over the ImageKit.io URL-endpoint.
+```java
+String url="Remote File URL";
+ResponseMetaData result=ImageKit.getRemoteFileMetadata(url);
+
+
+**24. Create CustomMetaDataFields**
+
+Accepts an object of class `CustomMetaDataFieldCreateRequest` specifying the parameters to be used to create cusomMetaDataFields. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field) can be passed as-is with the correct values to get the results.
+
+Check for the [Allowed Values In The Schema](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field#allowed-values-in-the-schema-object).
+
+#### Examples:
+
+```java
+CustomMetaDataFieldSchemaObject schemaObject = new CustomMetaDataFieldSchemaObject();
+schemaObject.Type="Number";
+schemaObject.MinValue=10;
+schemaObject.MaxValue=200;
+CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest = new CustomMetaDataFieldCreateRequest();
+customMetaDataFieldCreateRequest.Name="Name";
+customMetaDataFieldCreateRequest.Label="Label";
+customMetaDataFieldCreateRequest.Schema=schemaObject;
+ResponseMetaData ResponseMetaData=ImageKit.createCustomMetaDataFields(customMetaDataFieldCreateRequest);
+```
+
+- Date type Exmample:
+
+```java
+CustomMetaDataFieldSchemaObject customMetaDataFieldSchemaObject = new CustomMetaDataFieldSchemaObject();
+customMetaDataFieldSchemaObject.setType="Date";
+ // required if isValueRequired set to true
+customMetaDataFieldSchemaObject.MinValue="2022-11-30T10:11:10+00:00";
+customMetaDataFieldSchemaObject.MaxValue="2022-12-30T10:11:10+00:00";
+
+CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest = new CustomMetaDataFieldCreateRequest();
+customMetaDataFieldCreateRequest.Name="Name";
+customMetaDataFieldCreateRequest.Label="Label";
+customMetaDataFieldCreateRequest.Schema=customMetaDataFieldSchemaObject;
+
+ResponseMetaData resultCustomMetaDataField = ImageKit.getInstance()
+       .createCustomMetaDataFields(customMetaDataFieldCreateRequest);
+```
+
+
+**25. Get CustomMetaDataFields**
+
+Accepts the includeDeleted boolean and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
+
+```java
+ResponseMetaData resultCustomMetaDataFieldList=ImageKit.getCustomMetaDataFields(false);
+ 
+```
+
+**26. Edit CustomMetaDataFields**
+
+Accepts an ID of customMetaDataField and object of class `CustomMetaDataFieldUpdateRequest` specifying the parameters to be used to edit cusomMetaDataFields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field).
+
+```java
+CustomMetaDataFieldSchemaObject schemaObject = new CustomMetaDataFieldSchemaObject();
+schemaObject.setMinValue(10);
+schemaObject.setMaxValue(200);
+
+CustomMetaDataFieldUpdateRequest customMetaDataFieldUpdateRequest = new CustomMetaDataFieldUpdateRequest();
+customMetaDataFieldUpdateRequest.Id="id";
+customMetaDataFieldUpdateRequest.Label="label";
+customMetaDataFieldUpdateRequest.Schema=schemaObject;
+ResponseMetaData resultCustomMetaDataField=ImageKit.updateCustomMetaDataFields(customMetaDataFieldUpdateRequest);
+
+```
+
+**27. Delete CustomMetaDataFields**
+
+Accepts the id to delete the customMetaDataFields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field).
+
+```java
+ResponseMetaData resultNoContent=ImageKit.deleteCustomMetaDataField("id");
+
 
 ## Utility functions
 
