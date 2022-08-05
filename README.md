@@ -52,7 +52,7 @@ ImageKitClient imagekit = new ImageKitClient(publicKey, privateKey, urlEndPoint)
 **Note**: You can get the `apiKey`, `apiSecret`, and ImagekitId from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
 
 ## Demo application
-The fastest way to get started is by running the demo application in the [ImageKitSample](/Imagekit/ImageKitSample) folder.
+The fastest way to get started is by running the demo application in the [ImageKitSample](/ImageKitSample) folder.
 
 
 ## Usage
