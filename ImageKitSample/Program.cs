@@ -128,14 +128,13 @@ namespace ImageKitSample
         {
             string imagePath = @"C:\test.jpg";
             byte[] imageArray = System.IO.File.ReadAllBytes(imagePath);
-            string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+            // base64ImageRepresentation = Convert.ToBase64String(imageArray);
             return imageArray;
         }
 
         private static Uri GetBase64URI(string imgPath)
         {
             var uri = new System.Uri(imgPath);
-
             return uri;
         }
     }

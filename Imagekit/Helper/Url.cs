@@ -176,15 +176,6 @@ public class Url
     {
         var endPoint = this.RemoveTrailingSlash((string)this.Options["urlEndpoint"]);
         string str = Regex.Replace(url, endPoint + "/", string.Empty) + expiryTimestamp;
-        try
-        {
-            var privateKey = (string)this.Options["privateKey"];
-        }
-        catch
-        {
-            throw new ArgumentNullException(ErrorMessages.PrivateKeyMissing);
-        }
-
         return Utils.CalculateSignature(str, Encoding.ASCII.GetBytes((string)this.Options["privateKey"]));
     }
 }

@@ -8,8 +8,8 @@
     {
         public static string IsValidateUpload(FileCreateRequest obj)
         {
-            bool isValidateUpload = false;
-            string flag = string.Empty;
+            
+            string flag = ErrorMessages.InvalidFileValue;
             if (obj == null)
             {
                 flag = ErrorMessages.InvalidFileUploadObjValue;
@@ -24,28 +24,21 @@
 
             if (!string.IsNullOrEmpty(obj.Base64))
             {
-                isValidateUpload = true;
-
-                return flag = string.Empty;
+                 flag = string.Empty;
+                 return flag;
             }
 
             if (obj.Bytes != null)
             {
-                isValidateUpload = true;
-                return flag = string.Empty;
+                flag = string.Empty;
+                return flag;
             }
 
             if (obj.Url != null)
             {
-                isValidateUpload = true;
-                return flag = string.Empty;
+                flag = string.Empty;
+                return flag;
             }
-
-            if (!isValidateUpload)
-            {
-                flag = ErrorMessages.InvalidFileValue;
-            }
-
             return flag;
         }
 

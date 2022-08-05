@@ -58,7 +58,6 @@
         public static string GetBase64Uri(string imagePath)
         {
             var uri = new System.Uri(imagePath);
-
             byte[] imageArray = System.IO.File.ReadAllBytes(uri.AbsolutePath);
             string base64ImageRepresentation = Convert.ToBase64String(imageArray);
             return base64ImageRepresentation;
