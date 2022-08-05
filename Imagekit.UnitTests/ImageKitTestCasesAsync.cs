@@ -14,7 +14,9 @@ namespace Imagekit.UnitTests.FileVersion
     public class ImageKitTestCasesNonAsync
     {
         private const string GOOD_PUBLICKEY = "abc";
+        private const string GOOD_PRIVATEKEY = "abc";
         private const string GOOD_URLENDPOINT = "https://dasdsad.dad.io/";
+
 
         [Fact]
         public void Missing_Key_ExceptionNonAsync()
@@ -34,7 +36,7 @@ namespace Imagekit.UnitTests.FileVersion
         [Fact]
         public void Constructor_TransformationPosition_DefaultNonAsync()
         {
-            var imagekit = new ImageKitClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT);
+            var imagekit = new ImageKitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
             Assert.NotNull(imagekit);
         }
 

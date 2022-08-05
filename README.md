@@ -46,7 +46,7 @@ Add this reference where you want to use imagekit.io services:
 ```cs
 using Imagekit;
 
-ServerImagekit imagekit = new ServerImagekit(publicKey, privateKey, urlEndPoint, "path");
+ImageKitClient imagekit = new ImageKitClient(publicKey, privateKey, urlEndPoint);
 ```
 
 **Note**: You can get the `apiKey`, `apiSecret`, and ImagekitId from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
@@ -531,8 +531,8 @@ Another way to get metadata from a remote file URL as per the [API documentation
 String url="Remote File URL";
 ResponseMetaData result=ImageKit.getRemoteFileMetadata(url);
 
-
-**24. Create CustomMetaDataFields**
+```
+**24. Create Custom MetaData Fields**
 
 Accepts an object of class `CustomMetaDataFieldCreateRequest` specifying the parameters to be used to create cusomMetaDataFields. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field) can be passed as-is with the correct values to get the results.
 
@@ -580,7 +580,7 @@ ResponseMetaData resultCustomMetaDataFieldList=ImageKit.getCustomMetaDataFields(
  
 ```
 
-**26. Edit CustomMetaDataFields**
+**26. Edit Custom MetaData Fields**
 
 Accepts an ID of customMetaDataField and object of class `CustomMetaDataFieldUpdateRequest` specifying the parameters to be used to edit cusomMetaDataFields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field).
 
@@ -597,13 +597,13 @@ ResponseMetaData resultCustomMetaDataField=ImageKit.updateCustomMetaDataFields(c
 
 ```
 
-**27. Delete CustomMetaDataFields**
+**27. Delete Custom MetaData Fields**
 
 Accepts the id to delete the customMetaDataFields as per the [API documentation here](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field).
 
 ```java
 ResponseMetaData resultNoContent=ImageKit.deleteCustomMetaDataField("id");
-
+```
 
 ## Utility functions
 

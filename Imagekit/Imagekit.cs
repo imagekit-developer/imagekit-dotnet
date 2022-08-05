@@ -17,11 +17,12 @@ namespace Imagekit.Sdk
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageKit"/> class.
         /// </summary>
-        public ImageKitClient(string privateKey, string apiBaseUrl)
+        public ImageKitClient(string publicKey ,string privateKey, string apiBaseUrl)
             : base(privateKey, apiBaseUrl, "path")
         {
             this.restClient = new RestClient(privateKey, apiBaseUrl, new System.Net.Http.HttpClient());
             this.Add("privateKey", privateKey);
+            this.Add("publicKey", publicKey);
         }
 
         public ResponseMetaData Upload(FileCreateRequest fileCreateRequest)

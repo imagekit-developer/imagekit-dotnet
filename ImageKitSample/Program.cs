@@ -9,7 +9,7 @@ namespace ImageKitSample
         {
             // var token=  EncodeTo64("private_FguYxKgB8/Jm9Xs5ZyyLfwIBSFU=");
             //1  
-            ImageKitClient ImageKit = new ImageKitClient("private_nkq6x30GzWj+MbQWG6cIxh20WZE=",
+            ImageKitClient ImageKit = new ImageKitClient("Test","private_nkq6x30GzWj+MbQWG6cIxh20WZE=",
                 "https://api.imagekit.io/");
 
             //ImageKit.Configuration.SetPrivateKey("private_FguYxKgB8/Jm9Xs5ZyyLfwIBSFU=");            
