@@ -4,7 +4,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Imagekit</RootNamespace>
     <AssemblyName>Imagekit</AssemblyName>
-	  <TargetFrameworks>netcoreapp3.1;</TargetFrameworks>
+	  <TargetFrameworks>net5.0;net6.0;netcoreapp3.1;netstandard2.0;net461</TargetFrameworks>
     <PackageVersion>3.1.6</PackageVersion>
     <Copyright>© ImageKit Private Limited 2019</Copyright>
     <DevelopmentDependency>false</DevelopmentDependency>
