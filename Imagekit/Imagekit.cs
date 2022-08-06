@@ -14,14 +14,12 @@ namespace Imagekit.Sdk
 
         public RestClient RestClient { get => this.restClient; set => this.restClient = value; }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ImageKit"/> class.
-        /// </summary>
-        public ImageKitClient(string privateKey, string urlEndPoint)
+        public ImageKitClient(string publicKey, string privateKey, string urlEndPoint)
             : base(privateKey, urlEndPoint, "path")
         {
             this.restClient = new RestClient(privateKey, urlEndPoint, new System.Net.Http.HttpClient());
             this.Add("privateKey", privateKey);
+            this.Add("publicKey", publicKey);
         }
 
         public ResponseMetaData Upload(FileCreateRequest fileCreateRequest)
