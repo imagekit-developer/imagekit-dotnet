@@ -80,7 +80,7 @@ namespace Imagekit.UnitTests.Upload
         {
             FileCreateRequest ob = new FileCreateRequest
             {
-                Url = GetURL(@"C:\test.jpg"),
+                Url = GetURL(System.IO.Path.GetFullPath(@"Sample\test.jpg")),
                 FileName = Guid.NewGuid().ToString()
             };
 

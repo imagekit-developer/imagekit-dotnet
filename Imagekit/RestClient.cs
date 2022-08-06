@@ -18,24 +18,24 @@ namespace Imagekit.Sdk
 
     public class RestClient
     {
-        private readonly string apiBaseUrl = string.Empty;
-        private readonly string uploadBaseUrl = string.Empty;
+        private readonly string mediaAPIBaseUrl = UrlHandler.MediaAPIBaseUrl;
+        private readonly string uploadAPIBaseUrl = UrlHandler.UploadAPIBaseUrl;
         private readonly HttpClient client;
 
-        public RestClient(string privateKey, string apiBaseUrl, HttpClient httpClient)
+        public RestClient(string privateKey, string mediaAPIBaseUrl, HttpClient httpClient)
         {
             if (string.IsNullOrEmpty(privateKey))
             {
                 throw new Exception(ErrorMessages.InvalidKey);
             }
 
-            if (string.IsNullOrEmpty(apiBaseUrl))
+            if (string.IsNullOrEmpty(mediaAPIBaseUrl))
             {
                 throw new Exception(ErrorMessages.InvalidApiUrl);
             }
 
-            this.apiBaseUrl = apiBaseUrl;
-            this.uploadBaseUrl = apiBaseUrl;
+            this.mediaAPIBaseUrl = mediaAPIBaseUrl;
+            this.uploadAPIBaseUrl = mediaAPIBaseUrl;
             this.client = httpClient;
             this.client.DefaultRequestHeaders.Add("Authorization", "Basic " + Utils.EncodeTo64(privateKey));
         }
@@ -44,7 +44,7 @@ namespace Imagekit.Sdk
         {
             try
             {
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetFileRequest);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest);
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
 
@@ -64,7 +64,7 @@ namespace Imagekit.Sdk
         {
             try
             {
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetFileRequest);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest);
 
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -90,7 +90,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.InvalidUrlValue);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetPurge);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetPurge);
 
                 object data = new
                 {
@@ -125,7 +125,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.InvalidUrlValue);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetPurge);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetPurge);
                 object data = new
                 {
                     url = path,
@@ -159,7 +159,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.InvalidPurgeUrl);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetPurgeStatus, purgeRequestId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetPurgeStatus, purgeRequestId);
 
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -185,7 +185,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.InvalidPurgeUrl);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetPurgeStatus, purgeRequestId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetPurgeStatus, purgeRequestId);
 
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -211,7 +211,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.FileIdMissing);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetFileDetails, fileId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileDetails, fileId);
 
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -243,7 +243,7 @@ namespace Imagekit.Sdk
                 }
 
                 Dictionary<string, string> headers = Utils.GetHeaders();
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetFileDetails, fileId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileDetails, fileId);
 
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -270,7 +270,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = this.uploadBaseUrl + UrlHandler.UploadFile;
+                string url = this.uploadAPIBaseUrl + UrlHandler.UploadFile;
                 Dictionary<string, string> headers = Utils.GetHeaders();
                 var formdata = new MultipartFormDataContent
                 {
@@ -319,7 +319,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = this.uploadBaseUrl + UrlHandler.UploadFile;
+                string url = this.uploadAPIBaseUrl + UrlHandler.UploadFile;
                 Dictionary<string, string> headers = Utils.GetHeaders();
                 var formdata = new MultipartFormDataContent
                 {
@@ -364,7 +364,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.FileIdMissing);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.DeleteFile, fileId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteFile, fileId);
 
                 HttpResponseMessage response = this.client.DeleteAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -395,7 +395,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.FileIdMissing);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.DeleteFile, fileId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteFile, fileId);
 
                 HttpResponseMessage response = await this.client.DeleteAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -421,7 +421,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.ListFilesInputMissing);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.BulkDelete);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.BulkDelete);
 
                 object data = new
                 {
@@ -461,7 +461,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.ListFilesInputMissing);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.BulkDelete);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.BulkDelete);
 
                 object data = new
                 {
@@ -496,7 +496,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.FileIdMissing);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetMetaData, fileId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetMetaData, fileId);
 
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -522,7 +522,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.FileIdMissing);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetMetaData, fileId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetMetaData, fileId);
 
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -548,7 +548,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.InvalidUrlValue);
                 }
 
-                string apIurl = string.Format(this.apiBaseUrl + UrlHandler.GetRemoteData, url);
+                string apIurl = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetRemoteData, url);
 
                 HttpResponseMessage response = this.client.GetAsync(apIurl).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -574,7 +574,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.InvalidUrlValue);
                 }
 
-                string apIurl = string.Format(this.apiBaseUrl + UrlHandler.GetRemoteData, url);
+                string apIurl = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetRemoteData, url);
 
                 HttpResponseMessage response = await this.client.GetAsync(apIurl);
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -605,11 +605,11 @@ namespace Imagekit.Sdk
 
                 if (action == "addTags")
                 {
-                    url = this.uploadBaseUrl + UrlHandler.AddTags;
+                    url = this.uploadAPIBaseUrl + UrlHandler.AddTags;
                 }
                 else if (action == "removeTags")
                 {
-                    url = this.uploadBaseUrl + UrlHandler.RemoveTags;
+                    url = this.uploadAPIBaseUrl + UrlHandler.RemoveTags;
                 }
 
                 var content = JsonConvert.SerializeObject(tagsRequest);
@@ -643,11 +643,11 @@ namespace Imagekit.Sdk
 
                 if (action == "addTags")
                 {
-                    url = this.uploadBaseUrl + UrlHandler.AddTags;
+                    url = this.uploadAPIBaseUrl + UrlHandler.AddTags;
                 }
                 else if (action == "removeTags")
                 {
-                    url = this.uploadBaseUrl + UrlHandler.RemoveTags;
+                    url = this.uploadAPIBaseUrl + UrlHandler.RemoveTags;
                 }
 
                 var content = JsonConvert.SerializeObject(tagsRequest);
@@ -680,7 +680,7 @@ namespace Imagekit.Sdk
                 // removeAITags
                 string url = string.Empty;
 
-                url = this.uploadBaseUrl + UrlHandler.RemoveAiTags;
+                url = this.uploadAPIBaseUrl + UrlHandler.RemoveAiTags;
 
                 var content = JsonConvert.SerializeObject(aiTagsRequest);
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
@@ -712,7 +712,7 @@ namespace Imagekit.Sdk
                 // removeAITags
                 string url = string.Empty;
 
-                url = this.uploadBaseUrl + UrlHandler.RemoveAiTags;
+                url = this.uploadAPIBaseUrl + UrlHandler.RemoveAiTags;
 
                 var content = JsonConvert.SerializeObject(aiTagsRequest);
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
@@ -735,7 +735,7 @@ namespace Imagekit.Sdk
         {
             try
             {
-                string url = string.Format(this.apiBaseUrl + UrlHandler.CustomMetadataFields, includeDeleted);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CustomMetadataFields, includeDeleted);
 
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -756,7 +756,7 @@ namespace Imagekit.Sdk
         {
             try
             {
-                string url = string.Format(this.apiBaseUrl + UrlHandler.CustomMetadataFields, includeDeleted);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CustomMetadataFields, includeDeleted);
 
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -786,7 +786,7 @@ namespace Imagekit.Sdk
                 }
 
                 string url = string.Empty;
-                url = this.apiBaseUrl + UrlHandler.CreareCustomMetaDataFields;
+                url = this.mediaAPIBaseUrl + UrlHandler.CreareCustomMetaDataFields;
 
                 string body = GetJsonBody.CreateCustomMetaDataBody(customMetaDataFieldCreateRequest);
                 var stringContent = new StringContent(body, Encoding.UTF8, "application/json");
@@ -818,7 +818,7 @@ namespace Imagekit.Sdk
                 }
 
                 string url = string.Empty;
-                url = this.apiBaseUrl + UrlHandler.CreareCustomMetaDataFields;
+                url = this.mediaAPIBaseUrl + UrlHandler.CreareCustomMetaDataFields;
 
                 string body = GetJsonBody.CreateCustomMetaDataBody(customMetaDataFieldCreateRequest);
                 var stringContent = new StringContent(body, Encoding.UTF8, "application/json");
@@ -846,7 +846,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.InvalidFileidsValue);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.DeleteCustomMetaDataFields, id);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteCustomMetaDataFields, id);
 
                 HttpResponseMessage response = this.client.DeleteAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -871,7 +871,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.InvalidFileidsValue);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.DeleteCustomMetaDataFields, id);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteCustomMetaDataFields, id);
 
                 HttpResponseMessage response = await this.client.DeleteAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -901,7 +901,7 @@ namespace Imagekit.Sdk
 
                 string url = string.Empty;
                 url = string.Format(
-                    this.apiBaseUrl + UrlHandler.UpdateCustomMetadataFields,
+                    this.mediaAPIBaseUrl + UrlHandler.UpdateCustomMetadataFields,
                     customMetaDataFieldUpdateRequest.Id);
                 string body = GetJsonBody.UpdateCustomMetaDataBody(customMetaDataFieldUpdateRequest);
 
@@ -939,7 +939,7 @@ namespace Imagekit.Sdk
 
                 string url = string.Empty;
                 url = string.Format(
-                    this.apiBaseUrl + UrlHandler.UpdateCustomMetadataFields,
+                    this.mediaAPIBaseUrl + UrlHandler.UpdateCustomMetadataFields,
                     customMetaDataFieldUpdateRequest.Id);
                 string body = GetJsonBody.UpdateCustomMetaDataBody(customMetaDataFieldUpdateRequest);
 
@@ -974,7 +974,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.DeleteVesrion, deleteFileVersionRequest.FileId,
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteVesrion, deleteFileVersionRequest.FileId,
                     deleteFileVersionRequest.VersionId);
 
                 HttpResponseMessage response = this.client.DeleteAsync(url).Result;
@@ -1001,7 +1001,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.DeleteVesrion, deleteFileVersionRequest.FileId,
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteVesrion, deleteFileVersionRequest.FileId,
                     deleteFileVersionRequest.VersionId);
 
                 HttpResponseMessage response = await this.client.DeleteAsync(url);
@@ -1029,7 +1029,7 @@ namespace Imagekit.Sdk
                 }
 
                 string url = string.Empty;
-                url = string.Format(this.apiBaseUrl + UrlHandler.CopyFile);
+                url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CopyFile);
                 var content = JsonConvert.SerializeObject(copyFileRequest);
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
@@ -1058,7 +1058,7 @@ namespace Imagekit.Sdk
                 }
 
                 string url = string.Empty;
-                url = string.Format(this.apiBaseUrl + UrlHandler.CopyFile);
+                url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CopyFile);
                 var content = JsonConvert.SerializeObject(copyFileRequest);
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
@@ -1087,7 +1087,7 @@ namespace Imagekit.Sdk
                 }
 
                 string url = string.Empty;
-                url = string.Format(this.apiBaseUrl + UrlHandler.MoveFile);
+                url = string.Format(this.mediaAPIBaseUrl + UrlHandler.MoveFile);
                 var content = JsonConvert.SerializeObject(moveFileRequest);
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
@@ -1115,7 +1115,7 @@ namespace Imagekit.Sdk
                 }
 
                 string url = string.Empty;
-                url = string.Format(this.apiBaseUrl + UrlHandler.MoveFile);
+                url = string.Format(this.mediaAPIBaseUrl + UrlHandler.MoveFile);
                 var content = JsonConvert.SerializeObject(moveFileRequest);
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
@@ -1143,7 +1143,7 @@ namespace Imagekit.Sdk
                 }
 
                 string url = string.Empty;
-                url = string.Format(this.apiBaseUrl + UrlHandler.RenameFile);
+                url = string.Format(this.mediaAPIBaseUrl + UrlHandler.RenameFile);
                 var content = JsonConvert.SerializeObject(renameFileRequest);
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = this.client.PutAsync(url, stringContent).Result;
@@ -1171,7 +1171,7 @@ namespace Imagekit.Sdk
                 }
 
                 string url = string.Empty;
-                url = string.Format(this.apiBaseUrl + UrlHandler.RenameFile);
+                url = string.Format(this.mediaAPIBaseUrl + UrlHandler.RenameFile);
                 var content = JsonConvert.SerializeObject(renameFileRequest);
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.client.PutAsync(url, stringContent);
@@ -1199,7 +1199,7 @@ namespace Imagekit.Sdk
                 }
 
                 string url = string.Empty;
-                url = string.Format(this.apiBaseUrl + UrlHandler.CreateFolder);
+                url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CreateFolder);
                 var content = JsonConvert.SerializeObject(createFolderRequest);
                 Console.WriteLine(content);
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
@@ -1228,7 +1228,7 @@ namespace Imagekit.Sdk
                 }
 
                 string url = string.Empty;
-                url = string.Format(this.apiBaseUrl + UrlHandler.CreateFolder);
+                url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CreateFolder);
                 var content = JsonConvert.SerializeObject(createFolderRequest);
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
@@ -1256,7 +1256,7 @@ namespace Imagekit.Sdk
 
                 var body = GetJsonBody.DeleteFolderBody(deleteFolderRequest);
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.DeleteFolder);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteFolder);
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Delete,
@@ -1289,7 +1289,7 @@ namespace Imagekit.Sdk
 
                 var body = GetJsonBody.DeleteFolderBody(deleteFolderRequest);
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.DeleteFolder);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteFolder);
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Delete,
@@ -1321,7 +1321,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.CopyFolder);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CopyFolder);
                 var content = JsonConvert.SerializeObject(copyFolderRequest);
                 var stringContent =
                     new StringContent(content, Encoding.UTF8,
@@ -1352,7 +1352,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.CopyFolder);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CopyFolder);
                 var content = JsonConvert.SerializeObject(copyFolderRequest);
                 var stringContent =
                     new StringContent(content, Encoding.UTF8,
@@ -1383,7 +1383,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.MoveFolder);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.MoveFolder);
                 var content = JsonConvert.SerializeObject(moveFolderRequest);
                 var stringContent =
                     new StringContent(content, Encoding.UTF8,
@@ -1414,7 +1414,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.MoveFolder);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.MoveFolder);
                 var content = JsonConvert.SerializeObject(moveFolderRequest);
                 var stringContent =
                     new StringContent(content, Encoding.UTF8,
@@ -1444,7 +1444,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.InvalidJobValue);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetJobStatus, jobId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetJobStatus, jobId);
 
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -1470,7 +1470,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.InvalidJobValue);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetJobStatus, jobId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetJobStatus, jobId);
 
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -1496,7 +1496,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.FileIdMissing);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetJobStatus, fileId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetJobStatus, fileId);
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
 
@@ -1521,7 +1521,7 @@ namespace Imagekit.Sdk
                     throw new Exception(ErrorMessages.FileIdMissing);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetJobStatus, fileId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetJobStatus, fileId);
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = await response.Content.ReadAsStringAsync();
 
@@ -1547,7 +1547,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetFileVersionDetail, fileId, versionId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersionDetail, fileId, versionId);
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
                 return Utils.PopulateResponseMetadata(
@@ -1572,7 +1572,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.GetFileVersionDetail, fileId, versionId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersionDetail, fileId, versionId);
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
                 return Utils.PopulateResponseMetadata(
@@ -1597,7 +1597,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.RestoreVesrion, fileId, versionId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.RestoreVesrion, fileId, versionId);
                 HttpResponseMessage response = this.client.PutAsync(url, null).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
                 return Utils.PopulateResponseMetadata(
@@ -1622,7 +1622,7 @@ namespace Imagekit.Sdk
                     throw new Exception(validate);
                 }
 
-                string url = string.Format(this.apiBaseUrl + UrlHandler.RestoreVesrion, fileId, versionId);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.RestoreVesrion, fileId, versionId);
                 HttpResponseMessage response = await this.client.PutAsync(url, null);
                 string res = response.Content.ReadAsStringAsync().Result;
                 return Utils.PopulateResponseMetadata(

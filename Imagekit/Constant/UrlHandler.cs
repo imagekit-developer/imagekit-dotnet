@@ -6,8 +6,8 @@ namespace Imagekit.Constant
 {
     public static class UrlHandler
     {
-        public const string ApiBaseUrl = "https://api.imagekit.io/";
-        public const string UploadBaseUrl = "https://dasdsad.dad.io/";
+        public const string MediaAPIBaseUrl = "https://api.imagekit.io/";
+        public const string UploadAPIBaseUrl = "https://upload.imagekit.io/";
         public const string UploadFile = @"api/v1/files/upload";
         public const string GetFileRequest = @"v1/files/";
         public const string GetPurge = @"v1/files/purge";
