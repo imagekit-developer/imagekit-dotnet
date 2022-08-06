@@ -1,4 +1,8 @@
-﻿namespace Imagekit
+﻿// <copyright file="ImagekitParams.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace Imagekit
 {
     public partial class BaseImagekit<T>
     {

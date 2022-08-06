@@ -1,6 +1,6 @@
-﻿// I've left this file with the name `Imagekit.cs` and the obsolete Imagekit in the same file to
-// make the github differences easier to see for the PR. Any subsequent PR can rename this file
-// and split out the obsolete Imagekit into its own file.
+﻿// <copyright file="ImagekitBase.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace Imagekit
 {

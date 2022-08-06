@@ -1,4 +1,8 @@
-﻿namespace Imagekit.Helper
+﻿// <copyright file="ValidateParamater.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace Imagekit.Helper
 {
     using System.Collections.Generic;
     using global::Imagekit.Constant;
@@ -39,6 +43,7 @@
                 flag = string.Empty;
                 return flag;
             }
+
             return flag;
         }
 
