@@ -106,7 +106,7 @@ The `.Url()` method accepts the following parameters.
 | transformation   | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as the array's different objects. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
 | transformationPosition | Optional. The default value is `path` that places the transformation string as a URL path parameter. It can also be specified as `query`, which adds the transformation string as the URL's query parameter `tr`. If you use the `src` parameter to create the URL, then the transformation string is always added as a query parameter. |
 | queryParameters  | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful if you want to add some versioning parameters to your URLs. |
-| signed           | Optional. Boolean. Default is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL. This can only be used if you create the URL with the `urlEndpoint` and `path` parameters, not with the `src` parameter. |
+| signed           | Optional. Boolean. Default is `false`. If set to `false`, the SDK generates a signed image URL adding the image signature to the image URL. This can only be used if you create the URL with the `urlEndpoint` and `path` parameters, not with the `src` parameter. |
 | expireSeconds    | Optional. Integer. Meant to be used along with the `signed` parameter to specify the time in seconds from now when the URL should expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly. |
 
 
@@ -140,7 +140,7 @@ string src = "https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg
 
 Transformation trans = new Transformation()
     .Format("jpg")
-    .Progressive(true)
+    .Progressive(false)
     .EffectSharpen()
     .EffectContrast(1);
 
@@ -151,7 +151,7 @@ string imageURL = imagekit.Url(trans)
 **Note**: Because `src` parameter was used, the transformation string gets added as a query parameter `tr`.
 
 ```
-https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg,pr-true,e-sharpen,e-contrast-1
+https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg,pr-false,e-sharpen,e-contrast-1
 ```
 
 
@@ -159,12 +159,12 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg,pr-t
 ```.net
 Transformation trans = new Transformation()
     .Height(300).Width(400);
-string[] queryParams = { "v=123" };
+string[] queryParams = { "v = 123" };
 
 string imageURL = imagekit.Url(trans)
     .Path("/default-image.jpg")
     .QueryParameters(queryParams)
-    .Signed(true).ExpireSeconds(300)
+    .Signed(false).ExpireSeconds(300)
     .Generate();
 ```
 ```
@@ -281,7 +281,7 @@ ResponseMetaData resp = await imagekit.GetFileDetailsAsync(fileId);
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-versions).
 
 ```.net
-String fileId = "62a04834c10d49825c6de9e8";
+String fileId = "file-id-1";
 ResponseMetaData resultFileVersions = ImageKit.getFileVersions(fileId);
 
 ```
@@ -291,8 +291,8 @@ ResponseMetaData resultFileVersions = ImageKit.getFileVersions(fileId);
 Accepts the file ID and version ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-version-details).
 
 ```.net
-String fileId = "62a04834c10d49825c6de9e8";
-String versionId = "62a04834c10d49825c6de9e8";
+String fileId = "file-id-1";
+String versionId = "file-version-id-1";
 ResponseMetaData resultFileVersionDetails = ImageKit.getFileVersionDetails(fileId, versionId);
 
 ```
@@ -303,16 +303,16 @@ Accepts an object of class `FileUpdateRequest` specifying the parameters to be u
 
 ```.net
 List<String> tags = new ArrayList<>();
-tags.add("Software");
-tags.add("Developer");
-tags.add("Engineer");
+tags.add("tag-1");
+tags.add("tag-2");
+tags.add("tag-3");
 
 List<String> aiTags = new ArrayList<>();
-aiTags.add("Plant");
+aiTags.add("ai-tag-1");
 FileUpdateRequest fileUpdateRequest = new FileUpdateRequest("fileId");
-fileUpdateRequest.Tags=tags;
-fileUpdateRequest.AITags=aiTags;
-ResponseMetaData result=ImageKit.updateFileDetail(fileUpdateRequest);
+fileUpdateRequest.Tags = tags;
+fileUpdateRequest.AITags = aiTags;
+ResponseMetaData result = ImageKit.updateFileDetail(fileUpdateRequest);
  
 ```
 
@@ -326,7 +326,7 @@ fileIds.add("FileId");
 List<String> tags = new ArrayList<>();
 tags.add("tag-to-add-1");
 tags.add("tag-to-add-2");
-ResponseMetaData resultTags=imageKit.addTags(new TagsRequest(fileIds, tags));
+ResponseMetaData resultTags = imageKit.addTags(new TagsRequest(fileIds, tags));
 
 ```
 
@@ -340,7 +340,7 @@ fileIds.add("FileId");
 List<String> tags = new ArrayList<>();
 tags.add("tag-to-remove-1");
 tags.add("tag-to-remove-2");
-ResponseMetaData resultTags=imageKit.removeTags(new TagsRequest(fileIds, tags));
+ResponseMetaData resultTags = imageKit.removeTags(new TagsRequest(fileIds, tags));
 
 ```
 
@@ -353,9 +353,9 @@ List<String> fileIds = new ArrayList<>();
 fileIds.add("629f3de17eb0fe4053615450");
 List<String> aiTags = new ArrayList<>();
 aiTags.add("Rectangle");
-AITagsRequest aiTagsRequest =new AITagsRequest();
-aiTagsRequest.FileIds=fileIds;
-aiTagsRequest.AITags=aiTags;
+AITagsRequest aiTagsRequest = new AITagsRequest();
+aiTagsRequest.FileIds = fileIds;
+aiTagsRequest.AITags = aiTags;
 ResponseMetaData resultTags = imageKit.getInstance().removeAITags(aiTagsRequest);
 
 ```
@@ -365,8 +365,8 @@ ResponseMetaData resultTags = imageKit.getInstance().removeAITags(aiTagsRequest)
 Accepts the file ID and delete a file as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file).
 
 ```.net
-String fileId="your-file-id";
-ResponseMetaData result=imageKit.deleteFile(fileId);
+String fileId = "file-id-1";
+ResponseMetaData result = imageKit.deleteFile(fileId);
 
 ```
 
@@ -376,8 +376,8 @@ Accepts an object of class `DeleteFileVersionRequest` specifying the parameters 
 
 ```.net
 DeleteFileVersionRequest deleteFileVersionRequest = new DeleteFileVersionRequest();
-deleteFileVersionRequest.FileId="629d95278482ba129fd17c97";
-deleteFileVersionRequest.VersionId="629d953ebd24e8ceca911a66";
+deleteFileVersionRequest.FileId = "file-id-1";
+deleteFileVersionRequest.VersionId = "file-version-id-1";
 ResponseMetaData resultNoContent = imageKit.deleteFileVersion(deleteFileVersionRequest);
 
 ```
@@ -388,11 +388,11 @@ Accepts the file IDs to delete files as per the [API documentation here](https:/
 
 ```.net
 List<String> fileIds = new ArrayList<>();
-fileIds.add("your-file-id");
-fileIds.add("your-file-id");
-fileIds.add("your-file-id");
+fileIds.add("file-id-1");
+fileIds.add("file-id-2");
+fileIds.add("file-id-3");
 
-ResponseMetaData result=imageKit.bulkDeleteFiles(fileIds);
+ResponseMetaData result = imageKit.bulkDeleteFiles(fileIds);
 
 ```
 
@@ -402,9 +402,9 @@ Accepts an object of class `CopyFileRequest` specifying the parameters to be use
 
 ```.net
 CopyFileRequest copyFileRequest = new CopyFileRequest();
-copyFileRequest.SourceFilePath="/w2_image.png";
-copyFileRequest.DestinationPath="/Gallery/";
-copyFileRequest.IncludeFileVersions=true;
+copyFileRequest.SourceFilePath = "/w2_image.png";
+copyFileRequest.DestinationPath = "/Gallery/";
+copyFileRequest.IncludeFileVersions = false;
 ResultNoContent resultNoContent = imageKit.copyFile(copyFileRequest);
 
 ```
@@ -427,9 +427,9 @@ Accepts an object of class `RenameFileRequest` specifying the parameters to be u
 
 ```.net
 RenameFileRequest renameFileRequest = new RenameFileRequest();
-renameFileRequest.FilePath="/w2_image.png";
-renameFileRequest.NewFileName="w2_image_s.png";
-renameFileRequest.setPurgeCache=true;
+renameFileRequest.FilePath = "/w2_image.png";
+renameFileRequest.NewFileName = "w2_image_s.png";
+renameFileRequest.setPurgeCache = false;
 ResponseMetaData resultRenameFile = imageKit.renameFile(renameFileRequest);
  
 ```
@@ -449,8 +449,8 @@ Accepts an object of class `CreateFolderRequest` specifying the parameters to be
 
 ```.net
 CreateFolderRequest createFolderRequest = new CreateFolderRequest();
-createFolderRequest.FolderName="test1";
-createFolderRequest.ParentFolderPath="/";
+createFolderRequest.FolderName = "test1";
+createFolderRequest.ParentFolderPath = "/";
 ResponseMetaData resultEmptyBlock = imageKit.createFolder(createFolderRequest);
 
 ```
@@ -461,7 +461,7 @@ Accepts an object of class `DeleteFolderRequest` specifying the parameters to be
 
 ```.net
 DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest();
-deleteFolderRequest.FolderPath="/test1";
+deleteFolderRequest.FolderPath = "/test1";
 ResultNoContent resultNoContent = imageKit.deleteFolder(deleteFolderRequest);
 
 ```
@@ -472,8 +472,8 @@ Accepts an object of class `CopyFolderRequest` specifying the parameters to be u
 
 ```.net
 CopyFolderRequest copyFolderRequest = new CopyFolderRequest();
-copyFolderRequest.SourceFolderPath="/Gallery/test";
-copyFolderRequest.DestinationPath="/";
+copyFolderRequest.SourceFolderPath = "/Gallery/test";
+copyFolderRequest.DestinationPath = "/";
 ResponseMetaData resultOfFolderActions = imageKit.copyFolder(copyFolderRequest);
 
 ```
@@ -484,8 +484,8 @@ Accepts an object of class `MoveFolderRequest` specifying the parameters to be u
 
 ```.net
 MoveFolderRequest moveFolderRequest = new MoveFolderRequest();
-moveFolderRequest.SourceFolderPath="/Gallery/test";
-moveFolderRequest.DestinationPath="/";
+moveFolderRequest.SourceFolderPath = "/Gallery/test";
+moveFolderRequest.DestinationPath = "/";
 ResponseMetaData resultOfFolderActions = imageKit.moveFolder(moveFolderRequest);
 
 ```
@@ -495,7 +495,7 @@ ResponseMetaData resultOfFolderActions = imageKit.moveFolder(moveFolderRequest);
 Accepts the jobId to get bulk job status as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/copy-move-folder-status).
 
 ```.net
-String jobId = "629f44ac7eb0fe8173622d4b";
+String jobId = "job-id-1";
 ResponseMetaData resultBulkJobStatus = imageKit.getBulkJobStatus(jobId);
 
 ```
@@ -505,7 +505,7 @@ ResponseMetaData resultBulkJobStatus = imageKit.getBulkJobStatus(jobId);
 Accepts a full URL of the file for which the cache has to be cleared as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/purge-cache).
 
 ```.net
-ResponseMetaData result=imageKit.purgeCache("https://ik.imageKit.io/imagekit-id/default-image.jpg");
+ResponseMetaData result = imageKit.purgeCache("https://ik.imageKit.io/imagekit-id/default-image.jpg");
 
 ```
 
@@ -514,8 +514,8 @@ ResponseMetaData result=imageKit.purgeCache("https://ik.imageKit.io/imagekit-id/
 Accepts a request ID and fetch purge cache status as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/purge-cache-status)
 
 ```.net
-String requestId="cache-requestId";
-ResponseMetaData result=imageKit.getPurgeCacheStatus(requestId);
+String requestId = "cache-requestId";
+ResponseMetaData result = imageKit.getPurgeCacheStatus(requestId);
 
 ```
 
@@ -524,15 +524,15 @@ ResponseMetaData result=imageKit.getPurgeCacheStatus(requestId);
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imageKit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
 
 ```.net
-String fileId="your-file-id";
-ResponseMetaData result=imageKit.getFileMetadata(fileId);
+String fileId = "file-id";
+ResponseMetaData result = imageKit.getFileMetadata(fileId);
 
 ```
 
 Another way to get metadata from a remote file URL as per the [API documentation here](https://docs.imageKit.io/api-reference/metadata-api/get-image-metadata-from-remote-url). This file should be accessible over the imageKit.io URL-endpoint.
 ```.net
-String url="Remote File URL";
-ResponseMetaData result=imageKit.getRemoteFileMetadata(url);
+String url = "Remote File URL";
+ResponseMetaData result = imageKit.getRemoteFileMetadata(url);
 
 ```
 **24. Create Custom MetaData Fields**
@@ -545,29 +545,29 @@ Check for the [Allowed Values In The Schema](https://docs.imageKit.io/api-refere
 
 ```.net
 CustomMetaDataFieldSchemaObject schemaObject = new CustomMetaDataFieldSchemaObject();
-schemaObject.Type="Number";
-schemaObject.MinValue=10;
-schemaObject.MaxValue=200;
+schemaObject.Type = "Number";
+schemaObject.MinValue = 10;
+schemaObject.MaxValue = 200;
 CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest = new CustomMetaDataFieldCreateRequest();
-customMetaDataFieldCreateRequest.Name="Name";
-customMetaDataFieldCreateRequest.Label="Label";
-customMetaDataFieldCreateRequest.Schema=schemaObject;
-ResponseMetaData ResponseMetaData=imageKit.createCustomMetaDataFields(customMetaDataFieldCreateRequest);
+customMetaDataFieldCreateRequest.Name = "Name";
+customMetaDataFieldCreateRequest.Label = "Label";
+customMetaDataFieldCreateRequest.Schema = schemaObject;
+ResponseMetaData ResponseMetaData = imageKit.createCustomMetaDataFields(customMetaDataFieldCreateRequest);
 ```
 
 - Date type Exmample:
 
 ```.net
 CustomMetaDataFieldSchemaObject customMetaDataFieldSchemaObject = new CustomMetaDataFieldSchemaObject();
-customMetaDataFieldSchemaObject.setType="Date";
- // required if isValueRequired set to true
-customMetaDataFieldSchemaObject.MinValue="2022-11-30T10:11:10+00:00";
-customMetaDataFieldSchemaObject.MaxValue="2022-12-30T10:11:10+00:00";
+customMetaDataFieldSchemaObject.setType = "Date";
+ // required if isValueRequired set to false
+customMetaDataFieldSchemaObject.MinValue = "2022-11-30T10:11:10+00:00";
+customMetaDataFieldSchemaObject.MaxValue = "2022-12-30T10:11:10+00:00";
 
 CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest = new CustomMetaDataFieldCreateRequest();
-customMetaDataFieldCreateRequest.Name="Name";
-customMetaDataFieldCreateRequest.Label="Label";
-customMetaDataFieldCreateRequest.Schema=customMetaDataFieldSchemaObject;
+customMetaDataFieldCreateRequest.Name = "Name";
+customMetaDataFieldCreateRequest.Label = "Label";
+customMetaDataFieldCreateRequest.Schema = customMetaDataFieldSchemaObject;
 
 ResponseMetaData resultCustomMetaDataField = imageKit.getInstance()
        .createCustomMetaDataFields(customMetaDataFieldCreateRequest);
@@ -579,7 +579,7 @@ ResponseMetaData resultCustomMetaDataField = imageKit.getInstance()
 Accepts the includeDeleted boolean and fetches the metadata as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
 
 ```.net
-ResponseMetaData resultCustomMetaDataFieldList=imageKit.getCustomMetaDataFields(false);
+ResponseMetaData resultCustomMetaDataFieldList = imageKit.getCustomMetaDataFields(false);
  
 ```
 
@@ -593,10 +593,10 @@ schemaObject.setMinValue(10);
 schemaObject.setMaxValue(200);
 
 CustomMetaDataFieldUpdateRequest customMetaDataFieldUpdateRequest = new CustomMetaDataFieldUpdateRequest();
-customMetaDataFieldUpdateRequest.Id="id";
-customMetaDataFieldUpdateRequest.Label="label";
-customMetaDataFieldUpdateRequest.Schema=schemaObject;
-ResponseMetaData resultCustomMetaDataField=imageKit.updateCustomMetaDataFields(customMetaDataFieldUpdateRequest);
+customMetaDataFieldUpdateRequest.Id = "id";
+customMetaDataFieldUpdateRequest.Label = "label";
+customMetaDataFieldUpdateRequest.Schema = schemaObject;
+ResponseMetaData resultCustomMetaDataField = imageKit.updateCustomMetaDataFields(customMetaDataFieldUpdateRequest);
 
 ```
 
@@ -605,7 +605,7 @@ ResponseMetaData resultCustomMetaDataField=imageKit.updateCustomMetaDataFields(c
 Accepts the id to delete the customMetaDataFields as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field).
 
 ```.net
-ResponseMetaData resultNoContent=imageKit.deleteCustomMetaDataField("id");
+ResponseMetaData resultNoContent = imageKit.deleteCustomMetaDataField("id");
 ```
 
 ## Utility functions
