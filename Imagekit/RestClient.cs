@@ -40,11 +40,12 @@ namespace Imagekit.Sdk
             this.client.DefaultRequestHeaders.Add("Authorization", "Basic " + Utils.EncodeTo64(privateKey));
         }
 
-        public ResponseMetaData GetFileListRequest()
+        public ResponseMetaData GetFileListRequest(GetFileListRequest getFileListRequest)
         {
             try
             {
-                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest);
+                string param = GetJsonBody.GetFileRequestBody(getFileListRequest);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest,param);
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
 
@@ -60,12 +61,14 @@ namespace Imagekit.Sdk
             }
         }
 
-        public async Task<ResponseMetaData> GetFileListRequestAsync()
+        public async Task<ResponseMetaData> GetFileListRequestAsync(GetFileListRequest getFileListRequest)
         {
             try
             {
-                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest);
+                string param = GetJsonBody.GetFileRequestBody(getFileListRequest);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest, param);
 
+                
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
 

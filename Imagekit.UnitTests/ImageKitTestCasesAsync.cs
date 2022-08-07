@@ -43,6 +43,9 @@ namespace Imagekit.UnitTests.FileVersion
         [Fact]
         public void GetFileRequest_DefaultNonAsync()
         {
+            GetFileListRequest ob = new GetFileListRequest();
+            ob.limit = 10;
+            ob.skip = 0;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
             var httpResponse = new HttpResponseMessage
@@ -53,7 +56,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetFileListRequest();
+            var response = restClient.GetFileListRequest(ob);
             var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
             Assert.Equal(responseObj.Raw, result.Raw);
         }

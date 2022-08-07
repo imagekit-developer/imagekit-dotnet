@@ -2,6 +2,9 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+
 namespace Imagekit.Helper
 {
     using System;
@@ -66,5 +69,75 @@ namespace Imagekit.Helper
             string base64ImageRepresentation = Convert.ToBase64String(imageArray);
             return base64ImageRepresentation;
         }
+
+        public static string GetFileRequestBody(GetFileListRequest getFileListRequest)
+        {
+            QueryMaker queryMaker = new QueryMaker();
+            Dictionary<string, string> options = new Dictionary<string, string>();
+            if (getFileListRequest.type != null)
+            {
+                options.Add("type", getFileListRequest.type);
+            }
+            if (getFileListRequest.sort != null)
+            {
+                options.Add("sort", getFileListRequest.sort);
+            }
+            if (getFileListRequest.path != null)
+            {
+                options.Add("path", getFileListRequest.path);
+            }
+            if (getFileListRequest.searchQuery != null)
+            {
+                options.Add("searchQuery", getFileListRequest.searchQuery);
+            }
+            if (getFileListRequest.fileType != null)
+            {
+                options.Add("fileType", getFileListRequest.fileType);
+            }
+            if (getFileListRequest.limit > 0)
+            {
+                options.Add("limit", getFileListRequest.limit.ToString());
+            }
+            if (getFileListRequest.skip > 0)
+            {
+                options.Add("skip", getFileListRequest.skip.ToString());
+            }
+            if (getFileListRequest.tags != null)
+            {
+                options.Add("tags", string.Join(",", getFileListRequest.tags));
+            }
+
+            foreach (KeyValuePair<string, string> entry in options)
+            {
+                queryMaker.Add(string.Format("{0}={1}", entry.Key, entry.Value));
+            }
+
+            return queryMaker.get();
+        }
+    }
+
+
+    public class QueryMaker
+    {
+        private string query;
+
+        public void Add(string q)
+        {
+            if (null != query)
+            {
+                query += "&";
+            }
+            else
+            {
+                query = "";
+            }
+            query += q;
+        }
+
+        public string get()
+        {
+            return query;
+        }
+
     }
 }

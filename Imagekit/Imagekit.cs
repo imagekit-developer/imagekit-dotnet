@@ -52,9 +52,9 @@ namespace Imagekit.Sdk
             return this.restClient.GetFileDetail(url);
         }
 
-        public ResponseMetaData GetFileListRequest()
+        public ResponseMetaData GetFileListRequest(GetFileListRequest getFileListRequest)
         {
-            return this.restClient.GetFileListRequest();
+            return this.restClient.GetFileListRequest(getFileListRequest);
         }
 
         public ResponseMetaData GetFileMetadata(string fileId)
@@ -330,9 +330,9 @@ namespace Imagekit.Sdk
             return await this.restClient.GetFileVersionDetailsAsync(fileId, versionId);
         }
 
-        public async Task<ResponseMetaData> GetFileListRequestAsync()
+        public async Task<ResponseMetaData> GetFileListRequestAsync(GetFileListRequest getFileListRequest)
         {
-            return await this.restClient.GetFileListRequestAsync();
+            return await this.restClient.GetFileListRequestAsync(getFileListRequest);
         }
     }
 }
