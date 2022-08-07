@@ -350,7 +350,7 @@ Accepts an object of class `AITagsRequest` specifying the parameters to be used 
 
 ```.net
 List<String> fileIds = new ArrayList<>();
-fileIds.add("629f3de17eb0fe4053615450");
+fileIds.add("file-id-1");
 List<String> aiTags = new ArrayList<>();
 aiTags.add("Rectangle");
 AITagsRequest aiTagsRequest = new AITagsRequest();
@@ -653,13 +653,13 @@ public static int CalculateDistance() {
 #### Distance calculation examples
 
 ```
-imageKit.PHashDistance('f06830ca9f1e3e90', 'f06830ca9f1e3e90');
+imageKit.PHashDistance('firstHash', 'secondHash');
 // output: 0 (same image)
 
-imageKit.PHashDistance('2d5ad3936d2e015b', '2d6ed293db36a4fb');
+imageKit.PHashDistance('firstHash', 'secondHash');
 // output: 17 (similar images)
 
-imageKit.PHashDistance('a4a65595ac94518b', '7838873e791f8400');
+imageKit.PHashDistance('firstHash', 'secondHash');
 // output: 37 (dissimilar images)
 ```
 ## Support
