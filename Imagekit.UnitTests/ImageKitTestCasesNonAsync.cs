@@ -11,7 +11,7 @@ using Xunit;
 namespace Imagekit.UnitTests.FileVersion
 {
 
-    public class ImagekitTestCasesNonAsync
+    public class ImageKitTestCasesNonAsync
     {
         private const string GOOD_PUBLICKEY = "abc";
         private const string GOOD_PRIVATEKEY = "abc";

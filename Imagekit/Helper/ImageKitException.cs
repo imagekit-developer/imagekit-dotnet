@@ -1,4 +1,4 @@
-﻿// <copyright file="ImagekitException.cs" company="PlaceholderCompany">
+﻿// <copyright file="ImageKitException.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 

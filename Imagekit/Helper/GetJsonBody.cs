@@ -77,30 +77,37 @@ namespace Imagekit.Helper
             {
                 options.Add("type", getFileListRequest.Type);
             }
+
             if (getFileListRequest.Sort != null)
             {
                 options.Add("sort", getFileListRequest.Sort);
             }
+
             if (getFileListRequest.Path != null)
             {
                 options.Add("path", getFileListRequest.Path);
             }
+
             if (getFileListRequest.SearchQuery != null)
             {
                 options.Add("searchQuery", getFileListRequest.SearchQuery);
             }
+
             if (getFileListRequest.FileType != null)
             {
                 options.Add("fileType", getFileListRequest.FileType);
             }
+
             if (getFileListRequest.Limit > 0)
             {
                 options.Add("limit", getFileListRequest.Limit.ToString());
             }
+
             if (getFileListRequest.Skip > 0)
             {
                 options.Add("skip", getFileListRequest.Skip.ToString());
             }
+
             if (getFileListRequest.Tags != null)
             {
                 options.Add("tags", string.Join(",", getFileListRequest.Tags));
@@ -114,7 +121,6 @@ namespace Imagekit.Helper
             return queryMaker.Get();
         }
     }
-
 
     public class QueryMaker
     {
@@ -130,6 +136,7 @@ namespace Imagekit.Helper
             {
                 query = "";
             }
+
             query += q;
         }
 

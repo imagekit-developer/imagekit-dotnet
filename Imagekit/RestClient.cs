@@ -68,7 +68,6 @@ namespace Imagekit.Sdk
                 string param = GetJsonBody.GetFileRequestBody(getFileListRequest);
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest, param);
 
-
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
 
@@ -231,11 +230,6 @@ namespace Imagekit.Sdk
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileId" />
-        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         public async Task<ResponseMetaData> GetFileDetailAsync(string fileId)
         {
             try

@@ -11,7 +11,7 @@ using Xunit;
 namespace Imagekit.UnitTests
 {
 
-    public class ImagekitTestCasesAsync
+    public class ImageKitTestCasesAsync
     {
         private const string GOOD_PUBLICKEY = "abc";
         private const string GOOD_PRIVATEKEY = "abc";
