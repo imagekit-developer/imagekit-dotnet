@@ -21,14 +21,15 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest tagsRequest = new TagsRequest
             {
-                Tags = new List<string>()
-            };
-            tagsRequest.Tags.Add("abc");
-            tagsRequest.Tags.Add("abc");
-
-            tagsRequest.FileIds = new List<string>
+                Tags = new List<string>
+                {
+                    "abc",
+                    "abc"
+                },
+                FileIds = new List<string>
             {
                 "abc"
+            }
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -67,9 +68,8 @@ namespace Imagekit.UnitTests.Tags
             TagsRequest ob = new TagsRequest
             {
                 Tags = null,
-                FileIds = new List<string>()
+                FileIds = new List<string> { "abc" }
             };
-            ob.FileIds.Add("abc");
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
             var httpResponse = new HttpResponseMessage
@@ -88,10 +88,9 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest ob = new TagsRequest
             {
-                Tags = new List<string>()
+                Tags = new List<string> { "abc" },
+                FileIds = null
             };
-            ob.Tags.Add("abc");
-            ob.FileIds = null;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -112,14 +111,15 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest tagsRequest = new TagsRequest
             {
-                Tags = new List<string>()
-            };
-            tagsRequest.Tags.Add("abc");
-            tagsRequest.Tags.Add("abc");
-
-            tagsRequest.FileIds = new List<string>
+                Tags = new List<string>
+                {
+                    "abc",
+                    "abc"
+                },
+                FileIds = new List<string>
             {
                 "abc"
+            }
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -158,9 +158,8 @@ namespace Imagekit.UnitTests.Tags
             TagsRequest ob = new TagsRequest
             {
                 Tags = null,
-                FileIds = new List<string>()
+                FileIds = new List<string> { "abc" }
             };
-            ob.FileIds.Add("abc");
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
             var httpResponse = new HttpResponseMessage
@@ -197,9 +196,8 @@ namespace Imagekit.UnitTests.Tags
             AiTagsRequest ob = new AiTagsRequest
             {
                 AiTags = null,
-                FileIds = new List<string>()
+                FileIds = new List<string> { "abc" }
             };
-            ob.FileIds.Add("abc");
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
             var httpResponse = new HttpResponseMessage
@@ -218,10 +216,9 @@ namespace Imagekit.UnitTests.Tags
         {
             AiTagsRequest ob = new AiTagsRequest
             {
-                AiTags = new List<string>()
+                AiTags = new List<string> { "abc" },
+                FileIds = null
             };
-            ob.AiTags.Add("abc");
-            ob.FileIds = null;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 

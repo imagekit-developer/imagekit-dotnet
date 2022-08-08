@@ -31,7 +31,7 @@ namespace Imagekit.UnitTests.Upload
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.Upload(ob));
+            var ex = Assert.Throws<Exception>(() => restClient.Upload(ob));
             Assert.Equal(ErrorMessages.InvalidFileUploadObjValue, ex.Message);
         }
         [Fact]
@@ -50,7 +50,7 @@ namespace Imagekit.UnitTests.Upload
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.Upload(ob));
+            var ex = Assert.Throws<Exception>(() => restClient.Upload(ob));
             Assert.Equal(ErrorMessages.MissingUploadFilenameParameter, ex.Message);
         }
         [Fact]
@@ -71,7 +71,7 @@ namespace Imagekit.UnitTests.Upload
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.Upload(ob));
+            var ex = Assert.Throws<Exception>(() => restClient.Upload(ob));
             Assert.Equal(ErrorMessages.InvalidFileValue, ex.Message);
         }
 

@@ -45,7 +45,7 @@ namespace Imagekit.Sdk
             try
             {
                 string param = GetJsonBody.GetFileRequestBody(getFileListRequest);
-                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest,param);
+                string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest, param);
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
 
@@ -68,7 +68,7 @@ namespace Imagekit.Sdk
                 string param = GetJsonBody.GetFileRequestBody(getFileListRequest);
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest, param);
 
-                
+
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
 
@@ -135,8 +135,8 @@ namespace Imagekit.Sdk
                 };
                 var content = JsonConvert.SerializeObject(data);
                 var stringContent =
-                    new StringContent(content, Encoding.UTF8,
-                        "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
+                    new StringContent(content: content, encoding: Encoding.UTF8,
+                        mediaType: "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
 
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
@@ -232,9 +232,9 @@ namespace Imagekit.Sdk
         }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
-        /// <param name="fileId"></param>
+        /// <param name="fileId" />
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         public async Task<ResponseMetaData> GetFileDetailAsync(string fileId)
         {

@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using Xunit;
 
-namespace Imagekit.UnitTests.FileVersion
+namespace Imagekit.UnitTests
 {
 
     public class ImageKitTestCasesAsync
@@ -42,9 +42,11 @@ namespace Imagekit.UnitTests.FileVersion
         [Fact]
         public void GetFileRequest_Default()
         {
-            GetFileListRequest ob=new GetFileListRequest();
-            ob.limit = 10;
-            ob.skip = 0;
+            GetFileListRequest ob = new GetFileListRequest
+            {
+                Limit = 10,
+                Skip = 0
+            };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
             var httpResponse = new HttpResponseMessage
@@ -216,10 +218,9 @@ namespace Imagekit.UnitTests.FileVersion
         {
             TagsRequest ob = new TagsRequest
             {
-                Tags = new List<string>()
+                Tags = new List<string> { "abc" },
+                FileIds = null
             };
-            ob.Tags.Add("abc");
-            ob.FileIds = null;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -234,7 +235,7 @@ namespace Imagekit.UnitTests.FileVersion
             Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Result.Message);
         }
 
-       
+
 
 
         [Fact]
@@ -242,10 +243,9 @@ namespace Imagekit.UnitTests.FileVersion
         {
             TagsRequest ob = new TagsRequest
             {
-                Tags = new List<string>()
+                Tags = new List<string> { "abc" },
+                FileIds = null
             };
-            ob.Tags.Add("abc");
-            ob.FileIds = null;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -266,10 +266,9 @@ namespace Imagekit.UnitTests.FileVersion
         {
             AiTagsRequest ob = new AiTagsRequest
             {
-                AiTags = new List<string>()
+                AiTags = new List<string> { "abc" },
+                FileIds = null
             };
-            ob.AiTags.Add("abc");
-            ob.FileIds = null;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -620,7 +619,7 @@ namespace Imagekit.UnitTests.FileVersion
             Assert.Equal(ErrorMessages.InvalidJobValue, ex.Result.Message);
         }
 
-        
+
 
 
 

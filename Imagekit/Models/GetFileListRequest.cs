@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Imagekit.Models
+﻿namespace Imagekit.Models
 {
     public class GetFileListRequest
     {
-        public string type { get; set; }
-        public string sort { get; set; }
-        public string path { get; set; }
-        public string searchQuery { get; set; }
-        public string fileType { get; set; }
-        public int limit { get; set; }
-        public int skip { get; set; }
-        public string[] tags { get; set; }
+        public string Type { get; set; }
+
+        public string Sort { get; set; }
+
+        public string Path { get; set; }
+
+        public string SearchQuery { get; set; }
+
+        public string FileType { get; set; }
+
+        public int Limit { get; set; }
+
+        public int Skip { get; set; }
+
+        public string[] Tags { get; set; }
     }
 }

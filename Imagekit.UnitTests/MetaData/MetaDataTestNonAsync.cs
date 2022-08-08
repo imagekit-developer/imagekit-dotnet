@@ -88,7 +88,7 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.GetRemoteFileMetaData(""));
+            var ex = Assert.Throws<Exception>(() => restClient.GetRemoteFileMetaData(""));
             Assert.Equal(ErrorMessages.InvalidUrlValue, ex.Message);
         }
 
@@ -350,7 +350,7 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CreateCustomMetaDataFields(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CreateCustomMetaDataFields(model));
             Assert.Equal(ErrorMessages.InvalidMetaTagValue, ex.Message);
         }
         [Fact]
@@ -375,7 +375,7 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CreateCustomMetaDataFields(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CreateCustomMetaDataFields(model));
             Assert.Equal(ErrorMessages.InvalidMetaTagNameValue, ex.Message);
         }
         [Fact]
@@ -403,7 +403,7 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CreateCustomMetaDataFields(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CreateCustomMetaDataFields(model));
             Assert.Equal(ErrorMessages.InvalidMetaTagLabelValue, ex.Message);
         }
         [Fact]
@@ -424,7 +424,7 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CreateCustomMetaDataFields(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CreateCustomMetaDataFields(model));
             Assert.Equal(ErrorMessages.InvalidMetaTagSchemaValue, ex.Message);
         }
 
@@ -459,7 +459,7 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.DeleteCustomMetaDataField(""));
+            var ex = Assert.Throws<Exception>(() => restClient.DeleteCustomMetaDataField(""));
             Assert.Equal(ErrorMessages.InvalidFileidsValue, ex.Message);
         }
 
@@ -507,7 +507,7 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.UpdateCustomMetaDataFields(model));
+            var ex = Assert.Throws<Exception>(() => restClient.UpdateCustomMetaDataFields(model));
             Assert.Equal(ErrorMessages.InvalidMetaTagValue, ex.Message);
         }
 
@@ -533,7 +533,7 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.UpdateCustomMetaDataFields(model));
+            var ex = Assert.Throws<Exception>(() => restClient.UpdateCustomMetaDataFields(model));
             Assert.Equal(ErrorMessages.InvalidMetaTagIdValue, ex.Message);
         }
         [Fact]
@@ -553,7 +553,7 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.UpdateCustomMetaDataFields(model));
+            var ex = Assert.Throws<Exception>(() => restClient.UpdateCustomMetaDataFields(model));
             Assert.Equal(ErrorMessages.InvalidMetaTagSchemaValue, ex.Message);
         }
 

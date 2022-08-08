@@ -1,6 +1,5 @@
 ﻿using Imagekit.Sdk;
 using System;
-using Imagekit.Models;
 
 namespace ImageKitSample
 {
@@ -8,14 +7,14 @@ namespace ImageKitSample
     {
         static void Main(string[] args)
         {
-             
+
             //1  
             ImageKitClient imageKit = new ImageKitClient("TestPublicKey", "TestPrivateKey", "https://api.imageKit.io/");
-           // GetFileListRequest model=new GetFileListRequest();
-           // model.type = "file";
-           // model.limit = 10;
-           // model.skip = 0;
-           //var res= imageKit.GetFileListRequest(model);
+            // GetFileListRequest model=new GetFileListRequest();
+            // model.type = "file";
+            // model.limit = 10;
+            // model.skip = 0;
+            //var res= imageKit.GetFileListRequest(model);
 
 
             // imageKit.Instance.GetFileDetail("62d701678c8b75e43661d66d");
@@ -147,8 +146,8 @@ namespace ImageKitSample
                            Original().
                            RawTransformation("h-200).w-300).l-image).i-logo.png).l-end")
                            ;
-            string imageURL = imageKit.Url(trans).Path(path).TransformationPosition("query").Generate();
-            Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {0}", imageURL);
+            string imageUrl = imageKit.Url(trans).Path(path).TransformationPosition("query").Generate();
+            Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {0}", imageUrl);
 
 
             ///// Generating Signed URL

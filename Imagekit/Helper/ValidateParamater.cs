@@ -12,7 +12,6 @@ namespace Imagekit.Helper
     {
         public static string IsValidateUpload(FileCreateRequest obj)
         {
-            
             string flag = ErrorMessages.InvalidFileValue;
             if (obj == null)
             {
@@ -28,8 +27,8 @@ namespace Imagekit.Helper
 
             if (!string.IsNullOrEmpty(obj.Base64))
             {
-                 flag = string.Empty;
-                 return flag;
+                flag = string.Empty;
+                return flag;
             }
 
             if (obj.Bytes != null)

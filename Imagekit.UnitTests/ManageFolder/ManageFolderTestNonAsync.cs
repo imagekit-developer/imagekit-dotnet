@@ -17,7 +17,7 @@ namespace Imagekit.UnitTests
         private const string GoodPublickey = "abc";
         private const string GoodUrlendpoint = "https://dasdsad.dad.io/";
 
-       
+
         [Fact]
         public void CreateFolder_DefaultNonAsync()
         {
@@ -40,7 +40,7 @@ namespace Imagekit.UnitTests
             var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
             Assert.Equal(responseObj.Raw, result.Raw);
         }
-       
+
         [Fact]
         public void CreateFolderExceptionNonAsync()
         {
@@ -53,7 +53,7 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CreateFolder(null));
+            var ex = Assert.Throws<Exception>(() => restClient.CreateFolder(null));
             Assert.Equal(ErrorMessages.InvalidCreateFolderValue, ex.Message);
         }
 
@@ -73,7 +73,7 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CreateFolder(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CreateFolder(model));
             Assert.Equal(ErrorMessages.InvalidFolderNameValue, ex.Message);
         }
         [Fact]
@@ -92,7 +92,7 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CreateFolder(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CreateFolder(model));
             Assert.Equal(ErrorMessages.InvalidFolderPathValue, ex.Message);
         }
         [Fact]
@@ -130,7 +130,7 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.DeleteFolder(model));
+            var ex = Assert.Throws<Exception>(() => restClient.DeleteFolder(model));
             Assert.Equal(ErrorMessages.InvalidDelFolderValue, ex.Message);
         }
 
@@ -157,7 +157,7 @@ namespace Imagekit.UnitTests
             var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
             Assert.Equal(responseObj.Raw, result.Raw);
         }
-        
+
         [Fact]
         public void Missing_Obj_FolderExceptionNonAsync()
         {
@@ -169,7 +169,7 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CopyFolder(null));
+            var ex = Assert.Throws<Exception>(() => restClient.CopyFolder(null));
             Assert.Equal(ErrorMessages.InvalidCopyFolderValue, ex.Message);
         }
         [Fact]
@@ -188,7 +188,7 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CopyFolder(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CopyFolder(model));
             Assert.Equal(ErrorMessages.InvalidCopySourceFolderPathValue, ex.Message);
         }
         [Fact]
@@ -207,7 +207,7 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CopyFolder(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CopyFolder(model));
             Assert.Equal(ErrorMessages.InvalidCopyDestinationPathValue, ex.Message);
         }
 
@@ -233,7 +233,7 @@ namespace Imagekit.UnitTests
             var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
             Assert.Equal(responseObj.Raw, result.Raw);
         }
-      
+
         [Fact]
         public void Missing_Obj_Move_FolderExceptionNonAsync()
         {
@@ -246,7 +246,7 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.MoveFolder(null));
+            var ex = Assert.Throws<Exception>(() => restClient.MoveFolder(null));
             Assert.Equal(ErrorMessages.InvalidCopyFolderValue, ex.Message);
         }
 
@@ -266,7 +266,7 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.MoveFolder(model));
+            var ex = Assert.Throws<Exception>(() => restClient.MoveFolder(model));
             Assert.Equal(ErrorMessages.InvalidCopySourceFolderPathValue, ex.Message);
         }
         [Fact]
@@ -285,10 +285,10 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.MoveFolder(model));
+            var ex = Assert.Throws<Exception>(() => restClient.MoveFolder(model));
             Assert.Equal(ErrorMessages.InvalidCopyDestinationPathValue, ex.Message);
         }
-       
+
     }
 }
 

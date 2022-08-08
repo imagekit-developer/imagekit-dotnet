@@ -3,7 +3,6 @@
 // </copyright>
 
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace Imagekit.Helper
 {
@@ -74,37 +73,37 @@ namespace Imagekit.Helper
         {
             QueryMaker queryMaker = new QueryMaker();
             Dictionary<string, string> options = new Dictionary<string, string>();
-            if (getFileListRequest.type != null)
+            if (getFileListRequest.Type != null)
             {
-                options.Add("type", getFileListRequest.type);
+                options.Add("type", getFileListRequest.Type);
             }
-            if (getFileListRequest.sort != null)
+            if (getFileListRequest.Sort != null)
             {
-                options.Add("sort", getFileListRequest.sort);
+                options.Add("sort", getFileListRequest.Sort);
             }
-            if (getFileListRequest.path != null)
+            if (getFileListRequest.Path != null)
             {
-                options.Add("path", getFileListRequest.path);
+                options.Add("path", getFileListRequest.Path);
             }
-            if (getFileListRequest.searchQuery != null)
+            if (getFileListRequest.SearchQuery != null)
             {
-                options.Add("searchQuery", getFileListRequest.searchQuery);
+                options.Add("searchQuery", getFileListRequest.SearchQuery);
             }
-            if (getFileListRequest.fileType != null)
+            if (getFileListRequest.FileType != null)
             {
-                options.Add("fileType", getFileListRequest.fileType);
+                options.Add("fileType", getFileListRequest.FileType);
             }
-            if (getFileListRequest.limit > 0)
+            if (getFileListRequest.Limit > 0)
             {
-                options.Add("limit", getFileListRequest.limit.ToString());
+                options.Add("limit", getFileListRequest.Limit.ToString());
             }
-            if (getFileListRequest.skip > 0)
+            if (getFileListRequest.Skip > 0)
             {
-                options.Add("skip", getFileListRequest.skip.ToString());
+                options.Add("skip", getFileListRequest.Skip.ToString());
             }
-            if (getFileListRequest.tags != null)
+            if (getFileListRequest.Tags != null)
             {
-                options.Add("tags", string.Join(",", getFileListRequest.tags));
+                options.Add("tags", string.Join(",", getFileListRequest.Tags));
             }
 
             foreach (KeyValuePair<string, string> entry in options)
@@ -112,7 +111,7 @@ namespace Imagekit.Helper
                 queryMaker.Add(string.Format("{0}={1}", entry.Key, entry.Value));
             }
 
-            return queryMaker.get();
+            return queryMaker.Get();
         }
     }
 
@@ -134,7 +133,7 @@ namespace Imagekit.Helper
             query += q;
         }
 
-        public string get()
+        public string Get()
         {
             return query;
         }

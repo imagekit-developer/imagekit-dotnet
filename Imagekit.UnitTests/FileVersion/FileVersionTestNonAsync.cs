@@ -16,7 +16,7 @@ namespace Imagekit.UnitTests.FileVersion
         private const string GOOD_PUBLICKEY = "abc";
         private const string GOOD_URLENDPOINT = "https://dasdsad.dad.io/";
 
-       
+
         [Fact]
         public void Missing_Object_FileVersionException_NonAsync()
         {
@@ -30,7 +30,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.DeleteFileVersion(model));
+            var ex = Assert.Throws<Exception>(() => restClient.DeleteFileVersion(model));
             Assert.Equal(ErrorMessages.InvalidDelVerValue, ex.Message);
         }
         [Fact]
@@ -49,7 +49,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.DeleteFileVersion(model));
+            var ex = Assert.Throws<Exception>(() => restClient.DeleteFileVersion(model));
             Assert.Equal(ErrorMessages.InvalidFieldIdDelVerValue, ex.Message);
         }
 
@@ -70,7 +70,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.DeleteFileVersion(model));
+            var ex = Assert.Throws<Exception>(() => restClient.DeleteFileVersion(model));
             Assert.Equal(ErrorMessages.InvalidVersionIdDelVerValue, ex.Message);
         }
 
@@ -97,7 +97,7 @@ namespace Imagekit.UnitTests.FileVersion
             Assert.Equal(responseObj.Raw, result.Raw);
         }
 
-         
+
         [Fact]
         public void Missing_Obj_CopyFileException_NonAsync()
         {
@@ -111,7 +111,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CopyFile(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CopyFile(model));
             Assert.Equal(ErrorMessages.InvalidCopyValue, ex.Message);
         }
 
@@ -133,7 +133,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CopyFile(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CopyFile(model));
             Assert.Equal(ErrorMessages.InvalidSourceValue, ex.Message);
         }
 
@@ -153,7 +153,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.CopyFile(model));
+            var ex = Assert.Throws<Exception>(() => restClient.CopyFile(model));
             Assert.Equal(ErrorMessages.InvalidDestinationValue, ex.Message);
         }
 
@@ -180,7 +180,7 @@ namespace Imagekit.UnitTests.FileVersion
             Assert.Equal(responseObj.Raw, result.Raw);
         }
 
-       
+
         [Fact]
         public void Missing_Obj_MoveFileException_NonAsync()
         {
@@ -194,7 +194,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.MoveFile(model));
+            var ex = Assert.Throws<Exception>(() => restClient.MoveFile(model));
             Assert.Equal(ErrorMessages.InvalidCopyValue, ex.Message);
         }
 
@@ -214,7 +214,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.MoveFile(model));
+            var ex = Assert.Throws<Exception>(() => restClient.MoveFile(model));
             Assert.Equal(ErrorMessages.InvalidSourceValue, ex.Message);
         }
 
@@ -234,7 +234,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.MoveFile(model));
+            var ex = Assert.Throws<Exception>(() => restClient.MoveFile(model));
             Assert.Equal(ErrorMessages.InvalidDestinationValue, ex.Message);
         }
 
@@ -262,7 +262,7 @@ namespace Imagekit.UnitTests.FileVersion
             Assert.Equal(responseObj.Raw, result.Raw);
         }
 
-        
+
         [Fact]
         public void Missing_FilePath_RenameFileException_NonAsync()
         {
@@ -279,7 +279,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.RenameFile(model));
+            var ex = Assert.Throws<Exception>(() => restClient.RenameFile(model));
             Assert.Equal(ErrorMessages.InvalidRenameFilePathValue, ex.Message);
         }
         [Fact]
@@ -298,12 +298,12 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.RenameFile(model));
+            var ex = Assert.Throws<Exception>(() => restClient.RenameFile(model));
             Assert.Equal(ErrorMessages.InvalidRenameNewFileNameValue, ex.Message);
         }
 
 
-       
+
 
         [Fact]
         public void GetFileVersions_Default_NonAsync()
@@ -323,7 +323,7 @@ namespace Imagekit.UnitTests.FileVersion
         }
 
 
-       
+
         [Fact]
         public void MISSING_FILE_ID_FileVersionsException_NonAsync()
         {
@@ -337,7 +337,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.GetFileVersions(""));
+            var ex = Assert.Throws<Exception>(() => restClient.GetFileVersions(""));
             Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
         }
         [Fact]
@@ -357,7 +357,7 @@ namespace Imagekit.UnitTests.FileVersion
             Assert.Equal(responseObj.Raw, result.Raw);
         }
 
- 
+
         [Fact]
         public void Missing_Restore_File_Exception_NonAsync()
         {
@@ -371,7 +371,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.RestoreFileVersion("", "123"));
+            var ex = Assert.Throws<Exception>(() => restClient.RestoreFileVersion("", "123"));
             Assert.Equal(ErrorMessages.InvalidFieldIdDelVerValue, ex.Message);
         }
         [Fact]
@@ -387,7 +387,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.RestoreFileVersion("123", ""));
+            var ex = Assert.Throws<Exception>(() => restClient.RestoreFileVersion("123", ""));
             Assert.Equal(ErrorMessages.InvalidVersionIdDelVerValue, ex.Message);
         }
 
@@ -404,7 +404,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.RestoreFileVersion("", ""));
+            var ex = Assert.Throws<Exception>(() => restClient.RestoreFileVersion("", ""));
             Assert.Equal(ErrorMessages.InvalidDelVerValue, ex.Message);
         }
         [Fact]
@@ -436,7 +436,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.GetFileVersionDetails("", ""));
+            var ex = Assert.Throws<Exception>(() => restClient.GetFileVersionDetails("", ""));
             Assert.Equal(ErrorMessages.InvalidDelVerValue, ex.Message);
         }
         [Fact]
@@ -452,7 +452,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.RestoreFileVersion("", "123"));
+            var ex = Assert.Throws<Exception>(() => restClient.RestoreFileVersion("", "123"));
             Assert.Equal(ErrorMessages.InvalidFieldIdDelVerValue, ex.Message);
         }
         [Fact]
@@ -468,7 +468,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.RestoreFileVersion("123", ""));
+            var ex = Assert.Throws<Exception>(() => restClient.RestoreFileVersion("123", ""));
             Assert.Equal(ErrorMessages.InvalidVersionIdDelVerValue, ex.Message);
         }
 

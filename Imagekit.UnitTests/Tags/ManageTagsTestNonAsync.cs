@@ -21,14 +21,15 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest tagsRequest = new TagsRequest
             {
-                Tags = new List<string>()
-            };
-            tagsRequest.Tags.Add("abc");
-            tagsRequest.Tags.Add("abc");
-
-            tagsRequest.FileIds = new List<string>
+                Tags = new List<string>
+                {
+                    "abc",
+                    "abc"
+                },
+                FileIds = new List<string>
             {
                 "abc"
+            }
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -58,7 +59,7 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.ManageTags(ob, ""));
+            var ex = Assert.Throws<Exception>(() => restClient.ManageTags(ob, ""));
             Assert.Equal(ErrorMessages.InvalidTagValue, ex.Message);
         }
         [Fact]
@@ -67,9 +68,8 @@ namespace Imagekit.UnitTests.Tags
             TagsRequest ob = new TagsRequest
             {
                 Tags = null,
-                FileIds = new List<string>()
+                FileIds = new List<string> { "abc" }
             };
-            ob.FileIds.Add("abc");
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
             var httpResponse = new HttpResponseMessage
@@ -79,7 +79,7 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.ManageTags(ob, ""));
+            var ex = Assert.Throws<Exception>(() => restClient.ManageTags(ob, ""));
             Assert.Equal(ErrorMessages.InvalidTagParamValue, ex.Message);
         }
 
@@ -88,10 +88,9 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest ob = new TagsRequest
             {
-                Tags = new List<string>()
+                Tags = new List<string> { "abc" },
+                FileIds = null
             };
-            ob.Tags.Add("abc");
-            ob.FileIds = null;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -102,7 +101,7 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.ManageTags(ob, ""));
+            var ex = Assert.Throws<Exception>(() => restClient.ManageTags(ob, ""));
             Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Message);
         }
 
@@ -112,14 +111,15 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest tagsRequest = new TagsRequest
             {
-                Tags = new List<string>()
-            };
-            tagsRequest.Tags.Add("abc");
-            tagsRequest.Tags.Add("abc");
-
-            tagsRequest.FileIds = new List<string>
+                Tags = new List<string>
+                {
+                    "abc",
+                    "abc"
+                },
+                FileIds = new List<string>
             {
                 "abc"
+            }
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -149,7 +149,7 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.ManageTags(ob, ""));
+            var ex = Assert.Throws<Exception>(() => restClient.ManageTags(ob, ""));
             Assert.Equal(ErrorMessages.InvalidTagValue, ex.Message);
         }
         [Fact]
@@ -158,9 +158,8 @@ namespace Imagekit.UnitTests.Tags
             TagsRequest ob = new TagsRequest
             {
                 Tags = null,
-                FileIds = new List<string>()
+                FileIds = new List<string> { "abc" }
             };
-            ob.FileIds.Add("abc");
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
             var httpResponse = new HttpResponseMessage
@@ -170,7 +169,7 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.ManageTags(ob, ""));
+            var ex = Assert.Throws<Exception>(() => restClient.ManageTags(ob, ""));
             Assert.Equal(ErrorMessages.InvalidTagParamValue, ex.Message);
         }
 
@@ -188,7 +187,7 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.RemoveAiTags(ob));
+            var ex = Assert.Throws<Exception>(() => restClient.RemoveAiTags(ob));
             Assert.Equal(ErrorMessages.InvalidTagValue, ex.Message);
         }
         [Fact]
@@ -197,9 +196,8 @@ namespace Imagekit.UnitTests.Tags
             AiTagsRequest ob = new AiTagsRequest
             {
                 AiTags = null,
-                FileIds = new List<string>()
+                FileIds = new List<string> { "abc" }
             };
-            ob.FileIds.Add("abc");
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
             var httpResponse = new HttpResponseMessage
@@ -209,7 +207,7 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.RemoveAiTags(ob));
+            var ex = Assert.Throws<Exception>(() => restClient.RemoveAiTags(ob));
             Assert.Equal(ErrorMessages.InvalidTagParamValue, ex.Message);
         }
 
@@ -218,10 +216,9 @@ namespace Imagekit.UnitTests.Tags
         {
             AiTagsRequest ob = new AiTagsRequest
             {
-                AiTags = new List<string>()
+                AiTags = new List<string> { "abc" },
+                FileIds = null
             };
-            ob.AiTags.Add("abc");
-            ob.FileIds = null;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -232,7 +229,7 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() =>  restClient.RemoveAiTags(ob));
+            var ex = Assert.Throws<Exception>(() => restClient.RemoveAiTags(ob));
             Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Message);
         }
 

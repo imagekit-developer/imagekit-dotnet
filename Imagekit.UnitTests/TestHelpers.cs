@@ -60,10 +60,10 @@ namespace Imagekit.UnitTests
         /// <returns></returns>
         public static HttpClient GetTestHttpClient(HttpResponseMessage response)
         {
-            return GetTestHttpClient(ItExpr.IsAny<HttpRequestMessage>(), response,null);
+            return GetTestHttpClient(ItExpr.IsAny<HttpRequestMessage>(), response, null);
         }
 
- 
+
         public static Action<HttpRequestMessage> GetUpdateFileDetailsMessageValidator(
             string[] expectedTags,
             string expectedCustomCoordinates
@@ -80,9 +80,9 @@ namespace Imagekit.UnitTests
             };
         }
 
- 
-  
 
-        
+
+
+
     }
 }

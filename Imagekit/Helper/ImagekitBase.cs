@@ -10,7 +10,8 @@ namespace Imagekit
     using System.Text.RegularExpressions;
 
     [ExcludeFromCodeCoverage]
-    public abstract partial class BaseImagekit<T> where T : BaseImagekit<T>
+    public abstract partial class BaseImagekit<T>
+        where T : BaseImagekit<T>
     {
         public Dictionary<string, object> Options = new Dictionary<string, object>();
 

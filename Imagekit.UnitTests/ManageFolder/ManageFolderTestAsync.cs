@@ -17,7 +17,7 @@ namespace Imagekit.UnitTests
         private const string GOOD_PUBLICKEY = "abc";
         private const string GOOD_URLENDPOINT = "https://dasdsad.dad.io/";
 
-       
+
         [Fact]
         public void CreateFolder_Default()
         {
@@ -40,7 +40,7 @@ namespace Imagekit.UnitTests
             var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
             Assert.Equal(responseObj.Raw, result.Raw);
         }
-       
+
         [Fact]
         public void CreateFolderException()
         {
@@ -158,7 +158,7 @@ namespace Imagekit.UnitTests
             var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
             Assert.Equal(responseObj.Raw, result.Raw);
         }
-        
+
         [Fact]
         public void Missing_Obj_FolderException()
         {
@@ -235,7 +235,7 @@ namespace Imagekit.UnitTests
             var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
             Assert.Equal(responseObj.Raw, result.Raw);
         }
-      
+
         [Fact]
         public void Missing_Obj_Move_FolderException()
         {
@@ -291,7 +291,7 @@ namespace Imagekit.UnitTests
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.MoveFolderAsync(model));
             Assert.Equal(ErrorMessages.InvalidCopyDestinationPathValue, ex.Result.Message);
         }
-       
+
     }
 }
 
