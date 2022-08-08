@@ -11,7 +11,7 @@ using Xunit;
 namespace Imagekit.UnitTests
 {
 
-    public class ImageKitTestCasesAsync
+    public class ImagekitTestCasesAsync
     {
         private const string GOOD_PUBLICKEY = "abc";
         private const string GOOD_PRIVATEKEY = "abc";
@@ -35,7 +35,7 @@ namespace Imagekit.UnitTests
         [Fact]
         public void Constructor_TransformationPosition_Default()
         {
-            var imagekit = new ImageKitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var imagekit = new ImagekitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
             Assert.NotNull(imagekit);
         }
 

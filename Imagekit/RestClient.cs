@@ -57,7 +57,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -80,7 +80,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -115,7 +115,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -149,7 +149,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -175,7 +175,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -201,7 +201,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -227,7 +227,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -259,7 +259,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -303,7 +303,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -354,7 +354,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -380,7 +380,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -411,7 +411,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -446,7 +446,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -486,7 +486,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -512,7 +512,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -538,7 +538,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -564,7 +564,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -590,7 +590,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -628,7 +628,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -666,7 +666,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -698,7 +698,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -730,7 +730,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -751,7 +751,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -772,7 +772,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -804,7 +804,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -836,7 +836,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -861,7 +861,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -886,7 +886,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -924,7 +924,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -963,7 +963,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -990,7 +990,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1017,7 +1017,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1046,7 +1046,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1075,7 +1075,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1103,7 +1103,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1131,7 +1131,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1159,7 +1159,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1187,7 +1187,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1216,7 +1216,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1244,7 +1244,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1277,7 +1277,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1310,7 +1310,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1341,7 +1341,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1372,7 +1372,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1403,7 +1403,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1434,7 +1434,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1460,7 +1460,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1486,7 +1486,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1511,7 +1511,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1536,7 +1536,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1561,7 +1561,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1586,7 +1586,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1611,7 +1611,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 
@@ -1636,7 +1636,7 @@ namespace Imagekit.Sdk
             }
             catch (Exception ex)
             {
-                throw new ImageKitException(ex.Message);
+                throw new ImagekitException(ex.Message);
             }
         }
 

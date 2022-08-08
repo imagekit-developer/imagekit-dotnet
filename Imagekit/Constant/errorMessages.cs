@@ -6,10 +6,10 @@ namespace Imagekit.Constant
 {
     public static class ErrorMessages
     {
-        public const string MandatoryInitializationMissing = "{ \"message\": \"Missing publicKey or privateKey or urlEndpoint during ImageKit initialization\", \"help\": \"\" }";
-        public const string MandatoryPublicKeyMissing = "{ \"message\": \"Missing publicKey during ImageKit initialization\", \"help\": \"\" }";
-        public const string PrivateKeyMissing = "{ \"message\": \"Missing privateKey during ImageKit initialization\", \"help\": \"\" }";
-        public const string MandatoryUrlEndpointKeyMissing = "{ \"message\": \"Missing urlEndpoint during ImageKit initialization\", \"help\": \"\" }";
+        public const string MandatoryInitializationMissing = "{ \"message\": \"Missing publicKey or privateKey or urlEndpoint during Imagekit initialization\", \"help\": \"\" }";
+        public const string MandatoryPublicKeyMissing = "{ \"message\": \"Missing publicKey during Imagekit initialization\", \"help\": \"\" }";
+        public const string PrivateKeyMissing = "{ \"message\": \"Missing privateKey during Imagekit initialization\", \"help\": \"\" }";
+        public const string MandatoryUrlEndpointKeyMissing = "{ \"message\": \"Missing urlEndpoint during Imagekit initialization\", \"help\": \"\" }";
         public const string InvalidTransformationPosition = "{ \"message\": \"Invalid transformationPosition parameter\", \"help\": \"\" }";
         public const string CachePurgeUrlMissing = "{ \"message\": \"Missing URL parameter for this request\", \"help\": \"\" }";
         public const string CachePurgeStatusIdMissing = "{ message: \"Missing Request ID parameter for this request\", \"help\": \"\" }";

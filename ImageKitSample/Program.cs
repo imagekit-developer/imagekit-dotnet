@@ -1,7 +1,7 @@
 ﻿using Imagekit.Sdk;
 using System;
 
-namespace ImageKitSample
+namespace ImagekitSample
 {
     internal class Program
     {
@@ -9,40 +9,40 @@ namespace ImageKitSample
         {
 
             //1  
-            ImageKitClient imageKit = new ImageKitClient("TestPublicKey", "TestPrivateKey", "https://api.imageKit.io/");
+            ImagekitClient imagekit = new ImagekitClient("TestPublicKey", "TestPrivateKey", "https://api.imagekit.io/");
             // GetFileListRequest model=new GetFileListRequest();
             // model.type = "file";
             // model.limit = 10;
             // model.skip = 0;
-            //var res= imageKit.GetFileListRequest(model);
+            //var res= imagekit.GetFileListRequest(model);
 
 
-            // imageKit.Instance.GetFileDetail("62d701678c8b75e43661d66d");
-            // imageKit.PurgeCache("https://ik.imageKit.io/dnggmzz0v/default-image.jpg");
-            // imageKit.PurgeStatus("62e5778f31305bff3223b791");
+            // imagekit.Instance.GetFileDetail("62d701678c8b75e43661d66d");
+            // imagekit.PurgeCache("https://ik.imagekit.io/dnggmzz0v/default-image.jpg");
+            // imagekit.PurgeStatus("62e5778f31305bff3223b791");
             //2  
             //FileCreateRequest ob = new FileCreateRequest();
             //ob.Url = new Uri(@"C:\test.jpg");
             //ob.FileName = "test.jpg";
-            //imageKit.Upload(ob);
+            //imagekit.Upload(ob);
             //Console.WriteLine(ob.FileName);
 
             //3 
-            //imageKit.Instance.DeleteFile("62d701678c8b75e43661d66d");
+            //imagekit.Instance.DeleteFile("62d701678c8b75e43661d66d");
 
             //4
             //List<string> ob = new List<string>();
             //ob.Add("62d7f701408c558d6fc2999f");
             //ob.Add("62d7f3f64b0ef156ec137bbe");
-            //imageKit.Instance.BulkDeleteFiles(ob);
+            //imagekit.Instance.BulkDeleteFiles(ob);
 
             //5 
-            //var res=  imageKit.Instance.GetFileMetadata("62d8f36909477610937bff1e");
+            //var res=  imagekit.Instance.GetFileMetadata("62d8f36909477610937bff1e");
             //6
-            // var res = imageKit.Instance.GetRemoteFileMetadata("https://ik.imageKit.io/demo/medium_cafe_B1iTdD0C.jpg");
+            // var res = imagekit.Instance.GetRemoteFileMetadata("https://ik.imagekit.io/demo/medium_cafe_B1iTdD0C.jpg");
 
             //7
-            // var Data = imageKit.Instance.GetCustomMetaDataFields(true);
+            // var Data = imagekit.Instance.GetCustomMetaDataFields(true);
 
 
             //8
@@ -54,7 +54,7 @@ namespace ImageKitSample
             //schema.SetMinValue(1000);
             //schema.SetMaxValue(3000);
             //model.Schema = schema;
-            //imageKit.Instance.CreateCustomMetaDataFields(model);
+            //imagekit.Instance.CreateCustomMetaDataFields(model);
 
             //9
             //CustomMetaDataFieldUpdateRequest model = new CustomMetaDataFieldUpdateRequest();
@@ -66,29 +66,29 @@ namespace ImageKitSample
             //schema.SetMinValue(1000);
             //schema.SetMaxValue(3000);
             //model.Schema = schema;
-            //imageKit.Instance.UpdateCustomMetaDataFields(model);
+            //imagekit.Instance.UpdateCustomMetaDataFields(model);
 
             //10
             //DeleteFileVersionRequest ob = new DeleteFileVersionRequest();
             //ob.SetFileId("62dc254f17bac74dfbbb474d");
             //ob.SetVersionId("62dc254f17bac74dfbbb474d");
-            //imageKit.Instance.DeleteFileVersion(ob);
+            //imagekit.Instance.DeleteFileVersion(ob);
 
             //11
             //CopyFileRequest ob = new CopyFileRequest();
-            //imageKit.Instance.CopyFile(ob);
+            //imagekit.Instance.CopyFile(ob);
 
             //12
             //DeleteFolderRequest ob = new DeleteFolderRequest();
             //ob.SetFolderPath("source/folder/path/new_folder");
-            //imageKit.Instance.DeleteFolder(ob);
+            //imagekit.Instance.DeleteFolder(ob);
 
             //13
             //CreateFolderRequest ob = new CreateFolderRequest();
             //ob.FolderName="abc";
             //ob.ParentFolderPath="source/folder/path";
             //var content = JsonConvert.SerializeObject(ob);
-            //imageKit.Instance.CreateFolder(ob);
+            //imagekit.Instance.CreateFolder(ob);
 
             //
             /// Generating URLs
@@ -146,16 +146,16 @@ namespace ImageKitSample
                            Original().
                            RawTransformation("h-200).w-300).l-image).i-logo.png).l-end")
                            ;
-            string imageUrl = imageKit.Url(trans).Path(path).TransformationPosition("query").Generate();
+            string imageUrl = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
             Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {0}", imageUrl);
 
 
             ///// Generating Signed URL
-            //var imgURL1 = "https://ik.imageKit.io/demo/default-image.jpg";
+            //var imgURL1 = "https://ik.imagekit.io/demo/default-image.jpg";
             //string[] queryParams = { "b=123", "a=test" };
             //try
             //{
-            //    var signedUrl = imageKit.Url(new Transformation().Width(400).Height(300))
+            //    var signedUrl = imagekit.Url(new Transformation().Width(400).Height(300))
             //    .Src(imgURL1)
             //    .QueryParameters(queryParams)
             //    .ExpireSeconds(600)

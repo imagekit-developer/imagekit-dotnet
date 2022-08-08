@@ -11,7 +11,7 @@ using Xunit;
 namespace Imagekit.UnitTests.FileVersion
 {
 
-    public class ImageKitTestCasesNonAsync
+    public class ImagekitTestCasesNonAsync
     {
         private const string GOOD_PUBLICKEY = "abc";
         private const string GOOD_PRIVATEKEY = "abc";
@@ -36,13 +36,13 @@ namespace Imagekit.UnitTests.FileVersion
         [Fact]
         public void Constructor_TransformationPosition_DefaultNonAsync()
         {
-            var imagekit = new ImageKitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var imagekit = new ImagekitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
             Assert.NotNull(imagekit);
         }
         [Fact]
         public void UrlValidation()
         {
-            var imagekit = new ImageKitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            var imagekit = new ImagekitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
             string path = "/default-image.jpg";
             Transformation trans = new Transformation()
                 .Width(400)

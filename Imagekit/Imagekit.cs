@@ -8,13 +8,13 @@ namespace Imagekit.Sdk
     using System.Threading.Tasks;
     using global::Imagekit.Models;
 
-    public class ImageKitClient : BaseImagekit<ImageKitClient>
+    public class ImagekitClient : BaseImagekit<ImagekitClient>
     {
         private RestClient restClient;
 
         public RestClient RestClient { get => this.restClient; set => this.restClient = value; }
 
-        public ImageKitClient(string publicKey, string privateKey, string urlEndPoint)
+        public ImagekitClient(string publicKey, string privateKey, string urlEndPoint)
             : base(privateKey, urlEndPoint, "path")
         {
             this.restClient = new RestClient(privateKey, urlEndPoint, new System.Net.Http.HttpClient());

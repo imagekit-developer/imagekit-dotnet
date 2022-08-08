@@ -1,4 +1,4 @@
-﻿// <copyright file="ImageKit.cs" company="PlaceholderCompany">
+﻿// <copyright file="Imagekit.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -7,7 +7,7 @@ namespace Imagekit.Sdk
     using System.Collections.Generic;
     using global::Imagekit.Models;
 
-    public interface IImageKit
+    public interface IImagekit
     {
         ResponseMetaData AddTags(TagsRequest tagsRequest);
 
