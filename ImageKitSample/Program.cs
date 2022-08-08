@@ -10,15 +10,14 @@ namespace ImageKitSample
         {
              
             //1  
-            ImageKitClient imageKit = new ImageKitClient("TestPublicKey", "TestPrivateKey",
-                "https://api.imageKit.io/");
-            GetFileListRequest model=new GetFileListRequest();
-            model.type = "file";
-            model.limit = 10;
-            model.skip = 0;
-           var res= imageKit.GetFileListRequest(model);
+            ImageKitClient imageKit = new ImageKitClient("TestPublicKey", "TestPrivateKey", "https://api.imageKit.io/");
+           // GetFileListRequest model=new GetFileListRequest();
+           // model.type = "file";
+           // model.limit = 10;
+           // model.skip = 0;
+           //var res= imageKit.GetFileListRequest(model);
 
-            
+
             // imageKit.Instance.GetFileDetail("62d701678c8b75e43661d66d");
             // imageKit.PurgeCache("https://ik.imageKit.io/dnggmzz0v/default-image.jpg");
             // imageKit.PurgeStatus("62e5778f31305bff3223b791");
@@ -94,10 +93,62 @@ namespace ImageKitSample
 
             //
             /// Generating URLs
-            //string path = "/default-image.jpg";
-            //Transformation trans = new Transformation().Width(400).Height(300);
-            //string imageURL = imageKit.Url(trans).Path(path).TransformationPosition("query").Generate();
-            //Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {0}", imageURL);
+            string path = "/default-image.jpg";
+            Transformation trans = new Transformation()
+                           .Width(400)
+                           .Height(300)
+                           .AspectRatio("4-3")
+                           .Quality(40)
+                           .Crop("force").CropMode("extract").
+                           Focus("left").
+                           Format("jpeg").
+                           Background("A94D34").
+                           Border("5-A94D34").
+                           Rotation(90).
+                           Blur(10).
+                           Named("some_name").
+                           OverlayX(35).
+                           OverlayY(35).
+                           OverlayFocus("bottom").
+                           OverlayHeight(20).
+                           OverlayHeight(20).
+                           OverlayImage("/folder/file.jpg"). // leading slash case
+                           OverlayImageTrim(false).
+                           OverlayImageAspectRatio("4:3").
+                           OverlayImageBackground("0F0F0F").
+                           OverlayImageBorder("10_0F0F0F").
+                           OverlayImageDpr(2).
+                           OverlayImageQuality(50).
+                           OverlayImageCropping("force").
+                           OverlayText("two words").
+                           OverlayTextFontSize(20).
+                           OverlayTextFontFamily("Open Sans").
+                           OverlayTextColor("00FFFF").
+                           OverlayTextTransparency(5).
+                           OverlayTextTypography("b").
+                           OverlayBackground("00AAFF55").
+                           OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D").
+                           OverlayTextWidth(50).
+                           OverlayTextBackground("00AAFF55").
+                           OverlayTextPadding(40).
+                           OverlayTextInnerAlignment("left").
+                           OverlayRadius(10).
+                           Progressive(true).
+                           Lossless(true).
+                           Trim(5).
+                           Metadata(true).
+                           ColorProfile(true).
+                           DefaultImage("folder/file.jpg/"). //trailing slash case
+                           Dpr(3).
+                           EffectSharpen(10).
+                           EffectUsm("2-2-0.8-0.024").
+                           EffectContrast(true).
+                           EffectGray().
+                           Original().
+                           RawTransformation("h-200).w-300).l-image).i-logo.png).l-end")
+                           ;
+            string imageURL = imageKit.Url(trans).Path(path).TransformationPosition("query").Generate();
+            Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {0}", imageURL);
 
 
             ///// Generating Signed URL
