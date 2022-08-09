@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class ResultCacheStatus
+public class ResultCacheStatus : ResponseMetaData
 {
     private string help { get; set; }
     private string status { get; set; }

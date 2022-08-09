@@ -12,6 +12,7 @@ namespace Imagekit.Sdk
     using global::Imagekit.Constant;
     using global::Imagekit.Helper;
     using global::Imagekit.Models;
+    using global::Imagekit.Models.Response;
     using global::Imagekit.Util;
 
     using Newtonsoft.Json;
@@ -44,16 +45,18 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultList model = new ResultList();
                 string param = GetJsonBody.GetFileRequestBody(getFileListRequest);
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest, param);
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultList>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -65,17 +68,19 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultList model = new ResultList();
                 string param = GetJsonBody.GetFileRequestBody(getFileListRequest);
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest, param);
 
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultList>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -87,6 +92,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultCache model=new ResultCache();
                 if (!ValidateParamater.IsValidateParam(path))
                 {
                     throw new Exception(ErrorMessages.InvalidUrlValue);
@@ -105,12 +111,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultCache>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -122,6 +129,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultCache model = new ResultCache();
                 if (!ValidateParamater.IsValidateParam(path))
                 {
                     throw new Exception(ErrorMessages.InvalidUrlValue);
@@ -139,12 +147,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultCache>(res);
+                  Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                  return model;
             }
             catch (Exception ex)
             {
@@ -156,6 +165,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultCacheStatus model=new ResultCacheStatus();
                 if (!ValidateParamater.IsValidateParam(purgeRequestId))
                 {
                     throw new Exception(ErrorMessages.InvalidPurgeUrl);
@@ -165,12 +175,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultCacheStatus>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -182,6 +193,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultCacheStatus model = new ResultCacheStatus();
                 if (!ValidateParamater.IsValidateParam(purgeRequestId))
                 {
                     throw new Exception(ErrorMessages.InvalidPurgeUrl);
@@ -191,12 +203,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultCacheStatus>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -208,6 +221,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                Result model=new Result();
                 if (!ValidateParamater.IsValidateParam(fileId))
                 {
                     throw new Exception(ErrorMessages.FileIdMissing);
@@ -217,12 +231,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<Result>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -234,6 +249,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                Result model = new Result();
                 if (!ValidateParamater.IsValidateParam(fileId))
                 {
                     throw new Exception(ErrorMessages.FileIdMissing);
@@ -245,11 +261,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<Result>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -261,6 +279,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                Result model = new Result();
                 string validate = ValidateParamater.IsValidateUpload(fileCreateRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -289,11 +308,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<Result>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -310,6 +331,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                Result model = new Result();
                 string validate = ValidateParamater.IsValidateUpload(fileCreateRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -340,11 +362,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = await this.client.PostAsync(url, formdata);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<Result>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -356,6 +380,8 @@ namespace Imagekit.Sdk
         {
             try
             {
+                Result model=new Result();
+                
                 if (!ValidateParamater.IsValidateParam(fileId))
                 {
                     throw new Exception(ErrorMessages.FileIdMissing);
@@ -365,12 +391,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.DeleteAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<Result>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -387,6 +414,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                Result model=new Result();
                 if (!ValidateParamater.IsValidateParam(fileId))
                 {
                     throw new Exception(ErrorMessages.FileIdMissing);
@@ -397,11 +425,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = await this.client.DeleteAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<Result>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -413,6 +443,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultFileDelete model=new ResultFileDelete();
                 if (!ValidateParamater.IsListCheck(fileIds))
                 {
                     throw new Exception(ErrorMessages.ListFilesInputMissing);
@@ -431,12 +462,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultFileDelete>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -453,10 +485,11 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultFileDelete model = new ResultFileDelete();
                 if (!ValidateParamater.IsListCheck(fileIds))
                 {
                     throw new Exception(ErrorMessages.ListFilesInputMissing);
-                }
+                } 
 
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.BulkDelete);
 
@@ -472,11 +505,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultFileDelete>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -488,6 +523,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultMetaData model = new ResultMetaData();
                 if (!ValidateParamater.IsValidateParam(fileId))
                 {
                     throw new Exception(ErrorMessages.FileIdMissing);
@@ -497,12 +533,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultMetaData>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -514,6 +551,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultMetaData model = new ResultMetaData();
                 if (!ValidateParamater.IsValidateParam(fileId))
                 {
                     throw new Exception(ErrorMessages.FileIdMissing);
@@ -524,11 +562,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultMetaData>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -540,6 +580,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultMetaData model=new ResultMetaData();
                 if (!ValidateParamater.IsValidateParam(url))
                 {
                     throw new Exception(ErrorMessages.InvalidUrlValue);
@@ -549,12 +590,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.GetAsync(apIurl).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultMetaData>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                  return model;
             }
             catch (Exception ex)
             {
@@ -566,6 +608,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultMetaData model = new ResultMetaData();
                 if (!ValidateParamater.IsValidateParam(url))
                 {
                     throw new Exception(ErrorMessages.InvalidUrlValue);
@@ -575,12 +618,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = await this.client.GetAsync(apIurl);
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultMetaData>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -592,6 +636,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultTags model= new ResultTags(); 
                 var validate = ValidateParamater.IsValidateTagRequest(tagsRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -613,12 +658,13 @@ namespace Imagekit.Sdk
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultTags>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -630,6 +676,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultTags model=new ResultTags();
                 var validate = ValidateParamater.IsValidateTagRequest(tagsRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -651,12 +698,13 @@ namespace Imagekit.Sdk
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultTags>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -668,6 +716,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultTags model = new ResultTags();
                 var validate = ValidateParamater.IsValidateAiTagRequest(aiTagsRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -684,11 +733,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultTags>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -700,6 +751,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultTags model = new ResultTags();
                 var validate = ValidateParamater.IsValidateAiTagRequest(aiTagsRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -716,11 +768,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultTags>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -732,16 +786,18 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultCustomMetaDataFieldList model=new ResultCustomMetaDataFieldList();
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CustomMetadataFields, includeDeleted);
 
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultCustomMetaDataFieldList>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -753,16 +809,19 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultCustomMetaDataFieldList model=new ResultCustomMetaDataFieldList();
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CustomMetadataFields, includeDeleted);
 
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultCustomMetaDataFieldList>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -775,6 +834,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultCustomMetaDataField model = new ResultCustomMetaDataField();
                 var validate =
                     ValidateParamater.IsValidateCustomMetaDataFieldCreateRequest(customMetaDataFieldCreateRequest);
                 if (!string.IsNullOrEmpty(validate))
@@ -789,12 +849,13 @@ namespace Imagekit.Sdk
                 var stringContent = new StringContent(body, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultCustomMetaDataField>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -807,6 +868,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultCustomMetaDataField model = new ResultCustomMetaDataField();
                 var validate =
                     ValidateParamater.IsValidateCustomMetaDataFieldCreateRequest(customMetaDataFieldCreateRequest);
                 if (!string.IsNullOrEmpty(validate))
@@ -822,11 +884,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultCustomMetaDataField>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -838,6 +902,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultNoContent model=new ResultNoContent();
                 if (!ValidateParamater.IsValidateParam(id))
                 {
                     throw new Exception(ErrorMessages.InvalidFileidsValue);
@@ -847,11 +912,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.DeleteAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultNoContent>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -863,6 +930,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultNoContent model = new ResultNoContent();
                 if (!ValidateParamater.IsValidateParam(id))
                 {
                     throw new Exception(ErrorMessages.InvalidFileidsValue);
@@ -872,11 +940,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = await this.client.DeleteAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultNoContent>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -889,6 +959,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultCustomMetaDataField model = new ResultCustomMetaDataField();
                 var validate =
                     ValidateParamater.IsValidateCustomMetaDataFieldUpdateRequest(customMetaDataFieldUpdateRequest);
                 if (!string.IsNullOrEmpty(validate))
@@ -910,11 +981,12 @@ namespace Imagekit.Sdk
                 };
                 HttpResponseMessage response = this.client.SendAsync(request).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultCustomMetaDataField>(res);
+                 Utils.PopulateResponseMetadata(
                     res, null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -927,6 +999,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultCustomMetaDataField model=new ResultCustomMetaDataField();    
                 var validate =
                     ValidateParamater.IsValidateCustomMetaDataFieldUpdateRequest(customMetaDataFieldUpdateRequest);
                 if (!string.IsNullOrEmpty(validate))
@@ -949,11 +1022,12 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = await this.client.SendAsync(request);
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
-                    res,
-                    null,
+                model = JsonConvert.DeserializeObject<ResultCustomMetaDataField>(res);
+                Utils.PopulateResponseMetadata(
+                    res, null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -965,6 +1039,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultNoContent model=new ResultNoContent();
                 var validate = ValidateParamater.IsValidateDeleteFileVersionRequest(deleteFileVersionRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -976,11 +1051,14 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.DeleteAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultNoContent>(res);
+
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -992,6 +1070,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultNoContent model = new ResultNoContent();
                 var validate = ValidateParamater.IsValidateDeleteFileVersionRequest(deleteFileVersionRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1003,11 +1082,14 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = await this.client.DeleteAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultNoContent>(res);
+
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1019,6 +1101,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultNoContent model=new ResultNoContent();
                 string validate = ValidateParamater.IsValidateCopyRequest(copyFileRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1032,11 +1115,14 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultNoContent>(res);
+
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1048,6 +1134,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultNoContent model=new ResultNoContent();
                 string validate = ValidateParamater.IsValidateCopyRequest(copyFileRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1061,11 +1148,14 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultNoContent>(res);
+
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1077,6 +1167,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultNoContent model=new ResultNoContent();
                 string validate = ValidateParamater.IsValidateMoveRequest(moveFileRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1089,11 +1180,14 @@ namespace Imagekit.Sdk
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultNoContent>(res);
+
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1105,6 +1199,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultNoContent model=new ResultNoContent();
                 string validate = ValidateParamater.IsValidateMoveRequest(moveFileRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1117,11 +1212,14 @@ namespace Imagekit.Sdk
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultNoContent>(res);
+
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1133,6 +1231,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultRenameFile model=new ResultRenameFile();
                 var validate = ValidateParamater.IsValidateRenameRequest(renameFileRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1145,11 +1244,13 @@ namespace Imagekit.Sdk
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = this.client.PutAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultRenameFile>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -1161,6 +1262,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultRenameFile model = new ResultRenameFile();
                 var validate = ValidateParamater.IsValidateRenameRequest(renameFileRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1173,11 +1275,13 @@ namespace Imagekit.Sdk
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.client.PutAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultRenameFile>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1189,6 +1293,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultEmptyBlock model = new ResultEmptyBlock();
                 var isValidateFolder = ValidateParamater.IsValidateFolder(createFolderRequest);
                 if (!string.IsNullOrEmpty(isValidateFolder))
                 {
@@ -1202,11 +1307,13 @@ namespace Imagekit.Sdk
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultEmptyBlock>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -1218,6 +1325,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultEmptyBlock model = new ResultEmptyBlock();
                 var isValidateFolder = ValidateParamater.IsValidateFolder(createFolderRequest);
                 if (!string.IsNullOrEmpty(isValidateFolder))
                 {
@@ -1230,11 +1338,13 @@ namespace Imagekit.Sdk
                 var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultEmptyBlock>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1246,6 +1356,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultNoContent model=new ResultNoContent();    
                 if (!ValidateParamater.IsValidateDeleteFolder(deleteFolderRequest))
                 {
                     throw new Exception(ErrorMessages.InvalidDelFolderValue);
@@ -1263,11 +1374,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.SendAsync(request).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultNoContent>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -1279,6 +1392,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultNoContent model = new ResultNoContent();
                 if (!ValidateParamater.IsValidateDeleteFolder(deleteFolderRequest))
                 {
                     throw new Exception(ErrorMessages.InvalidDelFolderValue);
@@ -1296,11 +1410,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = await this.client.SendAsync(request);
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultNoContent>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1312,6 +1428,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultOfFolderActions model=new ResultOfFolderActions();
                 var validate = ValidateParamater.IsValidateCopyFolder(copyFolderRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1326,12 +1443,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultOfFolderActions>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -1343,6 +1461,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultOfFolderActions model =new ResultOfFolderActions();
                 var validate = ValidateParamater.IsValidateCopyFolder(copyFolderRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1358,11 +1477,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultOfFolderActions>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1374,6 +1495,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultOfFolderActions model = new ResultOfFolderActions();
                 var validate = ValidateParamater.IsValidateMoveFolder(moveFolderRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1389,11 +1511,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultOfFolderActions>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1405,6 +1529,8 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultOfFolderActions model=new ResultOfFolderActions();
+                
                 var validate = ValidateParamater.IsValidateMoveFolder(moveFolderRequest);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1419,12 +1545,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultOfFolderActions>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1436,6 +1563,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultBulkJobStatus model = new ResultBulkJobStatus();
                 if (!ValidateParamater.IsValidateParam(jobId))
                 {
                     throw new Exception(ErrorMessages.InvalidJobValue);
@@ -1445,12 +1573,13 @@ namespace Imagekit.Sdk
 
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultBulkJobStatus>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -1462,6 +1591,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultBulkJobStatus model = new ResultBulkJobStatus();
                 if (!ValidateParamater.IsValidateParam(jobId))
                 {
                     throw new Exception(ErrorMessages.InvalidJobValue);
@@ -1472,11 +1602,13 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
 
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultBulkJobStatus>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1488,6 +1620,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultFileVersions model=new ResultFileVersions();  
                 if (!ValidateParamater.IsValidateParam(fileId))
                 {
                     throw new Exception(ErrorMessages.FileIdMissing);
@@ -1496,12 +1629,13 @@ namespace Imagekit.Sdk
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetJobStatus, fileId);
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultFileVersions>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -1513,6 +1647,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultFileVersions model = new ResultFileVersions();
                 if (!ValidateParamater.IsValidateParam(fileId))
                 {
                     throw new Exception(ErrorMessages.FileIdMissing);
@@ -1521,12 +1656,13 @@ namespace Imagekit.Sdk
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetJobStatus, fileId);
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = await response.Content.ReadAsStringAsync();
-
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultFileVersions>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1538,6 +1674,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultFileVersionDetails model=new ResultFileVersionDetails();  
                 var validate = ValidateParamater.IsValidateParam(fileId, versionId);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1547,11 +1684,13 @@ namespace Imagekit.Sdk
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersionDetail, fileId, versionId);
                 HttpResponseMessage response = this.client.GetAsync(url).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultFileVersionDetails>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -1563,6 +1702,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                ResultFileVersionDetails model = new ResultFileVersionDetails();
                 var validate = ValidateParamater.IsValidateParam(fileId, versionId);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1572,11 +1712,13 @@ namespace Imagekit.Sdk
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersionDetail, fileId, versionId);
                 HttpResponseMessage response = await this.client.GetAsync(url);
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<ResultFileVersionDetails>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {
@@ -1588,6 +1730,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                Result model = new Result();
                 var validate = ValidateParamater.IsValidateParam(fileId, versionId);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1597,11 +1740,13 @@ namespace Imagekit.Sdk
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.RestoreVesrion, fileId, versionId);
                 HttpResponseMessage response = this.client.PutAsync(url, null).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<Result>(res);
+                 Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                 return model;
             }
             catch (Exception ex)
             {
@@ -1613,6 +1758,7 @@ namespace Imagekit.Sdk
         {
             try
             {
+                Result model=new Result();
                 var validate = ValidateParamater.IsValidateParam(fileId, versionId);
                 if (!string.IsNullOrEmpty(validate))
                 {
@@ -1622,11 +1768,13 @@ namespace Imagekit.Sdk
                 string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.RestoreVesrion, fileId, versionId);
                 HttpResponseMessage response = await this.client.PutAsync(url, null);
                 string res = response.Content.ReadAsStringAsync().Result;
-                return Utils.PopulateResponseMetadata(
+                model = JsonConvert.DeserializeObject<Result>(res);
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
+                return model;
             }
             catch (Exception ex)
             {

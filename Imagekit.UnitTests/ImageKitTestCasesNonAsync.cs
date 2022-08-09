@@ -122,8 +122,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetFileListRequest(ob);
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+           // 
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
         [Fact]
@@ -140,8 +140,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetFileDetail("abc");
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
         [Fact]
@@ -176,8 +176,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.PurgeCache("abc");
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
         public void PurgeStatus_DefaultNonAsync()
@@ -193,8 +193,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.PurgeStatus("abc");
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
         [Fact]
@@ -211,8 +211,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.DeleteFile("abc");
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
         public void Delete_File_ID_ExceptionNonAsync()
@@ -251,8 +251,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.BulkDeleteFiles(ob);
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
         public void Bulk_Delete_Files_Input_Missing_ExceptionNonAsync()
@@ -366,8 +366,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.DeleteFileVersion(model);
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
         [Fact]
@@ -446,8 +446,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CopyFile(model);
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
         public void Missing_Obj_CopyFileExceptionNonAsync()
@@ -527,8 +527,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.MoveFile(model);
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
         public void Missing_Obj_MoveFileExceptionNonAsync()
@@ -607,8 +607,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.RenameFile(model);
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
         public void Missing_FilePath_RenameFileExceptionNonAsync()
@@ -663,8 +663,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetBulkJobStatus("abc");
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
         public void Missing_Job_Id_BulkJobStatusExceptionNonAsync()

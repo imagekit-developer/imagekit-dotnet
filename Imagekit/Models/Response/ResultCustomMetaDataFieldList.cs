@@ -4,8 +4,8 @@
 
 using System.Collections.Generic;
 
-public class ResultCustomMetaDataFieldList
+public class ResultCustomMetaDataFieldList : ResponseMetaData
 {
     public List<ResultCustomMetaDataField> resultCustomMetaDataFieldList { get; set; }=new List<ResultCustomMetaDataField>();
-    public ResponseMetaData responseMetaData { get; set; }=new ResponseMetaData();
+   
 }

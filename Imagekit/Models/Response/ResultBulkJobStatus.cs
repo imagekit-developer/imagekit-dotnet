@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-public class ResultBulkJobStatus
+public class ResultBulkJobStatus :ResponseMetaData
 {
     public string jobId { get; set; }
     public string type { get; set; }

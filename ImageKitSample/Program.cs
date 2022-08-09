@@ -1,4 +1,5 @@
-﻿using Imagekit.Sdk;
+﻿using Imagekit.Models;
+using Imagekit.Sdk;
 using System;
 
 namespace ImagekitSample
@@ -10,11 +11,12 @@ namespace ImagekitSample
 
             //1  
             ImagekitClient imagekit = new ImagekitClient("TestPublicKey", "TestPrivateKey", "https://api.imagekit.io/");
-            // GetFileListRequest model=new GetFileListRequest();
-            // model.type = "file";
-            // model.limit = 10;
-            // model.skip = 0;
-            //var res= imagekit.GetFileListRequest(model);
+
+            GetFileListRequest model = new GetFileListRequest();
+            model.Type = "file";
+            model.Limit = 10;
+            model.Skip = 0;
+            var res = imagekit.GetFileListRequest(model);
 
 
             // imagekit.Instance.GetFileDetail("62d701678c8b75e43661d66d");

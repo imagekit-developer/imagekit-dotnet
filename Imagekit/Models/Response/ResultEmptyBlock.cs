@@ -2,9 +2,9 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-public class ResultEmptyBlock
+public class ResultEmptyBlock : ResponseMetaData
 {
-    private ResponseMetaData responseMetaData { get; set; } = new ResponseMetaData();
+   
 
     
 }

@@ -42,8 +42,8 @@ namespace Imagekit.UnitTests.Tags
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.ManageTags(tagsRequest, "addTags");
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
         [Fact]
@@ -132,8 +132,8 @@ namespace Imagekit.UnitTests.Tags
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.ManageTags(tagsRequest, "addTags");
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
         [Fact]

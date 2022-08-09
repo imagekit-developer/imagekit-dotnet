@@ -5,12 +5,12 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class ResultFileDelete
+public class ResultFileDelete : ResponseMetaData
 {
-    private string help { get; set; }
+    public string help { get; set; }
 
-    private string raw { get; set; }
-    private List<string> successfullyDeletedFileIds { get; set; }
-    private List<string> missingFileIds { get; set; }
-    private ResponseMetaData responseMetaData { get; set; } = new ResponseMetaData();
+    public string raw { get; set; }
+    public List<string> successfullyDeletedFileIds { get; set; }
+    public List<string> missingFileIds { get; set; }
+  
 }

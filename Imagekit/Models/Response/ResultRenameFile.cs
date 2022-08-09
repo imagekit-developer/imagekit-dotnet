@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-public class ResultRenameFile
+public class ResultRenameFile : ResponseMetaData
 {
     public string purgeRequestId { get; set; }
      

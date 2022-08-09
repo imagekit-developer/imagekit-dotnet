@@ -4,9 +4,9 @@
 
 using System.Collections.Generic;
 
-public class ResultFileVersions
+public class ResultFileVersions : ResponseMetaData
 {
-    private List<ResultFileVersionDetails> resultFileVersionDetailsList { get; set; } = new List<ResultFileVersionDetails>();
+    public List<ResultFileVersionDetails> resultFileVersionDetailsList { get; set; } = new List<ResultFileVersionDetails>();
     
  
 }

@@ -93,8 +93,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CopyFile(model);
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
 
@@ -176,8 +176,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.MoveFile(model);
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
 
@@ -258,8 +258,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.RenameFile(model);
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
 
@@ -318,8 +318,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetFileVersions("abc");
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
 
@@ -353,8 +353,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.RestoreFileVersion("abc", "1");
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
 
 
@@ -420,8 +420,8 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetFileVersionDetails("abc", "1");
-            var result = JsonConvert.DeserializeObject<ResponseMetaData>(response.Raw);
-            Assert.Equal(responseObj.Raw, result.Raw);
+            
+            Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
         public void Missing_FileVersionDetailsException_NonAsync()

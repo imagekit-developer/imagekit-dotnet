@@ -4,7 +4,7 @@
 
 using Imagekit.Models;
 
-public class ResultCustomMetaDataField
+public class ResultCustomMetaDataField : ResponseMetaData
 {
     private string Id { get; set; }
 

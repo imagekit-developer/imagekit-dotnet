@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-public class ResultFileVersionDetails
+public class ResultFileVersionDetails : ResponseMetaData
 {
     public string type { get; set; }
     public string name { get; set; }

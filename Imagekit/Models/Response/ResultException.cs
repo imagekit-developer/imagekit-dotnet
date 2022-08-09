@@ -2,10 +2,10 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-public class ResultException
+public class ResultException : ResponseMetaData
 {
     private string message { get; set; }
     private string help { get; set; }
-    private ResponseMetaData responseMetaData { get; set; } = new ResponseMetaData();
+  
 
 }

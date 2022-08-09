@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class ResultList
+public class ResultList :ResponseMetaData
 {
     public string help { get; set; }
 

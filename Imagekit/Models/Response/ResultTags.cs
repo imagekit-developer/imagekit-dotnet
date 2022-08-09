@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-public class ResultTags
+public class ResultTags : ResponseMetaData
 {
     public List<string> successfullyUpDateTimeTimedFileIds { get; set; }
      
