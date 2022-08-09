@@ -3,8 +3,9 @@
 // </copyright>
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
-
+[ExcludeFromCodeCoverage]
 public class ResultFileDelete : ResponseMetaData
 {
     public string help { get; set; }

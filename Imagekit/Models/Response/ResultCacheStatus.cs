@@ -3,8 +3,9 @@
 // </copyright>
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
-
+[ExcludeFromCodeCoverage]
 public class ResultCacheStatus : ResponseMetaData
 {
     private string help { get; set; }

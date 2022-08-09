@@ -3,7 +3,9 @@
 // </copyright>
 
 using Imagekit.Models;
+using System.Diagnostics.CodeAnalysis;
 
+[ExcludeFromCodeCoverage]
 public class ResultCustomMetaDataField : ResponseMetaData
 {
     private string Id { get; set; }

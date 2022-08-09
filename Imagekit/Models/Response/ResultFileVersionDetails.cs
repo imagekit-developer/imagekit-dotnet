@@ -3,8 +3,9 @@
 // </copyright>
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
-
+[ExcludeFromCodeCoverage]
 public class ResultFileVersionDetails : ResponseMetaData
 {
     public string type { get; set; }

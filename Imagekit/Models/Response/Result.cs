@@ -3,7 +3,9 @@
 // </copyright>
 
 using System;
- 
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
 
 public class Result : ResponseMetaData
 {

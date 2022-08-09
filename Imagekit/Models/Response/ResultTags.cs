@@ -3,7 +3,9 @@
 // </copyright>
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
+[ExcludeFromCodeCoverage]
 public class ResultTags : ResponseMetaData
 {
     public List<string> successfullyUpDateTimeTimedFileIds { get; set; }
