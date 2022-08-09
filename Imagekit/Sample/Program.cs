@@ -1,7 +1,7 @@
 ﻿using Imagekit.Sdk;
 using System;
 
-namespace ImagekitSample
+namespace Imagekit
 {
     internal class Program
     {
@@ -97,6 +97,7 @@ namespace ImagekitSample
                 .UrlEndpoint("https://ik.imagekit.io/your_imagekit_id/endpoint")
                 .TransformationPosition("query")
                 .Generate();
+         
             Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {0}", imageURL);
 
 

@@ -248,9 +248,31 @@ The `upload()` method requires at least the `file` and the `fileName` parameter 
 
 Sample usage
 
-```cs
-ResponseMetaData resp = await imagekit.UploadAsync(<fullPath|url|base_64|binary>,"my_file_name.jpg");
-```
+```cs 
+        // Upload By URI
+            FileCreateRequest ob = new FileCreateRequest();
+            ob.Url = new Uri(@"C:\test.jpg");
+            ob.FileName = "test.jpg";
+          ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
+         //Upload by Base64
+         
+          string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
+            byte[] bytes = Convert.FromBase64String(base64);
+            FileCreateRequest ob = new FileCreateRequest
+            {
+                Bytes = bytes,
+                FileName = Guid.NewGuid().ToString()
+            };
+           ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
+           
+           string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
+            FileCreateRequest ob = new FileCreateRequest
+            {
+                Base64 = base64,
+                FileName = Guid.NewGuid().ToString()
+            };
+		  ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
+		  ```
 
 **Note**: Upload argument can be a local fullPath or URL or byte array (byte\[\]) or Base64String of a file.
 
@@ -419,7 +441,7 @@ Accepts an object of class `RenameFileRequest` specifying the parameters to be u
 RenameFileRequest renameFileRequest = new RenameFileRequest();
 renameFileRequest.FilePath = "/w2_image.png";
 renameFileRequest.NewFileName = "w2_image_s.png";
-renameFileRequest.setPurgeCache = false;
+renameFileRequest.PurgeCache = false;
 ResponseMetaData resultRenameFile = imageKit.renameFile(renameFileRequest); 
 ```
 
