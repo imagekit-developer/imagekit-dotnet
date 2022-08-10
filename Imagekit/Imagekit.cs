@@ -1,473 +1,338 @@
-﻿// I've left this file with the name `Imagekit.cs` and the obsolete Imagekit in the same file to
-// make the github differences easier to see for the PR. Any subsequent PR can rename this file
-// and split out the obsolete Imagekit into its own file.
+﻿// <copyright file="Imagekit.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
-using System;
-using System.Linq;
-using Imagekit.Util;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Imagekit
+namespace Imagekit.Sdk
 {
-    public abstract partial class BaseImagekit<T> where T : BaseImagekit<T>
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using global::Imagekit.Models;
+
+    public class ImagekitClient : BaseImagekit<ImagekitClient>
     {
-        public Dictionary<string, object> options = new Dictionary<string, object>();
+        private RestClient restClient;
 
-        public BaseImagekit(string publicKey, string urlEndpoint, string transformationPosition = "path")
+        public RestClient RestClient { get => this.restClient; set => this.restClient = value; }
+
+        public ImagekitClient(string publicKey, string privateKey, string urlEndPoint)
+            : base(privateKey, urlEndPoint, "path")
         {
-            if (string.IsNullOrEmpty(publicKey))
-            {
-                throw new ArgumentNullException(nameof(publicKey));
-            }
-            if (string.IsNullOrEmpty(urlEndpoint))
-            {
-                throw new ArgumentNullException(nameof(urlEndpoint));
-            }
-
-            Regex rgx = new Regex("^(path|query)$");
-            if (transformationPosition == null || !rgx.IsMatch(transformationPosition))
-            {
-                throw new ArgumentException(errorMessages.INVALID_TRANSFORMATION_POSITION, nameof(transformationPosition));
-            }
-
-            Add("publicKey", publicKey);
-            Add("urlEndpoint", urlEndpoint);
-            Add("transformationPosition", transformationPosition);
+            this.restClient = new RestClient(privateKey, urlEndPoint, new System.Net.Http.HttpClient());
+            this.Add("privateKey", privateKey);
+            this.Add("publicKey", publicKey);
         }
 
-
-        public string Generate()
+        public ResponseMetaData Upload(FileCreateRequest fileCreateRequest)
         {
-            Transformation transformation = (Transformation)options["transformation"];
-            string tranformationString = transformation.Generate();
-            return new Url(options).UrlBuilder(tranformationString);
+            return this.restClient.Upload(fileCreateRequest);
         }
 
-
-        public Dictionary<string, string> getUploadData(AuthParamResponse clientAuth = null)
+        public ResponseMetaData PurgeCache(string url)
         {
-            if (!options.ContainsKey("fileName") || string.IsNullOrEmpty((string)options["fileName"]))
-            {
-                throw new ArgumentException(errorMessages.MISSING_UPLOAD_FILENAME_PARAMETER);
-            }
-
-            Dictionary<string, string> postData = new Dictionary<string, string>();
-            postData.Add("fileName", (string)options["fileName"]);
-            if (options.ContainsKey("folder") && !string.IsNullOrEmpty((string)options["folder"]))
-            {
-                postData.Add("folder", (string)options["folder"]);
-            }
-            if (options.ContainsKey("isPrivateFile") && (bool)options["isPrivateFile"] == true)
-            {
-                postData.Add("isPrivateFile", "true");
-            }
-            if (options.ContainsKey("useUniqueFileName") && (bool)options["useUniqueFileName"] == false)
-            {
-                postData.Add("useUniqueFileName", "false");
-            }
-            if (options.ContainsKey("customCoordinates") && !string.IsNullOrEmpty((string)options["customCoordinates"]))
-            {
-                postData.Add("customCoordinates", (string)options["customCoordinates"]);
-            }
-            if (options.ContainsKey("responseFields") && !string.IsNullOrEmpty((string)options["responseFields"]))
-            {
-                postData.Add("responseFields", (string)options["responseFields"]);
-            }
-            if (options.ContainsKey("tags") && !string.IsNullOrEmpty((string)options["tags"]))
-            {
-                postData.Add("tags", (string)options["tags"]);
-            }
-            else if (options.ContainsKey("tagsList"))
-            {
-                var tags = (string[])options["tagsList"];
-                if (tags.Any())
-                {
-                    postData.Add("tags", string.Join(",", tags));
-                }
-            }
-            if (clientAuth != null)
-            {
-                postData.Add("signature", clientAuth.signature);
-                postData.Add("expire", clientAuth.expire.ToString());
-                postData.Add("token", clientAuth.token);
-                postData.Add("publicKey", (string)options["publicKey"]);
-            }
-            return postData;
-        }
-    }
-
-    public class ServerImagekit : BaseImagekit<ServerImagekit>
-    {
-        public ServerImagekit(
-            string publicKey,
-            string privateKey,
-            string urlEndpoint,
-            string transformationPosition = "path"
-        ) : base(publicKey, urlEndpoint, transformationPosition)
-        {
-            if (string.IsNullOrEmpty(privateKey))
-            {
-                throw new ArgumentNullException(nameof(privateKey));
-            }
-
-            Add("privateKey", privateKey);
+            return this.restClient.PurgeCache(url);
         }
 
-        public List<ListAPIResponse> ListFiles()
+        public async Task<ResponseMetaData> PurgeCacheAsync(string url)
         {
-            return ListFilesAsync().Result;
+            return await this.restClient.PurgeCacheAsync(url);
         }
 
-        public async Task<List<ListAPIResponse>> ListFilesAsync()
+        public ResponseMetaData PurgeStatus(string purgeRequestId)
         {
-            string[] arr = { "limit", "skip", "name", "includeFolder", "tags", "fileType", "path", "sort", "searchQuery" };
-            var param = new List<string>();
-            foreach (var item in options)
-            {
-                if (arr.Any(item.Key.Contains))
-                {
-                    param.Add(item.Key + "=" + item.Value);
-
-                }
-            }
-            options.Remove("tags");
-            Uri apiEndpoint = new Uri(Utils.GetFileApi() + "?" + string.Join("&", param));
-            var response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            try
-            {
-                return JsonConvert.DeserializeObject<List<ListAPIResponse>>(responseContent);
-            } catch
-            {
-                ListAPIResponse resp = JsonConvert.DeserializeObject<ListAPIResponse>(responseContent);
-                resp.StatusCode = (int)response.StatusCode;
-                resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
-                List<ListAPIResponse> respList=new List<ListAPIResponse>();
-                respList.Add(resp);
-                return respList;
-            }
+            return this.restClient.PurgeStatus(purgeRequestId);
         }
 
-
-        public ListAPIResponse GetFileDetails(string fileId)
+        public async Task<ResponseMetaData> PurgeStatusAsync(string url)
         {
-            return GetFileDetailsAsync(fileId).Result;
+            return await this.restClient.PurgeStatusAsync(url);
         }
 
-        public async Task<ListAPIResponse> GetFileDetailsAsync(string fileId)
+        public ResponseMetaData GetFileDetail(string url)
         {
-            if (string.IsNullOrEmpty(fileId))
-            {
-                throw new ArgumentException(errorMessages.FILE_ID_MISSING);
-            }
-            Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId + "/details");
-            var response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            ListAPIResponse resp = JsonConvert.DeserializeObject<ListAPIResponse>(responseContent);
-            resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
-            return resp;
+            return this.restClient.GetFileDetail(url);
         }
 
-        public MetadataResponse GetFileMetadata(string fileId)
+        public ResponseMetaData GetFileListRequest(GetFileListRequest getFileListRequest)
         {
-            return GetFileMetadataAsync(fileId).Result;
+            return this.restClient.GetFileListRequest(getFileListRequest);
         }
 
-        public async Task<MetadataResponse> GetFileMetadataAsync(string fileId)
+        public ResponseMetaData GetFileMetadata(string fileId)
         {
-            if (string.IsNullOrEmpty(fileId))
-            {
-                throw new ArgumentException(errorMessages.FILE_ID_MISSING);
-            }
-            Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId + "/metadata");
-            HttpResponseMessage response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            MetadataResponse resp = JsonConvert.DeserializeObject<MetadataResponse>(responseContent);
-            resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
-            return resp;
+            return this.restClient.GetFileMetaData(fileId);
         }
 
-        public MetadataResponse GetFileMetadata(Uri url)
+        public ResponseMetaData GetRemoteFileMetadata(string url)
         {
-            return GetFileMetadataAsync(url).Result;
+            return this.restClient.GetRemoteFileMetaData(url);
         }
 
-        public async Task<MetadataResponse> GetFileMetadataAsync(Uri uri)
+        public ResponseMetaData DeleteFile(string fileId)
         {
-            if (!Utils.IsValidURI(uri.OriginalString))
-            {
-                throw new ArgumentException(errorMessages.INVALID_URI);
-            }
-            Uri apiEndpoint = new Uri(Utils.GetApiHost() + "/v1/metadata?url=" + uri.AbsoluteUri);
-            HttpResponseMessage response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var requestId = response.Headers.GetValues("x-ik-requestid").FirstOrDefault();
-
-            MetadataResponse resp = JsonConvert.DeserializeObject<MetadataResponse>(responseContent);
-            resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
-            return resp;
+            return this.restClient.DeleteFile(fileId);
         }
 
-        public DeleteAPIResponse DeleteFile(string fileId)
+        public ResponseMetaData BulkDeleteFiles(List<string> fileIds)
         {
-            return DeleteFileAsync(fileId).Result;
+            return this.restClient.BulkDeleteFiles(fileIds);
         }
 
-        public async Task<DeleteAPIResponse> DeleteFileAsync(string fileId)
+        // public ResultCache PurgeCache(string url)
+        // {
+        //    return this.restClient.purgeCache(url);
+        // }
+
+        // public ResultCacheStatus GetPurgeCacheStatus(string requestId)
+        // {
+        //    return this.restClient.getPurgeCacheStatus(requestId);
+        // }
+
+        // public Dictionary<string, string> GetAuthenticationParameters()
+        // {
+        //    return Calculation.GetAuthenticatedParams(null, 0, this.configuration.GetPrivateKey());
+        // }
+
+        // public Dictionary<string, string> GetAuthenticationParameters(string token)
+        // {
+        //    return Calculation.GetAuthenticatedParams(token, 0, this.configuration.GetPrivateKey());
+        // }
+
+        // public Dictionary<string, string> GetAuthenticationParameters(string token, long expire)
+        // {
+        //    return Calculation.GetAuthenticatedParams(token, expire, this.configuration.GetPrivateKey());
+        // }
+
+        // public int PHashDistance(string firstHex, string secondHex)
+        // {
+        //    return Calculation.GetHammingDistance(firstHex, secondHex);
+        // }
+        public ResponseMetaData AddTags(TagsRequest tagsRequest)
         {
-            if (string.IsNullOrEmpty(fileId))
-            {
-                throw new ArgumentException(errorMessages.FILE_ID_MISSING);
-            }
-            Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId);
-            HttpResponseMessage response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"], "DELETE").ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            DeleteAPIResponse resp = new DeleteAPIResponse();
-            if (responseContent != "")
-            {
-                resp = JsonConvert.DeserializeObject<DeleteAPIResponse>(responseContent);
-            }
-            resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
-            return resp;
+            return this.restClient.ManageTags(tagsRequest, "addTags");
         }
 
-        public ListAPIResponse UpdateFileDetails(string fileId)
+        public ResponseMetaData RemoveAiTags(AiTagsRequest aiTagsRequest)
         {
-            return UpdateFileDetailsAsync(fileId).Result;
+            return this.restClient.RemoveAiTags(aiTagsRequest);
         }
 
-        public async Task<ListAPIResponse> UpdateFileDetailsAsync(string fileId)
+        public ResponseMetaData RemoveTags(TagsRequest tagsRequest)
         {
-            if (string.IsNullOrEmpty(fileId))
-            {
-                throw new ArgumentException(errorMessages.FILE_ID_MISSING);
-            }
-            // If one of these is not provided, this request does nothing
-            if (!options.ContainsKey("tags") && !options.ContainsKey("tagsList") && !options.ContainsKey("customCoordinates"))
-            {
-                throw new ArgumentException(errorMessages.UPDATE_DATA_MISSING);
-            }
-
-            Dictionary<string, object> postData = new Dictionary<string, object>();
-
-            if (options.ContainsKey("tags"))
-            {
-                var tags = (string)options["tags"];
-                if (tags != null && tags != "null")
-                {
-                    var tagsArray = tags.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                    postData.Add("tags", tagsArray);
-                }
-                options.Remove("tags");
-            }
-            else if (options.ContainsKey("tagsList"))
-            {
-                string[] tags = (string[])options["tagsList"];
-                if (tags == null || !tags.Any())
-                {
-                    throw new ArgumentException(errorMessages.UPDATE_DATA_TAGS_INVALID);
-                }
-                postData.Add("tags", tags);
-                options.Remove("tagsList");
-            }
-
-            if (options.ContainsKey("customCoordinates"))
-            {
-                if (string.IsNullOrEmpty((string)options["customCoordinates"]))
-                {
-                    throw new ArgumentException(errorMessages.UPDATE_DATA_COORDS_INVALID);
-                }
-                postData.Add("customCoordinates", (string)options["customCoordinates"]);
-            }
-
-            Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/" + fileId + "/details");
-            string contentType = "application/json; charset=utf-8";
-
-            HttpResponseMessage response = await Utils.PostAsync(apiEndpoint, postData, contentType, (string)options["privateKey"], "PATCH").ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            ListAPIResponse resp = JsonConvert.DeserializeObject<ListAPIResponse>(responseContent);
-            resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
-            return resp;
+            return this.restClient.ManageTags(tagsRequest, "removeTags");
         }
 
-        public PurgeAPIResponse PurgeCache(string url)
+        public ResponseMetaData GetCustomMetaDataFields(bool includeDeleted)
         {
-            return PurgeCacheAsync(url).Result;
+            return this.restClient.GetCustomMetaDataFields(includeDeleted);
         }
 
-        public async Task<PurgeAPIResponse> PurgeCacheAsync(string url)
+        public ResponseMetaData CreateCustomMetaDataFields(
+           CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest)
         {
-            if (string.IsNullOrEmpty(url))
-            {
-                throw new ArgumentException(errorMessages.CACHE_PURGE_URL_MISSING);
-            }
-            Dictionary<string, object> postData = new Dictionary<string, object>();
-            postData.Add("url", url);
-            Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/purge");
-            string contentType = "application/json; charset=utf-8";
-            HttpResponseMessage response = await Utils.PostAsync(apiEndpoint, postData, contentType, (string)options["privateKey"]).ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            PurgeAPIResponse resp = JsonConvert.DeserializeObject<PurgeAPIResponse>(responseContent);
-            resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
-            return resp;
+            return this.restClient.CreateCustomMetaDataFields(customMetaDataFieldCreateRequest);
         }
 
-
-        public PurgeCacheStatusResponse GetPurgeCacheStatus(string requestId)
+        public ResponseMetaData DeleteCustomMetaDataField(string id)
         {
-            return GetPurgeCacheStatusAsync(requestId).Result;
+            return this.restClient.DeleteCustomMetaDataField(id);
         }
 
-        public async Task<PurgeCacheStatusResponse> GetPurgeCacheStatusAsync(string requestId)
+        public ResponseMetaData UpdateCustomMetaDataFields(
+           CustomMetaDataFieldUpdateRequest customMetaDataFieldUpdateRequest)
         {
-            if (string.IsNullOrEmpty(requestId))
-            {
-                throw new ArgumentException(errorMessages.CACHE_PURGE_STATUS_ID_MISSING);
-            }
-            Uri apiEndpoint = new Uri(Utils.GetFileApi() + "/purge/" + requestId);
-            HttpResponseMessage response = await Utils.GetAsync(apiEndpoint, (string)options["privateKey"]).ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            PurgeCacheStatusResponse resp = JsonConvert.DeserializeObject<PurgeCacheStatusResponse>(responseContent);
-            resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
-            return resp;
+            return this.restClient.UpdateCustomMetaDataFields(customMetaDataFieldUpdateRequest);
         }
 
-        /// <summary>
-        /// Generate Auth params for client-side upload 
-        /// </summary>
-        /// <param name="token">Random Token String)</param>
-        /// <param name="expire">Expire time for the token</param>
-        /// <returns>Returns Authparams including token, expiry time & signature.</returns>
-        public AuthParamResponse GetAuthenticationParameters(string token = null, string expire = null)
+        public ResponseMetaData DeleteFileVersion(DeleteFileVersionRequest deleteFileVersionRequest)
         {
-            var DEFAULT_TIME_DIFF = 60 * 30;
-
-            AuthParamResponse authParameters = new AuthParamResponse();
-            authParameters.token = token;
-            authParameters.expire = expire;
-            authParameters.signature = "";
-
-            if (!options.ContainsKey("privateKey") || string.IsNullOrEmpty((string)options["privateKey"]))
-            {
-                return authParameters;
-            }
-
-            string defaultExpire = Utils.GetSignatureTimestamp(DEFAULT_TIME_DIFF);
-
-            if (string.IsNullOrEmpty(expire))
-            {
-                expire = defaultExpire;
-            }
-            if (string.IsNullOrEmpty(token))
-            {
-                token = Guid.NewGuid().ToString();
-            }
-            string signature = Utils.calculateSignature(token + expire, Encoding.ASCII.GetBytes((string)options["privateKey"]));
-            authParameters.token = token;
-            authParameters.expire = expire;
-            authParameters.signature = signature;
-
-            return authParameters;
+            return this.restClient.DeleteFileVersion(deleteFileVersionRequest);
         }
 
-        /// <summary>
-        /// Upload the file as byte[].
-        /// </summary>
-        /// <param name="file">File input as byte Array.</param>
-        /// <returns>The response body of the upload request.</returns>
-        public ImagekitResponse Upload(byte[] file)
+        public ResponseMetaData CopyFile(CopyFileRequest copyFileRequest)
         {
-            return UploadAsync(file).Result;
+            return this.restClient.CopyFile(copyFileRequest);
         }
 
-        /// <summary>
-        /// Upload the file as byte[].
-        /// </summary>
-        /// <param name="file">File input as byte Array.</param>
-        /// <returns>The response body of the upload request.</returns>
-        public async Task<ImagekitResponse> UploadAsync(byte[] file)
+        public ResponseMetaData MoveFile(MoveFileRequest moveFileRequest)
         {
-            Uri apiEndpoint = new Uri(Utils.GetUploadApi());
-
-            HttpResponseMessage response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), file, (string)options["privateKey"]).ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            ImagekitResponse resp = JsonConvert.DeserializeObject<ImagekitResponse>(responseContent); 
-            resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
-            return resp;
+            return this.restClient.MoveFile(moveFileRequest);
         }
 
-        /// <summary>
-        /// The local file fullpath or remote URL for the file.
-        /// </summary>
-        /// <param name="file">The local file path or remote URL for the file.</param>
-        /// <returns>The response body of the upload request.</returns>
-        public ImagekitResponse Upload(string file)
+        public ResponseMetaData RenameFile(RenameFileRequest renameFileRequest)
         {
-            return UploadAsync(file).Result;
+            return this.restClient.RenameFile(renameFileRequest);
         }
 
-        /// <summary>
-        /// The local file fullpath or remote URL for the file.
-        /// </summary>
-        /// <param name="file">The local file path or remote URL for the file.</param>
-        /// <returns>The response body of the upload request.</returns>
-        public async Task<ImagekitResponse> UploadAsync(string file)
+        public ResponseMetaData RestoreFileVersion(string fileId, string versionId)
         {
-            if (string.IsNullOrEmpty(file))
-            {
-                throw new ArgumentException(errorMessages.MISSING_UPLOAD_FILE_PARAMETER);
-            }
-            Uri apiEndpoint = new Uri(Utils.GetUploadApi());
-
-            HttpResponseMessage response = await Utils.PostUploadAsync(apiEndpoint, getUploadData(), file, (string)options["privateKey"]).ConfigureAwait(false);
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            ImagekitResponse resp = JsonConvert.DeserializeObject<ImagekitResponse>(responseContent);
-            resp.StatusCode = (int)response.StatusCode;
-            resp.XIkRequestId = response.Headers.FirstOrDefault(x => x.Key == "x-ik-requestid").Value?.First();
-            return resp;
+            return this.restClient.RestoreFileVersion(fileId, versionId);
         }
-        
 
-
-        /// <summary>
-        /// Calculate pHash Distance(hamming-distance) of two pHash Strings.
-        /// </summary>
-        /// <param name="firstPhash">String pHash value of an image</param>
-        /// <param name="secondPhash">String pHash value of second image</param>
-        /// <returns></returns>
-        public int PHashDistance(string firstPhash, string secondPhash)
+        public ResponseMetaData CreateFolder(CreateFolderRequest createFolderRequest)
         {
-            return Utils.PHashDistance(firstPhash, secondPhash);
+            return this.restClient.CreateFolder(createFolderRequest);
         }
-    }
 
-    // Leaving this for backwards compatibility.
-    // Renaming the class:
-    // a) solves the issue where Imagekit must always be fully qualified since the name is the same as the assembly
-    // b) allows for clarification between a server-side imagekit and a client-side imagekit
-    [Obsolete("Use ServerImagekit")]
-    public class Imagekit : ServerImagekit
-    {
-        public Imagekit(
-            string publicKey,
-            string privateKey,
-            string urlEndpoint,
-            string transformationPosition = "path"
-        ) : base(publicKey, privateKey, urlEndpoint, transformationPosition)
+        public ResponseMetaData DeleteFolder(DeleteFolderRequest deleteFolderRequest)
         {
+            return this.restClient.DeleteFolder(deleteFolderRequest);
+        }
+
+        public ResponseMetaData CopyFolder(CopyFolderRequest copyFolderRequest)
+        {
+            return this.restClient.CopyFolder(copyFolderRequest);
+        }
+
+        public ResponseMetaData MoveFolder(MoveFolderRequest moveFolderRequest)
+        {
+            return this.restClient.MoveFolder(moveFolderRequest);
+        }
+
+        public ResponseMetaData GetBulkJobStatus(string jobId)
+        {
+            return this.restClient.GetBulkJobStatus(jobId);
+        }
+
+        public ResponseMetaData GetFileVersions(string fileId)
+        {
+            return this.restClient.GetFileVersions(fileId);
+        }
+
+        public ResponseMetaData GetFileVersionDetails(string fileId, string versionId)
+        {
+            return this.restClient.GetFileVersionDetails(fileId, versionId);
+        }
+
+        public async Task<ResponseMetaData> UploadAsync(FileCreateRequest fileCreateRequest)
+        {
+            return await this.restClient.UploadAsync(fileCreateRequest);
+        }
+
+        public async Task<ResponseMetaData> GetFileDetailAsync(string fileId)
+        {
+            return await this.restClient.GetFileDetailAsync(fileId);
+        }
+
+        public async Task<ResponseMetaData> GetFileMetadataAsync(string fileId)
+        {
+            return await this.restClient.GetFileMetaDataAsync(fileId);
+        }
+
+        public async Task<ResponseMetaData> GetRemoteFileMetadataAsync(string url)
+        {
+            return await this.restClient.GetRemoteFileMetaDataAsync(url);
+        }
+
+        public async Task<ResponseMetaData> DeleteFileAsync(string fileId)
+        {
+            return await this.restClient.DeleteFileAsync(fileId);
+        }
+
+        public async Task<ResponseMetaData> BulkDeleteFilesAsync(List<string> fileIds)
+        {
+            return await this.restClient.BulkDeleteFilesAsync(fileIds);
+        }
+
+        public async Task<ResponseMetaData> AddTagsAsync(TagsRequest tagsRequest)
+        {
+            return await this.restClient.ManageTagsAsync(tagsRequest, "addTags");
+        }
+
+        public async Task<ResponseMetaData> RemoveAiTagsAsync(AiTagsRequest aiTagsRequest)
+        {
+            return await this.restClient.RemoveAiTagsAsync(aiTagsRequest);
+        }
+
+        public async Task<ResponseMetaData> RemoveTagsAsync(TagsRequest tagsRequest)
+        {
+            return await this.restClient.ManageTagsAsync(tagsRequest, "removeTags");
+        }
+
+        public async Task<ResponseMetaData> GetCustomMetaDataFieldsAsync(bool includeDeleted)
+        {
+            return await this.restClient.GetCustomMetaDataFieldsAsync(includeDeleted);
+        }
+
+        public async Task<ResponseMetaData> CreateCustomMetaDataFieldsAsync(
+           CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest)
+        {
+            return await this.restClient.CreateCustomMetaDataFieldsAsync(customMetaDataFieldCreateRequest);
+        }
+
+        public async Task<ResponseMetaData> DeleteCustomMetaDataFieldAsync(string id)
+        {
+            return await this.restClient.DeleteCustomMetaDataFieldAsync(id);
+        }
+
+        public async Task<ResponseMetaData> UpdateCustomMetaDataFieldsAsync(
+           CustomMetaDataFieldUpdateRequest customMetaDataFieldUpdateRequest)
+        {
+            return await this.restClient.UpdateCustomMetaDataFieldsAsync(customMetaDataFieldUpdateRequest);
+        }
+
+        public async Task<ResponseMetaData> DeleteFileVersionAsync(DeleteFileVersionRequest deleteFileVersionRequest)
+        {
+            return await this.restClient.DeleteFileVersionAsync(deleteFileVersionRequest);
+        }
+
+        public async Task<ResponseMetaData> CopyFileAsync(CopyFileRequest copyFileRequest)
+        {
+            return await this.restClient.CopyFileAsync(copyFileRequest);
+        }
+
+        public async Task<ResponseMetaData> MoveFileAsync(MoveFileRequest moveFileRequest)
+        {
+            return await this.restClient.MoveFileAsync(moveFileRequest);
+        }
+
+        public async Task<ResponseMetaData> RenameFileAsync(RenameFileRequest renameFileRequest)
+        {
+            return await this.restClient.RenameFileAsync(renameFileRequest);
+        }
+
+        public async Task<ResponseMetaData> RestoreFileVersionAsync(string fileId, string versionId)
+        {
+            return await this.restClient.RestoreFileVersionAsync(fileId, versionId);
+        }
+
+        public async Task<ResponseMetaData> CreateFolderAsync(CreateFolderRequest createFolderRequest)
+        {
+            return await this.restClient.CreateFolderAsync(createFolderRequest);
+        }
+
+        public async Task<ResponseMetaData> DeleteFolderAsync(DeleteFolderRequest deleteFolderRequest)
+        {
+            return await this.restClient.DeleteFolderAsync(deleteFolderRequest);
+        }
+
+        public async Task<ResponseMetaData> CopyFolderAsync(CopyFolderRequest copyFolderRequest)
+        {
+            return await this.restClient.CopyFolderAsync(copyFolderRequest);
+        }
+
+        public async Task<ResponseMetaData> MoveFolderAsync(MoveFolderRequest moveFolderRequest)
+        {
+            return await this.restClient.MoveFolderAsync(moveFolderRequest);
+        }
+
+        public async Task<ResponseMetaData> GetBulkJobStatusAsync(string jobId)
+        {
+            return await this.restClient.GetBulkJobStatusAsync(jobId);
+        }
+
+        public async Task<ResponseMetaData> GetFileVersionsAsync(string fileId)
+        {
+            return await this.restClient.GetFileVersionsAsync(fileId);
+        }
+
+        public async Task<ResponseMetaData> GetFileVersionDetailsAsync(string fileId, string versionId)
+        {
+            return await this.restClient.GetFileVersionDetailsAsync(fileId, versionId);
+        }
+
+        public async Task<ResponseMetaData> GetFileListRequestAsync(GetFileListRequest getFileListRequest)
+        {
+            return await this.restClient.GetFileListRequestAsync(getFileListRequest);
         }
     }
 }
