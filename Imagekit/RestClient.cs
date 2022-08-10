@@ -659,7 +659,7 @@ namespace Imagekit.Sdk
                 HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
                 model = JsonConvert.DeserializeObject<ResultTags>(res);
-                 Utils.PopulateResponseMetadata(
+                Utils.PopulateResponseMetadata(
                     res,
                     null,
                     Convert.ToInt32(response.StatusCode),

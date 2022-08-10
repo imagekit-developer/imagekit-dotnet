@@ -77,35 +77,7 @@ namespace Imagekit.Sdk
             return this.restClient.BulkDeleteFiles(fileIds);
         }
 
-        // public ResultCache PurgeCache(string url)
-        // {
-        //    return this.restClient.purgeCache(url);
-        // }
-
-        // public ResultCacheStatus GetPurgeCacheStatus(string requestId)
-        // {
-        //    return this.restClient.getPurgeCacheStatus(requestId);
-        // }
-
-        // public Dictionary<string, string> GetAuthenticationParameters()
-        // {
-        //    return Calculation.GetAuthenticatedParams(null, 0, this.configuration.GetPrivateKey());
-        // }
-
-        // public Dictionary<string, string> GetAuthenticationParameters(string token)
-        // {
-        //    return Calculation.GetAuthenticatedParams(token, 0, this.configuration.GetPrivateKey());
-        // }
-
-        // public Dictionary<string, string> GetAuthenticationParameters(string token, long expire)
-        // {
-        //    return Calculation.GetAuthenticatedParams(token, expire, this.configuration.GetPrivateKey());
-        // }
-
-        // public int PHashDistance(string firstHex, string secondHex)
-        // {
-        //    return Calculation.GetHammingDistance(firstHex, secondHex);
-        // }
+       
         public ResponseMetaData AddTags(TagsRequest tagsRequest)
         {
             return this.restClient.ManageTags(tagsRequest, "addTags");

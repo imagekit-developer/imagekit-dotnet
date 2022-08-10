@@ -1,6 +1,10 @@
 ﻿using Imagekit.Models;
 using Imagekit.Sdk;
 using System;
+using System.Collections.Generic;
+using Imagekit;
+using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
+using Newtonsoft.Json;
 
 namespace ImagekitSample
 {
@@ -8,91 +12,12 @@ namespace ImagekitSample
     {
         static void Main(string[] args)
         {
-
-            //1  
+            //Create Instance of ImageKit
             ImagekitClient imagekit = new ImagekitClient("TestPublicKey", "TestPrivateKey", "https://api.imagekit.io/");
 
-            GetFileListRequest model = new GetFileListRequest();
-            model.Type = "file";
-            model.Limit = 10;
-            model.Skip = 0;
-            var res = imagekit.GetFileListRequest(model);
 
+            #region URL Generation
 
-            // imagekit.Instance.GetFileDetail("62d701678c8b75e43661d66d");
-            // imagekit.PurgeCache("https://ik.imagekit.io/dnggmzz0v/default-image.jpg");
-            // imagekit.PurgeStatus("62e5778f31305bff3223b791");
-            //2  
-            //FileCreateRequest ob = new FileCreateRequest();
-            //ob.Url = new Uri(@"C:\test.jpg");
-            //ob.FileName = "test.jpg";
-            //imagekit.Upload(ob);
-            //Console.WriteLine(ob.FileName);
-
-            //3 
-            //imagekit.Instance.DeleteFile("62d701678c8b75e43661d66d");
-
-            //4
-            //List<string> ob = new List<string>();
-            //ob.Add("62d7f701408c558d6fc2999f");
-            //ob.Add("62d7f3f64b0ef156ec137bbe");
-            //imagekit.Instance.BulkDeleteFiles(ob);
-
-            //5 
-            //var res=  imagekit.Instance.GetFileMetadata("62d8f36909477610937bff1e");
-            //6
-            // var res = imagekit.Instance.GetRemoteFileMetadata("https://ik.imagekit.io/demo/medium_cafe_B1iTdD0C.jpg");
-
-            //7
-            // var Data = imagekit.Instance.GetCustomMetaDataFields(true);
-
-
-            //8
-            //CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest();
-            //model.Name = "Tst3";
-            //model.Label = "Test3";
-            //CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject();
-            //schema.SetType(CustomMetaDataTypeEnum.Number);
-            //schema.SetMinValue(1000);
-            //schema.SetMaxValue(3000);
-            //model.Schema = schema;
-            //imagekit.Instance.CreateCustomMetaDataFields(model);
-
-            //9
-            //CustomMetaDataFieldUpdateRequest model = new CustomMetaDataFieldUpdateRequest();
-
-            //model.Id = "62dbbadb6f68334a5aeb1143";
-
-            //CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject();
-            //schema.SetType(CustomMetaDataTypeEnum.Number);
-            //schema.SetMinValue(1000);
-            //schema.SetMaxValue(3000);
-            //model.Schema = schema;
-            //imagekit.Instance.UpdateCustomMetaDataFields(model);
-
-            //10
-            //DeleteFileVersionRequest ob = new DeleteFileVersionRequest();
-            //ob.SetFileId("62dc254f17bac74dfbbb474d");
-            //ob.SetVersionId("62dc254f17bac74dfbbb474d");
-            //imagekit.Instance.DeleteFileVersion(ob);
-
-            //11
-            //CopyFileRequest ob = new CopyFileRequest();
-            //imagekit.Instance.CopyFile(ob);
-
-            //12
-            //DeleteFolderRequest ob = new DeleteFolderRequest();
-            //ob.SetFolderPath("source/folder/path/new_folder");
-            //imagekit.Instance.DeleteFolder(ob);
-
-            //13
-            //CreateFolderRequest ob = new CreateFolderRequest();
-            //ob.FolderName="abc";
-            //ob.ParentFolderPath="source/folder/path";
-            //var content = JsonConvert.SerializeObject(ob);
-            //imagekit.Instance.CreateFolder(ob);
-
-            //
             /// Generating URLs
             string imageURL = imagekit.Url(new Transformation().Width(400).Height(300))
                 .Path("/default-image.jpg")
@@ -120,30 +45,302 @@ namespace ImagekitSample
             //    Console.WriteLine(ex.Message);
             //}
 
+            #endregion
+
+            #region List and search files
+            GetFileListRequest model = new GetFileListRequest();
+            model.Type = "file";
+            model.Limit = 10;
+            model.Skip = 0;
+            var res = imagekit.GetFileListRequest(model);
+            #endregion
+
+            #region GetFileDetail
+            imagekit.GetFileDetail("fileId");
+
+            #endregion
+
+            #region  PurgeCache
+
+            imagekit.PurgeCache("https://ik.imagekit.io/dnggmzz0v/default-image.jpg");
+
+            #endregion
+
+            #region  PurgeStatus
+
+
+            imagekit.PurgeStatus("62e5778f31305bff3223b791");
+
+            #endregion
+
+            #region  Upload BY URI| Bytes | Base64
+
+
+            // Upload By URI
+            FileCreateRequest request = new FileCreateRequest();
+            request.Url = new Uri(@"C:\test.jpg");
+            request.FileName = "test.jpg";
+            ResponseMetaData resp1 = imagekit.Upload(request);
+
+            //Upload by bytes
+
+            string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
+
+            byte[] bytes = Convert.FromBase64String(base64);
+            FileCreateRequest ob = new FileCreateRequest
+            {
+                Bytes = bytes,
+                FileName = Guid.NewGuid().ToString()
+            };
+
+            ResponseMetaData resp2 = imagekit.Upload(ob);
+            //Upload by Base64
+            FileCreateRequest ob2 = new FileCreateRequest
+            {
+                Base64 = base64,
+                FileName = Guid.NewGuid().ToString()
+            };
+            ResponseMetaData resp = imagekit.Upload(ob2);
+
+
+
+
+            #endregion
+
+            #region DeleteFile 
+
+            imagekit.DeleteFile("fileId");
+
+            #endregion
+
+            #region BulkDeleteFiles
+
+            List<string> ob3 = new List<string>();
+            ob3.Add("fileId-1");
+            ob3.Add("fileId-2");
+            imagekit.BulkDeleteFiles(ob3);
+
+            #endregion
+
+            #region  GetFileMetadata
+            imagekit.GetFileMetadata("fileId");
+            #endregion
+
+            #region  GetRemoteFileMetadata
+
+            imagekit.GetRemoteFileMetadata("https://ik.imagekit.io/demo/medium_cafe_B1iTdD0C.jpg");
+
+
+            #endregion
+
+            #region  AddTags
+            TagsRequest tagsRequest = new TagsRequest
+            {
+                Tags = new List<string>
+                {
+                    "tag1",
+                    "tag2"
+                },
+                FileIds = new List<string>
+                {
+                    "field1"
+                }
+            };
+            imagekit.AddTags(tagsRequest);
+
+            #endregion
+
+            #region  RemoveTags
+            TagsRequest removeTagsRequest = new TagsRequest
+            {
+                Tags = new List<string>
+                {
+                    "tag1",
+                    "tag2"
+                },
+                FileIds = new List<string>
+                {
+                    "field1"
+                }
+            };
+            imagekit.RemoveTags(removeTagsRequest);
+
+            #endregion
+
+            #region  RemoveAITags
+            AiTagsRequest removeAITagsRequest = new AiTagsRequest
+            {
+                AiTags = new List<string>
+                {
+                    "tag1",
+                    "tag2"
+                },
+                FileIds = new List<string>
+                {
+                    "field1"
+                }
+            };
+            imagekit.RemoveAiTags(removeAITagsRequest);
+
+            #endregion
+
+            #region  GetCustomMetaDataFields
+            imagekit.GetCustomMetaDataFields(true);
+
+            #endregion
+
+            #region CreateCustomMetaDataFields
+
+            CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
+            {
+                Name = "Tst3",
+                Label = "Test3"
+            };
+            CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
+            {
+                Type = CustomMetaDataTypeEnum.Number,
+                MinValue = 1000,
+                MaxValue = 3000,
+                MinLength = 500,
+                MaxLength = 600,
+                IsValueRequired = false
+            };
+
+            requestModel.Schema = schema;
+            imagekit.CreateCustomMetaDataFields(requestModel);
+
+            #endregion
+
+            #region UpdateCustomMetaDataFields
+
+            CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
+            {
+                Id = "Tst3"
+            };
+            CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
+            {
+                Type = CustomMetaDataTypeEnum.Number,
+                MinValue = 1000,
+                MaxValue = 3000,
+                MinLength = 500,
+                MaxLength = 600,
+                IsValueRequired = false
+            };
+
+            requestUpdateModel.Schema = schema;
+            imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
+
+            #endregion
+
+            #region DeleteFileVersionRequest
+            DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest();
+            delRequest.FileId = "fileId";
+            delRequest.VersionId = "versionId";
+            imagekit.DeleteFileVersion(delRequest);
+
+            #endregion
+
+            #region CopyFile
+
+            CopyFileRequest cpyRequest = new CopyFileRequest
+            {
+                SourceFilePath = "Tst3",
+                DestinationPath = "Tst3",
+                IncludeFileVersions = true
+            };
+            imagekit.CopyFile(cpyRequest);
+
+            #endregion
+
+            #region MoveFile
+
+            MoveFileRequest moveFile = new MoveFileRequest
+            {
+                SourceFilePath = "Tst3",
+                DestinationPath = "Tst3"
+            };
+            imagekit.MoveFile(moveFile);
+            #endregion
+
+            #region RenameFile
+
+            RenameFileRequest renameFileRequest = new RenameFileRequest
+            {
+                FilePath = "Tst3",
+                NewFileName = "Tst4",
+                PurgeCache = false
+            };
+            imagekit.RenameFile(renameFileRequest);
+
+
+            #endregion
+
+            #region RestoreFileVersion
+
+            imagekit.RestoreFileVersion("abc", "1");
+
+            #endregion
+
+            #region CreateFolderRequest
+
+            CreateFolderRequest createFolderRequest = new CreateFolderRequest();
+            createFolderRequest.FolderName = "abc";
+            createFolderRequest.ParentFolderPath = "source/folder/path";
+            imagekit.CreateFolder(createFolderRequest);
+
+            #endregion
+
+            #region DeleteFolderRequest
+
+            DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest();
+            deleteFolderRequest.FolderPath = "source/folder/path/new_folder";
+            imagekit.DeleteFolder(deleteFolderRequest);
+
+            #endregion
+
+            #region CopyFolder
+            CopyFolderRequest cpyFolderRequest = new CopyFolderRequest
+            {
+                SourceFolderPath = "Tst3",
+                DestinationPath = "Tst3",
+                IncludeFileVersions = true
+            };
+
+            imagekit.CopyFolder(cpyFolderRequest);
+
+            #endregion
+
+            #region MoveFolder
+            MoveFolderRequest moveFolderRequest = new MoveFolderRequest
+            {
+                SourceFolderPath = "Tst3",
+                DestinationPath = "Tst3"
+
+            };
+
+            imagekit.MoveFolder(moveFolderRequest);
+
+            #endregion
+
+            #region GetBulkJobStatus
+
+            imagekit.GetBulkJobStatus("jobId");
+
+            #endregion
+
+            #region GetFileVersions
+
+            imagekit.GetFileVersions("fileId");
+
+            #endregion
+
+            #region GetFileVersionDetails
+
+            imagekit.GetFileVersionDetails("fileId", "versionId");
+
+            #endregion
+
         }
 
-        public static string EncodeTo64(string toEncode)
-        {
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(toEncode + ":");
-            string returnValue
-
-                  = Convert.ToBase64String(plainTextBytes);
-
-            return returnValue;
-
-        }
-        private static byte[] GetBase64()
-        {
-            string imagePath = @"C:\test.jpg";
-            byte[] imageArray = System.IO.File.ReadAllBytes(imagePath);
-            // base64ImageRepresentation = Convert.ToBase64String(imageArray);
-            return imageArray;
-        }
-
-        private static Uri GetBase64URI(string imgPath)
-        {
-            var uri = new System.Uri(imgPath);
-            return uri;
-        }
     }
 }

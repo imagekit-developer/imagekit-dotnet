@@ -256,8 +256,7 @@ Sample usage
           ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
          //Upload by Base64
          
-          string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
-            byte[] bytes = Convert.FromBase64String(base64);
+            byte[] bytes = Bytes;
             FileCreateRequest ob = new FileCreateRequest
             {
                 Bytes = bytes,
@@ -663,6 +662,39 @@ imageKit.PHashDistance('firstHash', 'secondHash');
 
 imageKit.PHashDistance('firstHash', 'secondHash');
 // output: 37 (dissimilar images)
+```
+## Handling errors
+Catch and respond to invalid data, internal problems, and more.
+
+Imagekit .Net SDK raise exceptions for many reasons, such as not found, invalid parameters, authentication errors, and internal server error. We recommend writing code that gracefully handles all possible API exceptions.
+
+#### Example:
+
+```.net
+try {
+  // Use ImageKit's SDK to make requests...
+} catch (BadRequestException e) {
+  // Missing or Invalid parameters were supplied to Imagekit.io's API
+  Console.Writeline("Status is: " + e.getResponseMetaData().getHttpStatusCode());
+  Console.Writeline("Message is: " + e.getMessage());
+ 
+} catch (UnauthorizedException e) {
+  // No valid API key was provided.
+} catch (ForbiddenException e) {
+  // Can be for the following reasons: 
+  // ImageKit could not authenticate your account with the keys provided.
+  // An expired key (public or private) was used with the request.
+  // The account is disabled.
+  // If you are using the upload API, the total storage limit (or upload limit) is exceeded.
+} catch (InternalServerException e) {
+  // Something went wrong with ImageKit.io API.
+} catch (PartialSuccessException e) {
+  // Error cases on partial success.
+} catch (NotFoundException e) {
+  // If any of the field or parameter is not found in data 
+} catch (UnknownException e) {
+  // Something else happened, which can be unrelated to imagekit, reason will be indicated in the message field
+}
 ```
 
 ## Support

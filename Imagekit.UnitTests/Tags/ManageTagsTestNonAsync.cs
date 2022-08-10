@@ -131,7 +131,7 @@ namespace Imagekit.UnitTests.Tags
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.ManageTags(tagsRequest, "addTags");
+            var response = restClient.ManageTags(tagsRequest, "removeTags");
             
             Assert.Equal(responseObj.Raw, response.Raw);
         }
