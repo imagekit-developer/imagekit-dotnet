@@ -254,6 +254,7 @@ Sample usage
             ob.Url = new Uri(@"C:\test.jpg");
             ob.FileName = "test.jpg";
           ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
+		  
          //Upload by Base64
          
             byte[] bytes = Bytes;
@@ -274,7 +275,7 @@ Sample usage
 		  ```
 
 **Note**: Upload argument can be a local fullPath or URL or byte array (byte\[\]) or Base64String of a file.
-
+ ```
 ### File Management
 
 The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-api) to manage your files.
