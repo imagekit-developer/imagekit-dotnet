@@ -46,29 +46,9 @@ namespace ImagekitSample
 
             #endregion
 
-            #region List and search files
-            GetFileListRequest model = new GetFileListRequest
-            {
-                Type = "file",
-                Limit = 10,
-                Skip = 0
-            };
-            var res = imagekit.GetFileListRequest(model);
-            #endregion
-
-            #region GetFileDetail
-            imagekit.GetFileDetail("fileId");
-
-            #endregion
-
-            #region  PurgeCache
+            #region  Purge
 
             imagekit.PurgeCache("https://ik.imagekit.io/dnggmzz0v/default-image.jpg");
-
-            #endregion
-
-            #region  PurgeStatus
-
 
             imagekit.PurgeStatus("62e5778f31305bff3223b791");
 
@@ -110,89 +90,18 @@ namespace ImagekitSample
 
             #endregion
 
-            #region DeleteFile 
-
-            imagekit.DeleteFile("fileId");
-
-            #endregion
-
-            #region BulkDeleteFiles
-
-            List<string> ob3 = new List<string>();
-            ob3.Add("fileId-1");
-            ob3.Add("fileId-2");
-            imagekit.BulkDeleteFiles(ob3);
-
-            #endregion
-
-            #region  GetFileMetadata
+            #region  Metadata
             imagekit.GetFileMetadata("fileId");
-            #endregion
 
-            #region  GetRemoteFileMetadata
 
             imagekit.GetRemoteFileMetadata("https://ik.imagekit.io/demo/medium_cafe_B1iTdD0C.jpg");
 
 
-            #endregion
 
-            #region  AddTags
-            TagsRequest tagsRequest = new TagsRequest
-            {
-                Tags = new List<string>
-                {
-                    "tag1",
-                    "tag2"
-                },
-                FileIds = new List<string>
-                {
-                    "field1"
-                }
-            };
-            imagekit.AddTags(tagsRequest);
-
-            #endregion
-
-            #region  RemoveTags
-            TagsRequest removeTagsRequest = new TagsRequest
-            {
-                Tags = new List<string>
-                {
-                    "tag1",
-                    "tag2"
-                },
-                FileIds = new List<string>
-                {
-                    "field1"
-                }
-            };
-            imagekit.RemoveTags(removeTagsRequest);
-
-            #endregion
-
-            #region  RemoveAITags
-            AiTagsRequest removeAITagsRequest = new AiTagsRequest
-            {
-                AiTags = new List<string>
-                {
-                    "tag1",
-                    "tag2"
-                },
-                FileIds = new List<string>
-                {
-                    "field1"
-                }
-            };
-            imagekit.RemoveAiTags(removeAITagsRequest);
-
-            #endregion
-
-            #region  GetCustomMetaDataFields
+            // CustomMetaDataFields
             imagekit.GetCustomMetaDataFields(true);
 
-            #endregion
-
-            #region CreateCustomMetaDataFields
+            //CreateCustomMetaDataFields
 
             CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
             {
@@ -212,9 +121,9 @@ namespace ImagekitSample
             requestModel.Schema = schema;
             imagekit.CreateCustomMetaDataFields(requestModel);
 
-            #endregion
 
-            #region UpdateCustomMetaDataFields
+
+            // UpdateCustomMetaDataFields
 
             CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
             {
@@ -233,9 +142,10 @@ namespace ImagekitSample
             requestUpdateModel.Schema = schema;
             imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
 
+
             #endregion
 
-            #region DeleteFileVersionRequest
+            #region FileVersionRequest
             DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest
             {
                 FileId = "fileId",
@@ -243,10 +153,47 @@ namespace ImagekitSample
             };
             imagekit.DeleteFileVersion(delRequest);
 
+
+
+            // RestoreFileVersion
+
+            imagekit.RestoreFileVersion("abc", "1");
+
+
+            // GetFileVersions
+
+            imagekit.GetFileVersions("fileId");
+
+
+
+            // GetFileVersionDetails
+
+            imagekit.GetFileVersionDetails("fileId", "versionId");
+
             #endregion
 
-            #region CopyFile
+            #region Manage File
+            //List and search files
+            GetFileListRequest model = new GetFileListRequest
+            {
+                Type = "file",
+                Limit = 10,
+                Skip = 0
+            };
+            var res = imagekit.GetFileListRequest(model);
 
+            imagekit.GetFileDetail("fileId");
+
+            imagekit.DeleteFile("fileId");
+
+
+            //Bulk Delete
+            List<string> ob3 = new List<string>();
+            ob3.Add("fileId-1");
+            ob3.Add("fileId-2");
+            imagekit.BulkDeleteFiles(ob3);
+
+            //Copy File
             CopyFileRequest cpyRequest = new CopyFileRequest
             {
                 SourceFilePath = "Tst3",
@@ -255,9 +202,9 @@ namespace ImagekitSample
             };
             imagekit.CopyFile(cpyRequest);
 
-            #endregion
 
-            #region MoveFile
+
+            //MoveFile
 
             MoveFileRequest moveFile = new MoveFileRequest
             {
@@ -265,9 +212,9 @@ namespace ImagekitSample
                 DestinationPath = "Tst3"
             };
             imagekit.MoveFile(moveFile);
-            #endregion
 
-            #region RenameFile
+
+            //RenameFile
 
             RenameFileRequest renameFileRequest = new RenameFileRequest
             {
@@ -280,13 +227,7 @@ namespace ImagekitSample
 
             #endregion
 
-            #region RestoreFileVersion
-
-            imagekit.RestoreFileVersion("abc", "1");
-
-            #endregion
-
-            #region CreateFolderRequest
+            #region ManageFolder
 
             CreateFolderRequest createFolderRequest = new CreateFolderRequest
             {
@@ -295,9 +236,9 @@ namespace ImagekitSample
             };
             imagekit.CreateFolder(createFolderRequest);
 
-            #endregion
 
-            #region DeleteFolderRequest
+
+            //DeleteFolderRequest
 
             DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest
             {
@@ -305,9 +246,9 @@ namespace ImagekitSample
             };
             imagekit.DeleteFolder(deleteFolderRequest);
 
-            #endregion
 
-            #region CopyFolder
+
+            // CopyFolder
             CopyFolderRequest cpyFolderRequest = new CopyFolderRequest
             {
                 SourceFolderPath = "Tst3",
@@ -317,9 +258,7 @@ namespace ImagekitSample
 
             imagekit.CopyFolder(cpyFolderRequest);
 
-            #endregion
-
-            #region MoveFolder
+            // MoveFolder
             MoveFolderRequest moveFolderRequest = new MoveFolderRequest
             {
                 SourceFolderPath = "Tst3",
@@ -337,15 +276,50 @@ namespace ImagekitSample
 
             #endregion
 
-            #region GetFileVersions
+            #region  Tags
+            TagsRequest tagsRequest = new TagsRequest
+            {
+                Tags = new List<string>
+    {
+        "tag1",
+        "tag2"
+    },
+                FileIds = new List<string>
+    {
+        "field1"
+    }
+            };
+            imagekit.AddTags(tagsRequest);
 
-            imagekit.GetFileVersions("fileId");
 
-            #endregion
+            TagsRequest removeTagsRequest = new TagsRequest
+            {
+                Tags = new List<string>
+    {
+        "tag1",
+        "tag2"
+    },
+                FileIds = new List<string>
+    {
+        "field1"
+    }
+            };
+            imagekit.RemoveTags(removeTagsRequest);
 
-            #region GetFileVersionDetails
 
-            imagekit.GetFileVersionDetails("fileId", "versionId");
+            AiTagsRequest removeAITagsRequest = new AiTagsRequest
+            {
+                AiTags = new List<string>
+    {
+        "tag1",
+        "tag2"
+    },
+                FileIds = new List<string>
+    {
+        "field1"
+    }
+            };
+            imagekit.RemoveAiTags(removeAITagsRequest);
 
             #endregion
 
