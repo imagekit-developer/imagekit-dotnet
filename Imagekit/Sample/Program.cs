@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Imagekit;
 using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
+using Newtonsoft.Json.Linq;
 
 namespace ImagekitSample
 {
@@ -65,6 +66,7 @@ namespace ImagekitSample
             };
             ResponseMetaData resp1 = imagekit.Upload(request);
 
+
             //Upload by bytes
 
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
@@ -76,7 +78,61 @@ namespace ImagekitSample
                 FileName = Guid.NewGuid().ToString()
             };
 
+            List<string> tags = new List<string>
+            {
+                "Software",
+                "Developer",
+                "Engineer"
+            };
+            ob.Tags = tags;
+            ob.Folder = "demo1";
+            string customCoordinates = "10,10,20,20";
+            ob.CustomCoordinates = customCoordinates;
+            List<string> responseFields = new List<string>
+            {
+                "thumbnail",
+                "tags",
+                "customCoordinates"
+            };
+
+            ob.ResponseFields = responseFields;
+            JObject optionsInnerObject = new JObject
+            {
+                { "add_shadow", true }
+            };
+            JObject innerObject1 = new JObject
+            {
+                { "name", "remove-bg" },
+                { "options", optionsInnerObject }
+            };
+            JObject innerObject2 = new JObject
+            {
+                { "name", "google-auto-tagging" },
+                { "minConfidence", 10 },
+                { "maxTags", 5 }
+            };
+            JArray jsonArray = new JArray
+            {
+                innerObject1,
+                innerObject2
+            };
+
+            ob.Extensions = jsonArray;
+            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            ob.UseUniqueFileName = false;
+            ob.IsPrivateFileValue = false;
+            ob.OverwriteFile = false;
+            ob.OverwriteAiTags = false;
+            ob.OverwriteTags = false;
+            ob.OverwriteCustomMetadata = true;
+            JObject jsonObjectCustomMetadata = new JObject
+            {
+                { "test1", 10 }
+            };
+            ob.CustomMetadata = jsonObjectCustomMetadata;
+
             ResponseMetaData resp2 = imagekit.Upload(ob);
+
             //Upload by Base64
             FileCreateRequest ob2 = new FileCreateRequest
             {

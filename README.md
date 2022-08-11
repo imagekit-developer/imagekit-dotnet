@@ -72,11 +72,63 @@ You can use this DotNET SDK for three different functions: URL generation, file 
 This method allows you to create a URL using the `path` where the image exists and the URL endpoint (`urlEndpoint`) you want to use to access the image. You can refer to the documentation [here](https://docs.imagekit.io/integration/url-endpoints) to read more about URL endpoints in ImageKit and the section about [image origins](https://docs.imagekit.io/integration/configure-origin) to understand paths with different kinds of origins.
 
 ```cs
-string imageURL = imagekit.Url(new Transformation().Width(400).Height(300))
-    .Path("/default-image.jpg")
-    .UrlEndpoint("https://ik.imagekit.io/your_imagekit_id/endpoint")
-    .TransformationPosition("query")
-    .Generate();
+string path = "/default-image.jpg";
+Transformation trans = new Transformation()
+                .Width(400)
+                .Height(300)
+                .AspectRatio("4-3")
+                .Quality(40)
+                .Crop("force").CropMode("extract").
+                Focus("left").
+                Format("jpeg").
+                Background("A94D34").
+                Border("5-A94D34").
+                Rotation(90).
+                Blur(10).
+                Named("some_name").
+                OverlayX(35).
+                OverlayY(35).
+                OverlayFocus("bottom").
+                OverlayHeight(20).
+                OverlayHeight(20).
+                OverlayImage("/folder/file.jpg"). // leading slash case
+                OverlayImageTrim(false).
+                OverlayImageAspectRatio("4:3").
+                OverlayImageBackground("0F0F0F").
+                OverlayImageBorder("10_0F0F0F").
+                OverlayImageDpr(2).
+                OverlayImageQuality(50).
+                OverlayImageCropping("force").
+                OverlayText("two words").
+                OverlayTextFontSize(20).
+                OverlayTextFontFamily("Open Sans").
+                OverlayTextColor("00FFFF").
+                OverlayTextTransparency(5).
+                OverlayTextTypography("b").
+                OverlayBackground("00AAFF55").
+                OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D").
+                OverlayTextWidth(50).
+                OverlayTextBackground("00AAFF55").
+                OverlayTextPadding(40).
+                OverlayTextInnerAlignment("left").
+                OverlayRadius(10).
+                Progressive(true).
+                Lossless(true).
+                Trim(5).
+                Metadata(true).
+                ColorProfile(true).
+                DefaultImage("folder/file.jpg/"). //trailing slash case
+                Dpr(3).
+                EffectSharpen(10).
+                EffectUsm("2-2-0.8-0.024").
+                EffectContrast(true).
+                EffectGray().
+                Original().
+                RawTransformation("h-200).w-300).l-image).i-logo.png).l-end");
+                
+  string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
+
+                
 ```
 
 This results in a URL like
@@ -248,13 +300,13 @@ The `upload()` method requires at least the `file` and the `fileName` parameter 
 
 Sample usage
 
-```cs 
+```cs
         // Upload By URI
             FileCreateRequest ob = new FileCreateRequest();
             ob.Url = new Uri(@"C:\test.jpg");
             ob.FileName = "test.jpg";
           ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
-		  
+          
          //Upload by Base64
          
             byte[] bytes = Bytes;
@@ -271,11 +323,12 @@ Sample usage
                 Base64 = base64,
                 FileName = Guid.NewGuid().ToString()
             };
-		  ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
-		  ```
+          ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
+          ```
 
 **Note**: Upload argument can be a local fullPath or URL or byte array (byte\[\]) or Base64String of a file.
- ```
+```
+
 ### File Management
 
 The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-api) to manage your files.
@@ -664,14 +717,16 @@ imageKit.PHashDistance('firstHash', 'secondHash');
 imageKit.PHashDistance('firstHash', 'secondHash');
 // output: 37 (dissimilar images)
 ```
+
 ## Handling errors
+
 Catch and respond to invalid data, internal problems, and more.
 
 Imagekit .Net SDK raise exceptions for many reasons, such as not found, invalid parameters, authentication errors, and internal server error. We recommend writing code that gracefully handles all possible API exceptions.
 
 #### Example:
 
-```.net
+```cs
 try {
   // Use ImageKit's SDK to make requests...
 } catch (BadRequestException e) {

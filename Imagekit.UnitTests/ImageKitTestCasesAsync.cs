@@ -96,8 +96,6 @@ namespace Imagekit.UnitTests
             Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
         }
 
-
-
         [Fact]
         public void PurgeCache_Default()
         {
@@ -205,13 +203,7 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.BulkDeleteFilesAsync(ob));
             Assert.Equal(ErrorMessages.ListFilesInputMissing, ex.Result.Message);
-        }
-
-
-
-
-
-
+        } 
 
         [Fact]
         public void Missing_Filed_Null_Exception()
