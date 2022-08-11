@@ -8,7 +8,5 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class ResultFileVersions : ResponseMetaData
 {
-    public List<ResultFileVersionDetails> resultFileVersionDetailsList { get; set; } = new List<ResultFileVersionDetails>();
-    
- 
+    public List<ResultFileVersionDetails> ResultFileVersionDetailsList { get; set; } = new List<ResultFileVersionDetails>();
 }

@@ -37,7 +37,7 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateFolderAsync(model).Result;
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -115,7 +115,7 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.DeleteFolderAsync(model).Result;
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -155,7 +155,7 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CopyFolderAsync(model).Result;
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -232,7 +232,7 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.MoveFolderAsync(model).Result;
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 

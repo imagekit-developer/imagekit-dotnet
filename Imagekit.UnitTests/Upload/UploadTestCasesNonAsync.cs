@@ -94,7 +94,7 @@ namespace Imagekit.UnitTests.Upload
 
             var RestClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var response = RestClient.Upload(ob);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -122,7 +122,7 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.Upload(ob);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -147,7 +147,7 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.Upload(ob);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -227,7 +227,7 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.Upload(ob);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -298,7 +298,7 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.Upload(ob);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -333,7 +333,7 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.Upload(ob);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 

@@ -35,7 +35,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetFileMetaData("abc");
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -72,7 +72,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetRemoteFileMetaData("abc");
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -107,7 +107,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetCustomMetaDataFields(true);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -140,7 +140,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFields(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -173,7 +173,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFields(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -205,7 +205,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFields(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -238,7 +238,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFields(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -287,7 +287,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFields(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -334,7 +334,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFields(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -441,7 +441,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.DeleteCustomMetaDataField("abc");
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -490,7 +490,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.UpdateCustomMetaDataFields(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 

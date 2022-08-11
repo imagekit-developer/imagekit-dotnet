@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="ResultMetaData.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace Imagekit.Models.Response
 {
-    [ExcludeFromCodeCoverage]
-    public class ResultMetaData :ResponseMetaData
-    {
-        public string help { get; set; }
+    using System.Diagnostics.CodeAnalysis;
 
-        public string raw { get; set; }
-        public MetaData results { get; set; }
+    [ExcludeFromCodeCoverage]
+    public class ResultMetaData : ResponseMetaData
+    {
+        public string Help { get; set; }
+
+        public string Raw { get; set; }
+
+        public MetaData Results { get; set; }
     }
 }

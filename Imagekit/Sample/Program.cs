@@ -1,20 +1,21 @@
-﻿using Imagekit.Models;
-using Imagekit.Sdk;
-using System;
-using System.Collections.Generic;
-using Imagekit;
-using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
-using Newtonsoft.Json;
+﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace Imagekit
 {
+    using System;
+    using System.Collections.Generic;
+    using global::Imagekit.Models;
+    using global::Imagekit.Sdk;
+    using static global::Imagekit.Models.CustomMetaDataFieldSchemaObject;
+
     internal class Program
     {
         static void Main(string[] args)
         {
-            //Create Instance of ImageKit
+            // Create Instance of ImageKit
             ImagekitClient imagekit = new ImagekitClient("TestPublicKey", "TestPrivateKey", "https://api.imagekit.io/");
-
 
             #region URL Generation
 
@@ -25,7 +26,6 @@ namespace Imagekit
                 .TransformationPosition("query")
                 .Generate();
             Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {0}", imageURL);
-
 
             // Generating Signed URL
             var imgURL1 = "https://ik.imagekit.io/demo/default-image.jpg";
@@ -48,10 +48,12 @@ namespace Imagekit
             #endregion
 
             #region List and search files
-            GetFileListRequest model = new GetFileListRequest();
-            model.Type = "file";
-            model.Limit = 10;
-            model.Skip = 0;
+            GetFileListRequest model = new GetFileListRequest
+            {
+                Type = "file",
+                Limit = 10,
+                Skip = 0,
+            };
             var res = imagekit.GetFileListRequest(model);
             #endregion
 
@@ -68,21 +70,21 @@ namespace Imagekit
 
             #region  PurgeStatus
 
-
             imagekit.PurgeStatus("62e5778f31305bff3223b791");
 
             #endregion
 
             #region  Upload BY URI| Bytes | Base64
 
-
             // Upload By URI
-            FileCreateRequest request = new FileCreateRequest();
-            request.Url = new Uri(@"C:\test.jpg");
-            request.FileName = "test.jpg";
+            FileCreateRequest request = new FileCreateRequest
+            {
+                Url = new Uri(@"C:\test.jpg"),
+                FileName = "test.jpg",
+            };
             ResponseMetaData resp1 = imagekit.Upload(request);
 
-            //Upload by bytes
+            // Upload by bytes
 
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
 
@@ -90,24 +92,21 @@ namespace Imagekit
             FileCreateRequest ob = new FileCreateRequest
             {
                 Bytes = bytes,
-                FileName = Guid.NewGuid().ToString()
+                FileName = Guid.NewGuid().ToString(),
             };
 
             ResponseMetaData resp2 = imagekit.Upload(ob);
-            //Upload by Base64
+            // Upload by Base64
             FileCreateRequest ob2 = new FileCreateRequest
             {
                 Base64 = base64,
-                FileName = Guid.NewGuid().ToString()
+                FileName = Guid.NewGuid().ToString(),
             };
             ResponseMetaData resp = imagekit.Upload(ob2);
 
-
-
-
             #endregion
 
-            #region DeleteFile 
+            #region DeleteFile
 
             imagekit.DeleteFile("fileId");
 
@@ -130,7 +129,6 @@ namespace Imagekit
 
             imagekit.GetRemoteFileMetadata("https://ik.imagekit.io/demo/medium_cafe_B1iTdD0C.jpg");
 
-
             #endregion
 
             #region  AddTags
@@ -139,12 +137,12 @@ namespace Imagekit
                 Tags = new List<string>
                 {
                     "tag1",
-                    "tag2"
+                    "tag2",
                 },
                 FileIds = new List<string>
                 {
-                    "field1"
-                }
+                    "field1",
+                },
             };
             imagekit.AddTags(tagsRequest);
 
@@ -156,12 +154,12 @@ namespace Imagekit
                 Tags = new List<string>
                 {
                     "tag1",
-                    "tag2"
+                    "tag2",
                 },
                 FileIds = new List<string>
                 {
-                    "field1"
-                }
+                    "field1",
+                },
             };
             imagekit.RemoveTags(removeTagsRequest);
 
@@ -173,12 +171,12 @@ namespace Imagekit
                 AiTags = new List<string>
                 {
                     "tag1",
-                    "tag2"
+                    "tag2",
                 },
                 FileIds = new List<string>
                 {
-                    "field1"
-                }
+                    "field1",
+                },
             };
             imagekit.RemoveAiTags(removeAITagsRequest);
 
@@ -189,12 +187,10 @@ namespace Imagekit
 
             #endregion
 
-            #region CreateCustomMetaDataFields
-
             CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
             {
                 Name = "Tst3",
-                Label = "Test3"
+                Label = "Test3",
             };
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
@@ -203,19 +199,17 @@ namespace Imagekit
                 MaxValue = 3000,
                 MinLength = 500,
                 MaxLength = 600,
-                IsValueRequired = false
+                IsValueRequired = false,
             };
 
             requestModel.Schema = schema;
             imagekit.CreateCustomMetaDataFields(requestModel);
 
-            #endregion
-
             #region UpdateCustomMetaDataFields
 
             CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
             {
-                Id = "Tst3"
+                Id = "Tst3",
             };
             CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
             {
@@ -224,7 +218,7 @@ namespace Imagekit
                 MaxValue = 3000,
                 MinLength = 500,
                 MaxLength = 600,
-                IsValueRequired = false
+                IsValueRequired = false,
             };
 
             requestUpdateModel.Schema = schema;
@@ -233,9 +227,11 @@ namespace Imagekit
             #endregion
 
             #region DeleteFileVersionRequest
-            DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest();
-            delRequest.FileId = "fileId";
-            delRequest.VersionId = "versionId";
+            DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest
+            {
+                FileId = "fileId",
+                VersionId = "versionId",
+            };
             imagekit.DeleteFileVersion(delRequest);
 
             #endregion
@@ -246,7 +242,7 @@ namespace Imagekit
             {
                 SourceFilePath = "Tst3",
                 DestinationPath = "Tst3",
-                IncludeFileVersions = true
+                IncludeFileVersions = true,
             };
             imagekit.CopyFile(cpyRequest);
 
@@ -257,7 +253,7 @@ namespace Imagekit
             MoveFileRequest moveFile = new MoveFileRequest
             {
                 SourceFilePath = "Tst3",
-                DestinationPath = "Tst3"
+                DestinationPath = "Tst3",
             };
             imagekit.MoveFile(moveFile);
             #endregion
@@ -268,10 +264,9 @@ namespace Imagekit
             {
                 FilePath = "Tst3",
                 NewFileName = "Tst4",
-                PurgeCache = false
+                PurgeCache = false,
             };
             imagekit.RenameFile(renameFileRequest);
-
 
             #endregion
 
@@ -283,27 +278,27 @@ namespace Imagekit
 
             #region CreateFolderRequest
 
-            CreateFolderRequest createFolderRequest = new CreateFolderRequest();
-            createFolderRequest.FolderName = "abc";
-            createFolderRequest.ParentFolderPath = "source/folder/path";
+            CreateFolderRequest createFolderRequest = new CreateFolderRequest
+            {
+                FolderName = "abc",
+                ParentFolderPath = "source/folder/path",
+            };
             imagekit.CreateFolder(createFolderRequest);
 
             #endregion
 
-            #region DeleteFolderRequest
-
-            DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest();
-            deleteFolderRequest.FolderPath = "source/folder/path/new_folder";
+            DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest
+            {
+                FolderPath = "source/folder/path/new_folder",
+            };
             imagekit.DeleteFolder(deleteFolderRequest);
-
-            #endregion
 
             #region CopyFolder
             CopyFolderRequest cpyFolderRequest = new CopyFolderRequest
             {
                 SourceFolderPath = "Tst3",
                 DestinationPath = "Tst3",
-                IncludeFileVersions = true
+                IncludeFileVersions = true,
             };
 
             imagekit.CopyFolder(cpyFolderRequest);
@@ -314,8 +309,7 @@ namespace Imagekit
             MoveFolderRequest moveFolderRequest = new MoveFolderRequest
             {
                 SourceFolderPath = "Tst3",
-                DestinationPath = "Tst3"
-
+                DestinationPath = "Tst3",
             };
 
             imagekit.MoveFolder(moveFolderRequest);
@@ -341,6 +335,5 @@ namespace Imagekit
             #endregion
 
         }
-
     }
 }

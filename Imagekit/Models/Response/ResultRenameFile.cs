@@ -6,6 +6,5 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class ResultRenameFile : ResponseMetaData
 {
-    public string purgeRequestId { get; set; }
-     
+    public string PurgeRequestId { get; set; }
 }

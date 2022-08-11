@@ -2,19 +2,12 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Newtonsoft.Json;
+
 [ExcludeFromCodeCoverage]
-public class ResultList :ResponseMetaData
+public class ResultList : ResponseMetaData
 {
-    public string help { get; set; }
+    public string Help { get; set; }
 
-    public string raw { get; set; }
-
-   
-
-    
-     
-
-       }
+    public string Raw { get; set; }
+}

@@ -122,7 +122,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetFileListRequest(ob);
-           // 
+            // 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -140,7 +140,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetFileDetail("abc");
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -176,7 +176,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.PurgeCache("abc");
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -193,7 +193,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.PurgeStatus("abc");
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -211,7 +211,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.DeleteFile("abc");
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -251,7 +251,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.BulkDeleteFiles(ob);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -366,7 +366,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.DeleteFileVersion(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -446,7 +446,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CopyFile(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -527,7 +527,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.MoveFile(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -607,7 +607,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.RenameFile(model);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -663,7 +663,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetBulkJobStatus("abc");
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]

@@ -7,6 +7,5 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class ResultOfFolderActions : ResponseMetaData
 {
-    public string jobId { get; set; }
-     
+    public string JobId { get; set; }
 }

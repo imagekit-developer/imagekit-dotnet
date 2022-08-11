@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using Imagekit;
 using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
-using Newtonsoft.Json;
 
 namespace ImagekitSample
 {
@@ -48,10 +47,12 @@ namespace ImagekitSample
             #endregion
 
             #region List and search files
-            GetFileListRequest model = new GetFileListRequest();
-            model.Type = "file";
-            model.Limit = 10;
-            model.Skip = 0;
+            GetFileListRequest model = new GetFileListRequest
+            {
+                Type = "file",
+                Limit = 10,
+                Skip = 0
+            };
             var res = imagekit.GetFileListRequest(model);
             #endregion
 
@@ -77,9 +78,11 @@ namespace ImagekitSample
 
 
             // Upload By URI
-            FileCreateRequest request = new FileCreateRequest();
-            request.Url = new Uri(@"C:\test.jpg");
-            request.FileName = "test.jpg";
+            FileCreateRequest request = new FileCreateRequest
+            {
+                Url = new Uri(@"C:\test.jpg"),
+                FileName = "test.jpg"
+            };
             ResponseMetaData resp1 = imagekit.Upload(request);
 
             //Upload by bytes
@@ -233,9 +236,11 @@ namespace ImagekitSample
             #endregion
 
             #region DeleteFileVersionRequest
-            DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest();
-            delRequest.FileId = "fileId";
-            delRequest.VersionId = "versionId";
+            DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest
+            {
+                FileId = "fileId",
+                VersionId = "versionId"
+            };
             imagekit.DeleteFileVersion(delRequest);
 
             #endregion
@@ -283,17 +288,21 @@ namespace ImagekitSample
 
             #region CreateFolderRequest
 
-            CreateFolderRequest createFolderRequest = new CreateFolderRequest();
-            createFolderRequest.FolderName = "abc";
-            createFolderRequest.ParentFolderPath = "source/folder/path";
+            CreateFolderRequest createFolderRequest = new CreateFolderRequest
+            {
+                FolderName = "abc",
+                ParentFolderPath = "source/folder/path"
+            };
             imagekit.CreateFolder(createFolderRequest);
 
             #endregion
 
             #region DeleteFolderRequest
 
-            DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest();
-            deleteFolderRequest.FolderPath = "source/folder/path/new_folder";
+            DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest
+            {
+                FolderPath = "source/folder/path/new_folder"
+            };
             imagekit.DeleteFolder(deleteFolderRequest);
 
             #endregion

@@ -6,8 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class ResultException : ResponseMetaData
 {
-    private string message { get; set; }
-    private string help { get; set; }
-  
+    private string Message { get; set; }
 
+    private string Help { get; set; }
 }

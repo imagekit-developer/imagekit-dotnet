@@ -17,5 +17,4 @@ public class ResultCustomMetaDataField : ResponseMetaData
     private string Message { get; set; }
 
     private CustomMetaDataFieldSchemaObject Schema { get; set; }
-   
 }

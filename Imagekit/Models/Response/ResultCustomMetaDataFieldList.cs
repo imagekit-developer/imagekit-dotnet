@@ -8,6 +8,5 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class ResultCustomMetaDataFieldList : ResponseMetaData
 {
-    public List<ResultCustomMetaDataField> resultCustomMetaDataFieldList { get; set; }=new List<ResultCustomMetaDataField>();
-   
+    public List<ResultCustomMetaDataField> ResultCustomMetaDataFieldList1 { get; set; } = new List<ResultCustomMetaDataField>();
 }

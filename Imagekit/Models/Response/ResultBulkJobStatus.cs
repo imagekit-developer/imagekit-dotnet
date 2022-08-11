@@ -4,12 +4,11 @@
 using System.Diagnostics.CodeAnalysis;
 
 [ExcludeFromCodeCoverage]
-public class ResultBulkJobStatus :ResponseMetaData
+public class ResultBulkJobStatus : ResponseMetaData
 {
-    public string jobId { get; set; }
-    public string type { get; set; }
-    public string status { get; set; }
+    public string JobId { get; set; }
 
+    public string Type { get; set; }
 
-
+    public string Status { get; set; }
 }

@@ -6,7 +6,5 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class ResultNoContent : ResponseMetaData
 {
-    private ResponseMetaData responseMetaData { get; set; } = new ResponseMetaData();
-
-     
+    private ResponseMetaData ResponseMetaData { get; set; } = new ResponseMetaData();
 }

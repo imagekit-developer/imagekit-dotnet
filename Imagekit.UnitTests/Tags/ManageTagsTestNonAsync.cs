@@ -42,7 +42,7 @@ namespace Imagekit.UnitTests.Tags
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.ManageTags(tagsRequest, "addTags");
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -132,7 +132,7 @@ namespace Imagekit.UnitTests.Tags
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.ManageTags(tagsRequest, "removeTags");
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 

@@ -77,7 +77,6 @@ namespace Imagekit.Sdk
             return this.restClient.BulkDeleteFiles(fileIds);
         }
 
-       
         public ResponseMetaData AddTags(TagsRequest tagsRequest)
         {
             return this.restClient.ManageTags(tagsRequest, "addTags");

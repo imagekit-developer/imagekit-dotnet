@@ -2,11 +2,10 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-
 namespace Imagekit.Helper
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using global::Imagekit.Models;
 
@@ -128,22 +127,21 @@ namespace Imagekit.Helper
 
         public void Add(string q)
         {
-            if (null != query)
+            if (this.query != null)
             {
-                query += "&";
+                this.query += "&";
             }
             else
             {
-                query = "";
+                this.query = string.Empty;
             }
 
-            query += q;
+            this.query += q;
         }
 
         public string Get()
         {
-            return query;
+            return this.query;
         }
-
     }
 }
