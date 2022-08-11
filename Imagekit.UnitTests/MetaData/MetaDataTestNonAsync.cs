@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using Xunit;
 using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
+using Imagekit.Models.Response;
 
 namespace Imagekit.UnitTests.MetaData
 {
@@ -34,7 +35,7 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetFileMetaData("abc");
+            var response = (ResultMetaData)restClient.GetFileMetaData("abc");
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -71,7 +72,7 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetRemoteFileMetaData("abc");
+            var response = (ResultMetaData)restClient.GetRemoteFileMetaData("abc");
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -286,7 +287,7 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.CreateCustomMetaDataFields(model);
+            var response = (ResultCustomMetaDataField)restClient.CreateCustomMetaDataFields(model);
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -333,7 +334,7 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.CreateCustomMetaDataFields(model);
+            var response = (ResultCustomMetaDataField)restClient.CreateCustomMetaDataFields(model);
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }

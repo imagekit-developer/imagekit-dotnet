@@ -57,7 +57,7 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetFileListRequestAsync(ob).Result;
+            var response = (ResultList)restClient.GetFileListRequestAsync(ob).Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -75,7 +75,7 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetFileDetailAsync("abc").Result;
+            var response = (Result)restClient.GetFileDetailAsync("abc").Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -146,7 +146,7 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.DeleteFileAsync("abc").Result;
+            var response = (Result)restClient.DeleteFileAsync("abc").Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -186,7 +186,7 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.BulkDeleteFilesAsync(ob).Result;
+            var response = (ResultFileDelete)restClient.BulkDeleteFilesAsync(ob).Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }

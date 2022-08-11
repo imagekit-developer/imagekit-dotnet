@@ -121,7 +121,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetFileListRequest(ob);
+            var response = (ResultList)restClient.GetFileListRequest(ob);
             // 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -139,7 +139,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetFileDetail("abc");
+            var response = (Result)restClient.GetFileDetail("abc");
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -210,7 +210,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.DeleteFile("abc");
+            var response = (Result)restClient.DeleteFile("abc");
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -250,7 +250,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.BulkDeleteFiles(ob);
+            var response = (ResultFileDelete)restClient.BulkDeleteFiles(ob);
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -383,7 +383,7 @@ namespace Imagekit.UnitTests.FileVersion
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() => restClient.DeleteFileVersion(model));
+            var ex = Assert.Throws<Exception>(() => (ResultNoContent)restClient.DeleteFileVersion(model));
             Assert.Equal(ErrorMessages.InvalidDelVerValue, ex.Message);
         }
         [Fact]

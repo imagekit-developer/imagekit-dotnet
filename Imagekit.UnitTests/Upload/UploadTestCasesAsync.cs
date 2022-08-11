@@ -93,7 +93,7 @@ namespace Imagekit.UnitTests.Upload
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var response = restClient.Upload(ob);
+            var response = (Result)restClient.Upload(ob);
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -121,7 +121,7 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.UploadAsync(ob).Result;
+            var response = (Result)restClient.UploadAsync(ob).Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -146,7 +146,7 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.UploadAsync(ob).Result;
+            var response = (Result)restClient.UploadAsync(ob).Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -226,7 +226,7 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.UploadAsync(ob).Result;
+            var response = (Result)restClient.UploadAsync(ob).Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -297,7 +297,7 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.UploadAsync(ob).Result;
+            var response = (Result)restClient.UploadAsync(ob).Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -332,7 +332,7 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.UploadAsync(ob).Result;
+            var response = (Result)restClient.UploadAsync(ob).Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }

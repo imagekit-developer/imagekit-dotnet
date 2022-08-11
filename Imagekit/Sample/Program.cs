@@ -85,7 +85,6 @@ namespace Imagekit
             ResponseMetaData resp1 = imagekit.Upload(request);
 
             // Upload by bytes
-
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
 
             byte[] bytes = Convert.FromBase64String(base64);
@@ -96,6 +95,7 @@ namespace Imagekit
             };
 
             ResponseMetaData resp2 = imagekit.Upload(ob);
+
             // Upload by Base64
             FileCreateRequest ob2 = new FileCreateRequest
             {

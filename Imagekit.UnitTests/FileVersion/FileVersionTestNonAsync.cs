@@ -352,7 +352,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.RestoreFileVersion("abc", "1");
+            var response = (Result)restClient.RestoreFileVersion("abc", "1");
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }

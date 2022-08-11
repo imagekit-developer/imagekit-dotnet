@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using Imagekit.Models.Response;
 using Xunit;
 using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
 
@@ -34,7 +35,7 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetFileMetaDataAsync("abc").Result;
+            var response = (ResultMetaData)restClient.GetFileMetaDataAsync("abc").Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
@@ -71,7 +72,7 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetRemoteFileMetaDataAsync("abc").Result;
+            var response = (ResultMetaData)restClient.GetRemoteFileMetaDataAsync("abc").Result;
 
             Assert.Equal(responseObj.Raw, response.Raw);
         }
