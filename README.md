@@ -126,9 +126,7 @@ Transformation trans = new Transformation()
                 Original().
                 RawTransformation("h-200).w-300).l-image).i-logo.png).l-end");
                 
-  string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
-
-                
+  string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();                
 ```
 
 This results in a URL like
@@ -157,8 +155,8 @@ The `.Url()` method accepts the following parameters.
 
 | Option | Description |
 | --- | --- |
-| urlEndpoint | Optional. The base URL to be appended before the path of the image. If not specified, the URL Endpoint specified at the time of SDK initialization is used. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/` |
-| path | Conditional. This is the path at which the image exists. For example, `/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
+| urlEndpoint | Optional. The base URL has to be appended before the path of the image. If not specified, the URL Endpoint specified at the time of SDK initialization is used. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/` |
+| path | Conditional. This is the path on which the image exists. For example, `/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
 | src | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
 | transformation | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as the array's different objects. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
 | transformationPosition | Optional. The default value is `path` that places the transformation string as a URL path parameter. It can also be specified as `query`, which adds the transformation string as the URL's query parameter `tr`. If you use the `src` parameter to create the URL, then the transformation string is always added as a query parameter. |
@@ -231,66 +229,66 @@ https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&i
 
 #### List of supported transformations
 
-The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations). The SDK gives a name to each transformation parameter, making the code simpler and more readable. If a transformation is supported in ImageKit, but a name for it cannot be found in the table below, then use the transformation code from ImageKit docs as the name when using in the `url` function.
+The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations). The SDK gives a name to each transformation parameter, making the code simpler and more readable. If a transformation is supported in ImageKit, but a name for it cannot be found in the table below, then use the transformation code from ImageKit docs as the name when using the `url` function.
 
 | Supported Transformation Name | Translates to parameters |
 | --- | --- |
-| height | h |
-| width | w |
-| aspectRatio | ar |
-| quality | q |
-| crop | c |
-| cropMode | cm |
-| x | x |
-| y | y |
-| focus | fo |
-| format | f |
-| radius | r |
-| background | bg |
-| border | b |
-| rotation | rt |
-| blur | bl |
-| named | n |
-| overlayX | ox |
-| overlayY | oy |
-| overlayFocus | ofo |
-| overlayHeight | oh |
-| overlayWidth | ow |
-| overlayImage | oi |
-| overlayImageTrim | oit |
-| overlayImageAspectRatio | oiar |
-| overlayImageBackground | oibg |
-| overlayImageBorder | oib |
-| overlayImageDPR | oidpr |
-| overlayImageQuality | oiq |
-| overlayImageCropping | oic |
-| overlayImageTrim | oit |
-| overlayText | ot |
-| overlayTextFontSize | ots |
-| overlayTextFontFamily | otf |
-| overlayTextColor | otc |
-| overlayTextTransparency | oa |
-| overlayAlpha | oa |
-| overlayTextTypography | ott |
-| overlayBackground | obg |
-| overlayTextEncoded | ote |
-| overlayTextWidth | otw |
-| overlayTextBackground | otbg |
-| overlayTextPadding | otp |
-| overlayTextInnerAlignment | otia |
-| overlayRadius | or |
-| progressive | pr |
-| lossless | lo |
-| trim | t |
-| metadata | md |
-| colorProfile | cp |
-| defaultImage | di |
-| dpr | dpr |
-| effectSharpen | e-sharpen |
-| effectUSM | e-usm |
-| effectContrast | e-contrast |
-| effectGray | e-grayscale |
-| original | orig |
+| Height | h |
+| Width | w |
+| AspectRatio | ar |
+| Quality | q |
+| Crop | c |
+| CropMode | cm |
+| X | x |
+| Y | y |
+| Focus | fo |
+| Format | f |
+| Radius | r |
+| Background | bg |
+| Border | b |
+| Rotation | rt |
+| Blur | bl |
+| Named | n |
+| OverlayX | ox |
+| OverlayY | oy |
+| OverlayFocus | ofo |
+| OverlayHeight | oh |
+| OverlayWidth | ow |
+| OverlayImage | oi |
+| OverlayImageTrim | oit |
+| OverlayImageAspectRatio | oiar |
+| OverlayImageBackground | oibg |
+| OverlayImageBorder | oib |
+| OverlayImageDPR | oidpr |
+| OverlayImageQuality | oiq |
+| OverlayImageCropping | oic |
+| OverlayImageTrim | oit |
+| OverlayText | ot |
+| OverlayTextFontSize | ots |
+| OverlayTextFontFamily | otf |
+| OverlayTextColor | otc |
+| OverlayTextTransparency | oa |
+| OverlayAlpha | oa |
+| OverlayTextTypography | ott |
+| OverlayBackground | obg |
+| OverlayTextEncoded | ote |
+| OverlayTextWidth | otw |
+| OverlayTextBackground | otbg |
+| OverlayTextPadding | otp |
+| OverlayTextInnerAlignment | otia |
+| OverlayRadius | or |
+| Progressive | pr |
+| Lossless | lo |
+| Trim | t |
+| Metadata | md |
+| ColorProfile | cp |
+| DefaultImage | di |
+| Dpr | dpr |
+| EffectSharpen | e-sharpen |
+| EffectUSM | e-usm |
+| EffectContrast | e-contrast |
+| EffectGray | e-grayscale |
+| Original | orig |
 
 ### File Upload
 
@@ -305,7 +303,7 @@ Sample usage
             FileCreateRequest ob = new FileCreateRequest();
             ob.Url = new Uri(@"C:\test.jpg");
             ob.FileName = "test.jpg";
-          ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
+          ResponseMetaData resp = await imagekit.UploadAsync(ob);
           
          //Upload by Base64
          
@@ -315,7 +313,7 @@ Sample usage
                 Bytes = bytes,
                 FileName = Guid.NewGuid().ToString()
             };
-           ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
+           ResponseMetaData resp = await imagekit.UploadAsync(ob);
            
            string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
             FileCreateRequest ob = new FileCreateRequest
@@ -323,7 +321,7 @@ Sample usage
                 Base64 = base64,
                 FileName = Guid.NewGuid().ToString()
             };
-          ResponseMetaData resp = awaitimagekit.UploadAsync(ob);
+          ResponseMetaData resp = await imagekit.UploadAsync(ob);
           ```
 
 **Note**: Upload argument can be a local fullPath or URL or byte array (byte\[\]) or Base64String of a file.
@@ -358,7 +356,7 @@ Accepts the file ID and fetches the details as per the [API documentation here](
 
 ```cs
 String fileId = "file-id-1";
-ResponseMetaData resultFileVersions = ImageKit.getFileVersions(fileId);
+ResponseMetaData resultFileVersions = imageKit.getFileVersions(fileId);
 ```
 
 **4\. Get File Version details**
@@ -368,7 +366,7 @@ Accepts the file ID and version ID and fetches the details as per the [API docum
 ```cs
 String fileId = "file-id-1";
 String versionId = "file-version-id-1";
-ResponseMetaData resultFileVersionDetails = ImageKit.getFileVersionDetails(fileId, versionId);
+ResponseMetaData resultFileVersionDetails = imageKit.getFileVersionDetails(fileId, versionId);
 ```
 
 **5\. Update File Details**
@@ -386,7 +384,7 @@ aiTags.add("ai-tag-1");
 FileUpdateRequest fileUpdateRequest = new FileUpdateRequest("fileId");
 fileUpdateRequest.Tags = tags;
 fileUpdateRequest.AITags = aiTags;
-ResponseMetaData result = ImageKit.updateFileDetail(fileUpdateRequest); 
+ResponseMetaData result = imageKit.updateFileDetail(fileUpdateRequest); 
 ```
 
 **6\. Add tags**
@@ -441,7 +439,7 @@ ResponseMetaData result = imageKit.deleteFile(fileId);
 
 **10\. Delete FileVersion**
 
-Accepts an object of class `DeleteFileVersionRequest` specifying the parameters to be used to delete file version. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file-version) can be passed via their setter functions to get the results.
+Accepts an object of class `DeleteFileVersionRequest` specifying the parameters to be used to delete the file version. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file-version) can be passed via their setter functions to get the results.
 
 ```cs
 DeleteFileVersionRequest deleteFileVersionRequest = new DeleteFileVersionRequest();
@@ -722,7 +720,7 @@ imageKit.PHashDistance('firstHash', 'secondHash');
 
 Catch and respond to invalid data, internal problems, and more.
 
-Imagekit .Net SDK raise exceptions for many reasons, such as not found, invalid parameters, authentication errors, and internal server error. We recommend writing code that gracefully handles all possible API exceptions.
+Imagekit .Net SDK raises exceptions for many reasons, such as being not found, invalid parameters, authentication errors, and internal server errors. We recommend writing code that gracefully handles all possible API exceptions.
 
 #### Example:
 

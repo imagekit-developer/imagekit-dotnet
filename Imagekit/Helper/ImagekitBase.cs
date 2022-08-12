@@ -75,7 +75,8 @@ namespace Imagekit
             string publicKey,
             string privateKey,
             string urlEndpoint,
-            string transformationPosition = "path") : base(publicKey, privateKey, urlEndpoint, transformationPosition)
+            string transformationPosition = "path")
+            : base(publicKey, privateKey, urlEndpoint, transformationPosition)
         {
         }
     }

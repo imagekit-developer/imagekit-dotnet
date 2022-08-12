@@ -15,6 +15,7 @@ public partial class Transformation
     public const string TransformKeyValueDelimiter = "-";
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="Transformation"/> class.
     /// </summary>
     /// <param name="transformParams">
     /// </param>
@@ -27,6 +28,7 @@ public partial class Transformation
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="Transformation"/> class.
     /// Creates transformation object initialized with array of transformation parameters.
     /// </summary>
     /// <param name="transformParams">List of transformation parameters represented as pairs 'name=value'.</param>
@@ -64,6 +66,7 @@ public partial class Transformation
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="Transformation"/> class.
     /// Creates empty transformation object.
     /// </summary>
     public Transformation()
@@ -81,6 +84,7 @@ public partial class Transformation
     protected List<Transformation> nestedTransforms = new List<Transformation>();
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="Transformation"/> class.
     /// Creates transformation object chained with other transformations.
     /// </summary>
     /// <param name="transforms">List of transformations to chain with.</param>
@@ -93,6 +97,7 @@ public partial class Transformation
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="Transformation"/> class.
     /// </summary>
     /// <param name="dictionary">
     /// </param>
