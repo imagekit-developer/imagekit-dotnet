@@ -2,8 +2,8 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using Imagekit.Models;
 using System.Diagnostics.CodeAnalysis;
+using Imagekit.Models;
 
 [ExcludeFromCodeCoverage]
 public class ResultCustomMetaDataField : ResponseMetaData

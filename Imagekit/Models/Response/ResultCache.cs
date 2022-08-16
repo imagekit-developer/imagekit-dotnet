@@ -11,5 +11,7 @@ public class ResultCache : ResponseMetaData
 
     private string RequestId { get; set; }
 
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     private string Raw { get; set; }
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
 }

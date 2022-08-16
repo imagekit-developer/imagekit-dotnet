@@ -40,7 +40,7 @@ namespace Imagekit.Sdk
 
         public ResultCacheStatus PurgeStatus(string purgeRequestId)
         {
-            return (ResultCacheStatus) this.restClient.PurgeStatus(purgeRequestId);
+            return (ResultCacheStatus)this.restClient.PurgeStatus(purgeRequestId);
         }
 
         public async Task<ResultCacheStatus> PurgeStatusAsync(string url)
@@ -50,7 +50,7 @@ namespace Imagekit.Sdk
 
         public Result GetFileDetail(string url)
         {
-            return (Result) this.restClient.GetFileDetail(url);
+            return (Result)this.restClient.GetFileDetail(url);
         }
 
         public ResultList GetFileListRequest(GetFileListRequest getFileListRequest)
@@ -137,7 +137,7 @@ namespace Imagekit.Sdk
 
         public Result RestoreFileVersion(string fileId, string versionId)
         {
-            return (Result) this.restClient.RestoreFileVersion(fileId, versionId);
+            return (Result)this.restClient.RestoreFileVersion(fileId, versionId);
         }
 
         public ResultEmptyBlock CreateFolder(CreateFolderRequest createFolderRequest)
@@ -228,7 +228,7 @@ namespace Imagekit.Sdk
         public async Task<ResultCustomMetaDataField> CreateCustomMetaDataFieldsAsync(
            CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest)
         {
-            return(ResultCustomMetaDataField)await this.restClient.CreateCustomMetaDataFieldsAsync(customMetaDataFieldCreateRequest);
+            return (ResultCustomMetaDataField)await this.restClient.CreateCustomMetaDataFieldsAsync(customMetaDataFieldCreateRequest);
         }
 
         public async Task<ResultNoContent> DeleteCustomMetaDataFieldAsync(string id)
@@ -254,7 +254,7 @@ namespace Imagekit.Sdk
 
         public async Task<ResultNoContent> MoveFileAsync(MoveFileRequest moveFileRequest)
         {
-            return (ResultNoContent) await this.restClient.MoveFileAsync(moveFileRequest);
+            return (ResultNoContent)await this.restClient.MoveFileAsync(moveFileRequest);
         }
 
         public async Task<ResponseMetaData> RenameFileAsync(RenameFileRequest renameFileRequest)
@@ -294,7 +294,7 @@ namespace Imagekit.Sdk
 
         public async Task<ResultFileVersions> GetFileVersionsAsync(string fileId)
         {
-            return (ResultFileVersions) await this.restClient.GetFileVersionsAsync(fileId);
+            return (ResultFileVersions)await this.restClient.GetFileVersionsAsync(fileId);
         }
 
         public async Task<ResultFileVersionDetails> GetFileVersionDetailsAsync(string fileId, string versionId)

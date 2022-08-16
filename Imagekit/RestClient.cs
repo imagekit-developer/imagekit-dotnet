@@ -35,6 +35,7 @@ namespace Imagekit.Sdk
             {
                 throw new Exception(ErrorMessages.InvalidApiUrl);
             }
+
             this.client = httpClient;
             this.client.DefaultRequestHeaders.Add("Authorization", "Basic " + Utils.EncodeTo64(privateKey));
         }
@@ -304,6 +305,7 @@ namespace Imagekit.Sdk
                     byte[] imageBytes = webClient.DownloadData("http://www.google.com/images/logos/ps_logo2.png");
                     formdata.Add(new StringContent(GetJsonBody.GetBase64(imageBytes)), "file");
                 }
+
                 HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
                 model = JsonConvert.DeserializeObject<Result>(res);
@@ -358,6 +360,7 @@ namespace Imagekit.Sdk
                     byte[] imageBytes = webClient.DownloadData(fileCreateRequest.Url.ToString());
                     formdata.Add(new StringContent(GetJsonBody.GetBase64(imageBytes)), "file");
                 }
+
                 HttpResponseMessage response = await this.client.PostAsync(url, formdata);
                 string res = response.Content.ReadAsStringAsync().Result;
 

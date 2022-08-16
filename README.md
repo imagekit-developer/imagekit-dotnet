@@ -1,10 +1,11 @@
 [![ImageKit.io](https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg)](https://imagekit.io)
 
-# DotNET (NET45/Standard/Core) SDK for ImageKit
-[![CI Pipeline](https://github.com/imagekit-developer/imagekit-dotnet/workflows/CI%20Pipeline/badge.svg?branch=master)](https://github.com/imagekit-developer/imagekit-dotnet)
-[![NuGet](https://img.shields.io/nuget/v/imagekit.svg)](https://www.nuget.org/packages/Imagekit) 
-[![codecov](https://codecov.io/gh/imagekit-developer/imagekit-dotnet/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-dotnet)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## DotNET (NET45/Standard/Core) SDK for ImageKit
+
+[![CI Pipeline](https://github.com/imagekit-developer/imagekit-dotnet/workflows/CI%20Pipeline/badge.svg?branch=master)](https://github.com/imagekit-developer/imagekit-dotnet)  
+[![NuGet](https://img.shields.io/nuget/v/imagekit.svg)](https://www.nuget.org/packages/Imagekit)  
+[![codecov](https://codecov.io/gh/imagekit-developer/imagekit-dotnet/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-dotnet)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
 
 ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/features/image-transformations), [optimization](https://docs.imagekit.io/features/image-optimization), [file uploading](https://docs.imagekit.io/api-reference/upload-file-api) and other [ImageKit APIs](https://docs.imagekit.io/api-reference/api-introduction) from applications written in server-side C#.
@@ -16,7 +17,7 @@ ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/
 *   [URL generation](#url-generation)
 *   [File Upload](#file-upload)
 *   [File Management](#file-management)
-*   [Tags](#tags-management) 
+*   [Tags](#tags-management)
 *   [Manage Folder](#folder-management)
 *   [Bulk Job Status](#job-management)
 *   [Purge](#purge)
@@ -83,53 +84,53 @@ Transformation trans = new Transformation()
     .AspectRatio("4-3")
     .Quality(40)
     .Crop("force")
-				.CropMode("extract").
-    Focus("left").
-    Format("jpeg").
-    Background("A94D34").
-    Border("5-A94D34").
-    Rotation(90).
-    Blur(10).
-    Named("some_name").
-    OverlayX(35).
-    OverlayY(35).
-    OverlayFocus("bottom").
-    OverlayHeight(20).
-    OverlayHeight(20).
-    OverlayImage("/folder/file.jpg"). // leading slash case
-    OverlayImageTrim(false).
-    OverlayImageAspectRatio("4:3").
-    OverlayImageBackground("0F0F0F").
-    OverlayImageBorder("10_0F0F0F").
-    OverlayImageDpr(2).
-    OverlayImageQuality(50).
-    OverlayImageCropping("force").
-    OverlayText("two words").
-    OverlayTextFontSize(20).
-    OverlayTextFontFamily("Open Sans").
-    OverlayTextColor("00FFFF").
-    OverlayTextTransparency(5).
-    OverlayTextTypography("b").
-    OverlayBackground("00AAFF55").
-    OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D").
-    OverlayTextWidth(50).
-    OverlayTextBackground("00AAFF55").
-    OverlayTextPadding(40).
-    OverlayTextInnerAlignment("left").
-    OverlayRadius(10).
-    Progressive(true).
-    Lossless(true).
-    Trim(5).
-    Metadata(true).
-    ColorProfile(true).
-    DefaultImage("folder/file.jpg/"). //trailing slash case
-    Dpr(3).
-    EffectSharpen(10).
-    EffectUsm("2-2-0.8-0.024").
-    EffectContrast(true).
-    EffectGray().
-    Original().
-    RawTransformation("h-200).w-300).l-image).i-logo.png).l-end");
+    .CropMode("extract")
+    .Focus("left")
+    .Format("jpeg")
+    .Background("A94D34")
+    .Border("5-A94D34")
+    .Rotation(90)
+    .Blur(10)
+    .Named("some_name")
+    .OverlayX(35)
+    .OverlayY(35)
+    .OverlayFocus("bottom")
+    .OverlayHeight(20)
+    .OverlayHeight(20)
+    .OverlayImage("/folder/file.jpg")
+    .OverlayImageTrim(false) // leading slash case
+    .OverlayImageAspectRatio("4:3")
+    .OverlayImageBackground("0F0F0F")
+    .OverlayImageBorder("10_0F0F0F")
+    .OverlayImageDpr(2)
+    .OverlayImageQuality(50)
+    .OverlayImageCropping("force")
+    .OverlayText("two words")
+    .OverlayTextFontSize(20)
+    .OverlayTextFontFamily("Open Sans")
+    .OverlayTextColor("00FFFF")
+    .OverlayTextTransparency(5)
+    .OverlayTextTypography("b")
+    .OverlayBackground("00AAFF55")
+    .OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D")
+    .OverlayTextWidth(50)
+    .OverlayTextBackground("00AAFF55")
+    .OverlayTextPadding(40)
+    .OverlayTextInnerAlignment("left")
+    .OverlayRadius(10)
+    .Progressive(true)
+    .Lossless(true)
+    .Trim(5)
+    .Metadata(true)
+    .ColorProfile(true)
+    .DefaultImage("folder/file.jpg/")
+    .Dpr(3)
+    .EffectSharpen(10)
+    .EffectUsm("2-2-0.8-0.024")
+    .EffectContrast(true)
+    .EffectGray()
+    .Original()
+    .RawTransformation("h-200).w-300).l-image).i-logo.png).l-end");
     
   string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
 ```
@@ -138,7 +139,6 @@ This results in a URL like
 
 ```plaintext
 https://ik.imagekit.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Cbg-A94D34%2Cb-5-A94D34%2Crt-90%2Cbl-10%2Cn-some_name%2Cox-35%2Coy-35%2Cofo-bottom%2Coh-20%2Coi-folder%40%40file.jpg%2Coit-false%2Coiar-4%3A3%2Coibg-0F0F0F%2Coib-10_0F0F0F%2Coidpr-2%2Coiq-50%2Coic-force%2Cot-two%20words%2Cots-20%2Cotf-Open%20Sans%2Cotc-00FFFF%2Coa-5%2Cott-b%2Cobg-00AAFF55%2Cote-b3ZlcmxheSBtYWRlIGVhc3k%253D%2Cotw-50%2Cotbg-00AAFF55%2Cotp-40%2Cotia-left%2Cor-10%2Cpr-true%2Clo-true%2Ct-5%2Cmd-true%2Ccp-true%2Cdi-folder%40%40file.jpg%2Cdpr-3%2Ce-sharpen-10%2Ce-usm-2-2-0.8-0.024%2Ce-contrast-true%2Ce-grayscale-true%2Corig-true%2Ch-200%29.w-300%29.l-image%29.i-logo.png%29.l-end
-
 ```
 
 **2\. Using full image URL**
@@ -333,10 +333,7 @@ string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 Base64 = base64ImageRepresentation,
 FileName = Guid.NewGuid().ToString(),
 };
-Result resp = imagekit.Upload(ob2);
-
-           
-
+Result resp = imagekit.Upload(ob2);           
 ```
 
 **Note**: Upload argument can be a local fullPath or URL or byte array (byte\[\]) or Base64String of a file.
@@ -409,7 +406,7 @@ String fileId = "file-id-1";
 Result result = imageKit.deleteFile(fileId);
 ```
 
-**7. Delete FileVersion**
+**7\. Delete FileVersion**
 
 Accepts an object of class `DeleteFileVersionRequest` specifying the parameters to be used to delete the file version. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file-version) can be passed via their setter functions to get the results.
 
@@ -420,7 +417,7 @@ deleteFileVersionRequest.VersionId = "file-version-id-1";
 ResultNoContent resultNoContent = imageKit.deleteFileVersion(deleteFileVersionRequest);
 ```
 
-**8. Delete files (bulk)**
+**8\. Delete files (bulk)**
 
 Accepts the file IDs to delete files as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-files-bulk).
 
@@ -433,7 +430,7 @@ fileIds.add("file-id-3");
 ResultFileDelete result = imageKit.bulkDeleteFiles(fileIds);
 ```
 
-**9. Copy file**
+**9\. Copy file**
 
 Accepts an object of class `CopyFileRequest` specifying the parameters to be used to copy a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/copy-file) can be passed via their setter functions to get the results.
 
@@ -475,11 +472,12 @@ Accepts the fileId and versionId to restore the file version as per the [API doc
 ```cs
 Result result = imageKit.restoreFileVersion("fileId", "versionId");
 ```
+
 ### Tags Management
 
-The SDK provides a simple interface  to manage your tags.
+The SDK provides a simple interface to manage your tags.
 
-**13. Add tags**
+**13\. Add tags**
 
 Accepts an object of class `TagsRequest` specifying the parameters to be used to add tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/add-tags-bulk) can be passed via their setter functions to get the results.
 
@@ -533,7 +531,6 @@ createFolderRequest.ParentFolderPath = "/";
 ResultEmptyBlock resultEmptyBlock = imageKit.createFolder(createFolderRequest);
 ```
 
-
 **17\. Copy Folder**
 
 Accepts an object of class `CopyFolderRequest` specifying the parameters to be used to copy a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/copy-folder) can be passed via their setter functions to get the results.
@@ -555,6 +552,7 @@ moveFolderRequest.SourceFolderPath = "/Gallery/test";
 moveFolderRequest.DestinationPath = "/";
 ResultOfFolderActions resultOfFolderActions = imageKit.moveFolder(moveFolderRequest);
 ```
+
 **19\. Delete Folder**
 
 Accepts an object of class `DeleteFolderRequest` specifying the parameters to be used to delete a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-folder) can be passed via their setter functions to get the results.
@@ -575,6 +573,7 @@ Accepts the jobId to get bulk job status as per the [API documentation here](htt
 String jobId = "job-id-1";
 ResultBulkJobStatus resultBulkJobStatus = imageKit.getBulkJobStatus(jobId);
 ```
+
 ### Purge
 
 **21\. Purge Cache**
@@ -595,8 +594,8 @@ ResultCacheStatus result = imageKit.getPurgeCacheStatus(requestId);
 ```
 
 ### Metadata
-Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imageKit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
 
+Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imageKit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
 
 **23\. Get File Metadata**
 

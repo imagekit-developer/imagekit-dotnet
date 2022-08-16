@@ -4,8 +4,6 @@
 
 public class ResponseMetaData
 {
-   
-
     public string Raw { get; set; }
 
     public int HttpStatusCode { get; set; }

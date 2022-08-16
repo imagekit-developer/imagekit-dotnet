@@ -1,4 +1,8 @@
-﻿namespace ImagekitSample
+﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ImagekitSample
 {
     using System;
     using System.Collections.Generic;
@@ -56,7 +60,6 @@
             Result resp1 = imagekit.Upload(request);
 
             // Upload by bytes
-
             byte[] bytes = System.IO.File.ReadAllBytes(@"image file path");
 
             FileCreateRequest ob = new FileCreateRequest
@@ -120,9 +123,10 @@
 
             Result resp2 = imagekit.Upload(ob);
 
-            //Get Base64 
+            // Get Base64
             byte[] imageArray = System.IO.File.ReadAllBytes(@"image file path");
             string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+
             // Upload by Base64
             FileCreateRequest ob2 = new FileCreateRequest
             {
@@ -144,12 +148,10 @@
             };
             ResultList res = imagekit.GetFileListRequest(model);
 
-            //Get File by FileId
-
+            // Get File by FileId
             Result res1 = imagekit.GetFileDetail("fileId");
 
-            //Delete File by FileId
-
+            // Delete File by FileId
             Result res2 = imagekit.DeleteFile("fileId");
 
             // Bulk Delete
@@ -281,7 +283,6 @@
             {
                 SourceFolderPath = "Tst3",
                 DestinationPath = "Tst3",
-
             };
 
             ResultOfFolderActions resultOfFolderActions1 = imagekit.MoveFolder(moveFolderRequest);
@@ -347,12 +348,10 @@
             requestUpdateModel.Schema = schema;
             ResultCustomMetaDataField resultCustomMetaDataFieldUpdate = imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
 
-            //Delete Custom MetaData
-
-            ResultNoContent resultNoContentDel= imagekit.DeleteCustomMetaDataField("id");
+            // Delete Custom MetaData
+            ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("id");
             #endregion
 
         }
-
     }
 }

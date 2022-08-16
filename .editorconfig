@@ -11,3 +11,6 @@ dotnet_diagnostic.SA1614.severity = none
 
 # SA1606: Element documentation should have summary text
 dotnet_diagnostic.SA1606.severity = none
+
+# SA1402: File may only contain a single type
+dotnet_diagnostic.SA1402.severity = none
