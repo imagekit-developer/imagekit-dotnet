@@ -36,7 +36,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultMetaData)restClient.GetFileMetaDataAsync("abc").Result;
-
+           
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -73,7 +73,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultMetaData)restClient.GetRemoteFileMetaDataAsync("abc").Result;
-
+           
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -108,8 +108,8 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.GetCustomMetaDataFieldsAsync(true).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
@@ -141,8 +141,8 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
@@ -174,8 +174,8 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
         public void CreateCustomMetaDataFields_Type_Text()
@@ -206,8 +206,8 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
@@ -239,8 +239,8 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
@@ -288,8 +288,8 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
         public void CreateCustomMetaDataFields_successExpected_type_MultiSelect()
@@ -335,8 +335,8 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
         public void CreateCustomMetaDataFieldsException()
@@ -442,8 +442,8 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.DeleteCustomMetaDataFieldAsync("abc").Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
 
@@ -491,8 +491,8 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.UpdateCustomMetaDataFieldsAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]

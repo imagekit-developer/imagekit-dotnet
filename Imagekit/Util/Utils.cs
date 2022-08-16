@@ -32,13 +32,8 @@ namespace Imagekit.Util
             int responseCode,
             Dictionary<string, List<string>> responseHeaders)
         {
-            responseMetadata = new ResponseMetaData
-            {
-                Raw = respBody,
-
-                HttpStatusCode = responseCode,
-            };
-
+            responseMetadata.Raw = respBody;
+            responseMetadata.HttpStatusCode = responseCode;
             return responseMetadata;
         }
 

@@ -1,11 +1,10 @@
 [![ImageKit.io](https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg)](https://imagekit.io)
 
-## DotNET (NET45/Standard/Core) SDK for ImageKit
-
-[![CI Pipeline](https://github.com/imagekit-developer/imagekit-dotnet/workflows/CI%20Pipeline/badge.svg?branch=master)](https://github.com/imagekit-developer/imagekit-dotnet)  
-[![NuGet](https://img.shields.io/nuget/v/imagekit.svg)](https://www.nuget.org/packages/Imagekit)  
-[![codecov](https://codecov.io/gh/imagekit-developer/imagekit-dotnet/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-dotnet)  
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
+# DotNET (NET45/Standard/Core) SDK for ImageKit
+[![CI Pipeline](https://github.com/imagekit-developer/imagekit-dotnet/workflows/CI%20Pipeline/badge.svg?branch=master)](https://github.com/imagekit-developer/imagekit-dotnet)
+[![NuGet](https://img.shields.io/nuget/v/imagekit.svg)](https://www.nuget.org/packages/Imagekit) 
+[![codecov](https://codecov.io/gh/imagekit-developer/imagekit-dotnet/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-dotnet)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
 
 ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/features/image-transformations), [optimization](https://docs.imagekit.io/features/image-optimization), [file uploading](https://docs.imagekit.io/api-reference/upload-file-api) and other [ImageKit APIs](https://docs.imagekit.io/api-reference/api-introduction) from applications written in server-side C#.
@@ -15,8 +14,13 @@ ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/
 *   [Installation](#installation)
 *   [Initialization](#initialization)
 *   [URL generation](#url-generation)
-*   [File upload](#file-upload)
-*   [File management](#file-management)
+*   [File Upload](#file-upload)
+*   [File Management](#file-management)
+*   [Tags](#tags-management) 
+*   [Manage Folder](#folder-management)
+*   [Bulk Job Status](#job-management)
+*   [Purge](#purge)
+*   [Meta Data](#metadata)
 *   [Utility functions](#utility-functions)
 *   [Support](#support)
 *   [Links](#links)
@@ -74,65 +78,67 @@ This method allows you to create a URL using the `path` where the image exists a
 ```cs
 string path = "/default-image.jpg";
 Transformation trans = new Transformation()
-                .Width(400)
-                .Height(300)
-                .AspectRatio("4-3")
-                .Quality(40)
-                .Crop("force").CropMode("extract").
-                Focus("left").
-                Format("jpeg").
-                Background("A94D34").
-                Border("5-A94D34").
-                Rotation(90).
-                Blur(10).
-                Named("some_name").
-                OverlayX(35).
-                OverlayY(35).
-                OverlayFocus("bottom").
-                OverlayHeight(20).
-                OverlayHeight(20).
-                OverlayImage("/folder/file.jpg"). // leading slash case
-                OverlayImageTrim(false).
-                OverlayImageAspectRatio("4:3").
-                OverlayImageBackground("0F0F0F").
-                OverlayImageBorder("10_0F0F0F").
-                OverlayImageDpr(2).
-                OverlayImageQuality(50).
-                OverlayImageCropping("force").
-                OverlayText("two words").
-                OverlayTextFontSize(20).
-                OverlayTextFontFamily("Open Sans").
-                OverlayTextColor("00FFFF").
-                OverlayTextTransparency(5).
-                OverlayTextTypography("b").
-                OverlayBackground("00AAFF55").
-                OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D").
-                OverlayTextWidth(50).
-                OverlayTextBackground("00AAFF55").
-                OverlayTextPadding(40).
-                OverlayTextInnerAlignment("left").
-                OverlayRadius(10).
-                Progressive(true).
-                Lossless(true).
-                Trim(5).
-                Metadata(true).
-                ColorProfile(true).
-                DefaultImage("folder/file.jpg/"). //trailing slash case
-                Dpr(3).
-                EffectSharpen(10).
-                EffectUsm("2-2-0.8-0.024").
-                EffectContrast(true).
-                EffectGray().
-                Original().
-                RawTransformation("h-200).w-300).l-image).i-logo.png).l-end");
-                
-  string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();                
+    .Width(400)
+    .Height(300)
+    .AspectRatio("4-3")
+    .Quality(40)
+    .Crop("force")
+				.CropMode("extract").
+    Focus("left").
+    Format("jpeg").
+    Background("A94D34").
+    Border("5-A94D34").
+    Rotation(90).
+    Blur(10).
+    Named("some_name").
+    OverlayX(35).
+    OverlayY(35).
+    OverlayFocus("bottom").
+    OverlayHeight(20).
+    OverlayHeight(20).
+    OverlayImage("/folder/file.jpg"). // leading slash case
+    OverlayImageTrim(false).
+    OverlayImageAspectRatio("4:3").
+    OverlayImageBackground("0F0F0F").
+    OverlayImageBorder("10_0F0F0F").
+    OverlayImageDpr(2).
+    OverlayImageQuality(50).
+    OverlayImageCropping("force").
+    OverlayText("two words").
+    OverlayTextFontSize(20).
+    OverlayTextFontFamily("Open Sans").
+    OverlayTextColor("00FFFF").
+    OverlayTextTransparency(5).
+    OverlayTextTypography("b").
+    OverlayBackground("00AAFF55").
+    OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D").
+    OverlayTextWidth(50).
+    OverlayTextBackground("00AAFF55").
+    OverlayTextPadding(40).
+    OverlayTextInnerAlignment("left").
+    OverlayRadius(10).
+    Progressive(true).
+    Lossless(true).
+    Trim(5).
+    Metadata(true).
+    ColorProfile(true).
+    DefaultImage("folder/file.jpg/"). //trailing slash case
+    Dpr(3).
+    EffectSharpen(10).
+    EffectUsm("2-2-0.8-0.024").
+    EffectContrast(true).
+    EffectGray().
+    Original().
+    RawTransformation("h-200).w-300).l-image).i-logo.png).l-end");
+    
+  string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
 ```
 
 This results in a URL like
 
 ```plaintext
-https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jpg
+https://ik.imagekit.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Cbg-A94D34%2Cb-5-A94D34%2Crt-90%2Cbl-10%2Cn-some_name%2Cox-35%2Coy-35%2Cofo-bottom%2Coh-20%2Coi-folder%40%40file.jpg%2Coit-false%2Coiar-4%3A3%2Coibg-0F0F0F%2Coib-10_0F0F0F%2Coidpr-2%2Coiq-50%2Coic-force%2Cot-two%20words%2Cots-20%2Cotf-Open%20Sans%2Cotc-00FFFF%2Coa-5%2Cott-b%2Cobg-00AAFF55%2Cote-b3ZlcmxheSBtYWRlIGVhc3k%253D%2Cotw-50%2Cotbg-00AAFF55%2Cotp-40%2Cotia-left%2Cor-10%2Cpr-true%2Clo-true%2Ct-5%2Cmd-true%2Ccp-true%2Cdi-folder%40%40file.jpg%2Cdpr-3%2Ce-sharpen-10%2Ce-usm-2-2-0.8-0.024%2Ce-contrast-true%2Ce-grayscale-true%2Corig-true%2Ch-200%29.w-300%29.l-image%29.i-logo.png%29.l-end
+
 ```
 
 **2\. Using full image URL**
@@ -299,39 +305,47 @@ The `upload()` method requires at least the `file` and the `fileName` parameter 
 Sample usage
 
 ```cs
-        // Upload By URI
-            FileCreateRequest ob = new FileCreateRequest();
-            ob.Url = new Uri(@"C:\test.jpg");
-            ob.FileName = "test.jpg";
-          ResponseMetaData resp = await imagekit.UploadAsync(ob);
-          
-         //Upload by Base64
-         
-            byte[] bytes = Bytes;
-            FileCreateRequest ob = new FileCreateRequest
-            {
+ // Upload By URI
+FileCreateRequest request = new FileCreateRequest
+{
+Url = new Uri(@"http://www.google.com/images/logos/ps_logo2.png"),
+FileName = "test.jpg",
+};
+Result resp1 = imagekit.Upload(request);
+
+// Upload by bytes
+byte[] bytes = System.IO.File.ReadAllBytes(@"image file path");
+
+FileCreateRequest ob = new FileCreateRequest
+{
                 Bytes = bytes,
-                FileName = Guid.NewGuid().ToString()
-            };
-           ResponseMetaData resp = await imagekit.UploadAsync(ob);
+                FileName = Guid.NewGuid().ToString(),
+};
+
+Result resp2 = imagekit.Upload(ob);
+
+//Get Base64 
+byte[] imageArray = System.IO.File.ReadAllBytes(@"image file path");
+string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+// Upload by Base64
+ FileCreateRequest ob2 = new FileCreateRequest
+{
+Base64 = base64ImageRepresentation,
+FileName = Guid.NewGuid().ToString(),
+};
+Result resp = imagekit.Upload(ob2);
+
            
-           string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
-            FileCreateRequest ob = new FileCreateRequest
-            {
-                Base64 = base64,
-                FileName = Guid.NewGuid().ToString()
-            };
-          ResponseMetaData resp = await imagekit.UploadAsync(ob);
-          ```
+
+```
 
 **Note**: Upload argument can be a local fullPath or URL or byte array (byte\[\]) or Base64String of a file.
-```
 
 ### File Management
 
-The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-api) to manage your files.
+The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-afile-uploadpi) to manage your files.
 
-**1\. List & Search Files**
+**1 . List & Search Files**
 
 Accepts an object specifying the parameters to be used to list and search files. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
 
@@ -339,7 +353,7 @@ Accepts an object specifying the parameters to be used to list and search files.
 GetFileListRequest ob = new GetFileListRequest();
 ob.limit = 10;
 ob.skip = 0;
-ResponseMetaData resp = await imagekit.GetFileListRequestAsync(ob);
+ResultList resp = await imagekit.GetFileListRequestAsync(ob);
 ```
 
 **2\. Get File Details**
@@ -347,7 +361,7 @@ ResponseMetaData resp = await imagekit.GetFileListRequestAsync(ob);
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).
 
 ```cs
-ResponseMetaData resp = await imagekit.GetFileDetailsAsync(fileId);
+Result resp = await imagekit.GetFileDetailsAsync(fileId);
 ```
 
 **3\. Get File Versions**
@@ -356,7 +370,7 @@ Accepts the file ID and fetches the details as per the [API documentation here](
 
 ```cs
 String fileId = "file-id-1";
-ResponseMetaData resultFileVersions = imageKit.getFileVersions(fileId);
+ResultFileVersions resultFileVersions = imageKit.getFileVersions(fileId);
 ```
 
 **4\. Get File Version details**
@@ -366,7 +380,7 @@ Accepts the file ID and version ID and fetches the details as per the [API docum
 ```cs
 String fileId = "file-id-1";
 String versionId = "file-version-id-1";
-ResponseMetaData resultFileVersionDetails = imageKit.getFileVersionDetails(fileId, versionId);
+ResultFileVersionDetails resultFileVersionDetails = imageKit.getFileVersionDetails(fileId, versionId);
 ```
 
 **5\. Update File Details**
@@ -378,66 +392,24 @@ List<String> tags = new ArrayList<>();
 tags.add("tag-1");
 tags.add("tag-2");
 tags.add("tag-3");
-
 List<String> aiTags = new ArrayList<>();
 aiTags.add("ai-tag-1");
 FileUpdateRequest fileUpdateRequest = new FileUpdateRequest("fileId");
 fileUpdateRequest.Tags = tags;
 fileUpdateRequest.AITags = aiTags;
-ResponseMetaData result = imageKit.updateFileDetail(fileUpdateRequest); 
+UpdateFileDetail result = imageKit.updateFileDetail(fileUpdateRequest); 
 ```
 
-**6\. Add tags**
-
-Accepts an object of class `TagsRequest` specifying the parameters to be used to add tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/add-tags-bulk) can be passed via their setter functions to get the results.
-
-```cs
-List<String> fileIds = new ArrayList<>();
-fileIds.add("FileId");
-List<String> tags = new ArrayList<>();
-tags.add("tag-to-add-1");
-tags.add("tag-to-add-2");
-ResponseMetaData resultTags = imageKit.addTags(new TagsRequest(fileIds, tags));
-```
-
-**7\. Remove tags**
-
-Accepts an object of class `TagsRequest` specifying the parameters to be used to remove tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/remove-tags-bulk) can be passed via their setter functions to get the results.
-
-```cs
-List<String> fileIds = new ArrayList<>();
-fileIds.add("FileId");
-List<String> tags = new ArrayList<>();
-tags.add("tag-to-remove-1");
-tags.add("tag-to-remove-2");
-ResponseMetaData resultTags = imageKit.removeTags(new TagsRequest(fileIds, tags));
-```
-
-**8\. Remove AI tags**
-
-Accepts an object of class `AITagsRequest` specifying the parameters to be used to remove AI tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/remove-aitags-bulk) can be passed via their setter functions to get the results.
-
-```cs
-List<String> fileIds = new ArrayList<>();
-fileIds.add("file-id-1");
-List<String> aiTags = new ArrayList<>();
-aiTags.add("Rectangle");
-AITagsRequest aiTagsRequest = new AITagsRequest();
-aiTagsRequest.FileIds = fileIds;
-aiTagsRequest.AITags = aiTags;
-ResponseMetaData resultTags = imageKit.getInstance().removeAITags(aiTagsRequest);
-```
-
-**9\. Delete File**
+**6\. Delete File**
 
 Accept the file ID and delete a file as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file).
 
 ```cs
 String fileId = "file-id-1";
-ResponseMetaData result = imageKit.deleteFile(fileId);
+Result result = imageKit.deleteFile(fileId);
 ```
 
-**10\. Delete FileVersion**
+**7. Delete FileVersion**
 
 Accepts an object of class `DeleteFileVersionRequest` specifying the parameters to be used to delete the file version. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file-version) can be passed via their setter functions to get the results.
 
@@ -445,10 +417,10 @@ Accepts an object of class `DeleteFileVersionRequest` specifying the parameters 
 DeleteFileVersionRequest deleteFileVersionRequest = new DeleteFileVersionRequest();
 deleteFileVersionRequest.FileId = "file-id-1";
 deleteFileVersionRequest.VersionId = "file-version-id-1";
-ResponseMetaData resultNoContent = imageKit.deleteFileVersion(deleteFileVersionRequest);
+ResultNoContent resultNoContent = imageKit.deleteFileVersion(deleteFileVersionRequest);
 ```
 
-**11\. Delete files (bulk)**
+**8. Delete files (bulk)**
 
 Accepts the file IDs to delete files as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-files-bulk).
 
@@ -458,10 +430,10 @@ fileIds.add("file-id-1");
 fileIds.add("file-id-2");
 fileIds.add("file-id-3");
 
-ResponseMetaData result = imageKit.bulkDeleteFiles(fileIds);
+ResultFileDelete result = imageKit.bulkDeleteFiles(fileIds);
 ```
 
-**12\. Copy file**
+**9. Copy file**
 
 Accepts an object of class `CopyFileRequest` specifying the parameters to be used to copy a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/copy-file) can be passed via their setter functions to get the results.
 
@@ -473,7 +445,7 @@ copyFileRequest.IncludeFileVersions = false;
 ResultNoContent resultNoContent = imageKit.copyFile(copyFileRequest);
 ```
 
-**13\. Move file**
+**10\. Move file**
 
 Accepts an object of class `MoveFileRequest` specifying the parameters to be used to move a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/move-file) can be passed via their setter functions to get the results.
 
@@ -481,10 +453,10 @@ Accepts an object of class `MoveFileRequest` specifying the parameters to be use
 MoveFileRequest moveFileRequest = new MoveFileRequest();
 moveFileRequest.SourceFilePath="/Gallery/w2_image.png";
 moveFileRequest.DestinationPath="/";
-ResponseMetaData resultNoContent = imageKit.moveFile(moveFileRequest);
+ResultNoContent resultNoContent = imageKit.moveFile(moveFileRequest);
 ```
 
-**14\. Rename file**
+**11\. Rename file**
 
 Accepts an object of class `RenameFileRequest` specifying the parameters to be used to rename a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/rename-file) can be passed via their setter functions to get the results.
 
@@ -493,16 +465,62 @@ RenameFileRequest renameFileRequest = new RenameFileRequest();
 renameFileRequest.FilePath = "/w2_image.png";
 renameFileRequest.NewFileName = "w2_image_s.png";
 renameFileRequest.PurgeCache = false;
-ResponseMetaData resultRenameFile = imageKit.renameFile(renameFileRequest); 
+ResultRenameFile resultRenameFile = imageKit.renameFile(renameFileRequest); 
 ```
 
-**15\. Restore file Version**
+**12\. Restore file Version**
 
 Accepts the fileId and versionId to restore the file version as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/restore-file-version).
 
 ```cs
-ResponseMetaData result = imageKit.restoreFileVersion("fileId", "versionId");
+Result result = imageKit.restoreFileVersion("fileId", "versionId");
 ```
+### Tags Management
+
+The SDK provides a simple interface  to manage your tags.
+
+**13. Add tags**
+
+Accepts an object of class `TagsRequest` specifying the parameters to be used to add tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/add-tags-bulk) can be passed via their setter functions to get the results.
+
+```cs
+List<String> fileIds = new ArrayList<>();
+fileIds.add("FileId");
+List<String> tags = new ArrayList<>();
+tags.add("tag-to-add-1");
+tags.add("tag-to-add-2");
+ResultTags resultTags = imageKit.addTags(new TagsRequest(fileIds, tags));
+```
+
+**14\. Remove tags**
+
+Accepts an object of class `TagsRequest` specifying the parameters to be used to remove tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/remove-tags-bulk) can be passed via their setter functions to get the results.
+
+```cs
+List<String> fileIds = new ArrayList<>();
+fileIds.add("FileId");
+List<String> tags = new ArrayList<>();
+tags.add("tag-to-remove-1");
+tags.add("tag-to-remove-2");
+ResultTags resultTags = imageKit.removeTags(new TagsRequest(fileIds, tags));
+```
+
+**15\. Remove AI tags**
+
+Accepts an object of class `AITagsRequest` specifying the parameters to be used to remove AI tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/remove-aitags-bulk) can be passed via their setter functions to get the results.
+
+```cs
+List<String> fileIds = new ArrayList<>();
+fileIds.add("file-id-1");
+List<String> aiTags = new ArrayList<>();
+aiTags.add("Rectangle");
+AITagsRequest aiTagsRequest = new AITagsRequest();
+aiTagsRequest.FileIds = fileIds;
+aiTagsRequest.AITags = aiTags;
+ResultTags resultTags = imageKit.getInstance().removeAITags(aiTagsRequest);
+```
+
+### Folder Management
 
 **16\. Create Folder**
 
@@ -512,10 +530,32 @@ Accepts an object of class `CreateFolderRequest` specifying the parameters to be
 CreateFolderRequest createFolderRequest = new CreateFolderRequest();
 createFolderRequest.FolderName = "test1";
 createFolderRequest.ParentFolderPath = "/";
-ResponseMetaData resultEmptyBlock = imageKit.createFolder(createFolderRequest);
+ResultEmptyBlock resultEmptyBlock = imageKit.createFolder(createFolderRequest);
 ```
 
-**17\. Delete Folder**
+
+**17\. Copy Folder**
+
+Accepts an object of class `CopyFolderRequest` specifying the parameters to be used to copy a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/copy-folder) can be passed via their setter functions to get the results.
+
+```cs
+CopyFolderRequest copyFolderRequest = new CopyFolderRequest();
+copyFolderRequest.SourceFolderPath = "/Gallery/test";
+copyFolderRequest.DestinationPath = "/";
+ResultOfFolderActions resultOfFolderActions = imageKit.copyFolder(copyFolderRequest);
+```
+
+**18\. Move Folder**
+
+Accepts an object of class `MoveFolderRequest` specifying the parameters to be used to move a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/move-folder) can be passed via their setter functions to get the results.
+
+```cs
+MoveFolderRequest moveFolderRequest = new MoveFolderRequest();
+moveFolderRequest.SourceFolderPath = "/Gallery/test";
+moveFolderRequest.DestinationPath = "/";
+ResultOfFolderActions resultOfFolderActions = imageKit.moveFolder(moveFolderRequest);
+```
+**19\. Delete Folder**
 
 Accepts an object of class `DeleteFolderRequest` specifying the parameters to be used to delete a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-folder) can be passed via their setter functions to get the results.
 
@@ -525,27 +565,7 @@ deleteFolderRequest.FolderPath = "/test1";
 ResultNoContent resultNoContent = imageKit.deleteFolder(deleteFolderRequest);
 ```
 
-**18\. Copy Folder**
-
-Accepts an object of class `CopyFolderRequest` specifying the parameters to be used to copy a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/copy-folder) can be passed via their setter functions to get the results.
-
-```cs
-CopyFolderRequest copyFolderRequest = new CopyFolderRequest();
-copyFolderRequest.SourceFolderPath = "/Gallery/test";
-copyFolderRequest.DestinationPath = "/";
-ResponseMetaData resultOfFolderActions = imageKit.copyFolder(copyFolderRequest);
-```
-
-**19\. Move Folder**
-
-Accepts an object of class `MoveFolderRequest` specifying the parameters to be used to move a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/move-folder) can be passed via their setter functions to get the results.
-
-```cs
-MoveFolderRequest moveFolderRequest = new MoveFolderRequest();
-moveFolderRequest.SourceFolderPath = "/Gallery/test";
-moveFolderRequest.DestinationPath = "/";
-ResponseMetaData resultOfFolderActions = imageKit.moveFolder(moveFolderRequest);
-```
+### Job Management
 
 **20\. Get Bulk Job Status**
 
@@ -553,15 +573,16 @@ Accepts the jobId to get bulk job status as per the [API documentation here](htt
 
 ```cs
 String jobId = "job-id-1";
-ResponseMetaData resultBulkJobStatus = imageKit.getBulkJobStatus(jobId);
+ResultBulkJobStatus resultBulkJobStatus = imageKit.getBulkJobStatus(jobId);
 ```
+### Purge
 
 **21\. Purge Cache**
 
 Accepts a full URL of the file for which the cache has to be cleared as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/purge-cache).
 
 ```cs
-ResponseMetaData result = imageKit.purgeCache("https://ik.imageKit.io/imagekit-id/default-image.jpg");
+ResultCache result = imageKit.purgeCache("https://ik.imageKit.io/imagekit-id/default-image.jpg");
 ```
 
 **22\. Purge Cache Status**
@@ -570,23 +591,25 @@ Accepts a request ID and fetch purge cache status as per the [API documentation 
 
 ```cs
 String requestId = "cache-requestId";
-ResponseMetaData result = imageKit.getPurgeCacheStatus(requestId);
+ResultCacheStatus result = imageKit.getPurgeCacheStatus(requestId);
 ```
+
+### Metadata
+Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imageKit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
+
 
 **23\. Get File Metadata**
 
-Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imageKit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
-
 ```cs
 String fileId = "file-id";
-ResponseMetaData result = imageKit.getFileMetadata(fileId);
+ResultMetaData result = imageKit.getFileMetadata(fileId);
 ```
 
 Another way to get metadata from a remote file URL as per the [API documentation here](https://docs.imageKit.io/api-reference/metadata-api/get-image-metadata-from-remote-url). This file should be accessible over the imageKit.io URL-endpoint.
 
 ```cs
 String url = "Remote File URL";
-ResponseMetaData result = imageKit.getRemoteFileMetadata(url);
+ResultMetaData result = imageKit.getRemoteFileMetadata(url);
 ```
 
 **24\. Create Custom MetaData Fields**
@@ -606,7 +629,7 @@ CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest = new CustomMe
 customMetaDataFieldCreateRequest.Name = "Name";
 customMetaDataFieldCreateRequest.Label = "Label";
 customMetaDataFieldCreateRequest.Schema = schemaObject;
-ResponseMetaData ResponseMetaData = imageKit.createCustomMetaDataFields(customMetaDataFieldCreateRequest);
+ResultCustomMetaDataFieldList ResponseMetaData = imageKit.createCustomMetaDataFields(customMetaDataFieldCreateRequest);
 ```
 
 *   Date type Example:
@@ -617,13 +640,11 @@ customMetaDataFieldSchemaObject.setType = "Date";
  // required if isValueRequired set to false
 customMetaDataFieldSchemaObject.MinValue = "2022-11-30T10:11:10+00:00";
 customMetaDataFieldSchemaObject.MaxValue = "2022-12-30T10:11:10+00:00";
-
 CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest = new CustomMetaDataFieldCreateRequest();
 customMetaDataFieldCreateRequest.Name = "Name";
 customMetaDataFieldCreateRequest.Label = "Label";
 customMetaDataFieldCreateRequest.Schema = customMetaDataFieldSchemaObject;
-
-ResponseMetaData resultCustomMetaDataField = imageKit.getInstance()
+ResultCustomMetaDataField resultCustomMetaDataField = imageKit.getInstance()
        .createCustomMetaDataFields(customMetaDataFieldCreateRequest);
 ```
 
@@ -632,7 +653,7 @@ ResponseMetaData resultCustomMetaDataField = imageKit.getInstance()
 Accepts the includeDeleted boolean and fetches the metadata as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
 
 ```cs
-ResponseMetaData resultCustomMetaDataFieldList = imageKit.getCustomMetaDataFields(false); 
+ResultCustomMetaDataFieldList resultCustomMetaDataFieldList = imageKit.getCustomMetaDataFields(false); 
 ```
 
 **26\. Edit Custom MetaData Fields**
@@ -643,12 +664,11 @@ Accepts an ID of customMetaDataField and an object of class `CustomMetaDataField
 CustomMetaDataFieldSchemaObject schemaObject = new CustomMetaDataFieldSchemaObject();
 schemaObject.setMinValue(10);
 schemaObject.setMaxValue(200);
-
 CustomMetaDataFieldUpdateRequest customMetaDataFieldUpdateRequest = new CustomMetaDataFieldUpdateRequest();
 customMetaDataFieldUpdateRequest.Id = "id";
 customMetaDataFieldUpdateRequest.Label = "label";
 customMetaDataFieldUpdateRequest.Schema = schemaObject;
-ResponseMetaData resultCustomMetaDataField = imageKit.updateCustomMetaDataFields(customMetaDataFieldUpdateRequest);
+ResultCustomMetaDataField resultCustomMetaDataField = imageKit.updateCustomMetaDataFields(customMetaDataFieldUpdateRequest);
 ```
 
 **27\. Delete Custom MetaData Fields**
@@ -656,7 +676,7 @@ ResponseMetaData resultCustomMetaDataField = imageKit.updateCustomMetaDataFields
 Accepts the id to delete the customMetaDataFields as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field).
 
 ```cs
-ResponseMetaData resultNoContent = imageKit.deleteCustomMetaDataField("id");
+ResultNoContent resultNoContent = imageKit.DeleteCustomMetaDataField("id");
 ```
 
 ## Utility functions

@@ -37,8 +37,8 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CreateFolderAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
@@ -115,8 +115,8 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.DeleteFolderAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
         public void Missing_Folder_Path_Exception()
@@ -155,8 +155,8 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.CopyFolderAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
@@ -232,8 +232,8 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = restClient.MoveFolderAsync(model).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]

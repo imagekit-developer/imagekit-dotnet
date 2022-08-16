@@ -80,7 +80,7 @@ namespace Imagekit.UnitTests.Upload
         {
             FileCreateRequest ob = new FileCreateRequest
             {
-                Url = GetURL(System.IO.Path.GetFullPath(@"Sample\test.jpg")),
+                Url = GetURL(@"http://www.google.com/images/logos/ps_logo2.png"),
                 FileName = Guid.NewGuid().ToString()
             };
 
@@ -94,8 +94,8 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var response = (Result)restClient.Upload(ob);
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
@@ -122,8 +122,8 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (Result)restClient.Upload(ob);
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
@@ -147,8 +147,8 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (Result)restClient.Upload(ob);
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
         public void UploadFile_DefaultNonAsync()
@@ -227,8 +227,8 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (Result)restClient.Upload(ob);
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
@@ -298,8 +298,8 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (Result)restClient.Upload(ob);
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
 
@@ -333,8 +333,8 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (Result)restClient.Upload(ob);
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
         }
 
         private static Uri GetURL(string imgPath)

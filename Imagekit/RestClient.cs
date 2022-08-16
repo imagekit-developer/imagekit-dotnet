@@ -6,6 +6,7 @@ namespace Imagekit.Sdk
 {
     using System;
     using System.Collections.Generic;
+    using System.Net;
     using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
@@ -34,9 +35,6 @@ namespace Imagekit.Sdk
             {
                 throw new Exception(ErrorMessages.InvalidApiUrl);
             }
-
-            this.mediaAPIBaseUrl = mediaAPIBaseUrl;
-            this.uploadAPIBaseUrl = mediaAPIBaseUrl;
             this.client = httpClient;
             this.client.DefaultRequestHeaders.Add("Authorization", "Basic " + Utils.EncodeTo64(privateKey));
         }
@@ -53,7 +51,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultList>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -77,7 +75,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultList>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -114,7 +112,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultCache>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -150,7 +148,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultCache>(res);
                 Utils.PopulateResponseMetadata(
                   res,
-                  null,
+                  model,
                   Convert.ToInt32(response.StatusCode),
                   responseHeaders: null);
                 return model;
@@ -178,7 +176,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultCacheStatus>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -206,7 +204,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultCacheStatus>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -234,7 +232,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<Result>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -264,7 +262,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<Result>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -302,16 +300,16 @@ namespace Imagekit.Sdk
                 }
                 else if (!string.IsNullOrEmpty(fileCreateRequest.Url.ToString()))
                 {
-                    formdata.Add(new StringContent(GetJsonBody.GetBase64Uri(fileCreateRequest.Url.ToString())), "file");
+                    var webClient = new WebClient();
+                    byte[] imageBytes = webClient.DownloadData("http://www.google.com/images/logos/ps_logo2.png");
+                    formdata.Add(new StringContent(GetJsonBody.GetBase64(imageBytes)), "file");
                 }
-
                 HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
                 string res = response.Content.ReadAsStringAsync().Result;
-
                 model = JsonConvert.DeserializeObject<Result>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -354,18 +352,19 @@ namespace Imagekit.Sdk
                     ByteArrayContent byteContent = new ByteArrayContent(fileCreateRequest.Bytes);
                     formdata.Add(byteContent, "file");
                 }
-                else if (fileCreateRequest.Url != null)
+                else if (!string.IsNullOrEmpty(fileCreateRequest.Url.ToString()))
                 {
-                    formdata.Add(new StringContent(fileCreateRequest.Url.ToString()), "file");
+                    var webClient = new WebClient();
+                    byte[] imageBytes = webClient.DownloadData(fileCreateRequest.Url.ToString());
+                    formdata.Add(new StringContent(GetJsonBody.GetBase64(imageBytes)), "file");
                 }
-
                 HttpResponseMessage response = await this.client.PostAsync(url, formdata);
                 string res = response.Content.ReadAsStringAsync().Result;
 
                 model = JsonConvert.DeserializeObject<Result>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -394,7 +393,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<Result>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -428,7 +427,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<Result>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -465,7 +464,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultFileDelete>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -508,7 +507,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultFileDelete>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -536,7 +535,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultMetaData>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -565,7 +564,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultMetaData>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -593,7 +592,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultMetaData>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -621,7 +620,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultMetaData>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -661,7 +660,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultTags>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -701,7 +700,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultTags>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -736,7 +735,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultTags>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -771,7 +770,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultTags>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -794,7 +793,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultCustomMetaDataFieldList>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -818,7 +817,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultCustomMetaDataFieldList>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -852,7 +851,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultCustomMetaDataField>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -887,7 +886,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultCustomMetaDataField>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -915,7 +914,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultNoContent>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -943,7 +942,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultNoContent>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -983,7 +982,7 @@ namespace Imagekit.Sdk
                 string res = response.Content.ReadAsStringAsync().Result;
                 model = JsonConvert.DeserializeObject<ResultCustomMetaDataField>(res);
                 Utils.PopulateResponseMetadata(
-                   res, null,
+                   res, model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -1024,7 +1023,7 @@ namespace Imagekit.Sdk
                 string res = response.Content.ReadAsStringAsync().Result;
                 model = JsonConvert.DeserializeObject<ResultCustomMetaDataField>(res);
                 Utils.PopulateResponseMetadata(
-                    res, null,
+                    res, model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1055,7 +1054,7 @@ namespace Imagekit.Sdk
 
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -1086,7 +1085,7 @@ namespace Imagekit.Sdk
 
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1119,7 +1118,7 @@ namespace Imagekit.Sdk
 
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1152,7 +1151,7 @@ namespace Imagekit.Sdk
 
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1184,7 +1183,7 @@ namespace Imagekit.Sdk
 
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1216,7 +1215,7 @@ namespace Imagekit.Sdk
 
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1247,7 +1246,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultRenameFile>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -1278,7 +1277,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultRenameFile>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1310,7 +1309,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultEmptyBlock>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -1341,7 +1340,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultEmptyBlock>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1377,7 +1376,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultNoContent>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -1413,7 +1412,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultNoContent>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1446,7 +1445,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultOfFolderActions>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -1480,7 +1479,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultOfFolderActions>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1514,7 +1513,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultOfFolderActions>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1548,7 +1547,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultOfFolderActions>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1576,7 +1575,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultBulkJobStatus>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -1605,7 +1604,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultBulkJobStatus>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1632,7 +1631,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultFileVersions>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -1659,7 +1658,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultFileVersions>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1687,7 +1686,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultFileVersionDetails>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -1715,7 +1714,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<ResultFileVersionDetails>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;
@@ -1743,7 +1742,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<Result>(res);
                 Utils.PopulateResponseMetadata(
                    res,
-                   null,
+                   model,
                    Convert.ToInt32(response.StatusCode),
                    responseHeaders: null);
                 return model;
@@ -1771,7 +1770,7 @@ namespace Imagekit.Sdk
                 model = JsonConvert.DeserializeObject<Result>(res);
                 Utils.PopulateResponseMetadata(
                     res,
-                    null,
+                    model,
                     Convert.ToInt32(response.StatusCode),
                     responseHeaders: null);
                 return model;

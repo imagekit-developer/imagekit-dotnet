@@ -10,9 +10,6 @@ using System.Diagnostics.CodeAnalysis;
 public class Result : ResponseMetaData
 {
     public string Help { get; set; }
-
-    public string Raw { get; set; }
-
     public string Type { get; set; }
 
     public string Name { get; set; }

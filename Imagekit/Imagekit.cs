@@ -7,6 +7,7 @@ namespace Imagekit.Sdk
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using global::Imagekit.Models;
+    using global::Imagekit.Models.Response;
 
     public class ImagekitClient : BaseImagekit<ImagekitClient>
     {
@@ -22,161 +23,161 @@ namespace Imagekit.Sdk
             this.Add("publicKey", publicKey);
         }
 
-        public ResponseMetaData Upload(FileCreateRequest fileCreateRequest)
+        public Result Upload(FileCreateRequest fileCreateRequest)
         {
-            return this.restClient.Upload(fileCreateRequest);
+            return (Result)this.restClient.Upload(fileCreateRequest);
         }
 
-        public ResponseMetaData PurgeCache(string url)
+        public ResultCache PurgeCache(string url)
         {
-            return this.restClient.PurgeCache(url);
+            return (ResultCache)this.restClient.PurgeCache(url);
         }
 
-        public async Task<ResponseMetaData> PurgeCacheAsync(string url)
+        public async Task<ResultCache> PurgeCacheAsync(string url)
         {
-            return await this.restClient.PurgeCacheAsync(url);
+            return (ResultCache)await this.restClient.PurgeCacheAsync(url);
         }
 
-        public ResponseMetaData PurgeStatus(string purgeRequestId)
+        public ResultCacheStatus PurgeStatus(string purgeRequestId)
         {
-            return this.restClient.PurgeStatus(purgeRequestId);
+            return (ResultCacheStatus) this.restClient.PurgeStatus(purgeRequestId);
         }
 
-        public async Task<ResponseMetaData> PurgeStatusAsync(string url)
+        public async Task<ResultCacheStatus> PurgeStatusAsync(string url)
         {
-            return await this.restClient.PurgeStatusAsync(url);
+            return (ResultCacheStatus)await this.restClient.PurgeStatusAsync(url);
         }
 
-        public ResponseMetaData GetFileDetail(string url)
+        public Result GetFileDetail(string url)
         {
-            return this.restClient.GetFileDetail(url);
+            return (Result) this.restClient.GetFileDetail(url);
         }
 
-        public ResponseMetaData GetFileListRequest(GetFileListRequest getFileListRequest)
+        public ResultList GetFileListRequest(GetFileListRequest getFileListRequest)
         {
-            return this.restClient.GetFileListRequest(getFileListRequest);
+            return (ResultList)this.restClient.GetFileListRequest(getFileListRequest);
         }
 
-        public ResponseMetaData GetFileMetadata(string fileId)
+        public ResultMetaData GetFileMetadata(string fileId)
         {
-            return this.restClient.GetFileMetaData(fileId);
+            return (ResultMetaData)this.restClient.GetFileMetaData(fileId);
         }
 
-        public ResponseMetaData GetRemoteFileMetadata(string url)
+        public ResultMetaData GetRemoteFileMetadata(string url)
         {
-            return this.restClient.GetRemoteFileMetaData(url);
+            return (ResultMetaData)this.restClient.GetRemoteFileMetaData(url);
         }
 
-        public ResponseMetaData DeleteFile(string fileId)
+        public Result DeleteFile(string fileId)
         {
-            return this.restClient.DeleteFile(fileId);
+            return (Result)this.restClient.DeleteFile(fileId);
         }
 
-        public ResponseMetaData BulkDeleteFiles(List<string> fileIds)
+        public ResultFileDelete BulkDeleteFiles(List<string> fileIds)
         {
-            return this.restClient.BulkDeleteFiles(fileIds);
+            return (ResultFileDelete)this.restClient.BulkDeleteFiles(fileIds);
         }
 
-        public ResponseMetaData AddTags(TagsRequest tagsRequest)
+        public ResultTags AddTags(TagsRequest tagsRequest)
         {
-            return this.restClient.ManageTags(tagsRequest, "addTags");
+            return (ResultTags)this.restClient.ManageTags(tagsRequest, "addTags");
         }
 
-        public ResponseMetaData RemoveAiTags(AiTagsRequest aiTagsRequest)
+        public ResultTags RemoveAiTags(AiTagsRequest aiTagsRequest)
         {
-            return this.restClient.RemoveAiTags(aiTagsRequest);
+            return (ResultTags)this.restClient.RemoveAiTags(aiTagsRequest);
         }
 
-        public ResponseMetaData RemoveTags(TagsRequest tagsRequest)
+        public ResultTags RemoveTags(TagsRequest tagsRequest)
         {
-            return this.restClient.ManageTags(tagsRequest, "removeTags");
+            return (ResultTags)this.restClient.ManageTags(tagsRequest, "removeTags");
         }
 
-        public ResponseMetaData GetCustomMetaDataFields(bool includeDeleted)
+        public ResultCustomMetaDataFieldList GetCustomMetaDataFields(bool includeDeleted)
         {
-            return this.restClient.GetCustomMetaDataFields(includeDeleted);
+            return (ResultCustomMetaDataFieldList)this.restClient.GetCustomMetaDataFields(includeDeleted);
         }
 
-        public ResponseMetaData CreateCustomMetaDataFields(
+        public ResultCustomMetaDataField CreateCustomMetaDataFields(
            CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest)
         {
-            return this.restClient.CreateCustomMetaDataFields(customMetaDataFieldCreateRequest);
+            return (ResultCustomMetaDataField)this.restClient.CreateCustomMetaDataFields(customMetaDataFieldCreateRequest);
         }
 
-        public ResponseMetaData DeleteCustomMetaDataField(string id)
+        public ResultNoContent DeleteCustomMetaDataField(string id)
         {
-            return this.restClient.DeleteCustomMetaDataField(id);
+            return (ResultNoContent)this.restClient.DeleteCustomMetaDataField(id);
         }
 
-        public ResponseMetaData UpdateCustomMetaDataFields(
+        public ResultCustomMetaDataField UpdateCustomMetaDataFields(
            CustomMetaDataFieldUpdateRequest customMetaDataFieldUpdateRequest)
         {
-            return this.restClient.UpdateCustomMetaDataFields(customMetaDataFieldUpdateRequest);
+            return (ResultCustomMetaDataField)this.restClient.UpdateCustomMetaDataFields(customMetaDataFieldUpdateRequest);
         }
 
-        public ResponseMetaData DeleteFileVersion(DeleteFileVersionRequest deleteFileVersionRequest)
+        public ResultNoContent DeleteFileVersion(DeleteFileVersionRequest deleteFileVersionRequest)
         {
-            return this.restClient.DeleteFileVersion(deleteFileVersionRequest);
+            return (ResultNoContent)this.restClient.DeleteFileVersion(deleteFileVersionRequest);
         }
 
-        public ResponseMetaData CopyFile(CopyFileRequest copyFileRequest)
+        public ResultNoContent CopyFile(CopyFileRequest copyFileRequest)
         {
-            return this.restClient.CopyFile(copyFileRequest);
+            return (ResultNoContent)this.restClient.CopyFile(copyFileRequest);
         }
 
-        public ResponseMetaData MoveFile(MoveFileRequest moveFileRequest)
+        public ResultNoContent MoveFile(MoveFileRequest moveFileRequest)
         {
-            return this.restClient.MoveFile(moveFileRequest);
+            return (ResultNoContent)this.restClient.MoveFile(moveFileRequest);
         }
 
-        public ResponseMetaData RenameFile(RenameFileRequest renameFileRequest)
+        public ResultRenameFile RenameFile(RenameFileRequest renameFileRequest)
         {
-            return this.restClient.RenameFile(renameFileRequest);
+            return (ResultRenameFile)this.restClient.RenameFile(renameFileRequest);
         }
 
-        public ResponseMetaData RestoreFileVersion(string fileId, string versionId)
+        public Result RestoreFileVersion(string fileId, string versionId)
         {
-            return this.restClient.RestoreFileVersion(fileId, versionId);
+            return (Result) this.restClient.RestoreFileVersion(fileId, versionId);
         }
 
-        public ResponseMetaData CreateFolder(CreateFolderRequest createFolderRequest)
+        public ResultEmptyBlock CreateFolder(CreateFolderRequest createFolderRequest)
         {
-            return this.restClient.CreateFolder(createFolderRequest);
+            return (ResultEmptyBlock)this.restClient.CreateFolder(createFolderRequest);
         }
 
-        public ResponseMetaData DeleteFolder(DeleteFolderRequest deleteFolderRequest)
+        public ResultNoContent DeleteFolder(DeleteFolderRequest deleteFolderRequest)
         {
-            return this.restClient.DeleteFolder(deleteFolderRequest);
+            return (ResultNoContent)this.restClient.DeleteFolder(deleteFolderRequest);
         }
 
-        public ResponseMetaData CopyFolder(CopyFolderRequest copyFolderRequest)
+        public ResultOfFolderActions CopyFolder(CopyFolderRequest copyFolderRequest)
         {
-            return this.restClient.CopyFolder(copyFolderRequest);
+            return (ResultOfFolderActions)this.restClient.CopyFolder(copyFolderRequest);
         }
 
-        public ResponseMetaData MoveFolder(MoveFolderRequest moveFolderRequest)
+        public ResultOfFolderActions MoveFolder(MoveFolderRequest moveFolderRequest)
         {
-            return this.restClient.MoveFolder(moveFolderRequest);
+            return (ResultOfFolderActions)this.restClient.MoveFolder(moveFolderRequest);
         }
 
-        public ResponseMetaData GetBulkJobStatus(string jobId)
+        public ResultBulkJobStatus GetBulkJobStatus(string jobId)
         {
-            return this.restClient.GetBulkJobStatus(jobId);
+            return (ResultBulkJobStatus)this.restClient.GetBulkJobStatus(jobId);
         }
 
-        public ResponseMetaData GetFileVersions(string fileId)
+        public ResultFileVersions GetFileVersions(string fileId)
         {
-            return this.restClient.GetFileVersions(fileId);
+            return (ResultFileVersions)this.restClient.GetFileVersions(fileId);
         }
 
-        public ResponseMetaData GetFileVersionDetails(string fileId, string versionId)
+        public ResultFileVersionDetails GetFileVersionDetails(string fileId, string versionId)
         {
-            return this.restClient.GetFileVersionDetails(fileId, versionId);
+            return (ResultFileVersionDetails)this.restClient.GetFileVersionDetails(fileId, versionId);
         }
 
-        public async Task<ResponseMetaData> UploadAsync(FileCreateRequest fileCreateRequest)
+        public async Task<Result> UploadAsync(FileCreateRequest fileCreateRequest)
         {
-            return await this.restClient.UploadAsync(fileCreateRequest);
+            return (Result)await this.restClient.UploadAsync(fileCreateRequest);
         }
 
         public async Task<ResponseMetaData> GetFileDetailAsync(string fileId)
@@ -184,76 +185,76 @@ namespace Imagekit.Sdk
             return await this.restClient.GetFileDetailAsync(fileId);
         }
 
-        public async Task<ResponseMetaData> GetFileMetadataAsync(string fileId)
+        public async Task<Result> GetFileMetadataAsync(string fileId)
         {
-            return await this.restClient.GetFileMetaDataAsync(fileId);
+            return (Result)await this.restClient.GetFileMetaDataAsync(fileId);
         }
 
-        public async Task<ResponseMetaData> GetRemoteFileMetadataAsync(string url)
+        public async Task<ResultMetaData> GetRemoteFileMetadataAsync(string url)
         {
-            return await this.restClient.GetRemoteFileMetaDataAsync(url);
+            return (ResultMetaData)await this.restClient.GetRemoteFileMetaDataAsync(url);
         }
 
-        public async Task<ResponseMetaData> DeleteFileAsync(string fileId)
+        public async Task<Result> DeleteFileAsync(string fileId)
         {
-            return await this.restClient.DeleteFileAsync(fileId);
+            return (Result)await this.restClient.DeleteFileAsync(fileId);
         }
 
-        public async Task<ResponseMetaData> BulkDeleteFilesAsync(List<string> fileIds)
+        public async Task<ResultFileDelete> BulkDeleteFilesAsync(List<string> fileIds)
         {
-            return await this.restClient.BulkDeleteFilesAsync(fileIds);
+            return (ResultFileDelete)await this.restClient.BulkDeleteFilesAsync(fileIds);
         }
 
-        public async Task<ResponseMetaData> AddTagsAsync(TagsRequest tagsRequest)
+        public async Task<ResultTags> AddTagsAsync(TagsRequest tagsRequest)
         {
-            return await this.restClient.ManageTagsAsync(tagsRequest, "addTags");
+            return (ResultTags)await this.restClient.ManageTagsAsync(tagsRequest, "addTags");
         }
 
-        public async Task<ResponseMetaData> RemoveAiTagsAsync(AiTagsRequest aiTagsRequest)
+        public async Task<ResultTags> RemoveAiTagsAsync(AiTagsRequest aiTagsRequest)
         {
-            return await this.restClient.RemoveAiTagsAsync(aiTagsRequest);
+            return (ResultTags)await this.restClient.RemoveAiTagsAsync(aiTagsRequest);
         }
 
-        public async Task<ResponseMetaData> RemoveTagsAsync(TagsRequest tagsRequest)
+        public async Task<ResultTags> RemoveTagsAsync(TagsRequest tagsRequest)
         {
-            return await this.restClient.ManageTagsAsync(tagsRequest, "removeTags");
+            return (ResultTags)await this.restClient.ManageTagsAsync(tagsRequest, "removeTags");
         }
 
-        public async Task<ResponseMetaData> GetCustomMetaDataFieldsAsync(bool includeDeleted)
+        public async Task<ResultCustomMetaDataFieldList> GetCustomMetaDataFieldsAsync(bool includeDeleted)
         {
-            return await this.restClient.GetCustomMetaDataFieldsAsync(includeDeleted);
+            return (ResultCustomMetaDataFieldList)await this.restClient.GetCustomMetaDataFieldsAsync(includeDeleted);
         }
 
-        public async Task<ResponseMetaData> CreateCustomMetaDataFieldsAsync(
+        public async Task<ResultCustomMetaDataField> CreateCustomMetaDataFieldsAsync(
            CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest)
         {
-            return await this.restClient.CreateCustomMetaDataFieldsAsync(customMetaDataFieldCreateRequest);
+            return(ResultCustomMetaDataField)await this.restClient.CreateCustomMetaDataFieldsAsync(customMetaDataFieldCreateRequest);
         }
 
-        public async Task<ResponseMetaData> DeleteCustomMetaDataFieldAsync(string id)
+        public async Task<ResultNoContent> DeleteCustomMetaDataFieldAsync(string id)
         {
-            return await this.restClient.DeleteCustomMetaDataFieldAsync(id);
+            return (ResultNoContent)await this.restClient.DeleteCustomMetaDataFieldAsync(id);
         }
 
-        public async Task<ResponseMetaData> UpdateCustomMetaDataFieldsAsync(
+        public async Task<ResultCustomMetaDataField> UpdateCustomMetaDataFieldsAsync(
            CustomMetaDataFieldUpdateRequest customMetaDataFieldUpdateRequest)
         {
-            return await this.restClient.UpdateCustomMetaDataFieldsAsync(customMetaDataFieldUpdateRequest);
+            return (ResultCustomMetaDataField)await this.restClient.UpdateCustomMetaDataFieldsAsync(customMetaDataFieldUpdateRequest);
         }
 
-        public async Task<ResponseMetaData> DeleteFileVersionAsync(DeleteFileVersionRequest deleteFileVersionRequest)
+        public async Task<ResultNoContent> DeleteFileVersionAsync(DeleteFileVersionRequest deleteFileVersionRequest)
         {
-            return await this.restClient.DeleteFileVersionAsync(deleteFileVersionRequest);
+            return (ResultNoContent)await this.restClient.DeleteFileVersionAsync(deleteFileVersionRequest);
         }
 
-        public async Task<ResponseMetaData> CopyFileAsync(CopyFileRequest copyFileRequest)
+        public async Task<ResultNoContent> CopyFileAsync(CopyFileRequest copyFileRequest)
         {
-            return await this.restClient.CopyFileAsync(copyFileRequest);
+            return (ResultNoContent)await this.restClient.CopyFileAsync(copyFileRequest);
         }
 
-        public async Task<ResponseMetaData> MoveFileAsync(MoveFileRequest moveFileRequest)
+        public async Task<ResultNoContent> MoveFileAsync(MoveFileRequest moveFileRequest)
         {
-            return await this.restClient.MoveFileAsync(moveFileRequest);
+            return (ResultNoContent) await this.restClient.MoveFileAsync(moveFileRequest);
         }
 
         public async Task<ResponseMetaData> RenameFileAsync(RenameFileRequest renameFileRequest)
@@ -261,24 +262,24 @@ namespace Imagekit.Sdk
             return await this.restClient.RenameFileAsync(renameFileRequest);
         }
 
-        public async Task<ResponseMetaData> RestoreFileVersionAsync(string fileId, string versionId)
+        public async Task<ResultRenameFile> RestoreFileVersionAsync(string fileId, string versionId)
         {
-            return await this.restClient.RestoreFileVersionAsync(fileId, versionId);
+            return (ResultRenameFile)await this.restClient.RestoreFileVersionAsync(fileId, versionId);
         }
 
-        public async Task<ResponseMetaData> CreateFolderAsync(CreateFolderRequest createFolderRequest)
+        public async Task<ResultEmptyBlock> CreateFolderAsync(CreateFolderRequest createFolderRequest)
         {
-            return await this.restClient.CreateFolderAsync(createFolderRequest);
+            return (ResultEmptyBlock)await this.restClient.CreateFolderAsync(createFolderRequest);
         }
 
-        public async Task<ResponseMetaData> DeleteFolderAsync(DeleteFolderRequest deleteFolderRequest)
+        public async Task<ResultNoContent> DeleteFolderAsync(DeleteFolderRequest deleteFolderRequest)
         {
-            return await this.restClient.DeleteFolderAsync(deleteFolderRequest);
+            return (ResultNoContent)await this.restClient.DeleteFolderAsync(deleteFolderRequest);
         }
 
-        public async Task<ResponseMetaData> CopyFolderAsync(CopyFolderRequest copyFolderRequest)
+        public async Task<ResultOfFolderActions> CopyFolderAsync(CopyFolderRequest copyFolderRequest)
         {
-            return await this.restClient.CopyFolderAsync(copyFolderRequest);
+            return (ResultOfFolderActions)await this.restClient.CopyFolderAsync(copyFolderRequest);
         }
 
         public async Task<ResponseMetaData> MoveFolderAsync(MoveFolderRequest moveFolderRequest)
@@ -286,24 +287,24 @@ namespace Imagekit.Sdk
             return await this.restClient.MoveFolderAsync(moveFolderRequest);
         }
 
-        public async Task<ResponseMetaData> GetBulkJobStatusAsync(string jobId)
+        public async Task<ResultOfFolderActions> GetBulkJobStatusAsync(string jobId)
         {
-            return await this.restClient.GetBulkJobStatusAsync(jobId);
+            return (ResultOfFolderActions)await this.restClient.GetBulkJobStatusAsync(jobId);
         }
 
-        public async Task<ResponseMetaData> GetFileVersionsAsync(string fileId)
+        public async Task<ResultFileVersions> GetFileVersionsAsync(string fileId)
         {
-            return await this.restClient.GetFileVersionsAsync(fileId);
+            return (ResultFileVersions) await this.restClient.GetFileVersionsAsync(fileId);
         }
 
-        public async Task<ResponseMetaData> GetFileVersionDetailsAsync(string fileId, string versionId)
+        public async Task<ResultFileVersionDetails> GetFileVersionDetailsAsync(string fileId, string versionId)
         {
-            return await this.restClient.GetFileVersionDetailsAsync(fileId, versionId);
+            return (ResultFileVersionDetails)await this.restClient.GetFileVersionDetailsAsync(fileId, versionId);
         }
 
-        public async Task<ResponseMetaData> GetFileListRequestAsync(GetFileListRequest getFileListRequest)
+        public async Task<ResultList> GetFileListRequestAsync(GetFileListRequest getFileListRequest)
         {
-            return await this.restClient.GetFileListRequestAsync(getFileListRequest);
+            return (ResultList)await this.restClient.GetFileListRequestAsync(getFileListRequest);
         }
     }
 }
