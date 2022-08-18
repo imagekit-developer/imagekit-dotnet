@@ -290,6 +290,7 @@ The complete list of transformations supported and their usage in ImageKit can b
 | EffectContrast | e-contrast |
 | EffectGray | e-grayscale |
 | Original | orig |
+| Raw | `replaced by the parameter value` |
 
 ### File Upload
 
