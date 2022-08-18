@@ -1,4 +1,4 @@
-﻿// <copyright file="Imagekit.cs" company="PlaceholderCompany">
+﻿// <copyright file="Imagekit.cs" company="ImageKit">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
