@@ -2,7 +2,7 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
   release:
@@ -30,43 +30,31 @@ jobs:
     runs-on: windows-latest 
     
     steps:
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+      - name: Checkout the SDK's codebase
+        uses: actions/checkout@v2
         with:
-          dotnet-version: |
-            2.1.x
-            3.1.x
-            5.0.x
-            6.0.x
-      - name: Install tools
-        run: |
-          dotnet tool restore
-        
+          fetch-depth: 0
+
+      - name: .NET Core Version
+        run: dotnet --version
+
+      - name: .NET Core Info
+        run: dotnet --info
+
       - name: Restore the SDK's Nuget packages
         run: dotnet restore $env:Solution_Name
 
       - name: Build the SDK
         run: dotnet build $env:Solution_Name --configuration Release --no-restore
+  
+      - name: Tests
+        run: dotnet test Imagekit.UnitTests --verbosity minimal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
         
-      - name: Run test suite
-        run: dotnet test --no-build /Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release      
-        
-      - name: Copy Coverage To Predictable Location
-        run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
-    
-      - name: Code Coverage Summary Report
-        uses: irongut/CodeCoverageSummary@v1.3.0
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v1
         with:
-          filename: coverage.cobertura.xml
-          badge: true
-          fail_below_min: true
-          format: markdown
-          hide_branch_rate: false
-          hide_complexity: true
-          indicators: true
-          output: both
-          thresholds: '60 80'
-
+          file: ./Imagekit.UnitTests/coverage.opencover.xml
+        
       - name: Pack 
         run: dotnet pack --configuration Release --no-build --include-source --verbosity minimal --output ${{ env.NUGET_OUTPUT_PATH }}
 
