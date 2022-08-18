@@ -18,7 +18,7 @@ namespace ImagekitSample
         static void Main(string[] args)
         {
             // Create Instance of ImageKit
-            ImagekitClient imagekit = new ImagekitClient("your-public-key", "your-private-key", "https://api.imagekit.io/");
+            ImagekitClient imagekit = new ImagekitClient("your_public_key", "your_private_key", "https://ik.imagekit.io/your_imagekit_id/endpoint");
 
             #region URL Generation
 
