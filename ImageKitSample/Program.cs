@@ -21,13 +21,66 @@ namespace ImagekitSample
             ImagekitClient imagekit = new ImagekitClient("your_public_key", "your_private_key", "https://ik.imagekit.io/your_imagekit_id/endpoint");
 
             #region URL Generation
+			
 
             // Generating URLs
-            string imageURL = imagekit.Url(new Transformation().Width(400).Height(300))
-                .Path("/default-image.jpg")
-                .UrlEndpoint("https://ik.imagekit.io/your_imagekit_id/endpoint")
-                .TransformationPosition("query")
-                .Generate();
+			string path = "/default-image.jpg";
+            Transformation trans = new Transformation()
+                .Width(400)
+                .Height(300)
+                .AspectRatio("4-3")
+                .Quality(40)
+                .Crop("force").CropMode("extract").
+                Focus("left").
+                Format("jpeg").
+                Background("A94D34").
+                Border("5-A94D34").
+                Rotation(90).
+                Blur(10).
+                Named("some_name").
+                OverlayX(35).
+                OverlayY(35).
+                OverlayFocus("bottom").
+                OverlayHeight(20).
+                OverlayHeight(20).
+                OverlayImage("/folder/file.jpg"). // leading slash case
+                OverlayImageTrim(false).
+                OverlayImageAspectRatio("4:3").
+                OverlayImageBackground("0F0F0F").
+                OverlayImageBorder("10_0F0F0F").
+                OverlayImageDpr(2).
+                OverlayImageQuality(50).
+                OverlayImageCropping("force").
+                OverlayText("two words").
+                OverlayTextFontSize(20).
+                OverlayTextFontFamily("Open Sans").
+                OverlayTextColor("00FFFF").
+                OverlayTextTransparency(5).
+                OverlayTextTypography("b").
+                OverlayBackground("00AAFF55").
+                OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D").
+                OverlayTextWidth(50).
+                OverlayTextBackground("00AAFF55").
+                OverlayTextPadding(40).
+                OverlayTextInnerAlignment("left").
+                OverlayRadius(10).
+                Progressive(true).
+                Lossless(true).
+                Trim(5).
+                Metadata(true).
+                ColorProfile(true).
+                DefaultImage("folder/file.jpg/"). //trailing slash case
+                Dpr(3).
+                EffectSharpen(10).
+                EffectUsm("2-2-0.8-0.024").
+                EffectContrast(true).
+                EffectGray().
+                Original().
+                Raw("h-200).w-300).l-image).i-logo.png).l-end")
+                ;
+
+            string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();			
+           
             Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {0}", imageURL);
 
             ///// Generating Signed URL

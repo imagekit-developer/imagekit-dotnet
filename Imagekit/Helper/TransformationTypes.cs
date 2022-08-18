@@ -417,7 +417,7 @@ public partial class Transformation
     /// Pass an raw transformation string (including chained transformations)
     /// </summary>
     /// <param name="value">A raw transformation string.</param>
-    public Transformation RawTransformation(string value)
+    public Transformation Raw(string value)
     {
         return this.Add(value, string.Empty);
     }

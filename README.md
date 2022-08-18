@@ -1,4 +1,4 @@
-[![ImageKit.io](https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg)](https://imagekit.io)
+[<img width="250" alt="ImageKit.io" src="https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg"/>](https://imagekit.io)
 
 ## DotNET (NET45/Standard/Core) SDK for ImageKit
 
@@ -75,66 +75,23 @@ This method allows you to create a URL using the `path` where the image exists a
 ```cs
 string path = "/default-image.jpg";
 Transformation trans = new Transformation()
-    .Width(400)
-    .Height(300)
-    .AspectRatio("4-3")
-    .Quality(40)
-    .Crop("force")
-    .CropMode("extract")
-    .Focus("left")
-    .Format("jpeg")
-    .Background("A94D34")
-    .Border("5-A94D34")
-    .Rotation(90)
-    .Blur(10)
-    .Named("some_name")
-    .OverlayX(35)
-    .OverlayY(35)
-    .OverlayFocus("bottom")
-    .OverlayHeight(20)
-    .OverlayHeight(20)
-    .OverlayImage("/folder/file.jpg")
-    .OverlayImageTrim(false) // leading slash case
-    .OverlayImageAspectRatio("4:3")
-    .OverlayImageBackground("0F0F0F")
-    .OverlayImageBorder("10_0F0F0F")
-    .OverlayImageDpr(2)
-    .OverlayImageQuality(50)
-    .OverlayImageCropping("force")
-    .OverlayText("two words")
-    .OverlayTextFontSize(20)
-    .OverlayTextFontFamily("Open Sans")
-    .OverlayTextColor("00FFFF")
-    .OverlayTextTransparency(5)
-    .OverlayTextTypography("b")
-    .OverlayBackground("00AAFF55")
-    .OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D")
-    .OverlayTextWidth(50)
-    .OverlayTextBackground("00AAFF55")
-    .OverlayTextPadding(40)
-    .OverlayTextInnerAlignment("left")
-    .OverlayRadius(10)
-    .Progressive(true)
-    .Lossless(true)
-    .Trim(5)
-    .Metadata(true)
-    .ColorProfile(true)
-    .DefaultImage("folder/file.jpg/")
-    .Dpr(3)
-    .EffectSharpen(10)
-    .EffectUsm("2-2-0.8-0.024")
-    .EffectContrast(true)
-    .EffectGray()
-    .Original()
-    .RawTransformation("h-200).w-300).l-image).i-logo.png).l-end");
-    
+.Width(400)
+.Height(300)
+.AspectRatio("4-3")
+.Quality(40)
+.Crop("force")
+.CropMode("extract")
+.Focus("left")
+.Format("jpeg")  
+.Raw("h-200).w-300).l-image).i-logo.png).l-end");
+
 string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
 ```
 
 This results in a URL like
 
 ```plaintext
-https://ik.imagekit.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Cbg-A94D34%2Cb-5-A94D34%2Crt-90%2Cbl-10%2Cn-some_name%2Cox-35%2Coy-35%2Cofo-bottom%2Coh-20%2Coi-folder%40%40file.jpg%2Coit-false%2Coiar-4%3A3%2Coibg-0F0F0F%2Coib-10_0F0F0F%2Coidpr-2%2Coiq-50%2Coic-force%2Cot-two%20words%2Cots-20%2Cotf-Open%20Sans%2Cotc-00FFFF%2Coa-5%2Cott-b%2Cobg-00AAFF55%2Cote-b3ZlcmxheSBtYWRlIGVhc3k%253D%2Cotw-50%2Cotbg-00AAFF55%2Cotp-40%2Cotia-left%2Cor-10%2Cpr-true%2Clo-true%2Ct-5%2Cmd-true%2Ccp-true%2Cdi-folder%40%40file.jpg%2Cdpr-3%2Ce-sharpen-10%2Ce-usm-2-2-0.8-0.024%2Ce-contrast-true%2Ce-grayscale-true%2Corig-true%2Ch-200%29.w-300%29.l-image%29.i-logo.png%29.l-end
+https://ik.imagekit.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Ch-200%29.w-300%29.l-image%29.i-logo.png%29.l-end
 ```
 
 **2\. Using full image URL**
@@ -290,6 +247,7 @@ The complete list of transformations supported and their usage in ImageKit can b
 | EffectContrast | e-contrast |
 | EffectGray | e-grayscale |
 | Original | orig |
+| Raw | `replaced by the parameter value` |
 
 ### File Upload
 
