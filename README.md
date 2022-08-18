@@ -128,7 +128,7 @@ Transformation trans = new Transformation()
     .Original()
     .RawTransformation("h-200).w-300).l-image).i-logo.png).l-end");
     
-  string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
+string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
 ```
 
 This results in a URL like
@@ -175,7 +175,6 @@ Transformation transformation = new Transformation()
     .Width(400).Height(300)
     .Chain()
     .Rotation(90);
-
 string imageURL = imagekit.Url(transformation)
     .Path("/default-image.jpg")
     .UrlEndpoint("https://ik.imagekit.io/your_imagekit_id/endpoint")
