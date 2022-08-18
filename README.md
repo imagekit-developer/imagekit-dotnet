@@ -201,8 +201,8 @@ Transformation trans = new Transformation()
     .EffectContrast(1);
 
 string imageURL = imagekit.Url(trans)
-.Src(src)
-.Generate();
+    .Src(src)
+    .Generate();
 ```
 
 **Note**: Because `src` parameter was used, the transformation string gets added as a query parameter `tr`.
@@ -304,8 +304,8 @@ Sample usage
  // Upload By URI
 FileCreateRequest request = new FileCreateRequest
 {
-Url = new Uri(@"http://www.google.com/images/logos/ps_logo2.png"),
-FileName = "test.jpg",
+    Url = new Uri(@"http://www.google.com/images/logos/ps_logo2.png"),
+    FileName = "test.jpg",
 };
 Result resp1 = imagekit.Upload(request);
 
@@ -314,8 +314,8 @@ byte[] bytes = System.IO.File.ReadAllBytes(@"image file path");
 
 FileCreateRequest ob = new FileCreateRequest
 {
-                Bytes = bytes,
-                FileName = Guid.NewGuid().ToString(),
+    Bytes = bytes,
+    FileName = Guid.NewGuid().ToString(),
 };
 
 Result resp2 = imagekit.Upload(ob);
@@ -326,8 +326,8 @@ string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 // Upload by Base64
  FileCreateRequest ob2 = new FileCreateRequest
 {
-Base64 = base64ImageRepresentation,
-FileName = Guid.NewGuid().ToString(),
+    Base64 = base64ImageRepresentation,
+    FileName = Guid.NewGuid().ToString(),
 };
 Result resp = imagekit.Upload(ob2);           
 ```
@@ -385,11 +385,13 @@ List<String> tags = new ArrayList<>();
 tags.add("tag-1");
 tags.add("tag-2");
 tags.add("tag-3");
+
 List<String> aiTags = new ArrayList<>();
 aiTags.add("ai-tag-1");
 FileUpdateRequest fileUpdateRequest = new FileUpdateRequest("fileId");
 fileUpdateRequest.Tags = tags;
 fileUpdateRequest.AITags = aiTags;
+
 UpdateFileDetail result = imageKit.updateFileDetail(fileUpdateRequest); 
 ```
 
