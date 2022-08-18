@@ -41,6 +41,9 @@ jobs:
       - name: Install tools
         run: |
           dotnet tool restore
+        
+      - name: Restore the SDK's Nuget packages
+        run: dotnet restore $env:Solution_Name
 
       - name: Build the SDK
         run: dotnet build $env:Solution_Name --configuration Release --no-restore
