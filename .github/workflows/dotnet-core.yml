@@ -46,9 +46,9 @@ jobs:
 
       - name: Build the SDK
         run: dotnet build $env:Solution_Name --configuration Release --no-restore
-  
+      
       - name: Tests
-        run: dotnet test Imagekit.UnitTests --verbosity minimal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        run: dotnet test Imagekit.UnitTests --configuration Release --no-restore
         
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v1
