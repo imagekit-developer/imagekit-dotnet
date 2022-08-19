@@ -11,7 +11,7 @@ namespace Imagekit.Sdk
 
     public class ImagekitClient : BaseImagekit<ImagekitClient>
     {
-        private RestClient restClient;
+        private readonly RestClient restClient;
 
         public ImagekitClient(string publicKey, string privateKey, string urlEndPoint)
             : base(privateKey, urlEndPoint, "path")
