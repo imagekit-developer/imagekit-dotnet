@@ -4,8 +4,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Imagekit</RootNamespace>
     <AssemblyName>Imagekit</AssemblyName>
-	  <TargetFrameworks>net5.0;net6.0;netcoreapp3.1;netstandard2.0;net461</TargetFrameworks>
-    <PackageVersion>3.1.6</PackageVersion>
+	  <TargetFrameworks>net5.0;net6.0;netcoreapp3.1;netstandard2.0;net461</TargetFrameworks>    
+    <LangVersion>8</LangVersion>
     <Copyright>© Imagekit Private Limited 2019</Copyright>
     <DevelopmentDependency>false</DevelopmentDependency>
     <PackageIconUrl>https://imagekit.io/favicon.ico</PackageIconUrl>
@@ -18,12 +18,15 @@
     <PackageId>Imagekit</PackageId>
     <PackOnBuild>true</PackOnBuild>
     <ReleaseVersion>3.1.6</ReleaseVersion>
+	      <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <PackageLicenseUrl>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicenseUrl>
     <Version>3.1.6</Version>
     <RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReleaseNotes>-Fixes</PackageReleaseNotes>
+	   <CheckEolTargetFramework>false</CheckEolTargetFramework>
+	      <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
   <ItemGroup>
