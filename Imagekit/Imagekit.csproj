@@ -20,7 +20,6 @@
 		<ReleaseVersion>3.1.6</ReleaseVersion>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
-		<PackageLicenseUrl>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicenseUrl>
 		<Version>3.1.6</Version>
 		<RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
