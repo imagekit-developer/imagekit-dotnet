@@ -42,11 +42,13 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
 	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
 	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	  <WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
 	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
 	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	  <WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
