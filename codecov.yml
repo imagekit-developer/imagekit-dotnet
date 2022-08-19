@@ -12,4 +12,4 @@ coverage:
 coverage:
   round: up
   range: 0..10
-  precision: 6
+  precision: 5
