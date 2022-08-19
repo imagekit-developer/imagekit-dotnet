@@ -44,8 +44,14 @@ jobs:
       - name: Build Release
         run: dotnet build Imagekit.sln -c Release /p:ContinuousIntegrationBuild=true    
 
+       # run: dotnet test --no-build Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release
       - name: Run test suite
-        run: dotnet test --no-build Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release
+        run: dotnet test Imagekit.UnitTests/Imagekit.UnitTests.csproj --verbosity minimal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./Imagekit.UnitTests/coverage.opencover.xml
 
       - name: Pack
         run: dotnet pack Imagekit.sln -c Release --no-build --output nuget
