@@ -26,19 +26,10 @@ jobs:
             3.1.x
             5.0.x
             6.0.x
-      - name: Install tools
-        run: |
-          dotnet tool restore
       - name: Build Release
-        run: dotnet build Imagekit.sln -c Release /p:ContinuousIntegrationBuild=true
+        run: dotnet build Imagekit.sln -c Release /p:ContinuousIntegrationBuild=true    
 
-  
-
-
-
-    
-
-      - name: Run test suite (Debug)
+      - name: Run test suite
         run: dotnet test --no-build Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release
 
       - name: Pack
@@ -48,10 +39,9 @@ jobs:
         with:
           name: nuget
           path: nuget/
-      
-      
+            
   Publish:
-    needs: Build
+    needs: build
     if: (github.event_name == 'release') || (github.ref == 'refs/tags/*')
     runs-on: windows-latest
     steps:
