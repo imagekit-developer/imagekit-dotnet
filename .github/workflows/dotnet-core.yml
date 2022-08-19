@@ -2,13 +2,28 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
   release:
     types:
       - published
-
+env:
+  # Disable the .NET logo in the console output.
+  DOTNET_NOLOGO: true
+  # Stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  # Disable sending usage data to Microsoft
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  GITHUB_FEED: https://nuget.pkg.github.com/cloudmeteor/index.json
+  GITHUB_USER: cloudmeteor
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NUGET_FEED: https://api.nuget.org/v3/index.json
+  NUGET_KEY: ${{ secrets.NUGET_APIKEY }}
+  ATTRIBUTE_NAME: nupkg
+  NUGET_OUTPUT_PATH: nuget-package
+  Solution_Name: Imagekit.sln
+  
 jobs:
   build:
     name: Build and test
