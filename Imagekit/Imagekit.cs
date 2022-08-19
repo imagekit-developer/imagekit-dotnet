@@ -13,8 +13,6 @@ namespace Imagekit.Sdk
     {
         private RestClient restClient;
 
-        private RestClient RestClient { get => this.restClient; set => this.restClient = value; }
-
         public ImagekitClient(string publicKey, string privateKey, string urlEndPoint)
             : base(privateKey, urlEndPoint, "path")
         {
