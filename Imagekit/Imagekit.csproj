@@ -8,8 +8,8 @@
 		<LangVersion>8</LangVersion>
 		<Copyright>© Imagekit Private Limited 2019</Copyright>
 		<DevelopmentDependency>false</DevelopmentDependency>
-		<PackageIconUrl>https://imagekit.io/favicon.ico</PackageIconUrl>
-		<PackageLicense>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicense>
+		<PackageIcon>https://imagekit.io/favicon.png</PackageIcon>
+		<License>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</License>
 		<Owners>Imagekit</Owners>
 		<PackageProjectUrl>https://imagekit.io</PackageProjectUrl>
 		<PackageTags>Image Resize Crop SmartCrop Rotate Quality Watermark Gif Jpg Jpeg Bitmap PNG Tiff Webp Webm Svg Optimization</PackageTags>
