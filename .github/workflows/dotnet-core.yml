@@ -8,7 +8,6 @@ on:
   release:
     types:
       - published
-
 env:
   # Disable the .NET logo in the console output.
   DOTNET_NOLOGO: true
@@ -24,12 +23,16 @@ env:
   ATTRIBUTE_NAME: nupkg
   NUGET_OUTPUT_PATH: nuget-package
   Solution_Name: Imagekit.sln
-
+  
 jobs:
-  Build:
-    runs-on: windows-latest 
-    
+  build:
+    name: Build and test
+
+    runs-on: ubuntu-latest
+
     steps:
+      - uses: actions/checkout@master
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
@@ -38,58 +41,28 @@ jobs:
             3.1.x
             5.0.x
             6.0.x
-      - name: Install tools
-        run: |
-          dotnet tool restore
+      - name: Build Release
+        run: dotnet build Imagekit.sln -c Release /p:ContinuousIntegrationBuild=true    
 
-      - name: Build the SDK
-        run: dotnet build $env:Solution_Name --configuration Release --no-restore
-        
+       # run: dotnet test --no-build Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release
       - name: Run test suite
-        run: dotnet test --no-build /Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release      
+        run: dotnet test Imagekit.UnitTests/Imagekit.UnitTests.csproj --verbosity minimal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
         
-      - name: Copy Coverage To Predictable Location
-        run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
-    
-      - name: Code Coverage Summary Report
-        uses: irongut/CodeCoverageSummary@v1.3.0
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v1
         with:
-          filename: coverage.cobertura.xml
-          badge: true
-          fail_below_min: true
-          format: markdown
-          hide_branch_rate: false
-          hide_complexity: true
-          indicators: true
-          output: both
-          thresholds: '60 80'
+          file: ./Imagekit.UnitTests/coverage.net6.0.opencover.xml
 
-      - name: Pack 
-        run: dotnet pack --configuration Release --no-build --include-source --verbosity minimal --output ${{ env.NUGET_OUTPUT_PATH }}
-
-      - name: Upload a Build Artifact
+      - name: Pack
+        run: dotnet pack Imagekit.sln -c Release --no-build --output nuget
+      - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.ATTRIBUTE_NAME }}
-          path: ${{ env.NUGET_OUTPUT_PATH }}
-
-      - name: Notify Slack on failure
-        if: ${{ failure() }}
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: Content verification has failed.
-          author_name: Content Verification
-          fields: message,author,action,eventName,ref,workflow
-          username: GitHub Actions
-          icon_emoji: ":github_actions:"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
-      
-      
+          name: nuget
+          path: nuget/
+            
   Publish:
-    needs: Build
+    needs: build
     if: (github.event_name == 'release') || (github.ref == 'refs/tags/*')
     runs-on: windows-latest
     steps:
