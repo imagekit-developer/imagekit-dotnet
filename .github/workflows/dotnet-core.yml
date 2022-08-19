@@ -49,7 +49,7 @@ jobs:
       
       - name: Tests      
         #run: dotnet test Imagekit.UnitTests --configuration Release --no-restore
-        run: dotnet test --no-build Imagekit.UnitTests.csproj -c Release
+        run: dotnet test --no-build Imagekit.UnitTests -c Release
         
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v1
