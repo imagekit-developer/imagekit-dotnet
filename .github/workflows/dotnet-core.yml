@@ -9,76 +9,46 @@ on:
     types:
       - published
 
-env:
-  # Disable the .NET logo in the console output.
-  DOTNET_NOLOGO: true
-  # Stop wasting time caching packages
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
-  # Disable sending usage data to Microsoft
-  DOTNET_CLI_TELEMETRY_OPTOUT: true
-  GITHUB_FEED: https://nuget.pkg.github.com/cloudmeteor/index.json
-  GITHUB_USER: cloudmeteor
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NUGET_FEED: https://api.nuget.org/v3/index.json
-  NUGET_KEY: ${{ secrets.NUGET_APIKEY }}
-  ATTRIBUTE_NAME: nupkg
-  NUGET_OUTPUT_PATH: nuget-package
-  Solution_Name: Imagekit.sln
-
 jobs:
-  Build:
-    #runs-on: [self-hosted,Windows,X64 ]
-    runs-on: [windows-latest]
-    
+  build:
+    name: Build and test
+
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout the SDK's codebase
-        uses: actions/checkout@v2
+      - uses: actions/checkout@master
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
         with:
-          fetch-depth: 0
+          dotnet-version: |
+            2.1.x
+            3.1.x
+            5.0.x
+            6.0.x
+      - name: Install tools
+        run: |
+          dotnet tool restore
+      - name: Build Release
+        run: dotnet build src -c Release /p:ContinuousIntegrationBuild=true
 
-      - name: .NET Core Version
-        run: dotnet --version
+      - name: Build Debug
+        run: dotnet build src -c Debug
 
-      - name: .NET Core Info
-        run: dotnet --info
 
-      - name: Restore the SDK's Nuget packages
-        run: dotnet restore $env:Solution_Name
 
-      - name: Build the SDK
-        run: dotnet build $env:Solution_Name --configuration Release --no-restore
-      
-      - name: Tests      
-        #run: dotnet test Imagekit.UnitTests --verbosity minimal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-        run: dotnet test --no-build Imagekit.UnitTests -c Release      
-        
-      - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          file: ./Imagekit.UnitTests/coverage.opencover.xml
-        
-      - name: Pack 
-        run: dotnet pack --configuration Release --no-build --include-source --verbosity minimal --output ${{ env.NUGET_OUTPUT_PATH }}
+    
 
-      - name: Upload a Build Artifact
+      - name: Run test suite (Debug)
+        run: dotnet test --no-build Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release
+
+      - name: Pack
+        run: dotnet pack src -c Release --no-build --output nuget
+      - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.ATTRIBUTE_NAME }}
-          path: ${{ env.NUGET_OUTPUT_PATH }}
-
-      - name: Notify Slack on failure
-        if: ${{ failure() }}
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: Content verification has failed.
-          author_name: Content Verification
-          fields: message,author,action,eventName,ref,workflow
-          username: GitHub Actions
-          icon_emoji: ":github_actions:"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
+          name: nuget
+          path: nuget/
       
       
   Publish:
