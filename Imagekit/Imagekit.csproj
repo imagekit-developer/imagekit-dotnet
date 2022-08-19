@@ -1,48 +1,48 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Imagekit</RootNamespace>
-    <AssemblyName>Imagekit</AssemblyName>
-	  <TargetFrameworks>net5.0;net6.0;netcoreapp3.1;netstandard2.0;net461</TargetFrameworks>    
-    <LangVersion>8</LangVersion>
-    <Copyright>© Imagekit Private Limited 2019</Copyright>
-    <DevelopmentDependency>false</DevelopmentDependency>
-    <PackageIconUrl>https://imagekit.io/favicon.ico</PackageIconUrl>
-    <PackageLicense>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicense>
-    <Owners>Imagekit</Owners>
-    <PackageProjectUrl>https://imagekit.io</PackageProjectUrl>
-    <PackageTags>Image Resize Crop SmartCrop Rotate Quality Watermark Gif Jpg Jpeg Bitmap PNG Tiff Webp Webm Svg Optimization</PackageTags>
-    <Title>Imagekit.io DotNet Library</Title>
-    <Description>Library to Integrate Imagekit.io Service.</Description>
-    <PackageId>Imagekit</PackageId>
-    <PackOnBuild>true</PackOnBuild>
-    <ReleaseVersion>3.1.6</ReleaseVersion>
-	      <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <SynchReleaseVersion>false</SynchReleaseVersion>
-    <PackageLicenseUrl>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicenseUrl>
-    <Version>3.1.6</Version>
-    <RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>-Fixes</PackageReleaseNotes>
-	   <CheckEolTargetFramework>false</CheckEolTargetFramework>
-	      <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Imagekit</RootNamespace>
+		<AssemblyName>Imagekit</AssemblyName>
+		<TargetFrameworks>net5.0;net6.0;netcoreapp3.1;netstandard2.0;net461</TargetFrameworks>
+		<LangVersion>8</LangVersion>
+		<Copyright>© Imagekit Private Limited 2019</Copyright>
+		<DevelopmentDependency>false</DevelopmentDependency>
+		<PackageIconUrl>https://imagekit.io/favicon.ico</PackageIconUrl>
+		<PackageLicense>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicense>
+		<Owners>Imagekit</Owners>
+		<PackageProjectUrl>https://imagekit.io</PackageProjectUrl>
+		<PackageTags>Image Resize Crop SmartCrop Rotate Quality Watermark Gif Jpg Jpeg Bitmap PNG Tiff Webp Webm Svg Optimization</PackageTags>
+		<Title>Imagekit.io DotNet Library</Title>
+		<Description>Library to Integrate Imagekit.io Service.</Description>
+		<PackageId>Imagekit</PackageId>
+		<PackOnBuild>true</PackOnBuild>
+		<ReleaseVersion>3.1.6</ReleaseVersion>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<SynchReleaseVersion>false</SynchReleaseVersion>
+		<PackageLicenseUrl>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicenseUrl>
+		<Version>3.1.6</Version>
+		<RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageReleaseNotes>-Fixes</PackageReleaseNotes>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework>
+		
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.Net.Http" Version="4.3.4" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
