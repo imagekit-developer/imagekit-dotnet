@@ -1,0 +1,75 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  release:
+    types:
+      - published
+env:
+  # Disable the .NET logo in the console output.
+  DOTNET_NOLOGO: true
+  # Stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  # Disable sending usage data to Microsoft
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  GITHUB_FEED: https://nuget.pkg.github.com/cloudmeteor/index.json
+  GITHUB_USER: cloudmeteor
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NUGET_FEED: https://api.nuget.org/v3/index.json
+  NUGET_KEY: ${{ secrets.NUGET_APIKEY }}
+  ATTRIBUTE_NAME: nupkg
+  NUGET_OUTPUT_PATH: nuget-package
+  Solution_Name: Imagekit.sln
+  
+jobs:
+  build:
+    name: Build and test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: |
+            2.1.x
+            3.1.x
+            5.0.x
+            6.0.x
+      - name: Build Release
+        run: dotnet build Imagekit.sln -c Release /p:ContinuousIntegrationBuild=true    
+
+      - name: Run test suite
+        run: dotnet test --no-build Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release
+
+      - name: Pack
+        run: dotnet pack Imagekit.sln -c Release --no-build --output nuget
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v2
+        with:
+          name: nuget
+          path: nuget/
+            
+  Publish:
+    needs: build
+    if: (github.event_name == 'release') || (github.ref == 'refs/tags/*')
+    runs-on: windows-latest
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.ATTRIBUTE_NAME }}
+
+      - name: .NET Core Version
+        run: dotnet --version
+
+      - name: .NET Core Info
+        run: dotnet --info
+
+      - name: Nuget push
+        run: dotnet nuget push "*.nupkg" -k ${{ secrets.NUGET_APIKEY }} --source ${{ env.NUGET_FEED }} --no-symbols true --skip-duplicate
