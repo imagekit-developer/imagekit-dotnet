@@ -41,7 +41,6 @@ namespace Imagekit.Constant
         public const string InvalidFileUploadObjValue = "{ \"message: \"Missing data for upload\", \"help\": \"\" }";
 
         public const string InvalidFileValue = "{ \"message: \"Missing file parameter for upload\", \"help\": \"\" }";
-
         public const string InvalidTagValue = "{ \"message: \"Invalid  parameter for this request\", \"help\": \"\" }";
 
         public const string InvalidTagParamValue = "{ \"message: \"Invalid value for tags\", \"help\": \"tags should be a non empty array of string like ['tag1', 'tag2'].\" }";
