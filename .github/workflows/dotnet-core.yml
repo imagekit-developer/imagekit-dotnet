@@ -27,7 +27,8 @@ env:
 
 jobs:
   Build:
-    runs-on: [self-hosted,Windows,X64 ]
+    #runs-on: [self-hosted,Windows,X64 ]
+    runs-on: [windows-latest]
     
     steps:
       - name: Checkout the SDK's codebase
