@@ -30,43 +30,43 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;</NoWarn>
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;</NoWarn>
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;</NoWarn>
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;</NoWarn>
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;</NoWarn>
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;</NoWarn>
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;</NoWarn>
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;</NoWarn>
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net461|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;</NoWarn>
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net461|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;</NoWarn>
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
