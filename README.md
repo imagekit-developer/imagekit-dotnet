@@ -291,10 +291,13 @@ Result resp = imagekit.Upload(ob2);
 
 **Note**: Upload argument can be a local fullPath or URL or byte array (byte\[\]) or Base64String of a file.
 
+
+```
+```
 ### File Management
-
+ 
 The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-afile-uploadpi) to manage your files.
-
+ 
 **1 . List & Search Files**
 
 Accepts an object specifying the parameters to be used to list and search files. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
@@ -313,27 +316,7 @@ Accepts the file ID and fetches the details as per the [API documentation here](
 ```cs
 Result resp = await imagekit.GetFileDetailsAsync(fileId);
 ```
-
-**3\. Get File Versions**
-
-Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-versions).
-
-```cs
-String fileId = "file-id-1";
-ResultFileVersions resultFileVersions = imageKit.getFileVersions(fileId);
-```
-
-**4\. Get File Version details**
-
-Accepts the file ID and version ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-version-details).
-
-```cs
-String fileId = "file-id-1";
-String versionId = "file-version-id-1";
-ResultFileVersionDetails resultFileVersionDetails = imageKit.getFileVersionDetails(fileId, versionId);
-```
-
-**5\. Update File Details**
+**3\. File Update**
 
 Accepts an object of class `FileUpdateRequest` specifying the parameters to be used to update file details. All parameters specified in the \[documentation here\] (https://docs.imagekit.io/api-reference/media-api/update-file-details) can be passed via their setter functions to get the results.
 
@@ -351,8 +334,7 @@ fileUpdateRequest.AITags = aiTags;
 
 UpdateFileDetail result = imageKit.updateFileDetail(fileUpdateRequest); 
 ```
-
-**6\. Delete File**
+**4\. Delete File**
 
 Accept the file ID and delete a file as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file).
 
@@ -361,18 +343,15 @@ String fileId = "file-id-1";
 ResultDelete result = imageKit.deleteFile(fileId);
 ```
 
-**7\. Delete FileVersion**
+**5\. Get File Versions**
 
-Accepts an object of class `DeleteFileVersionRequest` specifying the parameters to be used to delete the file version. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file-version) can be passed via their setter functions to get the results.
+Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-versions).
 
 ```cs
-DeleteFileVersionRequest deleteFileVersionRequest = new DeleteFileVersionRequest();
-deleteFileVersionRequest.FileId = "file-id-1";
-deleteFileVersionRequest.VersionId = "file-version-id-1";
-ResultNoContent resultNoContent = imageKit.deleteFileVersion(deleteFileVersionRequest);
+String fileId = "file-id-1";
+ResultFileVersions resultFileVersions = imageKit.getFileVersions(fileId);
 ```
-
-**8\. Delete files (bulk)**
+**6\. Delete files (bulk)**
 
 Accepts the file IDs to delete files as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-files-bulk).
 
@@ -384,8 +363,7 @@ fileIds.add("file-id-3");
 
 ResultFileDelete result = imageKit.bulkDeleteFiles(fileIds);
 ```
-
-**9\. Copy file**
+**7\. Copy file**
 
 Accepts an object of class `CopyFileRequest` specifying the parameters to be used to copy a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/copy-file) can be passed via their setter functions to get the results.
 
@@ -397,7 +375,7 @@ copyFileRequest.IncludeFileVersions = false;
 ResultNoContent resultNoContent = imageKit.copyFile(copyFileRequest);
 ```
 
-**10\. Move file**
+**8\. Move file**
 
 Accepts an object of class `MoveFileRequest` specifying the parameters to be used to move a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/move-file) can be passed via their setter functions to get the results.
 
@@ -408,7 +386,7 @@ moveFileRequest.DestinationPath="/";
 ResultNoContent resultNoContent = imageKit.moveFile(moveFileRequest);
 ```
 
-**11\. Rename file**
+**9\. Rename file**
 
 Accepts an object of class `RenameFileRequest` specifying the parameters to be used to rename a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/rename-file) can be passed via their setter functions to get the results.
 
@@ -420,19 +398,11 @@ renameFileRequest.PurgeCache = false;
 ResultRenameFile resultRenameFile = imageKit.renameFile(renameFileRequest); 
 ```
 
-**12\. Restore file Version**
-
-Accepts the fileId and versionId to restore the file version as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/restore-file-version).
-
-```cs
-Result result = imageKit.restoreFileVersion("fileId", "versionId");
-```
-
 ### Tags Management
 
 The SDK provides a simple interface to manage your tags.
 
-**13\. Add tags**
+**10\. Add tags**
 
 Accepts an object of class `TagsRequest` specifying the parameters to be used to add tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/add-tags-bulk) can be passed via their setter functions to get the results.
 
@@ -445,7 +415,7 @@ tags.add("tag-to-add-2");
 ResultTags resultTags = imageKit.addTags(new TagsRequest(fileIds, tags));
 ```
 
-**14\. Remove tags**
+**11\. Remove tags**
 
 Accepts an object of class `TagsRequest` specifying the parameters to be used to remove tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/remove-tags-bulk) can be passed via their setter functions to get the results.
 
@@ -458,7 +428,7 @@ tags.add("tag-to-remove-2");
 ResultTags resultTags = imageKit.removeTags(new TagsRequest(fileIds, tags));
 ```
 
-**15\. Remove AI tags**
+**12\. Remove AI tags**
 
 Accepts an object of class `AITagsRequest` specifying the parameters to be used to remove AI tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/remove-aitags-bulk) can be passed via their setter functions to get the results.
 
@@ -473,6 +443,35 @@ aiTagsRequest.AITags = aiTags;
 ResultTags resultTags = imageKit.getInstance().removeAITags(aiTagsRequest);
 ```
 
+
+**13\. Get File Version details**
+
+Accepts the file ID and version ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-version-details).
+
+```cs
+String fileId = "file-id-1";
+String versionId = "file-version-id-1";
+ResultFileVersionDetails resultFileVersionDetails = imageKit.getFileVersionDetails(fileId, versionId);
+```
+
+**14\. Delete FileVersion**
+
+Accepts an object of class `DeleteFileVersionRequest` specifying the parameters to be used to delete the file version. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file-version) can be passed via their setter functions to get the results.
+
+```cs
+DeleteFileVersionRequest deleteFileVersionRequest = new DeleteFileVersionRequest();
+deleteFileVersionRequest.FileId = "file-id-1";
+deleteFileVersionRequest.VersionId = "file-version-id-1";
+ResultNoContent resultNoContent = imageKit.deleteFileVersion(deleteFileVersionRequest);
+```
+
+**15\. Restore file Version**
+
+Accepts the fileId and versionId to restore the file version as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/restore-file-version).
+
+```cs
+Result result = imageKit.restoreFileVersion("fileId", "versionId");
+```
 ### Folder Management
 
 **16\. Create Folder**
@@ -517,6 +516,7 @@ DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest();
 deleteFolderRequest.FolderPath = "/test1";
 ResultNoContent resultNoContent = imageKit.deleteFolder(deleteFolderRequest);
 ```
+
 
 ### Job Management
 

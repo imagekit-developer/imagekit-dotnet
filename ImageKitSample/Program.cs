@@ -217,7 +217,7 @@ namespace ImagekitSample
             };
             ResultList res = imagekit.GetFileListRequest(model);
 
-            // Get File by FileId
+            // Get File Details
             Result res1 = imagekit.GetFileDetail("fileId");
 
             // Delete File by FileId
