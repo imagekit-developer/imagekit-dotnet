@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Http;
 using Xunit;
 using Newtonsoft.Json.Linq;
+using Imagekit.Models;
+using System.Collections;
 
 namespace Imagekit.UnitTests.Upload
 {
@@ -177,28 +179,13 @@ namespace Imagekit.UnitTests.Upload
             };
 
             ob.ResponseFields = responseFields;
-            JObject optionsInnerObject = new JObject
-            {
-                { "add_shadow", true }
-            };
-            JObject innerObject1 = new JObject
-            {
-                { "name", "remove-bg" },
-                { "options", optionsInnerObject }
-            };
-            JObject innerObject2 = new JObject
-            {
-                { "name", "google-auto-tagging" },
-                { "minConfidence", 10 },
-                { "maxTags", 5 }
-            };
-            JArray jsonArray = new JArray
-            {
-                innerObject1,
-                innerObject2
-            };
 
-            ob.Extensions = jsonArray;
+            List<Extension> model1 = new List<Extension>();
+            BackGroundImage bck = new BackGroundImage();
+            bck.name = "remove-bg";
+            bck.options = new Options() { add_shadow = true,bg_color = "green",bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            model1.Add(bck);
+            ob.Extensions = model1;
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             ob.UseUniqueFileName = false;
             ob.IsPrivateFileValue = false;
@@ -206,15 +193,9 @@ namespace Imagekit.UnitTests.Upload
             ob.OverwriteAiTags = false;
             ob.OverwriteTags = false;
             ob.OverwriteCustomMetadata = true;
-            JObject jsonObjectCustomMetadata = new JObject
-            {
-                { "test1", 10 }
-            };
-            ob.CustomMetadata = jsonObjectCustomMetadata;
-
-
-
-
+            Hashtable model = new Hashtable();
+            model.Add("price", 2000);
+            ob.CustomMetadata = model;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -248,28 +229,11 @@ namespace Imagekit.UnitTests.Upload
             List<string> responseFields = null;
 
             ob.ResponseFields = responseFields;
-            JObject optionsInnerObject = new JObject
-            {
-                { "add_shadow", true }
-            };
-            JObject innerObject1 = new JObject
-            {
-                { "name", "remove-bg" },
-                { "options", optionsInnerObject }
-            };
-            JObject innerObject2 = new JObject
-            {
-                { "name", "google-auto-tagging" },
-                { "minConfidence", 10 },
-                { "maxTags", 5 }
-            };
-            JArray jsonArray = new JArray
-            {
-                innerObject1,
-                innerObject2
-            };
-
-            ob.Extensions = jsonArray;
+             List<Extension> model1 = new List<Extension>();
+            BackGroundImage bck = new BackGroundImage();
+            bck.name = "remove-bg";
+            bck.options = new Options() { add_shadow = true,bg_color = "green",bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            model1.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             ob.UseUniqueFileName = false;
             ob.IsPrivateFileValue = false;
@@ -277,11 +241,9 @@ namespace Imagekit.UnitTests.Upload
             ob.OverwriteAiTags = false;
             ob.OverwriteTags = false;
             ob.OverwriteCustomMetadata = true;
-            JObject jsonObjectCustomMetadata = new JObject
-            {
-                { "test1", 10 }
-            };
-            ob.CustomMetadata = jsonObjectCustomMetadata;
+            Hashtable model = new Hashtable();
+            model.Add("price", 2000);
+            ob.CustomMetadata = model;
 
 
 
@@ -319,8 +281,9 @@ namespace Imagekit.UnitTests.Upload
             ob.CustomCoordinates = customCoordinates;
             List<string> responseFields = null;
             ob.ResponseFields = responseFields;
-            JObject jsonObjectCustomMetadata = null;
-            ob.CustomMetadata = jsonObjectCustomMetadata;
+            Hashtable model = new Hashtable();
+            model.Add("price", 2000);
+            ob.CustomMetadata = model;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -336,7 +299,76 @@ namespace Imagekit.UnitTests.Upload
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
+        [Fact]
+        public void UpdateFile_Missing_File_Id()
+        {
+            FileUpdateRequest ob = new FileUpdateRequest
+            {
+                FileId = "",
 
+            };
+
+            var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+
+            var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
+
+            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateFileDetailAsync(ob));
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
+        }
+        [Fact]
+        public void UpdateFile_Default()
+        {
+            FileUpdateRequest ob = new FileUpdateRequest
+            {
+                FileId = "file-Id",
+
+            };
+            List<string> tags = new List<string>
+            {
+                "Software",
+                "Developer",
+                "Engineer"
+            };
+            ob.Tags = tags;
+
+            string customCoordinates = "10,10,20,20";
+            ob.CustomCoordinates = customCoordinates;
+            List<string> responseFields = new List<string>
+            {
+                "isPrivateFile",
+                "tags",
+                "customCoordinates"
+            };
+            List<Extension> model1 = new List<Extension>();
+            BackGroundImage bck = new BackGroundImage();
+            bck.name = "remove-bg";
+            bck.options = new Options() { add_shadow = true, bg_color = "green", bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            model1.Add(bck);
+            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            Hashtable model = new Hashtable();
+            model.Add("price", 2000);
+            ob.CustomMetadata = model;
+
+            var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+
+            var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
+
+            var response = (Result)restClient.UpdateFileDetail(ob);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
+        }
         private static Uri GetURL(string imgPath)
         {
             var uri = new Uri(imgPath);

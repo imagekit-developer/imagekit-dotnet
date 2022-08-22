@@ -15,6 +15,16 @@ namespace Imagekit.Util
     [ExcludeFromCodeCoverage]
     public static class Utils
     {
+        public static string listToString(List<string> list)
+        {
+          return string.Join(",", list);
+        }
+
+        public static string listToString(string[] list)
+        {
+            return string.Join(",", list);
+        }
+
         public static Dictionary<string, string> GetHeaders()
         {
             Dictionary<string, string> headers = new Dictionary<string, string>

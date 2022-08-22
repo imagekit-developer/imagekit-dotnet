@@ -95,12 +95,12 @@ namespace Imagekit.UnitTests.FileVersion
                 EffectContrast(true).
                 EffectGray().
                 Original().
-                Raw("h-200).w-300).l-image).i-logo.png).l-end")
+                Raw("h-200,w-300,l-image,i-logo.png,l-end")
                 ;
 
             string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
 
-            Assert.Equal("https://dasdsad.dad.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Cbg-A94D34%2Cb-5-A94D34%2Crt-90%2Cbl-10%2Cn-some_name%2Cox-35%2Coy-35%2Cofo-bottom%2Coh-20%2Coi-folder%40%40file.jpg%2Coit-false%2Coiar-4%3A3%2Coibg-0F0F0F%2Coib-10_0F0F0F%2Coidpr-2%2Coiq-50%2Coic-force%2Cot-two%20words%2Cots-20%2Cotf-Open%20Sans%2Cotc-00FFFF%2Coa-5%2Cott-b%2Cobg-00AAFF55%2Cote-b3ZlcmxheSBtYWRlIGVhc3k%253D%2Cotw-50%2Cotbg-00AAFF55%2Cotp-40%2Cotia-left%2Cor-10%2Cpr-true%2Clo-true%2Ct-5%2Cmd-true%2Ccp-true%2Cdi-folder%40%40file.jpg%2Cdpr-3%2Ce-sharpen-10%2Ce-usm-2-2-0.8-0.024%2Ce-contrast-true%2Ce-grayscale-true%2Corig-true%2Ch-200%29.w-300%29.l-image%29.i-logo.png%29.l-end", imageURL);
+            Assert.Equal("https://dasdsad.dad.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Cbg-A94D34%2Cb-5-A94D34%2Crt-90%2Cbl-10%2Cn-some_name%2Cox-35%2Coy-35%2Cofo-bottom%2Coh-20%2Coi-folder%40%40file.jpg%2Coit-false%2Coiar-4%3A3%2Coibg-0F0F0F%2Coib-10_0F0F0F%2Coidpr-2%2Coiq-50%2Coic-force%2Cot-two%20words%2Cots-20%2Cotf-Open%20Sans%2Cotc-00FFFF%2Coa-5%2Cott-b%2Cobg-00AAFF55%2Cote-b3ZlcmxheSBtYWRlIGVhc3k%253D%2Cotw-50%2Cotbg-00AAFF55%2Cotp-40%2Cotia-left%2Cor-10%2Cpr-true%2Clo-true%2Ct-5%2Cmd-true%2Ccp-true%2Cdi-folder%40%40file.jpg%2Cdpr-3%2Ce-sharpen-10%2Ce-usm-2-2-0.8-0.024%2Ce-contrast-true%2Ce-grayscale-true%2Corig-true%2Ch-200%2Cw-300%2Cl-image%2Ci-logo.png%2Cl-end", imageURL);
         }
 
         [Fact]
@@ -209,7 +209,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (Result)restClient.DeleteFile("abc");
+            var response = (ResultDelete)restClient.DeleteFile("abc");
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }

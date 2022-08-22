@@ -75,3 +75,8 @@ public class VersionInfo
 
     public string Name { get; set; }
 }
+
+public class ResultDelete : ResponseMetaData
+{
+    public string FileId { get; set; }
+}

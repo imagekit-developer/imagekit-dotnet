@@ -3,7 +3,10 @@
 // </copyright>
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
+using Imagekit.Models;
 using Newtonsoft.Json.Linq;
 
 public class FileCreateRequest
@@ -18,15 +21,15 @@ public class FileCreateRequest
     private bool isPrivateFileValue;
     private string customCoordinates;
     private List<string> responseFields;
-    private JArray extensions;
+    private List<Extension> extensions;
     private string webhookUrl;
     private bool overwriteFile;
     private bool overwriteAiTags;
     private bool overwriteTags;
     private bool overwriteCustomMetadata;
-    private JObject customMetadata;
+    private Hashtable customMetadata;
 
-    public bool UseUniqueFileName { set => this.useUniqueFileName = value; }
+    public bool UseUniqueFileName { get => this.useUniqueFileName; set => this.useUniqueFileName = value; }
 
     public Uri Url { get => this.url; set => this.url = value; }
 
@@ -36,27 +39,39 @@ public class FileCreateRequest
 
     public string FileName { get => this.fileName; set => this.fileName = value; }
 
-    public List<string> Tags { set => this.tags = value; }
+    public List<string> Tags
+    {
+        get => this.tags; set => this.tags = value;
+    }
 
-    public string Folder { set => this.folder = value; }
+    public string Folder { get => this.folder; set => this.folder = value; }
 
-    public bool IsPrivateFileValue { set => this.isPrivateFileValue = value; }
+    public bool IsPrivateFileValue { get => this.isPrivateFileValue; set => this.isPrivateFileValue = value; }
 
-    public string CustomCoordinates { set => this.customCoordinates = value; }
+    public string CustomCoordinates
+    {
+        get => this.customCoordinates; set => this.customCoordinates = value;
+    }
 
-    public List<string> ResponseFields { set => this.responseFields = value; }
+    public List<string> ResponseFields
+    {
+        get => this.responseFields; set => this.responseFields = value;
+    }
 
-    public JArray Extensions { set => this.extensions = value; }
+    public List<Extension> Extensions
+    {
+        get => this.extensions; set => this.extensions = value;
+    }
 
-    public string WebhookUrl { set => this.webhookUrl = value; }
+    public string WebhookUrl { get => this.webhookUrl; set => this.webhookUrl = value; }
 
-    public bool OverwriteFile { set => this.overwriteFile = value; }
+    public bool OverwriteFile { get => this.overwriteFile; set => this.overwriteFile = value; }
 
-    public bool OverwriteAiTags { set => this.overwriteAiTags = value; }
+    public bool OverwriteAiTags { get => this.overwriteAiTags; set => this.overwriteAiTags = value; }
 
-    public bool OverwriteTags { set => this.overwriteTags = value; }
+    public bool OverwriteTags { get => this.overwriteTags; set => this.overwriteTags = value; }
 
-    public bool OverwriteCustomMetadata { set => this.overwriteCustomMetadata = value; }
+    public bool OverwriteCustomMetadata { get => this.overwriteCustomMetadata; set => this.overwriteCustomMetadata = value; }
 
-    public JObject CustomMetadata { set => this.customMetadata = value; }
+    public Hashtable CustomMetadata { get => this.customMetadata; set => this.customMetadata = value; }
 }

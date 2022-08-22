@@ -387,5 +387,26 @@ namespace Imagekit.Helper
 
             return flag;
         }
+
+        public static string IsValidateUpdateFile(FileUpdateRequest obj)
+        {
+            string flag = string.Empty;
+            if (obj == null)
+            {
+                flag = ErrorMessages.FileIdMissing;
+                return flag;
+            }
+
+            if (string.IsNullOrEmpty(obj.FileId))
+            {
+                flag = ErrorMessages.FileIdMissing;
+                return flag;
+            }
+
+            
+
+            return flag;
+        }
+
     }
 }

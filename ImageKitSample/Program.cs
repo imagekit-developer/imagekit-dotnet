@@ -76,12 +76,12 @@ namespace ImagekitSample
                 EffectContrast(true).
                 EffectGray().
                 Original().
-                Raw("h-200).w-300).l-image).i-logo.png).l-end")
+                Raw("h-200,w-300,l-image,i-logo.png,l-end")
                 ;
 
             string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();			
            
-            Console.WriteLine("Url for first image transformed with height: 300, width: 400 - {0}", imageURL);
+            Console.WriteLine("Generated image URL - {0}", imageURL);
 
             ///// Generating Signed URL
             var imgURL1 = "https://ik.imagekit.io/demo/default-image.jpg";
@@ -119,13 +119,12 @@ namespace ImagekitSample
             {
                 Bytes = bytes,
                 FileName = Guid.NewGuid().ToString(),
-            };
-
+            };            
             List<string> tags = new List<string>
             {
                 "Software",
                 "Developer",
-                "Engineer",
+                "Engineer"
             };
             ob.Tags = tags;
             ob.Folder = "demo1";
@@ -135,32 +134,19 @@ namespace ImagekitSample
             {
                 "thumbnail",
                 "tags",
-                "customCoordinates",
+                "customCoordinates"
             };
 
             ob.ResponseFields = responseFields;
-            JObject optionsInnerObject = new JObject
-            {
-                { "add_shadow", true },
-            };
-            JObject innerObject1 = new JObject
-            {
-                { "name", "remove-bg" },
-                { "options", optionsInnerObject },
-            };
-            JObject innerObject2 = new JObject
-            {
-                { "name", "google-auto-tagging" },
-                { "minConfidence", 10 },
-                { "maxTags", 5 },
-            };
-            JArray jsonArray = new JArray
-            {
-                innerObject1,
-                innerObject2,
-            };
+           
 
-            ob.Extensions = jsonArray;
+            List<Extension> model1=new List<Extension>();
+            BackGroundImage bck=new BackGroundImage();
+            bck.name = "remove-bg";
+            bck.options = new Options() { add_shadow = true };
+            model1.Add(bck);
+
+            ob.Extensions = model1;
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             ob.UseUniqueFileName = false;
             ob.IsPrivateFileValue = false;
@@ -168,12 +154,9 @@ namespace ImagekitSample
             ob.OverwriteAiTags = false;
             ob.OverwriteTags = false;
             ob.OverwriteCustomMetadata = true;
-            JObject jsonObjectCustomMetadata = new JObject
-            {
-                { "test1", 10 },
-            };
-            ob.CustomMetadata = jsonObjectCustomMetadata;
-
+            Hashtable model = new Hashtable();
+            model.Add("price", 2000);
+            ob.CustomMetadata = model;
             Result resp2 = imagekit.Upload(ob);
 
             // Get Base64
@@ -187,7 +170,40 @@ namespace ImagekitSample
                 FileName = Guid.NewGuid().ToString(),
             };
             Result resp = imagekit.Upload(ob2);
-
+			
+			// Update File Request
+			 FileUpdateRequest ob3 = new FileUpdateRequest
+             {
+                FileId = "file-Id",
+               
+            };
+            List<string> tags = new List<string>
+            {
+                "Software",
+                "Developer",
+                "Engineer"
+            };
+            ob3.Tags = tags;
+            
+            string customCoordinates = "10,10,20,20";
+            ob3.CustomCoordinates = customCoordinates;
+            List<string> responseFields = new List<string>
+            {
+                "isPrivateFile",
+                "tags",
+                "customCoordinates"
+            };
+            List<Extension> model1 = new List<Extension>();
+            BackGroundImage bck = new BackGroundImage();
+            bck.name = "remove-bg";
+            bck.options = new Options() { add_shadow = true, bg_color = "green", bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            model1.Add(bck);
+            ob3.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            Hashtable model = new Hashtable();
+            model.Add("price", 2000);
+            ob3.CustomMetadata = model;
+			Result resp = imagekit.UpdateFileDetail(ob3);
+			
             #endregion
 
             #region File Management
@@ -205,7 +221,7 @@ namespace ImagekitSample
             Result res1 = imagekit.GetFileDetail("fileId");
 
             // Delete File by FileId
-            Result res2 = imagekit.DeleteFile("fileId");
+            ResultDelete res2 = imagekit.DeleteFile("fileId");
 
             // Bulk Delete
             List<string> ob3 = new List<string>();

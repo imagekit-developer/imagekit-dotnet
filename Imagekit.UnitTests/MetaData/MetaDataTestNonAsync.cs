@@ -251,21 +251,6 @@ namespace Imagekit.UnitTests.MetaData
                 Name = "Tst3",
                 Label = "Test3"
             };
-            List<object> objectList = new List<object>
-            {
-                "small",
-                "medium",
-                "large",
-                30,
-                40,
-                true
-            };
-            CustomMetaDataFieldSchemaObject customMetaDataFieldSchemaObject = new CustomMetaDataFieldSchemaObject
-            {
-                Type = CustomMetaDataTypeEnum.SingleSelect,
-                SelectOptions = objectList
-            };
-
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
                 Type = CustomMetaDataTypeEnum.Number,

@@ -26,6 +26,15 @@ namespace Imagekit.Sdk
             return (Result)this.restClient.Upload(fileCreateRequest);
         }
 
+        public Result UpdateFileDetail(FileUpdateRequest fileUpdateRequest)
+        {
+            return (Result)this.restClient.UpdateFileDetail(fileUpdateRequest);
+        }
+        public async Task<Result> UpdateFileDetailAsync(FileUpdateRequest fileUpdateRequest)
+        {
+            return (Result)await this.restClient.UpdateFileDetailAsync(fileUpdateRequest);
+        }
+
         public ResultCache PurgeCache(string url)
         {
             return (ResultCache)this.restClient.PurgeCache(url);
@@ -66,9 +75,9 @@ namespace Imagekit.Sdk
             return (ResultMetaData)this.restClient.GetRemoteFileMetaData(url);
         }
 
-        public Result DeleteFile(string fileId)
+        public ResultDelete DeleteFile(string fileId)
         {
-            return (Result)this.restClient.DeleteFile(fileId);
+            return (ResultDelete)this.restClient.DeleteFile(fileId);
         }
 
         public ResultFileDelete BulkDeleteFiles(List<string> fileIds)
@@ -193,9 +202,9 @@ namespace Imagekit.Sdk
             return (ResultMetaData)await this.restClient.GetRemoteFileMetaDataAsync(url);
         }
 
-        public async Task<Result> DeleteFileAsync(string fileId)
+        public async Task<ResultDelete> DeleteFileAsync(string fileId)
         {
-            return (Result)await this.restClient.DeleteFileAsync(fileId);
+            return (ResultDelete)await this.restClient.DeleteFileAsync(fileId);
         }
 
         public async Task<ResultFileDelete> BulkDeleteFilesAsync(List<string> fileIds)

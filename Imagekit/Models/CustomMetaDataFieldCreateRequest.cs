@@ -12,4 +12,11 @@ namespace Imagekit.Models
 
         public CustomMetaDataFieldSchemaObject Schema { get; set; }
     }
+
+    public class CustomMetaDataFieldUploadRequest
+    {
+        public string Name { get; set; }
+
+        public CustomMetaDataFieldSchemaObject Schema { get; set; }
+    }
 }

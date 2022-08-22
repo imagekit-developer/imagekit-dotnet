@@ -83,7 +83,7 @@ Transformation trans = new Transformation()
 .CropMode("extract")
 .Focus("left")
 .Format("jpeg")  
-.Raw("h-200).w-300).l-image).i-logo.png).l-end");
+.Raw("h-200,w-300,l-image,i-logo.png,l-end");
 
 string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
 ```
@@ -91,7 +91,7 @@ string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query")
 This results in a URL like
 
 ```plaintext
-https://ik.imagekit.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Ch-200%29.w-300%29.l-image%29.i-logo.png%29.l-end
+https://ik.imagekit.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Ch-200%2Cw-300%2Cl-image%2Ci-logo.png%2Cl-end
 ```
 
 **2\. Using full image URL**
@@ -358,7 +358,7 @@ Accept the file ID and delete a file as per the [API documentation here](https:/
 
 ```cs
 String fileId = "file-id-1";
-Result result = imageKit.deleteFile(fileId);
+ResultDelete result = imageKit.deleteFile(fileId);
 ```
 
 **7\. Delete FileVersion**
@@ -705,7 +705,6 @@ try {
   // Missing or Invalid parameters were supplied to Imagekit.io's API
   Console.Writeline("Status is: " + e.getResponseMetaData().getHttpStatusCode());
   Console.Writeline("Message is: " + e.getMessage());
- 
 } catch (UnauthorizedException e) {
   // No valid API key was provided.
 } catch (ForbiddenException e) {
@@ -716,14 +715,21 @@ try {
   // If you are using the upload API, the total storage limit (or upload limit) is exceeded.
 } catch (InternalServerException e) {
   // Something went wrong with ImageKit.io API.
-} catch (PartialSuccessException e) {
-  // Error cases on partial success.
 } catch (NotFoundException e) {
   // If any of the field or parameter is not found in data 
-} catch (UnknownException e) {
-  // Something else happened, which can be unrelated to imagekit, reason will be indicated in the message field
-}
+} 
 ```
+## Rate limits
+Except for upload API, all [ImageKit APIs are rate limited](https://docs.imagekit.io/api-reference/api-introduction/rate-limits) to protect the infrastructure from excessive requests rates and to keep ImageKit.io fast and stable for everyone.
+
+When you exceed the rate limits for an endpoint, you will receive a `429` status code. The .Net library reads the [rate limiting response headers](https://docs.imagekit.io/api-reference/api-introduction/rate-limits#response-headers-to-understand-rate-limits) provided in the API response and adds these in the error argument of the callback or `.catch` when using promises. Please sleep/pause for the number of milliseconds specified by the value of the `X-RateLimit-Reset` property before making additional requests to that endpoint.
+
+| Property | Description |
+|----------|-------------|
+| `X-RateLimit-Limit` | The maximum number of requests that can be made to this endpoint in the interval specified by the `X-RateLimit-Interval` response header. |
+| `X-RateLimit-Reset` | The amount of time in milliseconds before you can make another request to this endpoint. Pause/sleep your workflow for this duration. |
+| `X-RateLimit-Interval` | The duration of interval in milliseconds for which this rate limit was exceeded. |
+
 
 ## Support
 

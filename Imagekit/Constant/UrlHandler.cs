@@ -9,6 +9,7 @@ namespace Imagekit.Constant
         public const string MediaAPIBaseUrl = "https://api.imagekit.io/";
         public const string UploadAPIBaseUrl = "https://upload.imagekit.io/";
         public const string UploadFile = @"api/v1/files/upload";
+        public const string UpdateFileRequest = @"v1/files/{0}/details";
         public const string GetFileRequest = @"v1/files/?{0}";
         public const string GetPurge = @"v1/files/purge";
         public const string GetPurgeStatus = @"v1/files/purge/{0}";

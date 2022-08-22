@@ -144,7 +144,7 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (Result)restClient.DeleteFileAsync("abc").Result;
+            var response = (ResultDelete)restClient.DeleteFileAsync("abc").Result;
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }

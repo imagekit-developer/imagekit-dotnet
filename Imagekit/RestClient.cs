@@ -285,24 +285,7 @@ internal class RestClient
 
             string url = this.uploadAPIBaseUrl + UrlHandler.UploadFile;
             Dictionary<string, string> headers = Utils.GetHeaders();
-            var formdata = new MultipartFormDataContent
-                {
-                    { new StringContent(fileCreateRequest.FileName), "fileName" },
-                };
-            if (!string.IsNullOrEmpty(fileCreateRequest.Base64))
-            {
-                formdata.Add(new StringContent(fileCreateRequest.Base64), "file");
-            }
-            else if (fileCreateRequest.Bytes != null)
-            {
-                formdata.Add(new StringContent(GetJsonBody.GetBase64(fileCreateRequest.Bytes)), "file");
-            }
-            else if (!string.IsNullOrEmpty(fileCreateRequest.Url.ToString()))
-            {
-                var webClient = new WebClient();
-                byte[] imageBytes = webClient.DownloadData("http://www.google.com/images/logos/ps_logo2.png");
-                formdata.Add(new StringContent(GetJsonBody.GetBase64(imageBytes)), "file");
-            }
+            var formdata = MultipartFormDataModel.build(fileCreateRequest);
 
             HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
             string res = response.Content.ReadAsStringAsync().Result;
@@ -338,26 +321,7 @@ internal class RestClient
 
             string url = this.uploadAPIBaseUrl + UrlHandler.UploadFile;
             Dictionary<string, string> headers = Utils.GetHeaders();
-            var formdata = new MultipartFormDataContent
-                {
-                    { new StringContent(fileCreateRequest.FileName), "fileName" },
-                };
-
-            if (!string.IsNullOrEmpty(fileCreateRequest.Base64))
-            {
-                formdata.Add(new StringContent(fileCreateRequest.Base64), "file");
-            }
-            else if (fileCreateRequest.Bytes != null)
-            {
-                ByteArrayContent byteContent = new ByteArrayContent(fileCreateRequest.Bytes);
-                formdata.Add(byteContent, "file");
-            }
-            else if (!string.IsNullOrEmpty(fileCreateRequest.Url.ToString()))
-            {
-                var webClient = new WebClient();
-                byte[] imageBytes = webClient.DownloadData(fileCreateRequest.Url.ToString());
-                formdata.Add(new StringContent(GetJsonBody.GetBase64(imageBytes)), "file");
-            }
+            var formdata = MultipartFormDataModel.build(fileCreateRequest);
 
             HttpResponseMessage response = await this.client.PostAsync(url, formdata);
             string res = response.Content.ReadAsStringAsync().Result;
@@ -376,12 +340,70 @@ internal class RestClient
         }
     }
 
-    public ResponseMetaData DeleteFile(string fileId)
+    public ResponseMetaData UpdateFileDetail(FileUpdateRequest fileUpdateRequest)
     {
         try
         {
             Result model = new Result();
+            string validate = ValidateParamater.IsValidateUpdateFile(fileUpdateRequest);
+            if (!string.IsNullOrEmpty(validate))
+            {
+                throw new Exception(validate);
+            }
+            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.FileId);
+            Dictionary<string, string> headers = Utils.GetHeaders();
+            var formdata = MultipartFormDataModel.buildUpdateFile(fileUpdateRequest);
 
+            HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
+            string res = response.Content.ReadAsStringAsync().Result;
+            model = JsonConvert.DeserializeObject<Result>(res);
+            Utils.PopulateResponseMetadata(
+                res,
+                model,
+                Convert.ToInt32(response.StatusCode),
+                responseHeaders: null);
+            return model;
+        }
+        catch (Exception ex)
+        {
+            throw new ImagekitException(ex.Message);
+        }
+    }
+
+    public async Task<ResponseMetaData> UpdateFileDetailAsync(FileUpdateRequest fileUpdateRequest)
+    {
+        try
+        {
+            Result model = new Result();
+            string validate = ValidateParamater.IsValidateUpdateFile(fileUpdateRequest);
+            if (!string.IsNullOrEmpty(validate))
+            {
+                throw new Exception(validate);
+            }
+            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.FileId);
+            Dictionary<string, string> headers = Utils.GetHeaders();
+            var formdata = MultipartFormDataModel.buildUpdateFile(fileUpdateRequest);
+
+            HttpResponseMessage response =await  this.client.PostAsync(url, formdata);
+            string res = response.Content.ReadAsStringAsync().Result;
+            model = JsonConvert.DeserializeObject<Result>(res);
+            Utils.PopulateResponseMetadata(
+                res,
+                model,
+                Convert.ToInt32(response.StatusCode),
+                responseHeaders: null);
+            return model;
+        }
+        catch (Exception ex)
+        {
+            throw new ImagekitException(ex.Message);
+        }
+    }
+    public ResponseMetaData DeleteFile(string fileId)
+    {
+        try
+        {
+            ResultDelete model = new ResultDelete();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
                 throw new Exception(ErrorMessages.FileIdMissing);
@@ -391,7 +413,8 @@ internal class RestClient
 
             HttpResponseMessage response = this.client.DeleteAsync(url).Result;
             string res = response.Content.ReadAsStringAsync().Result;
-            model = JsonConvert.DeserializeObject<Result>(res);
+            model.Raw = res;
+            model.FileId = fileId;
             Utils.PopulateResponseMetadata(
                 res,
                 model,
@@ -414,7 +437,7 @@ internal class RestClient
     {
         try
         {
-            Result model = new Result();
+            ResultDelete model = new ResultDelete();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
                 throw new Exception(ErrorMessages.FileIdMissing);
@@ -424,8 +447,8 @@ internal class RestClient
 
             HttpResponseMessage response = await this.client.DeleteAsync(url);
             string res = response.Content.ReadAsStringAsync().Result;
-
-            model = JsonConvert.DeserializeObject<Result>(res);
+            model.Raw = res;
+            model.FileId = fileId;
             Utils.PopulateResponseMetadata(
                 res,
                 model,
