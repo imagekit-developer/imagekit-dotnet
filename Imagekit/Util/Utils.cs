@@ -15,12 +15,12 @@ namespace Imagekit.Util
     [ExcludeFromCodeCoverage]
     public static class Utils
     {
-        public static string listToString(List<string> list)
+        public static string ListToString(List<string> list)
         {
-          return string.Join(",", list);
+            return string.Join(",", list);
         }
 
-        public static string listToString(string[] list)
+        public static string ListToString(string[] list)
         {
             return string.Join(",", list);
         }

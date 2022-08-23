@@ -122,7 +122,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultList)restClient.GetFileListRequest(ob);
-          
+
             Assert.Equal(response.Raw, response.Raw);
         }
 
@@ -250,7 +250,7 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultFileDelete)restClient.BulkDeleteFiles(ob);
-            
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]

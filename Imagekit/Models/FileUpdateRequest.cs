@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Imagekit.Models
+﻿namespace Imagekit.Models
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
     public class FileUpdateRequest
     {
         private string fileId;
@@ -16,6 +12,7 @@ namespace Imagekit.Models
         private List<string> tags;
         private string customCoordinates;
         private Hashtable customMetadata;
+
         public string FileId
         {
             get => this.fileId; set => this.fileId = value;

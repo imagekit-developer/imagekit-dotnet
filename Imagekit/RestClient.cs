@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -285,7 +284,7 @@ internal class RestClient
 
             string url = this.uploadAPIBaseUrl + UrlHandler.UploadFile;
             Dictionary<string, string> headers = Utils.GetHeaders();
-            var formdata = MultipartFormDataModel.build(fileCreateRequest);
+            var formdata = MultipartFormDataModel.Build(fileCreateRequest);
 
             HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
             string res = response.Content.ReadAsStringAsync().Result;
@@ -321,7 +320,7 @@ internal class RestClient
 
             string url = this.uploadAPIBaseUrl + UrlHandler.UploadFile;
             Dictionary<string, string> headers = Utils.GetHeaders();
-            var formdata = MultipartFormDataModel.build(fileCreateRequest);
+            var formdata = MultipartFormDataModel.Build(fileCreateRequest);
 
             HttpResponseMessage response = await this.client.PostAsync(url, formdata);
             string res = response.Content.ReadAsStringAsync().Result;
@@ -350,9 +349,10 @@ internal class RestClient
             {
                 throw new Exception(validate);
             }
+
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.FileId);
             Dictionary<string, string> headers = Utils.GetHeaders();
-            var formdata = MultipartFormDataModel.buildUpdateFile(fileUpdateRequest);
+            var formdata = MultipartFormDataModel.BuildUpdateFile(fileUpdateRequest);
 
             HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
             string res = response.Content.ReadAsStringAsync().Result;
@@ -380,11 +380,12 @@ internal class RestClient
             {
                 throw new Exception(validate);
             }
+
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.FileId);
             Dictionary<string, string> headers = Utils.GetHeaders();
-            var formdata = MultipartFormDataModel.buildUpdateFile(fileUpdateRequest);
+            var formdata = MultipartFormDataModel.BuildUpdateFile(fileUpdateRequest);
 
-            HttpResponseMessage response =await  this.client.PostAsync(url, formdata);
+            HttpResponseMessage response = await this.client.PostAsync(url, formdata);
             string res = response.Content.ReadAsStringAsync().Result;
             model = JsonConvert.DeserializeObject<Result>(res);
             Utils.PopulateResponseMetadata(
@@ -399,6 +400,7 @@ internal class RestClient
             throw new ImagekitException(ex.Message);
         }
     }
+
     public ResponseMetaData DeleteFile(string fileId)
     {
         try

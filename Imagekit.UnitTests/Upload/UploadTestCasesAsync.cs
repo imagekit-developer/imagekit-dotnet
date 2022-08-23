@@ -1,12 +1,10 @@
 using Imagekit.Constant;
-using Imagekit.Sdk;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using Xunit;
-using Newtonsoft.Json.Linq;
 using Imagekit.Models;
 using System.Collections;
 
@@ -181,8 +179,8 @@ namespace Imagekit.UnitTests.Upload
             ob.ResponseFields = responseFields;
             List<Extension> model1 = new List<Extension>();
             BackGroundImage bck = new BackGroundImage();
-            bck.name = "remove-bg";
-            bck.options = new Options() { add_shadow = true,bg_color = "green",bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            bck.Name = "remove-bg";
+            bck.Options = new Options() { Add_shadow = true, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
             model1.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             ob.UseUniqueFileName = false;
@@ -228,8 +226,8 @@ namespace Imagekit.UnitTests.Upload
             ob.ResponseFields = responseFields;
             List<Extension> model1 = new List<Extension>();
             BackGroundImage bck = new BackGroundImage();
-            bck.name = "remove-bg";
-            bck.options = new Options() { add_shadow = true,bg_color = "green",bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            bck.Name = "remove-bg";
+            bck.Options = new Options() { Add_shadow = true, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
             model1.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             ob.UseUniqueFileName = false;
@@ -314,7 +312,7 @@ namespace Imagekit.UnitTests.Upload
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            
+
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateFileDetailAsync(ob));
             Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
         }
@@ -322,10 +320,10 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void UpdateFile_Default()
         {
-             FileUpdateRequest ob = new FileUpdateRequest
-             {
+            FileUpdateRequest ob = new FileUpdateRequest
+            {
                 FileId = "file-Id",
-               
+
             };
             List<string> tags = new List<string>
             {
@@ -334,7 +332,7 @@ namespace Imagekit.UnitTests.Upload
                 "Engineer"
             };
             ob.Tags = tags;
-            
+
             string customCoordinates = "10,10,20,20";
             ob.CustomCoordinates = customCoordinates;
             List<string> responseFields = new List<string>
@@ -345,8 +343,8 @@ namespace Imagekit.UnitTests.Upload
             };
             List<Extension> model1 = new List<Extension>();
             BackGroundImage bck = new BackGroundImage();
-            bck.name = "remove-bg";
-            bck.options = new Options() { add_shadow = true, bg_color = "green", bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            bck.Name = "remove-bg";
+            bck.Options = new Options() { Add_shadow = true, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
             model1.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             Hashtable model = new Hashtable();

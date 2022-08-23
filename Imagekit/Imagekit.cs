@@ -30,6 +30,7 @@ namespace Imagekit.Sdk
         {
             return (Result)this.restClient.UpdateFileDetail(fileUpdateRequest);
         }
+
         public async Task<Result> UpdateFileDetailAsync(FileUpdateRequest fileUpdateRequest)
         {
             return (Result)await this.restClient.UpdateFileDetailAsync(fileUpdateRequest);

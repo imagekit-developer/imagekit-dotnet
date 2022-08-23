@@ -1,5 +1,4 @@
 using Imagekit.Constant;
-using Imagekit.Sdk;
 using Imagekit.Models;
 using Newtonsoft.Json;
 using System;
@@ -36,7 +35,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultMetaData)restClient.GetFileMetaDataAsync("abc").Result;
-           
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -73,7 +72,7 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultMetaData)restClient.GetRemoteFileMetaDataAsync("abc").Result;
-           
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]

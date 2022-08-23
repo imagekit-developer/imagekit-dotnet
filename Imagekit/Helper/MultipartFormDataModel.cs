@@ -1,19 +1,14 @@
-﻿using Imagekit.Models;
-using Imagekit.Util;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Imagekit.Helper
+﻿namespace Imagekit.Helper
 {
+    using System.Net;
+    using System.Net.Http;
+    using global::Imagekit.Models;
+    using global::Imagekit.Util;
+    using Newtonsoft.Json;
+
     public static class MultipartFormDataModel
     {
-        public static MultipartFormDataContent build(FileCreateRequest fileCreateRequest)
+        public static MultipartFormDataContent Build(FileCreateRequest fileCreateRequest)
         {
             MultipartFormDataContent formdata = new MultipartFormDataContent();
             formdata.Add(new StringContent(fileCreateRequest.FileName), "fileName");
@@ -43,7 +38,7 @@ namespace Imagekit.Helper
 
             if (fileCreateRequest.Tags != null)
             {
-                formdata.Add(new StringContent(Utils.listToString(fileCreateRequest.Tags)), "tags");
+                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.Tags)), "tags");
             }
 
             if (!string.IsNullOrEmpty(fileCreateRequest.Folder))
@@ -63,7 +58,7 @@ namespace Imagekit.Helper
 
             if (fileCreateRequest.ResponseFields != null)
             {
-                formdata.Add(new StringContent(Utils.listToString(fileCreateRequest.ResponseFields)), "responseFields");
+                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.ResponseFields)), "responseFields");
             }
 
             if (fileCreateRequest.OverwriteFile)
@@ -88,7 +83,8 @@ namespace Imagekit.Helper
 
             if (fileCreateRequest.Extensions != null)
             {
-                var myContent = JsonConvert.SerializeObject(fileCreateRequest.Extensions,
+                var myContent = JsonConvert.SerializeObject(
+                    fileCreateRequest.Extensions,
                     new JsonSerializerSettings()
                     {
                         NullValueHandling = NullValueHandling.Ignore,
@@ -103,26 +99,27 @@ namespace Imagekit.Helper
 
             if (fileCreateRequest.CustomMetadata != null)
             {
-                string jSONresult = JsonConvert.SerializeObject(fileCreateRequest.CustomMetadata);
-                formdata.Add(new StringContent(jSONresult), "customMetadata");
+                string jsonResult = JsonConvert.SerializeObject(fileCreateRequest.CustomMetadata);
+                formdata.Add(new StringContent(jsonResult), "customMetadata");
             }
 
             return formdata;
         }
 
-
-        public static MultipartFormDataContent buildUpdateFile(FileUpdateRequest fileCreateRequest)
+        public static MultipartFormDataContent BuildUpdateFile(FileUpdateRequest fileCreateRequest)
         {
             MultipartFormDataContent formdata = new MultipartFormDataContent();
-           
+
             if (fileCreateRequest.Tags != null)
             {
-                formdata.Add(new StringContent(Utils.listToString(fileCreateRequest.Tags)), "tags");
+                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.Tags)), "tags");
             }
+
             if (fileCreateRequest.RemoveAITags != null)
             {
-                formdata.Add(new StringContent(Utils.listToString(fileCreateRequest.RemoveAITags)), "removeAITags");
+                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.RemoveAITags)), "removeAITags");
             }
+
             if (!string.IsNullOrEmpty(fileCreateRequest.CustomCoordinates))
             {
                 formdata.Add(new StringContent(fileCreateRequest.CustomCoordinates), "customCoordinates");
@@ -130,7 +127,8 @@ namespace Imagekit.Helper
 
             if (fileCreateRequest.Extensions != null)
             {
-                var myContent = JsonConvert.SerializeObject(fileCreateRequest.Extensions,
+                var myContent = JsonConvert.SerializeObject(
+                    fileCreateRequest.Extensions,
                     new JsonSerializerSettings()
                     {
                         NullValueHandling = NullValueHandling.Ignore,

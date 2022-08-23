@@ -403,10 +403,7 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            
-
             return flag;
         }
-
     }
 }

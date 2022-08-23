@@ -58,7 +58,7 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultList)restClient.GetFileListRequestAsync(ob).Result;
-          
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
 
@@ -185,7 +185,7 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultFileDelete)restClient.BulkDeleteFilesAsync(ob).Result;
-           
+
             Assert.Equal(responseObj.Raw, response.Raw);
         }
         [Fact]
@@ -203,7 +203,7 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.BulkDeleteFilesAsync(ob));
             Assert.Equal(ErrorMessages.ListFilesInputMissing, ex.Result.Message);
-        } 
+        }
 
         [Fact]
         public void Missing_Filed_Null_Exception()
