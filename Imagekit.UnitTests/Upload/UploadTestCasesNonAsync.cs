@@ -171,7 +171,7 @@ namespace Imagekit.UnitTests.Upload
             ob.CustomCoordinates = customCoordinates;
             List<string> responseFields = new List<string>
             {
-                "thumbnail",
+                "isPrivateFile",
                 "tags",
                 "customCoordinates"
             };

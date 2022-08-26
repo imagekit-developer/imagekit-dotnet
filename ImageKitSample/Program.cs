@@ -76,8 +76,7 @@ namespace ImagekitSample
                 EffectContrast(true).
                 EffectGray().
                 Original().
-                Raw("h-200,w-300,l-image,i-logo.png,l-end")
-                ;
+                Raw("h-200,w-300,l-image,i-logo.png,l-end");
 
             string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();			
            
