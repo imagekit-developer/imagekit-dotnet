@@ -12,411 +12,404 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            
-                // Create Instance of ImageKit
-                ImagekitClient imagekit = new ImagekitClient("public_PvB5TVigSimCxloLyxYC4TqMFpE=", "private_FguYxKgB8/Jm9Xs5ZyyLfwIBSFU=", "https://ik.imagekit.io/dnggmzz0v");
 
-                #region URL Generation
+            // Create Instance of ImageKit
+            ImagekitClient imagekit = new ImagekitClient("public_PvB5TVigSimCxloLyxYC4TqMFpE=", "private_FguYxKgB8/Jm9Xs5ZyyLfwIBSFU=", "https://ik.imagekit.io/dnggmzz0v");
+
+            #region URL Generation
 
 
-                // Generating URLs
-                string path = "/default-image.jpg";
-                Transformation trans = new Transformation()
-                    .Width(400)
-                    .Height(300)
-                    .AspectRatio("4-3")
-                    .Quality(40)
-                    .Crop("force").CropMode("extract").
-                    Focus("left").
-                    Format("jpeg").
-                    Background("A94D34").
-                    Border("5-A94D34").
-                    Rotation(90).
-                    Blur(10).
-                    Named("some_name").
-                    OverlayX(35).
-                    OverlayY(35).
-                    OverlayFocus("bottom").
-                    OverlayHeight(20).
-                    OverlayHeight(20).
-                    OverlayImage("/folder/file.jpg"). // leading slash case
-                    OverlayImageTrim(false).
-                    OverlayImageAspectRatio("4:3").
-                    OverlayImageBackground("0F0F0F").
-                    OverlayImageBorder("10_0F0F0F").
-                    OverlayImageDpr(2).
-                    OverlayImageQuality(50).
-                    OverlayImageCropping("force").
-                    OverlayText("two words").
-                    OverlayTextFontSize(20).
-                    OverlayTextFontFamily("Open Sans").
-                    OverlayTextColor("00FFFF").
-                    OverlayTextTransparency(5).
-                    OverlayTextTypography("b").
-                    OverlayBackground("00AAFF55").
-                    OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D").
-                    OverlayTextWidth(50).
-                    OverlayTextBackground("00AAFF55").
-                    OverlayTextPadding(40).
-                    OverlayTextInnerAlignment("left").
-                    OverlayRadius(10).
-                    Progressive(true).
-                    Lossless(true).
-                    Trim(5).
-                    Metadata(true).
-                    ColorProfile(true).
-                    DefaultImage("folder/file.jpg/"). //trailing slash case
-                    Dpr(3).
-                    EffectSharpen(10).
-                    EffectUsm("2-2-0.8-0.024").
-                    EffectContrast(true).
-                    EffectGray().
-                    Original().
-                    Raw("h-200,w-300,l-image,i-logo.png,l-end");
+            // Generating URLs
+            string path = "/default-image.jpg";
+            Transformation trans = new Transformation()
+                .Width(400)
+                .Height(300)
+                .AspectRatio("4-3")
+                .Quality(40)
+                .Crop("force").CropMode("extract").
+                Focus("left").
+                Format("jpeg").
+                Background("A94D34").
+                Border("5-A94D34").
+                Rotation(90).
+                Blur(10).
+                Named("some_name").
+                OverlayX(35).
+                OverlayY(35).
+                OverlayFocus("bottom").
+                OverlayHeight(20).
+                OverlayHeight(20).
+                OverlayImage("/folder/file.jpg"). // leading slash case
+                OverlayImageTrim(false).
+                OverlayImageAspectRatio("4:3").
+                OverlayImageBackground("0F0F0F").
+                OverlayImageBorder("10_0F0F0F").
+                OverlayImageDpr(2).
+                OverlayImageQuality(50).
+                OverlayImageCropping("force").
+                OverlayText("two words").
+                OverlayTextFontSize(20).
+                OverlayTextFontFamily("Open Sans").
+                OverlayTextColor("00FFFF").
+                OverlayTextTransparency(5).
+                OverlayTextTypography("b").
+                OverlayBackground("00AAFF55").
+                OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D").
+                OverlayTextWidth(50).
+                OverlayTextBackground("00AAFF55").
+                OverlayTextPadding(40).
+                OverlayTextInnerAlignment("left").
+                OverlayRadius(10).
+                Progressive(true).
+                Lossless(true).
+                Trim(5).
+                Metadata(true).
+                ColorProfile(true).
+                DefaultImage("folder/file.jpg/"). //trailing slash case
+                Dpr(3).
+                EffectSharpen(10).
+                EffectUsm("2-2-0.8-0.024").
+                EffectContrast(true).
+                EffectGray().
+                Original().
+                Raw("h-200,w-300,l-image,i-logo.png,l-end");
 
-                string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
+            string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
 
-                Console.WriteLine("Generated image URL - {0}", imageURL);
+            Console.WriteLine("Generated image URL - {0}", imageURL);
 
-                ///// Generating Signed URL
-                var imgURL1 = "https://ik.imagekit.io/demo/default-image.jpg";
-                string[] queryParams = { "b=123", "a=test" };
-                try
+            ///// Generating Signed URL
+            var imgURL1 = "https://ik.imagekit.io/demo/default-image.jpg";
+            string[] queryParams = { "b=123", "a=test" };
+            try
+            {
+                var signedUrl = imagekit.Url(new Transformation().Width(400).Height(300))
+                .Src(imgURL1)
+                .QueryParameters(queryParams)
+                .ExpireSeconds(600)
+                .Signed()
+                .Generate();
+                Console.WriteLine("Signed Url for first image transformed with height: 300, width: 400: - {0}", signedUrl);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            #endregion
+
+            #region  Upload BY URI| Bytes | Base64
+
+            // Upload By URI
+            FileCreateRequest request = new FileCreateRequest
+            {
+                Url = new Uri(@"http://www.google.com/images/logos/ps_logo2.png"),
+                FileName = "test.jpg",
+            };
+            Result resp1 = imagekit.Upload(request);
+
+            // Upload by bytes
+            byte[] bytes = System.IO.File.ReadAllBytes(@"image file path");
+
+            FileCreateRequest ob = new FileCreateRequest
+            {
+                Bytes = bytes,
+                FileName = Guid.NewGuid().ToString(),
+            };
+            List<string> tags = new List<string>
                 {
-                    var signedUrl = imagekit.Url(new Transformation().Width(400).Height(300))
-                    .Src(imgURL1)
-                    .QueryParameters(queryParams)
-                    .ExpireSeconds(600)
-                    .Signed()
-                    .Generate();
-                    Console.WriteLine("Signed Url for first image transformed with height: 300, width: 400: - {0}", signedUrl);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                #endregion
-
-                #region  Upload BY URI| Bytes | Base64
-
-                // Upload By URI
-                FileCreateRequest request = new FileCreateRequest
-                {
-                    Url = new Uri(@"http://www.google.com/images/logos/ps_logo2.png"),
-                    FileName = "test.jpg",
+                    "Software",
+                    "Developer",
+                    "Engineer"
                 };
-                Result resp1 = imagekit.Upload(request);
+            ob.Tags = tags;
 
-                // Upload by bytes
-                byte[] bytes = System.IO.File.ReadAllBytes(@"image file path");
-
-                FileCreateRequest ob = new FileCreateRequest
+            string customCoordinates = "10,10,20,20";
+            ob.CustomCoordinates = customCoordinates;
+            List<string> responseFields = new List<string>
                 {
-                    Bytes = bytes,
-                    FileName = Guid.NewGuid().ToString(),
+                    "isPrivateFile",
+                    "tags",
+                    "customCoordinates"
                 };
-                List<string> tags = new List<string>
+            ob.ResponseFields = responseFields;
+            List<Extension> ext = new List<Extension>();
+            BackGroundImage bck1 = new BackGroundImage();
+            bck1.Name = "remove-bg";
+            bck1.Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            ext.Add(bck1);
+            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            Hashtable model2 = new Hashtable();
+            model2.Add("price", 2000);
+            ob.CustomMetadata = model2;
+            Result resp2 = imagekit.Upload(ob);
+
+            //    // Get Base64
+            byte[] imageArray = System.IO.File.ReadAllBytes(@"image file path");
+            string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+
+            //    // Upload by Base64
+            FileCreateRequest ob2 = new FileCreateRequest
+            {
+                Base64 = base64ImageRepresentation,
+                FileName = Guid.NewGuid().ToString(),
+            };
+            Result resp = imagekit.Upload(ob2);
+            #endregion
+
+            #region UpdateFile
+
+            // Update File Request
+            FileUpdateRequest Updateob = new FileUpdateRequest
+            {
+                FileId = "file-Id",
+
+            };
+            List<string> Updatetags = new List<string>
             {
                 "Software",
                 "Developer",
                 "Engineer"
             };
-                ob.Tags = tags;
-                ob.Folder = "demo1";
-                string customCoordinates = "10,10,20,20";
-                ob.CustomCoordinates = customCoordinates;
-                List<string> responseFields = new List<string>
+            Updateob.Tags = Updatetags;
+
+            string UpdatecustomCoordinates = "10,10,20,20";
+            Updateob.CustomCoordinates = UpdatecustomCoordinates;
+            List<string> UpdateresponseFields = new List<string>
             {
-                "thumbnail",
+                "isPrivateFile",
                 "tags",
                 "customCoordinates"
             };
+            ob.ResponseFields = UpdateresponseFields;
+            List<Extension> model1 = new List<Extension>();
+            BackGroundImage bck = new BackGroundImage();
+            bck.Name = "remove-bg";
+            bck.Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            model1.Add(bck);
+            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            Hashtable Updatemodel = new Hashtable();
+            Updatemodel.Add("price", 2000);
+            ob.CustomMetadata = Updatemodel;
+            Result Updateresp = imagekit.UpdateFileDetail(Updateob);
 
-                ob.ResponseFields = responseFields;
+               #endregion
 
+            #region File Management
 
-            //    List<Extension> model1 = new List<Extension>();
-            //    BackGroundImage bck = new BackGroundImage();
-            //    bck.name = "remove-bg";
-            //    bck.options = new Options() { add_shadow = true };
-            //    model1.Add(bck);
-
-            //    ob.Extensions = model1;
-            //    ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            //    ob.UseUniqueFileName = false;
-            //    ob.IsPrivateFileValue = false;
-            //    ob.OverwriteFile = false;
-            //    ob.OverwriteAiTags = false;
-            //    ob.OverwriteTags = false;
-            //    ob.OverwriteCustomMetadata = true;
-            //    Hashtable model = new Hashtable();
-            //    model.Add("price", 2000);
-            //    ob.CustomMetadata = model;
-            //    Result resp2 = imagekit.Upload(ob);
-
-            //    // Get Base64
-            //    byte[] imageArray = System.IO.File.ReadAllBytes(@"image file path");
-            //    string base64ImageRepresentation = Convert.ToBase64String(imageArray);
-
-            //    // Upload by Base64
-            //    FileCreateRequest ob2 = new FileCreateRequest
-            //    {
-            //        Base64 = base64ImageRepresentation,
-            //        FileName = Guid.NewGuid().ToString(),
-            //    };
-            //    Result resp = imagekit.Upload(ob2);
-
-            //    // Update File Request
-            //    FileUpdateRequest ob3 = new FileUpdateRequest
-            //    {
-            //        FileId = "file-Id",
-
-            //    };
-            //    List<string> tags = new List<string>
-            //{
-            //    "Software",
-            //    "Developer",
-            //    "Engineer"
-            //};
-            //    ob3.Tags = tags;
-
-            //    string customCoordinates = "10,10,20,20";
-            //    ob3.CustomCoordinates = customCoordinates;
-            //    List<string> responseFields = new List<string>
-            //{
-            //    "isPrivateFile",
-            //    "tags",
-            //    "customCoordinates"
-            //};
-            //    List<Extension> model1 = new List<Extension>();
-            //    BackGroundImage bck = new BackGroundImage();
-            //    bck.name = "remove-bg";
-            //    bck.options = new Options() { add_shadow = true, bg_color = "green", bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
-            //    model1.Add(bck);
-            //    ob3.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            //    Hashtable model = new Hashtable();
-            //    model.Add("price", 2000);
-            //    ob3.CustomMetadata = model;
-            //    Result resp = imagekit.UpdateFileDetail(ob3);
-
-            //    #endregion
-
-            //    #region File Management
-
-            //    // List and search files
-            //    GetFileListRequest model = new GetFileListRequest
-            //    {
-            //        Type = "file",
-            //        Limit = 10,
-            //        Skip = 0,
-            //    };
-            //    ResultList res = imagekit.GetFileListRequest(model);
+            // List and search files
+            GetFileListRequest model = new GetFileListRequest
+            {
+                Type = "file",
+                Limit = 10,
+                Skip = 0,
+            };
+            ResultList res = imagekit.GetFileListRequest(model);
 
             //    // Get File Details
-            //    Result res1 = imagekit.GetFileDetail("fileId");
+            Result res1 = imagekit.GetFileDetail("fileId");
 
-            //    // Delete File by FileId
-            //    ResultDelete res2 = imagekit.DeleteFile("fileId");
+            // Delete File by FileId
+            ResultDelete res2 = imagekit.DeleteFile("fileId");
 
-            //    // Bulk Delete
-            //    List<string> ob3 = new List<string>();
-            //    ob3.Add("fileId-1");
-            //    ob3.Add("fileId-2");
-            //    ResultFileDelete resultFileDelete = imagekit.BulkDeleteFiles(ob3);
+            // Bulk Delete
+            List<string> ob3 = new List<string>();
+            ob3.Add("fileId-1");
+            ob3.Add("fileId-2");
+            ResultFileDelete resultFileDelete = imagekit.BulkDeleteFiles(ob3);
 
-                // Copy File
-                CopyFileRequest cpyRequest = new CopyFileRequest
-                {
-                    SourceFilePath = "Tst3",
-                    DestinationPath = "Tst3",
-                    IncludeFileVersions = true,
-                };
-                ResultNoContent resultNoContent = imagekit.CopyFile(cpyRequest);
+            // Copy File
+            CopyFileRequest cpyRequest = new CopyFileRequest
+            {
+                SourceFilePath = "Tst3",
+                DestinationPath = "Tst3",
+                IncludeFileVersions = true,
+            };
+            ResultNoContent resultNoContent = imagekit.CopyFile(cpyRequest);
 
-                // MoveFile
-                MoveFileRequest moveFile = new MoveFileRequest
-                {
-                    SourceFilePath = "Tst3",
-                    DestinationPath = "Tst3",
-                };
-                ResultNoContent resultNoContentMoveFile = imagekit.MoveFile(moveFile);
+            // MoveFile
+            MoveFileRequest moveFile = new MoveFileRequest
+            {
+                SourceFilePath = "Tst3",
+                DestinationPath = "Tst3",
+            };
+            ResultNoContent resultNoContentMoveFile = imagekit.MoveFile(moveFile);
 
-                // RenameFile
-                RenameFileRequest renameFileRequest = new RenameFileRequest
-                {
-                    FilePath = "Tst3",
-                    NewFileName = "Tst4",
-                    PurgeCache = false,
-                };
-                ResultRenameFile resultRenameFile = imagekit.RenameFile(renameFileRequest);
+            // RenameFile
+            RenameFileRequest renameFileRequest = new RenameFileRequest
+            {
+                FilePath = "Tst3",
+                NewFileName = "Tst4",
+                PurgeCache = false,
+            };
+            ResultRenameFile resultRenameFile = imagekit.RenameFile(renameFileRequest);
 
-                #endregion
+            #endregion
 
-                #region  Tags
-                TagsRequest tagsRequest = new TagsRequest
-                {
-                    Tags = new List<string>
-                {
-                    "tag1",
-                    "tag2",
-                },
-                    FileIds = new List<string>
-                {
-                    "field1",
-                },
-                };
-                ResultTags resultTags = imagekit.AddTags(tagsRequest);
-
-                TagsRequest removeTagsRequest = new TagsRequest
-                {
-                    Tags = new List<string>
+            #region  Tags
+            TagsRequest tagsRequest = new TagsRequest
+            {
+                Tags = new List<string>
                 {
                     "tag1",
                     "tag2",
                 },
-                    FileIds = new List<string>
+                FileIds = new List<string>
                 {
                     "field1",
                 },
-                };
-                ResultTags removeTags = imagekit.RemoveTags(removeTagsRequest);
+            };
+            ResultTags resultTags = imagekit.AddTags(tagsRequest);
 
-                AiTagsRequest removeAITagsRequest = new AiTagsRequest
-                {
-                    AiTags = new List<string>
+            TagsRequest removeTagsRequest = new TagsRequest
+            {
+                Tags = new List<string>
                 {
                     "tag1",
                     "tag2",
                 },
-                    FileIds = new List<string>
+                FileIds = new List<string>
                 {
                     "field1",
                 },
-                };
-                ResultTags removeAITags = imagekit.RemoveAiTags(removeAITagsRequest);
+            };
+            ResultTags removeTags = imagekit.RemoveTags(removeTagsRequest);
 
-                #endregion
-
-                #region FileVersionRequest
-                DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest
+            AiTagsRequest removeAITagsRequest = new AiTagsRequest
+            {
+                AiTags = new List<string>
                 {
-                    FileId = "fileId",
-                    VersionId = "versionId",
-                };
-                ResultNoContent resultNoContent1 = imagekit.DeleteFileVersion(delRequest);
-
-                // RestoreFileVersion
-                Result result = imagekit.RestoreFileVersion("abc", "1");
-
-                // GetFileVersions
-                ResultFileVersions resultFileVersions = imagekit.GetFileVersions("fileId");
-
-                // GetFileVersionDetails
-                ResultFileVersionDetails resultFileVersionDetails = imagekit.GetFileVersionDetails("fileId", "versionId");
-
-                #endregion
-
-                #region ManageFolder
-
-                CreateFolderRequest createFolderRequest = new CreateFolderRequest
+                    "tag1",
+                    "tag2",
+                },
+                FileIds = new List<string>
                 {
-                    FolderName = "abc",
-                    ParentFolderPath = "source/folder/path",
-                };
-                ResultEmptyBlock resultEmptyBlock = imagekit.CreateFolder(createFolderRequest);
+                    "field1",
+                },
+            };
+            ResultTags removeAITags = imagekit.RemoveAiTags(removeAITagsRequest);
 
-                // DeleteFolderRequest
-                DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest
-                {
-                    FolderPath = "source/folder/path/new_folder",
-                };
-                ResultNoContent resultNoContent2 = imagekit.DeleteFolder(deleteFolderRequest);
+            #endregion
 
-                // CopyFolder
-                CopyFolderRequest cpyFolderRequest = new CopyFolderRequest
-                {
-                    SourceFolderPath = "Tst3",
-                    DestinationPath = "Tst3",
-                    IncludeFileVersions = true,
-                };
+            #region FileVersionRequest
+            DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest
+            {
+                FileId = "fileId",
+                VersionId = "versionId",
+            };
+            ResultNoContent resultNoContent1 = imagekit.DeleteFileVersion(delRequest);
 
-                ResultOfFolderActions resultOfFolderActions = imagekit.CopyFolder(cpyFolderRequest);
+            // RestoreFileVersion
+            Result result = imagekit.RestoreFileVersion("abc", "1");
 
-                // MoveFolder
-                MoveFolderRequest moveFolderRequest = new MoveFolderRequest
-                {
-                    SourceFolderPath = "Tst3",
-                    DestinationPath = "Tst3",
-                };
+            // GetFileVersions
+            ResultFileVersions resultFileVersions = imagekit.GetFileVersions("fileId");
 
-                ResultOfFolderActions resultOfFolderActions1 = imagekit.MoveFolder(moveFolderRequest);
+            // GetFileVersionDetails
+            ResultFileVersionDetails resultFileVersionDetails = imagekit.GetFileVersionDetails("fileId", "versionId");
 
-                #endregion
+            #endregion
 
-                #region GetBulkJobStatus
+            #region ManageFolder
 
-                ResultBulkJobStatus resultBulkJobStatus = imagekit.GetBulkJobStatus("jobId");
+            CreateFolderRequest createFolderRequest = new CreateFolderRequest
+            {
+                FolderName = "abc",
+                ParentFolderPath = "source/folder/path",
+            };
+            ResultEmptyBlock resultEmptyBlock = imagekit.CreateFolder(createFolderRequest);
 
-                #endregion
+            // DeleteFolderRequest
+            DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest
+            {
+                FolderPath = "source/folder/path/new_folder",
+            };
+            ResultNoContent resultNoContent2 = imagekit.DeleteFolder(deleteFolderRequest);
 
-                #region  Purge
+            // CopyFolder
+            CopyFolderRequest cpyFolderRequest = new CopyFolderRequest
+            {
+                SourceFolderPath = "Tst3",
+                DestinationPath = "Tst3",
+                IncludeFileVersions = true,
+            };
 
-                ResultCache resultCache = imagekit.PurgeCache("url");
+            ResultOfFolderActions resultOfFolderActions = imagekit.CopyFolder(cpyFolderRequest);
 
-                ResultCacheStatus resultCacheStatus = imagekit.PurgeStatus("requestId");
+            // MoveFolder
+            MoveFolderRequest moveFolderRequest = new MoveFolderRequest
+            {
+                SourceFolderPath = "Tst3",
+                DestinationPath = "Tst3",
+            };
 
-                #endregion
+            ResultOfFolderActions resultOfFolderActions1 = imagekit.MoveFolder(moveFolderRequest);
 
-                #region  Metadata
-                ResultMetaData resultMetaData = imagekit.GetFileMetadata("fileId");
+            #endregion
 
-                ResultMetaData resultMetaData1 = imagekit.GetRemoteFileMetadata("https://ik.imagekit.io/demo/medium_cafe_B1iTdD0C.jpg");
+            #region GetBulkJobStatus
 
-                // CustomMetaDataFields
-                ResultCustomMetaDataFieldList resultCustomMetaDataFieldList = imagekit.GetCustomMetaDataFields(true);
+            ResultBulkJobStatus resultBulkJobStatus = imagekit.GetBulkJobStatus("jobId");
 
-                // CreateCustomMetaDataFields
-                CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
-                {
-                    Name = "Tst3",
-                    Label = "Test3",
-                };
-                CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
-                {
-                    Type = CustomMetaDataFieldSchemaObject.CustomMetaDataTypeEnum.Number,
-                    MinValue = 1000,
-                    MaxValue = 3000,
-                    MinLength = 500,
-                    MaxLength = 600,
-                    IsValueRequired = false,
-                };
+            #endregion
 
-                requestModel.Schema = schema;
-                ResultCustomMetaDataField resultCustomMetaDataField = imagekit.CreateCustomMetaDataFields(requestModel);
+            #region  Purge
 
-                // UpdateCustomMetaDataFields
-                CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
-                {
-                    Id = "Tst3",
-                };
-                CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
-                {
-                    Type = CustomMetaDataFieldSchemaObject.CustomMetaDataTypeEnum.Number,
-                    MinValue = 1000,
-                    MaxValue = 3000,
-                    MinLength = 500,
-                    MaxLength = 600,
-                    IsValueRequired = false,
-                };
+            ResultCache resultCache = imagekit.PurgeCache("url");
 
-                requestUpdateModel.Schema = schema;
-                ResultCustomMetaDataField resultCustomMetaDataFieldUpdate = imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
+            ResultCacheStatus resultCacheStatus = imagekit.PurgeStatus("requestId");
 
-                // Delete Custom MetaData
-                ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("id");
-                #endregion
+            #endregion
 
-            }
+            #region  Metadata
+            ResultMetaData resultMetaData = imagekit.GetFileMetadata("fileId");
+
+            ResultMetaData resultMetaData1 = imagekit.GetRemoteFileMetadata("https://ik.imagekit.io/demo/medium_cafe_B1iTdD0C.jpg");
+
+            // CustomMetaDataFields
+            ResultCustomMetaDataFieldList resultCustomMetaDataFieldList = imagekit.GetCustomMetaDataFields(true);
+
+            // CreateCustomMetaDataFields
+            CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
+            {
+                Name = "Tst3",
+                Label = "Test3",
+            };
+            CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
+            {
+                Type = CustomMetaDataFieldSchemaObject.CustomMetaDataTypeEnum.Number,
+                MinValue = 1000,
+                MaxValue = 3000,
+                MinLength = 500,
+                MaxLength = 600,
+                IsValueRequired = false,
+            };
+
+            requestModel.Schema = schema;
+            ResultCustomMetaDataField resultCustomMetaDataField = imagekit.CreateCustomMetaDataFields(requestModel);
+
+            // UpdateCustomMetaDataFields
+            CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
+            {
+                Id = "Tst3",
+            };
+            CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
+            {
+                Type = CustomMetaDataFieldSchemaObject.CustomMetaDataTypeEnum.Number,
+                MinValue = 1000,
+                MaxValue = 3000,
+                MinLength = 500,
+                MaxLength = 600,
+                IsValueRequired = false,
+            };
+
+            requestUpdateModel.Schema = schema;
+            ResultCustomMetaDataField resultCustomMetaDataFieldUpdate = imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
+
+            // Delete Custom MetaData
+            ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("id");
+            #endregion
+
         }
-    
+    }
+
 }
