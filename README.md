@@ -1,8 +1,8 @@
-[<img width="250" alt="ImageKit.io" src="https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg"/>](https://imagekit.io)
+[![ImageKit.io](https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg)](https://imagekit.io)
 
 ## DotNET (NET45/Standard/Core) SDK for ImageKit
 
-[![CI Pipeline](https://github.com/imagekit-developer/imagekit-dotnet/workflows/CI%20Pipeline/badge.svg?branch=master)](https://github.com/imagekit-developer/imagekit-dotnet)  [![NuGet](https://img.shields.io/nuget/v/imagekit.svg)](https://www.nuget.org/packages/Imagekit)  [![codecov](https://codecov.io/gh/imagekit-developer/imagekit-dotnet/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-dotnet)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
+[![CI Pipeline](https://github.com/imagekit-developer/imagekit-dotnet/workflows/CI%20Pipeline/badge.svg?branch=master)](https://github.com/imagekit-developer/imagekit-dotnet) [![NuGet](https://img.shields.io/nuget/v/imagekit.svg)](https://www.nuget.org/packages/Imagekit) [![codecov](https://codecov.io/gh/imagekit-developer/imagekit-dotnet/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-dotnet) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
 
 ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/features/image-transformations), [optimization](https://docs.imagekit.io/features/image-optimization), [file uploading](https://docs.imagekit.io/api-reference/upload-file-api) and other [ImageKit APIs](https://docs.imagekit.io/api-reference/api-introduction) from applications written in server-side C#.
 
@@ -262,7 +262,7 @@ Sample usage
 FileCreateRequest request = new FileCreateRequest
 {
     Url = new Uri(@"http://www.google.com/images/logos/ps_logo2.png"),
-    FileName = "test.jpg",
+    FileName = "file_name.jpg",
 };
 Result resp1 = imagekit.Upload(request);
 
@@ -289,15 +289,10 @@ string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 Result resp = imagekit.Upload(ob2);           
 ```
 
-**Note**: Upload argument can be a local fullPath or URL or byte array (byte\[\]) or Base64String of a file.
-
-
-```
-```
 ### File Management
- 
+
 The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-afile-uploadpi) to manage your files.
- 
+
 **1 . List & Search Files**
 
 Accepts an object specifying the parameters to be used to list and search files. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
@@ -316,30 +311,32 @@ Accepts the file ID and fetches the details as per the [API documentation here](
 ```cs
 Result resp = await imagekit.GetFileDetailsAsync(fileId);
 ```
+
 **3\. File Update**
 
 Accepts an object of class `FileUpdateRequest` specifying the parameters to be used to update file details. All parameters specified in the \[documentation here\] (https://docs.imagekit.io/api-reference/media-api/update-file-details) can be passed via their setter functions to get the results.
 
 ```cs
 List<String> tags = new ArrayList<>();
-tags.add("tag-1");
-tags.add("tag-2");
-tags.add("tag-3");
+tags.add("tag_1");
+tags.add("tag_2");
+tags.add("tag_3");
 
 List<String> aiTags = new ArrayList<>();
-aiTags.add("ai-tag-1");
-FileUpdateRequest fileUpdateRequest = new FileUpdateRequest("fileId");
+aiTags.add("ai_tag_1");
+FileUpdateRequest fileUpdateRequest = new FileUpdateRequest("file_Id");
 fileUpdateRequest.Tags = tags;
 fileUpdateRequest.AITags = aiTags;
 
 UpdateFileDetail result = imageKit.updateFileDetail(fileUpdateRequest); 
 ```
+
 **4\. Delete File**
 
 Accept the file ID and delete a file as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file).
 
 ```cs
-String fileId = "file-id-1";
+String fileId = "file_id_1";
 ResultDelete result = imageKit.deleteFile(fileId);
 ```
 
@@ -348,9 +345,10 @@ ResultDelete result = imageKit.deleteFile(fileId);
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-versions).
 
 ```cs
-String fileId = "file-id-1";
+String fileId = "file_id_1";
 ResultFileVersions resultFileVersions = imageKit.getFileVersions(fileId);
 ```
+
 **6\. Delete files (bulk)**
 
 Accepts the file IDs to delete files as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-files-bulk).
@@ -363,13 +361,14 @@ fileIds.add("file-id-3");
 
 ResultFileDelete result = imageKit.bulkDeleteFiles(fileIds);
 ```
+
 **7\. Copy file**
 
 Accepts an object of class `CopyFileRequest` specifying the parameters to be used to copy a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/copy-file) can be passed via their setter functions to get the results.
 
 ```cs
 CopyFileRequest copyFileRequest = new CopyFileRequest();
-copyFileRequest.SourceFilePath = "/w2_image.png";
+copyFileRequest.SourceFilePath = "/image_name.png";
 copyFileRequest.DestinationPath = "/Gallery/";
 copyFileRequest.IncludeFileVersions = false;
 ResultNoContent resultNoContent = imageKit.copyFile(copyFileRequest);
@@ -381,7 +380,7 @@ Accepts an object of class `MoveFileRequest` specifying the parameters to be use
 
 ```cs
 MoveFileRequest moveFileRequest = new MoveFileRequest();
-moveFileRequest.SourceFilePath="/Gallery/w2_image.png";
+moveFileRequest.SourceFilePath="/Gallery/image_name.png";
 moveFileRequest.DestinationPath="/";
 ResultNoContent resultNoContent = imageKit.moveFile(moveFileRequest);
 ```
@@ -392,8 +391,8 @@ Accepts an object of class `RenameFileRequest` specifying the parameters to be u
 
 ```cs
 RenameFileRequest renameFileRequest = new RenameFileRequest();
-renameFileRequest.FilePath = "/w2_image.png";
-renameFileRequest.NewFileName = "w2_image_s.png";
+renameFileRequest.FilePath = "/image_name.png";
+renameFileRequest.NewFileName = "image_name_new.png";
 renameFileRequest.PurgeCache = false;
 ResultRenameFile resultRenameFile = imageKit.renameFile(renameFileRequest); 
 ```
@@ -410,8 +409,8 @@ Accepts an object of class `TagsRequest` specifying the parameters to be used to
 List<String> fileIds = new ArrayList<>();
 fileIds.add("FileId");
 List<String> tags = new ArrayList<>();
-tags.add("tag-to-add-1");
-tags.add("tag-to-add-2");
+tags.add("tag_to_add_1");
+tags.add("tag_to_add_2");
 ResultTags resultTags = imageKit.addTags(new TagsRequest(fileIds, tags));
 ```
 
@@ -423,8 +422,8 @@ Accepts an object of class `TagsRequest` specifying the parameters to be used to
 List<String> fileIds = new ArrayList<>();
 fileIds.add("FileId");
 List<String> tags = new ArrayList<>();
-tags.add("tag-to-remove-1");
-tags.add("tag-to-remove-2");
+tags.add("tag_to_remove_1");
+tags.add("tag_to_remove_2");
 ResultTags resultTags = imageKit.removeTags(new TagsRequest(fileIds, tags));
 ```
 
@@ -434,7 +433,7 @@ Accepts an object of class `AITagsRequest` specifying the parameters to be used 
 
 ```cs
 List<String> fileIds = new ArrayList<>();
-fileIds.add("file-id-1");
+fileIds.add("file_id_1");
 List<String> aiTags = new ArrayList<>();
 aiTags.add("Rectangle");
 AITagsRequest aiTagsRequest = new AITagsRequest();
@@ -443,14 +442,13 @@ aiTagsRequest.AITags = aiTags;
 ResultTags resultTags = imageKit.getInstance().removeAITags(aiTagsRequest);
 ```
 
-
 **13\. Get File Version details**
 
 Accepts the file ID and version ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-version-details).
 
 ```cs
-String fileId = "file-id-1";
-String versionId = "file-version-id-1";
+String fileId = "file_id_1";
+String versionId = "file_version_id_1";
 ResultFileVersionDetails resultFileVersionDetails = imageKit.getFileVersionDetails(fileId, versionId);
 ```
 
@@ -460,8 +458,8 @@ Accepts an object of class `DeleteFileVersionRequest` specifying the parameters 
 
 ```cs
 DeleteFileVersionRequest deleteFileVersionRequest = new DeleteFileVersionRequest();
-deleteFileVersionRequest.FileId = "file-id-1";
-deleteFileVersionRequest.VersionId = "file-version-id-1";
+deleteFileVersionRequest.FileId = "file_id_1";
+deleteFileVersionRequest.VersionId = "file_version_id_1";
 ResultNoContent resultNoContent = imageKit.deleteFileVersion(deleteFileVersionRequest);
 ```
 
@@ -470,8 +468,9 @@ ResultNoContent resultNoContent = imageKit.deleteFileVersion(deleteFileVersionRe
 Accepts the fileId and versionId to restore the file version as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/restore-file-version).
 
 ```cs
-Result result = imageKit.restoreFileVersion("fileId", "versionId");
+Result result = imageKit.restoreFileVersion("file_Id", "version_Id");
 ```
+
 ### Folder Management
 
 **16\. Create Folder**
@@ -480,7 +479,7 @@ Accepts an object of class `CreateFolderRequest` specifying the parameters to be
 
 ```cs
 CreateFolderRequest createFolderRequest = new CreateFolderRequest();
-createFolderRequest.FolderName = "test1";
+createFolderRequest.FolderName = "folder_name";
 createFolderRequest.ParentFolderPath = "/";
 ResultEmptyBlock resultEmptyBlock = imageKit.createFolder(createFolderRequest);
 ```
@@ -491,7 +490,7 @@ Accepts an object of class `CopyFolderRequest` specifying the parameters to be u
 
 ```cs
 CopyFolderRequest copyFolderRequest = new CopyFolderRequest();
-copyFolderRequest.SourceFolderPath = "/Gallery/test";
+copyFolderRequest.SourceFolderPath = "/Gallery/folder_name";
 copyFolderRequest.DestinationPath = "/";
 ResultOfFolderActions resultOfFolderActions = imageKit.copyFolder(copyFolderRequest);
 ```
@@ -502,7 +501,7 @@ Accepts an object of class `MoveFolderRequest` specifying the parameters to be u
 
 ```cs
 MoveFolderRequest moveFolderRequest = new MoveFolderRequest();
-moveFolderRequest.SourceFolderPath = "/Gallery/test";
+moveFolderRequest.SourceFolderPath = "/Gallery/folder_name";
 moveFolderRequest.DestinationPath = "/";
 ResultOfFolderActions resultOfFolderActions = imageKit.moveFolder(moveFolderRequest);
 ```
@@ -513,10 +512,9 @@ Accepts an object of class `DeleteFolderRequest` specifying the parameters to be
 
 ```cs
 DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest();
-deleteFolderRequest.FolderPath = "/test1";
+deleteFolderRequest.FolderPath = "/folder_name";
 ResultNoContent resultNoContent = imageKit.deleteFolder(deleteFolderRequest);
 ```
-
 
 ### Job Management
 
@@ -525,7 +523,7 @@ ResultNoContent resultNoContent = imageKit.deleteFolder(deleteFolderRequest);
 Accepts the jobId to get bulk job status as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/copy-move-folder-status).
 
 ```cs
-String jobId = "job-id-1";
+String jobId = "job_id_1";
 ResultBulkJobStatus resultBulkJobStatus = imageKit.getBulkJobStatus(jobId);
 ```
 
@@ -544,7 +542,7 @@ ResultCache result = imageKit.purgeCache("https://ik.imageKit.io/imagekit-id/def
 Accepts a request ID and fetch purge cache status as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/purge-cache-status)
 
 ```cs
-String requestId = "cache-requestId";
+String requestId = "cache_request_Id";
 ResultCacheStatus result = imageKit.getPurgeCacheStatus(requestId);
 ```
 
@@ -555,7 +553,7 @@ Accepts the file ID and fetches the metadata as per the [API documentation here]
 **23\. Get File Metadata**
 
 ```cs
-String fileId = "file-id";
+String fileId = "file_id";
 ResultMetaData result = imageKit.getFileMetadata(fileId);
 ```
 
@@ -630,7 +628,7 @@ ResultCustomMetaDataField resultCustomMetaDataField = imageKit.updateCustomMetaD
 Accepts the id to delete the customMetaDataFields as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field).
 
 ```cs
-ResultNoContent resultNoContent = imageKit.DeleteCustomMetaDataField("id");
+ResultNoContent resultNoContent = imageKit.DeleteCustomMetaDataField("field_id");
 ```
 
 ## Utility functions
@@ -719,17 +717,18 @@ try {
   // If any of the field or parameter is not found in data 
 } 
 ```
+
 ## Rate limits
+
 Except for upload API, all [ImageKit APIs are rate limited](https://docs.imagekit.io/api-reference/api-introduction/rate-limits) to protect the infrastructure from excessive requests rates and to keep ImageKit.io fast and stable for everyone.
 
 When you exceed the rate limits for an endpoint, you will receive a `429` status code. The .Net library reads the [rate limiting response headers](https://docs.imagekit.io/api-reference/api-introduction/rate-limits#response-headers-to-understand-rate-limits) provided in the API response and adds these in the error argument of the callback or `.catch` when using promises. Please sleep/pause for the number of milliseconds specified by the value of the `X-RateLimit-Reset` property before making additional requests to that endpoint.
 
 | Property | Description |
-|----------|-------------|
+| --- | --- |
 | `X-RateLimit-Limit` | The maximum number of requests that can be made to this endpoint in the interval specified by the `X-RateLimit-Interval` response header. |
 | `X-RateLimit-Reset` | The amount of time in milliseconds before you can make another request to this endpoint. Pause/sleep your workflow for this duration. |
 | `X-RateLimit-Interval` | The duration of interval in milliseconds for which this rate limit was exceeded. |
-
 
 ## Support
 
