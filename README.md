@@ -355,9 +355,9 @@ Accepts the file IDs to delete files as per the [API documentation here](https:/
 
 ```cs
 List<String> fileIds = new ArrayList<>();
-fileIds.add("file-id-1");
-fileIds.add("file-id-2");
-fileIds.add("file-id-3");
+fileIds.add("file_id-1");
+fileIds.add("file_id-2");
+fileIds.add("file_id-3");
 
 ResultFileDelete result = imageKit.bulkDeleteFiles(fileIds);
 ```
