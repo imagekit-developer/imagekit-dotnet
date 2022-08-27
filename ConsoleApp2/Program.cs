@@ -74,17 +74,17 @@ namespace ConsoleApp2
                 Original().
                 Raw("h-200,w-300,l-image,i-logo.png,l-end");
 
-            string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
+            string imageUrl = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
 
-            Console.WriteLine("Generated image URL - {0}", imageURL);
+            Console.WriteLine("Generated image URL - {0}", imageUrl);
 
             ///// Generating Signed URL
-            var imgURL1 = "https://ik.imagekit.io/demo/default-image.jpg";
+            var imgUrl1 = "https://ik.imagekit.io/demo/default-image.jpg";
             string[] queryParams = { "b=123", "a=test" };
             try
             {
                 var signedUrl = imagekit.Url(new Transformation().Width(400).Height(300))
-                .Src(imgURL1)
+                .Src(imgUrl1)
                 .QueryParameters(queryParams)
                 .ExpireSeconds(600)
                 .Signed()
@@ -133,21 +133,25 @@ namespace ConsoleApp2
                 };
             ob.ResponseFields = responseFields;
             List<Extension> ext = new List<Extension>();
-            BackGroundImage bck1 = new BackGroundImage();
-            bck1.Name = "remove-bg";
-            bck1.Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            BackGroundImage bck1 = new BackGroundImage
+            {
+                Name = "remove-bg",
+                Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+            };
             ext.Add(bck1);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            Hashtable model2 = new Hashtable();
-            model2.Add("price", 2000);
+            Hashtable model2 = new Hashtable
+            {
+                { "price", 2000 }
+            };
             ob.CustomMetadata = model2;
             Result resp2 = imagekit.Upload(ob);
 
-            //    // Get Base64
+            // Get Base64
             byte[] imageArray = System.IO.File.ReadAllBytes(@"image file path");
             string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
-            //    // Upload by Base64
+            // Upload by Base64
             FileCreateRequest ob2 = new FileCreateRequest
             {
                 Base64 = base64ImageRepresentation,
@@ -159,38 +163,42 @@ namespace ConsoleApp2
             #region UpdateFile
 
             // Update File Request
-            FileUpdateRequest Updateob = new FileUpdateRequest
+            FileUpdateRequest updateob = new FileUpdateRequest
             {
                 FileId = "file-Id",
 
             };
-            List<string> Updatetags = new List<string>
+            List<string> updatetags = new List<string>
             {
                 "Software",
                 "Developer",
                 "Engineer"
             };
-            Updateob.Tags = Updatetags;
+            updateob.Tags = updatetags;
 
-            string UpdatecustomCoordinates = "10,10,20,20";
-            Updateob.CustomCoordinates = UpdatecustomCoordinates;
-            List<string> UpdateresponseFields = new List<string>
+            string updatecustomCoordinates = "10,10,20,20";
+            updateob.CustomCoordinates = updatecustomCoordinates;
+            List<string> updateresponseFields = new List<string>
             {
                 "isPrivateFile",
                 "tags",
                 "customCoordinates"
             };
-            ob.ResponseFields = UpdateresponseFields;
-            List<Extension> model1 = new List<Extension>();
-            BackGroundImage bck = new BackGroundImage();
-            bck.Name = "remove-bg";
-            bck.Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
-            model1.Add(bck);
+            ob.ResponseFields = updateresponseFields;
+            List<Extension> extModel = new List<Extension>();
+            BackGroundImage bck = new BackGroundImage
+            {
+                Name = "remove-bg",
+                Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+            };
+            extModel.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            Hashtable Updatemodel = new Hashtable();
-            Updatemodel.Add("price", 2000);
-            ob.CustomMetadata = Updatemodel;
-            Result Updateresp = imagekit.UpdateFileDetail(Updateob);
+            Hashtable updatemodel = new Hashtable
+            {
+                { "price", 2000 }
+            };
+            ob.CustomMetadata = updatemodel;
+            Result updateresp = imagekit.UpdateFileDetail(updateob);
 
             #endregion
 
@@ -205,7 +213,7 @@ namespace ConsoleApp2
             };
             ResultList res = imagekit.GetFileListRequest(model);
 
-            //    // Get File Details
+            // Get File Details
             Result res1 = imagekit.GetFileDetail("fileId");
 
             // Delete File by FileId
@@ -274,7 +282,7 @@ namespace ConsoleApp2
             };
             ResultTags removeTags = imagekit.RemoveTags(removeTagsRequest);
 
-            AiTagsRequest removeAITagsRequest = new AiTagsRequest
+            AiTagsRequest removeAiTagsRequest = new AiTagsRequest
             {
                 AiTags = new List<string>
                 {
@@ -286,7 +294,7 @@ namespace ConsoleApp2
                     "field1",
                 },
             };
-            ResultTags removeAITags = imagekit.RemoveAiTags(removeAITagsRequest);
+            ResultTags removeAiTags = imagekit.RemoveAiTags(removeAiTagsRequest);
 
             #endregion
 
@@ -408,8 +416,6 @@ namespace ConsoleApp2
             // Delete Custom MetaData
             ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("id");
             #endregion
-
         }
     }
-
 }

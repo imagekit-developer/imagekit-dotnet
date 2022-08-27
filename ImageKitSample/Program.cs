@@ -17,14 +17,15 @@ namespace ImagekitSample
     {
         static void Main(string[] args)
         {
+
             // Create Instance of ImageKit
-            ImagekitClient imagekit = new ImagekitClient("your_public_key", "your_private_key", "https://ik.imagekit.io/your_imagekit_id/endpoint");
+            ImagekitClient imagekit = new ImagekitClient("public_PvB5TVigSimCxloLyxYC4TqMFpE=", "private_FguYxKgB8/Jm9Xs5ZyyLfwIBSFU=", "https://ik.imagekit.io/dnggmzz0v");
 
             #region URL Generation
-			
+
 
             // Generating URLs
-			string path = "/default-image.jpg";
+            string path = "/default-image.jpg";
             Transformation trans = new Transformation()
                 .Width(400)
                 .Height(300)
@@ -78,17 +79,17 @@ namespace ImagekitSample
                 Original().
                 Raw("h-200,w-300,l-image,i-logo.png,l-end");
 
-            string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();			
-           
-            Console.WriteLine("Generated image URL - {0}", imageURL);
+            string imageUrl = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
+
+            Console.WriteLine("Generated image URL - {0}", imageUrl);
 
             ///// Generating Signed URL
-            var imgURL1 = "https://ik.imagekit.io/demo/default-image.jpg";
+            var imgUrl1 = "https://ik.imagekit.io/demo/default-image.jpg";
             string[] queryParams = { "b=123", "a=test" };
             try
             {
                 var signedUrl = imagekit.Url(new Transformation().Width(400).Height(300))
-                .Src(imgURL1)
+                .Src(imgUrl1)
                 .QueryParameters(queryParams)
                 .ExpireSeconds(600)
                 .Signed()
@@ -118,44 +119,37 @@ namespace ImagekitSample
             {
                 Bytes = bytes,
                 FileName = Guid.NewGuid().ToString(),
-            };            
-            List<string> tags = new List<string>
-            {
-                "Software",
-                "Developer",
-                "Engineer"
             };
+            List<string> tags = new List<string>
+                {
+                    "Software",
+                    "Developer",
+                    "Engineer"
+                };
             ob.Tags = tags;
-            ob.Folder = "demo1";
+
             string customCoordinates = "10,10,20,20";
             ob.CustomCoordinates = customCoordinates;
             List<string> responseFields = new List<string>
-            {
-                "thumbnail",
-                "tags",
-                "customCoordinates"
-            };
-
+                {
+                    "isPrivateFile",
+                    "tags",
+                    "customCoordinates"
+                };
             ob.ResponseFields = responseFields;
-           
-
-            List<Extension> model1=new List<Extension>();
-            BackGroundImage bck=new BackGroundImage();
-            bck.name = "remove-bg";
-            bck.options = new Options() { add_shadow = true };
-            model1.Add(bck);
-
-            ob.Extensions = model1;
+            List<Extension> ext = new List<Extension>();
+            BackGroundImage bck1 = new BackGroundImage
+            {
+                Name = "remove-bg",
+                Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+            };
+            ext.Add(bck1);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            ob.UseUniqueFileName = false;
-            ob.IsPrivateFileValue = false;
-            ob.OverwriteFile = false;
-            ob.OverwriteAiTags = false;
-            ob.OverwriteTags = false;
-            ob.OverwriteCustomMetadata = true;
-            Hashtable model = new Hashtable();
-            model.Add("price", 2000);
-            ob.CustomMetadata = model;
+            Hashtable model2 = new Hashtable
+            {
+                { "price", 2000 }
+            };
+            ob.CustomMetadata = model2;
             Result resp2 = imagekit.Upload(ob);
 
             // Get Base64
@@ -169,40 +163,48 @@ namespace ImagekitSample
                 FileName = Guid.NewGuid().ToString(),
             };
             Result resp = imagekit.Upload(ob2);
-			
-			// Update File Request
-			 FileUpdateRequest ob3 = new FileUpdateRequest
-             {
+            #endregion
+
+            #region UpdateFile
+
+            // Update File Request
+            FileUpdateRequest updateob = new FileUpdateRequest
+            {
                 FileId = "file-Id",
-               
+
             };
-            List<string> tags = new List<string>
+            List<string> updatetags = new List<string>
             {
                 "Software",
                 "Developer",
                 "Engineer"
             };
-            ob3.Tags = tags;
-            
-            string customCoordinates = "10,10,20,20";
-            ob3.CustomCoordinates = customCoordinates;
-            List<string> responseFields = new List<string>
+            updateob.Tags = updatetags;
+
+            string updatecustomCoordinates = "10,10,20,20";
+            updateob.CustomCoordinates = updatecustomCoordinates;
+            List<string> updateresponseFields = new List<string>
             {
                 "isPrivateFile",
                 "tags",
                 "customCoordinates"
             };
-            List<Extension> model1 = new List<Extension>();
-            BackGroundImage bck = new BackGroundImage();
-            bck.name = "remove-bg";
-            bck.options = new Options() { add_shadow = true, bg_color = "green", bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
-            model1.Add(bck);
-            ob3.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            Hashtable model = new Hashtable();
-            model.Add("price", 2000);
-            ob3.CustomMetadata = model;
-			Result resp = imagekit.UpdateFileDetail(ob3);
-			
+            ob.ResponseFields = updateresponseFields;
+            List<Extension> extModel = new List<Extension>();
+            BackGroundImage bck = new BackGroundImage
+            {
+                Name = "remove-bg",
+                Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+            };
+            extModel.Add(bck);
+            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            Hashtable updatemodel = new Hashtable
+            {
+                { "price", 2000 }
+            };
+            ob.CustomMetadata = updatemodel;
+            Result updateresp = imagekit.UpdateFileDetail(updateob);
+
             #endregion
 
             #region File Management
@@ -285,7 +287,7 @@ namespace ImagekitSample
             };
             ResultTags removeTags = imagekit.RemoveTags(removeTagsRequest);
 
-            AiTagsRequest removeAITagsRequest = new AiTagsRequest
+            AiTagsRequest removeAiTagsRequest = new AiTagsRequest
             {
                 AiTags = new List<string>
                 {
@@ -297,7 +299,7 @@ namespace ImagekitSample
                     "field1",
                 },
             };
-            ResultTags removeAITags = imagekit.RemoveAiTags(removeAITagsRequest);
+            ResultTags removeAiTags = imagekit.RemoveAiTags(removeAiTagsRequest);
 
             #endregion
 
@@ -387,7 +389,7 @@ namespace ImagekitSample
             };
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
-                Type = CustomMetaDataTypeEnum.Number,
+                Type = CustomMetaDataFieldSchemaObject.CustomMetaDataTypeEnum.Number,
                 MinValue = 1000,
                 MaxValue = 3000,
                 MinLength = 500,
@@ -405,7 +407,7 @@ namespace ImagekitSample
             };
             CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
             {
-                Type = CustomMetaDataTypeEnum.Number,
+                Type = CustomMetaDataFieldSchemaObject.CustomMetaDataTypeEnum.Number,
                 MinValue = 1000,
                 MaxValue = 3000,
                 MinLength = 500,
@@ -419,7 +421,6 @@ namespace ImagekitSample
             // Delete Custom MetaData
             ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("id");
             #endregion
-
         }
     }
 }
