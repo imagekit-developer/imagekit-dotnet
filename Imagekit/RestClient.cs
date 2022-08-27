@@ -20,7 +20,7 @@ internal class RestClient
     private readonly string mediaAPIBaseUrl = UrlHandler.MediaAPIBaseUrl;
     private readonly string uploadAPIBaseUrl = UrlHandler.UploadAPIBaseUrl;
     private readonly HttpClient client;
-
+    private readonly string boundary = UrlHandler.GetBoundaryString;
     public RestClient(string privateKey, string mediaAPIBaseUrl, HttpClient httpClient)
     {
         if (string.IsNullOrEmpty(privateKey))
@@ -285,7 +285,6 @@ internal class RestClient
             string url = this.uploadAPIBaseUrl + UrlHandler.UploadFile;
             Dictionary<string, string> headers = Utils.GetHeaders();
             var formdata = MultipartFormDataModel.Build(fileCreateRequest);
-
             HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
             string res = response.Content.ReadAsStringAsync().Result;
             model = JsonConvert.DeserializeObject<Result>(res);

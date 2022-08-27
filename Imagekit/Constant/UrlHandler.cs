@@ -37,5 +37,6 @@ namespace Imagekit.Constant
         public const string GetJobStatus = @"v1/bulkJobs/{0}";
         public const string GetFileVersion = @"v1/files/{0}/versions";
         public const string GetFileVersionDetail = @"v1/files/{0}/versions/{1}";
+        public const string GetBoundaryString = "ImageKit-dLV9Wyq26L";
     }
 }

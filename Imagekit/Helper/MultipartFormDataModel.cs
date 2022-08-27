@@ -1,4 +1,7 @@
-﻿namespace Imagekit.Helper
+﻿using System.Net.Http.Headers;
+using Imagekit.Constant;
+
+namespace Imagekit.Helper
 {
     using System.Net;
     using System.Net.Http;
@@ -8,9 +11,13 @@
 
     public static class MultipartFormDataModel
     {
+        private static string boundary = UrlHandler.GetBoundaryString;
+
         public static MultipartFormDataContent Build(FileCreateRequest fileCreateRequest)
         {
-            MultipartFormDataContent formdata = new MultipartFormDataContent();
+            MultipartFormDataContent formdata = new MultipartFormDataContent(boundary);
+            formdata.Headers.Remove("Content-Type");
+            formdata.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data; boundary=" + boundary);
             formdata.Add(new StringContent(fileCreateRequest.FileName), "fileName");
             if (!string.IsNullOrEmpty(fileCreateRequest.Base64))
             {
@@ -108,7 +115,9 @@
 
         public static MultipartFormDataContent BuildUpdateFile(FileUpdateRequest fileCreateRequest)
         {
-            MultipartFormDataContent formdata = new MultipartFormDataContent();
+            MultipartFormDataContent formdata = new MultipartFormDataContent(boundary);
+            formdata.Headers.Remove("Content-Type");
+            formdata.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data; boundary=" + boundary);
 
             if (fileCreateRequest.Tags != null)
             {

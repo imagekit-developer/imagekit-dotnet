@@ -8,17 +8,11 @@ namespace Imagekit.UnitTests.JsonRequest
 {
     public static class JsonRequest
     {
-        public static string json = "--randomBoundary-------------------\r\n" +
-                                    "Content-Disposition: form-data; name=\"file\"\r\n" +
-                                    "Content-Length: 53\r\n" +
-                                    "\r\n" +
-                                    "https://homepages.cae.wisc.edu/~ece533/images/cat.png\r\n" +
-                                    "--randomBoundary-------------------\r\n" +
-                                    "Content-Disposition: form-data; name=\"fileName\"\r\n" +
-                                    "Content-Length: 20\r\n" +
-                                    "\r\n" +
-                                    "sample-cat-image.png\r\n" +
-                                    "--randomBoundary---------------------";
+        public static string json = "Content-Disposition: form-data; name=\"fileName\""+
+        "sample-cat-image.png"+
+        "Content-Disposition: form-data; name=\"file\""+
+        "https://homepages.cae.wisc.edu/~ece533/images/cat.png";
+                                   
 
         public static string GetPurgeCacheRequest = "{\"url\":\"path\"}";
         public static string GetBulkDeleteRequest = "{\"fileIds\":[\"fileId1\",\"fileId2\"]}";

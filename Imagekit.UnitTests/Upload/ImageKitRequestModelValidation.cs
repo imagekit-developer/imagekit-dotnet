@@ -20,34 +20,107 @@ namespace Imagekit.UnitTests.Upload
 {
     public class ImageKitRequestModelValidation
     {
-        
+
         private const string GOOD_PRIVATEKEY = "abc";
         private const string GOOD_URLENDPOINT = "https://dasdsad.dad.io/";
         private readonly string mediaAPIBaseUrl = UrlHandler.MediaAPIBaseUrl;
         private readonly string uploadAPIBaseUrl = UrlHandler.UploadAPIBaseUrl;
+       
         [Fact]
         public void UploadFileRequest_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.json;
             string url = this.uploadAPIBaseUrl + UrlHandler.UploadFile;
             FileCreateRequest ob = new FileCreateRequest
             {
                 Url = new Uri(@"https://homepages.cae.wisc.edu/~ece533/images/cat.png"),
-                FileName = "sample-cat-image.png",
+                FileName = "test.jpg",
             };
-           
-            var mockHttp = new MockHttpMessageHandler();
+            List<string> tags = new List<string>
+            {
+                "Software",
+                "Developer",
+                "Engineer"
+            };
+            ob.Tags = tags;
 
+            string customCoordinates = "10,10,20,20";
+            ob.CustomCoordinates = customCoordinates;
+            List<string> responseFields = new List<string>
+            {
+                "isPrivateFile",
+                "tags",
+                "customCoordinates"
+            };
+            List<Extension> model1 = new List<Extension>();
+            BackGroundImage bck = new BackGroundImage();
+            bck.Name = "remove-bg";
+            bck.Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            model1.Add(bck);
+            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            Hashtable model = new Hashtable();
+            model.Add("price", 2000);
+            ob.CustomMetadata = model;
+            var formdata = MultipartFormDataModel.Build(ob); string result = formdata.ReadAsStringAsync().Result;
+            var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
-                //.WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
-           
+                .WithContent(result)
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
+
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
-            var response =  rs.Upload(ob);
+            var response = rs.Upload(ob);
             mockHttp.VerifyNoOutstandingExpectation();
         }
+
+        [Fact]
+        public void UpdateFileDetail_ModelValidation()
+        {
+            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, "file-Id");
+            FileUpdateRequest ob = new FileUpdateRequest
+            {
+                FileId = "file-Id",
+
+            };
+            List<string> tags = new List<string>
+            {
+                "Software",
+                "Developer",
+                "Engineer"
+            };
+            ob.Tags = tags;
+
+            string customCoordinates = "10,10,20,20";
+            ob.CustomCoordinates = customCoordinates;
+            List<string> responseFields = new List<string>
+            {
+                "isPrivateFile",
+                "tags",
+                "customCoordinates"
+            };
+            List<Extension> model1 = new List<Extension>();
+            BackGroundImage bck = new BackGroundImage();
+            bck.Name = "remove-bg";
+            bck.Options = new Options() { Add_shadow = true, Semitransparency=false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            model1.Add(bck);
+            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            Hashtable model = new Hashtable();
+            model.Add("price", 2000);
+            ob.CustomMetadata = model;
+            var formdata = MultipartFormDataModel.BuildUpdateFile(ob);
+            string result = formdata.ReadAsStringAsync().Result;
+            var mockHttp = new MockHttpMessageHandler();
+            var request = mockHttp.Expect(url)
+                .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithContent(result)
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
+
+            var client = mockHttp.ToHttpClient();
+            RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
+            var response = rs.UpdateFileDetail(ob);
+            mockHttp.VerifyNoOutstandingExpectation();
+        }
+
         [Fact]
         public void GetFileListRequest_ModelValidation()
         {
@@ -55,21 +128,21 @@ namespace Imagekit.UnitTests.Upload
             {
                 Limit = 10,
                 Skip = 0,
-                Type="Test",
-                Path= "Test",
+                Type = "Test",
+                Path = "Test",
                 Sort = "Test",
                 SearchQuery = "Test",
-                FileType= "Test",
-                Tags=null
-            }; 
+                FileType = "Test",
+                Tags = null
+            };
             string param = GetJsonBody.GetFileRequestBody(ob);
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest, param);
 
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-               
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -85,7 +158,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -100,7 +173,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Delete))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -116,7 +189,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -131,7 +204,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -143,8 +216,8 @@ namespace Imagekit.UnitTests.Upload
         public void BulkDeleteFilesRequest_ModelValidation()
         {
             string reqJosn = JsonRequest.JsonRequest.GetBulkDeleteRequest;
-           
-            List<string> fileIds=new List<string>();
+
+            List<string> fileIds = new List<string>();
             fileIds.Add("fileId1");
             fileIds.Add("fileId2");
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.BulkDelete);
@@ -152,7 +225,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -167,7 +240,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -182,7 +255,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -212,7 +285,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -241,7 +314,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -271,7 +344,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -283,12 +356,12 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void GetCustomMetaDataFields_ModelValidation()
         {
-            
+
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CustomMetadataFields, true);
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -320,7 +393,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -337,7 +410,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Delete))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -358,7 +431,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Delete))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -382,7 +455,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -406,7 +479,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -431,7 +504,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Put))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -455,7 +528,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -477,7 +550,7 @@ namespace Imagekit.UnitTests.Upload
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithContent(reqJosn)
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -493,8 +566,8 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-                
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -508,7 +581,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -523,7 +596,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
@@ -538,7 +611,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Put))
-                .Respond("application/json", "{'name' : 'Test McGee'}");
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
