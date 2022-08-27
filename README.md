@@ -1,4 +1,4 @@
-[![ImageKit.io](https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg)](https://imagekit.io)
+[<img width="250" alt="ImageKit.io" src="https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg"/>](https://imagekit.io)
 
 ## DotNET (NET45/Standard/Core) SDK for ImageKit
 
