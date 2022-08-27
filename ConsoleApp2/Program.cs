@@ -192,7 +192,7 @@ namespace ConsoleApp2
             ob.CustomMetadata = Updatemodel;
             Result Updateresp = imagekit.UpdateFileDetail(Updateob);
 
-               #endregion
+            #endregion
 
             #region File Management
 

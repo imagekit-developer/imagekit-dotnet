@@ -21,6 +21,7 @@ internal class RestClient
     private readonly string uploadAPIBaseUrl = UrlHandler.UploadAPIBaseUrl;
     private readonly HttpClient client;
     private readonly string boundary = UrlHandler.GetBoundaryString;
+
     public RestClient(string privateKey, string mediaAPIBaseUrl, HttpClient httpClient)
     {
         if (string.IsNullOrEmpty(privateKey))

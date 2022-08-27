@@ -44,8 +44,9 @@ namespace Imagekit.Util
         {
             if (responseMetadata == null)
             {
-                responseMetadata=new ResponseMetaData();
+                responseMetadata = new ResponseMetaData();
             }
+
             responseMetadata.Raw = respBody;
             responseMetadata.HttpStatusCode = responseCode;
             return responseMetadata;

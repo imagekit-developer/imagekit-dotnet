@@ -8,11 +8,11 @@ namespace Imagekit.UnitTests.JsonRequest
 {
     public static class JsonRequest
     {
-        public static string json = "Content-Disposition: form-data; name=\"fileName\""+
-        "sample-cat-image.png"+
-        "Content-Disposition: form-data; name=\"file\""+
+        public static string json = "Content-Disposition: form-data; name=\"fileName\"" +
+        "sample-cat-image.png" +
+        "Content-Disposition: form-data; name=\"file\"" +
         "https://homepages.cae.wisc.edu/~ece533/images/cat.png";
-                                   
+
 
         public static string GetPurgeCacheRequest = "{\"url\":\"path\"}";
         public static string GetBulkDeleteRequest = "{\"fileIds\":[\"fileId1\",\"fileId2\"]}";
@@ -27,7 +27,7 @@ namespace Imagekit.UnitTests.JsonRequest
         public static string GetMoveFileRequest = "{\"SourceFilePath\":\"Tst3\",\"DestinationPath\":\"Tst3\"}";
 
         public static string GetRenameFileRequest = "{\"FilePath\":\"Tst3\",\"NewFileName\":\"Tst4\",\"PurgeCache\":false}";
-        
+
         public static string GetDeleteFileRequest = "{\"FilePath\":\"Tst3\",\"NewFileName\":\"Tst4\",\"PurgeCache\":false}";
 
         public static string GetCopyFolder = "{\"SourceFolderPath\":\"Tst3\",\"DestinationPath\":\"Tst3\",\"IncludeFileVersions\":true}";

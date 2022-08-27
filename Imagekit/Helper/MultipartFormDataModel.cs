@@ -1,10 +1,9 @@
-﻿using System.Net.Http.Headers;
-using Imagekit.Constant;
-
-namespace Imagekit.Helper
+﻿namespace Imagekit.Helper
 {
     using System.Net;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using global::Imagekit.Constant;
     using global::Imagekit.Models;
     using global::Imagekit.Util;
     using Newtonsoft.Json;
