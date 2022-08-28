@@ -8,17 +8,19 @@ namespace Imagekit.Sdk
     using System.Threading.Tasks;
     using global::Imagekit.Models;
     using global::Imagekit.Models.Response;
+    using global::Imagekit.Util;
 
     public class ImagekitClient : BaseImagekit<ImagekitClient>
     {
         private readonly RestClient restClient;
-
+        private readonly string privateKey;
         public ImagekitClient(string publicKey, string privateKey, string urlEndPoint)
             : base(privateKey, urlEndPoint, "path")
         {
             this.restClient = new RestClient(privateKey, urlEndPoint, new System.Net.Http.HttpClient());
             this.Add("privateKey", privateKey);
             this.Add("publicKey", publicKey);
+            this.privateKey = privateKey;
         }
 
         public Result Upload(FileCreateRequest fileCreateRequest)
@@ -313,6 +315,11 @@ namespace Imagekit.Sdk
         public async Task<ResultList> GetFileListRequestAsync(GetFileListRequest getFileListRequest)
         {
             return (ResultList)await this.restClient.GetFileListRequestAsync(getFileListRequest);
+        }
+
+        public int PHashDistance(string firstHex, string secondHex)
+        {
+            return Calculation.getHammingDistance(firstHex, secondHex);
         }
     }
 }

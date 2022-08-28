@@ -1806,8 +1806,5 @@ internal class RestClient
         }
     }
 
-    public string MockThis()
-    {
-        return "Missing API Key parameters";
-    }
+    
 }
