@@ -613,22 +613,7 @@ namespace Imagekit.UnitTests
 
 
 
-        [Fact]
-        public void SameImage_getHammingDistance_expectedSuccessWith()
-        {
-            var imagekit = new ImagekitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
-            int hammingDistance = imagekit.PHashDistance("f06830ca9f1e3e90", "f06830ca9f1e3e90");
-            Assert.Equal(0,hammingDistance);
-        }
-
-
-        [Fact]
-        public void SimilarImage_getHammingDistance_expectedSuccessWith()
-        {
-            var imagekit = new ImagekitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
-            int hammingDistance = imagekit.PHashDistance("33699c96619cc69e", "968e978414fe04ea");
-            Assert.Equal(2, hammingDistance);
-        }
+       
 
        
     }
