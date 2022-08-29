@@ -14,6 +14,7 @@ namespace Imagekit.Sdk
     {
         private readonly RestClient restClient;
         private readonly string privateKey;
+
         public ImagekitClient(string publicKey, string privateKey, string urlEndPoint)
             : base(privateKey, urlEndPoint, "path")
         {
@@ -319,7 +320,7 @@ namespace Imagekit.Sdk
 
         public int PHashDistance(string firstHex, string secondHex)
         {
-            return Calculation.getHammingDistance(firstHex, secondHex);
+            return Calculation.GetHammingDistance(firstHex, secondHex);
         }
     }
 }

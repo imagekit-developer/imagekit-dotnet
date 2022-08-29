@@ -1805,6 +1805,4 @@ internal class RestClient
             throw new ImagekitException(ex.Message);
         }
     }
-
-    
 }
