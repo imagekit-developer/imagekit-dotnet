@@ -191,8 +191,10 @@ namespace Imagekit.UnitTests.Upload
             ob.OverwriteAiTags = false;
             ob.OverwriteTags = false;
             ob.OverwriteCustomMetadata = true;
-            Hashtable model = new Hashtable();
-            model.Add("price", 2000);
+            Hashtable model = new Hashtable
+            {
+                { "price", 2000 }
+            };
             ob.CustomMetadata = model;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
@@ -239,8 +241,10 @@ namespace Imagekit.UnitTests.Upload
             ob.OverwriteAiTags = false;
             ob.OverwriteTags = false;
             ob.OverwriteCustomMetadata = true;
-            Hashtable model = new Hashtable();
-            model.Add("price", 2000);
+            Hashtable model = new Hashtable
+            {
+                { "price", 2000 }
+            };
             ob.CustomMetadata = model;
 
 
@@ -279,8 +283,10 @@ namespace Imagekit.UnitTests.Upload
             ob.CustomCoordinates = customCoordinates;
             List<string> responseFields = null;
             ob.ResponseFields = responseFields;
-            Hashtable model = new Hashtable();
-            model.Add("price", 2000);
+            Hashtable model = new Hashtable
+            {
+                { "price", 2000 }
+            };
             ob.CustomMetadata = model;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
@@ -349,8 +355,10 @@ namespace Imagekit.UnitTests.Upload
             bck.Options = new Options() { Add_shadow = true, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
             model1.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            Hashtable model = new Hashtable();
-            model.Add("price", 2000);
+            Hashtable model = new Hashtable
+            {
+                { "price", 2000 }
+            };
             ob.CustomMetadata = model;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();

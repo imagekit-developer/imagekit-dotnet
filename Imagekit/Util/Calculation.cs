@@ -11,8 +11,6 @@
 
     public class Calculation
     {
-        private static readonly int DEFAULT_TIME_DIFF = 60 * 30;
-
         public static int GetHammingDistance(string firstHex, string secondHex)
         {
             if (!(IsValidHex(firstHex) && IsValidHex(secondHex)))

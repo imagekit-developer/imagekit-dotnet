@@ -610,12 +610,6 @@ namespace Imagekit.UnitTests
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.GetBulkJobStatusAsync(""));
             Assert.Equal(ErrorMessages.InvalidJobValue, ex.Result.Message);
         }
-
-
-
-
-
-
     }
 }
 

@@ -21,8 +21,8 @@ namespace Imagekit.UnitTests.Upload
     public class ImageKitRequestModelValidation
     {
 
-        private const string GOOD_PRIVATEKEY = "abc";
-        private const string GOOD_URLENDPOINT = "https://dasdsad.dad.io/";
+        private const string GOOD_PRIVATEKEY = "private_key";
+        private const string GOOD_URLENDPOINT = "https://endpoint_url.io/";
         private readonly string mediaAPIBaseUrl = UrlHandler.MediaAPIBaseUrl;
         private readonly string uploadAPIBaseUrl = UrlHandler.UploadAPIBaseUrl;
 
@@ -57,8 +57,10 @@ namespace Imagekit.UnitTests.Upload
             bck.Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
             model1.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            Hashtable model = new Hashtable();
-            model.Add("price", 2000);
+            Hashtable model = new Hashtable
+            {
+                { "price", 2000 }
+            };
             ob.CustomMetadata = model;
             var formdata = MultipartFormDataModel.Build(ob); string result = formdata.ReadAsStringAsync().Result;
             var mockHttp = new MockHttpMessageHandler();
@@ -98,14 +100,16 @@ namespace Imagekit.UnitTests.Upload
                 "tags",
                 "customCoordinates"
             };
-            List<Extension> model1 = new List<Extension>();
+            List<Extension> modelExt = new List<Extension>();
             BackGroundImage bck = new BackGroundImage();
             bck.Name = "remove-bg";
             bck.Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
-            model1.Add(bck);
+            modelExt.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            Hashtable model = new Hashtable();
-            model.Add("price", 2000);
+            Hashtable model = new Hashtable
+            {
+                { "price", 2000 }
+            };
             ob.CustomMetadata = model;
             var formdata = MultipartFormDataModel.BuildUpdateFile(ob);
             string result = formdata.ReadAsStringAsync().Result;
@@ -217,9 +221,11 @@ namespace Imagekit.UnitTests.Upload
         {
             string reqJosn = JsonRequest.JsonRequest.GetBulkDeleteRequest;
 
-            List<string> fileIds = new List<string>();
-            fileIds.Add("fileId1");
-            fileIds.Add("fileId2");
+            List<string> fileIds = new List<string>
+            {
+                "fileId1",
+                "fileId2"
+            };
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.BulkDelete);
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
