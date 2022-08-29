@@ -52,9 +52,11 @@ namespace Imagekit.UnitTests.Upload
                 "customCoordinates"
             };
             List<Extension> model1 = new List<Extension>();
-            BackGroundImage bck = new BackGroundImage();
-            bck.Name = "remove-bg";
-            bck.Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            BackGroundImage bck = new BackGroundImage
+            {
+                Name = "remove-bg",
+                Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+            };
             model1.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             Hashtable model = new Hashtable
@@ -101,9 +103,11 @@ namespace Imagekit.UnitTests.Upload
                 "customCoordinates"
             };
             List<Extension> modelExt = new List<Extension>();
-            BackGroundImage bck = new BackGroundImage();
-            bck.Name = "remove-bg";
-            bck.Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" };
+            BackGroundImage bck = new BackGroundImage
+            {
+                Name = "remove-bg",
+                Options = new Options() { Add_shadow = true, Semitransparency = false, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+            };
             modelExt.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             Hashtable model = new Hashtable
