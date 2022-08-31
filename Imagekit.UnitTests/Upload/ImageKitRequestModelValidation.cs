@@ -3,15 +3,8 @@ using Imagekit.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using MockHttpServer;
-using Newtonsoft.Json;
 using Xunit;
-using Imagekit.UnitTests.JsonRequest;
 using RichardSzalay.MockHttp;
 using Imagekit.Helper;
 using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
@@ -23,13 +16,11 @@ namespace Imagekit.UnitTests.Upload
 
         private const string GOOD_PRIVATEKEY = "private_key";
         private const string GOOD_URLENDPOINT = "https://endpoint_url.io/";
-        private readonly string mediaAPIBaseUrl = UrlHandler.MediaAPIBaseUrl;
-        private readonly string uploadAPIBaseUrl = UrlHandler.UploadAPIBaseUrl;
-
+        
         [Fact]
         public void UploadFileRequest_ModelValidation()
         {
-            string url = this.uploadAPIBaseUrl + UrlHandler.UploadFile;
+            string url = "https://upload.imagekit.io/api/v1/files/upload";
             FileCreateRequest ob = new FileCreateRequest
             {
                 Url = new Uri(@"https://homepages.cae.wisc.edu/~ece533/images/cat.png"),
@@ -68,6 +59,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(result)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -80,7 +72,7 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void UpdateFileDetail_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, "file-Id");
+            string url = string.Format("https://api.imagekit.io/v1/files/{0}/details", "file-Id");
             FileUpdateRequest ob = new FileUpdateRequest
             {
                 FileId = "file-Id",
@@ -120,6 +112,7 @@ namespace Imagekit.UnitTests.Upload
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(result)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -144,12 +137,12 @@ namespace Imagekit.UnitTests.Upload
                 Tags = null
             };
             string param = GetJsonBody.GetFileRequestBody(ob);
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest, param);
+            string url = string.Format("https://api.imagekit.io/v1/files/?{0}", param);
 
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -160,11 +153,12 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void PurgeCache_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetPurge);
-            string reqJosn = JsonRequest.JsonRequest.GetPurgeCacheRequest;
+            string url = string.Format("https://api.imagekit.io/v1/files/purge");
+            string reqJosn = "{\"url\":\"path\"}";
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -176,11 +170,12 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void DeleteFileRequest_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteFile, "fileId");
+            string url = string.Format("https://api.imagekit.io/v1/files/{0}/", "fileId");
 
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Delete))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -192,11 +187,12 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void PurgeStatusRequest_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetPurgeStatus, "purgeRequestId");
+            string url = string.Format("https://api.imagekit.io/v1/files/purge/{0}", "purgeRequestId");
 
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -208,10 +204,11 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void GetFileDetailRequest_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileDetails, "fileId");
+            string url = string.Format("https://api.imagekit.io/v1/files/{0}/details", "fileId");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -223,17 +220,18 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void BulkDeleteFilesRequest_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.GetBulkDeleteRequest;
+            string reqJosn = "{\"fileIds\":[\"fileId1\",\"fileId2\"]}";
 
             List<string> fileIds = new List<string>
             {
                 "fileId1",
                 "fileId2"
             };
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.BulkDelete);
+            string url = string.Format("https://api.imagekit.io/v1/files/batch/deleteByFileIds");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -246,10 +244,11 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void GetFileMetaDataRequest_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetMetaData, "fileId");
+            string url = string.Format("https://api.imagekit.io/v1/files/{0}/metadata", "fileId");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -261,10 +260,11 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void GetRemoteFileMetaDataRequest_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetRemoteData, "url");
+            string url = string.Format("https://api.imagekit.io/v1/metadata?url={0}", "url");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -276,7 +276,7 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void AddTagsRequest_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.GetManageTagsRequest;
+            string reqJosn = "{\"FileIds\":[\"abc\"],\"Tags\":[\"abc\",\"abc\"]}";
 
             TagsRequest tagsRequest = new TagsRequest
             {
@@ -290,10 +290,11 @@ namespace Imagekit.UnitTests.Upload
                     "abc"
                 }
             };
-            string url = string.Format(this.uploadAPIBaseUrl + UrlHandler.AddTags);
+            string url = "https://upload.imagekit.io/v1/files/addTags";
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -305,7 +306,7 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void RemoveTagsRequest_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.GetManageTagsRequest;
+            string reqJosn = "{\"FileIds\":[\"abc\"],\"Tags\":[\"abc\",\"abc\"]}";
 
             TagsRequest tagsRequest = new TagsRequest
             {
@@ -319,10 +320,11 @@ namespace Imagekit.UnitTests.Upload
                     "abc"
                 }
             };
-            string url = string.Format(this.uploadAPIBaseUrl + UrlHandler.RemoveTags);
+            string url = string.Format("https://upload.imagekit.io/" + UrlHandler.RemoveTags);
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -335,7 +337,7 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void RemoveAITagsRequest_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.GetAITagsRequest;
+            string reqJosn = "{\"FileIds\":[\"abc\"],\"AiTags\":[\"abc\",\"abc\"]}";
 
             AiTagsRequest tagsRequest = new AiTagsRequest
             {
@@ -349,10 +351,11 @@ namespace Imagekit.UnitTests.Upload
                     "abc"
                 }
             };
-            string url = string.Format(this.uploadAPIBaseUrl + UrlHandler.RemoveAiTags);
+            string url = string.Format("https://upload.imagekit.io/" + UrlHandler.RemoveAiTags);
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -367,10 +370,11 @@ namespace Imagekit.UnitTests.Upload
         public void GetCustomMetaDataFields_ModelValidation()
         {
 
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CustomMetadataFields, true);
+            string url = string.Format("https://api.imagekit.io/v1/customMetadataFields?includeDeleted={0}", true);
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -382,7 +386,7 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void CreateCustomMetaDataFields_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.GetCustomMetaDataFieldsRequest;
+            string reqJosn = "{\n    \"name\": \"Tst3\",\n    \"label\": \"Test3\",\n    \"schema\": {\n        \"type\": \"Imagekit.Models.CustomMetaDataFieldSchemaObject\",\n        \"minValue\": \"1000\",\n        \"maxValue\": \"3000\"\n    }\n}";
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
                 Name = "Tst3",
@@ -398,10 +402,11 @@ namespace Imagekit.UnitTests.Upload
                 IsValueRequired = false
             };
             model.Schema = schema;
-            string url = this.mediaAPIBaseUrl + UrlHandler.CreareCustomMetaDataFields;
+            string url = "https://api.imagekit.io/v1/customMetadataFields";
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -415,11 +420,12 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void DeleteCustomMetaDataField_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteCustomMetaDataFields, "id");
+            string url = string.Format("https://api.imagekit.io/v1/customMetadataFields/{0}", "id");
 
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Delete))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -436,11 +442,12 @@ namespace Imagekit.UnitTests.Upload
                 FileId = "Tst3",
                 VersionId = "Tst3"
             };
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteVesrion, model.FileId,
+            string url = string.Format("https://api.imagekit.io/v1/files/{0}/versions/{1}", model.FileId,
                 model.VersionId);
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Delete))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -452,7 +459,8 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void CopyFile_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.GetCopyFileRequest;
+            string reqJosn = "{\"SourceFilePath\":\"Tst3\",\"DestinationPath\":\"Tst3\",\"IncludeFileVersions\":true}";
+            
             CopyFileRequest model = new CopyFileRequest
             {
                 SourceFilePath = "Tst3",
@@ -460,10 +468,11 @@ namespace Imagekit.UnitTests.Upload
                 IncludeFileVersions = true
             };
             string url = string.Empty;
-            url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CopyFile);
+            url = string.Format("https://api.imagekit.io/v1/files/copy");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -476,7 +485,7 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void MoveFile_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.GetMoveFileRequest;
+            string reqJosn = "{\"SourceFilePath\":\"Tst3\",\"DestinationPath\":\"Tst3\"}";
             MoveFileRequest model = new MoveFileRequest
             {
                 SourceFilePath = "Tst3",
@@ -484,10 +493,11 @@ namespace Imagekit.UnitTests.Upload
             };
 
             string url = string.Empty;
-            url = string.Format(this.mediaAPIBaseUrl + UrlHandler.MoveFile);
+            url = string.Format("https://api.imagekit.io/v1/files/move");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -500,7 +510,7 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void RenameFile_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.GetRenameFileRequest;
+            string reqJosn = "{\"FilePath\":\"Tst3\",\"NewFileName\":\"Tst4\",\"PurgeCache\":false}";
             RenameFileRequest model = new RenameFileRequest
             {
                 FilePath = "Tst3",
@@ -509,10 +519,11 @@ namespace Imagekit.UnitTests.Upload
             };
 
             string url = string.Empty;
-            url = string.Format(this.mediaAPIBaseUrl + UrlHandler.RenameFile);
+            url = string.Format("https://api.imagekit.io/v1/files/rename");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Put))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -526,17 +537,18 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void CopyFolder_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.GetCopyFolder;
+            string reqJosn = "{\"SourceFolderPath\":\"Tst3\",\"DestinationPath\":\"Tst3\",\"IncludeFileVersions\":true}";
             CopyFolderRequest model = new CopyFolderRequest
             {
                 SourceFolderPath = "Tst3",
                 DestinationPath = "Tst3",
                 IncludeFileVersions = true
             };
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.CopyFolder);
+            string url = string.Format("https://api.imagekit.io/v1/bulkJobs/moveFolder");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -549,16 +561,17 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void MoveFolder_ModelValidation()
         {
-            string reqJosn = JsonRequest.JsonRequest.GetMoveFolder;
+            string reqJosn = "{\"SourceFolderPath\":\"Tst3\",\"DestinationPath\":\"Tst3\"}";
             MoveFolderRequest model = new MoveFolderRequest
             {
                 SourceFolderPath = "Tst3",
                 DestinationPath = "Tst3"
             };
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.MoveFolder);
+            string url = string.Format("https://api.imagekit.io/v1/bulkJobs/moveFolder");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
@@ -572,11 +585,11 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void GetBulkJobStatus_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetJobStatus, "jobId");
+            string url = string.Format("https://api.imagekit.io/v1/bulkJobs/{0}", "jobId");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
-
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -587,10 +600,11 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void GetFileVersions_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetJobStatus, "fileId");
+            string url = string.Format("https://api.imagekit.io/v1/bulkJobs/{0}", "fileId");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -602,10 +616,11 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void GetFileVersionDetails_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersionDetail, "fileId", "versionId");
+            string url = string.Format("https://api.imagekit.io/v1/files/{0}/versions/{1}", "fileId", "versionId");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -617,10 +632,11 @@ namespace Imagekit.UnitTests.Upload
         [Fact]
         public void RestoreFileVersion_ModelValidation()
         {
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.RestoreVesrion, "fileId", "versionId");
+            string url = string.Format("https://api.imagekit.io/v1/files/{0}/versions/{1}/restore", "fileId", "versionId");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Put))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
