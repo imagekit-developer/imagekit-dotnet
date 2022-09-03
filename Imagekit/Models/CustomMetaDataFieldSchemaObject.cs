@@ -6,14 +6,14 @@ namespace Imagekit.Models
 {
     public class CustomMetaDataFieldSchemaObject
     {
-        private CustomMetaDataTypeEnum type;
-        private object selectOptions;
-        private object defaultValue;
-        private bool isValueRequired;
-        private int minValue;
-        private int maxValue;
-        private int minLength;
-        private int maxLength;
+        public string type { get; set; }
+        public string[] selectOptions { get; set; }
+        public object defaultValue { get; set; }
+        public bool isValueRequired { get; set; }
+        public object minValue { get; set; }
+        public object maxValue { get; set; }
+        public int minLength { get; set; }
+        public int maxLength { get; set; }
 
         public enum CustomMetaDataTypeEnum
         {
@@ -25,20 +25,6 @@ namespace Imagekit.Models
             MultiSelect,
         }
 
-        public CustomMetaDataTypeEnum Type { set => this.type = value; }
-
-        public object SelectOptions { set => this.selectOptions = value; }
-
-        public object DefaultValue { set => this.defaultValue = value; }
-
-        public bool IsValueRequired { set => this.isValueRequired = value; }
-
-        public int MinValue { get => this.minValue; set => this.minValue = value; }
-
-        public int MaxValue { get => this.maxValue; set => this.maxValue = value; }
-
-        public int MinLength { set => this.minLength = value; }
-
-        public int MaxLength { set => this.maxLength = value; }
+       
     }
 }

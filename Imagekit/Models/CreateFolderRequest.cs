@@ -6,8 +6,8 @@ namespace Imagekit.Models
 {
     public class CreateFolderRequest
     {
-        public string FolderName { get; set; }
+        public string folderName { get; set; }
 
-        public string ParentFolderPath { get; set; }
+        public string parentFolderPath { get; set; }
     }
 }

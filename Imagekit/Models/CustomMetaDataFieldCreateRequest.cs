@@ -6,17 +6,17 @@ namespace Imagekit.Models
 {
     public class CustomMetaDataFieldCreateRequest
     {
-        public string Name { get; set; }
+        public string name { get; set; }
 
-        public string Label { get; set; }
+        public string label { get; set; }
 
-        public CustomMetaDataFieldSchemaObject Schema { get; set; }
+        public CustomMetaDataFieldSchemaObject schema { get; set; }
     }
 
     public class CustomMetaDataFieldUploadRequest
     {
-        public string Name { get; set; }
+        public string name { get; set; }
 
-        public CustomMetaDataFieldSchemaObject Schema { get; set; }
+        public CustomMetaDataFieldSchemaObject schema { get; set; }
     }
 }

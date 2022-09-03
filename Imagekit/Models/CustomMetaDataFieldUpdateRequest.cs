@@ -8,6 +8,6 @@ namespace Imagekit.Models
     {
         public string Id { get; set; }
 
-        public CustomMetaDataFieldSchemaObject Schema { get; set; }
+        public CustomMetaDataFieldSchemaObject schema { get; set; }
     }
 }

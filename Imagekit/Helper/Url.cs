@@ -12,7 +12,7 @@ using global::Imagekit.Util;
 [ExcludeFromCodeCoverage]
 public class Url
 {
-    public Dictionary<string, object> Options = new Dictionary<string, object>();
+    public Dictionary<string, object> options = new Dictionary<string, object>();
 
     private bool isSrcParameterUsedForUrl;
     private Uri parsedUrl;
@@ -20,29 +20,29 @@ public class Url
 
     public Url(Dictionary<string, object> client)
     {
-        this.Options = client;
+        this.options = client;
     }
 
     public string UrlBuilder(string transformationString)
     {
         Dictionary<string, string> urlObject = new Dictionary<string, string>();
 
-        if (this.Options.ContainsKey("path") && this.Options.ContainsKey("src"))
+        if (this.options.ContainsKey("path") && this.options.ContainsKey("src"))
         {
             throw new Exception("Either path or src is required.");
         }
-        else if (this.Options.ContainsKey("path"))
+        else if (this.options.ContainsKey("path"))
         {
-            string path = this.AddLeadingSlash((string)this.Options["path"]);
-            this.parsedUrl = new Uri((string)this.Options["urlEndpoint"] + path);
-            this.parsedHost = new Uri((string)this.Options["urlEndpoint"]);
+            string path = this.AddLeadingSlash((string)this.options["path"]);
+            this.parsedUrl = new Uri((string)this.options["urlEndpoint"] + path);
+            this.parsedHost = new Uri((string)this.options["urlEndpoint"]);
             urlObject.Add("protocol", this.parsedHost.Scheme);
-            urlObject.Add("host", this.Options["urlEndpoint"].ToString().Replace(this.parsedHost.Scheme + "://", string.Empty));
+            urlObject.Add("host", this.options["urlEndpoint"].ToString().Replace(this.parsedHost.Scheme + "://", string.Empty));
             urlObject.Add("pathname", path.Split('?')[0]);
         }
-        else if (this.Options.ContainsKey("src"))
+        else if (this.options.ContainsKey("src"))
         {
-            this.parsedUrl = new Uri((string)this.Options["src"]);
+            this.parsedUrl = new Uri((string)this.options["src"]);
             this.isSrcParameterUsedForUrl = true;
             urlObject.Add("protocol", this.parsedUrl.Scheme);
             urlObject.Add("host", this.parsedUrl.Host);
@@ -78,9 +78,9 @@ public class Url
         }
 
         // parse param passed as queryParameters list
-        if (this.Options.ContainsKey("queryParameters"))
+        if (this.options.ContainsKey("queryParameters"))
         {
-            foreach (var param in (string[])this.Options["queryParameters"])
+            foreach (var param in (string[])this.options["queryParameters"])
             {
                 if (string.IsNullOrEmpty(param))
                 {
@@ -116,9 +116,9 @@ public class Url
             urlObject["query"] = string.Join("&", queryParameters);
         }
 
-        if (this.Options.ContainsKey("signed") && this.Options["signed"].Equals(true))
+        if (this.options.ContainsKey("signed") && this.options["signed"].Equals(true))
         {
-            string expiryTimestamp = this.Options.ContainsKey("expireSeconds") ? Utils.GetSignatureTimestamp((int)this.Options["expireSeconds"]) : Constants.DefaultTimestamp;
+            string expiryTimestamp = this.options.ContainsKey("expireSeconds") ? Utils.GetSignatureTimestamp((int)this.options["expireSeconds"]) : Constants.DefaultTimestamp;
             if (expiryTimestamp != Constants.DefaultTimestamp)
             {
                 queryParameters.Add(this.GetParam(Constants.TimestampParameter, expiryTimestamp));
@@ -167,7 +167,7 @@ public class Url
 
     public bool AddAsQueryParameter()
     {
-        if (this.Options["transformationPosition"].ToString() == "query")
+        if (this.options["transformationPosition"].ToString() == "query")
         {
             return true;
         }
@@ -177,8 +177,8 @@ public class Url
 
     public string GetSignature(string url, string expiryTimestamp)
     {
-        var endPoint = this.RemoveTrailingSlash((string)this.Options["urlEndpoint"]);
+        var endPoint = this.RemoveTrailingSlash((string)this.options["urlEndpoint"]);
         string str = Regex.Replace(url, endPoint + "/", string.Empty) + expiryTimestamp;
-        return Utils.CalculateSignature(str, Encoding.ASCII.GetBytes((string)this.Options["privateKey"]));
+        return Utils.CalculateSignature(str, Encoding.ASCII.GetBytes((string)this.options["privateKey"]));
     }
 }

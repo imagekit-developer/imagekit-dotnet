@@ -8,13 +8,8 @@ using Imagekit.Models;
 [ExcludeFromCodeCoverage]
 public class ResultCustomMetaDataField : ResponseMetaData
 {
-    private string Id { get; set; }
-
-    private string Name { get; set; }
-
-    private string Label { get; set; }
-
-    private string Message { get; set; }
-
-    private CustomMetaDataFieldSchemaObject Schema { get; set; }
+    public string id { get; set; }
+    public string name { get; set; }
+    public string label { get; set; }
+    public CustomMetaDataFieldSchemaObject Schema { get; set; }
 }

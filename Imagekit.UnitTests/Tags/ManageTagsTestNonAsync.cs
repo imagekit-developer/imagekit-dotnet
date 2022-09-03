@@ -20,12 +20,12 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest tagsRequest = new TagsRequest
             {
-                Tags = new List<string>
+                tags = new List<string>
                 {
                     "abc",
                     "abc"
                 },
-                FileIds = new List<string>
+                fileIds = new List<string>
             {
                 "abc"
             }
@@ -66,8 +66,8 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest ob = new TagsRequest
             {
-                Tags = null,
-                FileIds = new List<string> { "abc" }
+                tags = null,
+                fileIds = new List<string> { "abc" }
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -87,8 +87,8 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest ob = new TagsRequest
             {
-                Tags = new List<string> { "abc" },
-                FileIds = null
+                tags = new List<string> { "abc" },
+                fileIds = null
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -110,12 +110,12 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest tagsRequest = new TagsRequest
             {
-                Tags = new List<string>
+                tags = new List<string>
                 {
                     "abc",
                     "abc"
                 },
-                FileIds = new List<string>
+                fileIds = new List<string>
             {
                 "abc"
             }
@@ -156,8 +156,8 @@ namespace Imagekit.UnitTests.Tags
         {
             TagsRequest ob = new TagsRequest
             {
-                Tags = null,
-                FileIds = new List<string> { "abc" }
+                tags = null,
+                fileIds = new List<string> { "abc" }
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -176,7 +176,7 @@ namespace Imagekit.UnitTests.Tags
         [Fact]
         public void Remove_AITags_Null_ExceptionNonAsync()
         {
-            AiTagsRequest ob = null;
+            AITagsRequest ob = null;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
             var httpResponse = new HttpResponseMessage
@@ -186,16 +186,16 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() => restClient.RemoveAiTags(ob));
+            var ex = Assert.Throws<Exception>(() => restClient.RemoveAITags(ob));
             Assert.Equal(ErrorMessages.InvalidTagValue, ex.Message);
         }
         [Fact]
         public void Missing_AI_Tags_Null_ExceptionNonAsync()
         {
-            AiTagsRequest ob = new AiTagsRequest
+            AITagsRequest ob = new AITagsRequest
             {
-                AiTags = null,
-                FileIds = new List<string> { "abc" }
+                AITags = null,
+                fileIds = new List<string> { "abc" }
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -206,17 +206,17 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() => restClient.RemoveAiTags(ob));
+            var ex = Assert.Throws<Exception>(() => restClient.RemoveAITags(ob));
             Assert.Equal(ErrorMessages.InvalidTagParamValue, ex.Message);
         }
 
         [Fact]
         public void Missing_AI_Filed_Null_ExceptionNonAsync()
         {
-            AiTagsRequest ob = new AiTagsRequest
+            AITagsRequest ob = new AITagsRequest
             {
-                AiTags = new List<string> { "abc" },
-                FileIds = null
+                AITags = new List<string> { "abc" },
+                fileIds = null
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -228,7 +228,7 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.Throws<Exception>(() => restClient.RemoveAiTags(ob));
+            var ex = Assert.Throws<Exception>(() => restClient.RemoveAITags(ob));
             Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Message);
         }
 

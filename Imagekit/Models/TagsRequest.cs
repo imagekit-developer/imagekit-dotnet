@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 public class TagsRequest
 {
-    private List<string> fileIds;
-    private List<string> tags;
+    private List<string> FileIds;
+    private List<string> Tags;
 
-    public List<string> FileIds { get => this.fileIds; set => this.fileIds = value; }
+    public List<string> fileIds { get => this.FileIds; set => this.FileIds = value; }
 
-    public List<string> Tags { get => this.tags; set => this.tags = value; }
+    public List<string> tags { get => this.Tags; set => this.Tags = value; }
 }

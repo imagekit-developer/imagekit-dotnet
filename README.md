@@ -1,4 +1,4 @@
-[<img width="250" alt="ImageKit.io" src="https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg"/>](https://imagekit.io)
+[![ImageKit.io](https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg)](https://imagekit.io)
 
 ## DotNET (NET45/Standard/Core) SDK for ImageKit
 
@@ -261,8 +261,8 @@ Sample usage
  // Upload By URI
 FileCreateRequest request = new FileCreateRequest
 {
-    Url = new Uri(@"http://www.google.com/images/logos/ps_logo2.png"),
-    FileName = "file_name.jpg",
+file = "http://www.google.com/images/logos/ps_logo2.png",
+FileName = "file_name.jpg",
 };
 Result resp1 = imagekit.Upload(request);
 
@@ -271,8 +271,8 @@ byte[] bytes = System.IO.File.ReadAllBytes(@"image file path");
 
 FileCreateRequest ob = new FileCreateRequest
 {
-    Bytes = bytes,
-    FileName = Guid.NewGuid().ToString(),
+file = bytes,
+FileName = Guid.NewGuid().ToString(),
 };
 
 Result resp2 = imagekit.Upload(ob);
@@ -283,8 +283,8 @@ string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 // Upload by Base64
  FileCreateRequest ob2 = new FileCreateRequest
 {
-    Base64 = base64ImageRepresentation,
-    FileName = Guid.NewGuid().ToString(),
+file = base64ImageRepresentation,
+FileName = Guid.NewGuid().ToString(),
 };
 Result resp = imagekit.Upload(ob2);           
 ```
@@ -355,9 +355,9 @@ Accepts the file IDs to delete files as per the [API documentation here](https:/
 
 ```cs
 List<String> fileIds = new ArrayList<>();
-fileIds.add("file_id-1");
-fileIds.add("file_id-2");
-fileIds.add("file_id-3");
+fileIds.add("file-id-1");
+fileIds.add("file-id-2");
+fileIds.add("file-id-3");
 
 ResultFileDelete result = imageKit.bulkDeleteFiles(fileIds);
 ```
@@ -368,9 +368,9 @@ Accepts an object of class `CopyFileRequest` specifying the parameters to be use
 
 ```cs
 CopyFileRequest copyFileRequest = new CopyFileRequest();
-copyFileRequest.SourceFilePath = "/image_name.png";
-copyFileRequest.DestinationPath = "/Gallery/";
-copyFileRequest.IncludeFileVersions = false;
+copyFileRequest.sourceFilePath = "/image_name.png";
+copyFileRequest.destinationPath = "/Gallery/";
+copyFileRequest.includeFileVersions = false;
 ResultNoContent resultNoContent = imageKit.copyFile(copyFileRequest);
 ```
 
@@ -380,8 +380,8 @@ Accepts an object of class `MoveFileRequest` specifying the parameters to be use
 
 ```cs
 MoveFileRequest moveFileRequest = new MoveFileRequest();
-moveFileRequest.SourceFilePath="/Gallery/image_name.png";
-moveFileRequest.DestinationPath="/";
+moveFileRequest.sourceFilePath="/Gallery/image_name.png";
+moveFileRequest.destinationPath="/";
 ResultNoContent resultNoContent = imageKit.moveFile(moveFileRequest);
 ```
 
@@ -391,9 +391,9 @@ Accepts an object of class `RenameFileRequest` specifying the parameters to be u
 
 ```cs
 RenameFileRequest renameFileRequest = new RenameFileRequest();
-renameFileRequest.FilePath = "/image_name.png";
-renameFileRequest.NewFileName = "image_name_new.png";
-renameFileRequest.PurgeCache = false;
+renameFileRequest.filePath = "/image_name.png";
+renameFileRequest.newFileName = "image_name_new.png";
+renameFileRequest.purgeCache = false;
 ResultRenameFile resultRenameFile = imageKit.renameFile(renameFileRequest); 
 ```
 
@@ -437,7 +437,7 @@ fileIds.add("file_id_1");
 List<String> aiTags = new ArrayList<>();
 aiTags.add("Rectangle");
 AITagsRequest aiTagsRequest = new AITagsRequest();
-aiTagsRequest.FileIds = fileIds;
+aiTagsRequest.fileIds = fileIds;
 aiTagsRequest.AITags = aiTags;
 ResultTags resultTags = imageKit.getInstance().removeAITags(aiTagsRequest);
 ```
@@ -458,8 +458,8 @@ Accepts an object of class `DeleteFileVersionRequest` specifying the parameters 
 
 ```cs
 DeleteFileVersionRequest deleteFileVersionRequest = new DeleteFileVersionRequest();
-deleteFileVersionRequest.FileId = "file_id_1";
-deleteFileVersionRequest.VersionId = "file_version_id_1";
+deleteFileVersionRequest.fileId = "file_id_1";
+deleteFileVersionRequest.versionId = "file_version_id_1";
 ResultNoContent resultNoContent = imageKit.deleteFileVersion(deleteFileVersionRequest);
 ```
 
@@ -479,8 +479,8 @@ Accepts an object of class `CreateFolderRequest` specifying the parameters to be
 
 ```cs
 CreateFolderRequest createFolderRequest = new CreateFolderRequest();
-createFolderRequest.FolderName = "folder_name";
-createFolderRequest.ParentFolderPath = "/";
+createFolderRequest.folderName = "folder_name";
+createFolderRequest.parentFolderPath = "/";
 ResultEmptyBlock resultEmptyBlock = imageKit.createFolder(createFolderRequest);
 ```
 
@@ -490,8 +490,8 @@ Accepts an object of class `CopyFolderRequest` specifying the parameters to be u
 
 ```cs
 CopyFolderRequest copyFolderRequest = new CopyFolderRequest();
-copyFolderRequest.SourceFolderPath = "/Gallery/folder_name";
-copyFolderRequest.DestinationPath = "/";
+copyFolderRequest.sourceFolderPath = "/Gallery/folder_name";
+copyFolderRequest.destinationPath = "/";
 ResultOfFolderActions resultOfFolderActions = imageKit.copyFolder(copyFolderRequest);
 ```
 
@@ -573,31 +573,40 @@ Check for the [Allowed Values In The Schema](https://docs.imageKit.io/api-refere
 #### Examples:
 
 ```cs
-CustomMetaDataFieldSchemaObject schemaObject = new CustomMetaDataFieldSchemaObject();
-schemaObject.Type = "Number";
-schemaObject.MinValue = 10;
-schemaObject.MaxValue = 200;
-CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest = new CustomMetaDataFieldCreateRequest();
-customMetaDataFieldCreateRequest.Name = "Name";
-customMetaDataFieldCreateRequest.Label = "Label";
-customMetaDataFieldCreateRequest.Schema = schemaObject;
-ResultCustomMetaDataFieldList ResponseMetaData = imageKit.createCustomMetaDataFields(customMetaDataFieldCreateRequest);
+CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
+{
+name = "custom-meta-1",
+label = "Testmeta"
+            };
+CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
+{
+type = "Number",
+minValue = 2000,
+maxValue = 3000
+};
+
+requestModel.schema = schema;
+ResultCustomMetaDataField resultCustomMetaDataField1 = imagekit.CreateCustomMetaDataFields(requestModel);
+
 ```
 
 *   Date type Example:
 
 ```cs
-CustomMetaDataFieldSchemaObject customMetaDataFieldSchemaObject = new CustomMetaDataFieldSchemaObject();
-customMetaDataFieldSchemaObject.setType = "Date";
- // required if isValueRequired set to false
-customMetaDataFieldSchemaObject.MinValue = "2022-11-30T10:11:10+00:00";
-customMetaDataFieldSchemaObject.MaxValue = "2022-12-30T10:11:10+00:00";
-CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest = new CustomMetaDataFieldCreateRequest();
-customMetaDataFieldCreateRequest.Name = "Name";
-customMetaDataFieldCreateRequest.Label = "Label";
-customMetaDataFieldCreateRequest.Schema = customMetaDataFieldSchemaObject;
-ResultCustomMetaDataField resultCustomMetaDataField = imageKit.getInstance()
-       .createCustomMetaDataFields(customMetaDataFieldCreateRequest);
+CustomMetaDataFieldCreateRequest requestModelDate = new CustomMetaDataFieldCreateRequest
+{
+name = "custom-meta-Date2",
+label = "TestmetaDate2"
+};
+CustomMetaDataFieldSchemaObject schemaDate = new CustomMetaDataFieldSchemaObject
+{
+type = "Date",
+minValue = "2022-11-30T10:11:10+00:00",
+maxValue = "2022-12-30T10:11:10+00:00"
+};
+requestModelDate.schema = schemaDate;
+ResultCustomMetaDataField resultCustomMetaDataFieldDate = imagekit.CreateCustomMetaDataFields(requestModelDate);
+
 ```
 
 **25\. Get CustomMetaDataFields**
@@ -613,14 +622,20 @@ ResultCustomMetaDataFieldList resultCustomMetaDataFieldList = imageKit.getCustom
 Accepts an ID of customMetaDataField and an object of class `CustomMetaDataFieldUpdateRequest` specifying the parameters to be used to edit cusomMetaDataFields as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field).
 
 ```cs
-CustomMetaDataFieldSchemaObject schemaObject = new CustomMetaDataFieldSchemaObject();
-schemaObject.setMinValue(10);
-schemaObject.setMaxValue(200);
-CustomMetaDataFieldUpdateRequest customMetaDataFieldUpdateRequest = new CustomMetaDataFieldUpdateRequest();
-customMetaDataFieldUpdateRequest.Id = "id";
-customMetaDataFieldUpdateRequest.Label = "label";
-customMetaDataFieldUpdateRequest.Schema = schemaObject;
-ResultCustomMetaDataField resultCustomMetaDataField = imageKit.updateCustomMetaDataFields(customMetaDataFieldUpdateRequest);
+ CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
+{
+Id = "field_id",
+};
+CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
+{
+type = "Number",
+minValue = 8000,
+maxValue = 3000
+};
+
+requestUpdateModel.schema = updateschema;
+ResultCustomMetaDataField resultCustomMetaDataFieldUpdate = imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
+
 ```
 
 **27\. Delete Custom MetaData Fields**
@@ -697,25 +712,50 @@ Imagekit .Net SDK raises exceptions for many reasons, such as being not found, i
 #### Example:
 
 ```cs
+  try
+{
+// Use ImageKit's SDK to make requests...
+}
+catch (InvalidOperationException ex)
+{
+Console.Write("Invalid operation. Please try again.");
+}
+catch (FormatException ex)
+{
+Console.Write("Not a valid format. Please try again.");
+}
+catch (WebServiceException ex)
+{
+/*
+webEx.StatusCode        = 400
+webEx.StatusDescription = ArgumentNullException
+webEx.ErrorCode         = ArgumentNullException
+webEx.ErrorMessage      = Value cannot be null. Parameter name: Name
+webEx.StackTrace        = (your Server Exception StackTrace - in DebugMode)
+webEx.ResponseDto       = (your populated Response DTO)
+webEx.ResponseStatus    = (your populated Response Status DTO)
+webEx.GetFieldErrors()  = (individual errors for each field if any)
+*/
+}
+```
+
+## Access request-id, other response headers and HTTP status code
+You can access `$ResponseMetadata` on success or error object to access the HTTP status code and response headers.
+
+```cs
+// Success
+var response = await imagekit.PurgeStatus(requestId);
+console.Write(response.statusCode); // 200
+// {'content-type': 'application/json', 'x-request-id': 'ee560df4-d44f-455e-a48e-29dfda49aec5'}
+console.Write(response.ResponseMetadata.Raw);
 try {
-  // Use ImageKit's SDK to make requests...
-} catch (BadRequestException e) {
-  // Missing or Invalid parameters were supplied to Imagekit.io's API
-  Console.Writeline("Status is: " + e.getResponseMetaData().getHttpStatusCode());
-  Console.Writeline("Message is: " + e.getMessage());
-} catch (UnauthorizedException e) {
-  // No valid API key was provided.
-} catch (ForbiddenException e) {
-  // Can be for the following reasons: 
-  // ImageKit could not authenticate your account with the keys provided.
-  // An expired key (public or private) was used with the request.
-  // The account is disabled.
-  // If you are using the upload API, the total storage limit (or upload limit) is exceeded.
-} catch (InternalServerException e) {
-  // Something went wrong with ImageKit.io API.
-} catch (NotFoundException e) {
-  // If any of the field or parameter is not found in data 
-} 
+
+await imagekit.PurgeStatus(requestId);
+} catch (Exception ex) {
+console.Write(ex.Message); 
+// {'content-type': 'application/json', 'x-request-id': 'ee560df4-d44f-455e-a48e-29dfda49aec5'}
+ 
+}
 ```
 
 ## Rate limits

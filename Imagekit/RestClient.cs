@@ -14,6 +14,7 @@ using global::Imagekit.Models.Response;
 using global::Imagekit.Util;
 using Imagekit;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 internal class RestClient
 {
@@ -46,7 +47,8 @@ internal class RestClient
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest, param);
             HttpResponseMessage response = this.client.GetAsync(url).Result;
             string res = response.Content.ReadAsStringAsync().Result;
-            model = JsonConvert.DeserializeObject<ResultList>(res);
+            
+
             Utils.PopulateResponseMetadata(
                res,
                model,
@@ -70,7 +72,20 @@ internal class RestClient
 
             HttpResponseMessage response = await this.client.GetAsync(url);
             string res = response.Content.ReadAsStringAsync().Result;
-            model = JsonConvert.DeserializeObject<ResultList>(res);
+
+            if (res.Length > 2)
+            {
+                var token = JToken.Parse(res);
+                if (token is JArray)
+                {
+                    model.FileList = JsonConvert.DeserializeObject<List<Root>>(res);
+                }
+                else
+                {
+                    model = JsonConvert.DeserializeObject<ResultList>(res);
+                }
+
+            }
             Utils.PopulateResponseMetadata(
                res,
                model,
@@ -225,7 +240,7 @@ internal class RestClient
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileDetails, fileId);
 
-            HttpResponseMessage response = this.client.GetAsync(url).Result;
+           HttpResponseMessage response = this.client.GetAsync(url).Result;
             string res = response.Content.ReadAsStringAsync().Result;
             model = JsonConvert.DeserializeObject<Result>(res);
             Utils.PopulateResponseMetadata(
@@ -352,8 +367,15 @@ internal class RestClient
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.FileId);
             Dictionary<string, string> headers = Utils.GetHeaders();
             var formdata = MultipartFormDataModel.BuildUpdateFile(fileUpdateRequest);
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = formdata
+            };
 
-            HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
+            HttpResponseMessage response = this.client.SendAsync(request).Result;
+            // HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
             string res = response.Content.ReadAsStringAsync().Result;
             model = JsonConvert.DeserializeObject<Result>(res);
             Utils.PopulateResponseMetadata(
@@ -671,11 +693,11 @@ internal class RestClient
 
             if (action == "addTags")
             {
-                url = this.uploadAPIBaseUrl + UrlHandler.AddTags;
+                url = this.mediaAPIBaseUrl + UrlHandler.AddTags;
             }
             else if (action == "removeTags")
             {
-                url = this.uploadAPIBaseUrl + UrlHandler.RemoveTags;
+                url = this.mediaAPIBaseUrl + UrlHandler.RemoveTags;
             }
 
             var content = JsonConvert.SerializeObject(tagsRequest);
@@ -736,12 +758,12 @@ internal class RestClient
         }
     }
 
-    public ResponseMetaData RemoveAiTags(AiTagsRequest aiTagsRequest)
+    public ResponseMetaData RemoveAITags(AITagsRequest AITagsRequest)
     {
         try
         {
             ResultTags model = new ResultTags();
-            var validate = ValidateParamater.IsValidateAiTagRequest(aiTagsRequest);
+            var validate = ValidateParamater.IsValidateAiTagRequest(AITagsRequest);
             if (!string.IsNullOrEmpty(validate))
             {
                 throw new Exception(validate);
@@ -750,9 +772,9 @@ internal class RestClient
             // removeAITags
             string url = string.Empty;
 
-            url = this.uploadAPIBaseUrl + UrlHandler.RemoveAiTags;
+            url = this.mediaAPIBaseUrl + UrlHandler.RemoveAITags;
 
-            var content = JsonConvert.SerializeObject(aiTagsRequest);
+            var content = JsonConvert.SerializeObject(AITagsRequest);
             var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
             HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
             string res = response.Content.ReadAsStringAsync().Result;
@@ -771,12 +793,12 @@ internal class RestClient
         }
     }
 
-    public async Task<ResponseMetaData> RemoveAiTagsAsync(AiTagsRequest aiTagsRequest)
+    public async Task<ResponseMetaData> RemoveAITagsAsync(AITagsRequest AITagsRequest)
     {
         try
         {
             ResultTags model = new ResultTags();
-            var validate = ValidateParamater.IsValidateAiTagRequest(aiTagsRequest);
+            var validate = ValidateParamater.IsValidateAiTagRequest(AITagsRequest);
             if (!string.IsNullOrEmpty(validate))
             {
                 throw new Exception(validate);
@@ -785,9 +807,9 @@ internal class RestClient
             // removeAITags
             string url = string.Empty;
 
-            url = this.uploadAPIBaseUrl + UrlHandler.RemoveAiTags;
+            url = this.uploadAPIBaseUrl + UrlHandler.RemoveAITags;
 
-            var content = JsonConvert.SerializeObject(aiTagsRequest);
+            var content = JsonConvert.SerializeObject(AITagsRequest);
             var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
             string res = response.Content.ReadAsStringAsync().Result;
@@ -815,8 +837,21 @@ internal class RestClient
 
             HttpResponseMessage response = this.client.GetAsync(url).Result;
             string res = response.Content.ReadAsStringAsync().Result;
-            model = JsonConvert.DeserializeObject<ResultCustomMetaDataFieldList>(res);
-            Utils.PopulateResponseMetadata(
+            if (res.Length > 2)
+            {
+                var token = JToken.Parse(res);
+                if (token is JArray)
+                {
+                    model.ResultCustomMetaDataFieldList1 = JsonConvert.DeserializeObject<List<ResultCustomMetaDataField>>(res);
+                }
+                else
+                {
+                    model = JsonConvert.DeserializeObject<ResultCustomMetaDataFieldList>(res);
+
+                }
+
+            }
+             Utils.PopulateResponseMetadata(
                res,
                model,
                Convert.ToInt32(response.StatusCode),
@@ -1650,7 +1685,7 @@ internal class RestClient
                 throw new Exception(ErrorMessages.FileIdMissing);
             }
 
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetJobStatus, fileId);
+            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersion, fileId);
             HttpResponseMessage response = this.client.GetAsync(url).Result;
             string res = response.Content.ReadAsStringAsync().Result;
             model = JsonConvert.DeserializeObject<ResultFileVersions>(res);
@@ -1677,7 +1712,7 @@ internal class RestClient
                 throw new Exception(ErrorMessages.FileIdMissing);
             }
 
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetJobStatus, fileId);
+            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersion, fileId);
             HttpResponseMessage response = this.client.GetAsync(url).Result;
             string res = await response.Content.ReadAsStringAsync();
             model = JsonConvert.DeserializeObject<ResultFileVersions>(res);

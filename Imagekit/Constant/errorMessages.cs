@@ -26,7 +26,7 @@ namespace Imagekit.Constant
         public const string UnequalStringLength = "{ \"message: \"Unequal pHash string length\", \"help\": \"For distance calucation, the two pHash strings must have equal length\" }";
         public const string InvalidFileidsValue = "{ \"message: \"Invalid value for fileId\", \"help\": \"fileIds should be an string array of fileId of the files to delete. The array should have atleast one fileId.\" }";
         public const string InvalidUrlValue = "{ \"message: \"Missing URL parameter for this request\", \"help\": \"\" }";
-        public const string InvalidCopyValue = "{ \"message: \"SourceFilePath and DestinationFilePath  both parameter are required\", \"help\": \"\" }";
+        public const string InvalidCopyValue = "{ \"message: \"sourceFilePath and DestinationFilePath  both parameter are required\", \"help\": \"\" }";
         public const string InvalidJobValue = "{ \"message: \"JobId parameter are required\", \"help\": \"\" }";
         public const string InvalidFolderValue = "{ \"message: \"FilePath and NewFileName  both parameter are required\", \"help\": \"\" }";
 
@@ -50,18 +50,18 @@ namespace Imagekit.Constant
 
         public const string InvalidFieldIdDelVerValue = "{ \"message: \"Missing fileId parameter for this request\", \"help\": \"\" }";
         public const string InvalidVersionIdDelVerValue = "{ \"message: \"Missing versionid parameter for this request\", \"help\": \"\" }";
-        public const string InvalidMoveValue = "{ \"message: \"SourceFilePath and DestinationFilePath  both parameter are required\", \"help\": \"\" }";
-        public const string InvalidSourceValue = "{ \"message: \"Missing SourceFilePath parameter for this request\", \"help\": \"\" }";
+        public const string InvalidMoveValue = "{ \"message: \"sourceFilePath and DestinationFilePath  both parameter are required\", \"help\": \"\" }";
+        public const string InvalidSourceValue = "{ \"message: \"Missing sourceFilePath parameter for this request\", \"help\": \"\" }";
         public const string InvalidDestinationValue = "{ \"message: \"Missing DestinationFilePath parameter for this request\", \"help\": \"\" }";
         public const string InvalidDelFolderValue = "{ \"message: \"FolderPath parameter are required\", \"help\": \"\" }";
 
-        public const string InvalidCreateFolderValue = "{ \"message: \"Missing FolderName and FolderPath parameters\", \"help\": \"\" }";
-        public const string InvalidFolderNameValue = "{ \"message: \"Missing FolderName  parameters\", \"help\": \"\" }";
+        public const string InvalidCreateFolderValue = "{ \"message: \"Missing folderName and FolderPath parameters\", \"help\": \"\" }";
+        public const string InvalidfolderNameValue = "{ \"message: \"Missing folderName  parameters\", \"help\": \"\" }";
         public const string InvalidFolderPathValue = "{ \"message: \"Missing FolderPath parameters\", \"help\": \"\" }";
 
-        public const string InvalidCopyFolderValue = "{ \"message: \"Missing FolderName and FolderPath parameters\", \"help\": \"\" }";
-        public const string InvalidCopySourceFolderPathValue = "{ \"message: \"Missing SourceFolderPath  parameters\", \"help\": \"\" }";
-        public const string InvalidCopyDestinationPathValue = "{ \"message: \"Missing DestinationPath parameters\", \"help\": \"\" }";
+        public const string InvalidCopyFolderValue = "{ \"message: \"Missing folderName and FolderPath parameters\", \"help\": \"\" }";
+        public const string InvalidCopysourceFolderPathValue = "{ \"message: \"Missing sourceFolderPath  parameters\", \"help\": \"\" }";
+        public const string InvalidCopydestinationPathValue = "{ \"message: \"Missing destinationPath parameters\", \"help\": \"\" }";
 
         public const string InvalidRenameValue = "{ \"message: \"FilePath and NewFileName  both parameters are required\", \"help\": \"\" }";
         public const string InvalidRenameFilePathValue = "{ \"message: \"Missing FilePath  parameters\", \"help\": \"\" }";

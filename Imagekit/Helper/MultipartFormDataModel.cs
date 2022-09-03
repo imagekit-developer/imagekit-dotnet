@@ -1,5 +1,6 @@
 ﻿namespace Imagekit.Helper
 {
+    using System;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -14,23 +15,18 @@
 
         public static MultipartFormDataContent Build(FileCreateRequest fileCreateRequest)
         {
+            HttpContent content = new StringContent("");
             MultipartFormDataContent formdata = new MultipartFormDataContent(boundary);
             formdata.Headers.Remove("Content-Type");
             formdata.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data; boundary=" + boundary);
             formdata.Add(new StringContent(fileCreateRequest.FileName), "fileName");
-            if (!string.IsNullOrEmpty(fileCreateRequest.Base64))
+            if (fileCreateRequest.file.GetType().Name == "Byte[]")
             {
-                formdata.Add(new StringContent(fileCreateRequest.Base64), "file");
+                formdata.Add(new StringContent(GetJsonBody.GetBase64(fileCreateRequest.file)), "file");
             }
-            else if (fileCreateRequest.Bytes != null)
+            else
             {
-                formdata.Add(new StringContent(GetJsonBody.GetBase64(fileCreateRequest.Bytes)), "file");
-            }
-            else if (!string.IsNullOrEmpty(fileCreateRequest.Url.ToString()))
-            {
-                var webClient = new WebClient();
-                byte[] imageBytes = webClient.DownloadData(fileCreateRequest.Url.ToString());
-                formdata.Add(new StringContent(GetJsonBody.GetBase64(imageBytes)), "file");
+                formdata.Add(new StringContent(fileCreateRequest.file.ToString()), "file");
             }
 
             if (fileCreateRequest.UseUniqueFileName)
@@ -72,7 +68,7 @@
                 formdata.Add(new StringContent("true"), "overwriteFile");
             }
 
-            if (fileCreateRequest.OverwriteAiTags)
+            if (fileCreateRequest.OverwriteAITags)
             {
                 formdata.Add(new StringContent("true"), "overwriteAITags");
             }

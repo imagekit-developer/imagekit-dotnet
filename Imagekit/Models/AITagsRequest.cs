@@ -6,15 +6,15 @@ namespace Imagekit
 {
     using System.Collections.Generic;
 
-    public class AiTagsRequest
+    public class AITagsRequest
     {
-        public List<string> FileIds
+        public List<string> fileIds
         {
             get;
             set;
         }
 
-        public List<string> AiTags
+        public List<string> AITags
         {
             get;
             set;

@@ -59,7 +59,7 @@ namespace Imagekit.UnitTests.Upload
 
             FileCreateRequest ob = new FileCreateRequest
             {
-                Base64 = string.Empty,
+                file = string.Empty,
                 FileName = Guid.NewGuid().ToString()
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -80,7 +80,7 @@ namespace Imagekit.UnitTests.Upload
         {
             FileCreateRequest ob = new FileCreateRequest
             {
-                Url = GetURL(@"http://www.google.com/images/logos/ps_logo2.png"),
+                file = "http://www.google.com/images/logos/ps_logo2.png",
                 FileName = Guid.NewGuid().ToString()
             };
 
@@ -107,7 +107,7 @@ namespace Imagekit.UnitTests.Upload
 
             FileCreateRequest ob = new FileCreateRequest
             {
-                Bytes = bytes,
+                file = bytes,
                 FileName = Guid.NewGuid().ToString()
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -132,7 +132,7 @@ namespace Imagekit.UnitTests.Upload
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
             FileCreateRequest ob = new FileCreateRequest
             {
-                Base64 = base64,
+                file = base64,
                 FileName = Guid.NewGuid().ToString()
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -156,7 +156,7 @@ namespace Imagekit.UnitTests.Upload
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
             FileCreateRequest ob = new FileCreateRequest
             {
-                Base64 = base64,
+                file = base64,
                 FileName = Guid.NewGuid().ToString()
             };
             List<string> tags = new List<string>
@@ -181,8 +181,8 @@ namespace Imagekit.UnitTests.Upload
             List<Extension> model1 = new List<Extension>();
             BackGroundImage bck = new BackGroundImage
             {
-                Name = "remove-bg",
-                Options = new Options() { Add_shadow = true, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+                name = "remove-bg",
+                options = new options() { add_shadow = true,  bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
             model1.Add(bck);
             ob.Extensions = model1;
@@ -190,7 +190,7 @@ namespace Imagekit.UnitTests.Upload
             ob.UseUniqueFileName = false;
             ob.IsPrivateFileValue = false;
             ob.OverwriteFile = false;
-            ob.OverwriteAiTags = false;
+            ob.OverwriteAITags = false;
             ob.OverwriteTags = false;
             ob.OverwriteCustomMetadata = true;
             Hashtable model = new Hashtable
@@ -220,7 +220,7 @@ namespace Imagekit.UnitTests.Upload
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
             FileCreateRequest ob = new FileCreateRequest
             {
-                Base64 = base64,
+                file = base64,
                 FileName = Guid.NewGuid().ToString()
             };
             List<string> tags = null;
@@ -234,15 +234,15 @@ namespace Imagekit.UnitTests.Upload
             List<Extension> model1 = new List<Extension>();
             BackGroundImage bck = new BackGroundImage
             {
-                Name = "remove-bg",
-                Options = new Options() { Add_shadow = true, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+                name = "remove-bg",
+                options = new options() { add_shadow = true,  bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
             model1.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             ob.UseUniqueFileName = false;
             ob.IsPrivateFileValue = false;
             ob.OverwriteFile = false;
-            ob.OverwriteAiTags = false;
+            ob.OverwriteAITags = false;
             ob.OverwriteTags = false;
             ob.OverwriteCustomMetadata = true;
             Hashtable model = new Hashtable
@@ -277,7 +277,7 @@ namespace Imagekit.UnitTests.Upload
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
             FileCreateRequest ob = new FileCreateRequest
             {
-                Base64 = base64,
+                file = base64,
                 FileName = Guid.NewGuid().ToString()
             };
             List<string> tags = null;
@@ -356,8 +356,8 @@ namespace Imagekit.UnitTests.Upload
             List<Extension> model1 = new List<Extension>();
             BackGroundImage bck = new BackGroundImage
             {
-                Name = "remove-bg",
-                Options = new Options() { Add_shadow = true, Bg_color = "green", Bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+                name = "remove-bg",
+                options = new options() { add_shadow = true, bg_color = "green" }
             };
             model1.Add(bck);
             ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
@@ -381,12 +381,7 @@ namespace Imagekit.UnitTests.Upload
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
-        private static Uri GetURL(string imgPath)
-        {
-            var uri = new Uri(imgPath);
-
-            return uri;
-        }
+       
     }
 }
 

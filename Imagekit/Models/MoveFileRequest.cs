@@ -4,7 +4,7 @@
 
 public class MoveFileRequest
 {
-    public string SourceFilePath { get; set; }
+    public string sourceFilePath { get; set; }
 
-    public string DestinationPath { get; set; }
+    public string destinationPath { get; set; }
 }

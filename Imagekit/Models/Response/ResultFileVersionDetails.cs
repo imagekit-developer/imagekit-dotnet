@@ -21,7 +21,7 @@ public class ResultFileVersionDetails : ResponseMetaData
 
     public List<string> Tags { get; set; }
 
-    public JArray AiTags { get; set; }
+    public JArray AITags { get; set; }
 
     public JObject VersionInfo { get; set; }
 

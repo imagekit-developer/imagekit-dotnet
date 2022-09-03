@@ -4,23 +4,23 @@
 
     public class Extension
     {
-        public string Name { get; set; }
+        public string name { get; set; }
     }
 
-    public class Options
+    public class options
     {
-        public bool Add_shadow { get; set; }
+        public bool add_shadow { get; set; }
 
-        public bool? Semitransparency { get; set; }
+        public bool? semitransparency { get; set; }
 
-        public string? Bg_color { get; set; }
+        public string? bg_color { get; set; }
 
-        public string? Bg_image_url { get; set; }
+        public string? bg_image_url { get; set; }
     }
 
     public class BackGroundImage : Extension
     {
-        public Options Options { get; set; }
+        public options options { get; set; }
     }
 
     public class AutoTags : Extension

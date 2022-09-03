@@ -78,9 +78,9 @@ namespace Imagekit.UnitTests.FileVersion
         {
             CopyFileRequest model = new CopyFileRequest
             {
-                SourceFilePath = "Tst3",
-                DestinationPath = "Tst3",
-                IncludeFileVersions = true
+                sourceFilePath = "Tst3",
+                destinationPath = "Tst3",
+                includeFileVersions = true
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
@@ -121,7 +121,7 @@ namespace Imagekit.UnitTests.FileVersion
         {
             CopyFileRequest model = new CopyFileRequest
             {
-                DestinationPath = "abc"
+                destinationPath = "abc"
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -141,7 +141,7 @@ namespace Imagekit.UnitTests.FileVersion
         {
             CopyFileRequest model = new CopyFileRequest
             {
-                SourceFilePath = "abc"
+                sourceFilePath = "abc"
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -161,8 +161,8 @@ namespace Imagekit.UnitTests.FileVersion
         {
             MoveFileRequest model = new MoveFileRequest
             {
-                SourceFilePath = "Tst3",
-                DestinationPath = "Tst3"
+                sourceFilePath = "Tst3",
+                destinationPath = "Tst3"
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -202,7 +202,7 @@ namespace Imagekit.UnitTests.FileVersion
         {
             MoveFileRequest model = new MoveFileRequest
             {
-                DestinationPath = "abc"
+                destinationPath = "abc"
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -222,7 +222,7 @@ namespace Imagekit.UnitTests.FileVersion
         {
             MoveFileRequest model = new MoveFileRequest
             {
-                SourceFilePath = "abc"
+                sourceFilePath = "abc"
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -242,9 +242,9 @@ namespace Imagekit.UnitTests.FileVersion
         {
             RenameFileRequest model = new RenameFileRequest
             {
-                FilePath = "Tst3",
-                NewFileName = "Tst4",
-                PurgeCache = false
+                filePath = "Tst3",
+                newFileName = "Tst4",
+                purgeCache = false
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -267,7 +267,7 @@ namespace Imagekit.UnitTests.FileVersion
         {
             RenameFileRequest model = new RenameFileRequest
             {
-                NewFileName = "test"
+                newFileName = "test"
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -286,7 +286,7 @@ namespace Imagekit.UnitTests.FileVersion
         {
             RenameFileRequest model = new RenameFileRequest
             {
-                FilePath = "test"
+                filePath = "test"
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 

@@ -116,20 +116,20 @@ namespace Imagekit.UnitTests.MetaData
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
-                Name = "Tst3",
-                Label = "Test3"
+                name = "Tst3",
+                label = "Test3"
             };
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
-                Type = CustomMetaDataTypeEnum.Number,
-                MinValue = 1000,
-                MaxValue = 3000,
-                MinLength = 500,
-                MaxLength = 600,
-                IsValueRequired = false
+                type = "Number",
+                minValue = 1000,
+                maxValue = 3000,
+                minLength = 500,
+                maxLength = 600,
+                isValueRequired = false
             };
 
-            model.Schema = schema;
+            model.schema = schema;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -149,20 +149,20 @@ namespace Imagekit.UnitTests.MetaData
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
-                Name = "Tst3",
-                Label = "Test3"
+                name = "Tst3",
+                label = "Test3"
             };
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
-                Type = CustomMetaDataTypeEnum.DateTime,
-                MinValue = 1000,
-                MaxValue = 3000,
-                MinLength = 500,
-                MaxLength = 600,
-                IsValueRequired = false
+                type = "Number",
+                minValue = 1000,
+                maxValue = 3000,
+                minLength = 500,
+                maxLength = 600,
+                isValueRequired = false
             };
 
-            model.Schema = schema;
+            model.schema = schema;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -181,20 +181,20 @@ namespace Imagekit.UnitTests.MetaData
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
-                Name = "Tst3",
-                Label = "Test3"
+                name = "Tst3",
+                label = "Test3"
             };
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
-                Type = CustomMetaDataTypeEnum.Text,
-                MinValue = 1000,
-                MaxValue = 3000,
-                MinLength = 500,
-                MaxLength = 600,
-                IsValueRequired = false
+                type = "Number",
+                minValue = 1000,
+                maxValue = 3000,
+                minLength = 500,
+                maxLength = 600,
+                isValueRequired = false
             };
 
-            model.Schema = schema;
+            model.schema = schema;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -214,20 +214,20 @@ namespace Imagekit.UnitTests.MetaData
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
-                Name = "Tst3",
-                Label = "Test3"
+                name = "Tst3",
+                label = "Test3"
             };
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
-                Type = CustomMetaDataTypeEnum.Textarea,
-                MinValue = 1000,
-                MaxValue = 3000,
-                MinLength = 500,
-                MaxLength = 600,
-                IsValueRequired = false
+                type = "Number",
+                minValue = 1000,
+                maxValue = 3000,
+                minLength = 500,
+                maxLength = 600,
+                isValueRequired = false
             };
 
-            model.Schema = schema;
+            model.schema = schema;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -247,21 +247,20 @@ namespace Imagekit.UnitTests.MetaData
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
-                Name = "Tst3",
-                Label = "Test3"
+                name = "Tst3",
+                label = "Test3"
             };
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
-                Type = CustomMetaDataTypeEnum.Number,
-                MinValue = 1000,
-                MaxValue = 3000,
-                MinLength = 500,
-                MaxLength = 600,
-                DefaultValue = false,
-                IsValueRequired = false
+                type = "Number",
+                minValue = 1000,
+                maxValue = 3000,
+                minLength = 500,
+                maxLength = 600,
+                isValueRequired = false
             };
 
-            model.Schema = schema;
+            model.schema = schema;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -280,35 +279,27 @@ namespace Imagekit.UnitTests.MetaData
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
-                Name = "Tst3",
-                Label = "Test3"
+                name = "Tst3",
+                label = "Test3"
             };
-            List<object> objectList = new List<object>
-            {
-                "small",
-                "medium",
-                "large",
-                30,
-                40,
-                true
-            };
+            
             CustomMetaDataFieldSchemaObject customMetaDataFieldSchemaObject = new CustomMetaDataFieldSchemaObject
             {
-                Type = CustomMetaDataTypeEnum.MultiSelect,
-                SelectOptions = objectList
+                type = "MultiSelect",
+                selectOptions = new string[] { "small", "medium", "large" }
             };
-
+          
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
-                Type = CustomMetaDataTypeEnum.Number,
-                MinValue = 1000,
-                MaxValue = 3000,
-                MinLength = 500,
-                MaxLength = 600,
-                IsValueRequired = false
+                type = "Number",
+                minValue = 1000,
+                maxValue = 3000,
+                minLength = 500,
+                maxLength = 600,
+                isValueRequired = false
             };
 
-            model.Schema = schema;
+            model.schema = schema;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -343,13 +334,13 @@ namespace Imagekit.UnitTests.MetaData
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
-                Name = string.Empty
+                name = string.Empty
             };
             CustomMetaDataFieldSchemaObject ob = new CustomMetaDataFieldSchemaObject
             {
-                MaxValue = 1000
+                maxValue = 1000
             };
-            model.Schema = ob;
+            model.schema = ob;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -368,14 +359,14 @@ namespace Imagekit.UnitTests.MetaData
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
-                Name = "abc",
-                Label = string.Empty
+                name = "abc",
+                label = string.Empty
             };
             CustomMetaDataFieldSchemaObject ob = new CustomMetaDataFieldSchemaObject
             {
-                MaxValue = 1000
+                maxValue = 1000
             };
-            model.Schema = ob;
+            model.schema = ob;
 
 
 
@@ -396,9 +387,9 @@ namespace Imagekit.UnitTests.MetaData
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
-                Name = "abc",
-                Label = "test",
-                Schema = null
+                name = "abc",
+                label = "test",
+                schema = null
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -460,11 +451,11 @@ namespace Imagekit.UnitTests.MetaData
 
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
-                Type = CustomMetaDataTypeEnum.Number,
-                MinValue = 1000,
-                MaxValue = 3000
+                type = "Number",
+                minValue = 1000,
+                maxValue = 3000
             };
-            model.Schema = schema;
+            model.schema = schema;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -505,9 +496,9 @@ namespace Imagekit.UnitTests.MetaData
             };
             CustomMetaDataFieldSchemaObject ob = new CustomMetaDataFieldSchemaObject
             {
-                MaxValue = 1000
+                maxValue = 1000
             };
-            model.Schema = ob;
+            model.schema = ob;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -527,7 +518,7 @@ namespace Imagekit.UnitTests.MetaData
             CustomMetaDataFieldUpdateRequest model = new CustomMetaDataFieldUpdateRequest
             {
                 Id = "abc",
-                Schema = null
+                schema = null
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 

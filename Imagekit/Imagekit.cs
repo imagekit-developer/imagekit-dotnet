@@ -94,9 +94,9 @@ namespace Imagekit.Sdk
             return (ResultTags)this.restClient.ManageTags(tagsRequest, "addTags");
         }
 
-        public ResultTags RemoveAiTags(AiTagsRequest aiTagsRequest)
+        public ResultTags RemoveAITags(AITagsRequest AITagsRequest)
         {
-            return (ResultTags)this.restClient.RemoveAiTags(aiTagsRequest);
+            return (ResultTags)this.restClient.RemoveAITags(AITagsRequest);
         }
 
         public ResultTags RemoveTags(TagsRequest tagsRequest)
@@ -221,9 +221,9 @@ namespace Imagekit.Sdk
             return (ResultTags)await this.restClient.ManageTagsAsync(tagsRequest, "addTags");
         }
 
-        public async Task<ResultTags> RemoveAiTagsAsync(AiTagsRequest aiTagsRequest)
+        public async Task<ResultTags> RemoveAITagsAsync(AITagsRequest AITagsRequest)
         {
-            return (ResultTags)await this.restClient.RemoveAiTagsAsync(aiTagsRequest);
+            return (ResultTags)await this.restClient.RemoveAITagsAsync(AITagsRequest);
         }
 
         public async Task<ResultTags> RemoveTagsAsync(TagsRequest tagsRequest)

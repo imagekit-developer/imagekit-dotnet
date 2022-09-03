@@ -22,8 +22,8 @@ namespace Imagekit.UnitTests
         {
             CreateFolderRequest model = new CreateFolderRequest
             {
-                FolderName = "Tst3",
-                ParentFolderPath = "Tst3"
+                folderName = "Tst3",
+                parentFolderPath = "Tst3"
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -57,11 +57,11 @@ namespace Imagekit.UnitTests
         }
 
         [Fact]
-        public void Missing_FolderName_ExceptionNonAsync()
+        public void Missing_folderName_ExceptionNonAsync()
         {
             CreateFolderRequest model = new CreateFolderRequest
             {
-                ParentFolderPath = "test"
+                parentFolderPath = "test"
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -73,14 +73,14 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.CreateFolder(model));
-            Assert.Equal(ErrorMessages.InvalidFolderNameValue, ex.Message);
+            Assert.Equal(ErrorMessages.InvalidfolderNameValue, ex.Message);
         }
         [Fact]
-        public void Missing_ParentFolderPath_FolderExceptionNonAsync()
+        public void Missing_parentFolderPath_FolderExceptionNonAsync()
         {
             CreateFolderRequest model = new CreateFolderRequest
             {
-                FolderName = "test"
+                folderName = "test"
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -99,7 +99,7 @@ namespace Imagekit.UnitTests
         {
             DeleteFolderRequest model = new DeleteFolderRequest
             {
-                FolderPath = "Tst3"
+                folderPath = "Tst3"
             };
 
 
@@ -139,9 +139,9 @@ namespace Imagekit.UnitTests
         {
             CopyFolderRequest model = new CopyFolderRequest
             {
-                SourceFolderPath = "Tst3",
-                DestinationPath = "Tst3",
-                IncludeFileVersions = true
+                sourceFolderPath = "Tst3",
+                destinationPath = "Tst3",
+                includeFileVersions = true
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
@@ -172,11 +172,11 @@ namespace Imagekit.UnitTests
             Assert.Equal(ErrorMessages.InvalidCopyFolderValue, ex.Message);
         }
         [Fact]
-        public void Missing_SourceFolderPath_FolderExceptionNonAsync()
+        public void Missing_sourceFolderPath_FolderExceptionNonAsync()
         {
             CopyFolderRequest model = new CopyFolderRequest
             {
-                DestinationPath = "abc"
+                destinationPath = "abc"
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -188,14 +188,14 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.CopyFolder(model));
-            Assert.Equal(ErrorMessages.InvalidCopySourceFolderPathValue, ex.Message);
+            Assert.Equal(ErrorMessages.InvalidCopysourceFolderPathValue, ex.Message);
         }
         [Fact]
         public void Missing_Destination_FolderPath_FolderExceptionNonAsync()
         {
             CopyFolderRequest model = new CopyFolderRequest
             {
-                SourceFolderPath = "abc"
+                sourceFolderPath = "abc"
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -207,7 +207,7 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.CopyFolder(model));
-            Assert.Equal(ErrorMessages.InvalidCopyDestinationPathValue, ex.Message);
+            Assert.Equal(ErrorMessages.InvalidCopydestinationPathValue, ex.Message);
         }
 
         [Fact]
@@ -215,8 +215,8 @@ namespace Imagekit.UnitTests
         {
             MoveFolderRequest model = new MoveFolderRequest
             {
-                SourceFolderPath = "Tst3",
-                DestinationPath = "Tst3"
+                sourceFolderPath = "Tst3",
+                destinationPath = "Tst3"
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -250,11 +250,11 @@ namespace Imagekit.UnitTests
         }
 
         [Fact]
-        public void Missing_SourceFolderPath_MoveFolderExceptionNonAsync()
+        public void Missing_sourceFolderPath_MoveFolderExceptionNonAsync()
         {
             MoveFolderRequest model = new MoveFolderRequest
             {
-                DestinationPath = "abc"
+                destinationPath = "abc"
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -266,14 +266,14 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.MoveFolder(model));
-            Assert.Equal(ErrorMessages.InvalidCopySourceFolderPathValue, ex.Message);
+            Assert.Equal(ErrorMessages.InvalidCopysourceFolderPathValue, ex.Message);
         }
         [Fact]
         public void Missing_Destination_FolderPath_MoveFolderExceptionNonAsync()
         {
             MoveFolderRequest model = new MoveFolderRequest
             {
-                SourceFolderPath = "abc"
+                sourceFolderPath = "abc"
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -285,7 +285,7 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GoodPublickey, GoodUrlendpoint, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.MoveFolder(model));
-            Assert.Equal(ErrorMessages.InvalidCopyDestinationPathValue, ex.Message);
+            Assert.Equal(ErrorMessages.InvalidCopydestinationPathValue, ex.Message);
         }
 
     }

@@ -47,7 +47,7 @@ namespace Imagekit.Sdk
 
         ResponseMetaData MoveFolder(MoveFolderRequest moveFolderRequest);
 
-        ResponseMetaData RemoveAiTags(AiTagsRequest aiTagsRequest);
+        ResponseMetaData RemoveAITags(AITagsRequest AITagsRequest);
 
         ResponseMetaData RemoveTags(TagsRequest tagsRequest);
 

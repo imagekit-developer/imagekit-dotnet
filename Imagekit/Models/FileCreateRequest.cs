@@ -9,9 +9,7 @@ using Imagekit.Models;
 
 public class FileCreateRequest
 {
-    private Uri url;
-    private string base64;
-    private byte[] bytes;
+    
     private string fileName;
     private bool useUniqueFileName;
     private List<string> tags;
@@ -22,19 +20,14 @@ public class FileCreateRequest
     private List<Extension> extensions;
     private string webhookUrl;
     private bool overwriteFile;
-    private bool overwriteAiTags;
+    private bool overwriteAITags;
     private bool overwriteTags;
     private bool overwriteCustomMetadata;
     private Hashtable customMetadata;
 
     public bool UseUniqueFileName { get => this.useUniqueFileName; set => this.useUniqueFileName = value; }
-
-    public Uri Url { get => this.url; set => this.url = value; }
-
-    public string Base64 { get => this.base64; set => this.base64 = value; }
-
-    public byte[] Bytes { get => this.bytes; set => this.bytes = value; }
-
+    public object file { get; set; }
+    
     public string FileName { get => this.fileName; set => this.fileName = value; }
 
     public List<string> Tags
@@ -65,7 +58,7 @@ public class FileCreateRequest
 
     public bool OverwriteFile { get => this.overwriteFile; set => this.overwriteFile = value; }
 
-    public bool OverwriteAiTags { get => this.overwriteAiTags; set => this.overwriteAiTags = value; }
+    public bool OverwriteAITags { get => this.overwriteAITags; set => this.overwriteAITags = value; }
 
     public bool OverwriteTags { get => this.overwriteTags; set => this.overwriteTags = value; }
 

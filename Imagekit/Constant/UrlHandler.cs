@@ -20,7 +20,7 @@ namespace Imagekit.Constant
         public const string GetRemoteData = @"v1/metadata?url={0}";
         public const string RemoveTags = @"v1/files/removeTags";
         public const string AddTags = @"v1/files/addTags";
-        public const string RemoveAiTags = @"v1/files/removeAITags";
+        public const string RemoveAITags = @"v1/files/removeAITags";
         public const string CustomMetadataFields = @"v1/customMetadataFields?includeDeleted={0}";
         public const string CreareCustomMetaDataFields = @"v1/customMetadataFields";
         public const string DeleteCustomMetaDataFields = @"v1/customMetadataFields/{0}";

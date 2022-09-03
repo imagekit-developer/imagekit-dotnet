@@ -6,10 +6,10 @@ namespace Imagekit.Models
 {
     public class CopyFolderRequest
     {
-        public string SourceFolderPath { get; set; }
+        public string sourceFolderPath { get; set; }
 
-        public string DestinationPath { get; set; }
+        public string destinationPath { get; set; }
 
-        public bool IncludeFileVersions { get; set; }
+        public bool includeFileVersions { get; set; }
     }
 }

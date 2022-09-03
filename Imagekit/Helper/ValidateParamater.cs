@@ -25,19 +25,7 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (!string.IsNullOrEmpty(obj.Base64))
-            {
-                flag = string.Empty;
-                return flag;
-            }
-
-            if (obj.Bytes != null)
-            {
-                flag = string.Empty;
-                return flag;
-            }
-
-            if (obj.Url != null)
+            if (obj.file != null  && obj.file !="")
             {
                 flag = string.Empty;
                 return flag;
@@ -81,13 +69,13 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (obj.Tags == null)
+            if (obj.tags == null)
             {
                 flag = ErrorMessages.InvalidTagParamValue;
                 return flag;
             }
 
-            if (obj.FileIds == null)
+            if (obj.fileIds == null)
             {
                 flag = ErrorMessages.InvalidFiledParamValue;
                 return flag;
@@ -96,7 +84,7 @@ namespace Imagekit.Helper
             return flag;
         }
 
-        public static string IsValidateAiTagRequest(AiTagsRequest obj)
+        public static string IsValidateAiTagRequest(AITagsRequest obj)
         {
             string flag = string.Empty;
             if (obj == null)
@@ -105,13 +93,13 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (obj.AiTags == null)
+            if (obj.AITags == null)
             {
                 flag = ErrorMessages.InvalidTagParamValue;
                 return flag;
             }
 
-            if (obj.FileIds == null)
+            if (obj.fileIds == null)
             {
                 flag = ErrorMessages.InvalidFiledParamValue;
                 return flag;
@@ -129,19 +117,19 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (obj.Schema == null)
+            if (obj.schema == null)
             {
                 flag = ErrorMessages.InvalidMetaTagSchemaValue;
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.Name))
+            if (string.IsNullOrEmpty(obj.name))
             {
                 flag = ErrorMessages.InvalidMetaTagNameValue;
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.Label))
+            if (string.IsNullOrEmpty(obj.label))
             {
                 flag = ErrorMessages.InvalidMetaTagLabelValue;
                 return flag;
@@ -159,7 +147,7 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (obj.Schema == null)
+            if (obj.schema == null)
             {
                 flag = ErrorMessages.InvalidMetaTagSchemaValue;
                 return flag;
@@ -207,13 +195,13 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.SourceFilePath))
+            if (string.IsNullOrEmpty(obj.sourceFilePath))
             {
                 flag = ErrorMessages.InvalidSourceValue;
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.DestinationPath))
+            if (string.IsNullOrEmpty(obj.destinationPath))
             {
                 flag = ErrorMessages.InvalidDestinationValue;
                 return flag;
@@ -231,13 +219,13 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.SourceFilePath))
+            if (string.IsNullOrEmpty(obj.sourceFilePath))
             {
                 flag = ErrorMessages.InvalidSourceValue;
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.DestinationPath))
+            if (string.IsNullOrEmpty(obj.destinationPath))
             {
                 flag = ErrorMessages.InvalidDestinationValue;
                 return flag;
@@ -255,13 +243,13 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.FilePath))
+            if (string.IsNullOrEmpty(obj.filePath))
             {
                 flag = ErrorMessages.InvalidRenameFilePathValue;
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.NewFileName))
+            if (string.IsNullOrEmpty(obj.newFileName))
             {
                 flag = ErrorMessages.InvalidRenameNewFileNameValue;
                 return flag;
@@ -305,13 +293,13 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(createFolderRequest.FolderName))
+            if (string.IsNullOrEmpty(createFolderRequest.folderName))
             {
-                flag = ErrorMessages.InvalidFolderNameValue;
+                flag = ErrorMessages.InvalidfolderNameValue;
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(createFolderRequest.ParentFolderPath))
+            if (string.IsNullOrEmpty(createFolderRequest.parentFolderPath))
             {
                 flag = ErrorMessages.InvalidFolderPathValue;
                 return flag;
@@ -329,7 +317,7 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (!string.IsNullOrEmpty(createFolderRequest.FolderPath))
+            if (!string.IsNullOrEmpty(createFolderRequest.folderPath))
             {
                 flag = true;
                 return flag;
@@ -348,15 +336,15 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(createFolderRequest.SourceFolderPath))
+            if (string.IsNullOrEmpty(createFolderRequest.sourceFolderPath))
             {
-                flag = ErrorMessages.InvalidCopySourceFolderPathValue;
+                flag = ErrorMessages.InvalidCopysourceFolderPathValue;
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(createFolderRequest.DestinationPath))
+            if (string.IsNullOrEmpty(createFolderRequest.destinationPath))
             {
-                flag = ErrorMessages.InvalidCopyDestinationPathValue;
+                flag = ErrorMessages.InvalidCopydestinationPathValue;
                 return flag;
             }
 
@@ -373,15 +361,15 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(createFolderRequest.SourceFolderPath))
+            if (string.IsNullOrEmpty(createFolderRequest.sourceFolderPath))
             {
-                flag = ErrorMessages.InvalidCopySourceFolderPathValue;
+                flag = ErrorMessages.InvalidCopysourceFolderPathValue;
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(createFolderRequest.DestinationPath))
+            if (string.IsNullOrEmpty(createFolderRequest.destinationPath))
             {
-                flag = ErrorMessages.InvalidCopyDestinationPathValue;
+                flag = ErrorMessages.InvalidCopydestinationPathValue;
                 return flag;
             }
 

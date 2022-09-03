@@ -4,9 +4,9 @@
 
 public class RenameFileRequest
 {
-    public string FilePath { get; set; }
+    public string filePath { get; set; }
 
-    public string NewFileName { get; set; }
+    public string newFileName { get; set; }
 
-    public bool PurgeCache { get; set; }
+    public bool purgeCache { get; set; }
 }

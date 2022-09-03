@@ -128,13 +128,13 @@ namespace Imagekit
         /// <param name="value">The value.</param>
         public T Add(string key, object value)
         {
-            if (this.Options.ContainsKey(key))
+            if (this.options.ContainsKey(key))
             {
-                this.Options[key] = value;
+                this.options[key] = value;
             }
             else
             {
-                this.Options.Add(key, value);
+                this.options.Add(key, value);
             }
 
             return (T)this;

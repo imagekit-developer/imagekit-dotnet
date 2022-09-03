@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Net.Http;
 using System.Threading;
@@ -22,7 +23,7 @@ namespace Imagekit.UnitTests
         public static Faker<ResponseMetaData> ImagekitResponseFaker = new Faker<ResponseMetaData>()
             .RuleFor(u => u.Raw, (f, u) => f.Random.Utf16String())
             .RuleFor(u => u.HttpStatusCode, (f, u) => 200);
-
+        
         /// <summary>
         /// Get a test http client that response to the specified request.
         /// </summary>

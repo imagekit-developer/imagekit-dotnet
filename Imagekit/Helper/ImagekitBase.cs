@@ -13,7 +13,7 @@ namespace Imagekit
     public abstract partial class BaseImagekit<T>
         where T : BaseImagekit<T>
     {
-        public Dictionary<string, object> Options = new Dictionary<string, object>();
+        public Dictionary<string, object> options = new Dictionary<string, object>();
 
         public BaseImagekit(string publicKey, string urlEndpoint, string transformationPosition = "path")
         {
@@ -40,9 +40,9 @@ namespace Imagekit
 
         public string Generate()
         {
-            Transformation transformation = (Transformation)this.Options["transformation"];
+            Transformation transformation = (Transformation)this.options["transformation"];
             string tranformationString = transformation.Generate();
-            return new Url(this.Options).UrlBuilder(tranformationString);
+            return new Url(this.options).UrlBuilder(tranformationString);
         }
     }
 
