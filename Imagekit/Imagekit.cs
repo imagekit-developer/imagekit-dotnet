@@ -4,6 +4,7 @@
 
 namespace Imagekit.Sdk
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using global::Imagekit.Models;
@@ -92,6 +93,11 @@ namespace Imagekit.Sdk
         public ResultTags AddTags(TagsRequest tagsRequest)
         {
             return (ResultTags)this.restClient.ManageTags(tagsRequest, "addTags");
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
         }
 
         public ResultTags RemoveAITags(AITagsRequest AITagsRequest)

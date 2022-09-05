@@ -19,7 +19,7 @@
             MultipartFormDataContent formdata = new MultipartFormDataContent(boundary);
             formdata.Headers.Remove("Content-Type");
             formdata.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data; boundary=" + boundary);
-            formdata.Add(new StringContent(fileCreateRequest.FileName), "fileName");
+            formdata.Add(new StringContent(fileCreateRequest.fileName), "fileName");
             if (fileCreateRequest.file.GetType().Name == "Byte[]")
             {
                 formdata.Add(new StringContent(GetJsonBody.GetBase64(fileCreateRequest.file)), "file");
@@ -29,7 +29,7 @@
                 formdata.Add(new StringContent(fileCreateRequest.file.ToString()), "file");
             }
 
-            if (fileCreateRequest.UseUniqueFileName)
+            if (fileCreateRequest.useUniqueFileName)
             {
                 formdata.Add(new StringContent("true"), "useUniqueFileName");
             }
@@ -38,55 +38,55 @@
                 formdata.Add(new StringContent("false"), "useUniqueFileName");
             }
 
-            if (fileCreateRequest.Tags != null)
+            if (fileCreateRequest.tags != null)
             {
-                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.Tags)), "tags");
+                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.tags)), "tags");
             }
 
-            if (!string.IsNullOrEmpty(fileCreateRequest.Folder))
+            if (!string.IsNullOrEmpty(fileCreateRequest.folder))
             {
-                formdata.Add(new StringContent(fileCreateRequest.Folder), "folder");
+                formdata.Add(new StringContent(fileCreateRequest.folder), "folder");
             }
 
-            if (fileCreateRequest.IsPrivateFileValue)
+            if (fileCreateRequest.isPrivateFile)
             {
                 formdata.Add(new StringContent("true"), "isPrivateFile");
             }
 
-            if (!string.IsNullOrEmpty(fileCreateRequest.CustomCoordinates))
+            if (!string.IsNullOrEmpty(fileCreateRequest.customCoordinates))
             {
-                formdata.Add(new StringContent(fileCreateRequest.CustomCoordinates), "customCoordinates");
+                formdata.Add(new StringContent(fileCreateRequest.customCoordinates), "customCoordinates");
             }
 
-            if (fileCreateRequest.ResponseFields != null)
+            if (fileCreateRequest.responseFields != null)
             {
-                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.ResponseFields)), "responseFields");
+                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.responseFields)), "responseFields");
             }
 
-            if (fileCreateRequest.OverwriteFile)
+            if (fileCreateRequest.overwriteFile)
             {
                 formdata.Add(new StringContent("true"), "overwriteFile");
             }
 
-            if (fileCreateRequest.OverwriteAITags)
+            if (fileCreateRequest.overwriteAITags)
             {
                 formdata.Add(new StringContent("true"), "overwriteAITags");
             }
 
-            if (fileCreateRequest.OverwriteTags)
+            if (fileCreateRequest.overwriteTags)
             {
                 formdata.Add(new StringContent("true"), "overwriteTags");
             }
 
-            if (fileCreateRequest.OverwriteCustomMetadata)
+            if (fileCreateRequest.overwriteCustomMetadata)
             {
                 formdata.Add(new StringContent("false"), "overwriteCustomMetadata");
             }
 
-            if (fileCreateRequest.Extensions != null)
+            if (fileCreateRequest.extensions != null)
             {
                 var myContent = JsonConvert.SerializeObject(
-                    fileCreateRequest.Extensions,
+                    fileCreateRequest.extensions,
                     new JsonSerializerSettings()
                     {
                         NullValueHandling = NullValueHandling.Ignore,
@@ -94,14 +94,14 @@
                 formdata.Add(new StringContent(myContent), "extensions");
             }
 
-            if (fileCreateRequest.WebhookUrl != null)
+            if (fileCreateRequest.webhookUrl != null)
             {
-                formdata.Add(new StringContent(fileCreateRequest.WebhookUrl), "webhookUrl");
+                formdata.Add(new StringContent(fileCreateRequest.webhookUrl), "webhookUrl");
             }
 
-            if (fileCreateRequest.CustomMetadata != null)
+            if (fileCreateRequest.customMetadata != null)
             {
-                string jsonResult = JsonConvert.SerializeObject(fileCreateRequest.CustomMetadata);
+                string jsonResult = JsonConvert.SerializeObject(fileCreateRequest.customMetadata);
                 formdata.Add(new StringContent(jsonResult), "customMetadata");
             }
 
@@ -114,25 +114,25 @@
             formdata.Headers.Remove("Content-Type");
             formdata.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data; boundary=" + boundary);
 
-            if (fileCreateRequest.Tags != null)
+            if (fileCreateRequest.tags != null)
             {
-                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.Tags)), "tags");
+                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.tags)), "tags");
             }
 
-            if (fileCreateRequest.RemoveAITags != null)
+            if (fileCreateRequest.removeAITags != null)
             {
-                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.RemoveAITags)), "removeAITags");
+                formdata.Add(new StringContent(Utils.ListToString(fileCreateRequest.removeAITags)), "removeAITags");
             }
 
-            if (!string.IsNullOrEmpty(fileCreateRequest.CustomCoordinates))
+            if (!string.IsNullOrEmpty(fileCreateRequest.customCoordinates))
             {
-                formdata.Add(new StringContent(fileCreateRequest.CustomCoordinates), "customCoordinates");
+                formdata.Add(new StringContent(fileCreateRequest.customCoordinates), "customCoordinates");
             }
 
-            if (fileCreateRequest.Extensions != null)
+            if (fileCreateRequest.extensions != null)
             {
                 var myContent = JsonConvert.SerializeObject(
-                    fileCreateRequest.Extensions,
+                    fileCreateRequest.extensions,
                     new JsonSerializerSettings()
                     {
                         NullValueHandling = NullValueHandling.Ignore,
@@ -140,14 +140,14 @@
                 formdata.Add(new StringContent(myContent), "extensions");
             }
 
-            if (fileCreateRequest.WebhookUrl != null)
+            if (fileCreateRequest.webhookUrl != null)
             {
-                formdata.Add(new StringContent(fileCreateRequest.WebhookUrl), "webhookUrl");
+                formdata.Add(new StringContent(fileCreateRequest.webhookUrl), "webhookUrl");
             }
 
-            if (fileCreateRequest.CustomMetadata != null)
+            if (fileCreateRequest.customMetadata != null)
             {
-                string jSONresult = JsonConvert.SerializeObject(fileCreateRequest.CustomMetadata);
+                string jSONresult = JsonConvert.SerializeObject(fileCreateRequest.customMetadata);
                 formdata.Add(new StringContent(jSONresult), "customMetadata");
             }
 

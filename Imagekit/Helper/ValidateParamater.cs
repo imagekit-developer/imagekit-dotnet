@@ -19,7 +19,7 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.FileName))
+            if (string.IsNullOrEmpty(obj.fileName))
             {
                 flag = ErrorMessages.MissingUploadFilenameParameter;
                 return flag;
@@ -385,7 +385,7 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.FileId))
+            if (string.IsNullOrEmpty(obj.fileId))
             {
                 flag = ErrorMessages.FileIdMissing;
                 return flag;

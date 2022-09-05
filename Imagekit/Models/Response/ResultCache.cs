@@ -7,11 +7,11 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class ResultCache : ResponseMetaData
 {
-    private string Help { get; set; }
+    public string Help { get; set; }
 
-    private string RequestId { get; set; }
+    public string RequestId { get; set; }
 
 #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
-    private string Raw { get; set; }
+    public string Raw { get; set; }
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
 }

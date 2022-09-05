@@ -582,7 +582,9 @@ CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
 {
 type = "Number",
 minValue = 2000,
-maxValue = 3000
+maxValue = 3000,
+isValueRequired = true,
+defaultValue = "2500"
 };
 
 requestModel.schema = schema;
@@ -595,8 +597,8 @@ ResultCustomMetaDataField resultCustomMetaDataField1 = imagekit.CreateCustomMeta
 ```cs
 CustomMetaDataFieldCreateRequest requestModelDate = new CustomMetaDataFieldCreateRequest
 {
-name = "custom-meta-Date2",
-label = "TestmetaDate2"
+name = "custom-meta-Date",
+label = "TestmetaDate"
 };
 CustomMetaDataFieldSchemaObject schemaDate = new CustomMetaDataFieldSchemaObject
 {
@@ -614,7 +616,7 @@ ResultCustomMetaDataField resultCustomMetaDataFieldDate = imagekit.CreateCustomM
 Accepts the includeDeleted boolean and fetches the metadata as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
 
 ```cs
-ResultCustomMetaDataFieldList resultCustomMetaDataFieldList = imageKit.getCustomMetaDataFields(false); 
+ResultCustomMetaDataFieldList resultCGetCustomMetaDataFieldsustomMetaDataFieldList = imageKit.getCustomMetaDataFields(includeDeleted); 
 ```
 
 **26\. Edit Custom MetaData Fields**
@@ -724,7 +726,7 @@ catch (FormatException ex)
 {
 Console.Write("Not a valid format. Please try again.");
 }
-catch (WebServiceException ex)
+catch (WebServiceException webEx)
 {
 /*
 webEx.StatusCode        = 400
@@ -740,14 +742,14 @@ webEx.GetFieldErrors()  = (individual errors for each field if any)
 ```
 
 ## Access request-id, other response headers and HTTP status code
-You can access `$ResponseMetadata` on success or error object to access the HTTP status code and response headers.
+You can access success or error object to access the HTTP status code and response headers.
 
 ```cs
 // Success
 var response = await imagekit.PurgeStatus(requestId);
 console.Write(response.statusCode); // 200
 // {'content-type': 'application/json', 'x-request-id': 'ee560df4-d44f-455e-a48e-29dfda49aec5'}
-console.Write(response.ResponseMetadata.Raw);
+console.Write(response.Raw);
 try {
 
 await imagekit.PurgeStatus(requestId);

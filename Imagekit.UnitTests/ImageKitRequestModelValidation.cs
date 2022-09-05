@@ -20,11 +20,12 @@ namespace Imagekit.UnitTests
         [Fact]
         public void UploadFileRequest_ModelValidation()
         {
+            string json = "--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=fileName\r\n\r\ntest.jpg\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=file\r\n\r\nhttps://homepages.cae.wisc.edu/~ece533/images/cat.png\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=useUniqueFileName\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=tags\r\n\r\nSoftware,Developer,Engineer\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=folder\r\n\r\ndummy-folder\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customCoordinates\r\n\r\n10,10,20,20\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=responseFields\r\n\r\nisPrivateFile,tags,customCoordinates\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteFile\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteAITags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteTags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteCustomMetadata\r\n\r\nfalse\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=webhookUrl\r\n\r\nhttps://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customMetadata\r\n\r\n{\"price\":2000}\r\n--ImageKit-dLV9Wyq26L--\r\n";      
             string url = "https://upload.imagekit.io/api/v1/files/upload";
             FileCreateRequest ob = new FileCreateRequest
             {
                 file = "https://homepages.cae.wisc.edu/~ece533/images/cat.png",
-                FileName = "test.jpg",
+                fileName = "test.jpg",
             };
             List<string> tags = new List<string>
             {
@@ -32,16 +33,10 @@ namespace Imagekit.UnitTests
                 "Developer",
                 "Engineer"
             };
-            ob.Tags = tags;
+            ob.tags = tags;
 
             string customCoordinates = "10,10,20,20";
-            ob.CustomCoordinates = customCoordinates;
-            List<string> responseFields = new List<string>
-            {
-                "isPrivateFile",
-                "tags",
-                "customCoordinates"
-            };
+            ob.customCoordinates = customCoordinates;
             List<Extension> model1 = new List<Extension>();
             BackGroundImage bck = new BackGroundImage
             {
@@ -49,19 +44,33 @@ namespace Imagekit.UnitTests
                 options = new options() { add_shadow = true, semitransparency = false, bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
             model1.Add(bck);
-            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
             };
-            ob.CustomMetadata = model;
+            ob.customMetadata = model;
+            ob.useUniqueFileName=true;
+            ob.folder = "dummy-folder";
+            ob.isPrivateFile=false;
+            ob.overwriteFile=true;
+            ob.overwriteAITags=true;
+            ob.overwriteTags=true;
+            ob.overwriteCustomMetadata=true;
+            List<string> responseFields = new List<string>
+                {
+                    "isPrivateFile",
+                    "tags",
+                    "customCoordinates"
+                };
+            ob.responseFields = responseFields;
             var formdata = MultipartFormDataModel.Build(ob);
-            string result = formdata.ReadAsStringAsync().Result;
+            var rr = formdata.ReadAsStringAsync().Result;
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
                 .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
-                .WithContent(result)
+                .WithContent(json)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
@@ -76,7 +85,7 @@ namespace Imagekit.UnitTests
             string url = string.Format("https://api.imagekit.io/v1/files/{0}/details", "file-Id");
             FileUpdateRequest ob = new FileUpdateRequest
             {
-                FileId = "file-Id",
+                fileId = "file-Id",
 
             };
             List<string> tags = new List<string>
@@ -85,10 +94,10 @@ namespace Imagekit.UnitTests
                 "Developer",
                 "Engineer"
             };
-            ob.Tags = tags;
+            ob.tags = tags;
 
             string customCoordinates = "10,10,20,20";
-            ob.CustomCoordinates = customCoordinates;
+            ob.customCoordinates = customCoordinates;
             List<string> responseFields = new List<string>
             {
                 "isPrivateFile",
@@ -102,13 +111,12 @@ namespace Imagekit.UnitTests
                 options = new options() { add_shadow = true, semitransparency = false, bg_color = "green", bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
             modelExt.Add(bck);
-            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
             };
-            ob.CustomMetadata = model;
-            var formdata = MultipartFormDataModel.BuildUpdateFile(ob);
+            ob.customMetadata = model;
             string result =
                 "--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=tags\r\n\r\nSoftware,Developer,Engineer\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customCoordinates\r\n\r\n10,10,20,20\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=webhookUrl\r\n\r\nhttps://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customMetadata\r\n\r\n{\"price\":2000}\r\n--ImageKit-dLV9Wyq26L--\r\n";
             var mockHttp = new MockHttpMessageHandler();
@@ -388,7 +396,40 @@ namespace Imagekit.UnitTests
         [Fact]
         public void CreateCustomMetaDataFields_ModelValidation()
         {
-            string reqJosn = "{\n    \"name\": \"Tst3\",\n    \"label\": \"Test3\",\n    \"schema\": {\n        \"type\": \"Number\",\n        \"minValue\": 1000,\n        \"maxValue\": 3000\n    }\n}";
+            string reqJosn = "{\n    \"name\": \"Tst3\",\n    \"label\": \"Test3\",\n    \"schema\": {\n        \"type\": \"Number\",\n        \"minValue\": 1000,\n        \"maxValue\": 3000,\n        \"isValueRequired\": true,\n        \"defaultValue\": \"2500\"\n    }\n}";
+            CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
+            {
+                name = "Tst3",
+                label = "Test3"
+            };
+            CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
+            {
+                type = "Number",
+                minValue = 1000,
+                maxValue = 3000,
+                isValueRequired = true,
+                defaultValue = 2500
+
+            };
+            model.schema = schema;
+            string url = "https://api.imagekit.io/v1/customMetadataFields";
+            var mockHttp = new MockHttpMessageHandler();
+            var request = mockHttp.Expect(url)
+                .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
+                .WithContent(reqJosn)
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
+
+            var client = mockHttp.ToHttpClient();
+            RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
+            var response = rs.CreateCustomMetaDataFields(model);
+            mockHttp.VerifyNoOutstandingExpectation();
+        }
+
+        [Fact]
+        public void CreateCustomMetaDataFields2_ModelValidation()
+        {
+            string reqJosn = "{\n    \"name\": \"Tst3\",\n    \"label\": \"Test3\",\n    \"schema\": {\n        \"type\": \"Number\",\n        \"minValue\": 1000,\n        \"maxValue\": 3000,\n        \"isValueRequired\": false\n    }\n}";
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
                 name = "Tst3",
@@ -415,8 +456,6 @@ namespace Imagekit.UnitTests
             var response = rs.CreateCustomMetaDataFields(model);
             mockHttp.VerifyNoOutstandingExpectation();
         }
-
-
         [Fact]
         public void DeleteCustomMetaDataField_ModelValidation()
         {

@@ -39,7 +39,7 @@ namespace Imagekit.UnitTests.Upload
         {
             FileCreateRequest ob = new FileCreateRequest
             {
-                FileName = string.Empty
+                fileName = string.Empty
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -60,7 +60,7 @@ namespace Imagekit.UnitTests.Upload
             FileCreateRequest ob = new FileCreateRequest
             {
                 file = string.Empty,
-                FileName = Guid.NewGuid().ToString()
+                fileName = Guid.NewGuid().ToString()
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -81,7 +81,7 @@ namespace Imagekit.UnitTests.Upload
             FileCreateRequest ob = new FileCreateRequest
             {
                 file = "http://www.google.com/images/logos/ps_logo2.png",
-                FileName = Guid.NewGuid().ToString()
+                fileName = Guid.NewGuid().ToString()
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -108,7 +108,7 @@ namespace Imagekit.UnitTests.Upload
             FileCreateRequest ob = new FileCreateRequest
             {
                 file = bytes,
-                FileName = Guid.NewGuid().ToString()
+                fileName = Guid.NewGuid().ToString()
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
@@ -133,7 +133,7 @@ namespace Imagekit.UnitTests.Upload
             FileCreateRequest ob = new FileCreateRequest
             {
                 file = base64,
-                FileName = Guid.NewGuid().ToString()
+                fileName = Guid.NewGuid().ToString()
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
@@ -157,7 +157,7 @@ namespace Imagekit.UnitTests.Upload
             FileCreateRequest ob = new FileCreateRequest
             {
                 file = base64,
-                FileName = Guid.NewGuid().ToString()
+                fileName = Guid.NewGuid().ToString()
             };
             List<string> tags = new List<string>
             {
@@ -165,10 +165,10 @@ namespace Imagekit.UnitTests.Upload
                 "Developer",
                 "Engineer"
             };
-            ob.Tags = tags;
-            ob.Folder = "demo1";
+            ob.tags = tags;
+            ob.folder = "demo1";
             string customCoordinates = "10,10,20,20";
-            ob.CustomCoordinates = customCoordinates;
+            ob.customCoordinates = customCoordinates;
             List<string> responseFields = new List<string>
             {
                 "isPrivateFile",
@@ -176,7 +176,7 @@ namespace Imagekit.UnitTests.Upload
                 "customCoordinates"
             };
 
-            ob.ResponseFields = responseFields;
+            ob.responseFields = responseFields;
 
             List<Extension> model1 = new List<Extension>();
             BackGroundImage bck = new BackGroundImage
@@ -185,19 +185,19 @@ namespace Imagekit.UnitTests.Upload
                 options = new options() { add_shadow = true,  bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
             model1.Add(bck);
-            ob.Extensions = model1;
-            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            ob.UseUniqueFileName = false;
-            ob.IsPrivateFileValue = false;
-            ob.OverwriteFile = false;
-            ob.OverwriteAITags = false;
-            ob.OverwriteTags = false;
-            ob.OverwriteCustomMetadata = true;
+            ob.extensions = model1;
+            ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            ob.useUniqueFileName = false;
+            ob.isPrivateFile = false;
+            ob.overwriteFile = false;
+            ob.overwriteAITags = false;
+            ob.overwriteTags = false;
+            ob.overwriteCustomMetadata = true;
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
             };
-            ob.CustomMetadata = model;
+            ob.customMetadata = model;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -221,16 +221,16 @@ namespace Imagekit.UnitTests.Upload
             FileCreateRequest ob = new FileCreateRequest
             {
                 file = base64,
-                FileName = Guid.NewGuid().ToString()
+                fileName = Guid.NewGuid().ToString()
             };
             List<string> tags = null;
-            ob.Tags = tags;
-            ob.Folder = "demo1";
+            ob.tags = tags;
+            ob.folder = "demo1";
             string customCoordinates = "10,10,20,20";
-            ob.CustomCoordinates = customCoordinates;
+            ob.customCoordinates = customCoordinates;
             List<string> responseFields = null;
 
-            ob.ResponseFields = responseFields;
+            ob.responseFields = responseFields;
             List<Extension> model1 = new List<Extension>();
             BackGroundImage bck = new BackGroundImage
             {
@@ -238,18 +238,18 @@ namespace Imagekit.UnitTests.Upload
                 options = new options() { add_shadow = true,  bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
             model1.Add(bck);
-            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            ob.UseUniqueFileName = false;
-            ob.IsPrivateFileValue = false;
-            ob.OverwriteFile = false;
-            ob.OverwriteAITags = false;
-            ob.OverwriteTags = false;
-            ob.OverwriteCustomMetadata = true;
+            ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            ob.useUniqueFileName = false;
+            ob.isPrivateFile = false;
+            ob.overwriteFile = false;
+            ob.overwriteAITags = false;
+            ob.overwriteTags = false;
+            ob.overwriteCustomMetadata = true;
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
             };
-            ob.CustomMetadata = model;
+            ob.customMetadata = model;
 
 
 
@@ -278,20 +278,20 @@ namespace Imagekit.UnitTests.Upload
             FileCreateRequest ob = new FileCreateRequest
             {
                 file = base64,
-                FileName = Guid.NewGuid().ToString()
+                fileName = Guid.NewGuid().ToString()
             };
             List<string> tags = null;
-            ob.Tags = tags;
-            ob.Folder = "demo1";
+            ob.tags = tags;
+            ob.folder = "demo1";
             string customCoordinates = "10,10,20,20";
-            ob.CustomCoordinates = customCoordinates;
+            ob.customCoordinates = customCoordinates;
             List<string> responseFields = null;
-            ob.ResponseFields = responseFields;
+            ob.responseFields = responseFields;
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
             };
-            ob.CustomMetadata = model;
+            ob.customMetadata = model;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -312,7 +312,7 @@ namespace Imagekit.UnitTests.Upload
         {
             FileUpdateRequest ob = new FileUpdateRequest
             {
-                FileId = "",
+                fileId = "",
 
             };
 
@@ -334,7 +334,7 @@ namespace Imagekit.UnitTests.Upload
         {
             FileUpdateRequest ob = new FileUpdateRequest
             {
-                FileId = "file-Id",
+                fileId = "file-Id",
 
             };
             List<string> tags = new List<string>
@@ -343,10 +343,10 @@ namespace Imagekit.UnitTests.Upload
                 "Developer",
                 "Engineer"
             };
-            ob.Tags = tags;
+            ob.tags = tags;
 
             string customCoordinates = "10,10,20,20";
-            ob.CustomCoordinates = customCoordinates;
+            ob.customCoordinates = customCoordinates;
             List<string> responseFields = new List<string>
             {
                 "isPrivateFile",
@@ -360,12 +360,12 @@ namespace Imagekit.UnitTests.Upload
                 options = new options() { add_shadow = true, bg_color = "green" }
             };
             model1.Add(bck);
-            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
             };
-            ob.CustomMetadata = model;
+            ob.customMetadata = model;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage

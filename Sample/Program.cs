@@ -12,7 +12,6 @@ namespace ImagekitSample
     using Imagekit.Models;
     using Imagekit.Models.Response;
     using Imagekit.Sdk;
-    using Newtonsoft.Json.Linq;
     using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
 
     internal class Program
@@ -22,11 +21,11 @@ namespace ImagekitSample
 
             // Create Instance of ImageKit
             ImagekitClient imagekit = new ImagekitClient("your_public_key", "your_private_key", "https://ik.imagekit.io/your_imagekit_id/endpoint");
-            
             #region URL Generation
 
 
             // Generating URLs
+
             string path = "/default_image.jpg";
             Transformation trans = new Transformation()
                 .Width(400)
@@ -83,15 +82,16 @@ namespace ImagekitSample
 
             string imageUrl = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
 
-              Console.WriteLine("Generated image URL - {0}", imageUrl);
+            Console.WriteLine("Generated image URL - {0}", imageUrl);
 
             // Generating Signed URL
-            
-              string[] queryParams = { "b=query", "a=value" };
+
+            string[] queryParams = { "b=query", "a=value" };
             try
             {
-                var signedUrl = imagekit.Url(new Transformation().Width(400).Height(300))
-                .Path(path)
+                var TransObj = new Transformation();
+                var signedUrl = imagekit.Url(TransObj.Width(400).Height(300))
+                .Src("http://www.google.com/images/logos/ps_logo2.png")
                 .QueryParameters(queryParams)
                 .ExpireSeconds(600)
                 .Signed()
@@ -110,7 +110,7 @@ namespace ImagekitSample
             FileCreateRequest request = new FileCreateRequest
             {
                 file = "http://www.google.com/images/logos/ps_logo2.png",
-                FileName = "file_name.jpg",
+                fileName = "file_name.jpg",
             };
             Result resp1 = imagekit.Upload(request);
 
@@ -121,7 +121,7 @@ namespace ImagekitSample
             FileCreateRequest ob = new FileCreateRequest
             {
                 file = bytes,
-                FileName = "file_name1.jpg",
+                fileName = "file_name1.jpg",
             };
             List<string> tags = new List<string>
                     {
@@ -129,92 +129,99 @@ namespace ImagekitSample
                         "Developer",
                         "Engineer"
                     };
-            ob.Tags = tags;
+            ob.tags = tags;
 
             string customCoordinates = "10,10,20,20";
-            ob.CustomCoordinates = customCoordinates;
+            ob.customCoordinates = customCoordinates;
             List<string> responseFields = new List<string>
                     {
                         "isPrivateFile",
                         "tags",
                         "customCoordinates"
                     };
-            ob.ResponseFields = responseFields;
+            ob.responseFields = responseFields;
             List<Extension> ext = new List<Extension>();
-            
+
             BackGroundImage bck1 = new BackGroundImage
             {
                 name = "remove-bg",
-                options = new options() { add_shadow = true, semitransparency = false,  bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+                options = new options() { add_shadow = true, semitransparency = false, bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
-          
+
             ext.Add(bck1);
-            ob.Extensions = ext;
-            ob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            ob.extensions = ext;
+            ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             Hashtable model2 = new Hashtable
                 {
                     { "price", 2000 }
                 };
-            ob.CustomMetadata = model2;
+            ob.customMetadata = model2;
+            ob.useUniqueFileName = true;
+            ob.folder = "dummy-folder";
+            ob.isPrivateFile = false;
+            ob.overwriteFile = true;
+            ob.overwriteAITags = true;
+            ob.overwriteTags = true;
+            ob.overwriteCustomMetadata = true;
             Result resp2 = imagekit.Upload(ob);
 
             // Get Base64
-           byte[] imageArray = bytes;
+            byte[] imageArray = bytes;
             string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
             // Upload by Base64
             FileCreateRequest ob2 = new FileCreateRequest
             {
                 file = base64ImageRepresentation,
-                FileName = Guid.NewGuid().ToString(),
+                fileName = Guid.NewGuid().ToString(),
             };
             Result resp = imagekit.Upload(ob2);
             //    #endregion
 
-            //    #region UpdateFile
+            ////    #region UpdateFile
 
-            //    // Update File Request
-            //FileUpdateRequest updateob = new FileUpdateRequest
-            //{
-            //    FileId = "6312470351c0c0bdd53eb189",
+            ////    // Update File Request
+            ////FileUpdateRequest updateob = new FileUpdateRequest
+            ////{
+            ////    FileId = "6312470351c0c0bdd53eb189",
 
-            //};
-            //List<string> updatetags = new List<string>
-            //    {
-            //        "Software",
-            //        "Developer",
-            //        "Engineer"
-            //    };
-            //updateob.Tags = updatetags;
+            ////};
+            ////List<string> updatetags = new List<string>
+            ////    {
+            ////        "Software",
+            ////        "Developer",
+            ////        "Engineer"
+            ////    };
+            ////updateob.Tags = updatetags;
 
-            //string updatecustomCoordinates = "10,10,20,20";
-            //updateob.CustomCoordinates = updatecustomCoordinates;
-            //List<string> updateresponseFields = new List<string>
-            //    {
-            //        "isPrivateFile",
-            //        "tags",
-            //        "customCoordinates"
-            //    };
+            ////string updatecustomCoordinates = "10,10,20,20";
+            ////updateob.CustomCoordinates = updatecustomCoordinates;
+            ////List<string> updateresponseFields = new List<string>
+            ////    {
+            ////        "isPrivateFile",
+            ////        "tags",
+            ////        "customCoordinates"
+            ////    };
 
-            //List<Extension> extModel = new List<Extension>();
-            //BackGroundImage bck = new BackGroundImage
-            //{
-            //    name = "remove-bg",
-            //    options = new options() { add_shadow = true, semitransparency = false, bg_color = "green", bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
-            //};
-            //extModel.Add(bck);
-            //updateob.Extensions = extModel;
-            //updateob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
-            //Hashtable updatemodel = new Hashtable
-            //    {
-            //        { "price", 2000 }
-            //    };
-            //updateob.CustomMetadata = updatemodel;
-            //Result updateresp = imagekit.UpdateFileDetail(updateob);
+            ////List<Extension> extModel = new List<Extension>();
+            ////BackGroundImage bck = new BackGroundImage
+            ////{
+            ////    name = "remove-bg",
+            ////    options = new options() { add_shadow = true, semitransparency = false, bg_color = "green", bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+            ////};
+            ////extModel.Add(bck);
+            ////updateob.Extensions = extModel;
+            ////updateob.WebhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
+            ////Hashtable updatemodel = new Hashtable
+            ////    {
+            ////        { "price", 2000 }
+            ////    };
+            ////updateob.CustomMetadata = updatemodel;
+            ////Result updateresp = imagekit.UpdateFileDetail(updateob);
 
-            //    #endregion
+            ////    #endregion
 
-            //    #region File Management
+            ////    #region File Management
 
             //    // List and search files
             GetFileListRequest model = new GetFileListRequest
@@ -233,13 +240,13 @@ namespace ImagekitSample
             Result res1 = imagekit.GetFileDetail("file_Id");
 
             // Delete File by FileId
-             ResultDelete res2 = imagekit.DeleteFile("file_Id");
+            ResultDelete res2 = imagekit.DeleteFile("file_Id");
 
             // Bulk Delete
             List<string> ob3 = new List<string>();
-                ob3.Add("fileId_1");
-                ob3.Add("fileId_2");
-                ResultFileDelete resultFileDelete = imagekit.BulkDeleteFiles(ob3);
+            ob3.Add("fileId_1");
+            ob3.Add("fileId_2");
+            ResultFileDelete resultFileDelete = imagekit.BulkDeleteFiles(ob3);
 
             //    // Copy File
             CopyFileRequest cpyRequest = new CopyFileRequest
@@ -319,13 +326,13 @@ namespace ImagekitSample
                 FileId = "file_Id",
                 VersionId = "version_Id",
             };
-         //ResultNoContent resultNoContent1 = imagekit.DeleteFileVersion(delRequest);
+            //ResultNoContent resultNoContent1 = imagekit.DeleteFileVersion(delRequest);
 
             //    // RestoreFileVersion
-             Result result = imagekit.RestoreFileVersion("file_Id", "version_Id");
+            Result result = imagekit.RestoreFileVersion("file_Id", "version_Id");
 
             //    // GetFileVersions
-             ResultFileVersions resultFileVersions = imagekit.GetFileVersions("file_Id");
+            ResultFileVersions resultFileVersions = imagekit.GetFileVersions("file_Id");
 
             //    // GetFileVersionDetails
             ResultFileVersionDetails resultFileVersionDetails = imagekit.GetFileVersionDetails("file_Id", "version_Id");
@@ -370,7 +377,7 @@ namespace ImagekitSample
             //    #endregion
 
             //    #region GetBulkJobStatus
-   ResultBulkJobStatus resultBulkJobStatus = imagekit.GetBulkJobStatus("job_Id");
+            ResultBulkJobStatus resultBulkJobStatus = imagekit.GetBulkJobStatus("job_Id");
 
             //    #endregion
 
@@ -378,29 +385,31 @@ namespace ImagekitSample
 
             ResultCache resultCache = imagekit.PurgeCache("url");
 
-            //    ResultCacheStatus resultCacheStatus = imagekit.PurgeStatus("request_Id");
+            ResultCacheStatus resultCacheStatus = imagekit.PurgeStatus("request_Id");
 
             //    #endregion
 
             //    #region  Metadata
-           ResultMetaData resultMetaData = imagekit.GetFileMetadata("file_Id");
+            ResultMetaData resultMetaData = imagekit.GetFileMetadata("file_Id");
 
-            //    ResultMetaData resultMetaData1 = imagekit.GetRemoteFileMetadata("https://ik.imagekit.io/demo/medium_cafe_B1iTdD0C.jpg");
+            ResultMetaData resultMetaData1 = imagekit.GetRemoteFileMetadata("https://ik.imagekit.io/demo/medium_cafe_B1iTdD0C.jpg");
 
-            //    // CustomMetaDataFields
-              ResultCustomMetaDataFieldList resultCustomMetaDataFieldList = imagekit.GetCustomMetaDataFields(true);
+            // CustomMetaDataFields
+            ResultCustomMetaDataFieldList resultCustomMetaDataFieldList = imagekit.GetCustomMetaDataFields(true);
 
-            //    // CreateCustomMetaDataFields
+            ////    // CreateCustomMetaDataFields
             CustomMetaDataFieldCreateRequest requestModelDate = new CustomMetaDataFieldCreateRequest
             {
-                name = "custom-meta-Date2",
-                label = "TestmetaDate2"
+                name = "custom-meta-Dateb",
+                label = "TestmetaDatab"
             };
             CustomMetaDataFieldSchemaObject schemaDate = new CustomMetaDataFieldSchemaObject
             {
-                type = "Date",
+                type = CustomMetaDataTypeEnum.Date.ToString(),
                 minValue = "2022-11-30T10:11:10+00:00",
-                maxValue = "2022-12-30T10:11:10+00:00"
+                maxValue = "2022-12-30T10:11:10+00:00",
+                isValueRequired = true,
+                defaultValue = "2022-12-30T10:11:10+00:00"
             };
 
             requestModelDate.schema = schemaDate;
@@ -414,9 +423,11 @@ namespace ImagekitSample
             };
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
-                type = "Number",
+                type = CustomMetaDataTypeEnum.Number.ToString(),
                 minValue = 2000,
-                maxValue = 3000
+                maxValue = 3000,
+                isValueRequired = true,
+                defaultValue = 2500
             };
 
             requestModel.schema = schema;
@@ -425,13 +436,15 @@ namespace ImagekitSample
             CustomMetaDataFieldCreateRequest requestModel1 = new CustomMetaDataFieldCreateRequest
             {
                 name = "custom-meta-2",
-                label = "Testmeta2"
+                label = "Testmeta"
             };
             CustomMetaDataFieldSchemaObject schema1 = new CustomMetaDataFieldSchemaObject
             {
-                type = "Text",
+                type = CustomMetaDataTypeEnum.Text.ToString(),
                 minLength = 1000,
-                maxLength = 2000
+                maxLength = 2000,
+                isValueRequired = true,
+                defaultValue = "2500"
             };
 
             requestModel1.schema = schema1;
@@ -444,31 +457,33 @@ namespace ImagekitSample
             };
             CustomMetaDataFieldSchemaObject schemaSelect = new CustomMetaDataFieldSchemaObject
             {
-                type = "SingleSelect",
-                selectOptions = new string[]{"small", "medium", "large"}
+                type = CustomMetaDataTypeEnum.SingleSelect.ToString(),
+                selectOptions = new string[] { "small", "medium", "large" },
+                isValueRequired = true,
+                defaultValue = "medium"
             };
             requestModelSelect.schema = schemaSelect;
             ResultCustomMetaDataField resultCustomMetaDataFieldSelect = imagekit.CreateCustomMetaDataFields(requestModelSelect);
 
 
-            //    // UpdateCustomMetaDataFields
-            CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
-            {
-                Id = "field_id",
-            };
-            CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
-            {
-                type = "Number",
-                minValue = 8000,
-                maxValue = 3000
-            };
+            ////    // UpdateCustomMetaDataFields
+            //CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
+            //{
+            //    Id = "field_id",
+            //};
+            //CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
+            //{
+            //    type = "Number",
+            //    minValue = 8000,
+            //    maxValue = 3000
+            //};
 
-            requestUpdateModel.schema = updateschema;
-            ResultCustomMetaDataField resultCustomMetaDataFieldUpdate = imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
+            //requestUpdateModel.schema = updateschema;
+            //ResultCustomMetaDataField resultCustomMetaDataFieldUpdate = imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
 
-            // Delete Custom MetaData
-            ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("field_id");
-            //    #endregion
+            //// Delete Custom MetaData
+            //ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("field_id");
+            ////    #endregion
         }
     }
 }

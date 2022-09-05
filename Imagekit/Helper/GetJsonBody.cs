@@ -17,79 +17,220 @@ namespace Imagekit.Helper
         public static string CreateCustomMetaDataBody(CustomMetaDataFieldCreateRequest customMetaDataFieldCreateRequest)
         {
             string body = string.Empty;
-            if (customMetaDataFieldCreateRequest.schema.type == "Text")
+            if (customMetaDataFieldCreateRequest.schema.isValueRequired)
             {
-                body = @"{" + "\n" +
-                       @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
-                       @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
-                       @"    ""schema"": {" + "\n" +
-                       @"        ""type"": " +
-                       AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
-                       @"        ""minLength"": " +
-                       customMetaDataFieldCreateRequest.schema.minLength.ToString() + "," + "\n" +
-                       @"        ""maxLength"": " +
-                       customMetaDataFieldCreateRequest.schema.maxLength.ToString()+ "\n" +
-                       @"    }" + "\n" +
-                       @"}";
+                if (customMetaDataFieldCreateRequest.schema.type == "Text")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""minLength"": " +
+                           customMetaDataFieldCreateRequest.schema.minLength.ToString() + "," + "\n" +
+                           @"        ""maxLength"": " +
+                           customMetaDataFieldCreateRequest.schema.maxLength.ToString() + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "," + "\n" +
+                           @"        ""defaultValue"": " +
+                           AddDoubleQuotesObject(customMetaDataFieldCreateRequest.schema.defaultValue) + "\n" +
+                           @"    }" + "\n" +
+                           @"}";
+                }
+
+                if (customMetaDataFieldCreateRequest.schema.type == "Textarea")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""minLength"": " +
+                           customMetaDataFieldCreateRequest.schema.minLength.ToString() + "," + "\n" +
+                           @"        ""maxLength"": " +
+                           customMetaDataFieldCreateRequest.schema.maxLength.ToString() + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "," + "\n" +
+                           @"        ""defaultValue"": " +
+                           AddDoubleQuotesObject(customMetaDataFieldCreateRequest.schema.defaultValue) + "\n" +
+                           @"    }" + "\n" +
+                           @"}";
+                }
+
+                if (customMetaDataFieldCreateRequest.schema.type == "Number")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""minValue"": " +
+                           customMetaDataFieldCreateRequest.schema.minValue.ToString() + "," + "\n" +
+                           @"        ""maxValue"": " +
+                           customMetaDataFieldCreateRequest.schema.maxValue.ToString() + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "," + "\n" +
+                           @"        ""defaultValue"": " +
+                           AddDoubleQuotesObject(customMetaDataFieldCreateRequest.schema.defaultValue) + "\n" +
+
+                           @"    }" + "\n" +
+                           @"}";
+                }
+
+                if (customMetaDataFieldCreateRequest.schema.type == "Date")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""minValue"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.minValue.ToString()) + "," + "\n" +
+                           @"        ""maxValue"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.maxValue.ToString()) + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "," + "\n" +
+                           @"        ""defaultValue"": " +
+                           AddDoubleQuotesObject(customMetaDataFieldCreateRequest.schema.defaultValue) + "\n" +
+                           @"    }" + "\n" +
+                           @"}";
+                }
+
+                if (customMetaDataFieldCreateRequest.schema.type == "SingleSelect")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""selectOptions"": " +
+                           AddBigQuotes(customMetaDataFieldCreateRequest.schema.selectOptions) + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "," + "\n" +
+                           @"        ""defaultValue"": " +
+                           AddDoubleQuotesObject(customMetaDataFieldCreateRequest.schema.defaultValue) + "\n" +
+
+                           @"    }" + "\n" +
+                           @"}";
+                }
+
+                if (customMetaDataFieldCreateRequest.schema.type == "MultiSelect")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""selectOptions"": " +
+                           AddBigQuotes(customMetaDataFieldCreateRequest.schema.selectOptions) + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "," + "\n" +
+                           @"        ""defaultValue"": " +
+                           customMetaDataFieldCreateRequest.schema.defaultValue+ "\n" +
+
+                           @"    }" + "\n" +
+                           @"}";
+                }
             }
-            if (customMetaDataFieldCreateRequest.schema.type == "Textarea")
+            else
             {
-                body = @"{" + "\n" +
-                       @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
-                       @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
-                       @"    ""schema"": {" + "\n" +
-                       @"        ""type"": " +
-                       AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
-                       @"        ""minLength"": " +
-                       customMetaDataFieldCreateRequest.schema.minLength.ToString() + "," + "\n" +
-                       @"        ""maxLength"": " +
-                       customMetaDataFieldCreateRequest.schema.maxLength.ToString() + "\n" +
-                       @"    }" + "\n" +
-                       @"}";
+                if (customMetaDataFieldCreateRequest.schema.type == "Text")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""minLength"": " +
+                           customMetaDataFieldCreateRequest.schema.minLength.ToString() + "," + "\n" +
+                           @"        ""maxLength"": " +
+                           customMetaDataFieldCreateRequest.schema.maxLength.ToString() + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "\n" +
+                           @"    }" + "\n" +
+                           @"}";
+                }
+
+                if (customMetaDataFieldCreateRequest.schema.type == "Textarea")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""minLength"": " +
+                           customMetaDataFieldCreateRequest.schema.minLength.ToString() + "," + "\n" +
+                           @"        ""maxLength"": " +
+                           customMetaDataFieldCreateRequest.schema.maxLength.ToString() + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "\n" +
+
+                           @"    }" + "\n" +
+                           @"}";
+                }
+
+                if (customMetaDataFieldCreateRequest.schema.type == "Number")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""minValue"": " +
+                           customMetaDataFieldCreateRequest.schema.minValue.ToString() + "," + "\n" +
+                           @"        ""maxValue"": " +
+                           customMetaDataFieldCreateRequest.schema.maxValue.ToString() + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "\n" +
+                           @"    }" + "\n" +
+                           @"}";
+                }
+
+                if (customMetaDataFieldCreateRequest.schema.type == "Date")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""minValue"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.minValue.ToString()) + "," + "\n" +
+                           @"        ""maxValue"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.maxValue.ToString()) + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "\n" +
+                           @"    }" + "\n" +
+                           @"}";
+                }
+
+                if (customMetaDataFieldCreateRequest.schema.type == "SingleSelect" ||
+                    customMetaDataFieldCreateRequest.schema.type == "MultiSelect")
+                {
+                    body = @"{" + "\n" +
+                           @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
+                           @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
+                           @"    ""schema"": {" + "\n" +
+                           @"        ""type"": " +
+                           AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
+                           @"        ""selectOptions"": " +
+                           AddBigQuotes(customMetaDataFieldCreateRequest.schema.selectOptions) + "," + "\n" +
+                           @"        ""isValueRequired"": " +
+                           customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "\n" +
+                           @"    }" + "\n" +
+                           @"}";
+                }
             }
-            if (customMetaDataFieldCreateRequest.schema.type == "Number" )
-            {
-                body = @"{" + "\n" +
-                       @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
-                       @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
-                       @"    ""schema"": {" + "\n" +
-                       @"        ""type"": " +
-                       AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
-                       @"        ""minValue"": " +
-                       customMetaDataFieldCreateRequest.schema.minValue.ToString() + "," + "\n" +
-                       @"        ""maxValue"": " +
-                       customMetaDataFieldCreateRequest.schema.maxValue.ToString() + "\n" +
-                       @"    }" + "\n" +
-                       @"}";
-            }
-            if (customMetaDataFieldCreateRequest.schema.type == "Date")
-            {
-                body = @"{" + "\n" +
-                       @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
-                       @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
-                       @"    ""schema"": {" + "\n" +
-                       @"        ""type"": " +
-                       AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
-                       @"        ""minValue"": " +
-                       AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.minValue.ToString()) + "," + "\n" +
-                       @"        ""maxValue"": " +
-                       AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.maxValue.ToString()) + "\n" +
-                       @"    }" + "\n" +
-                       @"}";
-            }
-            if (customMetaDataFieldCreateRequest.schema.type == "SingleSelect")
-            {
-                body = @"{" + "\n" +
-                       @"    ""name"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.name) + "," + "\n" +
-                       @"    ""label"": " + AddDoubleQuotes(customMetaDataFieldCreateRequest.label) + "," + "\n" +
-                       @"    ""schema"": {" + "\n" +
-                       @"        ""type"": " +
-                       AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
-                       @"        ""selectOptions"": " + AddBigQuotes(customMetaDataFieldCreateRequest.schema.selectOptions)+ "\n" +
-                      
-                             @"    }" + "\n" +
-                       @"}";
-            }
+
             return body;
         }
 
@@ -172,6 +313,10 @@ namespace Imagekit.Helper
         }
 
         private static string AddDoubleQuotes(this string value)
+        {
+            return "\"" + value + "\"";
+        }
+        private static string AddDoubleQuotesObject(this object value)
         {
             return "\"" + value + "\"";
         }

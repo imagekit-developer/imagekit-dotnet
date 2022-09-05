@@ -364,7 +364,7 @@ internal class RestClient
                 throw new Exception(validate);
             }
 
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.FileId);
+            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.fileId);
             Dictionary<string, string> headers = Utils.GetHeaders();
             var formdata = MultipartFormDataModel.BuildUpdateFile(fileUpdateRequest);
             var request = new HttpRequestMessage
@@ -402,7 +402,7 @@ internal class RestClient
                 throw new Exception(validate);
             }
 
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.FileId);
+            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.fileId);
             Dictionary<string, string> headers = Utils.GetHeaders();
             var formdata = MultipartFormDataModel.BuildUpdateFile(fileUpdateRequest);
 
