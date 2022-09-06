@@ -6,11 +6,17 @@
     public class FileUpdateRequest
     {
         public string fileId { get; set; }
-        public List<string> removeAITags;
-        public string webhookUrl;
-        public List<Extension> extensions;
-        public List<string> tags;
-        public string customCoordinates;
-        public Hashtable customMetadata;
+
+        public List<string> removeAITags { get; set; }
+
+        public string webhookUrl { get; set; }
+
+        public List<Extension> extensions { get; set; }
+
+        public List<string> tags { get; set; }
+
+        public string customCoordinates { get; set; }
+
+        public Hashtable customMetadata { get; set; }
     }
 }

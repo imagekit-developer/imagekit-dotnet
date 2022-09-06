@@ -9,7 +9,10 @@ using Imagekit.Models;
 public class ResultCustomMetaDataField : ResponseMetaData
 {
     public string id { get; set; }
+
     public string name { get; set; }
+
     public string label { get; set; }
+
     public CustomMetaDataFieldSchemaObject Schema { get; set; }
 }

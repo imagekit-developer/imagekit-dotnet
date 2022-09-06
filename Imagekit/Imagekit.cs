@@ -100,9 +100,9 @@ namespace Imagekit.Sdk
             throw new NotImplementedException();
         }
 
-        public ResultTags RemoveAITags(AITagsRequest AITagsRequest)
+        public ResultTags RemoveAITags(AITagsRequest aITagsRequest)
         {
-            return (ResultTags)this.restClient.RemoveAITags(AITagsRequest);
+            return (ResultTags)this.restClient.RemoveAITags(aITagsRequest);
         }
 
         public ResultTags RemoveTags(TagsRequest tagsRequest)
@@ -227,9 +227,9 @@ namespace Imagekit.Sdk
             return (ResultTags)await this.restClient.ManageTagsAsync(tagsRequest, "addTags");
         }
 
-        public async Task<ResultTags> RemoveAITagsAsync(AITagsRequest AITagsRequest)
+        public async Task<ResultTags> RemoveAITagsAsync(AITagsRequest aITagsRequest)
         {
-            return (ResultTags)await this.restClient.RemoveAITagsAsync(AITagsRequest);
+            return (ResultTags)await this.restClient.RemoveAITagsAsync(aITagsRequest);
         }
 
         public async Task<ResultTags> RemoveTagsAsync(TagsRequest tagsRequest)

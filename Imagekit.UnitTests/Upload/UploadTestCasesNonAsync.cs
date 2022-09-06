@@ -59,7 +59,7 @@ namespace Imagekit.UnitTests.Upload
 
             FileCreateRequest ob = new FileCreateRequest
             {
-                file = string.Empty,
+                file = null,
                 fileName = Guid.NewGuid().ToString()
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();

@@ -70,20 +70,20 @@ You can use this DotNET SDK for three different functions: URL generation, file 
 
 **1\. Using image path and image hostname or endpoint**
 
-This method allows you to create a URL using the `path` where the image exists and the URL endpoint (`urlEndpoint`) you want to use to access the image. You can refer to the documentation [here](https://docs.imagekit.io/integration/url-endpoints) to read more about URL endpoints in ImageKit and the section about [image origins](https://docs.imagekit.io/integration/configure-origin) to understand paths with different kinds of origins.
+This method allows you to create a URL using the `path` where the image exists and the URL endpoint (`urlEndpoint`) you want to use to access the image. You can refer to the documentation [here](https://docs.imagekit.io/integration/url-endpoints) to read more about URL endpoints in ImageKit and the section about [image origins](https://docs.imagekit.io/integration/configure_origin) to understand paths with different kinds of origins.
 
 ```cs
-string path = "/default-image.jpg";
+string path = "/default_image.jpg";
 Transformation trans = new Transformation()
 .Width(400)
 .Height(300)
-.AspectRatio("4-3")
+.AspectRatio("4_3")
 .Quality(40)
 .Crop("force")
 .CropMode("extract")
 .Focus("left")
 .Format("jpeg")  
-.Raw("h-200,w-300,l-image,i-logo.png,l-end");
+.Raw("h_200,w_300,l_image,i_logo.png,l_end");
 
 string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
 ```
@@ -91,7 +91,7 @@ string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query")
 This results in a URL like
 
 ```plaintext
-https://ik.imagekit.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Ch-200%2Cw-300%2Cl-image%2Ci-logo.png%2Cl-end
+https://ik.imagekit.io/default_image.jpg?tr=w_400%2Ch_300%2Car_4_3%2Cq_40%2Cc_force%2Ccm_extract%2Cfo_left%2Cf_jpeg%2Ch_200%2Cw_300%2Cl_image%2Ci_logo.png%2Cl_end
 ```
 
 **2\. Using full image URL**
@@ -100,24 +100,24 @@ This method allows you to add transformation parameters to an existing, complete
 
 ```cs
 string imageURL = imagekit.Url(new Transformation().Width(400).Height(300))
-    .Src("https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg")
+    .Src("https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg")
     .Generate();
 ```
 
 This results in a URL like
 
 ```plaintext
-https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300,w-400
+https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg?tr=h_300,w_400
 ```
 
 The `.Url()` method accepts the following parameters.
 
 | Option | Description |
-| --- | --- |
+| ___ | ___ |
 | urlEndpoint | Optional. The base URL has to be appended before the path of the image. If not specified, the URL Endpoint specified at the time of SDK initialization is used. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/` |
 | path | Conditional. This is the path on which the image exists. For example, `/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
 | src | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
-| transformation | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as the array's different objects. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
+| transformation | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key_value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image_transformations/chained_transformations) can be specified as the array's different objects. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
 | transformationPosition | Optional. The default value is `path` that places the transformation string as a URL path parameter. It can also be specified as `query`, which adds the transformation string as the URL's query parameter `tr`. If you use the `src` parameter to create the URL, then the transformation string is always added as a query parameter. |
 | queryParameters | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful if you want to add some versioning parameters to your URLs. |
 | signed | Optional. Boolean. Default is `false`. If set to `false`, the SDK generates a signed image URL by adding the image signature to the image URL. This can only be used if you create the URL with the `urlEndpoint` and `path` parameters, not with the `src` parameter. |
@@ -133,14 +133,14 @@ Transformation transformation = new Transformation()
     .Chain()
     .Rotation(90);
 string imageURL = imagekit.Url(transformation)
-    .Path("/default-image.jpg")
+    .Path("/default_image.jpg")
     .UrlEndpoint("https://ik.imagekit.io/your_imagekit_id/endpoint")
     .TransformationPosition("query")
     .Generate();
 ```
 
 ```plaintext
-https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300,w-400:rt-90
+https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg?tr=h_300,w_400:rt_90
 ```
 
 **2\. Sharpening and contrast transforms and a progressive JPG image**
@@ -355,9 +355,9 @@ Accepts the file IDs to delete files as per the [API documentation here](https:/
 
 ```cs
 List<String> fileIds = new ArrayList<>();
-fileIds.add("file-id-1");
-fileIds.add("file-id-2");
-fileIds.add("file-id-3");
+fileIds.add("file_id_1");
+fileIds.add("file_id_2");
+fileIds.add("file_id_3");
 
 ResultFileDelete result = imageKit.bulkDeleteFiles(fileIds);
 ```
@@ -597,7 +597,7 @@ ResultCustomMetaDataField resultCustomMetaDataField1 = imagekit.CreateCustomMeta
 ```cs
 CustomMetaDataFieldCreateRequest requestModelDate = new CustomMetaDataFieldCreateRequest
 {
-name = "custom-meta-Date",
+name = "custom_meta_Date",
 label = "TestmetaDate"
 };
 CustomMetaDataFieldSchemaObject schemaDate = new CustomMetaDataFieldSchemaObject

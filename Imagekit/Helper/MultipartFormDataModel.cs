@@ -15,7 +15,7 @@
 
         public static MultipartFormDataContent Build(FileCreateRequest fileCreateRequest)
         {
-            HttpContent content = new StringContent("");
+            HttpContent content = new StringContent(string.Empty);
             MultipartFormDataContent formdata = new MultipartFormDataContent(boundary);
             formdata.Headers.Remove("Content-Type");
             formdata.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data; boundary=" + boundary);

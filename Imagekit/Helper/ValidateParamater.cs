@@ -25,7 +25,7 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (obj.file != null  && obj.file !="")
+            if (obj.file != null)
             {
                 flag = string.Empty;
                 return flag;

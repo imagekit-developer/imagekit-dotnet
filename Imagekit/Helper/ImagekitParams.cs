@@ -22,7 +22,7 @@ namespace Imagekit
         }
 
         public T Url(Transformation value)
-        {            
+        {
             return this.Add("transformation", value);
         }
 
@@ -131,14 +131,14 @@ namespace Imagekit
             if (this.options.ContainsKey(key))
             {
                 this.options[key] = value;
-                if(key== "transformation")
+                if (key == "transformation")
                 {
                     this.options.Remove("path");
                     this.options.Remove("src");
                 }
             }
             else
-            {                
+            {
                 this.options.Add(key, value);
             }
 

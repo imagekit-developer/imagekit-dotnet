@@ -6,8 +6,6 @@ namespace Imagekit.Models
 {
     public class DeleteFolderRequest
     {
-       
-
-        public string folderPath { get ; set; }
+        public string folderPath { get; set; }
     }
 }

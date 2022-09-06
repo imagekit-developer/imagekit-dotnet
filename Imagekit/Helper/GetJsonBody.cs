@@ -132,7 +132,7 @@ namespace Imagekit.Helper
                            @"        ""isValueRequired"": " +
                            customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "," + "\n" +
                            @"        ""defaultValue"": " +
-                           customMetaDataFieldCreateRequest.schema.defaultValue+ "\n" +
+                           customMetaDataFieldCreateRequest.schema.defaultValue + "\n" +
 
                            @"    }" + "\n" +
                            @"}";
@@ -250,6 +250,7 @@ namespace Imagekit.Helper
                        @"    }" + "\n" +
                        @"}";
             }
+
             if (customMetaDataFieldCreateRequest.schema.type == "Textarea")
             {
                 body = @"{" + "\n" +
@@ -263,6 +264,7 @@ namespace Imagekit.Helper
                        @"    }" + "\n" +
                        @"}";
             }
+
             if (customMetaDataFieldCreateRequest.schema.type == "Number")
             {
                 body = @"{" + "\n" +
@@ -276,6 +278,7 @@ namespace Imagekit.Helper
                        @"    }" + "\n" +
                        @"}";
             }
+
             if (customMetaDataFieldCreateRequest.schema.type == "Date")
             {
                 body = @"{" + "\n" +
@@ -289,6 +292,7 @@ namespace Imagekit.Helper
                        @"    }" + "\n" +
                        @"}";
             }
+
             if (customMetaDataFieldCreateRequest.schema.type == "SingleSelect")
             {
                 body = @"{" + "\n" +
@@ -300,6 +304,7 @@ namespace Imagekit.Helper
                              @"    }" + "\n" +
                        @"}";
             }
+
             return body;
         }
 
@@ -316,23 +321,25 @@ namespace Imagekit.Helper
         {
             return "\"" + value + "\"";
         }
+
         private static string AddDoubleQuotesObject(this object value)
         {
             return "\"" + value + "\"";
         }
+
         private static string AddBigQuotes(this string[] value)
         {
             var joinedNames = "\"" + string.Join("\", \"", value) + "\"";
 
             return "[" + joinedNames + "]";
         }
+
         public static string GetBase64(object imageArray)
         {
-            
             string base64ImageRepresentation = Convert.ToBase64String((byte[])imageArray);
             return base64ImageRepresentation;
         }
-        
+
         public static string GetBase64Uri(string imagePath)
         {
             var uri = new System.Uri(imagePath);

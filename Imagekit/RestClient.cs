@@ -47,7 +47,6 @@ internal class RestClient
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileRequest, param);
             HttpResponseMessage response = this.client.GetAsync(url).Result;
             string res = response.Content.ReadAsStringAsync().Result;
-            
 
             Utils.PopulateResponseMetadata(
                res,
@@ -84,8 +83,8 @@ internal class RestClient
                 {
                     model = JsonConvert.DeserializeObject<ResultList>(res);
                 }
-
             }
+
             Utils.PopulateResponseMetadata(
                res,
                model,
@@ -240,7 +239,7 @@ internal class RestClient
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileDetails, fileId);
 
-           HttpResponseMessage response = this.client.GetAsync(url).Result;
+            HttpResponseMessage response = this.client.GetAsync(url).Result;
             string res = response.Content.ReadAsStringAsync().Result;
             model = JsonConvert.DeserializeObject<Result>(res);
             Utils.PopulateResponseMetadata(
@@ -371,10 +370,11 @@ internal class RestClient
             {
                 Method = HttpMethod.Post,
                 RequestUri = new Uri(url),
-                Content = formdata
+                Content = formdata,
             };
 
             HttpResponseMessage response = this.client.SendAsync(request).Result;
+
             // HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
             string res = response.Content.ReadAsStringAsync().Result;
             model = JsonConvert.DeserializeObject<Result>(res);
@@ -758,12 +758,12 @@ internal class RestClient
         }
     }
 
-    public ResponseMetaData RemoveAITags(AITagsRequest AITagsRequest)
+    public ResponseMetaData RemoveAITags(AITagsRequest aITagsRequest)
     {
         try
         {
             ResultTags model = new ResultTags();
-            var validate = ValidateParamater.IsValidateAiTagRequest(AITagsRequest);
+            var validate = ValidateParamater.IsValidateAiTagRequest(aITagsRequest);
             if (!string.IsNullOrEmpty(validate))
             {
                 throw new Exception(validate);
@@ -774,7 +774,7 @@ internal class RestClient
 
             url = this.mediaAPIBaseUrl + UrlHandler.RemoveAITags;
 
-            var content = JsonConvert.SerializeObject(AITagsRequest);
+            var content = JsonConvert.SerializeObject(aITagsRequest);
             var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
             HttpResponseMessage response = this.client.PostAsync(url, stringContent).Result;
             string res = response.Content.ReadAsStringAsync().Result;
@@ -793,12 +793,12 @@ internal class RestClient
         }
     }
 
-    public async Task<ResponseMetaData> RemoveAITagsAsync(AITagsRequest AITagsRequest)
+    public async Task<ResponseMetaData> RemoveAITagsAsync(AITagsRequest aITagsRequest)
     {
         try
         {
             ResultTags model = new ResultTags();
-            var validate = ValidateParamater.IsValidateAiTagRequest(AITagsRequest);
+            var validate = ValidateParamater.IsValidateAiTagRequest(aITagsRequest);
             if (!string.IsNullOrEmpty(validate))
             {
                 throw new Exception(validate);
@@ -809,7 +809,7 @@ internal class RestClient
 
             url = this.uploadAPIBaseUrl + UrlHandler.RemoveAITags;
 
-            var content = JsonConvert.SerializeObject(AITagsRequest);
+            var content = JsonConvert.SerializeObject(aITagsRequest);
             var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await this.client.PostAsync(url, stringContent);
             string res = response.Content.ReadAsStringAsync().Result;
@@ -847,11 +847,10 @@ internal class RestClient
                 else
                 {
                     model = JsonConvert.DeserializeObject<ResultCustomMetaDataFieldList>(res);
-
                 }
-
             }
-             Utils.PopulateResponseMetadata(
+
+            Utils.PopulateResponseMetadata(
                res,
                model,
                Convert.ToInt32(response.StatusCode),
