@@ -70,20 +70,20 @@ You can use this DotNET SDK for three different functions: URL generation, file 
 
 **1\. Using image path and image hostname or endpoint**
 
-This method allows you to create a URL using the `path` where the image exists and the URL endpoint (`urlEndpoint`) you want to use to access the image. You can refer to the documentation [here](https://docs.imagekit.io/integration/url-endpoints) to read more about URL endpoints in ImageKit and the section about [image origins](https://docs.imagekit.io/integration/configure_origin) to understand paths with different kinds of origins.
+This method allows you to create a URL using the `path` where the image exists and the URL endpoint (`urlEndpoint`) you want to use to access the image. You can refer to the documentation [here](https://docs.imagekit.io/integration/url-endpoints) to read more about URL endpoints in ImageKit and the section about [image origins](https://docs.imagekit.io/integration/configure-origin) to understand paths with different kinds of origins.
 
 ```cs
 string path = "/default_image.jpg";
 Transformation trans = new Transformation()
 .Width(400)
 .Height(300)
-.AspectRatio("4_3")
+.AspectRatio("4-3")
 .Quality(40)
 .Crop("force")
 .CropMode("extract")
 .Focus("left")
 .Format("jpeg")  
-.Raw("h_200,w_300,l_image,i_logo.png,l_end");
+.Raw("h-200,w-300,l-image,i-logo.png,l-end");
 
 string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
 ```
@@ -91,7 +91,7 @@ string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query")
 This results in a URL like
 
 ```plaintext
-https://ik.imagekit.io/default_image.jpg?tr=w_400%2Ch_300%2Car_4_3%2Cq_40%2Cc_force%2Ccm_extract%2Cfo_left%2Cf_jpeg%2Ch_200%2Cw_300%2Cl_image%2Ci_logo.png%2Cl_end
+https://ik.imagekit.io/default_image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq_40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Ch-200%2Cw-300%2Cl-image%2Ci-logo.png%2Cl-end
 ```
 
 **2\. Using full image URL**
@@ -107,17 +107,17 @@ string imageURL = imagekit.Url(new Transformation().Width(400).Height(300))
 This results in a URL like
 
 ```plaintext
-https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg?tr=h_300,w_400
+https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg?tr=h-300,w-400
 ```
 
 The `.Url()` method accepts the following parameters.
 
 | Option | Description |
-| ___ | ___ |
+| --- | --- |
 | urlEndpoint | Optional. The base URL has to be appended before the path of the image. If not specified, the URL Endpoint specified at the time of SDK initialization is used. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/` |
 | path | Conditional. This is the path on which the image exists. For example, `/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
 | src | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
-| transformation | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key_value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image_transformations/chained_transformations) can be specified as the array's different objects. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
+| transformation | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as the array's different objects. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
 | transformationPosition | Optional. The default value is `path` that places the transformation string as a URL path parameter. It can also be specified as `query`, which adds the transformation string as the URL's query parameter `tr`. If you use the `src` parameter to create the URL, then the transformation string is always added as a query parameter. |
 | queryParameters | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful if you want to add some versioning parameters to your URLs. |
 | signed | Optional. Boolean. Default is `false`. If set to `false`, the SDK generates a signed image URL by adding the image signature to the image URL. This can only be used if you create the URL with the `urlEndpoint` and `path` parameters, not with the `src` parameter. |
@@ -140,7 +140,7 @@ string imageURL = imagekit.Url(transformation)
 ```
 
 ```plaintext
-https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg?tr=h_300,w_400:rt_90
+https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg?tr=h-300,w-400:rt-90
 ```
 
 **2\. Sharpening and contrast transforms and a progressive JPG image**
@@ -281,7 +281,7 @@ Result resp2 = imagekit.Upload(ob);
 byte[] imageArray = System.IO.File.ReadAllBytes(@"image file path");
 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 // Upload by Base64
- FileCreateRequest ob2 = new FileCreateRequest
+FileCreateRequest ob2 = new FileCreateRequest
 {
 file = base64ImageRepresentation,
 FileName = Guid.NewGuid().ToString(),
@@ -575,16 +575,16 @@ Check for the [Allowed Values In The Schema](https://docs.imageKit.io/api-refere
 ```cs
 CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
 {
-name = "custom-meta-1",
-label = "Testmeta"
-            };
+    name = "custom-meta-1",
+    label = "Testmeta"
+};
 CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
 {
-type = "Number",
-minValue = 2000,
-maxValue = 3000,
-isValueRequired = true,
-defaultValue = "2500"
+    type = "Number",
+    minValue = 2000,
+    maxValue = 3000,
+    isValueRequired = true,
+    defaultValue = "2500"
 };
 
 requestModel.schema = schema;
@@ -597,14 +597,14 @@ ResultCustomMetaDataField resultCustomMetaDataField1 = imagekit.CreateCustomMeta
 ```cs
 CustomMetaDataFieldCreateRequest requestModelDate = new CustomMetaDataFieldCreateRequest
 {
-name = "custom_meta_Date",
-label = "TestmetaDate"
+    name = "custom_meta_Date",
+    label = "TestmetaDate"
 };
 CustomMetaDataFieldSchemaObject schemaDate = new CustomMetaDataFieldSchemaObject
 {
-type = "Date",
-minValue = "2022-11-30T10:11:10+00:00",
-maxValue = "2022-12-30T10:11:10+00:00"
+    type = "Date",
+    minValue = "2022-11-30T10:11:10+00:00",
+    maxValue = "2022-12-30T10:11:10+00:00"
 };
 requestModelDate.schema = schemaDate;
 ResultCustomMetaDataField resultCustomMetaDataFieldDate = imagekit.CreateCustomMetaDataFields(requestModelDate);
@@ -626,13 +626,13 @@ Accepts an ID of customMetaDataField and an object of class `CustomMetaDataField
 ```cs
  CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
 {
-Id = "field_id",
+    Id = "field_id",
 };
 CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
 {
-type = "Number",
-minValue = 8000,
-maxValue = 3000
+    type = "Number",
+    minValue = 8000,
+    maxValue = 3000
 };
 
 requestUpdateModel.schema = updateschema;
@@ -714,30 +714,30 @@ Imagekit .Net SDK raises exceptions for many reasons, such as being not found, i
 #### Example:
 
 ```cs
-  try
+try
 {
-// Use ImageKit's SDK to make requests...
+    // Use ImageKit's SDK to make requests...
 }
 catch (InvalidOperationException ex)
 {
-Console.Write("Invalid operation. Please try again.");
+    Console.Write("Invalid operation. Please try again.");
 }
 catch (FormatException ex)
 {
-Console.Write("Not a valid format. Please try again.");
+    Console.Write("Not a valid format. Please try again.");
 }
 catch (WebServiceException webEx)
 {
-/*
-webEx.StatusCode        = 400
-webEx.StatusDescription = ArgumentNullException
-webEx.ErrorCode         = ArgumentNullException
-webEx.ErrorMessage      = Value cannot be null. Parameter name: Name
-webEx.StackTrace        = (your Server Exception StackTrace - in DebugMode)
-webEx.ResponseDto       = (your populated Response DTO)
-webEx.ResponseStatus    = (your populated Response Status DTO)
-webEx.GetFieldErrors()  = (individual errors for each field if any)
-*/
+    /*
+    webEx.StatusCode        = 400
+    webEx.StatusDescription = ArgumentNullException
+    webEx.ErrorCode         = ArgumentNullException
+    webEx.ErrorMessage      = Value cannot be null. Parameter name: Name
+    webEx.StackTrace        = (your Server Exception StackTrace - in DebugMode)
+    webEx.ResponseDto       = (your populated Response DTO)
+    webEx.ResponseStatus    = (your populated Response Status DTO)
+    webEx.GetFieldErrors()  = (individual errors for each field if any)
+    */
 }
 ```
 
