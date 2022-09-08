@@ -28,7 +28,7 @@ namespace ImagekitSample
 
             string path = "/default_image.jpg";
             Transformation trans = new Transformation()
-                 .Width(400)
+                .Width(400)
                 .Height(300)
                 .AspectRatio("4-3")
                 .Quality(40)
@@ -186,7 +186,6 @@ namespace ImagekitSample
             FileUpdateRequest updateob = new FileUpdateRequest
             {
                 fileId = "fileId",
-
             };
             List<string> updatetags = new List<string>
                 {
@@ -413,7 +412,6 @@ namespace ImagekitSample
             requestModelDate.schema = schemaDate;
             ResultCustomMetaDataField resultCustomMetaDataFieldDate = imagekit.CreateCustomMetaDataFields(requestModelDate);
 
-
             CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
             {
                 name = "custom_meta_1",
@@ -462,7 +460,6 @@ namespace ImagekitSample
             };
             requestModelSelect.schema = schemaSelect;
             ResultCustomMetaDataField resultCustomMetaDataFieldSelect = imagekit.CreateCustomMetaDataFields(requestModelSelect);
-
 
             // UpdateCustomMetaDataFields
             CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
