@@ -365,17 +365,24 @@ internal class RestClient
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.fileId);
             Dictionary<string, string> headers = Utils.GetHeaders();
-            var formdata = MultipartFormDataModel.BuildUpdateFile(fileUpdateRequest);
+
+            var content = JsonConvert.SerializeObject(fileUpdateRequest,
+            new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+            });
+            var stringContent =
+               new StringContent(content, Encoding.UTF8,
+                   mediaType: "application/json");
             var request = new HttpRequestMessage
             {
-                Method = HttpMethod.Post,
+                Method = new HttpMethod("PATCH"),
                 RequestUri = new Uri(url),
-                Content = formdata,
+                Content = stringContent,
             };
 
             HttpResponseMessage response = this.client.SendAsync(request).Result;
 
-            // HttpResponseMessage response = this.client.PostAsync(url, formdata).Result;
             string res = response.Content.ReadAsStringAsync().Result;
             model = JsonConvert.DeserializeObject<Result>(res);
             Utils.PopulateResponseMetadata(
@@ -403,10 +410,22 @@ internal class RestClient
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.UpdateFileRequest, fileUpdateRequest.fileId);
-            Dictionary<string, string> headers = Utils.GetHeaders();
-            var formdata = MultipartFormDataModel.BuildUpdateFile(fileUpdateRequest);
+            var content = JsonConvert.SerializeObject(fileUpdateRequest,
+            new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+            });
+            var stringContent =
+               new StringContent(content, Encoding.UTF8,
+                   mediaType: "application/json");
+            var request = new HttpRequestMessage
+            {
+                Method = new HttpMethod("PATCH"),
+                RequestUri = new Uri(url),
+                Content = stringContent,
+            };
 
-            HttpResponseMessage response = await this.client.PostAsync(url, formdata);
+            HttpResponseMessage response = await this.client.SendAsync(request);
             string res = response.Content.ReadAsStringAsync().Result;
             model = JsonConvert.DeserializeObject<Result>(res);
             Utils.PopulateResponseMetadata(
@@ -1031,11 +1050,14 @@ internal class RestClient
                 customMetaDataFieldUpdateRequest.Id);
             string body = GetJsonBody.UpdateCustomMetaDataBody(customMetaDataFieldUpdateRequest);
 
+            var stringContent =
+               new StringContent(body, Encoding.UTF8,
+                   mediaType: "application/json");
             var request = new HttpRequestMessage
             {
-                Method = HttpMethod.Post,
+                Method = new HttpMethod("PATCH"),
                 RequestUri = new Uri(url),
-                Content = new StringContent(body, Encoding.UTF8, "application/json"),
+                Content = stringContent,
             };
             HttpResponseMessage response = this.client.SendAsync(request).Result;
             string res = response.Content.ReadAsStringAsync().Result;
@@ -1071,13 +1093,15 @@ internal class RestClient
                 customMetaDataFieldUpdateRequest.Id);
             string body = GetJsonBody.UpdateCustomMetaDataBody(customMetaDataFieldUpdateRequest);
 
+            var stringContent =
+               new StringContent(body, Encoding.UTF8,
+                   mediaType: "application/json");
             var request = new HttpRequestMessage
             {
-                Method = HttpMethod.Post,
+                Method = new HttpMethod("PATCH"),
                 RequestUri = new Uri(url),
-                Content = new StringContent(body, Encoding.UTF8, "application/json"),
+                Content = stringContent,
             };
-
             HttpResponseMessage response = await this.client.SendAsync(request);
             string res = response.Content.ReadAsStringAsync().Result;
             model = JsonConvert.DeserializeObject<ResultCustomMetaDataField>(res);

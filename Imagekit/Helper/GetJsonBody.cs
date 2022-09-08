@@ -74,7 +74,7 @@ namespace Imagekit.Helper
                            @"        ""isValueRequired"": " +
                            customMetaDataFieldCreateRequest.schema.isValueRequired.ToString().ToLower() + "," + "\n" +
                            @"        ""defaultValue"": " +
-                           AddDoubleQuotesObject(customMetaDataFieldCreateRequest.schema.defaultValue) + "\n" +
+                           customMetaDataFieldCreateRequest.schema.defaultValue + "\n" +
 
                            @"    }" + "\n" +
                            @"}";
@@ -271,9 +271,9 @@ namespace Imagekit.Helper
                          @"    ""schema"": {" + "\n" +
                        @"        ""type"": " +
                        AddDoubleQuotes(customMetaDataFieldCreateRequest.schema.type.ToString()) + "," + "\n" +
-                       @"        ""minLength"": " +
+                       @"        ""minValue"": " +
                        customMetaDataFieldCreateRequest.schema.minValue.ToString() + "," + "\n" +
-                       @"        ""maxLength"": " +
+                       @"        ""maxValue"": " +
                        customMetaDataFieldCreateRequest.schema.maxValue.ToString() + "\n" +
                        @"    }" + "\n" +
                        @"}";

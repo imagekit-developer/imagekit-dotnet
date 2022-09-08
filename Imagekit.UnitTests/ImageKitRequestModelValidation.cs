@@ -117,11 +117,10 @@ namespace Imagekit.UnitTests
                 { "price", 2000 }
             };
             ob.customMetadata = model;
-            string result =
-                "--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=tags\r\n\r\nSoftware,Developer,Engineer\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customCoordinates\r\n\r\n10,10,20,20\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=webhookUrl\r\n\r\nhttps://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customMetadata\r\n\r\n{\"price\":2000}\r\n--ImageKit-dLV9Wyq26L--\r\n";
+            string result ="{\"fileId\":\"file-Id\",\"webhookUrl\":\"https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\",\"tags\":[\"Software\",\"Developer\",\"Engineer\"],\"customCoordinates\":\"10,10,20,20\",\"customMetadata\":{\"price\":2000}}";  
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
-                .With(a => a.Method.Equals(HttpMethod.Post))
+                //.With(a => a.Method.Equals(HttpMethod.Post))
                 .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(result)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
@@ -396,7 +395,7 @@ namespace Imagekit.UnitTests
         [Fact]
         public void CreateCustomMetaDataFields_ModelValidation()
         {
-            string reqJosn = "{\n    \"name\": \"Tst3\",\n    \"label\": \"Test3\",\n    \"schema\": {\n        \"type\": \"Number\",\n        \"minValue\": 1000,\n        \"maxValue\": 3000,\n        \"isValueRequired\": true,\n        \"defaultValue\": \"2500\"\n    }\n}";
+            string reqJosn = "{\n    \"name\": \"Tst3\",\n    \"label\": \"Test3\",\n    \"schema\": {\n        \"type\": \"Number\",\n        \"minValue\": 1000,\n        \"maxValue\": 3000,\n        \"isValueRequired\": true,\n        \"defaultValue\": 2500\n    }\n}";
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
                 name = "Tst3",
@@ -456,6 +455,37 @@ namespace Imagekit.UnitTests
             var response = rs.CreateCustomMetaDataFields(model);
             mockHttp.VerifyNoOutstandingExpectation();
         }
+
+        [Fact]
+        public void UpdateCustomMetaDataFields_ModelValidation()
+        {
+            string reqJosn = "{\n    \"schema\": {\n        \"type\": \"Number\",\n        \"minValue\": 300,\n        \"maxValue\": 500\n    }\n}";
+            CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
+            {
+                Id = "field_Id",
+            };
+            CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
+            {
+                type = "Number",
+                minValue = 300,
+                maxValue = 500
+            };
+            requestUpdateModel.schema = updateschema;
+
+            string url = "https://api.imagekit.io/v1/customMetadataFields/field_Id";
+            var mockHttp = new MockHttpMessageHandler();
+            var request = mockHttp.Expect(url)
+               // .With(a => a.Method.Equals(HttpMethod.Patch))               
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
+                .WithContent(reqJosn)
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
+
+            var client = mockHttp.ToHttpClient();
+            RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
+            var response = rs.UpdateCustomMetaDataFields(requestUpdateModel);
+            mockHttp.VerifyNoOutstandingExpectation();
+        }
+
         [Fact]
         public void DeleteCustomMetaDataField_ModelValidation()
         {

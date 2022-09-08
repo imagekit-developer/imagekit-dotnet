@@ -25,8 +25,8 @@
 
     public class AutoTags : Extension
     {
-        public int? MinConfidence { get; set; }
+        public int? minConfidence { get; set; }
 
-        public int? MaxTags { get; set; }
+        public int? maxTags { get; set; }
     }
 }
