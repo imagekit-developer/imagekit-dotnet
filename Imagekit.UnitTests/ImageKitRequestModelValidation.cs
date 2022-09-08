@@ -378,7 +378,6 @@ namespace Imagekit.UnitTests
         [Fact]
         public void GetCustomMetaDataFields_ModelValidation()
         {
-
             string url = string.Format("https://api.imagekit.io/v1/customMetadataFields?includeDeleted={0}", true);
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
