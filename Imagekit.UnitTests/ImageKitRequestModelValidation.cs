@@ -20,7 +20,7 @@ namespace Imagekit.UnitTests
         [Fact]
         public void UploadFileRequest_ModelValidation()
         {
-            string json = "--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=fileName\r\n\r\ntest.jpg\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=file\r\n\r\nhttps://homepages.cae.wisc.edu/~ece533/images/cat.png\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=useUniqueFileName\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=tags\r\n\r\nSoftware,Developer,Engineer\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=folder\r\n\r\ndummy-folder\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customCoordinates\r\n\r\n10,10,20,20\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=responseFields\r\n\r\nisPrivateFile,tags,customCoordinates\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteFile\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteAITags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteTags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteCustomMetadata\r\n\r\nfalse\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=webhookUrl\r\n\r\nhttps://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customMetadata\r\n\r\n{\"price\":2000}\r\n--ImageKit-dLV9Wyq26L--\r\n";      
+            string json = "--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=fileName\r\n\r\ntest.jpg\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=file\r\n\r\nhttps://homepages.cae.wisc.edu/~ece533/images/cat.png\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=useUniqueFileName\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=tags\r\n\r\nSoftware,Developer,Engineer\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=folder\r\n\r\ndummy-folder\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customCoordinates\r\n\r\n10,10,20,20\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=responseFields\r\n\r\nisPrivateFile,tags,customCoordinates\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteFile\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteAITags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteTags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteCustomMetadata\r\n\r\nfalse\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=webhookUrl\r\n\r\nhttps://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customMetadata\r\n\r\n{\"price\":2000}\r\n--ImageKit-dLV9Wyq26L--\r\n";
             string url = "https://upload.imagekit.io/api/v1/files/upload";
             FileCreateRequest ob = new FileCreateRequest
             {
@@ -50,13 +50,13 @@ namespace Imagekit.UnitTests
                 { "price", 2000 }
             };
             ob.customMetadata = model;
-            ob.useUniqueFileName=true;
+            ob.useUniqueFileName = true;
             ob.folder = "dummy-folder";
-            ob.isPrivateFile=false;
-            ob.overwriteFile=true;
-            ob.overwriteAITags=true;
-            ob.overwriteTags=true;
-            ob.overwriteCustomMetadata=true;
+            ob.isPrivateFile = false;
+            ob.overwriteFile = true;
+            ob.overwriteAITags = true;
+            ob.overwriteTags = true;
+            ob.overwriteCustomMetadata = true;
             List<string> responseFields = new List<string>
                 {
                     "isPrivateFile",
@@ -64,8 +64,6 @@ namespace Imagekit.UnitTests
                     "customCoordinates"
                 };
             ob.responseFields = responseFields;
-            var formdata = MultipartFormDataModel.Build(ob);
-            var rr = formdata.ReadAsStringAsync().Result;
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
@@ -117,10 +115,9 @@ namespace Imagekit.UnitTests
                 { "price", 2000 }
             };
             ob.customMetadata = model;
-            string result ="{\"fileId\":\"file-Id\",\"webhookUrl\":\"https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\",\"tags\":[\"Software\",\"Developer\",\"Engineer\"],\"customCoordinates\":\"10,10,20,20\",\"customMetadata\":{\"price\":2000}}";  
+            string result = "{\"fileId\":\"file-Id\",\"webhookUrl\":\"https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\",\"tags\":[\"Software\",\"Developer\",\"Engineer\"],\"customCoordinates\":\"10,10,20,20\",\"customMetadata\":{\"price\":2000}}";
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
-                //.With(a => a.Method.Equals(HttpMethod.Post))
                 .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(result)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
@@ -438,7 +435,7 @@ namespace Imagekit.UnitTests
                 type = "Number",
                 minValue = 1000,
                 maxValue = 3000
-               
+
             };
             model.schema = schema;
             string url = "https://api.imagekit.io/v1/customMetadataFields";
@@ -474,7 +471,6 @@ namespace Imagekit.UnitTests
             string url = "https://api.imagekit.io/v1/customMetadataFields/field_Id";
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
-               // .With(a => a.Method.Equals(HttpMethod.Patch))               
                 .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(reqJosn)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
@@ -533,7 +529,7 @@ namespace Imagekit.UnitTests
             {
                 sourceFilePath = "Tst3",
                 destinationPath = "Tst3"
-                 };
+            };
             string url = string.Empty;
             url = string.Format("https://api.imagekit.io/v1/files/copy");
             var mockHttp = new MockHttpMessageHandler();
@@ -609,7 +605,7 @@ namespace Imagekit.UnitTests
             {
                 sourceFolderPath = "Tst3",
                 destinationPath = "Tst3"
-               
+
             };
             string url = string.Format("https://api.imagekit.io/v1/bulkJobs/moveFolder");
             var mockHttp = new MockHttpMessageHandler();
