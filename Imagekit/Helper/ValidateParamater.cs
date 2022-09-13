@@ -171,15 +171,15 @@ namespace Imagekit.Helper
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.FileId))
+            if (string.IsNullOrEmpty(obj.fileId))
             {
                 flag = ErrorMessages.InvalidFieldIdDelVerValue;
                 return flag;
             }
 
-            if (string.IsNullOrEmpty(obj.VersionId))
+            if (string.IsNullOrEmpty(obj.versionId))
             {
-                flag = ErrorMessages.InvalidVersionIdDelVerValue;
+                flag = ErrorMessages.InvalidversionIdDelVerValue;
                 return flag;
             }
 
@@ -276,7 +276,7 @@ namespace Imagekit.Helper
 
             if (string.IsNullOrEmpty(versonid))
             {
-                flag = ErrorMessages.InvalidVersionIdDelVerValue;
+                flag = ErrorMessages.InvalidversionIdDelVerValue;
                 return flag;
             }
 
@@ -381,13 +381,13 @@ namespace Imagekit.Helper
             string flag = string.Empty;
             if (obj == null)
             {
-                flag = ErrorMessages.FileIdMissing;
+                flag = ErrorMessages.fileIdMissing;
                 return flag;
             }
 
             if (string.IsNullOrEmpty(obj.fileId))
             {
-                flag = ErrorMessages.FileIdMissing;
+                flag = ErrorMessages.fileIdMissing;
                 return flag;
             }
 

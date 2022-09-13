@@ -15,7 +15,7 @@ namespace Imagekit.Constant
         public const string GetPurgeStatus = @"v1/files/purge/{0}";
         public const string GetFileDetails = @"v1/files/{0}/details";
         public const string DeleteFile = @"v1/files/{0}/";
-        public const string BulkDelete = @"v1/files/batch/deleteByFileIds";
+        public const string BulkDelete = @"v1/files/batch/deleteByfileIds";
         public const string GetMetaData = @"v1/files/{0}/metadata";
         public const string GetRemoteData = @"v1/metadata?url={0}";
         public const string RemoveTags = @"v1/files/removeTags";
@@ -32,7 +32,7 @@ namespace Imagekit.Constant
         public const string RestoreVesrion = @"v1/files/{0}/versions/{1}/restore";
         public const string CreateFolder = @"v1/folder/";
         public const string DeleteFolder = @"v1/folder/";
-        public const string CopyFolder = @"v1/bulkJobs/moveFolder";
+        public const string CopyFolder = @"v1/bulkJobs/copyFolder";
         public const string MoveFolder = @"v1/bulkJobs/moveFolder";
         public const string GetJobStatus = @"v1/bulkJobs/{0}";
         public const string GetFileVersion = @"v1/files/{0}/versions";

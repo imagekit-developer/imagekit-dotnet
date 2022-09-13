@@ -13,7 +13,7 @@ namespace Imagekit.Constant
         public const string InvalidTransformationPosition = "{ \"message\": \"Invalid transformationPosition parameter\", \"help\": \"\" }";
         public const string CachePurgeUrlMissing = "{ \"message\": \"Missing URL parameter for this request\", \"help\": \"\" }";
         public const string CachePurgeStatusIdMissing = "{ message: \"Missing Request ID parameter for this request\", \"help\": \"\" }";
-        public const string FileIdMissing = "{ \"message\": \"Missing File ID parameter for this request\", \"help\": \"\" }";
+        public const string fileIdMissing = "{ \"message\": \"Missing File ID parameter for this request\", \"help\": \"\" }";
         public const string InvalidUri = "{ \"message\": \"Invalid URI\", \"help\": \"Only HTTP or HTTPS Type Absolute URL are valid.\" }";
         public const string UpdateDataMissing = "{ \"message\": \"Missing file update data for this request\", \"help\": \"\" }";
         public const string UpdateDataTagsInvalid = "{ \"message\": \"Invalid tags parameter for this request\", \"help\": \"tags should be passed as 'null', a string like 'tag1,tag2', or an array like (new string[] { 'tag1', 'tag2' })\" }";
@@ -24,7 +24,7 @@ namespace Imagekit.Constant
         public const string InvalidPhashValue = "{ \"message: \"Invalid pHash value\", \"help\": \"Both pHash strings must be valid hexadecimal numbers\" }";
         public const string MissingPhashValue = "{ \"message: \"Missing pHash value\", \"help\": \"Please pass two pHash values\" }";
         public const string UnequalStringLength = "{ \"message: \"Unequal pHash string length\", \"help\": \"For distance calucation, the two pHash strings must have equal length\" }";
-        public const string InvalidFileidsValue = "{ \"message: \"Invalid value for fileId\", \"help\": \"fileIds should be an string array of fileId of the files to delete. The array should have atleast one fileId.\" }";
+        public const string InvalidfileIdsValue = "{ \"message: \"Invalid value for fileId\", \"help\": \"fileIds should be an string array of fileId of the files to delete. The array should have atleast one fileId.\" }";
         public const string InvalidUrlValue = "{ \"message: \"Missing URL parameter for this request\", \"help\": \"\" }";
         public const string InvalidCopyValue = "{ \"message: \"sourceFilePath and DestinationFilePath  both parameter are required\", \"help\": \"\" }";
         public const string InvalidJobValue = "{ \"message: \"JobId parameter are required\", \"help\": \"\" }";
@@ -36,7 +36,7 @@ namespace Imagekit.Constant
 
         public const string InvalidMetaTagLabelValue = "{ \"message: \"Invalid MetaData label parameter for this request\", \"help\": \"\" }";
         public const string InvalidMetaTagSchemaValue = "{ \"message: \"Invalid MetaData Schema parameter for this request\", \"help\": \"\" }";
-        public const string InvalidDelVerValue = "{ \"message: \"FieldId and VersionId  both parameters are required\", \"help\": \"\" }";
+        public const string InvalidDelVerValue = "{ \"message: \"FieldId and versionId  both parameters are required\", \"help\": \"\" }";
 
         public const string InvalidFileUploadObjValue = "{ \"message: \"Missing data for upload\", \"help\": \"\" }";
 
@@ -49,7 +49,7 @@ namespace Imagekit.Constant
         public const string InvalidMetaTagIdValue = "{ \"message: \"Invalid MetaData Id parameter for this request\", \"help\": \"\" }";
 
         public const string InvalidFieldIdDelVerValue = "{ \"message: \"Missing fileId parameter for this request\", \"help\": \"\" }";
-        public const string InvalidVersionIdDelVerValue = "{ \"message: \"Missing versionid parameter for this request\", \"help\": \"\" }";
+        public const string InvalidversionIdDelVerValue = "{ \"message: \"Missing versionId parameter for this request\", \"help\": \"\" }";
         public const string InvalidMoveValue = "{ \"message: \"sourceFilePath and DestinationFilePath  both parameter are required\", \"help\": \"\" }";
         public const string InvalidSourceValue = "{ \"message: \"Missing sourceFilePath parameter for this request\", \"help\": \"\" }";
         public const string InvalidDestinationValue = "{ \"message: \"Missing DestinationFilePath parameter for this request\", \"help\": \"\" }";

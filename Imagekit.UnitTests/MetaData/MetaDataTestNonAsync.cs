@@ -52,7 +52,7 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.GetFileMetaData(""));
-            Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
+            Assert.Equal(ErrorMessages.fileIdMissing, ex.Message);
         }
 
 
@@ -423,7 +423,7 @@ namespace Imagekit.UnitTests.MetaData
 
 
         [Fact]
-        public void Missing_FileId_CustomMetaDataFieldExceptionNonAsync()
+        public void Missing_fileId_CustomMetaDataFieldExceptionNonAsync()
         {
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -436,7 +436,7 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.DeleteCustomMetaDataField(""));
-            Assert.Equal(ErrorMessages.InvalidFileidsValue, ex.Message);
+            Assert.Equal(ErrorMessages.InvalidfileIdsValue, ex.Message);
         }
 
 

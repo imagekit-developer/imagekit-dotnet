@@ -6,11 +6,7 @@ namespace Imagekit.Models
 {
     public class DeleteFileVersionRequest
     {
-        private string fileId;
-        private string versionId;
-
-        public string FileId { get => this.fileId; set => this.fileId = value; }
-
-        public string VersionId { get => this.versionId; set => this.versionId = value; }
+        public string fileId { get; set; }
+        public string versionId { get; set; }
     }
 }

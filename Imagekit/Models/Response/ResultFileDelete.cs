@@ -14,7 +14,7 @@ public class ResultFileDelete : ResponseMetaData
     public string Raw { get; set; }
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
 
-    public List<string> SuccessfullyDeletedFileIds { get; set; }
+    public List<string> SuccessfullyDeletedfileIds { get; set; }
 
-    public List<string> MissingFileIds { get; set; }
+    public List<string> MissingfileIds { get; set; }
 }

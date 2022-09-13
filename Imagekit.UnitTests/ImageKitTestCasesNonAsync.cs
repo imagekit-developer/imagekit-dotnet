@@ -178,7 +178,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.GetFileDetail(""));
-            Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
+            Assert.Equal(ErrorMessages.fileIdMissing, ex.Message);
         }
 
 
@@ -248,7 +248,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.DeleteFile(""));
-            Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
+            Assert.Equal(ErrorMessages.fileIdMissing, ex.Message);
         }
 
 
@@ -373,8 +373,8 @@ namespace Imagekit.UnitTests.FileVersion
         {
             DeleteFileVersionRequest model = new DeleteFileVersionRequest
             {
-                FileId = "Tst3",
-                VersionId = "Tst3"
+                fileId = "Tst3",
+                versionId = "Tst3"
             };
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -408,11 +408,11 @@ namespace Imagekit.UnitTests.FileVersion
             Assert.Equal(ErrorMessages.InvalidDelVerValue, ex.Message);
         }
         [Fact]
-        public void Missing_FileId_FileVersionExceptionNonAsync()
+        public void Missing_fileId_FileVersionExceptionNonAsync()
         {
             DeleteFileVersionRequest model = new DeleteFileVersionRequest
             {
-                VersionId = "abc"
+                versionId = "abc"
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -428,12 +428,12 @@ namespace Imagekit.UnitTests.FileVersion
         }
 
         [Fact]
-        public void Missing_VersionId_FileVersionExceptionNonAsync()
+        public void Missing_versionId_FileVersionExceptionNonAsync()
         {
             DeleteFileVersionRequest model = new DeleteFileVersionRequest
             {
-                VersionId = "",
-                FileId = "sas"
+                versionId = "",
+                fileId = "sas"
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -445,7 +445,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.DeleteFileVersion(model));
-            Assert.Equal(ErrorMessages.InvalidVersionIdDelVerValue, ex.Message);
+            Assert.Equal(ErrorMessages.InvalidversionIdDelVerValue, ex.Message);
         }
 
         [Fact]

@@ -20,7 +20,7 @@ namespace ImagekitSample
         {
 
             // Create Instance of ImageKit
-            ImagekitClient imagekit = new ImagekitClient("your_public_key", "your_private_key", "https://ik.imagekit.io/your_imagekit_id/endpoint");
+            ImagekitClient imagekit = new ImagekitClient("private_FguYxKgB8/Jm9Xs5ZyyLfwIBSFU=", "private_FguYxKgB8/Jm9Xs5ZyyLfwIBSFU=", "https://ik.imagekit.io/your_imagekit_id/endpoint");
             #region URL Generation
 
 
@@ -28,7 +28,7 @@ namespace ImagekitSample
 
             string path = "/default_image.jpg";
             Transformation trans = new Transformation()
-                 .Width(400)
+                .Width(400)
                 .Height(300)
                 .AspectRatio("4-3")
                 .Quality(40)
@@ -186,7 +186,6 @@ namespace ImagekitSample
             FileUpdateRequest updateob = new FileUpdateRequest
             {
                 fileId = "fileId",
-
             };
             List<string> updatetags = new List<string>
                 {
@@ -214,7 +213,7 @@ namespace ImagekitSample
             extModel.Add(bck);
             updateob.extensions = extModel;
             updateob.webhookUrl = "https://webhook.site/c78d617f_33bc_40d9_9e61_608999721e2e";
-           
+
             Result updateresp = imagekit.UpdateFileDetail(updateob);
 
             #endregion
@@ -228,7 +227,7 @@ namespace ImagekitSample
                 Type = "file",
                 Limit = 10,
                 Skip = 0,
-				Sort = "ASC_CREATED",
+                Sort = "ASC_CREATED",
                 SearchQuery = "createdAt >= \"7d\"",
                 FileType = "image",
                 Tags = new string[] { "tag1", "tag2" }
@@ -238,7 +237,7 @@ namespace ImagekitSample
             // Get File Details
             Result res1 = imagekit.GetFileDetail("file_Id");
 
-            // Delete File by FileId
+            // Delete File by fileId
             ResultDelete res2 = imagekit.DeleteFile("file_Id");
 
             // Bulk Delete
@@ -251,7 +250,8 @@ namespace ImagekitSample
             CopyFileRequest cpyRequest = new CopyFileRequest
             {
                 sourceFilePath = "path_1",
-                destinationPath = "path_2"
+                destinationPath = "path_2",
+                includeFileVersions = true
             };
             ResultNoContent resultNoContent = imagekit.CopyFile(cpyRequest);
 
@@ -322,8 +322,8 @@ namespace ImagekitSample
             #region FileVersionRequest
             DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest
             {
-                FileId = "file_Id",
-                VersionId = "version_Id",
+                fileId = "file_Id",
+                versionId = "version_Id",
             };
             ResultNoContent resultNoContent1 = imagekit.DeleteFileVersion(delRequest);
 
@@ -414,11 +414,10 @@ namespace ImagekitSample
             requestModelDate.schema = schemaDate;
             ResultCustomMetaDataField resultCustomMetaDataFieldDate = imagekit.CreateCustomMetaDataFields(requestModelDate);
 
-
             CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
             {
                 name = "custom_meta_1",
-                label = "Testmeta" 
+                label = "Testmeta"
             };
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
@@ -464,7 +463,6 @@ namespace ImagekitSample
             requestModelSelect.schema = schemaSelect;
             ResultCustomMetaDataField resultCustomMetaDataFieldSelect = imagekit.CreateCustomMetaDataFields(requestModelSelect);
 
-
             // UpdateCustomMetaDataFields
             CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
             {
@@ -481,7 +479,7 @@ namespace ImagekitSample
             ResultCustomMetaDataField resultCustomMetaDataFieldUpdate = imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
 
             //Delete Custom MetaData
-           ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("field_id");
+            ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("field_id");
             #endregion
         }
     }

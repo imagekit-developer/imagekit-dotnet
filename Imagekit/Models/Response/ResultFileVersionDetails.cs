@@ -17,7 +17,7 @@ public class ResultFileVersionDetails : ResponseMetaData
 
     public string UpDateTimedAt { get; set; }
 
-    public string FileId { get; set; }
+    public string fileId { get; set; }
 
     public List<string> Tags { get; set; }
 

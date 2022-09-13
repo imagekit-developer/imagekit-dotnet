@@ -234,7 +234,7 @@ internal class RestClient
             Result model = new Result();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.FileIdMissing);
+                throw new Exception(ErrorMessages.fileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileDetails, fileId);
@@ -262,7 +262,7 @@ internal class RestClient
             Result model = new Result();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.FileIdMissing);
+                throw new Exception(ErrorMessages.fileIdMissing);
             }
 
             Dictionary<string, string> headers = Utils.GetHeaders();
@@ -448,7 +448,7 @@ internal class RestClient
             ResultDelete model = new ResultDelete();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.FileIdMissing);
+                throw new Exception(ErrorMessages.fileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteFile, fileId);
@@ -456,7 +456,7 @@ internal class RestClient
             HttpResponseMessage response = this.client.DeleteAsync(url).Result;
             string res = response.Content.ReadAsStringAsync().Result;
             model.Raw = res;
-            model.FileId = fileId;
+            model.fileId = fileId;
             Utils.PopulateResponseMetadata(
                 res,
                 model,
@@ -482,7 +482,7 @@ internal class RestClient
             ResultDelete model = new ResultDelete();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.FileIdMissing);
+                throw new Exception(ErrorMessages.fileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteFile, fileId);
@@ -490,7 +490,7 @@ internal class RestClient
             HttpResponseMessage response = await this.client.DeleteAsync(url);
             string res = response.Content.ReadAsStringAsync().Result;
             model.Raw = res;
-            model.FileId = fileId;
+            model.fileId = fileId;
             Utils.PopulateResponseMetadata(
                 res,
                 model,
@@ -591,7 +591,7 @@ internal class RestClient
             ResultMetaData model = new ResultMetaData();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.FileIdMissing);
+                throw new Exception(ErrorMessages.fileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetMetaData, fileId);
@@ -619,7 +619,7 @@ internal class RestClient
             ResultMetaData model = new ResultMetaData();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.FileIdMissing);
+                throw new Exception(ErrorMessages.fileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetMetaData, fileId);
@@ -847,7 +847,7 @@ internal class RestClient
         }
     }
 
-    public ResponseMetaData GetCustomMetaDataFields(bool includeDeleted)
+    public ResponseMetaData GetCustomMetaDataFields(bool? includeDeleted=true)
     {
         try
         {
@@ -982,7 +982,7 @@ internal class RestClient
             ResultNoContent model = new ResultNoContent();
             if (!ValidateParamater.IsValidateParam(id))
             {
-                throw new Exception(ErrorMessages.InvalidFileidsValue);
+                throw new Exception(ErrorMessages.InvalidfileIdsValue);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteCustomMetaDataFields, id);
@@ -1010,7 +1010,7 @@ internal class RestClient
             ResultNoContent model = new ResultNoContent();
             if (!ValidateParamater.IsValidateParam(id))
             {
-                throw new Exception(ErrorMessages.InvalidFileidsValue);
+                throw new Exception(ErrorMessages.InvalidfileIdsValue);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteCustomMetaDataFields, id);
@@ -1128,8 +1128,8 @@ internal class RestClient
                 throw new Exception(validate);
             }
 
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteVesrion, deleteFileVersionRequest.FileId,
-                deleteFileVersionRequest.VersionId);
+            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteVesrion, deleteFileVersionRequest.fileId,
+                deleteFileVersionRequest.versionId);
 
             HttpResponseMessage response = this.client.DeleteAsync(url).Result;
             string res = response.Content.ReadAsStringAsync().Result;
@@ -1159,8 +1159,8 @@ internal class RestClient
                 throw new Exception(validate);
             }
 
-            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteVesrion, deleteFileVersionRequest.FileId,
-                deleteFileVersionRequest.VersionId);
+            string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteVesrion, deleteFileVersionRequest.fileId,
+                deleteFileVersionRequest.versionId);
 
             HttpResponseMessage response = await this.client.DeleteAsync(url);
             string res = response.Content.ReadAsStringAsync().Result;
@@ -1705,7 +1705,7 @@ internal class RestClient
             ResultFileVersions model = new ResultFileVersions();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.FileIdMissing);
+                throw new Exception(ErrorMessages.fileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersion, fileId);
@@ -1732,7 +1732,7 @@ internal class RestClient
             ResultFileVersions model = new ResultFileVersions();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.FileIdMissing);
+                throw new Exception(ErrorMessages.fileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersion, fileId);

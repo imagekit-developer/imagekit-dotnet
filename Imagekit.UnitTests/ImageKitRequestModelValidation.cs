@@ -20,7 +20,7 @@ namespace Imagekit.UnitTests
         [Fact]
         public void UploadFileRequest_ModelValidation()
         {
-            string json = "--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=fileName\r\n\r\ntest.jpg\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=file\r\n\r\nhttps://homepages.cae.wisc.edu/~ece533/images/cat.png\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=useUniqueFileName\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=tags\r\n\r\nSoftware,Developer,Engineer\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=folder\r\n\r\ndummy-folder\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customCoordinates\r\n\r\n10,10,20,20\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=responseFields\r\n\r\nisPrivateFile,tags,customCoordinates\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteFile\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteAITags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteTags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteCustomMetadata\r\n\r\nfalse\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=webhookUrl\r\n\r\nhttps://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customMetadata\r\n\r\n{\"price\":2000}\r\n--ImageKit-dLV9Wyq26L--\r\n";
+            string json = "--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=fileName\r\n\r\ntest.jpg\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=file\r\n\r\nhttps://homepages.cae.wisc.edu/~ece533/images/cat.png\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=useUniqueFileName\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=tags\r\n\r\nSoftware,Developer,Engineer\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=folder\r\n\r\ndummy-folder\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customCoordinates\r\n\r\n10,10,20,20\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteFile\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteAITags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteTags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteCustomMetadata\r\n\r\nfalse\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=extensions\r\n\r\n[{\"options\":{\"add_shadow\":true,\"semitransparency\":false,\"bg_image_url\":\"http://www.google.com/images/logos/ps_logo2.png\"},\"name\":\"remove-bg\"}]\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=webhookUrl\r\n\r\nhttps://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customMetadata\r\n\r\n{\"price\":2000}\r\n--ImageKit-dLV9Wyq26L--\r\n";
             string url = "https://upload.imagekit.io/api/v1/files/upload";
             FileCreateRequest ob = new FileCreateRequest
             {
@@ -44,6 +44,7 @@ namespace Imagekit.UnitTests
                 options = new options() { add_shadow = true, semitransparency = false, bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
             model1.Add(bck);
+            ob.extensions = model1;
             ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             Hashtable model = new Hashtable
             {
@@ -63,7 +64,6 @@ namespace Imagekit.UnitTests
                     "tags",
                     "customCoordinates"
                 };
-            ob.responseFields = responseFields;
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
@@ -96,12 +96,6 @@ namespace Imagekit.UnitTests
 
             string customCoordinates = "10,10,20,20";
             ob.customCoordinates = customCoordinates;
-            List<string> responseFields = new List<string>
-            {
-                "isPrivateFile",
-                "tags",
-                "customCoordinates"
-            };
             List<Extension> modelExt = new List<Extension>();
             BackGroundImage bck = new BackGroundImage
             {
@@ -109,13 +103,14 @@ namespace Imagekit.UnitTests
                 options = new options() { add_shadow = true, semitransparency = false, bg_color = "green", bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
             modelExt.Add(bck);
+            ob.extensions = modelExt;
             ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
             };
             ob.customMetadata = model;
-            string result = "{\"fileId\":\"file-Id\",\"webhookUrl\":\"https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\",\"tags\":[\"Software\",\"Developer\",\"Engineer\"],\"customCoordinates\":\"10,10,20,20\",\"customMetadata\":{\"price\":2000}}";
+            string result = "{\"fileId\":\"file-Id\",\"webhookUrl\":\"https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\",\"extensions\":[{\"options\":{\"add_shadow\":true,\"semitransparency\":false,\"bg_color\":\"green\",\"bg_image_url\":\"http://www.google.com/images/logos/ps_logo2.png\"},\"name\":\"remove-bg\"}],\"tags\":[\"Software\",\"Developer\",\"Engineer\"],\"customCoordinates\":\"10,10,20,20\",\"customMetadata\":{\"price\":2000}}";
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
@@ -142,7 +137,7 @@ namespace Imagekit.UnitTests
                 FileType = "Test",
                 Tags = null
             };
-            string param = GetJsonBody.GetFileRequestBody(ob);
+            string param = "type=Test&sort=Test&path=Test&searchQuery=Test&fileType=Test&limit=10";
             string url = string.Format("https://api.imagekit.io/v1/files/?{0}", param);
 
             var mockHttp = new MockHttpMessageHandler();
@@ -233,7 +228,7 @@ namespace Imagekit.UnitTests
                 "fileId1",
                 "fileId2"
             };
-            string url = string.Format("https://api.imagekit.io/v1/files/batch/deleteByFileIds");
+            string url = string.Format("https://api.imagekit.io/v1/files/batch/deleteByfileIds");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))
@@ -370,8 +365,6 @@ namespace Imagekit.UnitTests
             var response = rs.RemoveAITags(tagsRequest);
             mockHttp.VerifyNoOutstandingExpectation();
         }
-
-
         [Fact]
         public void GetCustomMetaDataFields_ModelValidation()
         {
@@ -385,6 +378,22 @@ namespace Imagekit.UnitTests
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
             var response = rs.GetCustomMetaDataFields(true);
+            mockHttp.VerifyNoOutstandingExpectation();
+        }
+
+        [Fact]
+        public void GetCustomMetaDataFieldsEmpty_ModelValidation()
+        {
+            string url = string.Format("https://api.imagekit.io/v1/customMetadataFields?includeDeleted={0}", true);
+            var mockHttp = new MockHttpMessageHandler();
+            var request = mockHttp.Expect(url)
+                .With(a => a.Method.Equals(HttpMethod.Get))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
+
+            var client = mockHttp.ToHttpClient();
+            RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
+            var response = rs.GetCustomMetaDataFields();
             mockHttp.VerifyNoOutstandingExpectation();
         }
 
@@ -503,11 +512,11 @@ namespace Imagekit.UnitTests
         {
             DeleteFileVersionRequest model = new DeleteFileVersionRequest
             {
-                FileId = "Tst3",
-                VersionId = "Tst3"
+                fileId = "Tst3",
+                versionId = "Tst3"
             };
-            string url = string.Format("https://api.imagekit.io/v1/files/{0}/versions/{1}", model.FileId,
-                model.VersionId);
+            string url = string.Format("https://api.imagekit.io/v1/files/{0}/versions/{1}", model.fileId,
+                model.versionId);
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Delete))
@@ -529,6 +538,32 @@ namespace Imagekit.UnitTests
             {
                 sourceFilePath = "Tst3",
                 destinationPath = "Tst3"
+            };
+            string url = string.Empty;
+            url = string.Format("https://api.imagekit.io/v1/files/copy");
+            var mockHttp = new MockHttpMessageHandler();
+            var request = mockHttp.Expect(url)
+                .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
+                .WithContent(reqJosn)
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
+
+            var client = mockHttp.ToHttpClient();
+            RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
+            var response = rs.CopyFile(model);
+            mockHttp.VerifyNoOutstandingExpectation();
+        }
+
+        [Fact]
+        public void CopyFile_includeFileVersions_ModelValidation()
+        {
+            string reqJosn = "{\"sourceFilePath\":\"Tst3\",\"destinationPath\":\"Tst3\",\"includeFileVersions\":true}";
+
+            CopyFileRequest model = new CopyFileRequest
+            {
+                sourceFilePath = "Tst3",
+                destinationPath = "Tst3",
+                includeFileVersions = true
             };
             string url = string.Empty;
             url = string.Format("https://api.imagekit.io/v1/files/copy");
@@ -596,7 +631,30 @@ namespace Imagekit.UnitTests
             mockHttp.VerifyNoOutstandingExpectation();
         }
 
+        [Fact]
+        public void RenameFileDefaultPurge_ModelValidation()
+        {
+            string reqJosn = "{\"filePath\":\"Tst3\",\"newFileName\":\"Tst4\",\"purgeCache\":false}";
+            RenameFileRequest model = new RenameFileRequest
+            {
+                filePath = "Tst3",
+                newFileName = "Tst4"
+            };
 
+            string url = string.Empty;
+            url = string.Format("https://api.imagekit.io/v1/files/rename");
+            var mockHttp = new MockHttpMessageHandler();
+            var request = mockHttp.Expect(url)
+                .With(a => a.Method.Equals(HttpMethod.Put))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
+                .WithContent(reqJosn)
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
+
+            var client = mockHttp.ToHttpClient();
+            RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
+            var response = rs.RenameFile(model);
+            mockHttp.VerifyNoOutstandingExpectation();
+        }
         [Fact]
         public void CopyFolder_ModelValidation()
         {
@@ -607,7 +665,32 @@ namespace Imagekit.UnitTests
                 destinationPath = "Tst3"
 
             };
-            string url = string.Format("https://api.imagekit.io/v1/bulkJobs/moveFolder");
+            string url = string.Format("https://api.imagekit.io/v1/bulkJobs/copyFolder");
+            var mockHttp = new MockHttpMessageHandler();
+            var request = mockHttp.Expect(url)
+                .With(a => a.Method.Equals(HttpMethod.Post))
+                .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
+                .WithContent(reqJosn)
+                .Respond("application/json", "{'name' : 'ImageKit Response'}");
+
+            var client = mockHttp.ToHttpClient();
+            RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
+            var response = rs.CopyFolder(model);
+            mockHttp.VerifyNoOutstandingExpectation();
+        }
+
+        [Fact]
+        public void CopyFolder_includeFileVersions_ModelValidation()
+        {
+            string reqJosn = "{\"sourceFolderPath\":\"Tst3\",\"destinationPath\":\"Tst3\",\"includeFileVersions\":true}";
+            CopyFolderRequest model = new CopyFolderRequest
+            {
+                sourceFolderPath = "Tst3",
+                destinationPath = "Tst3",
+                includeFileVersions = true
+
+            };
+            string url = string.Format("https://api.imagekit.io/v1/bulkJobs/copyFolder");
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Post))

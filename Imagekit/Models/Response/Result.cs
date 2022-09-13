@@ -105,5 +105,5 @@ public class EmbeddedMetadata
 
 public class ResultDelete : ResponseMetaData
 {
-    public string FileId { get; set; }
+    public string fileId { get; set; }
 }

@@ -8,5 +8,5 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class ResultTags : ResponseMetaData
 {
-    public List<string> SuccessfullyUpDateTimeTimedFileIds { get; set; }
+    public List<string> SuccessfullyUpDateTimeTimedfileIds { get; set; }
 }
