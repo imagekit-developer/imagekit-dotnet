@@ -13,7 +13,7 @@ namespace Imagekit.Constant
         public const string InvalidTransformationPosition = "{ \"message\": \"Invalid transformationPosition parameter\", \"help\": \"\" }";
         public const string CachePurgeUrlMissing = "{ \"message\": \"Missing URL parameter for this request\", \"help\": \"\" }";
         public const string CachePurgeStatusIdMissing = "{ message: \"Missing Request ID parameter for this request\", \"help\": \"\" }";
-        public const string fileIdMissing = "{ \"message\": \"Missing File ID parameter for this request\", \"help\": \"\" }";
+        public const string FileIdMissing = "{ \"message\": \"Missing File ID parameter for this request\", \"help\": \"\" }";
         public const string InvalidUri = "{ \"message\": \"Invalid URI\", \"help\": \"Only HTTP or HTTPS Type Absolute URL are valid.\" }";
         public const string UpdateDataMissing = "{ \"message\": \"Missing file update data for this request\", \"help\": \"\" }";
         public const string UpdateDataTagsInvalid = "{ \"message\": \"Invalid tags parameter for this request\", \"help\": \"tags should be passed as 'null', a string like 'tag1,tag2', or an array like (new string[] { 'tag1', 'tag2' })\" }";

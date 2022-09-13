@@ -93,7 +93,7 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.GetFileDetailAsync(""));
-            Assert.Equal(ErrorMessages.fileIdMissing, ex.Result.Message);
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
         }
 
         [Fact]
@@ -161,7 +161,7 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteFileAsync(""));
-            Assert.Equal(ErrorMessages.fileIdMissing, ex.Result.Message);
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
         }
 
 

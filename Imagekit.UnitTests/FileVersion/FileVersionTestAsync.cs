@@ -340,7 +340,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.GetFileVersionsAsync(""));
-            Assert.Equal(ErrorMessages.fileIdMissing, ex.Result.Message);
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
         }
         [Fact]
         public void RestoreFileVersion_Default()

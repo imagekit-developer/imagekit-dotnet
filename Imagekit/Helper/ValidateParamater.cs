@@ -381,13 +381,13 @@ namespace Imagekit.Helper
             string flag = string.Empty;
             if (obj == null)
             {
-                flag = ErrorMessages.fileIdMissing;
+                flag = ErrorMessages.FileIdMissing;
                 return flag;
             }
 
             if (string.IsNullOrEmpty(obj.fileId))
             {
-                flag = ErrorMessages.fileIdMissing;
+                flag = ErrorMessages.FileIdMissing;
                 return flag;
             }
 

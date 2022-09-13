@@ -52,7 +52,7 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.GetFileMetaData(""));
-            Assert.Equal(ErrorMessages.fileIdMissing, ex.Message);
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
         }
 
 

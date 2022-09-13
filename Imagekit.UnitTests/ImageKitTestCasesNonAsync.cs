@@ -178,7 +178,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.GetFileDetail(""));
-            Assert.Equal(ErrorMessages.fileIdMissing, ex.Message);
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
         }
 
 
@@ -248,7 +248,7 @@ namespace Imagekit.UnitTests.FileVersion
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.Throws<Exception>(() => restClient.DeleteFile(""));
-            Assert.Equal(ErrorMessages.fileIdMissing, ex.Message);
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
         }
 
 

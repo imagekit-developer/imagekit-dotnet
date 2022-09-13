@@ -25,5 +25,4 @@ public class RenameFileRequest
             this.IspurgeCache = value;
         }
     }
-   
 }

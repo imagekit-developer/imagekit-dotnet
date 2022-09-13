@@ -234,7 +234,7 @@ internal class RestClient
             Result model = new Result();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.fileIdMissing);
+                throw new Exception(ErrorMessages.FileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileDetails, fileId);
@@ -262,7 +262,7 @@ internal class RestClient
             Result model = new Result();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.fileIdMissing);
+                throw new Exception(ErrorMessages.FileIdMissing);
             }
 
             Dictionary<string, string> headers = Utils.GetHeaders();
@@ -448,7 +448,7 @@ internal class RestClient
             ResultDelete model = new ResultDelete();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.fileIdMissing);
+                throw new Exception(ErrorMessages.FileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteFile, fileId);
@@ -482,7 +482,7 @@ internal class RestClient
             ResultDelete model = new ResultDelete();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.fileIdMissing);
+                throw new Exception(ErrorMessages.FileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.DeleteFile, fileId);
@@ -591,7 +591,7 @@ internal class RestClient
             ResultMetaData model = new ResultMetaData();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.fileIdMissing);
+                throw new Exception(ErrorMessages.FileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetMetaData, fileId);
@@ -619,7 +619,7 @@ internal class RestClient
             ResultMetaData model = new ResultMetaData();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.fileIdMissing);
+                throw new Exception(ErrorMessages.FileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetMetaData, fileId);
@@ -847,7 +847,7 @@ internal class RestClient
         }
     }
 
-    public ResponseMetaData GetCustomMetaDataFields(bool? includeDeleted=true)
+    public ResponseMetaData GetCustomMetaDataFields(bool? includeDeleted = true)
     {
         try
         {
@@ -1705,7 +1705,7 @@ internal class RestClient
             ResultFileVersions model = new ResultFileVersions();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.fileIdMissing);
+                throw new Exception(ErrorMessages.FileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersion, fileId);
@@ -1732,7 +1732,7 @@ internal class RestClient
             ResultFileVersions model = new ResultFileVersions();
             if (!ValidateParamater.IsValidateParam(fileId))
             {
-                throw new Exception(ErrorMessages.fileIdMissing);
+                throw new Exception(ErrorMessages.FileIdMissing);
             }
 
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersion, fileId);

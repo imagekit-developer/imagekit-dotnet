@@ -325,7 +325,7 @@ namespace Imagekit.UnitTests.Upload
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateFileDetailAsync(ob));
-            Assert.Equal(ErrorMessages.fileIdMissing, ex.Result.Message);
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
         }
 
         [Fact]
