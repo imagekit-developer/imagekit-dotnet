@@ -96,7 +96,7 @@ namespace Imagekit
             return this.Add("fileName", value);
         }
 
-        public T UseUniqueFileName(bool value = true)
+        public T UseUniqueFileName(bool value = false)
         {
             return this.Add("useUniqueFileName", value);
         }

@@ -214,7 +214,7 @@ namespace ImagekitSample
             extModel.Add(bck);
             updateob.extensions = extModel;
             updateob.webhookUrl = "https://webhook.site/c78d617f_33bc_40d9_9e61_608999721e2e";
-           
+
             Result updateresp = imagekit.UpdateFileDetail(updateob);
 
             #endregion
@@ -228,7 +228,7 @@ namespace ImagekitSample
                 Type = "file",
                 Limit = 10,
                 Skip = 0,
-				Sort = "ASC_CREATED",
+                Sort = "ASC_CREATED",
                 SearchQuery = "createdAt >= \"7d\"",
                 FileType = "image",
                 Tags = new string[] { "tag1", "tag2" }
@@ -322,8 +322,8 @@ namespace ImagekitSample
             #region FileVersionRequest
             DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest
             {
-                FileId = "file_Id",
-                VersionId = "version_Id",
+                fileId = "file_Id",
+                versionId = "version_Id",
             };
             ResultNoContent resultNoContent1 = imagekit.DeleteFileVersion(delRequest);
 
@@ -418,7 +418,7 @@ namespace ImagekitSample
             CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
             {
                 name = "custom_meta_1",
-                label = "Testmeta" 
+                label = "Testmeta"
             };
             CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
             {
@@ -481,7 +481,7 @@ namespace ImagekitSample
             ResultCustomMetaDataField resultCustomMetaDataFieldUpdate = imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
 
             //Delete Custom MetaData
-           ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("field_id");
+            ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("field_id");
             #endregion
         }
     }
