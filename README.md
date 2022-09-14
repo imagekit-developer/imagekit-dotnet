@@ -1,4 +1,4 @@
-[<img width="250" alt="ImageKit.io" src="https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg"/>](https://imagekit.io)
+[![ImageKit.io](https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg)](https://imagekit.io)
 
 ## DotNET (NET45/Standard/Core) SDK for ImageKit
 
@@ -132,6 +132,7 @@ Transformation transformation = new Transformation()
     .Width(400).Height(300)
     .Chain()
     .Rotation(90);
+    
 string imageURL = imagekit.Url(transformation)
     .Path("/default_image.jpg")
     .UrlEndpoint("https://ik.imagekit.io/your_imagekit_id/endpoint")
@@ -261,8 +262,8 @@ Sample usage
  // Upload By URI
 FileCreateRequest request = new FileCreateRequest
 {
-file = "http://www.google.com/images/logos/ps_logo2.png",
-FileName = "file_name.jpg",
+	file = "http://www.google.com/images/logos/ps_logo2.png",
+	FileName = "file_name.jpg",
 };
 Result resp1 = imagekit.Upload(request);
 
@@ -271,14 +272,14 @@ byte[] bytes = System.IO.File.ReadAllBytes(@"image file path");
 
 FileCreateRequest ob = new FileCreateRequest
 {
-file = bytes,
-FileName = Guid.NewGuid().ToString(),
+	file = bytes,
+	FileName = Guid.NewGuid().ToString(),
 };
 List<string> tags = new List<string>
 {
-"Software",
-"Developer",
-"Engineer"
+	"Software",
+	"Developer",
+	"Engineer"
 };
 ob.tags = tags;
 
@@ -286,23 +287,23 @@ string customCoordinates = "10,10,20,20";
 ob.customCoordinates = customCoordinates;
 List<string> responseFields = new List<string>
 {
-"isPrivateFile",
-"tags",
-"customCoordinates"
+	"isPrivateFile",
+	"tags",
+	"customCoordinates"
 };
 ob.responseFields = responseFields;
 List<Extension> ext = new List<Extension>();
 BackGroundImage bck1 = new BackGroundImage
 {
-name = "remove-bg",
-options = new options()
-{ add_shadow = true, semitransparency = false, bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+	name = "remove-bg",
+	options = new options()
+	{ add_shadow = true, semitransparency = false, bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
 };
 AutoTags autoTags = new AutoTags
 {
-name = "google-auto-tagging",
-maxTags = 5,
-minConfidence = 95
+	name = "google-auto-tagging",
+	maxTags = 5,
+	minConfidence = 95
 };
 ext.Add(bck1);
 ext.Add(autoTags);
@@ -324,8 +325,8 @@ string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 // Upload by Base64
 FileCreateRequest ob2 = new FileCreateRequest
 {
-file=base64ImageRepresentation,
-FileName = Guid.NewGuid().ToString(),
+	file=base64ImageRepresentation,
+	FileName = Guid.NewGuid().ToString()
 };
 Result resp = imagekit.Upload(ob2);           
 ```
@@ -341,14 +342,14 @@ Accepts an object specifying the parameters to be used to list and search files.
 ```cs
 GetFileListRequest model = new GetFileListRequest
 {
-Name = "file_name.jpg",
-Type = "file",
-Limit = 10,
-Skip = 0,
-Sort = "ASC_CREATED",
-SearchQuery = "createdAt >= \"7d\"",
-FileType = "image",
-Tags = new string[] { "tag1", "tag2" }
+	Name = "file_name.jpg",
+	Type = "file",
+	Limit = 10,
+	Skip = 0,
+	Sort = "ASC_CREATED",
+	SearchQuery = "createdAt >= \"7d\"",
+	FileType = "image",
+	Tags = new string[] { "tag1", "tag2" }
 };
 ResultList resp = await imagekit.GetFileDetail(model);
 ```
@@ -368,29 +369,29 @@ Accepts an object of class `FileUpdateRequest` specifying the parameters to be u
 ```cs
 FileUpdateRequest updateob = new FileUpdateRequest
 {
-fileId = "fileId",
+	fileId = "fileId",
 };
 List<string> updatetags = new List<string>
 {
-"Software",
-"Developer",
-"Engineer"
+	"Software",
+	"Developer",
+	"Engineer"
 };
 updateob.tags = updatetags;
 string updatecustomCoordinates = "10,10,20,20";
 updateob.customCoordinates = updatecustomCoordinates;
 List<string> updateresponseFields = new List<string>
 {
-"isPrivateFile",
-"tags",
-"customCoordinates"
+	"isPrivateFile",
+	"tags",
+	"customCoordinates"
 };
 
 List<Extension> extModel = new List<Extension>();
 BackGroundImage bck = new BackGroundImage
 {
-name = "remove-bg",
-options = new options() { add_shadow = true, semitransparency = false, bg_color = "green" }
+	name = "remove-bg",
+	options = new options() { add_shadow = true, semitransparency = false, bg_color = "green" }
 };
 extModel.Add(bck);
 updateob.extensions = extModel;
@@ -406,6 +407,7 @@ Accept the file ID and delete a file as per the [API documentation here](https:/
 String fileId = "file_Id";
 ResultDelete result = imageKit.deleteFile(fileId);
 ```
+
 **5\. Delete files (bulk)**
 
 Accepts the file IDs to delete files as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-files-bulk).
@@ -424,9 +426,9 @@ Accepts an object of class `CopyFileRequest` specifying the parameters to be use
 ```cs
 CopyFileRequest cpyRequest = new CopyFileRequest
 {
-sourceFilePath = "path_1",
-destinationPath = "path_2",
-includeFileVersions = true
+	sourceFilePath = "path_1",
+	destinationPath = "path_2",
+	includeFileVersions = true
 };
 ResultNoContent resultNoContent = imagekit.CopyFile(cpyRequest);
 ```
@@ -438,8 +440,8 @@ Accepts an object of class `MoveFileRequest` specifying the parameters to be use
 ```cs
 MoveFileRequest moveFile = new MoveFileRequest
 {
-sourceFilePath = "path_1",
-destinationPath = "path_2",
+	sourceFilePath = "path_1",
+	destinationPath = "path_2"
 };
 ResultNoContent resultNoContentMoveFile = imagekit.MoveFile(moveFile);
 ```
@@ -449,11 +451,11 @@ ResultNoContent resultNoContentMoveFile = imagekit.MoveFile(moveFile);
 Accepts an object of class `RenameFileRequest` specifying the parameters to be used to rename a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/rename-file) can be passed via their setter functions to get the results.
 
 ```cs
- RenameFileRequest renameFileRequest = new RenameFileRequest
+RenameFileRequest renameFileRequest = new RenameFileRequest
 {
-filePath = "path_1",
-newFileName = "file_name",
-purgeCache = false,
+	filePath = "path_1",
+	newFileName = "file_name",
+	purgeCache = false
 };
 ResultRenameFile resultRenameFile = imagekit.RenameFile(renameFileRequest);
 ```
@@ -489,15 +491,15 @@ Accepts an object of class `TagsRequest` specifying the parameters to be used to
 ```cs
 TagsRequest removeTagsRequest = new TagsRequest
 {
-tags = new List<string>
-{
-"tag_1",
-"tag_2",
-},
-fileIds = new List<string>
-{
-"fileId_1",
-},
+	tags = new List<string>
+	{
+		"tag_1",
+		"tag_2"
+	},
+	fileIds = new List<string>
+	{
+		"fileId_1",
+	},
 };
 ResultTags removeTags = imagekit.RemoveTags(removeTagsRequest);
 ```
@@ -509,18 +511,19 @@ Accepts an object of class `AITagsRequest` specifying the parameters to be used 
 ```cs
 AITagsRequest removeAITagsRequest = new AITagsRequest
 {
-AITags = new List<string>
-{
-"tag_1",
-"tag_2",
-},
-fileIds = new List<string>
-{
-"fileId_1",
-},
+	AITags = new List<string>
+	{
+		"tag_1",
+		"tag_2"
+	},
+	fileIds = new List<string>
+	{
+		"fileId_1",
+	}
 };
 ResultTags removeAITags = imagekit.RemoveAITags(removeAITagsRequest);
 ```
+
 **12\. Get File Versions**
 
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-versions).
@@ -540,7 +543,6 @@ String versionId = "version_Id";
 ResultFileVersionDetails resultFileVersionDetails = imageKit.getFileVersionDetails(fileId, versionId);
 ```
 
-
 **14\. Delete FileVersion**
 
 Accepts an object of class `DeleteFileVersionRequest` specifying the parameters to be used to delete the file version. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file-version) can be passed via their setter functions to get the results.
@@ -548,8 +550,8 @@ Accepts an object of class `DeleteFileVersionRequest` specifying the parameters 
 ```cs
 DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest
 {
-fileId = "file_Id",
-versionId = "version_Id",
+	fileId = "file_Id",
+	versionId = "version_Id"
 };
 ResultNoContent resultNoContent1 = imagekit.DeleteFileVersion(delRequest);
 ```
@@ -571,8 +573,8 @@ Accepts an object of class `CreateFolderRequest` specifying the parameters to be
 ```cs
 CreateFolderRequest createFolderRequest = new CreateFolderRequest
 {
-folderName = "folder_name",
-parentFolderPath = "source/folder/path",
+	folderName = "folder_name",
+	parentFolderPath = "source/folder/path"
 };
 ResultEmptyBlock resultEmptyBlock = imagekit.CreateFolder(createFolderRequest);
 ```
@@ -582,11 +584,11 @@ ResultEmptyBlock resultEmptyBlock = imagekit.CreateFolder(createFolderRequest);
 Accepts an object of class `CopyFolderRequest` specifying the parameters to be used to copy a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/copy-folder) can be passed via their setter functions to get the results.
 
 ```cs
- CopyFolderRequest cpyFolderRequest = new CopyFolderRequest
+CopyFolderRequest cpyFolderRequest = new CopyFolderRequest
 {
-sourceFolderPath = "path_1",
-destinationPath = "path_2",
-includeFileVersions = true,
+	sourceFolderPath = "path_1",
+	destinationPath = "path_2",
+	includeFileVersions = true
 };
 
 ResultOfFolderActions resultOfFolderActions = imagekit.CopyFolder(cpyFolderRequest);
@@ -599,8 +601,8 @@ Accepts an object of class `MoveFolderRequest` specifying the parameters to be u
 ```cs
 MoveFolderRequest moveFolderRequest = new MoveFolderRequest
 {
-sourceFolderPath="path_1",
-destinationPath="path_2",
+	sourceFolderPath="path_1",
+	destinationPath="path_2"
 };
 
 ResultOfFolderActions resultOfFolderActions1 = imagekit.MoveFolder(moveFolderRequest);
@@ -613,7 +615,7 @@ Accepts an object of class `DeleteFolderRequest` specifying the parameters to be
 ```cs
 DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest
 {
-folderPath="source/folder/path/folder_name",
+	folderPath="source/folder/path/folder_name",
 };
 ResultNoContent resultNoContent2 = imagekit.DeleteFolder(deleteFolderRequest);
 ```
@@ -709,7 +711,6 @@ CustomMetaDataFieldSchemaObject schemaDate = new CustomMetaDataFieldSchemaObject
 };
 requestModelDate.schema = schemaDate;
 ResultCustomMetaDataField resultCustomMetaDataFieldDate = imagekit.CreateCustomMetaDataFields(requestModelDate);
-
 ```
 
 **25\. Get CustomMetaDataFields**
@@ -719,7 +720,6 @@ Accepts the includeDeleted boolean and fetches the metadata as per the [API docu
 ```cs
 bool includeDeleted = true;
 ResultCustomMetaDataFieldList resultCustomMetaDataFieldList = imageKit.getCustomMetaDataFields(includeDeleted); 
-
 ```
 
 **26\. Edit Custom MetaData Fields**
@@ -727,20 +727,19 @@ ResultCustomMetaDataFieldList resultCustomMetaDataFieldList = imageKit.getCustom
 Accepts an ID of customMetaDataField and an object of class `CustomMetaDataFieldUpdateRequest` specifying the parameters to be used to edit cusomMetaDataFields as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field).
 
 ```cs
- CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
+CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
 {
-Id = "field_id",
+	Id = "field_id",
 };
 CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
 {
-type = "Number",
-minValue = 8000,
-maxValue = 3000
+	type = "Number",
+	minValue = 8000,
+	maxValue = 3000
 };
 
 requestUpdateModel.schema = updateschema;
 ResultCustomMetaDataField resultCustomMetaDataFieldUpdate = imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
-
 ```
 
 **27\. Delete Custom MetaData Fields**
@@ -845,6 +844,7 @@ catch (WebServiceException webEx)
 ```
 
 ## Access request-id, other response headers and HTTP status code
+
 You can access success or error object to access the HTTP status code and response headers.
 
 ```cs
@@ -855,16 +855,14 @@ console.Write(response.statusCode); // 200
 console.Write(response.Raw);
 try 
 {
-	await imagekit.PurgeStatus(requestId);
+    await imagekit.PurgeStatus(requestId);
 } 
 catch (Exception ex) 
 {
     console.Write(ex.Message); 
-// {'content-type': 'application/json', 'x-request-id': 'ee560df4-d44f-455e-a48e-29dfda49aec5'}
+ // {'content-type': 'application/json', 'x-request-id': 'ee560df4-d44f-455e-a48e-29dfda49aec5'}
 }
 ```
-
-
 
 ## Support
 

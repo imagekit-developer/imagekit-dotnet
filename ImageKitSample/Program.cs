@@ -28,7 +28,7 @@ namespace ImagekitSample
 
             string path = "/default_image.jpg";
             Transformation trans = new Transformation()
-                 .Width(400)
+                .Width(400)
                 .Height(300)
                 .AspectRatio("4-3")
                 .Quality(40)
@@ -109,7 +109,7 @@ namespace ImagekitSample
             FileCreateRequest request = new FileCreateRequest
             {
                 file = "http://www.google.com/images/logos/ps_logo2.png",
-                fileName = "file_name.jpg",
+                fileName = "file_name.jpg"
             };
             Result resp1 = imagekit.Upload(request);
 
@@ -120,24 +120,24 @@ namespace ImagekitSample
             FileCreateRequest ob = new FileCreateRequest
             {
                 file = bytes,
-                fileName = "file_name1.jpg",
+                fileName = "file_name1.jpg"
             };
             List<string> tags = new List<string>
-                    {
-                        "Software",
-                        "Developer",
-                        "Engineer"
-                    };
+            {
+                "Software",
+                "Developer",
+                "Engineer"
+            };
             ob.tags = tags;
 
             string customCoordinates = "10,10,20,20";
             ob.customCoordinates = customCoordinates;
             List<string> responseFields = new List<string>
-                    {
-                        "isPrivateFile",
-                        "tags",
-                        "customCoordinates"
-                    };
+            {
+                "isPrivateFile",
+                "tags",
+                "customCoordinates"
+            };
             ob.responseFields = responseFields;
             List<Extension> ext = new List<Extension>();
             BackGroundImage bck1 = new BackGroundImage
@@ -175,7 +175,7 @@ namespace ImagekitSample
             FileCreateRequest ob2 = new FileCreateRequest
             {
                 file = base64ImageRepresentation,
-                fileName = Guid.NewGuid().ToString(),
+                fileName = Guid.NewGuid().ToString()
             };
             Result resp = imagekit.Upload(ob2);
             #endregion
@@ -186,24 +186,23 @@ namespace ImagekitSample
             FileUpdateRequest updateob = new FileUpdateRequest
             {
                 fileId = "fileId",
-
             };
             List<string> updatetags = new List<string>
-                {
-                    "Software",
-                    "Developer",
-                    "Engineer"
-                };
+            {
+                "Software",
+                "Developer",
+                "Engineer"
+            };
             updateob.tags = updatetags;
 
             string updatecustomCoordinates = "10,10,20,20";
             updateob.customCoordinates = updatecustomCoordinates;
             List<string> updateresponseFields = new List<string>
-                {
-                    "isPrivateFile",
-                    "tags",
-                    "customCoordinates"
-                };
+            {
+                "isPrivateFile",
+                "tags",
+                "customCoordinates"
+            };
 
             List<Extension> extModel = new List<Extension>();
             BackGroundImage bck = new BackGroundImage
@@ -259,7 +258,7 @@ namespace ImagekitSample
             MoveFileRequest moveFile = new MoveFileRequest
             {
                 sourceFilePath = "path_1",
-                destinationPath = "path_2",
+                destinationPath = "path_2"
             };
             ResultNoContent resultNoContentMoveFile = imagekit.MoveFile(moveFile);
 
@@ -268,7 +267,7 @@ namespace ImagekitSample
             {
                 filePath = "path_1",
                 newFileName = "file_name",
-                purgeCache = false,
+                purgeCache = false
             };
             ResultRenameFile resultRenameFile = imagekit.RenameFile(renameFileRequest);
 
@@ -278,42 +277,42 @@ namespace ImagekitSample
             TagsRequest tagsRequest = new TagsRequest
             {
                 tags = new List<string>
-                    {
-                        "tag_1",
-                        "tag_2",
-                    },
+                {
+                    "tag_1",
+                    "tag_2"
+                },
                 fileIds = new List<string>
-                    {
-                        "fileId_1",
-                    },
+                {
+                    "fileId_1",
+                },
             };
             ResultTags resultTags = imagekit.AddTags(tagsRequest);
 
             TagsRequest removeTagsRequest = new TagsRequest
             {
                 tags = new List<string>
-                    {
-                        "tag_1",
-                        "tag_2",
-                    },
+                {
+                    "tag_1",
+                    "tag_2"
+                },
                 fileIds = new List<string>
-                    {
-                        "fileId_1",
-                    },
+                {
+                    "fileId_1",
+                },
             };
             ResultTags removeTags = imagekit.RemoveTags(removeTagsRequest);
 
             AITagsRequest removeAITagsRequest = new AITagsRequest
             {
                 AITags = new List<string>
-                    {
-                        "tag_1",
-                        "tag_2",
-                    },
+                {
+                    "tag_1",
+                    "tag_2"
+                },
                 fileIds = new List<string>
-                    {
-                        "fileId_1",
-                    },
+                {
+                    "fileId_1",
+                },
             };
             ResultTags removeAITags = imagekit.RemoveAITags(removeAITagsRequest);
 
@@ -323,7 +322,7 @@ namespace ImagekitSample
             DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest
             {
                 fileId = "file_Id",
-                versionId = "version_Id",
+                versionId = "version_Id"
             };
             ResultNoContent resultNoContent1 = imagekit.DeleteFileVersion(delRequest);
 
@@ -343,7 +342,7 @@ namespace ImagekitSample
             CreateFolderRequest createFolderRequest = new CreateFolderRequest
             {
                 folderName = "folder_name",
-                parentFolderPath = "source/folder/path",
+                parentFolderPath = "source/folder/path"
             };
             ResultEmptyBlock resultEmptyBlock = imagekit.CreateFolder(createFolderRequest);
 
@@ -359,7 +358,7 @@ namespace ImagekitSample
             {
                 sourceFolderPath = "path_1",
                 destinationPath = "path_2",
-                includeFileVersions = true,
+                includeFileVersions = true
             };
 
             ResultOfFolderActions resultOfFolderActions = imagekit.CopyFolder(cpyFolderRequest);
@@ -368,7 +367,7 @@ namespace ImagekitSample
             MoveFolderRequest moveFolderRequest = new MoveFolderRequest
             {
                 sourceFolderPath = "path_1",
-                destinationPath = "path_2",
+                destinationPath = "path_2"
             };
 
             ResultOfFolderActions resultOfFolderActions1 = imagekit.MoveFolder(moveFolderRequest);
