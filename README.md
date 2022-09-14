@@ -273,7 +273,7 @@ byte[] bytes = System.IO.File.ReadAllBytes(@"image file path");
 FileCreateRequest ob = new FileCreateRequest
 {
 	file = bytes,
-	FileName = Guid.NewGuid().ToString(),
+	FileName = Guid.NewGuid().ToString()
 };
 List<string> tags = new List<string>
 {
@@ -471,15 +471,15 @@ Accepts an object of class `TagsRequest` specifying the parameters to be used to
 ```cs
 TagsRequest tagsRequest = new TagsRequest
 {
-tags = new List<string>
-{
-"tag_1",
-"tag_2",
-},
-fileIds = new List<string>
-{
-"fileId_1",
-},
+	tags = new List<string>
+	{
+		"tag_1",
+		"tag_2"
+	},
+	fileIds = new List<string>
+	{
+		"fileId_1",
+	},
 };
 ResultTags resultTags = imagekit.AddTags(tagsRequest);
 ```
