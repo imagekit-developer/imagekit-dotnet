@@ -384,7 +384,7 @@ namespace Imagekit.UnitTests
         [Fact]
         public void GetCustomMetaDataFieldsEmpty_ModelValidation()
         {
-            string url = string.Format("https://api.imagekit.io/v1/customMetadataFields?includeDeleted={0}", true);
+            string url = string.Format("https://api.imagekit.io/v1/customMetadataFields?includeDeleted={0}", false);
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .With(a => a.Method.Equals(HttpMethod.Get))
