@@ -263,7 +263,7 @@ Sample usage
 FileCreateRequest request = new FileCreateRequest
 {
 	file = "http://www.google.com/images/logos/ps_logo2.png",
-	FileName = "file_name.jpg",
+	fileName = "file_name.jpg",
 };
 Result resp1 = imagekit.Upload(request);
 
@@ -273,7 +273,7 @@ byte[] bytes = System.IO.File.ReadAllBytes(@"image file path");
 FileCreateRequest ob = new FileCreateRequest
 {
 	file = bytes,
-	FileName = Guid.NewGuid().ToString()
+	fileName = Guid.NewGuid().ToString()
 };
 List<string> tags = new List<string>
 {
@@ -326,7 +326,7 @@ string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 FileCreateRequest ob2 = new FileCreateRequest
 {
 	file=base64ImageRepresentation,
-	FileName = Guid.NewGuid().ToString()
+	fileName = Guid.NewGuid().ToString()
 };
 Result resp = imagekit.Upload(ob2);           
 ```
