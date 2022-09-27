@@ -847,7 +847,7 @@ internal class RestClient
         }
     }
 
-    public ResponseMetaData GetCustomMetaDataFields(bool? includeDeleted = true)
+    public ResponseMetaData GetCustomMetaDataFields(bool? includeDeleted = false)
     {
         try
         {
@@ -1711,7 +1711,12 @@ internal class RestClient
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersion, fileId);
             HttpResponseMessage response = this.client.GetAsync(url).Result;
             string res = response.Content.ReadAsStringAsync().Result;
-            model = JsonConvert.DeserializeObject<ResultFileVersions>(res);
+            var token = JToken.Parse(res);
+            if (token is JArray)
+            {
+                model.ResultFileVersionDetailsList = JsonConvert.DeserializeObject<List<ResultFileVersionDetails>>(res);
+            }
+
             Utils.PopulateResponseMetadata(
                res,
                model,
@@ -1738,7 +1743,12 @@ internal class RestClient
             string url = string.Format(this.mediaAPIBaseUrl + UrlHandler.GetFileVersion, fileId);
             HttpResponseMessage response = this.client.GetAsync(url).Result;
             string res = await response.Content.ReadAsStringAsync();
-            model = JsonConvert.DeserializeObject<ResultFileVersions>(res);
+            var token = JToken.Parse(res);
+            if (token is JArray)
+            {
+                model.ResultFileVersionDetailsList = JsonConvert.DeserializeObject<List<ResultFileVersionDetails>>(res);
+            }
+
             Utils.PopulateResponseMetadata(
                 res,
                 model,

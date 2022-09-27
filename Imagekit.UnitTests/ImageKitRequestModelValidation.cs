@@ -20,7 +20,7 @@ namespace Imagekit.UnitTests
         [Fact]
         public void UploadFileRequest_ModelValidation()
         {
-            string json = "--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=fileName\r\n\r\ntest.jpg\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=file\r\n\r\nhttps://homepages.cae.wisc.edu/~ece533/images/cat.png\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=useUniqueFileName\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=tags\r\n\r\nSoftware,Developer,Engineer\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=folder\r\n\r\ndummy-folder\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customCoordinates\r\n\r\n10,10,20,20\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteFile\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteAITags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteTags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteCustomMetadata\r\n\r\nfalse\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=extensions\r\n\r\n[{\"options\":{\"add_shadow\":true,\"semitransparency\":false,\"bg_image_url\":\"http://www.google.com/images/logos/ps_logo2.png\"},\"name\":\"remove-bg\"}]\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=webhookUrl\r\n\r\nhttps://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customMetadata\r\n\r\n{\"price\":2000}\r\n--ImageKit-dLV9Wyq26L--\r\n";
+            string json = "--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=fileName\r\n\r\ntest.jpg\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=file\r\n\r\nhttps://homepages.cae.wisc.edu/~ece533/images/cat.png\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=useUniqueFileName\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=tags\r\n\r\nSoftware,Developer,Engineer\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=folder\r\n\r\ndummy-folder\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customCoordinates\r\n\r\n10,10,20,20\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteFile\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteAITags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteTags\r\n\r\ntrue\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=overwriteCustomMetadata\r\n\r\nfalse\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=extensions\r\n\r\n[{\"options\":{\"add_shadow\":true,\"semitransparency\":false,\"bg_image_url\":\"http://www.google.com/images/logos/ps_logo2.png\"},\"name\":\"remove-bg\"},{\"minConfidence\":95,\"maxTags\":5,\"name\":\"google-auto-tagging\"}]\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=webhookUrl\r\n\r\nhttps://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\r\n--ImageKit-dLV9Wyq26L\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Disposition: form-data; name=customMetadata\r\n\r\n{\"price\":2000}\r\n--ImageKit-dLV9Wyq26L--\r\n";
             string url = "https://upload.imagekit.io/api/v1/files/upload";
             FileCreateRequest ob = new FileCreateRequest
             {
@@ -77,7 +77,6 @@ namespace Imagekit.UnitTests
                 .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
                 .WithContent(json)
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
-
             var client = mockHttp.ToHttpClient();
             RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
             var response = rs.Upload(ob);
@@ -124,7 +123,7 @@ namespace Imagekit.UnitTests
                 { "price", 2000 }
             };
             ob.customMetadata = model;
-            string result = "{\"fileId\":\"file-Id\",\"webhookUrl\":\"https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\",\"extensions\":[{\"options\":{\"add_shadow\":true,\"semitransparency\":false,\"bg_color\":\"green\",\"bg_image_url\":\"http://www.google.com/images/logos/ps_logo2.png\"},\"name\":\"remove-bg\"}],\"tags\":[\"Software\",\"Developer\",\"Engineer\"],\"customCoordinates\":\"10,10,20,20\",\"customMetadata\":{\"price\":2000}}";
+            string result = "{\"fileId\":\"file-Id\",\"webhookUrl\":\"https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e\",\"extensions\":[{\"minConfidence\":95,\"maxTags\":5,\"name\":\"google-auto-tagging\"},{\"options\":{\"add_shadow\":true,\"semitransparency\":false,\"bg_color\":\"green\",\"bg_image_url\":\"http://www.google.com/images/logos/ps_logo2.png\"},\"name\":\"remove-bg\"}],\"tags\":[\"Software\",\"Developer\",\"Engineer\"],\"customCoordinates\":\"10,10,20,20\",\"customMetadata\":{\"price\":2000}}";
             var mockHttp = new MockHttpMessageHandler();
             var request = mockHttp.Expect(url)
                 .WithHeaders("Authorization: Basic cHJpdmF0ZV9rZXk6")
@@ -132,7 +131,7 @@ namespace Imagekit.UnitTests
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
-            RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
+              RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
             var response = rs.UpdateFileDetail(ob);
             mockHttp.VerifyNoOutstandingExpectation();
         }
