@@ -8,6 +8,7 @@ using System.Net.Http;
 using Xunit;
 using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
 using Imagekit.Models.Response;
+using Newtonsoft.Json.Linq;
 
 namespace Imagekit.UnitTests.MetaData
 {
@@ -35,8 +36,10 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultMetaData)restClient.GetFileMetaData("abc");
+            var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
+            responseObj1 = JToken.Parse(responseObj1).ToString();
 
-            Assert.Equal(responseObj.Raw, response.Raw);
+            Assert.Equal(responseObj.Raw, responseObj1);
         }
         [Fact]
         public void GetFileMetadataExceptionNonAsync()
@@ -72,8 +75,10 @@ namespace Imagekit.UnitTests.MetaData
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultMetaData)restClient.GetRemoteFileMetaData("abc");
+            var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
+            responseObj1 = JToken.Parse(responseObj1).ToString();
 
-            Assert.Equal(responseObj.Raw, response.Raw);
+            Assert.Equal(responseObj.Raw, responseObj1);
         }
         [Fact]
         public void GetRemoteFileMetadataExceptionNonAsync()

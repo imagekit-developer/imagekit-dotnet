@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using Xunit;
+using Newtonsoft.Json.Linq;
 
 namespace Imagekit.UnitTests.FileVersion
 {
@@ -272,8 +273,10 @@ namespace Imagekit.UnitTests.FileVersion
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultFileDelete)restClient.BulkDeleteFiles(ob);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
+            responseObj1 = JToken.Parse(responseObj1).ToString();
 
-            Assert.Equal(responseObj.Raw, response.Raw);
+            Assert.Equal(responseObj.Raw, responseObj1);
         }
         [Fact]
         public void Bulk_Delete_Files_Input_Missing_ExceptionNonAsync()

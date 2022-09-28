@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace Imagekit.UnitTests
@@ -58,8 +59,31 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultList)restClient.GetFileListRequestAsync(ob).Result;
+            var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
+            responseObj1 = JToken.Parse(responseObj1).ToString();
 
-            Assert.Equal(responseObj.Raw, response.Raw);
+            Assert.Equal(responseObj.Raw, responseObj1);
+        }
+        [Fact]
+        public void GetFileRequestWithoutFilter_Default()
+        {
+            GetFileListRequest ob = new GetFileListRequest();
+            
+            var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
+
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
+
+            var response = (ResultList)restClient.GetFileListRequestAsync(ob).Result;
+            var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
+            responseObj1 = JToken.Parse(responseObj1).ToString();
+
+            Assert.Equal(responseObj.Raw, responseObj1);
         }
 
         [Fact]
@@ -185,8 +209,9 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
             var response = (ResultFileDelete)restClient.BulkDeleteFilesAsync(ob).Result;
-
-            Assert.Equal(responseObj.Raw, response.Raw);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
+            responseObj1=JToken.Parse(responseObj1).ToString();
+            Assert.Equal(responseObj.Raw, responseObj1);
         }
         [Fact]
         public void Bulk_Delete_Files_Input_Missing_Exception()
