@@ -230,7 +230,8 @@ namespace ImagekitSample
                 Sort = "ASC_CREATED",
                 SearchQuery = "createdAt >= \"7d\"",
                 FileType = "image",
-                Tags = new string[] { "tag1", "tag2" }
+                Tags = new string[] { "tag1", "tag2" },
+				Path= "/"
             };
             ResultList res = imagekit.GetFileListRequest(model);
 

@@ -45,8 +45,63 @@ namespace Imagekit.UnitTests
         {
             GetFileListRequest ob = new GetFileListRequest
             {
+                Type = "file",
                 Limit = 10,
-                Skip = 0
+                Skip = 0,
+                Sort = "ASC_CREATED",
+                SearchQuery = "createdAt >= \"7d\"",
+                FileType = "image",
+                Path = "/"
+            };
+            var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
+
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
+
+            var response = (ResultList)restClient.GetFileListRequestAsync(ob).Result;
+            var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
+            responseObj1 = JToken.Parse(responseObj1).ToString();
+
+            Assert.Equal(responseObj.Raw, responseObj1);
+        }
+        [Fact]
+        public void GetFileRequestByName()
+        {
+            GetFileListRequest ob = new GetFileListRequest
+            {
+               
+                SearchQuery = "name = \"file_name.jpg\"",
+               
+            };
+            var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
+
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
+
+            var response = (ResultList)restClient.GetFileListRequestAsync(ob).Result;
+            var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
+            responseObj1 = JToken.Parse(responseObj1).ToString();
+
+            Assert.Equal(responseObj.Raw, responseObj1);
+        }
+        [Fact]
+        public void GetFileRequestByTag()
+        {
+            GetFileListRequest ob = new GetFileListRequest
+            {
+
+                SearchQuery = "tags = \"tag1,tag2\"",
+
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 

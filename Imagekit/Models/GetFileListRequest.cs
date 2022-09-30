@@ -6,7 +6,7 @@ namespace Imagekit.Models
 {
     public class GetFileListRequest
     {
-        public string Name { get; set; }
+       
 
         public string Type { get; set; }
 
@@ -22,6 +22,6 @@ namespace Imagekit.Models
 
         public int Skip { get; set; }
 
-        public string[] Tags { get; set; }
+      
     }
 }

@@ -352,11 +352,11 @@ namespace Imagekit.Helper
         {
             QueryMaker queryMaker = new QueryMaker();
             Dictionary<string, string> options = new Dictionary<string, string>();
-            if (getFileListRequest.Type != null)
+            
+            if(!string.IsNullOrEmpty(getFileListRequest.Name))
             {
-                options.Add("type", getFileListRequest.Type);
+                options.Add("name", getFileListRequest.Name);
             }
-
             if (getFileListRequest.Sort != null)
             {
                 options.Add("sort", getFileListRequest.Sort);
@@ -385,11 +385,6 @@ namespace Imagekit.Helper
             if (getFileListRequest.Skip > 0)
             {
                 options.Add("skip", getFileListRequest.Skip.ToString());
-            }
-
-            if (getFileListRequest.Tags != null)
-            {
-                options.Add("tags", string.Join(",", getFileListRequest.Tags));
             }
 
             foreach (KeyValuePair<string, string> entry in options)
