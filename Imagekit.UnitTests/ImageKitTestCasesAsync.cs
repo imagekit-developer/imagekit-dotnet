@@ -76,6 +76,7 @@ namespace Imagekit.UnitTests
             {
                
                 SearchQuery = "name = \"file_name.jpg\"",
+
                
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();

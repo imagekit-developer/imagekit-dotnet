@@ -6,8 +6,6 @@ namespace Imagekit.Models
 {
     public class GetFileListRequest
     {
-       
-
         public string Type { get; set; }
 
         public string Sort { get; set; }
@@ -21,7 +19,5 @@ namespace Imagekit.Models
         public int Limit { get; set; }
 
         public int Skip { get; set; }
-
-      
     }
 }
