@@ -342,14 +342,13 @@ Accepts an object specifying the parameters to be used to list and search files.
 ```cs
 GetFileListRequest model = new GetFileListRequest
 {
-	Name = "file_name.jpg",
-	Type = "file",
-	Limit = 10,
-	Skip = 0,
-	Sort = "ASC_CREATED",
-	SearchQuery = "createdAt >= \"7d\"",
-	FileType = "image",
-	Tags = new string[] { "tag1", "tag2" }
+Type = "file",
+Limit = 10,
+Skip = 0,
+Sort = "ASC_CREATED",
+SearchQuery = "name = \"file_name.jpg\"",
+FileType = "image",               
+Path= "/"
 };
 ResultList resp = await imagekit.GetFileDetail(model);
 ```

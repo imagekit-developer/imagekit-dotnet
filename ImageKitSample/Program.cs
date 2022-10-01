@@ -222,15 +222,13 @@ namespace ImagekitSample
 
             // List and search files
             GetFileListRequest model = new GetFileListRequest
-            {
-                Name = "file_name.jpg",
+            {               
                 Type = "file",
                 Limit = 10,
                 Skip = 0,
                 Sort = "ASC_CREATED",
-                SearchQuery = "createdAt >= \"7d\"",
-                FileType = "image",
-                Tags = new string[] { "tag1", "tag2" },
+                SearchQuery = "name = \"file_name.jpg\"",
+                FileType = "image",               
 				Path= "/"
             };
             ResultList res = imagekit.GetFileListRequest(model);
