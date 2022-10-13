@@ -1,61 +1,130 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Imagekit</RootNamespace>
-    <AssemblyName>Imagekit</AssemblyName>
-    <TargetFrameworks>netstandard2.1;netstandard2.0;net45</TargetFrameworks>
-    <PackageVersion>3.1.6</PackageVersion>
-    <Copyright>© ImageKit Private Limited 2019</Copyright>
-    <DevelopmentDependency>false</DevelopmentDependency>
-    <PackageIconUrl>https://imagekit.io/favicon.ico</PackageIconUrl>
-    <PackageLicense>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicense>
-    <Owners>Imagekit</Owners>
-    <PackageProjectUrl>https://imagekit.io</PackageProjectUrl>
-    <PackageTags>Image Resize Crop SmartCrop Rotate Quality Watermark Gif Jpg Jpeg Bitmap PNG Tiff Webp Webm Svg Optimization</PackageTags>
-    <Title>Imagekit.io DotNet Library</Title>
-    <Description>Library to Integrate Imagekit.io Service.</Description>
-    <PackageId>Imagekit</PackageId>
-    <PackOnBuild>true</PackOnBuild>
-    <ReleaseVersion>3.1.6</ReleaseVersion>
-    <SynchReleaseVersion>false</SynchReleaseVersion>
-    <PackageLicenseUrl>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</PackageLicenseUrl>
-    <Version>3.1.6</Version>
-    <RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>-Fixes</PackageReleaseNotes>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Imagekit</RootNamespace>
+		<AssemblyName>Imagekit</AssemblyName>
+		<TargetFrameworks>net5.0;net6.0;netcoreapp3.1;netstandard2.0;net461</TargetFrameworks>
+		<LangVersion>8</LangVersion>
+		<Copyright>© Imagekit Private Limited 2019</Copyright>
+		<DevelopmentDependency>false</DevelopmentDependency>
+		<!--<PackageIcon>https://imagekit.io/favicon.png</PackageIcon>-->
+		<License>https://github.com/imagekit-developer/imagekit-dotnet/blob/v2.x/LICENSE</License>
+		<Owners>Imagekit</Owners>
+		<PackageProjectUrl>https://imagekit.io</PackageProjectUrl>
+		<PackageTags>Image Resize Crop SmartCrop Rotate Quality Watermark Gif Jpg Jpeg Bitmap PNG Tiff Webp Webm Svg Optimization</PackageTags>
+		<Title>Imagekit.io DotNet Library</Title>
+		<Description>Library to Integrate Imagekit.io Service.</Description>
+		<PackageId>Imagekit</PackageId>
+		<PackOnBuild>true</PackOnBuild>
+		<ReleaseVersion>3.1.6</ReleaseVersion>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<SynchReleaseVersion>false</SynchReleaseVersion>
+		<Version>3.1.6</Version>
+		<RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageReleaseNotes>-Fixes</PackageReleaseNotes>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework>
+		
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	</PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-    <Reference Include="System" />
-    <Reference Include="System.Net" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	</PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.1'">
-	<DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_1</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	  <WarningLevel>4</WarningLevel>
+	</PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
-    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45'">
-    <DefineConstants>NET45;NETFULL</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	  <WarningLevel>4</WarningLevel>
+	</PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DefineConstants>DEBUG</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType></DebugType>
-    <DefineConstants>RELEASE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net461|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net461|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.Net.Http" Version="4.3.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+		<PackageReference Update="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<PackageReference Update="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+		<PackageReference Update="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
+		<PackageReference Update="Newtonsoft.Json" Version="11.0.1" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
+		<PackageReference Update="Newtonsoft.Json" Version="9.0.1" />
+		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
+		<Reference Include="System.Configuration" />
+		<Reference Include="System.Net.Http" />
+	</ItemGroup>
 </Project>
