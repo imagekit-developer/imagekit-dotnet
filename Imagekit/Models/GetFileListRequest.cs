@@ -21,6 +21,5 @@ namespace Imagekit.Models
         public int Skip { get; set; }
 
         public string[] Tags { get; set; }
-
     }
 }
