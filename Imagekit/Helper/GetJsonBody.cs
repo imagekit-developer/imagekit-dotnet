@@ -353,6 +353,7 @@ namespace Imagekit.Helper
             QueryMaker queryMaker = new QueryMaker();
             Dictionary<string, string> options = new Dictionary<string, string>();
 
+
             if (getFileListRequest.Sort != null)
             {
                 options.Add("sort", getFileListRequest.Sort);
