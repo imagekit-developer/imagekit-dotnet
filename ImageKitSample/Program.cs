@@ -195,9 +195,15 @@ namespace ImagekitSample
             // List and search files
             GetFileListRequest model = new GetFileListRequest
             {
+                Name = "file_name.jpg",
                 Type = "file",
                 Limit = 10,
                 Skip = 0,
+                Sort = "ASC_CREATED",
+                SearchQuery = "createdAt >= \"7d\"",
+                FileType = "image",
+                Tags = new string[] { "sale", "summer" },
+				Path= "/"
             };
             ResultList res = imagekit.GetFileListRequest(model);
 

@@ -300,10 +300,18 @@ The SDK provides a simple interface for all the [media APIs mentioned here](http
 Accepts an object specifying the parameters to be used to list and search files. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
 
 ```cs
-GetFileListRequest ob = new GetFileListRequest();
-ob.limit = 10;
-ob.skip = 0;
-ResultList resp = await imagekit.GetFileListRequestAsync(ob);
+GetFileListRequest model = new GetFileListRequest
+{
+	Name = "file_name.jpg",
+	Type = "file",
+	Limit = 10,
+	Skip = 0,
+	Sort = "ASC_CREATED",
+	SearchQuery = "createdAt >= \"7d\"",
+	FileType = "image",
+	Tags = new string[] { "tag1", "tag2" }
+};
+ResultList resp = await imagekit.GetFileDetail(model);
 ```
 
 **2\. Get File Details**
