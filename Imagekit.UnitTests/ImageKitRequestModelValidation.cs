@@ -131,7 +131,7 @@ namespace Imagekit.UnitTests
                 .Respond("application/json", "{'name' : 'ImageKit Response'}");
 
             var client = mockHttp.ToHttpClient();
-              RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
+            RestClient rs = new RestClient(GOOD_PRIVATEKEY, GOOD_URLENDPOINT, client);
             var response = rs.UpdateFileDetail(ob);
             mockHttp.VerifyNoOutstandingExpectation();
         }
@@ -147,8 +147,8 @@ namespace Imagekit.UnitTests
                 Path = "Test",
                 Sort = "Test",
                 SearchQuery = "Test",
-                FileType = "Test"
-               
+                FileType = "Test",
+                Tags = null
             };
             string param = "sort=Test&path=Test&searchQuery=Test&fileType=Test&limit=10&skip=20";
             string url = string.Format("https://api.imagekit.io/v1/files/?{0}", param);
