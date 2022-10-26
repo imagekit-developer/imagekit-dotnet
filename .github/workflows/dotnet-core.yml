@@ -63,8 +63,8 @@ jobs:
             
   publish:
     name: publish
-    if: (github.event_name == 'release') || (github.ref == 'refs/tags/*')
     needs: build
+    if: (github.event_name == 'release') || (github.ref == 'refs/tags/*')   
     runs-on: ubuntu-latest
     steps:
     - name: Download all workflow run artifacts
