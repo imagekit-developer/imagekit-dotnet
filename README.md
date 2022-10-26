@@ -33,14 +33,14 @@ Install-Package Imagekit
 PackageReference
 
 ```html
-<PackageReference Include="Imagekit" Version="3.1.6">
+<PackageReference Include="Imagekit" Version="4.0.0">
 </PackageReference>
 ```
 
 .Net CLI
 
 ```cs
-dotnet add package Imagekit --version 3.1.6
+dotnet add package Imagekit --version 4.0.0
 ```
 
 Open up your project, navigate to the Nuget package manager console, and add the Imagekit package.  

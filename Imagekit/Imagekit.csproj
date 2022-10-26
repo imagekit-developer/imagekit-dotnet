@@ -17,10 +17,10 @@
 		<Description>Library to Integrate Imagekit.io Service.</Description>
 		<PackageId>Imagekit</PackageId>
 		<PackOnBuild>true</PackOnBuild>
-		<ReleaseVersion>3.1.6</ReleaseVersion>
+		<ReleaseVersion>4.0.0</ReleaseVersion>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
-		<Version>3.1.6</Version>
+		<Version>4.0.0</Version>
 		<RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageReleaseNotes>-Fixes</PackageReleaseNotes>
