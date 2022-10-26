@@ -61,21 +61,20 @@ jobs:
           name: nuget
           path: nuget/
             
-  Publish:
-    needs: build
+  publish:
+    name: publish
     if: (github.event_name == 'release') || (github.ref == 'refs/tags/*')
-    runs-on: windows-latest
+    needs: [build]
+    runs-on: ubuntu-latest
     steps:
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.ATTRIBUTE_NAME }}
-
-      - name: .NET Core Version
-        run: dotnet --version
-
-      - name: .NET Core Info
-        run: dotnet --info
-
-      - name: Nuget push
-        run: dotnet nuget push "*.nupkg" -k ${{ secrets.NUGET_APIKEY }} --source ${{ env.NUGET_FEED }} --no-symbols true --skip-duplicate
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: nuget
+        path: nuget
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Publish NuGet packages to NuGet
+      run: dotnet nuget push nuget/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source ${{ env.NUGET_FEED }} --no-symbols true --skip-duplicate
