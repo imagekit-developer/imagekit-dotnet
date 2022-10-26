@@ -54,28 +54,28 @@ jobs:
           file: ./Imagekit.UnitTests/coverage.net6.0.opencover.xml
 
       - name: Pack
-        run: dotnet pack Imagekit.sln -c Release --no-build --output nuget
+        run: dotnet pack Imagekit.sln -c Release --no-build --output ${{ env.NUGET_OUTPUT_PATH }}
+
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
-          name: nuget
-          path: nuget/
+          name: ${{ env.ATTRIBUTE_NAME }}
+          path: ${{ env.NUGET_OUTPUT_PATH }}
             
   Publish:
     needs: build
     if: (github.event_name == 'release') || (github.ref == 'refs/tags/*')
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: Download a Build Artifact
+      - name: Download all workflow run artifacts
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.ATTRIBUTE_NAME }}
 
-      - name: .NET Core Version
-        run: dotnet --version
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
 
-      - name: .NET Core Info
-        run: dotnet --info
-
-      - name: Nuget push
+      - name: Publish NuGet packages to NuGet
         run: dotnet nuget push "*.nupkg" -k ${{ secrets.NUGET_APIKEY }} --source ${{ env.NUGET_FEED }} --no-symbols true --skip-duplicate
