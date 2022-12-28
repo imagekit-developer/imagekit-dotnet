@@ -8,6 +8,8 @@ using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using Xunit;
+using static ServiceStack.Diagnostics.Events;
+using HttpClient = System.Net.Http.HttpClient;
 
 namespace Imagekit.UnitTests
 {
@@ -691,6 +693,9 @@ namespace Imagekit.UnitTests
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.GetBulkJobStatusAsync(""));
             Assert.Equal(ErrorMessages.InvalidJobValue, ex.Result.Message);
         }
+
+       
+
     }
 }
 

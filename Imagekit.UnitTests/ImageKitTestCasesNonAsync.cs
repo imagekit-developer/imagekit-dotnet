@@ -8,6 +8,8 @@ using System.Net;
 using System.Net.Http;
 using Xunit;
 using Newtonsoft.Json.Linq;
+using static ServiceStack.Diagnostics.Events;
+using HttpClient = System.Net.Http.HttpClient;
 
 namespace Imagekit.UnitTests.FileVersion
 {
@@ -723,6 +725,31 @@ namespace Imagekit.UnitTests.FileVersion
             var imagekit = new ImagekitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
             int hammingDistance = imagekit.PHashDistance("33699c96619cc69e", "968e978414fe04ea");
             Assert.Equal(2, hammingDistance);
+        }
+        [Fact]
+        public void AuthenticationParamCheck()
+        {
+            var imagekit = new ImagekitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            string token = "your_token";
+            string expire = "1582269249";
+            AuthParamResponse authParams = imagekit.GetAuthenticationParameters(token, expire);
+            Assert.Equal(token, authParams.token);
+            Assert.Equal(expire, authParams.expire);
+            Assert.Equal("9ce92ac594783df383d87a25ffad2b8145936d5c", authParams.signature);
+        }
+
+        [Fact]
+        public void AuthenticationParamNullCheck()
+        {
+            var imagekit = new ImagekitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            string token = null;
+            string expire = "1582269249";             
+            AuthParamResponse authParams = imagekit.GetAuthenticationParameters(token, expire);
+            Assert.NotEmpty(authParams.token);
+            Assert.IsType<String>(authParams.token);
+            Assert.Equal(expire, authParams.expire);
+            Assert.NotEmpty(authParams.signature);
+            Assert.IsType<String>(authParams.signature);
         }
 
 

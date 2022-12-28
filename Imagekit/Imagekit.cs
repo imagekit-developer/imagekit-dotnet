@@ -6,6 +6,7 @@ namespace Imagekit.Sdk
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using System.Threading.Tasks;
     using global::Imagekit.Models;
     using global::Imagekit.Models.Response;
@@ -328,5 +329,44 @@ namespace Imagekit.Sdk
         {
             return Calculation.GetHammingDistance(firstHex, secondHex);
         }
+
+        /// <summary>
+        /// Generate Auth params for client-side upload 
+        /// </summary>
+        /// <param name="token">Random Token String)</param>
+        /// <param name="expire">Expire time for the token</param>
+        /// <returns>Returns Authparams including token, expiry time & signature.</returns>
+        public AuthParamResponse GetAuthenticationParameters(string token = null, string expire = null)
+        {
+            var DEFAULT_TIME_DIFF = 60 * 30;
+
+            AuthParamResponse authParameters = new AuthParamResponse();
+            authParameters.token = token;
+            authParameters.expire = expire;
+            authParameters.signature = "";
+
+            if (string.IsNullOrEmpty(this.privateKey))
+            {
+                return authParameters;
+            }
+
+            string defaultExpire = Utils.GetSignatureTimestamp(DEFAULT_TIME_DIFF);
+
+            if (string.IsNullOrEmpty(expire))
+            {
+                expire = defaultExpire;
+            }
+            if (string.IsNullOrEmpty(token))
+            {
+                token = Guid.NewGuid().ToString();
+            }
+            string signature = Utils.CalculateSignature(token + expire, Encoding.ASCII.GetBytes((string)this.privateKey));
+            authParameters.token = token;
+            authParameters.expire = expire;
+            authParameters.signature = signature;
+
+            return authParameters;
+        }
+
     }
 }
