@@ -680,9 +680,7 @@ namespace Imagekit.UnitTests
         [Fact]
         public void Missing_Job_Id_BulkJobStatusException()
         {
-
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
-
             var httpResponse = new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
@@ -692,10 +690,7 @@ namespace Imagekit.UnitTests
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
             var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.GetBulkJobStatusAsync(""));
             Assert.Equal(ErrorMessages.InvalidJobValue, ex.Result.Message);
-        }
-
-       
-
+        }     
     }
 }
 
