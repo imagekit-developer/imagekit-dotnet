@@ -735,7 +735,7 @@ namespace Imagekit.UnitTests.FileVersion
             AuthParamResponse authParams = imagekit.GetAuthenticationParameters(token, expire);
             Assert.Equal(token, authParams.token);
             Assert.Equal(expire, authParams.expire);
-            Assert.Equal("9ce92ac594783df383d87a25ffad2b8145936d5c", authParams.signature);
+            Assert.Equal("e71bcd6031016b060d349d212e23e85c791decdd", authParams.signature);
         }
 
         [Fact]

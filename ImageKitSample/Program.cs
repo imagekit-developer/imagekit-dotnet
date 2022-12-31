@@ -485,7 +485,7 @@ namespace ImagekitSample
 			
 			 /// Get Authentication Token
         var authenticationParameters = imagekit.GetAuthenticationParameters("your_token");
-        // Console.WriteLine("Authentication Parameters: {0}", JToken.FromObject(authenticationParameters).ToString());
+        Console.WriteLine("Authentication Parameters: {0}", JToken.FromObject(authenticationParameters).ToString());
             #endregion
         }
     }

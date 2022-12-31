@@ -331,26 +331,26 @@ namespace Imagekit.Sdk
         }
 
         /// <summary>
-        /// Generate Auth params for client-side upload 
+        /// Generate Auth params for client-side upload
         /// </summary>
-        /// <param name="token">Random Token String)</param>
+        /// <param name="token">Random Token String</param>
         /// <param name="expire">Expire time for the token</param>
-        /// <returns>Returns Authparams including token, expiry time & signature.</returns>
+        /// <returns>Returns Authparams including token, expiry time and signature.</returns>
         public AuthParamResponse GetAuthenticationParameters(string token = null, string expire = null)
         {
-            var DEFAULT_TIME_DIFF = 60 * 30;
+            var dEFAULT_TIME_DIFF = 60 * 30;
 
             AuthParamResponse authParameters = new AuthParamResponse();
             authParameters.token = token;
             authParameters.expire = expire;
-            authParameters.signature = "";
+            authParameters.signature = string.Empty;
 
             if (string.IsNullOrEmpty(this.privateKey))
             {
                 return authParameters;
             }
 
-            string defaultExpire = Utils.GetSignatureTimestamp(DEFAULT_TIME_DIFF);
+            string defaultExpire = Utils.GetSignatureTimestamp(dEFAULT_TIME_DIFF);
 
             if (string.IsNullOrEmpty(expire))
             {

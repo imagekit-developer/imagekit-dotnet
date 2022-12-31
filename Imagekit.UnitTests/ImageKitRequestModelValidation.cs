@@ -147,8 +147,7 @@ namespace Imagekit.UnitTests
                 Path = "Test",
                 Sort = "Test",
                 SearchQuery = "Test",
-                FileType = "Test",
-                Tags = null
+                FileType = "Test"               
             };
             string param = "sort=Test&path=Test&searchQuery=Test&fileType=Test&limit=10&skip=20";
             string url = string.Format("https://api.imagekit.io/v1/files/?{0}", param);
