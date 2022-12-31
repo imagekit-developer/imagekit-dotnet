@@ -16,7 +16,7 @@ namespace Imagekit.UnitTests.FileVersion
     public class ImageKitTestCasesNonAsync
     {
         private const string GOOD_PUBLICKEY = "public_key";
-        private const string GOOD_PRIVATEKEY = "private_key";
+        private const string GOOD_PRIVATEKEY = "private_key_test";
         private const string GOOD_URLENDPOINT = "https://endpoint_url.io/";
 
 
@@ -751,7 +751,6 @@ namespace Imagekit.UnitTests.FileVersion
             Assert.NotEmpty(authParams.signature);
             Assert.IsType<String>(authParams.signature);
         }
-
 
     }
 }

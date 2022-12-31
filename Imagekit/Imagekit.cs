@@ -344,22 +344,18 @@ namespace Imagekit.Sdk
             authParameters.token = token;
             authParameters.expire = expire;
             authParameters.signature = string.Empty;
-
-            if (string.IsNullOrEmpty(this.privateKey))
-            {
-                return authParameters;
-            }
-
             string defaultExpire = Utils.GetSignatureTimestamp(dEFAULT_TIME_DIFF);
 
             if (string.IsNullOrEmpty(expire))
             {
                 expire = defaultExpire;
             }
+
             if (string.IsNullOrEmpty(token))
             {
                 token = Guid.NewGuid().ToString();
             }
+
             string signature = Utils.CalculateSignature(token + expire, Encoding.ASCII.GetBytes((string)this.privateKey));
             authParameters.token = token;
             authParameters.expire = expire;
