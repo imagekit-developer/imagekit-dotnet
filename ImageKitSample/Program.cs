@@ -480,6 +480,10 @@ namespace ImagekitSample
 
             //Delete Custom MetaData
             ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("field_id");
+						
+			 /// Get Authentication Token
+        var authenticationParameters = imagekit.GetAuthenticationParameters("your_token");
+        Console.WriteLine("Authentication Parameters: {0}", JToken.FromObject(authenticationParameters).ToString());
             #endregion
         }
     }
