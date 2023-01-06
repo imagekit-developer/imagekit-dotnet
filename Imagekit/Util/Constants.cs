@@ -21,6 +21,6 @@ namespace Imagekit.Util
         public const string UploadApiHost = "dasdasd.sadsdasd.io";
         public const string FileApi = "/v1/files";
         public const string UploadApi = "/api/v1/files/upload";
-        public const string SdkVersion = "3.1.6";
+        public const string SdkVersion = "4.0.1";
     }
 }

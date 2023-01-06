@@ -12,6 +12,7 @@ namespace ImagekitSample
     using Imagekit.Models;
     using Imagekit.Models.Response;
     using Imagekit.Sdk;
+    using Newtonsoft.Json.Linq;
     using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
 
     internal class Program
@@ -222,14 +223,14 @@ namespace ImagekitSample
 
             // List and search files
             GetFileListRequest model = new GetFileListRequest
-            {               
+            {
                 Type = "file",
                 Limit = 10,
                 Skip = 0,
                 Sort = "ASC_CREATED",
                 SearchQuery = "name = \"file_name.jpg\"",
-                FileType = "image",               
-				Path= "/"
+                FileType = "image",
+                Path = "/"
             };
             ResultList res = imagekit.GetFileListRequest(model);
 
@@ -480,10 +481,10 @@ namespace ImagekitSample
 
             //Delete Custom MetaData
             ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("field_id");
-						
-			 /// Get Authentication Token
-        var authenticationParameters = imagekit.GetAuthenticationParameters("your_token");
-        Console.WriteLine("Authentication Parameters: {0}", JToken.FromObject(authenticationParameters).ToString());
+
+            // Get Authentication Token
+            var authenticationParameters = imagekit.GetAuthenticationParameters("your_token");
+            Console.WriteLine("Authentication Parameters: {0}", JToken.FromObject(authenticationParameters).ToString());
             #endregion
         }
     }
