@@ -14,7 +14,7 @@ namespace Imagekit.UnitTests.FileVersion
     public class ImageKitTestCasesNonAsync
     {
         private const string GOOD_PUBLICKEY = "public_key";
-        private const string GOOD_PRIVATEKEY = "private_key";
+        private const string GOOD_PRIVATEKEY = "private_key_test";
         private const string GOOD_URLENDPOINT = "https://endpoint_url.io/";
 
 
@@ -725,7 +725,31 @@ namespace Imagekit.UnitTests.FileVersion
             Assert.Equal(2, hammingDistance);
         }
 
+        [Fact]
+        public void AuthenticationParamCheck()
+        {
+            var imagekit = new ImagekitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            string token = "your_token";
+            string expire = "1582269249";
+            AuthParamResponse authParams = imagekit.GetAuthenticationParameters(token, expire);
+            Assert.Equal(token, authParams.token);
+            Assert.Equal(expire, authParams.expire);
+            Assert.Equal("e71bcd6031016b060d349d212e23e85c791decdd", authParams.signature);
+        }
 
+        [Fact]
+        public void AuthenticationParamNullCheck()
+        {
+            var imagekit = new ImagekitClient(GOOD_PUBLICKEY, GOOD_PRIVATEKEY, GOOD_URLENDPOINT);
+            string token = null;
+            string expire = "1582269249";
+            AuthParamResponse authParams = imagekit.GetAuthenticationParameters(token, expire);
+            Assert.NotEmpty(authParams.token);
+            Assert.IsType<String>(authParams.token);
+            Assert.Equal(expire, authParams.expire);
+            Assert.NotEmpty(authParams.signature);
+            Assert.IsType<String>(authParams.signature);
+        }
     }
 }
 
