@@ -19,5 +19,7 @@ namespace Imagekit.Models
         public int Limit { get; set; }
 
         public int Skip { get; set; }
+
+        public string[] Tags { get; set; }
     }
 }

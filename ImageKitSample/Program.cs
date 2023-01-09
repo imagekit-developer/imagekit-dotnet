@@ -222,14 +222,16 @@ namespace ImagekitSample
 
             // List and search files
             GetFileListRequest model = new GetFileListRequest
-            {               
+            {
+                Name = "file_name.jpg",
                 Type = "file",
                 Limit = 10,
                 Skip = 0,
                 Sort = "ASC_CREATED",
-                SearchQuery = "name = \"file_name.jpg\"",
-                FileType = "image",               
-				Path= "/"
+                SearchQuery = "createdAt >= \"7d\"",
+                FileType = "image",
+                Tags = new string[] { "sale", "summer" },
+                Path = "/"
             };
             ResultList res = imagekit.GetFileListRequest(model);
 
@@ -480,6 +482,10 @@ namespace ImagekitSample
 
             //Delete Custom MetaData
             ResultNoContent resultNoContentDel = imagekit.DeleteCustomMetaDataField("field_id");
+						
+			 /// Get Authentication Token
+        var authenticationParameters = imagekit.GetAuthenticationParameters("your_token");
+        Console.WriteLine("Authentication Parameters: {0}", JToken.FromObject(authenticationParameters).ToString());
             #endregion
         }
     }

@@ -33,14 +33,14 @@ Install-Package Imagekit
 PackageReference
 
 ```html
-<PackageReference Include="Imagekit" Version="3.1.6">
+<PackageReference Include="Imagekit" Version="4.0.0">
 </PackageReference>
 ```
 
 .Net CLI
 
 ```cs
-dotnet add package Imagekit --version 3.1.6
+dotnet add package Imagekit --version 4.0.0
 ```
 
 Open up your project, navigate to the Nuget package manager console, and add the Imagekit package.  
@@ -342,13 +342,14 @@ Accepts an object specifying the parameters to be used to list and search files.
 ```cs
 GetFileListRequest model = new GetFileListRequest
 {
-Type = "file",
-Limit = 10,
-Skip = 0,
-Sort = "ASC_CREATED",
-SearchQuery = "name = \"file_name.jpg\"",
-FileType = "image",               
-Path= "/"
+	Name = "file_name.jpg",
+	Type = "file",
+	Limit = 10,
+	Skip = 0,
+	Sort = "ASC_CREATED",
+	SearchQuery = "createdAt >= \"7d\"",
+	FileType = "image",
+	Tags = new string[] { "tag1", "tag2" }
 };
 ResultList resp = await imagekit.GetFileDetail(model);
 ```
