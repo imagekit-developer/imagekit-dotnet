@@ -13,7 +13,7 @@ namespace Imagekit.Sdk
     using global::Imagekit.Util;
 
     public class ImagekitClient : BaseImagekit<ImagekitClient>
-    {
+    { 
         private readonly RestClient restClient;
         private readonly string privateKey;
 
