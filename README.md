@@ -186,6 +186,70 @@ string imageURL = imagekit.Url(trans)
 https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&ik-t=1567358667&ik-s=f2c7cdacbe7707b71a83d49cf1c6110e3d701054
 ```
 
+**4. Adding overlays**
+
+ImageKit.io enables you to apply overlays to [images](https://docs.imagekit.io/features/image-transformations/overlay-using-layers) and [videos](https://docs.imagekit.io/features/video-transformation/overlay) using the raw parameter with the concept of [layers](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#layers). The raw parameter facilitates incorporating transformations directly in the URL. A layer is a distinct type of transformation that allows you to define an asset to serve as an overlay, along with its positioning and additional transformations.
+
+**Text as overlays**
+
+You can add any text string over a base video or image using a text layer (l-text).
+
+For example:
+
+```cs
+string path = "/default_image.jpg";
+Transformation trans = new Transformation()
+.Width(400)
+.Height(300) 
+.Raw("l-text,i-Imagekit,fs-50,l-end");
+
+string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
+```
+**Sample Result URL**
+```
+https://ik.imagekit.io/your_imagekit_id/default-image.jpg?tr=h-300,w-400,l-text,i-Imagekit,fs-50,l-end
+```
+
+**Image as overlays**
+
+You can add an image over a base video or image using an image layer (l-image).
+
+For example:
+
+```cs
+string path = "/default_image.jpg";
+Transformation trans = new Transformation()
+.Width(400)
+.Height(300) 
+.Raw("l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end");
+
+string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
+```
+**Sample Result URL**
+```
+https://ik.imagekit.io/your_imagekit_id/default-image.jpg?tr=h-300,w-400,l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end
+```
+
+**Solid color blocks as overlays**
+
+You can add solid color blocks over a base video or image using an image layer (l-image).
+
+For example:
+
+```cs
+string path = "/img/sample-video.mp4";
+Transformation trans = new Transformation()
+.Width(400)
+.Height(300) 
+.Raw("l-image,i-ik_canvas,bg-FF0000,w-300,h-100,l-end");
+
+string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
+```
+**Sample Result URL**
+```
+https://ik.imagekit.io/your_imagekit_id/img/sample-video.mp4?tr=h-300,w-400,l-image,i-ik_canvas,bg-FF0000,w-300,h-100,l-end
+```
+
 #### List of supported transformations
 
 The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations). The SDK gives a name to each transformation parameter, making the code simpler and more readable. If a transformation is supported in ImageKit, but a name for it cannot be found in the table below, then use the transformation code from ImageKit docs as the name when using the `url` function.
