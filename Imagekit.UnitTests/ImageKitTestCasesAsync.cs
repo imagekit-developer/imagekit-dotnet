@@ -70,6 +70,33 @@ namespace Imagekit.UnitTests
             Assert.Equal(responseObj.Raw, responseObj1);
         }
         [Fact]
+        public async void GetFileRequestByNameWithoutSearchQuery()
+        {
+            GetFileListRequest ob = new GetFileListRequest
+            {
+               
+                Name = "file_name.jpg",
+               
+            };
+            var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
+
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+            var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
+
+            var response = await restClient.GetFileListRequestAsync(ob);
+            // Console.WriteLine("res",response);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
+            responseObj1 = JToken.Parse(responseObj1).ToString();
+
+            Assert.Equal(responseObj.Raw, responseObj1);
+            Console.WriteLine(responseObj.Raw);
+        }
+        [Fact]
         public void GetFileRequestByName()
         {
             GetFileListRequest ob = new GetFileListRequest

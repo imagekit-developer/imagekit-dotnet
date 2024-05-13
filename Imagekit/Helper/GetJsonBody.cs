@@ -383,6 +383,11 @@ namespace Imagekit.Helper
                 options.Add("skip", getFileListRequest.Skip.ToString());
             }
 
+            if (getFileListRequest.Name != null)
+            {
+                options.Add("name", getFileListRequest.Name.ToString());
+            }
+
             foreach (KeyValuePair<string, string> entry in options)
             {
                 queryMaker.Add(string.Format("{0}={1}", entry.Key, entry.Value));

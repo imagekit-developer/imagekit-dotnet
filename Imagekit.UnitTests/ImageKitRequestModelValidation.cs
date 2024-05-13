@@ -141,6 +141,7 @@ namespace Imagekit.UnitTests
         {
             GetFileListRequest ob = new GetFileListRequest
             {
+                Name = "Test",
                 Limit = 10,
                 Skip = 20,
                 Type = "Test",
@@ -150,7 +151,7 @@ namespace Imagekit.UnitTests
                 FileType = "Test",
                 Tags = null
             };
-            string param = "sort=Test&path=Test&searchQuery=Test&fileType=Test&limit=10&skip=20";
+            string param = "sort=Test&path=Test&searchQuery=Test&fileType=Test&name=Test&limit=10&skip=20";
             string url = string.Format("https://api.imagekit.io/v1/files/?{0}", param);
 
             var mockHttp = new MockHttpMessageHandler();

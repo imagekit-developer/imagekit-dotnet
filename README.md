@@ -375,6 +375,9 @@ The SDK provides a simple interface for all the [media APIs mentioned here](http
 
 Accepts an object specifying the parameters to be used to list and search files. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
 
+#### Applying Filters
+Filter out the files by specifying the parameters.
+
 ```cs
 GetFileListRequest model = new GetFileListRequest
 {
@@ -383,12 +386,24 @@ GetFileListRequest model = new GetFileListRequest
 	Limit = 10,
 	Skip = 0,
 	Sort = "ASC_CREATED",
-	SearchQuery = "createdAt >= \"7d\"",
 	FileType = "image",
 	Tags = new string[] { "tag1", "tag2" }
 };
-ResultList resp = await imagekit.GetFileDetail(model);
+ResultList res = await imagekit.GetFileListRequestAsync(model);
 ```
+
+#### Advance Search
+In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and providing this generated string as the value of the `SearchQuery`.
+
+```cs
+GetFileListRequest model = new GetFileListRequest
+{
+	SearchQuery = "createdAt >= '2d' OR size < '2mb' OR format='png'",
+};
+ResultList res = await imagekit.GetFileListRequestAsync(model);
+```
+
+Detailed documentation can be found here for [advance search queries](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries).
 
 **2\. Get File Details**
 
