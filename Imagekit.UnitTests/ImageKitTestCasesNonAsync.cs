@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using Xunit;
 using Newtonsoft.Json.Linq;
+using Imagekit.Helper;
 
 namespace Imagekit.UnitTests.FileVersion
 {
@@ -752,7 +753,3 @@ namespace Imagekit.UnitTests.FileVersion
         }
     }
 }
-
-
-
-

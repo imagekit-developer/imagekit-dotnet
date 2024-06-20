@@ -4,6 +4,8 @@
 
 namespace Imagekit
 {
+    using global::Imagekit.Helper;
+
     public partial class BaseImagekit<T>
     {
         public T Path(string value)

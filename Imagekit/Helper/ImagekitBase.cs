@@ -8,6 +8,7 @@ namespace Imagekit
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.RegularExpressions;
+    using global::Imagekit.Helper;
 
     [ExcludeFromCodeCoverage]
     public abstract partial class BaseImagekit<T>
