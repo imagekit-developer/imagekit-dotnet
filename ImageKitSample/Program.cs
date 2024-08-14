@@ -41,32 +41,6 @@ namespace ImagekitSample
                 Rotation(90).
                 Blur(10).
                 Named("some_name").
-                OverlayX(35).
-                OverlayY(35).
-                OverlayFocus("bottom").
-                OverlayHeight(20).
-                OverlayHeight(20).
-                OverlayImage("/folder/file_name.jpg"). // leading slash case
-                OverlayImageTrim(false).
-                OverlayImageAspectRatio("4:3").
-                OverlayImageBackground("0F0F0F").
-                OverlayImageBorder("10_0F0F0F").
-                OverlayImageDpr(2).
-                OverlayImageQuality(50).
-                OverlayImageCropping("force").
-                OverlayText("two words").
-                OverlayTextFontSize(20).
-                OverlayTextFontFamily("Open Sans").
-                OverlayTextColor("00FFFF").
-                OverlayTextTransparency(5).
-                OverlayTextTypography("b").
-                OverlayBackground("00AAFF55").
-                OverlayTextEncoded("b3ZlcmxheSBtYWRlIGVhc3k%3D").
-                OverlayTextWidth(50).
-                OverlayTextBackground("00AAFF55").
-                OverlayTextPadding(40).
-                OverlayTextInnerAlignment("left").
-                OverlayRadius(10).
                 Progressive(true).
                 Lossless(true).
                 Trim(5).
@@ -78,6 +52,8 @@ namespace ImagekitSample
                 EffectUsm("2-2-0.8-0.024").
                 EffectContrast(true).
                 EffectGray().
+                EffectShadow().
+                EffectGradient().
                 Original().
                 Raw("h-200,w-300,l-image,i-logo.png,l-end");
 
@@ -153,6 +129,18 @@ namespace ImagekitSample
                 maxTags = 5,
                 minConfidence = 95
             };
+            TransformationObject transformationObject = new TransformationObject
+            {
+                type = "transformation",
+                value = "w-100"
+            };
+            List<PostTransformation> postTransformations = new List<PostTransformation>();
+            postTransformations.Add(transformationObject);
+            UploadTransformation uploadTransformation = new UploadTransformation
+            {
+                pre = "l-text,i-Imagekit,fs-50,l-end",
+                post = postTransformations,
+            };
             ext.Add(bck1);
             ext.Add(autoTags);
             ob.extensions = ext;
@@ -164,6 +152,7 @@ namespace ImagekitSample
             ob.overwriteAITags = true;
             ob.overwriteTags = true;
             ob.overwriteCustomMetadata = true;
+            ob.transformation= uploadTransformation;
             Result resp2 = imagekit.Upload(ob);
 
             // Get Base64

@@ -105,6 +105,12 @@
                 formdata.Add(new StringContent(jsonResult), "customMetadata");
             }
 
+            if (fileCreateRequest.transformation != null)
+            {
+                string jsonResult = JsonConvert.SerializeObject(fileCreateRequest.transformation);
+                formdata.Add(new StringContent(jsonResult), "transformation");
+            }
+
             return formdata;
         }
 

@@ -183,6 +183,18 @@ namespace Imagekit.UnitTests.Upload
                 name = "remove-bg",
                 options = new options() { add_shadow = true, bg_color = "green" }
             };
+            TransformationObject transformationObject = new TransformationObject
+            {
+                type = "transformation",
+                value = "w-100"
+            };
+            List<PostTransformation> postTransformations = new List<PostTransformation>();
+            postTransformations.Add(transformationObject);
+            UploadTransformation uploadTransformation = new UploadTransformation
+            {
+                pre = "l-text,i-Imagekit,fs-50,l-end",
+                post =  postTransformations,
+            };
             model1.Add(bck);
             ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             ob.useUniqueFileName = true;
@@ -192,12 +204,12 @@ namespace Imagekit.UnitTests.Upload
             ob.overwriteAITags = true;
             ob.overwriteTags = true;
             ob.overwriteCustomMetadata = true;
+            ob.transformation= uploadTransformation;
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
             };
             ob.customMetadata = model;
-
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
