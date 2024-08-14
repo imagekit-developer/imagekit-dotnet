@@ -76,7 +76,7 @@ namespace Imagekit.UnitTests.FileVersion
 
             string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();
 
-            Assert.Equal("https://endpoint_url.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Cbg-A94D34%2Cb-5-A94D34%2Crt-90%2Cbl-10%2Cn-some_name%2Cpr-true%2Clo-true%2Ct-5%2Cmd-true%2Ccp-true%2Cdi-folder%40%40file.jpg%2Cdpr-3%2Ce-sharpen-10%2Ce-usm-2-2-0.8-0.024%2Ce-contrast-true%2Ce-grayscale-true%2Corig-true%2Ch-200%2Cw-300%2Cl-image%2Ci-logo.png%2Cl-end", imageURL);
+            Assert.Equal("https://endpoint_url.io/default-image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Cbg-A94D34%2Cb-5-A94D34%2Crt-90%2Cbl-10%2Cn-some_name%2Cpr-true%2Clo-true%2Ct-5%2Cmd-true%2Ccp-true%2Cdi-folder%40%40file.jpg%2Cdpr-3%2Ce-sharpen-10%2Ce-usm-2-2-0.8-0.024%2Ce-contrast-true%2Ce-grayscale-true%2Ce-shadow-true%2Ce-gradient-true%2Corig-true%2Ch-200%2Cw-300%2Cl-image%2Ci-logo.png%2Cl-end", imageURL);
         }
 
 
