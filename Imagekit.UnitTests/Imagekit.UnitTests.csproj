@@ -1,18 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0;net8.0;net5.0;net6.0;net4.0;netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks>net7.0;net8.0;net5.0;net6.0;netcoreapp3.1</TargetFrameworks>
 		<LangVersion>8</LangVersion>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<CheckEolTargetFramework>false</CheckEolTargetFramework>		
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net4.0|AnyCPU'">
-	  <NoWarn>1701;1702;NU5125;NU5048;</NoWarn>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net4.0|AnyCPU'">
-	  <NoWarn>1701;1702;NU5125;NU5048;</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">

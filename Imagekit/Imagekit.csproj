@@ -4,7 +4,7 @@
 		<OutputType>Library</OutputType>
 		<RootNamespace>Imagekit</RootNamespace>
 		<AssemblyName>Imagekit</AssemblyName>
-		<TargetFrameworks>net8.0;net7.0;net5.0;net6.0;net4.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net8.0;net7.0;net5.0;net6.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
 		<LangVersion>8</LangVersion>
 		<Copyright>© Imagekit Private Limited 2019</Copyright>
 		<DevelopmentDependency>false</DevelopmentDependency>
@@ -69,18 +69,6 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-	  <WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-
-		<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net4.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-	  <WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net4.0|AnyCPU'">
 	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
 	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
 	  <WarningLevel>4</WarningLevel>
