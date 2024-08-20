@@ -111,6 +111,11 @@
                 formdata.Add(new StringContent(jsonResult), "transformation");
             }
 
+            if (fileCreateRequest.checks != null)
+            {
+                formdata.Add(new StringContent(fileCreateRequest.checks), "checks");
+            }
+
             return formdata;
         }
 

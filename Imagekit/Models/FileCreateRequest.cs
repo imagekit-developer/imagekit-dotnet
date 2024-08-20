@@ -41,4 +41,5 @@ public class FileCreateRequest
 
     public UploadTransformation transformation { get; set; }
 
+    public string checks { get; set; }
 }

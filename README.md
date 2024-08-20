@@ -8,7 +8,7 @@ ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/
 
 ##### Table of contents
 
-* 	[Changelog](#changelog)
+*   [Changelog](#changelog)
 *   [Installation](#installation)
 *   [Initialization](#initialization)
 *   [URL generation](#url-generation)
@@ -364,7 +364,7 @@ ob.overwriteFile = true;
 ob.overwriteAITags = true;
 ob.overwriteTags = true;
 ob.overwriteCustomMetadata = true;
-
+ob.checks = "'file.size' < '1mb'" // To run server side checks before uploading files. Notice the quotes around file.size and 1mb.
 Result resp2 = imagekit.Upload(ob);
 
 //Get Base64 

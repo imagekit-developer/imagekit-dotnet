@@ -204,7 +204,8 @@ namespace Imagekit.UnitTests.Upload
             ob.overwriteAITags = true;
             ob.overwriteTags = true;
             ob.overwriteCustomMetadata = true;
-            ob.transformation= uploadTransformation;
+            ob.transformation = uploadTransformation;
+            ob.checks = "'request.folder' : '/dummy-folder'";
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
