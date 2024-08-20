@@ -8,6 +8,7 @@ ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/
 
 ##### Table of contents
 
+* 	[Changelog](#changelog)
 *   [Installation](#installation)
 *   [Initialization](#initialization)
 *   [URL generation](#url-generation)
@@ -21,6 +22,17 @@ ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/
 *   [Utility functions](#utility-functions)
 *   [Support](#support)
 *   [Links](#links)
+
+## Changelog
+
+### SDK Version 5.0.0
+
+#### Breaking changes
+
+**1. Overlay syntax update**
+* In version 5.0.0, we've removed the old overlay syntax parameters for transformations, such as `oi`, `ot`, `obg`, and [more](https://docs.imagekit.io/features/image-transformations/overlay). These parameters are deprecated and will start returning errors when used in URLs. Please migrate to the new layers syntax that supports overlay nesting, provides better positional control, and allows more transformations at the layer level. You can start with [examples](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#examples) to learn quickly.
+* You can migrate to the new layers syntax using the `raw` transformation parameter.
+
 
 ## Installation
 
