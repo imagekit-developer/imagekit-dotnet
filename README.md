@@ -353,6 +353,7 @@ ob.overwriteAITags = true;
 ob.overwriteTags = true;
 ob.overwriteCustomMetadata = true;
 ob.checks = "'file.size' < '1mb'" // To run server side checks before uploading files. Notice the quotes around file.size and 1mb.
+ob.isPublished = true;
 Result resp2 = imagekit.Upload(ob);
 
 //Get Base64 
