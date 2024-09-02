@@ -14,7 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Parameters `EffectShadow` and `EffectGradient` for url generation.
-- Upload options `transformation` for applying `pre` and `post` transformations, and `checks` to perform server-side validations before file uploads.
+- Upload options 
+    - `transformation` for applying `pre` and `post` transformations.
+    - `checks` to perform server-side validations before file uploads.
+    - `isPublished` determines whether the file should be uploaded as published.
+- Update parameters
+    - `publish` to configure the publication status of a file and its versions.
 
 ## [4.0.1]
 ### Fixed
