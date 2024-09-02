@@ -450,6 +450,23 @@ updateob.webhookUrl = "https://webhook.site/c78d617f_33bc_40d9_9e61_608999721e2e
 Result updateresp = imagekit.UpdateFileDetail(updateob); 
 ```
 
+**Update publish status**
+
+If `publish` is included in the update options, no other parameters are allowed.
+
+```cs
+FileUpdateRequest updateob = new FileUpdateRequest
+{
+	fileId = "fileId",
+};
+PublishStatus publishStatus = new PublishStatus
+{
+	isPublished = false
+};
+updateob.publish = publishStatus;
+Result updateresp = imagekit.UpdateFileDetail(updateob); 
+```
+
 **4\. Delete File**
 
 Accept the file ID and delete a file as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file).

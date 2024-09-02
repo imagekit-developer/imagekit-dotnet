@@ -193,6 +193,8 @@ namespace Imagekit.UnitTests.Upload
             ob.overwriteAITags = false;
             ob.overwriteTags = false;
             ob.overwriteCustomMetadata = true;
+            ob.checks = "'request.folder' : '/dummy-folder'";
+            ob.isPublished = true;
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
@@ -366,6 +368,35 @@ namespace Imagekit.UnitTests.Upload
                 { "price", 2000 }
             };
             ob.customMetadata = model;
+
+            var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+
+            var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
+
+            var response = (Result)restClient.UpdateFileDetail(ob);
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
+        }
+
+        [Fact]
+        public void UpdateFile_Publish_Status()
+        {
+            FileUpdateRequest ob = new FileUpdateRequest
+            {
+                fileId = "file-Id",
+
+            };
+            PublishStatus publishStatus = new PublishStatus
+            {
+                isPublished = false
+            };
+            ob.publish = publishStatus;
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage

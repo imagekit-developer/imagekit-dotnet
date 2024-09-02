@@ -8,6 +8,7 @@
     using global::Imagekit.Models;
     using global::Imagekit.Util;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
 
     public static class MultipartFormDataModel
     {
@@ -116,6 +117,11 @@
                 formdata.Add(new StringContent(fileCreateRequest.checks), "checks");
             }
 
+            if (fileCreateRequest.isPublished.HasValue)
+            {
+                formdata.Add(new StringContent(fileCreateRequest.isPublished.Value.ToString().ToLower()), "isPublished");
+            }
+
             return formdata;
         }
 
@@ -160,6 +166,12 @@
             {
                 string jSONresult = JsonConvert.SerializeObject(fileCreateRequest.customMetadata);
                 formdata.Add(new StringContent(jSONresult), "customMetadata");
+            }
+
+            if (fileCreateRequest.publish != null)
+            {
+                string jSONresult = JsonConvert.SerializeObject(fileCreateRequest.publish);
+                formdata.Add(new StringContent(jSONresult), "publish");
             }
 
             return formdata;
