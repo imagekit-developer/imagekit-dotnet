@@ -185,7 +185,6 @@ namespace Imagekit.UnitTests.Upload
             };
             TransformationObject transformationObject = new TransformationObject
             {
-                type = "transformation",
                 value = "w-100"
             };
             List<PostTransformation> postTransformations = new List<PostTransformation>();

@@ -82,7 +82,9 @@ Transformation trans = new Transformation()
 .Crop("force")
 .CropMode("extract")
 .Focus("left")
-.Format("jpeg")  
+.Format("jpeg") 
+.EffectShadow()
+.EffectGradient() 
 .Raw("h-200,w-300,l-image,i-logo.png,l-end");
 
 string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
@@ -91,7 +93,7 @@ string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query")
 This results in a URL like
 
 ```plaintext
-https://ik.imagekit.io/default_image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq_40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Ch-200%2Cw-300%2Cl-image%2Ci-logo.png%2Cl-end
+https://ik.imagekit.io/default_image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Ce-shadow-true%2Ce-gradient-true%2Ch-200%2Cw-300%2Cl-image%2Ci-logo.png%2Cl-end
 ```
 
 **2\. Using full image URL**
@@ -343,6 +345,17 @@ AutoTags autoTags = new AutoTags
 };
 ext.Add(bck1);
 ext.Add(autoTags);
+TransformationObject transformationObject = new TransformationObject
+{
+	value = "w-100"
+};
+List<PostTransformation> postTransformations = new List<PostTransformation>();
+postTransformations.Add(transformationObject);
+UploadTransformation uploadTransformation = new UploadTransformation
+{
+	pre = "l-text,i-Imagekit,fs-50,l-end",
+	post = postTransformations,
+};
 ob.extensions = ext;
 ob.webhookUrl = "https://webhook.site/c78d617f_33bc_40d9_9e61_608999721e2e";
 ob.useUniqueFileName = true;

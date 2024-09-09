@@ -16,24 +16,24 @@ namespace Imagekit.Models
 
     public class TransformationObject : PostTransformation
     {
-        public string type { get; set; } = "transformation";
+        public string type { get; } = "transformation";
         public string value { get; set; }
     }
 
     public class GifToVideoObject : PostTransformation
     {
-        public string type { get; set; } = "gif-to-video";
-        public string value { get; set; }
+        public string type { get; } = "gif-to-video";
+        public string? value { get; set; }
     }
     public class ThumbnailObject : PostTransformation
     {
-        public string type { get; set; } = "thumbnail";
-        public string value { get; set; }
+        public string type { get; } = "thumbnail";
+        public string? value { get; set; }
     }
 
     public class AbsObject : PostTransformation
     {
-        public string type { get; set; } = "abs";
+        public string type { get; } = "abs";
         public string value { get; set; }
         public Protocol protocol { get; set; }
     }
