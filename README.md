@@ -144,7 +144,7 @@ string imageURL = imagekit.Url(transformation)
 https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg?tr=h-300,w-400:rt-90
 ```
 
-**2\. Sharpening and contrast transforms and a progressive JPG image**
+**2\. Sharpening, contrast adjustment, shadow and gradient transformations, along with a progressive JPEG format image.**
 
 There are some transforms like [Sharpening](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation) that can be added to the URL with or without any other value.
 
