@@ -18,5 +18,7 @@
         public string customCoordinates { get; set; }
 
         public Hashtable customMetadata { get; set; }
+
+        public PublishStatus publish { get; set; }
     }
 }

@@ -183,6 +183,17 @@ namespace Imagekit.UnitTests.Upload
                 name = "remove-bg",
                 options = new options() { add_shadow = true, bg_color = "green" }
             };
+            TransformationObject transformationObject = new TransformationObject
+            {
+                value = "w-100"
+            };
+            List<PostTransformation> postTransformations = new List<PostTransformation>();
+            postTransformations.Add(transformationObject);
+            UploadTransformation uploadTransformation = new UploadTransformation
+            {
+                pre = "l-text,i-Imagekit,fs-50,l-end",
+                post =  postTransformations,
+            };
             model1.Add(bck);
             ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
             ob.useUniqueFileName = true;
@@ -192,12 +203,14 @@ namespace Imagekit.UnitTests.Upload
             ob.overwriteAITags = true;
             ob.overwriteTags = true;
             ob.overwriteCustomMetadata = true;
+            ob.transformation = uploadTransformation;
+            ob.checks = "'request.folder' : '/dummy-folder'";
+            ob.isPublished = true;
             Hashtable model = new Hashtable
             {
                 { "price", 2000 }
             };
             ob.customMetadata = model;
-
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -366,6 +379,34 @@ namespace Imagekit.UnitTests.Upload
             };
             ob.customMetadata = model;
 
+            var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
+            var httpResponse = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(JsonConvert.SerializeObject(responseObj))
+            };
+            var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
+
+            var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
+
+            var response = (Result)restClient.UpdateFileDetailAsync(ob).Result;
+            var responseObj1 = JsonConvert.SerializeObject(responseObj);
+            Assert.Equal(responseObj1, response.Raw);
+        }
+
+        [Fact]
+        public void UpdateFile_Publish_Status()
+        {
+            FileUpdateRequest ob = new FileUpdateRequest
+            {
+                fileId = "file-Id",
+
+            };
+            PublishStatus publishStatus = new PublishStatus
+            {
+                isPublished = false
+            };
+            ob.publish = publishStatus;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {

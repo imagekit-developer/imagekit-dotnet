@@ -4,7 +4,7 @@
 		<OutputType>Library</OutputType>
 		<RootNamespace>Imagekit</RootNamespace>
 		<AssemblyName>Imagekit</AssemblyName>
-		<TargetFrameworks>net5.0;net6.0;netcoreapp3.1;netstandard2.0;net461</TargetFrameworks>
+		<TargetFrameworks>net7.0;net5.0;net6.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
 		<LangVersion>8</LangVersion>
 		<Copyright>© Imagekit Private Limited 2019</Copyright>
 		<DevelopmentDependency>false</DevelopmentDependency>
@@ -17,10 +17,10 @@
 		<Description>Library to Integrate Imagekit.io Service.</Description>
 		<PackageId>Imagekit</PackageId>
 		<PackOnBuild>true</PackOnBuild>
-		<ReleaseVersion>4.0.2</ReleaseVersion>
+		<ReleaseVersion>5.0.0</ReleaseVersion>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
-		<Version>4.0.2</Version>
+		<Version>5.0.0</Version>
 		<RepositoryUrl>git@github.com:imagekit-developer/imagekit-dotnet.git</RepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageReleaseNotes>-Fixes</PackageReleaseNotes>
@@ -50,6 +50,18 @@
 	  <WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	  <WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
+	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	  <WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
 	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
 	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
@@ -66,16 +78,6 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net461|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net461|AnyCPU'">
 	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
 	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
 	</PropertyGroup>
@@ -118,13 +120,5 @@
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
 		<PackageReference Update="Newtonsoft.Json" Version="11.0.1" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
-		<PackageReference Update="Newtonsoft.Json" Version="9.0.1" />
-		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
-		<Reference Include="System.Configuration" />
-		<Reference Include="System.Net.Http" />
 	</ItemGroup>
 </Project>

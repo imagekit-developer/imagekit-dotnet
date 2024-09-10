@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0]
+
+### Breaking changes
+
+**Overlay syntax update**
+* In version 5.0.0, we've removed the old overlay syntax parameters for transformations, such as `oi`, `ot`, `obg`, and [more](https://docs.imagekit.io/features/image-transformations/overlay). These parameters are deprecated and will start returning errors when used in URLs. Please migrate to the new layers syntax that supports overlay nesting, provides better positional control, and allows more transformations at the layer level. You can start with [examples](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#examples) to learn quickly.
+* You can migrate to the new layers syntax using the `raw` transformation parameter.
+
+### Added
+- Parameters `EffectShadow` and `EffectGradient` for url generation.
+- Upload options 
+    - `transformation` for applying `pre` and `post` transformations.
+    - `checks` to perform server-side validations before file uploads.
+    - `isPublished` determines whether the file should be uploaded as published.
+- Update parameter
+    - `publish` to configure the publication status of a file and its versions.
+
 ## [4.0.1]
 ### Fixed
 - https://github.com/imagekit-developer/imagekit-dotnet/issues/50

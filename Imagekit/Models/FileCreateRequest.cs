@@ -38,4 +38,10 @@ public class FileCreateRequest
     public object file { get; set; }
 
     public bool isPrivateFile { get; set; }
+
+    public UploadTransformation transformation { get; set; }
+
+    public string checks { get; set; }
+
+    public bool? isPublished { get; set; }
 }

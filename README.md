@@ -82,8 +82,8 @@ Transformation trans = new Transformation()
 .Crop("force")
 .CropMode("extract")
 .Focus("left")
-.Format("jpeg")  
-.Raw("h-200,w-300,l-image,i-logo.png,l-end");
+.Format("jpeg") 
+.Raw("l-text,i-Imagekit,fs-50,l-end");
 
 string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
 ```
@@ -91,7 +91,7 @@ string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query")
 This results in a URL like
 
 ```plaintext
-https://ik.imagekit.io/default_image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq_40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Ch-200%2Cw-300%2Cl-image%2Ci-logo.png%2Cl-end
+https://ik.imagekit.io/your_imagekit_id/default_image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Cl-text%2Ci-Imagekit%2Cfs-50%2Cl-end
 ```
 
 **2\. Using full image URL**
@@ -144,7 +144,7 @@ string imageURL = imagekit.Url(transformation)
 https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg?tr=h-300,w-400:rt-90
 ```
 
-**2\. Sharpening and contrast transforms and a progressive JPG image**
+**2\. Sharpening, contrast adjustment, shadow and gradient transformations, along with a progressive JPEG format image.**
 
 There are some transforms like [Sharpening](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation) that can be added to the URL with or without any other value.
 
@@ -155,7 +155,9 @@ Transformation trans = new Transformation()
     .Format("jpg")
     .Progressive(false)
     .EffectSharpen()
-    .EffectContrast(1);
+    .EffectContrast(1)
+    .EffectShadow()
+    .EffectGradient();
 
 string imageURL = imagekit.Url(trans)
     .Src(src)
@@ -165,7 +167,7 @@ string imageURL = imagekit.Url(trans)
 **Note**: Because `src` parameter was used, the transformation string gets added as a query parameter `tr`.
 
 ```plaintext
-https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg,pr-false,e-sharpen,e-contrast-1
+https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg%2Cpr-false%2Ce-sharpen%2Ce-contrast-1%2Ce-shadow%2Ce-gradient
 ```
 
 **3\. Signed URL that expires in 600 seconds with the default URL endpoint and other query parameters**
@@ -283,6 +285,8 @@ The complete list of transformations supported and their usage in ImageKit can b
 | EffectUSM | e-usm |
 | EffectContrast | e-contrast |
 | EffectGray | e-grayscale |
+| EffectShadow | e-shadow |
+| EffectGradient | e-gradient |
 | Original | orig |
 | Raw | `replaced by the parameter value` |
 
@@ -343,6 +347,17 @@ AutoTags autoTags = new AutoTags
 };
 ext.Add(bck1);
 ext.Add(autoTags);
+TransformationObject transformationObject = new TransformationObject
+{
+	value = "w-100"
+};
+List<PostTransformation> postTransformations = new List<PostTransformation>();
+postTransformations.Add(transformationObject);
+UploadTransformation uploadTransformation = new UploadTransformation
+{
+	pre = "l-text,i-Imagekit,fs-50,l-end",
+	post = postTransformations,
+};
 ob.extensions = ext;
 ob.webhookUrl = "https://webhook.site/c78d617f_33bc_40d9_9e61_608999721e2e";
 ob.useUniqueFileName = true;
@@ -352,7 +367,8 @@ ob.overwriteFile = true;
 ob.overwriteAITags = true;
 ob.overwriteTags = true;
 ob.overwriteCustomMetadata = true;
-
+ob.checks = "'file.size' < '1mb'" // To run server side checks before uploading files. Notice the quotes around file.size and 1mb.
+ob.isPublished = true;
 Result resp2 = imagekit.Upload(ob);
 
 //Get Base64 
@@ -447,6 +463,23 @@ BackGroundImage bck = new BackGroundImage
 extModel.Add(bck);
 updateob.extensions = extModel;
 updateob.webhookUrl = "https://webhook.site/c78d617f_33bc_40d9_9e61_608999721e2e";
+Result updateresp = imagekit.UpdateFileDetail(updateob); 
+```
+
+**Update publish status**
+
+If `publish` is included in the update options, no other parameters are allowed.
+
+```cs
+FileUpdateRequest updateob = new FileUpdateRequest
+{
+	fileId = "fileId",
+};
+PublishStatus publishStatus = new PublishStatus
+{
+	isPublished = false
+};
+updateob.publish = publishStatus;
 Result updateresp = imagekit.UpdateFileDetail(updateob); 
 ```
 

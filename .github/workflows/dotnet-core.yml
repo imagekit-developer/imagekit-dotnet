@@ -41,6 +41,8 @@ jobs:
             3.1.x
             5.0.x
             6.0.x
+            7.0.x
+            8.0.x
       - name: Build Release
         run: dotnet build Imagekit.sln -c Release /p:ContinuousIntegrationBuild=true    
 
@@ -57,7 +59,7 @@ jobs:
         run: dotnet pack Imagekit.sln -c Release --no-build --output ${{ env.NUGET_OUTPUT_PATH }}
 
       - name: 'Upload Artifact'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ATTRIBUTE_NAME }}
           path: ${{ env.NUGET_OUTPUT_PATH }}

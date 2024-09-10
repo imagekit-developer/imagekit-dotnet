@@ -132,195 +132,6 @@ public partial class Transformation
 
     /// <summary></summary>
     /// <param name="value"></param>
-    public Transformation OverlayImage(string value)
-    {
-        return this.Add("oi", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayX(int value)
-    {
-        return this.Add("ox", this.ConvertCoordinateParam(value));
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayY(int value)
-    {
-        return this.Add("oy", this.ConvertCoordinateParam(value));
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayFocus(string value)
-    {
-        return this.Add("ofo", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayHeight(int value)
-    {
-        return this.Add("oh", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayWidth(int value)
-    {
-        return this.Add("ow", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayText(string value)
-    {
-        return this.Add("ot", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayTextFontSize(int value)
-    {
-        return this.Add("ots", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayTextFontFamily(string value)
-    {
-        return this.Add("otf", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayTextColor(string value)
-    {
-        return this.Add("otc", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverylayAlpha(int value)
-    {
-        return this.Add("oa", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayTextTypography(string value)
-    {
-        return this.Add("ott", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayTextTransparency(int value)
-    {
-        return this.Add("oa", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayTextBackground(string value)
-    {
-        return this.Add("otbg", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayTextEncoded(string value)
-    {
-        return this.Add("ote", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayTextWidth(int value)
-    {
-        return this.Add("otw", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayTextPadding(int value)
-    {
-        return this.Add("otp", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayTextInnerAlignment(string value)
-    {
-        return this.Add("otia", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayRadius(int value)
-    {
-        return this.Add("or", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayBackground(string value)
-    {
-        return this.Add("obg", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayImageTrim(bool value)
-    {
-        return this.Add("oit", value.ToString().ToLower());
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayImageAspectRatio(string value)
-    {
-        return this.Add("oiar", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayImageBackground(string value)
-    {
-        return this.Add("oibg", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayImageBorder(string value)
-    {
-        return this.Add("oib", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayImageDpr(object value)
-    {
-        return this.Add("oidpr", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayImageQuality(int value)
-    {
-        return this.Add("oiq", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
-    public Transformation OverlayImageCropping(string value)
-    {
-        return this.Add("oic", value);
-    }
-
-    /// <summary></summary>
-    /// <param name="value"></param>
     public Transformation Progressive(bool value)
     {
         return this.Add("pr", value.ToString().ToLower());
@@ -405,6 +216,32 @@ public partial class Transformation
     public Transformation EffectGray()
     {
         return this.Add("e-grayscale", "true");
+    }
+
+    /// <summary></summary>
+    public Transformation EffectShadow()
+    {
+        return this.Add("e-shadow", string.Empty);
+    }
+
+    /// <summary></summary>
+    /// <param name="value"></param>
+    public Transformation EffectShadow(string value)
+    {
+        return this.Add("e-shadow", value);
+    }
+
+    /// <summary></summary>
+    public Transformation EffectGradient()
+    {
+        return this.Add("e-gradient", string.Empty);
+    }
+
+    /// <summary></summary>
+    /// <param name="value"></param>
+    public Transformation EffectGradient(string value)
+    {
+        return this.Add("e-gradient", value);
     }
 
     /// <summary></summary>
