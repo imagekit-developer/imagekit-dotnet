@@ -59,7 +59,7 @@ jobs:
         run: dotnet pack Imagekit.sln -c Release --no-build --output ${{ env.NUGET_OUTPUT_PATH }}
 
       - name: 'Upload Artifact'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ATTRIBUTE_NAME }}
           path: ${{ env.NUGET_OUTPUT_PATH }}
