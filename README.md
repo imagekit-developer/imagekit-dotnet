@@ -83,9 +83,7 @@ Transformation trans = new Transformation()
 .CropMode("extract")
 .Focus("left")
 .Format("jpeg") 
-.EffectShadow()
-.EffectGradient() 
-.Raw("h-200,w-300,l-image,i-logo.png,l-end");
+.Raw("l-text,i-Imagekit,fs-50,l-end");
 
 string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
 ```
@@ -93,7 +91,7 @@ string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query")
 This results in a URL like
 
 ```plaintext
-https://ik.imagekit.io/default_image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Ce-shadow-true%2Ce-gradient-true%2Ch-200%2Cw-300%2Cl-image%2Ci-logo.png%2Cl-end
+https://ik.imagekit.io/your_imagekit_id/default_image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Cl-text%2Ci-Imagekit%2Cfs-50%2Cl-end
 ```
 
 **2\. Using full image URL**
@@ -157,7 +155,9 @@ Transformation trans = new Transformation()
     .Format("jpg")
     .Progressive(false)
     .EffectSharpen()
-    .EffectContrast(1);
+    .EffectContrast(1)
+	.EffectShadow()
+    .EffectGradient();
 
 string imageURL = imagekit.Url(trans)
     .Src(src)
@@ -167,7 +167,7 @@ string imageURL = imagekit.Url(trans)
 **Note**: Because `src` parameter was used, the transformation string gets added as a query parameter `tr`.
 
 ```plaintext
-https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg,pr-false,e-sharpen,e-contrast-1
+https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg%2Cpr-false%2Ce-sharpen%2Ce-contrast-1%2Ce-shadow%2Ce-gradient
 ```
 
 **3\. Signed URL that expires in 600 seconds with the default URL endpoint and other query parameters**
@@ -285,6 +285,8 @@ The complete list of transformations supported and their usage in ImageKit can b
 | EffectUSM | e-usm |
 | EffectContrast | e-contrast |
 | EffectGray | e-grayscale |
+| EffectShadow | e-shadow |
+| EffectGradient | e-gradient |
 | Original | orig |
 | Raw | `replaced by the parameter value` |
 

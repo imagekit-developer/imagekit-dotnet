@@ -221,13 +221,27 @@ public partial class Transformation
     /// <summary></summary>
     public Transformation EffectShadow()
     {
-        return this.Add("e-shadow", "true");
+        return this.Add("e-shadow", string.Empty);
+    }
+
+    /// <summary></summary>
+    /// <param name="value"></param>
+    public Transformation EffectShadow(string value)
+    {
+        return this.Add("e-shadow", value);
     }
 
     /// <summary></summary>
     public Transformation EffectGradient()
     {
-        return this.Add("e-gradient", "true");
+        return this.Add("e-gradient", string.Empty);
+    }
+
+    /// <summary></summary>
+    /// <param name="value"></param>
+    public Transformation EffectGradient(string value)
+    {
+        return this.Add("e-gradient", value);
     }
 
     /// <summary></summary>
