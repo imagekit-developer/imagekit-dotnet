@@ -53,7 +53,7 @@ Add this reference where you want to use imagekit.io services:
 ```cs
 using Imagekit;
 
-ImageKitClient imagekit = new ImageKitClient(publicKey, privateKey, urlEndPoint);
+ImagekitClient imagekit = new ImagekitClient(publicKey, privateKey, urlEndPoint);
 ```
 
 **Note**: You can get the `apiKey`, `apiSecret`, and ImagekitId from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
