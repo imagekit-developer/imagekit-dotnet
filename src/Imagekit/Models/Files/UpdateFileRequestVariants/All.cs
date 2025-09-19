@@ -1,4 +1,3 @@
-using System.Text.Json;
 using UpdateFileRequestProperties = Imagekit.Models.Files.UpdateFileRequestProperties;
 
 namespace Imagekit.Models.Files.UpdateFileRequestVariants;
@@ -18,14 +17,21 @@ public sealed record class UpdateFileDetails(UpdateFileRequestProperties::Update
     }
 }
 
-public sealed record class ChangePublicationStatus(JsonElement Value)
+public sealed record class ChangePublicationStatus(
+    UpdateFileRequestProperties::ChangePublicationStatus Value
+)
     : UpdateFileRequest,
-        IVariant<ChangePublicationStatus, JsonElement>
+        IVariant<ChangePublicationStatus, UpdateFileRequestProperties::ChangePublicationStatus>
 {
-    public static ChangePublicationStatus From(JsonElement value)
+    public static ChangePublicationStatus From(
+        UpdateFileRequestProperties::ChangePublicationStatus value
+    )
     {
         return new(value);
     }
 
-    public override void Validate() { }
+    public override void Validate()
+    {
+        this.Value.Validate();
+    }
 }

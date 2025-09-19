@@ -19,10 +19,11 @@ public class FileServiceTest : TestBase
                 FileID = "fileId",
                 UpdateFileRequest = new UpdateFileDetails()
                 {
-                    CustomCoordinates = "customCoordinates",
+                    CustomCoordinates = "10,10,100,100",
                     CustomMetadata = new Dictionary<string, JsonElement>()
                     {
-                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                        { "brand", JsonSerializer.SerializeToElement("bar") },
+                        { "color", JsonSerializer.SerializeToElement("bar") },
                     },
                     Description = "description",
                     Extensions =
@@ -39,9 +40,15 @@ public class FileServiceTest : TestBase
                         },
                         new AutoTaggingExtension()
                         {
-                            MaxTags = 5,
-                            MinConfidence = 95,
+                            MaxTags = 10,
+                            MinConfidence = 80,
                             Name = Name.GoogleAutoTagging,
+                        },
+                        new AutoTaggingExtension()
+                        {
+                            MaxTags = 10,
+                            MinConfidence = 80,
+                            Name = Name.AwsAutoTagging,
                         },
                         new UnnamedSchemaWithArrayParent0Variants::AIAutoDescription(
                             JsonSerializer.Deserialize<JsonElement>(
@@ -49,9 +56,9 @@ public class FileServiceTest : TestBase
                             )
                         ),
                     ],
-                    RemoveAITags = new List<string>() { "string" },
-                    Tags = ["car", "vehicle", "motorsports"],
-                    WebhookURL = "https://example.com",
+                    RemoveAITags = new List<string>() { "car", "vehicle", "motorsports" },
+                    Tags = ["tag1", "tag2"],
+                    WebhookURL = "https://webhook.site/0d6b6c7a-8e5a-4b3a-8b7c-0d6b6c7a8e5a",
                 },
             }
         );

@@ -19,7 +19,7 @@ public abstract record class UpdateFileRequest
     public static implicit operator UpdateFileRequest(UpdateFileDetails value) =>
         new UpdateFileRequestVariants::UpdateFileDetails(value);
 
-    public static implicit operator UpdateFileRequest(JsonElement value) =>
+    public static implicit operator UpdateFileRequest(ChangePublicationStatus value) =>
         new UpdateFileRequestVariants::ChangePublicationStatus(value);
 
     public bool TryPickDetails([NotNullWhen(true)] out UpdateFileDetails? value)
@@ -28,7 +28,9 @@ public abstract record class UpdateFileRequest
         return value != null;
     }
 
-    public bool TryPickChangePublicationStatus([NotNullWhen(true)] out JsonElement? value)
+    public bool TryPickChangePublicationStatus(
+        [NotNullWhen(true)] out ChangePublicationStatus? value
+    )
     {
         value = (this as UpdateFileRequestVariants::ChangePublicationStatus)?.Value;
         return value != null;
@@ -95,9 +97,14 @@ sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>
 
         try
         {
-            return new UpdateFileRequestVariants::ChangePublicationStatus(
-                JsonSerializer.Deserialize<JsonElement>(ref reader, options)
+            var deserialized = JsonSerializer.Deserialize<ChangePublicationStatus>(
+                ref reader,
+                options
             );
+            if (deserialized != null)
+            {
+                return new UpdateFileRequestVariants::ChangePublicationStatus(deserialized);
+            }
         }
         catch (JsonException e)
         {
