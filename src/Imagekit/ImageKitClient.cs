@@ -27,7 +27,7 @@ public sealed class ImageKitClient : IImageKitClient
     }
 
     Lazy<string> _privateKey = new(() =>
-        Environment.GetEnvironmentVariable("IMAGEKIT_PRIVATE_API_KEY")
+        Environment.GetEnvironmentVariable("IMAGEKIT_PRIVATE_KEY")
         ?? throw new ArgumentNullException(nameof(PrivateKey))
     );
     public string PrivateKey

@@ -36,7 +36,7 @@ using System;
 using Imagekit;
 using Imagekit.Models.Files;
 
-// Configured using the IMAGEKIT_PRIVATE_API_KEY, OPTIONAL_IMAGEKIT_IGNORES_THIS, IMAGEKIT_WEBHOOK_SECRET and IMAGE_KIT_BASE_URL environment variables
+// Configured using the IMAGEKIT_PRIVATE_KEY, OPTIONAL_IMAGEKIT_IGNORES_THIS, IMAGEKIT_WEBHOOK_SECRET and IMAGE_KIT_BASE_URL environment variables
 ImageKitClient client = new();
 
 FileUploadParams parameters = new()
@@ -57,7 +57,7 @@ Configure the client using environment variables:
 ```csharp
 using Imagekit;
 
-// Configured using the IMAGEKIT_PRIVATE_API_KEY, OPTIONAL_IMAGEKIT_IGNORES_THIS, IMAGEKIT_WEBHOOK_SECRET and IMAGE_KIT_BASE_URL environment variables
+// Configured using the IMAGEKIT_PRIVATE_KEY, OPTIONAL_IMAGEKIT_IGNORES_THIS, IMAGEKIT_WEBHOOK_SECRET and IMAGE_KIT_BASE_URL environment variables
 ImageKitClient client = new();
 ```
 
@@ -79,7 +79,7 @@ See this table for the available options:
 
 | Property        | Environment variable             | Required | Default value               |
 | --------------- | -------------------------------- | -------- | --------------------------- |
-| `PrivateKey`    | `IMAGEKIT_PRIVATE_API_KEY`       | true     | -                           |
+| `PrivateKey`    | `IMAGEKIT_PRIVATE_KEY`           | true     | -                           |
 | `Password`      | `OPTIONAL_IMAGEKIT_IGNORES_THIS` | false    | `"do_not_set"`              |
 | `WebhookSecret` | `IMAGEKIT_WEBHOOK_SECRET`        | false    | -                           |
 | `BaseUrl`       | `IMAGE_KIT_BASE_URL`             | true     | `"https://api.imagekit.io"` |
