@@ -9,8 +9,6 @@
 
 The Image Kit C# SDK provides convenient access to the [Image Kit REST API](https://imagekit.io/docs/api-reference) from applications written in C#.
 
-It is generated with [Stainless](https://www.stainless.com/).
-
 The REST API documentation can be found on [imagekit.io](https://imagekit.io/docs/api-reference).
 
 ## Installation
