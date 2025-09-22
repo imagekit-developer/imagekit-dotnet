@@ -5,7 +5,7 @@
 >
 > This library has not yet been exhaustively tested in production environments and may be missing some features you'd expect in a stable release. As we continue development, there may be breaking changes that require updates to your code.
 >
-> **We'd love your feedback!** Please share any suggestions, bug reports, feature requests, or general thoughts by [filing an issue](https://www.github.com/imagekit-developer/imagekit-dotnet/issues/new).
+> **We'd love your feedback!** Please share any suggestions, bug reports, feature requests, or general thoughts by [filing an issue](https://www.github.com/stainless-sdks/imagekit-csharp/issues/new).
 
 The Image Kit C# SDK provides convenient access to the [Image Kit REST API](https://imagekit.io/docs/api-reference) from applications written in C#.
 
@@ -14,8 +14,8 @@ The REST API documentation can be found on [imagekit.io](https://imagekit.io/doc
 ## Installation
 
 ```bash
-git clone git@github.com:imagekit-developer/imagekit-dotnet.git
-dotnet add reference imagekit-dotnet/src/Imagekit
+git clone git@github.com:stainless-sdks/imagekit-csharp.git
+dotnet add reference imagekit-csharp/src/Imagekit
 ```
 
 ## Requirements
@@ -97,4 +97,4 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/imagekit-developer/imagekit-dotnet/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/imagekit-csharp/issues) with questions, bugs, or suggestions.

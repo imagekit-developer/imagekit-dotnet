@@ -12,7 +12,7 @@
     <!-- Generate an XML documentation file for the project. -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://www.github.com/imagekit-developer/imagekit-dotnet</RepositoryUrl>
+    <RepositoryUrl>https://www.github.com/stainless-sdks/imagekit-csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <!-- Embed source files that are not tracked by the source control manager in the PDB -->
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
