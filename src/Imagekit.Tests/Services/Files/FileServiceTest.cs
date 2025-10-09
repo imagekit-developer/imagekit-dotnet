@@ -58,7 +58,7 @@ public class FileServiceTest : TestBase
                             ),
                             new(new()),
                         ],
-                        RemoveAITags = new(new List<string>() { "car", "vehicle", "motorsports" }),
+                        RemoveAITags = new(["car", "vehicle", "motorsports"]),
                         Tags = ["tag1", "tag2"],
                         WebhookURL = "https://webhook.site/0d6b6c7a-8e5a-4b3a-8b7c-0d6b6c7a8e5a",
                     }
