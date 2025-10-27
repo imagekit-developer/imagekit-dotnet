@@ -114,7 +114,7 @@ public sealed record class IntersectionMember1 : ModelBase, IFromRaw<Intersectio
 
     public IntersectionMember1()
     {
-        this.Type = new();
+        this.Type = JsonSerializer.Deserialize<JsonElement>("\"text\"");
     }
 
 #pragma warning disable CS8618

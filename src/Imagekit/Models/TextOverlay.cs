@@ -158,7 +158,7 @@ public sealed record class TextOverlay : ModelBase, IFromRaw<TextOverlay>
 
     public TextOverlay()
     {
-        this.Type = new();
+        this.Type = JsonSerializer.Deserialize<JsonElement>("\"text\"");
     }
 
 #pragma warning disable CS8618

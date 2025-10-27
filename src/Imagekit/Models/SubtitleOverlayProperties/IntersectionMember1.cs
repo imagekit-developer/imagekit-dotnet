@@ -113,7 +113,7 @@ public sealed record class IntersectionMember1 : ModelBase, IFromRaw<Intersectio
 
     public IntersectionMember1()
     {
-        this.Type = new();
+        this.Type = JsonSerializer.Deserialize<JsonElement>("\"subtitle\"");
     }
 
 #pragma warning disable CS8618

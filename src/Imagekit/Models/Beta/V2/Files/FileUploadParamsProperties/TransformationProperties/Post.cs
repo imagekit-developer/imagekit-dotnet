@@ -124,7 +124,7 @@ public record class Post
 
     public void Validate()
     {
-        if (this.Value is not UnknownVariant)
+        if (this.Value is UnknownVariant)
         {
             throw new ImageKitInvalidDataException("Data did not match any variant of Post");
         }
