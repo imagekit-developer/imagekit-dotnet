@@ -19,6 +19,8 @@ public struct ClientOptions()
         set { _baseUrl = new(() => value); }
     }
 
+    public TimeSpan Timeout { get; set; } = TimeSpan.FromMinutes(1);
+
     /// <summary>
     /// Your ImageKit private API key (starts with `private_`). You can find this
     /// in the [ImageKit dashboard](https://imagekit.io/dashboard/developer/api-keys).

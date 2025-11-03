@@ -19,6 +19,8 @@ public interface IImageKitClient
 
     Uri BaseUrl { get; init; }
 
+    TimeSpan Timeout { get; init; }
+
     /// <summary>
     /// Your ImageKit private API key (starts with `private_`). You can find this
     /// in the [ImageKit dashboard](https://imagekit.io/dashboard/developer/api-keys).

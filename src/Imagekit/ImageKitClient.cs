@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Imagekit.Core;
 using Imagekit.Exceptions;
@@ -28,6 +29,12 @@ public sealed class ImageKitClient : IImageKitClient
     {
         get { return this._options.BaseUrl; }
         init { this._options.BaseUrl = value; }
+    }
+
+    public TimeSpan Timeout
+    {
+        get { return this._options.Timeout; }
+        init { this._options.Timeout = value; }
     }
 
     public string PrivateKey
@@ -104,11 +111,16 @@ public sealed class ImageKitClient : IImageKitClient
             Content = request.Params.BodyContent(),
         };
         request.Params.AddHeadersToRequest(requestMessage, this);
+        using CancellationTokenSource cts = new(this.Timeout);
         HttpResponseMessage responseMessage;
         try
         {
             responseMessage = await this
-                .HttpClient.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead)
+                .HttpClient.SendAsync(
+                    requestMessage,
+                    HttpCompletionOption.ResponseHeadersRead,
+                    cts.Token
+                )
                 .ConfigureAwait(false);
         }
         catch (HttpRequestException e1)
