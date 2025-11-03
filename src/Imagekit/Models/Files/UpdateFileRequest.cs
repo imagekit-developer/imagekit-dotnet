@@ -95,7 +95,7 @@ public record class UpdateFileRequest
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>

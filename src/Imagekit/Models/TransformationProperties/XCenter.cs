@@ -81,7 +81,7 @@ public record class XCenter
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class XCenterConverter : JsonConverter<XCenter>

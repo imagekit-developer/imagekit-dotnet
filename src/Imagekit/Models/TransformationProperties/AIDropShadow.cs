@@ -86,7 +86,7 @@ public record class AIDropShadow
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AIDropShadowConverter : JsonConverter<AIDropShadow>

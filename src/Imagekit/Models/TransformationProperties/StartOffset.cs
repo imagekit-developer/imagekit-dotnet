@@ -81,7 +81,7 @@ public record class StartOffset
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class StartOffsetConverter : JsonConverter<StartOffset>

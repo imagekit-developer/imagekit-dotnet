@@ -309,7 +309,7 @@ public record class OriginResponse
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class OriginResponseConverter : JsonConverter<OriginResponse>

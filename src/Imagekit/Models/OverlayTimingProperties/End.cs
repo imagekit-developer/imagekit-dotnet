@@ -84,7 +84,7 @@ public record class End
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class EndConverter : JsonConverter<End>

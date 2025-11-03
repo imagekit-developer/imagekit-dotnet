@@ -81,7 +81,7 @@ public record class Width
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class WidthConverter : JsonConverter<Width>

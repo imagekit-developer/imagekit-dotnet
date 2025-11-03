@@ -82,7 +82,7 @@ public record class Gradient
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class GradientConverter : JsonConverter<Gradient>

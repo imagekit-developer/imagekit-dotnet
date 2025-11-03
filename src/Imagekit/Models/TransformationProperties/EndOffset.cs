@@ -82,7 +82,7 @@ public record class EndOffset
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class EndOffsetConverter : JsonConverter<EndOffset>

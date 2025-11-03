@@ -197,7 +197,7 @@ public record class Page
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class PageConverter : JsonConverter<Page>

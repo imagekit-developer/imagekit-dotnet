@@ -28,7 +28,7 @@ public class Akamai
         }
     }
 
-    private class Converter : JsonConverter<Akamai>
+    class Converter : JsonConverter<Akamai>
     {
         public override Akamai? Read(
             ref Utf8JsonReader reader,

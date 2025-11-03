@@ -241,7 +241,7 @@ public record class UnwrapWebhookEvent
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>

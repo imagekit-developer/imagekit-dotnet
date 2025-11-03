@@ -28,7 +28,7 @@ public class UnionMember1
         }
     }
 
-    private class Converter : JsonConverter<UnionMember1>
+    class Converter : JsonConverter<UnionMember1>
     {
         public override UnionMember1? Read(
             ref Utf8JsonReader reader,

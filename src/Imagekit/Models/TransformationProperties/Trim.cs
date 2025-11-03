@@ -82,7 +82,7 @@ public record class Trim
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class TrimConverter : JsonConverter<Trim>

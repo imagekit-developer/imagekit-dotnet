@@ -326,7 +326,7 @@ public record class OriginRequest
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class OriginRequestConverter : JsonConverter<OriginRequest>

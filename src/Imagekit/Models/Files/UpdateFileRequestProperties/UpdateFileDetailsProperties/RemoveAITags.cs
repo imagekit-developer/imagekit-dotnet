@@ -88,7 +88,7 @@ public record class RemoveAITags
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class RemoveAITagsConverter : JsonConverter<RemoveAITags>

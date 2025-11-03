@@ -82,7 +82,7 @@ public record class Duration
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DurationConverter : JsonConverter<Duration>

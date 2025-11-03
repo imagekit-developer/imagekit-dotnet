@@ -86,7 +86,7 @@ public record class MinValue
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class MinValueConverter : JsonConverter<MinValue>

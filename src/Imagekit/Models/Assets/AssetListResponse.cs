@@ -97,7 +97,7 @@ public record class AssetListResponse
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AssetListResponseConverter : JsonConverter<AssetListResponse>

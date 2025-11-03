@@ -16,48 +16,36 @@ namespace Imagekit;
 
 public sealed class ImageKitClient : IImageKitClient
 {
-    public HttpClient HttpClient { get; init; } = new();
+    readonly ClientOptions _options = new();
 
-    Lazy<Uri> _baseUrl = new(() =>
-        new Uri(
-            Environment.GetEnvironmentVariable("IMAGE_KIT_BASE_URL") ?? "https://api.imagekit.io"
-        )
-    );
+    public HttpClient HttpClient
+    {
+        get { return this._options.HttpClient; }
+        init { this._options.HttpClient = value; }
+    }
+
     public Uri BaseUrl
     {
-        get { return _baseUrl.Value; }
-        init { _baseUrl = new(() => value); }
+        get { return this._options.BaseUrl; }
+        init { this._options.BaseUrl = value; }
     }
 
-    Lazy<string> _privateKey = new(() =>
-        Environment.GetEnvironmentVariable("IMAGEKIT_PRIVATE_KEY")
-        ?? throw new ImageKitInvalidDataException(
-            string.Format("{0} cannot be null", nameof(PrivateKey)),
-            new ArgumentNullException(nameof(PrivateKey))
-        )
-    );
     public string PrivateKey
     {
-        get { return _privateKey.Value; }
-        init { _privateKey = new(() => value); }
+        get { return this._options.PrivateKey; }
+        init { this._options.PrivateKey = value; }
     }
 
-    Lazy<string?> _password = new(() =>
-        Environment.GetEnvironmentVariable("OPTIONAL_IMAGEKIT_IGNORES_THIS") ?? "do_not_set"
-    );
     public string? Password
     {
-        get { return _password.Value; }
-        init { _password = new(() => value); }
+        get { return this._options.Password; }
+        init { this._options.Password = value; }
     }
 
-    Lazy<string?> _webhookSecret = new(() =>
-        Environment.GetEnvironmentVariable("IMAGEKIT_WEBHOOK_SECRET")
-    );
     public string? WebhookSecret
     {
-        get { return _webhookSecret.Value; }
-        init { _webhookSecret = new(() => value); }
+        get { return this._options.WebhookSecret; }
+        init { this._options.WebhookSecret = value; }
     }
 
     readonly Lazy<ICustomMetadataFieldService> _customMetadataFields;

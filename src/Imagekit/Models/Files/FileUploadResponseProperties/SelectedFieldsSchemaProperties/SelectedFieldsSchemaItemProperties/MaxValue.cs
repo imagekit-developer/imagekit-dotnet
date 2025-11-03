@@ -86,7 +86,7 @@ public record class MaxValue
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class MaxValueConverter : JsonConverter<MaxValue>

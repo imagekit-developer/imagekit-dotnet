@@ -95,7 +95,7 @@ public record class URLRewriter
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class URLRewriterConverter : JsonConverter<URLRewriter>

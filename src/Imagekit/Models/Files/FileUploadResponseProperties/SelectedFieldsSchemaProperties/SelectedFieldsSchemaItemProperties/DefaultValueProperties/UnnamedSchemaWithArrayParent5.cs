@@ -106,7 +106,7 @@ public record class UnnamedSchemaWithArrayParent5
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class UnnamedSchemaWithArrayParent5Converter : JsonConverter<UnnamedSchemaWithArrayParent5>

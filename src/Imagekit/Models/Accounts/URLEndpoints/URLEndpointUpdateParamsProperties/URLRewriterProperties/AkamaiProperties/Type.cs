@@ -28,7 +28,7 @@ public class Type
         }
     }
 
-    private class Converter : JsonConverter<Type>
+    class Converter : JsonConverter<Type>
     {
         public override Type? Read(
             ref Utf8JsonReader reader,

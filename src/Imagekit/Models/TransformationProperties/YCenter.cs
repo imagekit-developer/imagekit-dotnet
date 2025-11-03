@@ -81,7 +81,7 @@ public record class YCenter
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class YCenterConverter : JsonConverter<YCenter>

@@ -28,7 +28,7 @@ public class Imgix
         }
     }
 
-    private class Converter : JsonConverter<Imgix>
+    class Converter : JsonConverter<Imgix>
     {
         public override Imgix? Read(
             ref Utf8JsonReader reader,

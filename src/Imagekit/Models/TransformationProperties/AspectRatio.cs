@@ -82,7 +82,7 @@ public record class AspectRatio
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AspectRatioConverter : JsonConverter<AspectRatio>

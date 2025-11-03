@@ -30,7 +30,7 @@ public class AIAutoDescription
         }
     }
 
-    private class Converter : JsonConverter<AIAutoDescription>
+    class Converter : JsonConverter<AIAutoDescription>
     {
         public override AIAutoDescription? Read(
             ref Utf8JsonReader reader,

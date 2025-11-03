@@ -82,7 +82,7 @@ public record class Shadow
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ShadowConverter : JsonConverter<Shadow>

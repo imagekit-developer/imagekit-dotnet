@@ -83,7 +83,7 @@ public record class Y
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class YConverter : JsonConverter<Y>

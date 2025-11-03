@@ -130,7 +130,7 @@ public record class Post
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class PostConverter : JsonConverter<Post>

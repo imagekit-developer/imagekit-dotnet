@@ -82,7 +82,7 @@ public record class Sharpen
         }
     }
 
-    private record struct UnknownVariant(JsonElement value);
+    record struct UnknownVariant(JsonElement value);
 }
 
 sealed class SharpenConverter : JsonConverter<Sharpen>
