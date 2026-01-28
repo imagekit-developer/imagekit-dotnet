@@ -41,7 +41,7 @@ ImageKitClient client = new();
 
 FileUploadParams parameters = new()
 {
-    File = "a value",
+    File = "https://www.example.com/public-url.jpg",
     FileName = "file-name.jpg",
 };
 
