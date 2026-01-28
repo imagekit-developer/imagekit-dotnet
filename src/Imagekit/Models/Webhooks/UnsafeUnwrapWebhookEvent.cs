@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Exceptions;
 using UnsafeUnwrapWebhookEventVariants = Imagekit.Models.Webhooks.UnsafeUnwrapWebhookEventVariants;
 
 namespace Imagekit.Models.Webhooks;
@@ -131,7 +132,9 @@ public abstract record class UnsafeUnwrapWebhookEvent
                 uploadPostTransformError(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of UnsafeUnwrapWebhookEvent"
+                );
         }
     }
 
@@ -182,7 +185,9 @@ public abstract record class UnsafeUnwrapWebhookEvent
                 uploadPostTransformSuccess(inner),
             UnsafeUnwrapWebhookEventVariants::UploadPostTransformErrorEvent inner =>
                 uploadPostTransformError(inner),
-            _ => throw new InvalidOperationException(),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnsafeUnwrapWebhookEvent"
+            ),
         };
     }
 
@@ -197,7 +202,7 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<ImageKitInvalidDataException> exceptions = [];
 
         try
         {
@@ -214,7 +219,12 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException(
+                    "Data does not match union variant UnsafeUnwrapWebhookEventVariants::VideoTransformationAcceptedEvent",
+                    e
+                )
+            );
         }
 
         try
@@ -232,7 +242,12 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException(
+                    "Data does not match union variant UnsafeUnwrapWebhookEventVariants::VideoTransformationReadyEvent",
+                    e
+                )
+            );
         }
 
         try
@@ -250,7 +265,12 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException(
+                    "Data does not match union variant UnsafeUnwrapWebhookEventVariants::VideoTransformationErrorEvent",
+                    e
+                )
+            );
         }
 
         try
@@ -268,7 +288,12 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException(
+                    "Data does not match union variant UnsafeUnwrapWebhookEventVariants::UploadPreTransformSuccessEvent",
+                    e
+                )
+            );
         }
 
         try
@@ -286,7 +311,12 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException(
+                    "Data does not match union variant UnsafeUnwrapWebhookEventVariants::UploadPreTransformErrorEvent",
+                    e
+                )
+            );
         }
 
         try
@@ -304,7 +334,12 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException(
+                    "Data does not match union variant UnsafeUnwrapWebhookEventVariants::UploadPostTransformSuccessEvent",
+                    e
+                )
+            );
         }
 
         try
@@ -322,7 +357,12 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException(
+                    "Data does not match union variant UnsafeUnwrapWebhookEventVariants::UploadPostTransformErrorEvent",
+                    e
+                )
+            );
         }
 
         throw new AggregateException(exceptions);
@@ -357,7 +397,9 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
             UnsafeUnwrapWebhookEventVariants::UploadPostTransformErrorEvent(
                 var uploadPostTransformError
             ) => uploadPostTransformError,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnsafeUnwrapWebhookEvent"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

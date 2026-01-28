@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
 using Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties;
 using Imagekit.Models.Files.FileUpdateResponseProperties.IntersectionMember1Properties;
 using FileProperties = Imagekit.Models.Files.FileProperties;

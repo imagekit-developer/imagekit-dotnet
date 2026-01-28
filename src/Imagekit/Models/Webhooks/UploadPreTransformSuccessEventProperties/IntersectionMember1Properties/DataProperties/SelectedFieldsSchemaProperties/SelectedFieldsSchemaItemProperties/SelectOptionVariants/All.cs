@@ -1,3 +1,5 @@
+using Imagekit.Core;
+
 namespace Imagekit.Models.Webhooks.UploadPreTransformSuccessEventProperties.IntersectionMember1Properties.DataProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.SelectOptionVariants;
 
 public sealed record class String(string Value) : SelectOption, IVariant<String, string>

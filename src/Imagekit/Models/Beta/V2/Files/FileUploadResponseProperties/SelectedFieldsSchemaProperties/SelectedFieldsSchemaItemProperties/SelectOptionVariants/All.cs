@@ -1,3 +1,5 @@
+using Imagekit.Core;
+
 namespace Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.SelectOptionVariants;
 
 public sealed record class String(string Value) : SelectOption, IVariant<String, string>

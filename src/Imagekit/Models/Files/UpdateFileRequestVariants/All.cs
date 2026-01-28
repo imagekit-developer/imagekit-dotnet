@@ -1,3 +1,4 @@
+using Imagekit.Core;
 using UpdateFileRequestProperties = Imagekit.Models.Files.UpdateFileRequestProperties;
 
 namespace Imagekit.Models.Files.UpdateFileRequestVariants;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
+using Imagekit.Exceptions;
 using SelectedFieldsSchemaItemProperties = Imagekit.Models.Webhooks.UploadPreTransformSuccessEventProperties.IntersectionMember1Properties.DataProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties;
 
 namespace Imagekit.Models.Webhooks.UploadPreTransformSuccessEventProperties.IntersectionMember1Properties.DataProperties.SelectedFieldsSchemaProperties;
@@ -18,7 +20,10 @@ public sealed record class SelectedFieldsSchemaItem : ModelBase, IFromRaw<Select
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<
                 ApiEnum<string, SelectedFieldsSchemaItemProperties::Type>

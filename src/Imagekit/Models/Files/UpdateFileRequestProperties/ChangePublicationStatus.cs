@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
 using Imagekit.Models.Files.UpdateFileRequestProperties.ChangePublicationStatusProperties;
 
 namespace Imagekit.Models.Files.UpdateFileRequestProperties;

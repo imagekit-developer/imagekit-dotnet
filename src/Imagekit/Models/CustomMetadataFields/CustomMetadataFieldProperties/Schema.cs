@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
+using Imagekit.Exceptions;
 using SchemaProperties = Imagekit.Models.CustomMetadataFields.CustomMetadataFieldProperties.SchemaProperties;
 
 namespace Imagekit.Models.CustomMetadataFields.CustomMetadataFieldProperties;
@@ -21,7 +23,10 @@ public sealed record class Schema : ModelBase, IFromRaw<Schema>
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<ApiEnum<string, SchemaProperties::Type>>(
                 element,

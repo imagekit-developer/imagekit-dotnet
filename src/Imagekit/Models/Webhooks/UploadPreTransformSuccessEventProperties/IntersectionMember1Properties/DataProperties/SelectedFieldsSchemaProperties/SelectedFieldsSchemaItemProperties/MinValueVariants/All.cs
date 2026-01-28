@@ -1,3 +1,5 @@
+using Imagekit.Core;
+
 namespace Imagekit.Models.Webhooks.UploadPreTransformSuccessEventProperties.IntersectionMember1Properties.DataProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.MinValueVariants;
 
 public sealed record class String(string Value) : MinValue, IVariant<String, string>

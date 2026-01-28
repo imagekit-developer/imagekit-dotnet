@@ -1,5 +1,8 @@
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
+using Imagekit.Core;
+using Imagekit.Exceptions;
 using Imagekit.Services.Accounts;
 using Imagekit.Services.Assets;
 using Imagekit.Services.Beta;
@@ -28,7 +31,10 @@ public sealed class ImageKitClient : IImageKitClient
 
     Lazy<string> _privateKey = new(() =>
         Environment.GetEnvironmentVariable("IMAGEKIT_PRIVATE_KEY")
-        ?? throw new ArgumentNullException(nameof(PrivateKey))
+        ?? throw new ImageKitInvalidDataException(
+            string.Format("{0} cannot be null", nameof(PrivateKey)),
+            new ArgumentNullException(nameof(PrivateKey))
+        )
     );
     public string PrivateKey
     {
@@ -100,6 +106,46 @@ public sealed class ImageKitClient : IImageKitClient
     public IWebhookService Webhooks
     {
         get { return _webhooks.Value; }
+    }
+
+    public async Task<HttpResponse> Execute<T>(HttpRequest<T> request)
+        where T : ParamsBase
+    {
+        using HttpRequestMessage requestMessage = new(request.Method, request.Params.Url(this))
+        {
+            Content = request.Params.BodyContent(),
+        };
+        request.Params.AddHeadersToRequest(requestMessage, this);
+        HttpResponseMessage responseMessage;
+        try
+        {
+            responseMessage = await this
+                .HttpClient.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead)
+                .ConfigureAwait(false);
+        }
+        catch (HttpRequestException e1)
+        {
+            throw new ImageKitIOException("I/O exception", e1);
+        }
+        if (!responseMessage.IsSuccessStatusCode)
+        {
+            try
+            {
+                throw ImageKitExceptionFactory.CreateApiException(
+                    responseMessage.StatusCode,
+                    await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false)
+                );
+            }
+            catch (HttpRequestException e)
+            {
+                throw new ImageKitIOException("I/O Exception", e);
+            }
+            finally
+            {
+                responseMessage.Dispose();
+            }
+        }
+        return new() { Message = responseMessage };
     }
 
     public ImageKitClient()

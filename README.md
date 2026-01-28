@@ -88,6 +88,33 @@ To send a request to the Image Kit API, build an instance of some `Params` class
 
 For example, `client.Files.Upload` should be called with an instance of `FileUploadParams`, and it will return an instance of `Task<FileUploadResponse>`.
 
+## Error handling
+
+The SDK throws custom unchecked exception types:
+
+- `ImageKitApiException`: Base class for API errors. See this table for which exception subclass is thrown for each HTTP status code:
+
+| Status | Exception                               |
+| ------ | --------------------------------------- |
+| 400    | `ImageKitBadRequestException`           |
+| 401    | `ImageKitUnauthorizedException`         |
+| 403    | `ImageKitForbiddenException`            |
+| 404    | `ImageKitNotFoundException`             |
+| 422    | `ImageKitUnprocessableEntityException`  |
+| 429    | `ImageKitRateLimitException`            |
+| 5xx    | `ImageKit5xxException`                  |
+| others | `ImageKitUnexpectedStatusCodeException` |
+
+Additionally, all 4xx errors inherit from `ImageKit4xxException`.
+
+false
+
+- `ImageKitIOException`: I/O networking errors.
+
+- `ImageKitInvalidDataException`: Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
+
+- `ImageKitException`: Base class for all exceptions.
+
 ## Semantic versioning
 
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:

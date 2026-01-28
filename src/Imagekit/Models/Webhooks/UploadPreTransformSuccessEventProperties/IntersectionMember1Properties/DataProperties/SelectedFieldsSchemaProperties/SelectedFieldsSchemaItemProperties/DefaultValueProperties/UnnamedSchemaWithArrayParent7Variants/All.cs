@@ -1,3 +1,5 @@
+using Imagekit.Core;
+
 namespace Imagekit.Models.Webhooks.UploadPreTransformSuccessEventProperties.IntersectionMember1Properties.DataProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.DefaultValueProperties.UnnamedSchemaWithArrayParent7Variants;
 
 public sealed record class String(string Value)

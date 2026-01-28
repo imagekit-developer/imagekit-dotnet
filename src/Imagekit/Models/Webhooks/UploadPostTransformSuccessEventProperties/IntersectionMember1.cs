@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
+using Imagekit.Exceptions;
 using Imagekit.Models.Webhooks.UploadPostTransformSuccessEventProperties.IntersectionMember1Properties;
 
 namespace Imagekit.Models.Webhooks.UploadPostTransformSuccessEventProperties;
@@ -23,7 +25,10 @@ public sealed record class IntersectionMember1 : ModelBase, IFromRaw<Intersectio
         get
         {
             if (!this.Properties.TryGetValue("created_at", out JsonElement element))
-                throw new ArgumentOutOfRangeException("created_at", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'created_at' cannot be null",
+                    new ArgumentOutOfRangeException("created_at", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<DateTime>(element, ModelBase.SerializerOptions);
         }
@@ -41,10 +46,16 @@ public sealed record class IntersectionMember1 : ModelBase, IFromRaw<Intersectio
         get
         {
             if (!this.Properties.TryGetValue("data", out JsonElement element))
-                throw new ArgumentOutOfRangeException("data", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'data' cannot be null",
+                    new ArgumentOutOfRangeException("data", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Data>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("data");
+                ?? throw new ImageKitInvalidDataException(
+                    "'data' cannot be null",
+                    new ArgumentNullException("data")
+                );
         }
         set
         {
@@ -60,10 +71,16 @@ public sealed record class IntersectionMember1 : ModelBase, IFromRaw<Intersectio
         get
         {
             if (!this.Properties.TryGetValue("request", out JsonElement element))
-                throw new ArgumentOutOfRangeException("request", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'request' cannot be null",
+                    new ArgumentOutOfRangeException("request", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<Request>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("request");
+                ?? throw new ImageKitInvalidDataException(
+                    "'request' cannot be null",
+                    new ArgumentNullException("request")
+                );
         }
         set
         {
@@ -79,7 +96,10 @@ public sealed record class IntersectionMember1 : ModelBase, IFromRaw<Intersectio
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
         }

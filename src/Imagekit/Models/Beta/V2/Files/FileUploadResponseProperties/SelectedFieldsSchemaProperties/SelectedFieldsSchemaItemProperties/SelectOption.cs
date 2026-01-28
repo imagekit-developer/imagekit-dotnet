@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Exceptions;
 using Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.SelectOptionVariants;
 using System = System;
 
@@ -54,7 +55,9 @@ public abstract record class SelectOption
                 @bool(inner);
                 break;
             default:
-                throw new System::InvalidOperationException();
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of SelectOption"
+                );
         }
     }
 
@@ -69,7 +72,9 @@ public abstract record class SelectOption
             String inner => @string(inner),
             Double inner => @double(inner),
             Bool inner => @bool(inner),
-            _ => throw new System::InvalidOperationException(),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of SelectOption"
+            ),
         };
     }
 
@@ -84,7 +89,7 @@ sealed class SelectOptionConverter : JsonConverter<SelectOption>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<ImageKitInvalidDataException> exceptions = [];
 
         try
         {
@@ -96,7 +101,9 @@ sealed class SelectOptionConverter : JsonConverter<SelectOption>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant String", e)
+            );
         }
 
         try
@@ -105,7 +112,9 @@ sealed class SelectOptionConverter : JsonConverter<SelectOption>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant Double", e)
+            );
         }
 
         try
@@ -114,7 +123,9 @@ sealed class SelectOptionConverter : JsonConverter<SelectOption>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant Bool", e)
+            );
         }
 
         throw new System::AggregateException(exceptions);
@@ -131,7 +142,9 @@ sealed class SelectOptionConverter : JsonConverter<SelectOption>
             String(var @string) => @string,
             Double(var @double) => @double,
             Bool(var @bool) => @bool,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of SelectOption"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

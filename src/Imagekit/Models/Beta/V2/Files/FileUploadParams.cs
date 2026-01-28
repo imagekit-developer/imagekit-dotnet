@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Imagekit.Core;
+using Imagekit.Exceptions;
 using FileUploadParamsProperties = Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties;
 
 namespace Imagekit.Models.Beta.V2.Files;
@@ -50,10 +52,16 @@ public sealed record class FileUploadParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("file", out JsonElement element))
-                throw new ArgumentOutOfRangeException("file", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'file' cannot be null",
+                    new ArgumentOutOfRangeException("file", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("file");
+                ?? throw new ImageKitInvalidDataException(
+                    "'file' cannot be null",
+                    new ArgumentNullException("file")
+                );
         }
         set
         {
@@ -72,10 +80,16 @@ public sealed record class FileUploadParams : ParamsBase
         get
         {
             if (!this.BodyProperties.TryGetValue("fileName", out JsonElement element))
-                throw new ArgumentOutOfRangeException("fileName", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'fileName' cannot be null",
+                    new ArgumentOutOfRangeException("fileName", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("fileName");
+                ?? throw new ImageKitInvalidDataException(
+                    "'fileName' cannot be null",
+                    new ArgumentNullException("fileName")
+                );
         }
         set
         {
@@ -541,7 +555,7 @@ public sealed record class FileUploadParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -550,7 +564,7 @@ public sealed record class FileUploadParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IImageKitClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IImageKitClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

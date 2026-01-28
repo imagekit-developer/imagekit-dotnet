@@ -25,7 +25,7 @@ using SchemaProperties = Imagekit.Models.CustomMetadataFields.CustomMetadataFiel
 using SelectedFieldsSchemaItemProperties = Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties;
 using TransformationProperties = Imagekit.Models.TransformationProperties;
 
-namespace Imagekit;
+namespace Imagekit.Core;
 
 public abstract record class ModelBase
 {

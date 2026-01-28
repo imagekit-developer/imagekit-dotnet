@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Exceptions;
 using Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.DefaultValueProperties.UnnamedSchemaWithArrayParent4Variants;
 using System = System;
 
@@ -56,7 +57,9 @@ public abstract record class UnnamedSchemaWithArrayParent4
                 @bool(inner);
                 break;
             default:
-                throw new System::InvalidOperationException();
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of UnnamedSchemaWithArrayParent4"
+                );
         }
     }
 
@@ -71,7 +74,9 @@ public abstract record class UnnamedSchemaWithArrayParent4
             String inner => @string(inner),
             Double inner => @double(inner),
             Bool inner => @bool(inner),
-            _ => throw new System::InvalidOperationException(),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnnamedSchemaWithArrayParent4"
+            ),
         };
     }
 
@@ -86,7 +91,7 @@ sealed class UnnamedSchemaWithArrayParent4Converter : JsonConverter<UnnamedSchem
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<ImageKitInvalidDataException> exceptions = [];
 
         try
         {
@@ -98,7 +103,9 @@ sealed class UnnamedSchemaWithArrayParent4Converter : JsonConverter<UnnamedSchem
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant String", e)
+            );
         }
 
         try
@@ -107,7 +114,9 @@ sealed class UnnamedSchemaWithArrayParent4Converter : JsonConverter<UnnamedSchem
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant Double", e)
+            );
         }
 
         try
@@ -116,7 +125,9 @@ sealed class UnnamedSchemaWithArrayParent4Converter : JsonConverter<UnnamedSchem
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant Bool", e)
+            );
         }
 
         throw new System::AggregateException(exceptions);
@@ -133,7 +144,9 @@ sealed class UnnamedSchemaWithArrayParent4Converter : JsonConverter<UnnamedSchem
             String(var @string) => @string,
             Double(var @double) => @double,
             Bool(var @bool) => @bool,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnnamedSchemaWithArrayParent4"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

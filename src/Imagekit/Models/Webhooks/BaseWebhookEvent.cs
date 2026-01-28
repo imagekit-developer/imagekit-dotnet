@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
+using Imagekit.Exceptions;
 
 namespace Imagekit.Models.Webhooks;
 
@@ -17,10 +19,16 @@ public sealed record class BaseWebhookEvent : ModelBase, IFromRaw<BaseWebhookEve
         get
         {
             if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentOutOfRangeException("id", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
+                ?? throw new ImageKitInvalidDataException(
+                    "'id' cannot be null",
+                    new ArgumentNullException("id")
+                );
         }
         set
         {
@@ -39,10 +47,16 @@ public sealed record class BaseWebhookEvent : ModelBase, IFromRaw<BaseWebhookEve
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentOutOfRangeException("type", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("type");
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {

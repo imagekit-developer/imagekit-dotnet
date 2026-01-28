@@ -1,5 +1,7 @@
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
+using Imagekit.Core;
 using Imagekit.Services.Accounts;
 using Imagekit.Services.Assets;
 using Imagekit.Services.Beta;
@@ -51,4 +53,7 @@ public interface IImageKitClient
     IBetaService Beta { get; }
 
     IWebhookService Webhooks { get; }
+
+    Task<HttpResponse> Execute<T>(HttpRequest<T> request)
+        where T : ParamsBase;
 }

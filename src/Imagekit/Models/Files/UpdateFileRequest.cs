@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Exceptions;
 using Imagekit.Models.Files.UpdateFileRequestProperties;
 using UpdateFileRequestVariants = Imagekit.Models.Files.UpdateFileRequestVariants;
 
@@ -50,7 +51,9 @@ public abstract record class UpdateFileRequest
                 changePublicationStatus(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of UpdateFileRequest"
+                );
         }
     }
 
@@ -65,7 +68,9 @@ public abstract record class UpdateFileRequest
             UpdateFileRequestVariants::ChangePublicationStatus inner => changePublicationStatus(
                 inner
             ),
-            _ => throw new InvalidOperationException(),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UpdateFileRequest"
+            ),
         };
     }
 
@@ -80,7 +85,7 @@ sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<ImageKitInvalidDataException> exceptions = [];
 
         try
         {
@@ -92,7 +97,12 @@ sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException(
+                    "Data does not match union variant UpdateFileRequestVariants::UpdateFileDetails",
+                    e
+                )
+            );
         }
 
         try
@@ -108,7 +118,12 @@ sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException(
+                    "Data does not match union variant UpdateFileRequestVariants::ChangePublicationStatus",
+                    e
+                )
+            );
         }
 
         throw new AggregateException(exceptions);
@@ -125,7 +140,9 @@ sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>
             UpdateFileRequestVariants::UpdateFileDetails(var details) => details,
             UpdateFileRequestVariants::ChangePublicationStatus(var changePublicationStatus) =>
                 changePublicationStatus,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UpdateFileRequest"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

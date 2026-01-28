@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Exceptions;
 using Imagekit.Models.UnnamedSchemaWithArrayParent0Properties;
 using UnnamedSchemaWithArrayParent0Variants = Imagekit.Models.UnnamedSchemaWithArrayParent0Variants;
 
@@ -55,7 +56,9 @@ public abstract record class UnnamedSchemaWithArrayParent0
                 aiAutoDescription(inner);
                 break;
             default:
-                throw new InvalidOperationException();
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of UnnamedSchemaWithArrayParent0"
+                );
         }
     }
 
@@ -73,7 +76,9 @@ public abstract record class UnnamedSchemaWithArrayParent0
             UnnamedSchemaWithArrayParent0Variants::AIAutoDescription inner => aiAutoDescription(
                 inner
             ),
-            _ => throw new InvalidOperationException(),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnnamedSchemaWithArrayParent0"
+            ),
         };
     }
 
@@ -103,7 +108,7 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
         {
             case "remove-bg":
             {
-                List<JsonException> exceptions = [];
+                List<ImageKitInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -115,14 +120,19 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new ImageKitInvalidDataException(
+                            "Data does not match union variant UnnamedSchemaWithArrayParent0Variants::RemoveBg",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             case "ai-auto-description":
             {
-                List<JsonException> exceptions = [];
+                List<ImageKitInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -132,14 +142,19 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new ImageKitInvalidDataException(
+                            "Data does not match union variant UnnamedSchemaWithArrayParent0Variants::AIAutoDescription",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
             }
             default:
             {
-                List<JsonException> exceptions = [];
+                List<ImageKitInvalidDataException> exceptions = [];
 
                 try
                 {
@@ -156,7 +171,12 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                 }
                 catch (JsonException e)
                 {
-                    exceptions.Add(e);
+                    exceptions.Add(
+                        new ImageKitInvalidDataException(
+                            "Data does not match union variant UnnamedSchemaWithArrayParent0Variants::AutoTaggingExtension",
+                            e
+                        )
+                    );
                 }
 
                 throw new AggregateException(exceptions);
@@ -177,7 +197,9 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                 autoTaggingExtension,
             UnnamedSchemaWithArrayParent0Variants::AIAutoDescription(var aiAutoDescription) =>
                 aiAutoDescription,
-            _ => throw new ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnnamedSchemaWithArrayParent0"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

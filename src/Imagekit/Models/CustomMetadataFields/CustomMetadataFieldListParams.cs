@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Text.Json;
+using Imagekit.Core;
 
 namespace Imagekit.Models.CustomMetadataFields;
 
@@ -69,7 +70,7 @@ public sealed record class CustomMetadataFieldListParams : ParamsBase
         }.Uri;
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IImageKitClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IImageKitClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

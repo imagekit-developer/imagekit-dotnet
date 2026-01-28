@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Exceptions;
 using System = System;
 
 namespace Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties;
@@ -53,7 +54,9 @@ sealed class TypeConverter : JsonConverter<Type>
                 SelectedFieldsSchemaItemProperties.Type.Boolean => "Boolean",
                 SelectedFieldsSchemaItemProperties.Type.SingleSelect => "SingleSelect",
                 SelectedFieldsSchemaItemProperties.Type.MultiSelect => "MultiSelect",
-                _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new ImageKitInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );

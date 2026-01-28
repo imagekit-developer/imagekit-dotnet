@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
+using Imagekit.Exceptions;
 
 namespace Imagekit.Models.Files.UpdateFileRequestProperties.ChangePublicationStatusProperties;
 
@@ -20,7 +22,10 @@ public sealed record class Publish : ModelBase, IFromRaw<Publish>
         get
         {
             if (!this.Properties.TryGetValue("isPublished", out JsonElement element))
-                throw new ArgumentOutOfRangeException("isPublished", "Missing required argument");
+                throw new ImageKitInvalidDataException(
+                    "'isPublished' cannot be null",
+                    new ArgumentOutOfRangeException("isPublished", "Missing required argument")
+                );
 
             return JsonSerializer.Deserialize<bool>(element, ModelBase.SerializerOptions);
         }

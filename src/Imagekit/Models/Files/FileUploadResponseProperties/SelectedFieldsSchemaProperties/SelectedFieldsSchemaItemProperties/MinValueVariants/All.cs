@@ -1,3 +1,5 @@
+using Imagekit.Core;
+
 namespace Imagekit.Models.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.MinValueVariants;
 
 public sealed record class String(string Value) : MinValue, IVariant<String, string>

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Exceptions;
 using Imagekit.Models.Webhooks.UploadPreTransformSuccessEventProperties.IntersectionMember1Properties.DataProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.MinValueVariants;
 using System = System;
 
@@ -44,7 +45,9 @@ public abstract record class MinValue
                 @double(inner);
                 break;
             default:
-                throw new System::InvalidOperationException();
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of MinValue"
+                );
         }
     }
 
@@ -54,7 +57,9 @@ public abstract record class MinValue
         {
             String inner => @string(inner),
             Double inner => @double(inner),
-            _ => throw new System::InvalidOperationException(),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of MinValue"
+            ),
         };
     }
 
@@ -69,7 +74,7 @@ sealed class MinValueConverter : JsonConverter<MinValue>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<ImageKitInvalidDataException> exceptions = [];
 
         try
         {
@@ -81,7 +86,9 @@ sealed class MinValueConverter : JsonConverter<MinValue>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant String", e)
+            );
         }
 
         try
@@ -90,7 +97,9 @@ sealed class MinValueConverter : JsonConverter<MinValue>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant Double", e)
+            );
         }
 
         throw new System::AggregateException(exceptions);
@@ -102,7 +111,9 @@ sealed class MinValueConverter : JsonConverter<MinValue>
         {
             String(var @string) => @string,
             Double(var @double) => @double,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of MinValue"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

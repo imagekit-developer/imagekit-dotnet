@@ -47,7 +47,7 @@ public sealed record class FileUpdateParams : ParamsBase
         }.Uri;
     }
 
-    public StringContent BodyContent()
+    internal override StringContent? BodyContent()
     {
         return new(
             JsonSerializer.Serialize(this.BodyProperties),
@@ -56,7 +56,7 @@ public sealed record class FileUpdateParams : ParamsBase
         );
     }
 
-    public void AddHeadersToRequest(HttpRequestMessage request, IImageKitClient client)
+    internal override void AddHeadersToRequest(HttpRequestMessage request, IImageKitClient client)
     {
         ParamsBase.AddDefaultHeaders(request, client);
         foreach (var item in this.HeaderProperties)

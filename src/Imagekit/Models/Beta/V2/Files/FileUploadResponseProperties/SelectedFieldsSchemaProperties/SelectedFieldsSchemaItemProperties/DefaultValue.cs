@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Exceptions;
 using Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.DefaultValueProperties;
 using Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.DefaultValueVariants;
 using System = System;
@@ -72,7 +73,9 @@ public abstract record class DefaultValue
                 mixed(inner);
                 break;
             default:
-                throw new System::InvalidOperationException();
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of DefaultValue"
+                );
         }
     }
 
@@ -89,7 +92,9 @@ public abstract record class DefaultValue
             Double inner => @double(inner),
             Bool inner => @bool(inner),
             Mixed inner => mixed(inner),
-            _ => throw new System::InvalidOperationException(),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of DefaultValue"
+            ),
         };
     }
 
@@ -104,7 +109,7 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
         JsonSerializerOptions options
     )
     {
-        List<JsonException> exceptions = [];
+        List<ImageKitInvalidDataException> exceptions = [];
 
         try
         {
@@ -116,7 +121,9 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant String", e)
+            );
         }
 
         try
@@ -125,7 +132,9 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant Double", e)
+            );
         }
 
         try
@@ -134,7 +143,9 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant Bool", e)
+            );
         }
 
         try
@@ -150,7 +161,9 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
         }
         catch (JsonException e)
         {
-            exceptions.Add(e);
+            exceptions.Add(
+                new ImageKitInvalidDataException("Data does not match union variant Mixed", e)
+            );
         }
 
         throw new System::AggregateException(exceptions);
@@ -168,7 +181,9 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
             Double(var @double) => @double,
             Bool(var @bool) => @bool,
             Mixed(var mixed) => mixed,
-            _ => throw new System::ArgumentOutOfRangeException(nameof(value)),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of DefaultValue"
+            ),
         };
         JsonSerializer.Serialize(writer, variant, options);
     }

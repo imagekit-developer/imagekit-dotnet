@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Exceptions;
 
 namespace Imagekit.Models.Files.FileUploadParamsProperties;
 
@@ -57,7 +58,9 @@ sealed class ResponseFieldConverter : JsonConverter<ResponseField>
                 ResponseField.CustomMetadata => "customMetadata",
                 ResponseField.Metadata => "metadata",
                 ResponseField.SelectedFieldsSchema => "selectedFieldsSchema",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                _ => throw new ImageKitInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );
