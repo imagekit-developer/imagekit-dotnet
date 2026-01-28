@@ -149,7 +149,7 @@ public abstract record class ParamsBase
 
     protected static void AddDefaultHeaders(HttpRequestMessage request, IImageKitClient client)
     {
-        if (client.PrivateAPIKey != null && client.Password != null)
+        if (client.PrivateKey != null && client.Password != null)
         {
             request.Headers.Add(
                 "Authorization",
@@ -158,9 +158,7 @@ public abstract record class ParamsBase
                     Convert.ToBase64String(
                         Encoding
                             .GetEncoding("ISO-8859-1")
-                            .GetBytes(
-                                string.Format("{0}:{1}", client.PrivateAPIKey, client.Password)
-                            )
+                            .GetBytes(string.Format("{0}:{1}", client.PrivateKey, client.Password))
                     )
                 )
             );

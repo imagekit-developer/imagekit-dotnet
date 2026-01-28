@@ -26,14 +26,14 @@ public sealed class ImageKitClient : IImageKitClient
         init { _baseUrl = new(() => value); }
     }
 
-    Lazy<string> _privateAPIKey = new(() =>
+    Lazy<string> _privateKey = new(() =>
         Environment.GetEnvironmentVariable("IMAGEKIT_PRIVATE_API_KEY")
-        ?? throw new ArgumentNullException(nameof(PrivateAPIKey))
+        ?? throw new ArgumentNullException(nameof(PrivateKey))
     );
-    public string PrivateAPIKey
+    public string PrivateKey
     {
-        get { return _privateAPIKey.Value; }
-        init { _privateAPIKey = new(() => value); }
+        get { return _privateKey.Value; }
+        init { _privateKey = new(() => value); }
     }
 
     Lazy<string?> _password = new(() =>

@@ -68,7 +68,7 @@ using Imagekit;
 
 ImageKitClient client = new()
 {
-    PrivateAPIKey = "My Private API Key",
+    PrivateKey = "My Private Key",
     Password = "My Password",
 };
 ```
@@ -79,7 +79,7 @@ See this table for the available options:
 
 | Property        | Environment variable             | Required | Default value               |
 | --------------- | -------------------------------- | -------- | --------------------------- |
-| `PrivateAPIKey` | `IMAGEKIT_PRIVATE_API_KEY`       | true     | -                           |
+| `PrivateKey`    | `IMAGEKIT_PRIVATE_API_KEY`       | true     | -                           |
 | `Password`      | `OPTIONAL_IMAGEKIT_IGNORES_THIS` | false    | `"do_not_set"`              |
 | `WebhookSecret` | `IMAGEKIT_WEBHOOK_SECRET`        | false    | -                           |
 | `BaseUrl`       | `IMAGE_KIT_BASE_URL`             | true     | `"https://api.imagekit.io"` |

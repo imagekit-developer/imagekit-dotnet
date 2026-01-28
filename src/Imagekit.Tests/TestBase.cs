@@ -14,7 +14,7 @@ public class TestBase
             BaseUrl = new Uri(
                 Environment.GetEnvironmentVariable("TEST_API_BASE_URL") ?? "http://localhost:4010"
             ),
-            PrivateAPIKey = "My Private API Key",
+            PrivateKey = "My Private Key",
             Password = "My Password",
         };
     }
