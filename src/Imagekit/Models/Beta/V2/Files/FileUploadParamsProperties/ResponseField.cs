@@ -14,6 +14,7 @@ public enum ResponseField
     IsPublished,
     CustomMetadata,
     Metadata,
+    SelectedFieldsSchema,
 }
 
 sealed class ResponseFieldConverter : JsonConverter<ResponseField>
@@ -33,6 +34,7 @@ sealed class ResponseFieldConverter : JsonConverter<ResponseField>
             "isPublished" => ResponseField.IsPublished,
             "customMetadata" => ResponseField.CustomMetadata,
             "metadata" => ResponseField.Metadata,
+            "selectedFieldsSchema" => ResponseField.SelectedFieldsSchema,
             _ => (ResponseField)(-1),
         };
     }
@@ -54,6 +56,7 @@ sealed class ResponseFieldConverter : JsonConverter<ResponseField>
                 ResponseField.IsPublished => "isPublished",
                 ResponseField.CustomMetadata => "customMetadata",
                 ResponseField.Metadata => "metadata",
+                ResponseField.SelectedFieldsSchema => "selectedFieldsSchema",
                 _ => throw new ArgumentOutOfRangeException(nameof(value)),
             },
             options
