@@ -237,7 +237,7 @@ public sealed record class FileUploadParams : ParamsBase
     }
 
     /// <summary>
-    /// Array of extensions to be applied to the image. Each extension can be configured
+    /// Array of extensions to be applied to the asset. Each extension can be configured
     /// with specific parameters based on the extension type.
     /// </summary>
     public List<FileUploadParamsProperties::Extension>? Extensions
