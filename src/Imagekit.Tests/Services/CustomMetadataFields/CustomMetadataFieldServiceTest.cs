@@ -11,17 +11,17 @@ public class CustomMetadataFieldServiceTest : TestBase
         var customMetadataField = await this.client.CustomMetadataFields.Create(
             new()
             {
-                Label = "label",
-                Name = "name",
+                Label = "price",
+                Name = "price",
                 Schema = new()
                 {
-                    Type = Type.Text,
+                    Type = Type.Number,
                     DefaultValue = "string",
                     IsValueRequired = true,
                     MaxLength = 0,
-                    MaxValue = "string",
+                    MaxValue = 3000,
                     MinLength = 0,
-                    MinValue = "string",
+                    MinValue = 1000,
                     SelectOptions = ["small", "medium", "large", 30, 40, true],
                 },
             }

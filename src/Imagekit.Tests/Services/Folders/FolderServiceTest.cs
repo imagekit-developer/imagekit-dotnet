@@ -8,7 +8,7 @@ public class FolderServiceTest : TestBase
     public async Task Create_Works()
     {
         var folder = await this.client.Folders.Create(
-            new() { FolderName = "folderName", ParentFolderPath = "parentFolderPath" }
+            new() { FolderName = "summer", ParentFolderPath = "/product/images/" }
         );
         folder.Validate();
     }
@@ -16,7 +16,7 @@ public class FolderServiceTest : TestBase
     [Fact(Skip = "Prism tests are disabled")]
     public async Task Delete_Works()
     {
-        var folder = await this.client.Folders.Delete(new() { FolderPath = "folderPath" });
+        var folder = await this.client.Folders.Delete(new() { FolderPath = "/folder/to/delete/" });
         folder.Validate();
     }
 
