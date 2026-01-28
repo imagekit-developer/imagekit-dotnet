@@ -172,10 +172,8 @@ public sealed class FileService : IFileService
             ) ?? throw new NullReferenceException();
     }
 
-    public async Task<FileUploadResponse> Upload(FileUploadParams? parameters = null)
+    public async Task<FileUploadResponse> Upload(FileUploadParams parameters)
     {
-        parameters ??= new();
-
         using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
         {
             Content = parameters.BodyContent(),
