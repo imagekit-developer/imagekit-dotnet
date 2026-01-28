@@ -9,7 +9,7 @@ using System = System;
 namespace Imagekit.Models.CustomMetadataFields.CustomMetadataFieldProperties.SchemaProperties;
 
 /// <summary>
-/// The default value for this custom metadata field. Date type of default value
+/// The default value for this custom metadata field. Data type of default value
 /// depends on the field type.
 /// </summary>
 [JsonConverter(typeof(DefaultValueConverter))]
@@ -23,7 +23,7 @@ public abstract record class DefaultValue
 
     public static implicit operator DefaultValue(bool value) => new Bool(value);
 
-    public static implicit operator DefaultValue(List<UnnamedSchemaWithArrayParent0> value) =>
+    public static implicit operator DefaultValue(List<UnnamedSchemaWithArrayParent1> value) =>
         new Mixed(value);
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
@@ -44,7 +44,7 @@ public abstract record class DefaultValue
         return value != null;
     }
 
-    public bool TryPickMixed([NotNullWhen(true)] out List<UnnamedSchemaWithArrayParent0>? value)
+    public bool TryPickMixed([NotNullWhen(true)] out List<UnnamedSchemaWithArrayParent1>? value)
     {
         value = (this as Mixed)?.Value;
         return value != null;
@@ -139,7 +139,7 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<List<UnnamedSchemaWithArrayParent0>>(
+            var deserialized = JsonSerializer.Deserialize<List<UnnamedSchemaWithArrayParent1>>(
                 ref reader,
                 options
             );

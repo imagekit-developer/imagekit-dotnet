@@ -38,7 +38,7 @@ public sealed record class Schema : ModelBase, IFromRaw<Schema>
     }
 
     /// <summary>
-    /// The default value for this custom metadata field. Date type of default value
+    /// The default value for this custom metadata field. Data type of default value
     /// depends on the field type.
     /// </summary>
     public SchemaProperties::DefaultValue? DefaultValue
