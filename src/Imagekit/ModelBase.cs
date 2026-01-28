@@ -5,19 +5,21 @@ using Imagekit.Models.Cache.Invalidation.InvalidationGetResponseProperties;
 using Imagekit.Models.CustomMetadataFields.CustomMetadataFieldProperties.SchemaProperties;
 using Imagekit.Models.Files.FileUpdateParamsProperties.UpdateProperties.UpdateFileDetailsProperties.ExtensionProperties.AutoTaggingExtensionProperties;
 using Imagekit.Models.Files.FileUpdateResponseProperties.IntersectionMember1Properties.ExtensionStatusProperties;
-using Imagekit.Models.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.AbsProperties;
+using Imagekit.Models.Files.FileUploadParamsProperties.BodyProperties.FileUploadV1Properties.TransformationProperties.PostProperties.AbsProperties;
 using Imagekit.Models.ImageOverlayProperties.IntersectionMember1Properties;
 using Imagekit.Models.OverlayPositionProperties;
 using Imagekit.Models.SubtitleOverlayTransformationProperties;
 using Imagekit.Models.TextOverlayTransformationProperties;
 using Imagekit.Models.Webhooks.VideoTransformationAcceptedEventProperties.IntersectionMember1Properties.DataProperties.TransformationProperties.OptionsProperties;
 using Imagekit.Models.Webhooks.VideoTransformationErrorEventProperties.IntersectionMember1Properties.DataProperties.TransformationProperties.ErrorProperties;
-using AbsProperties = Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.AbsProperties;
+using AbsProperties = Imagekit.Models.Files.FileUploadParamsProperties.BodyProperties.FileUploadByUrlv1Properties.TransformationProperties.PostProperties.AbsProperties;
 using AssetListParamsProperties = Imagekit.Models.Assets.AssetListParamsProperties;
-using AutoTaggingExtensionProperties = Imagekit.Models.Files.FileUploadParamsProperties.ExtensionProperties.AutoTaggingExtensionProperties;
+using AutoTaggingExtensionProperties = Imagekit.Models.Files.FileUploadParamsProperties.BodyProperties.FileUploadV1Properties.ExtensionProperties.AutoTaggingExtensionProperties;
 using ExtensionStatusProperties = Imagekit.Models.Files.FileUploadResponseProperties.ExtensionStatusProperties;
 using FileProperties = Imagekit.Models.Files.FileProperties;
-using FileUploadParamsProperties = Imagekit.Models.Files.FileUploadParamsProperties;
+using FileUploadByUrlv1Properties = Imagekit.Models.Files.FileUploadParamsProperties.BodyProperties.FileUploadByUrlv1Properties;
+using FileUploadParamsProperties = Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties;
+using FileUploadV1Properties = Imagekit.Models.Files.FileUploadParamsProperties.BodyProperties.FileUploadV1Properties;
 using FolderProperties = Imagekit.Models.Files.FolderProperties;
 using IntersectionMember1Properties = Imagekit.Models.SubtitleOverlayProperties.IntersectionMember1Properties;
 using JobGetResponseProperties = Imagekit.Models.Folders.Job.JobGetResponseProperties;
@@ -78,8 +80,14 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, ExtensionStatusProperties::RemoveBg>(),
             new ApiEnumConverter<string, Name>(),
             new ApiEnumConverter<string, AutoTaggingExtensionProperties::Name>(),
-            new ApiEnumConverter<string, FileUploadParamsProperties::ResponseField>(),
+            new ApiEnumConverter<string, FileUploadV1Properties::ResponseField>(),
             new ApiEnumConverter<string, Protocol>(),
+            new ApiEnumConverter<
+                string,
+                global::Imagekit.Models.Files.FileUploadParamsProperties.BodyProperties.FileUploadByUrlv1Properties.ExtensionProperties.AutoTaggingExtensionProperties.Name
+            >(),
+            new ApiEnumConverter<string, FileUploadByUrlv1Properties::ResponseField>(),
+            new ApiEnumConverter<string, AbsProperties::Protocol>(),
             new ApiEnumConverter<string, AssetListParamsProperties::FileType>(),
             new ApiEnumConverter<string, AssetListParamsProperties::Sort>(),
             new ApiEnumConverter<string, AssetListParamsProperties::Type>(),
@@ -106,11 +114,11 @@ public abstract record class ModelBase
                 string,
                 global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.ExtensionProperties.AutoTaggingExtensionProperties.Name
             >(),
+            new ApiEnumConverter<string, FileUploadParamsProperties::ResponseField>(),
             new ApiEnumConverter<
                 string,
-                global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.ResponseField
+                global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.AbsProperties.Protocol
             >(),
-            new ApiEnumConverter<string, AbsProperties::Protocol>(),
             new ApiEnumConverter<
                 string,
                 global::Imagekit.Models.Webhooks.UploadPostTransformErrorEventProperties.IntersectionMember1Properties.RequestProperties.TransformationProperties.Type
