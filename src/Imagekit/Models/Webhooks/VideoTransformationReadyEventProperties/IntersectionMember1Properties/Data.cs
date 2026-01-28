@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using DataProperties = Imagekit.Models.Webhooks.VideoTransformationReadyEventProperties.DataProperties;
+using DataProperties = Imagekit.Models.Webhooks.VideoTransformationReadyEventProperties.IntersectionMember1Properties.DataProperties;
 
-namespace Imagekit.Models.Webhooks.VideoTransformationReadyEventProperties;
+namespace Imagekit.Models.Webhooks.VideoTransformationReadyEventProperties.IntersectionMember1Properties;
 
 [JsonConverter(typeof(ModelConverter<Data>))]
 public sealed record class Data : ModelBase, IFromRaw<Data>

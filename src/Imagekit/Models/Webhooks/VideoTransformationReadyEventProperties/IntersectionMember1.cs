@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Models.Webhooks.VideoTransformationReadyEventProperties.IntersectionMember1Properties;
 
-namespace Imagekit.Models.Webhooks;
+namespace Imagekit.Models.Webhooks.VideoTransformationReadyEventProperties;
 
 /// <summary>
 /// Triggered when video encoding is finished and the transformed resource is ready
@@ -13,55 +13,9 @@ namespace Imagekit.Models.Webhooks;
 /// flags when you receive this so your application can start showing the transformed
 /// video to users.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<VideoTransformationReadyEvent>))]
-public sealed record class VideoTransformationReadyEvent
-    : ModelBase,
-        IFromRaw<VideoTransformationReadyEvent>
+[JsonConverter(typeof(ModelConverter<IntersectionMember1>))]
+public sealed record class IntersectionMember1 : ModelBase, IFromRaw<IntersectionMember1>
 {
-    /// <summary>
-    /// Unique identifier for the event.
-    /// </summary>
-    public required string ID
-    {
-        get
-        {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
-        }
-        set
-        {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
-    /// The type of webhook event.
-    /// </summary>
-    public required string Type
-    {
-        get
-        {
-            if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("type");
-        }
-        set
-        {
-            this.Properties["type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
     /// <summary>
     /// Timestamp when the event was created in ISO8601 format.
     /// </summary>
@@ -124,6 +78,24 @@ public sealed record class VideoTransformationReadyEvent
         }
     }
 
+    public JsonElement Type
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("type", out JsonElement element))
+                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+
+            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
     /// <summary>
     /// Performance metrics for the transformation process.
     /// </summary>
@@ -145,33 +117,28 @@ public sealed record class VideoTransformationReadyEvent
         }
     }
 
-    public static implicit operator BaseWebhookEvent(
-        VideoTransformationReadyEvent videoTransformationReadyEvent
-    ) => new() { ID = videoTransformationReadyEvent.ID, Type = videoTransformationReadyEvent.Type };
-
     public override void Validate()
     {
-        _ = this.ID;
-        _ = this.Type;
         _ = this.CreatedAt;
         this.Data.Validate();
         this.Request.Validate();
         this.Timings?.Validate();
     }
 
-    public VideoTransformationReadyEvent() { }
+    public IntersectionMember1()
+    {
+        this.Type = JsonSerializer.Deserialize<JsonElement>("\"video.transformation.ready\"");
+    }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEvent(Dictionary<string, JsonElement> properties)
+    IntersectionMember1(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static VideoTransformationReadyEvent FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
-    )
+    public static IntersectionMember1 FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }

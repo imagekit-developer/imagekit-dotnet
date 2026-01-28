@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Models.Webhooks.VideoTransformationErrorEventProperties.IntersectionMember1Properties;
 
-namespace Imagekit.Models.Webhooks;
+namespace Imagekit.Models.Webhooks.VideoTransformationErrorEventProperties;
 
 /// <summary>
 /// Triggered when an error occurs during video encoding. Listen to this webhook to
@@ -13,55 +13,9 @@ namespace Imagekit.Models.Webhooks;
 /// if the reason is related to download failure. For other errors, contact ImageKit
 /// support.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<VideoTransformationErrorEvent>))]
-public sealed record class VideoTransformationErrorEvent
-    : ModelBase,
-        IFromRaw<VideoTransformationErrorEvent>
+[JsonConverter(typeof(ModelConverter<IntersectionMember1>))]
+public sealed record class IntersectionMember1 : ModelBase, IFromRaw<IntersectionMember1>
 {
-    /// <summary>
-    /// Unique identifier for the event.
-    /// </summary>
-    public required string ID
-    {
-        get
-        {
-            if (!this.Properties.TryGetValue("id", out JsonElement element))
-                throw new ArgumentOutOfRangeException("id", "Missing required argument");
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("id");
-        }
-        set
-        {
-            this.Properties["id"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    /// <summary>
-    /// The type of webhook event.
-    /// </summary>
-    public required string Type
-    {
-        get
-        {
-            if (!this.Properties.TryGetValue("type", out JsonElement element))
-                throw new ArgumentOutOfRangeException("type", "Missing required argument");
-
-            return JsonSerializer.Deserialize<string>(element, ModelBase.SerializerOptions)
-                ?? throw new ArgumentNullException("type");
-        }
-        set
-        {
-            this.Properties["type"] = JsonSerializer.SerializeToElement(
-                value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
     /// <summary>
     /// Timestamp when the event was created in ISO8601 format.
     /// </summary>
@@ -124,32 +78,45 @@ public sealed record class VideoTransformationErrorEvent
         }
     }
 
-    public static implicit operator BaseWebhookEvent(
-        VideoTransformationErrorEvent videoTransformationErrorEvent
-    ) => new() { ID = videoTransformationErrorEvent.ID, Type = videoTransformationErrorEvent.Type };
+    public JsonElement Type
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("type", out JsonElement element))
+                throw new ArgumentOutOfRangeException("type", "Missing required argument");
+
+            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+        }
+        set
+        {
+            this.Properties["type"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
 
     public override void Validate()
     {
-        _ = this.ID;
-        _ = this.Type;
         _ = this.CreatedAt;
         this.Data.Validate();
         this.Request.Validate();
     }
 
-    public VideoTransformationErrorEvent() { }
+    public IntersectionMember1()
+    {
+        this.Type = JsonSerializer.Deserialize<JsonElement>("\"video.transformation.error\"");
+    }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationErrorEvent(Dictionary<string, JsonElement> properties)
+    IntersectionMember1(Dictionary<string, JsonElement> properties)
     {
         Properties = properties;
     }
 #pragma warning restore CS8618
 
-    public static VideoTransformationErrorEvent FromRawUnchecked(
-        Dictionary<string, JsonElement> properties
-    )
+    public static IntersectionMember1 FromRawUnchecked(Dictionary<string, JsonElement> properties)
     {
         return new(properties);
     }
