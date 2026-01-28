@@ -13,50 +13,60 @@ namespace Imagekit.Models.CustomMetadataFields.CustomMetadataFieldUpdateParamsPr
 /// For `Number` type field, set the minimum numeric value.
 /// </summary>
 [JsonConverter(typeof(MinValueConverter))]
-public abstract record class MinValue
+public record class MinValue
 {
-    internal MinValue() { }
+    public object Value { get; private init; }
 
-    public static implicit operator MinValue(string value) => new MinValueVariants::String(value);
+    public MinValue(string value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator MinValue(double value) => new MinValueVariants::Double(value);
+    public MinValue(double value)
+    {
+        Value = value;
+    }
+
+    MinValue(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static MinValue CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as MinValueVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as MinValueVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
-    public void Switch(
-        Action<MinValueVariants::String> @string,
-        Action<MinValueVariants::Double> @double
-    )
+    public void Switch(Action<string> @string, Action<double> @double)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case MinValueVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
-            case MinValueVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<MinValueVariants::String, T> @string,
-        Func<MinValueVariants::Double, T> @double
-    )
+    public T Match<T>(Func<string, T> @string, Func<double, T> @double)
     {
-        return this switch
+        return this.Value switch
         {
             MinValueVariants::String inner => @string(inner),
             MinValueVariants::Double inner => @double(inner),
@@ -64,7 +74,15 @@ public abstract record class MinValue
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of MinValue");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class MinValueConverter : JsonConverter<MinValue>
@@ -82,21 +100,19 @@ sealed class MinValueConverter : JsonConverter<MinValue>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new MinValueVariants::String(deserialized);
+                return new MinValue(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new MinValueVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new MinValue(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

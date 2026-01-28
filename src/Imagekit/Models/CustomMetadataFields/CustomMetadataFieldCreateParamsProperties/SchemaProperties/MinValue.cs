@@ -13,44 +13,60 @@ namespace Imagekit.Models.CustomMetadataFields.CustomMetadataFieldCreateParamsPr
 /// For `Number` type field, set the minimum numeric value.
 /// </summary>
 [JsonConverter(typeof(MinValueConverter))]
-public abstract record class MinValue
+public record class MinValue
 {
-    internal MinValue() { }
+    public object Value { get; private init; }
 
-    public static implicit operator MinValue(string value) => new String(value);
+    public MinValue(string value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator MinValue(double value) => new Double(value);
+    public MinValue(double value)
+    {
+        Value = value;
+    }
+
+    MinValue(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static MinValue CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
-    public void Switch(System::Action<String> @string, System::Action<Double> @double)
+    public void Switch(System::Action<string> @string, System::Action<double> @double)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
-            case Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
             default:
                 throw new System::InvalidOperationException();
         }
     }
 
-    public T Match<T>(System::Func<String, T> @string, System::Func<Double, T> @double)
+    public T Match<T>(System::Func<string, T> @string, System::Func<double, T> @double)
     {
-        return this switch
+        return this.Value switch
         {
             String inner => @string(inner),
             Double inner => @double(inner),
@@ -58,7 +74,15 @@ public abstract record class MinValue
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of MinValue");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class MinValueConverter : JsonConverter<MinValue>
@@ -76,19 +100,19 @@ sealed class MinValueConverter : JsonConverter<MinValue>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new String(deserialized);
+                return new MinValue(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new Double(JsonSerializer.Deserialize<double>(ref reader, options));
+            return new MinValue(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

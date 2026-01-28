@@ -118,7 +118,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Exceptions;
-using PageVariants = Imagekit.Models.TransformationProperties.PageVariants;
 
 namespace Imagekit.Models.TransformationProperties;
 
@@ -129,52 +128,76 @@ namespace Imagekit.Models.TransformationProperties;
 /// extraction](https://imagekit.io/docs/vector-and-animated-images#get-thumbnail-from-psd-pdf-ai-eps-and-animated-files).
 /// </summary>
 [JsonConverter(typeof(PageConverter))]
-public abstract record class Page
+public record class Page
 {
-    internal Page() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Page(double value) => new PageVariants::Double(value);
+    public Page(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Page(string value) => new PageVariants::String(value);
+    public Page(string value)
+    {
+        Value = value;
+    }
+
+    Page(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Page CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as PageVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as PageVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(Action<PageVariants::Double> @double, Action<PageVariants::String> @string)
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case PageVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case PageVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException("Data did not match any variant of Page");
         }
     }
 
-    public T Match<T>(Func<PageVariants::Double, T> @double, Func<PageVariants::String, T> @string)
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
-            PageVariants::Double inner => @double(inner),
-            PageVariants::String inner => @string(inner),
+            double value => @double(value),
+            string value => @string(value),
             _ => throw new ImageKitInvalidDataException("Data did not match any variant of Page"),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Page");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class PageConverter : JsonConverter<Page>
@@ -189,17 +212,12 @@ sealed class PageConverter : JsonConverter<Page>
 
         try
         {
-            return new PageVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new Page(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException(
-                    "Data does not match union variant PageVariants::Double",
-                    e
-                )
+                new ImageKitInvalidDataException("Data does not match union variant 'double'", e)
             );
         }
 
@@ -208,16 +226,13 @@ sealed class PageConverter : JsonConverter<Page>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new PageVariants::String(deserialized);
+                return new Page(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException(
-                    "Data does not match union variant PageVariants::String",
-                    e
-                )
+                new ImageKitInvalidDataException("Data does not match union variant 'string'", e)
             );
         }
 
@@ -226,12 +241,7 @@ sealed class PageConverter : JsonConverter<Page>
 
     public override void Write(Utf8JsonWriter writer, Page value, JsonSerializerOptions options)
     {
-        object variant = value switch
-        {
-            PageVariants::Double(var @double) => @double,
-            PageVariants::String(var @string) => @string,
-            _ => throw new ImageKitInvalidDataException("Data did not match any variant of Page"),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

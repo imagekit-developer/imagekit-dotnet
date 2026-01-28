@@ -124,14 +124,21 @@ public sealed record class WebFolder : ModelBase, IFromRaw<WebFolder>
         }
     }
 
-    public JsonElement Type
+    public WebFolderProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<WebFolderProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -170,12 +177,13 @@ public sealed record class WebFolder : ModelBase, IFromRaw<WebFolder>
         _ = this.ForwardHostHeaderToOrigin;
         _ = this.IncludeCanonicalHeader;
         _ = this.Name;
+        this.Type.Validate();
         _ = this.BaseURLForCanonicalHeader;
     }
 
     public WebFolder()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"WEB_FOLDER\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

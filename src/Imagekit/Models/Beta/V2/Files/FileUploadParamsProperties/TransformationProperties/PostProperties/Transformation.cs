@@ -12,14 +12,21 @@ public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
     /// <summary>
     /// Transformation type.
     /// </summary>
-    public JsonElement Type
+    public TransformationProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<TransformationProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -55,12 +62,13 @@ public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
 
     public override void Validate()
     {
+        this.Type.Validate();
         _ = this.Value;
     }
 
     public Transformation()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"transformation\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

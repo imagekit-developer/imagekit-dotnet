@@ -22,38 +22,38 @@ public abstract record class UnnamedSchemaWithArrayParent0
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickBool([NotNullWhen(true)] out bool? value)
     {
-        value = (this as Bool)?.Value;
+        value = this.Value as bool?;
         return value != null;
     }
 
     public void Switch(
-        System::Action<String> @string,
-        System::Action<Double> @double,
-        System::Action<Bool> @bool
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
-            case Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case Bool inner:
-                @bool(inner);
+            case bool value:
+                @bool(value);
                 break;
             default:
                 throw new System::InvalidOperationException();
@@ -61,12 +61,12 @@ public abstract record class UnnamedSchemaWithArrayParent0
     }
 
     public T Match<T>(
-        System::Func<String, T> @string,
-        System::Func<Double, T> @double,
-        System::Func<Bool, T> @bool
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
     )
     {
-        return this switch
+        return this.Value switch
         {
             String inner => @string(inner),
             Double inner => @double(inner),
@@ -75,7 +75,17 @@ public abstract record class UnnamedSchemaWithArrayParent0
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnnamedSchemaWithArrayParent2"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchemaWithArrayParent0>
@@ -93,28 +103,32 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new String(deserialized);
+                return new UnnamedSchemaWithArrayParent2(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new Double(JsonSerializer.Deserialize<double>(ref reader, options));
+            return new UnnamedSchemaWithArrayParent2(
+                JsonSerializer.Deserialize<double>(ref reader, options)
+            );
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new Bool(JsonSerializer.Deserialize<bool>(ref reader, options));
+            return new UnnamedSchemaWithArrayParent2(
+                JsonSerializer.Deserialize<bool>(ref reader, options)
+            );
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

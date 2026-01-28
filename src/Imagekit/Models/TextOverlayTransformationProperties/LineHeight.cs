@@ -13,52 +13,60 @@ namespace Imagekit.Models.TextOverlayTransformationProperties;
 /// such as `bw_mul_0.2`, or `bh_div_20`.
 /// </summary>
 [JsonConverter(typeof(LineHeightConverter))]
-public abstract record class LineHeight
+public record class LineHeight
 {
-    internal LineHeight() { }
+    public object Value { get; private init; }
 
-    public static implicit operator LineHeight(double value) =>
-        new LineHeightVariants::Double(value);
+    public LineHeight(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator LineHeight(string value) =>
-        new LineHeightVariants::String(value);
+    public LineHeight(string value)
+    {
+        Value = value;
+    }
+
+    LineHeight(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static LineHeight CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as LineHeightVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as LineHeightVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<LineHeightVariants::Double> @double,
-        Action<LineHeightVariants::String> @string
-    )
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case LineHeightVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case LineHeightVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<LineHeightVariants::Double, T> @double,
-        Func<LineHeightVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             LineHeightVariants::Double inner => @double(inner),
             LineHeightVariants::String inner => @string(inner),
@@ -66,7 +74,15 @@ public abstract record class LineHeight
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of LineHeight");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class LineHeightConverter : JsonConverter<LineHeight>
@@ -81,11 +97,9 @@ sealed class LineHeightConverter : JsonConverter<LineHeight>
 
         try
         {
-            return new LineHeightVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new LineHeight(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -95,10 +109,10 @@ sealed class LineHeightConverter : JsonConverter<LineHeight>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new LineHeightVariants::String(deserialized);
+                return new LineHeight(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

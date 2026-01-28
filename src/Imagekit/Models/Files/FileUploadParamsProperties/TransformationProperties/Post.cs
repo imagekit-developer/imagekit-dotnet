@@ -4,70 +4,101 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using PostProperties = Imagekit.Models.Files.FileUploadParamsProperties.TransformationProperties.PostProperties;
-using PostVariants = Imagekit.Models.Files.FileUploadParamsProperties.TransformationProperties.PostVariants;
 
 namespace Imagekit.Models.Files.FileUploadParamsProperties.TransformationProperties;
 
 [JsonConverter(typeof(PostConverter))]
-public abstract record class Post
+public record class Post
 {
-    internal Post() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Post(PostProperties::Transformation value) =>
-        new PostVariants::Transformation(value);
+    public string? Value1
+    {
+        get
+        {
+            return Match<string?>(
+                transformation: (x) => x.Value,
+                gifToVideo: (x) => x.Value,
+                thumbnail: (x) => x.Value,
+                abs: (x) => x.Value
+            );
+        }
+    }
 
-    public static implicit operator Post(PostProperties::GifToVideo value) =>
-        new PostVariants::GifToVideo(value);
+    public Post(PostProperties::Transformation value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Post(PostProperties::Thumbnail value) =>
-        new PostVariants::Thumbnail(value);
+    public Post(PostProperties::GifToVideo value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Post(PostProperties::Abs value) => new PostVariants::Abs(value);
+    public Post(PostProperties::Thumbnail value)
+    {
+        Value = value;
+    }
+
+    public Post(PostProperties::Abs value)
+    {
+        Value = value;
+    }
+
+    Post(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Post CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickTransformation([NotNullWhen(true)] out PostProperties::Transformation? value)
     {
-        value = (this as PostVariants::Transformation)?.Value;
+        value = this.Value as PostProperties::Transformation;
         return value != null;
     }
 
     public bool TryPickGifToVideo([NotNullWhen(true)] out PostProperties::GifToVideo? value)
     {
-        value = (this as PostVariants::GifToVideo)?.Value;
+        value = this.Value as PostProperties::GifToVideo;
         return value != null;
     }
 
     public bool TryPickThumbnail([NotNullWhen(true)] out PostProperties::Thumbnail? value)
     {
-        value = (this as PostVariants::Thumbnail)?.Value;
+        value = this.Value as PostProperties::Thumbnail;
         return value != null;
     }
 
     public bool TryPickAbs([NotNullWhen(true)] out PostProperties::Abs? value)
     {
-        value = (this as PostVariants::Abs)?.Value;
+        value = this.Value as PostProperties::Abs;
         return value != null;
     }
 
     public void Switch(
-        Action<PostVariants::Transformation> transformation,
-        Action<PostVariants::GifToVideo> gifToVideo,
-        Action<PostVariants::Thumbnail> thumbnail,
-        Action<PostVariants::Abs> abs
+        Action<PostProperties::Transformation> transformation,
+        Action<PostProperties::GifToVideo> gifToVideo,
+        Action<PostProperties::Thumbnail> thumbnail,
+        Action<PostProperties::Abs> abs
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case PostVariants::Transformation inner:
-                transformation(inner);
+            case PostProperties::Transformation value:
+                transformation(value);
                 break;
-            case PostVariants::GifToVideo inner:
-                gifToVideo(inner);
+            case PostProperties::GifToVideo value:
+                gifToVideo(value);
                 break;
-            case PostVariants::Thumbnail inner:
-                thumbnail(inner);
+            case PostProperties::Thumbnail value:
+                thumbnail(value);
                 break;
-            case PostVariants::Abs inner:
-                abs(inner);
+            case PostProperties::Abs value:
+                abs(value);
                 break;
             default:
                 throw new InvalidOperationException();
@@ -75,13 +106,13 @@ public abstract record class Post
     }
 
     public T Match<T>(
-        Func<PostVariants::Transformation, T> transformation,
-        Func<PostVariants::GifToVideo, T> gifToVideo,
-        Func<PostVariants::Thumbnail, T> thumbnail,
-        Func<PostVariants::Abs, T> abs
+        Func<PostProperties::Transformation, T> transformation,
+        Func<PostProperties::GifToVideo, T> gifToVideo,
+        Func<PostProperties::Thumbnail, T> thumbnail,
+        Func<PostProperties::Abs, T> abs
     )
     {
-        return this switch
+        return this.Value switch
         {
             PostVariants::Transformation inner => transformation(inner),
             PostVariants::GifToVideo inner => gifToVideo(inner),
@@ -91,7 +122,15 @@ public abstract record class Post
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Post");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class PostConverter : JsonConverter<Post>
@@ -127,10 +166,11 @@ sealed class PostConverter : JsonConverter<Post>
                     );
                     if (deserialized != null)
                     {
-                        return new PostVariants::Transformation(deserialized);
+                        deserialized.Validate();
+                        return new Post(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -149,10 +189,11 @@ sealed class PostConverter : JsonConverter<Post>
                     );
                     if (deserialized != null)
                     {
-                        return new PostVariants::GifToVideo(deserialized);
+                        deserialized.Validate();
+                        return new Post(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -171,10 +212,11 @@ sealed class PostConverter : JsonConverter<Post>
                     );
                     if (deserialized != null)
                     {
-                        return new PostVariants::Thumbnail(deserialized);
+                        deserialized.Validate();
+                        return new Post(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -193,10 +235,11 @@ sealed class PostConverter : JsonConverter<Post>
                     );
                     if (deserialized != null)
                     {
-                        return new PostVariants::Abs(deserialized);
+                        deserialized.Validate();
+                        return new Post(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }

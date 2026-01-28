@@ -4,7 +4,6 @@ using Imagekit.Models;
 using Imagekit.Models.Cache.Invalidation.InvalidationGetResponseProperties;
 using Imagekit.Models.CustomMetadataFields.CustomMetadataFieldProperties.SchemaProperties;
 using Imagekit.Models.Files.FileUpdateResponseProperties.IntersectionMember1Properties.ExtensionStatusProperties;
-using Imagekit.Models.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.AbsProperties;
 using Imagekit.Models.ImageOverlayProperties.IntersectionMember1Properties;
 using Imagekit.Models.OverlayPositionProperties;
 using Imagekit.Models.SubtitleOverlayTransformationProperties;
@@ -12,7 +11,7 @@ using Imagekit.Models.TextOverlayTransformationProperties;
 using Imagekit.Models.UnnamedSchemaWithArrayParent0Properties.AutoTaggingExtensionProperties;
 using Imagekit.Models.Webhooks.VideoTransformationAcceptedEventProperties.IntersectionMember1Properties.DataProperties.TransformationProperties.OptionsProperties;
 using Imagekit.Models.Webhooks.VideoTransformationErrorEventProperties.IntersectionMember1Properties.DataProperties.TransformationProperties.ErrorProperties;
-using AbsProperties = Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.AbsProperties;
+using AbsProperties = Imagekit.Models.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.AbsProperties;
 using AssetListParamsProperties = Imagekit.Models.Assets.AssetListParamsProperties;
 using ExtensionStatusProperties = Imagekit.Models.Files.FileUploadResponseProperties.ExtensionStatusProperties;
 using FileProperties = Imagekit.Models.Files.FileProperties;
@@ -83,7 +82,7 @@ public abstract record class ModelBase
                 global::Imagekit.Models.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type
             >(),
             new ApiEnumConverter<string, FileUploadParamsProperties::ResponseField>(),
-            new ApiEnumConverter<string, Protocol>(),
+            new ApiEnumConverter<string, AbsProperties::Protocol>(),
             new ApiEnumConverter<string, AssetListParamsProperties::FileType>(),
             new ApiEnumConverter<string, AssetListParamsProperties::Sort>(),
             new ApiEnumConverter<string, AssetListParamsProperties::Type>(),
@@ -114,7 +113,10 @@ public abstract record class ModelBase
                 string,
                 global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.ResponseField
             >(),
-            new ApiEnumConverter<string, AbsProperties::Protocol>(),
+            new ApiEnumConverter<
+                string,
+                global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.AbsProperties.Protocol
+            >(),
             new ApiEnumConverter<
                 string,
                 global::Imagekit.Models.Webhooks.UploadPostTransformErrorEventProperties.IntersectionMember1Properties.RequestProperties.TransformationProperties.Type

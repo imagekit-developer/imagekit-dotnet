@@ -11,44 +11,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// Focus using cropped image coordinates - Y coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
 /// </summary>
 [JsonConverter(typeof(YConverter))]
-public abstract record class Y
+public record class Y
 {
-    internal Y() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Y(double value) => new YVariants::Double(value);
+    public Y(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Y(string value) => new YVariants::String(value);
+    public Y(string value)
+    {
+        Value = value;
+    }
+
+    Y(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Y CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as YVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as YVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(Action<YVariants::Double> @double, Action<YVariants::String> @string)
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case YVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case YVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(Func<YVariants::Double, T> @double, Func<YVariants::String, T> @string)
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             YVariants::Double inner => @double(inner),
             YVariants::String inner => @string(inner),
@@ -56,7 +72,15 @@ public abstract record class Y
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Y");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class YConverter : JsonConverter<Y>
@@ -71,9 +95,9 @@ sealed class YConverter : JsonConverter<Y>
 
         try
         {
-            return new YVariants::Double(JsonSerializer.Deserialize<double>(ref reader, options));
+            return new Y(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -83,10 +107,10 @@ sealed class YConverter : JsonConverter<Y>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new YVariants::String(deserialized);
+                return new Y(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

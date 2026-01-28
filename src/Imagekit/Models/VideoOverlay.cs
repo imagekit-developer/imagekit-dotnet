@@ -158,7 +158,7 @@ public sealed record class VideoOverlay : ModelBase, IFromRaw<VideoOverlay>
 
     public VideoOverlay()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"video\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

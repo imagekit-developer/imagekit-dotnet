@@ -3,56 +3,74 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Exceptions;
-using Imagekit.Models.Webhooks.UploadPreTransformSuccessEventProperties.IntersectionMember1Properties.DataProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.SelectOptionVariants;
 using System = System;
 
 namespace Imagekit.Models.Webhooks.UploadPreTransformSuccessEventProperties.IntersectionMember1Properties.DataProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties;
 
 [JsonConverter(typeof(SelectOptionConverter))]
-public abstract record class SelectOption
+public record class SelectOption
 {
-    internal SelectOption() { }
+    public object Value { get; private init; }
 
-    public static implicit operator SelectOption(string value) => new String(value);
+    public SelectOption(string value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator SelectOption(double value) => new Double(value);
+    public SelectOption(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator SelectOption(bool value) => new Bool(value);
+    public SelectOption(bool value)
+    {
+        Value = value;
+    }
+
+    SelectOption(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static SelectOption CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickBool([NotNullWhen(true)] out bool? value)
     {
-        value = (this as Bool)?.Value;
+        value = this.Value as bool?;
         return value != null;
     }
 
     public void Switch(
-        System::Action<String> @string,
-        System::Action<Double> @double,
-        System::Action<Bool> @bool
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
-            case Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case Bool inner:
-                @bool(inner);
+            case bool value:
+                @bool(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
@@ -62,23 +80,33 @@ public abstract record class SelectOption
     }
 
     public T Match<T>(
-        System::Func<String, T> @string,
-        System::Func<Double, T> @double,
-        System::Func<Bool, T> @bool
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
     )
     {
-        return this switch
+        return this.Value switch
         {
-            String inner => @string(inner),
-            Double inner => @double(inner),
-            Bool inner => @bool(inner),
+            string value => @string(value),
+            double value => @double(value),
+            bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of SelectOption"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of SelectOption"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class SelectOptionConverter : JsonConverter<SelectOption>
@@ -96,35 +124,35 @@ sealed class SelectOptionConverter : JsonConverter<SelectOption>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new String(deserialized);
+                return new SelectOption(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant String", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'string'", e)
             );
         }
 
         try
         {
-            return new Double(JsonSerializer.Deserialize<double>(ref reader, options));
+            return new SelectOption(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant Double", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'double'", e)
             );
         }
 
         try
         {
-            return new Bool(JsonSerializer.Deserialize<bool>(ref reader, options));
+            return new SelectOption(JsonSerializer.Deserialize<bool>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant Bool", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'bool'", e)
             );
         }
 
@@ -137,15 +165,7 @@ sealed class SelectOptionConverter : JsonConverter<SelectOption>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            String(var @string) => @string,
-            Double(var @double) => @double,
-            Bool(var @bool) => @bool,
-            _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of SelectOption"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

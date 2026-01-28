@@ -13,50 +13,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// Arithmetic expressions are supported. See [Trim videos – Duration](https://imagekit.io/docs/trim-videos#duration---du).
 /// </summary>
 [JsonConverter(typeof(DurationConverter))]
-public abstract record class Duration
+public record class Duration
 {
-    internal Duration() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Duration(double value) => new DurationVariants::Double(value);
+    public Duration(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Duration(string value) => new DurationVariants::String(value);
+    public Duration(string value)
+    {
+        Value = value;
+    }
+
+    Duration(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Duration CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as DurationVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as DurationVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<DurationVariants::Double> @double,
-        Action<DurationVariants::String> @string
-    )
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case DurationVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case DurationVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<DurationVariants::Double, T> @double,
-        Func<DurationVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             DurationVariants::Double inner => @double(inner),
             DurationVariants::String inner => @string(inner),
@@ -64,7 +74,15 @@ public abstract record class Duration
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Duration");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DurationConverter : JsonConverter<Duration>
@@ -79,11 +97,9 @@ sealed class DurationConverter : JsonConverter<Duration>
 
         try
         {
-            return new DurationVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new Duration(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -93,10 +109,10 @@ sealed class DurationConverter : JsonConverter<Duration>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new DurationVariants::String(deserialized);
+                return new Duration(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

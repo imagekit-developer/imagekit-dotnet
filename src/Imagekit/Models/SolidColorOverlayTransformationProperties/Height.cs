@@ -12,50 +12,60 @@ namespace Imagekit.Models.SolidColorOverlayTransformationProperties;
 /// arithmetic expression. Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
 /// </summary>
 [JsonConverter(typeof(HeightConverter))]
-public abstract record class Height
+public record class Height
 {
-    internal Height() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Height(double value) => new HeightVariants::Double(value);
+    public Height(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Height(string value) => new HeightVariants::String(value);
+    public Height(string value)
+    {
+        Value = value;
+    }
+
+    Height(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Height CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as HeightVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as HeightVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<HeightVariants::Double> @double,
-        Action<HeightVariants::String> @string
-    )
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case HeightVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case HeightVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<HeightVariants::Double, T> @double,
-        Func<HeightVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             HeightVariants::Double inner => @double(inner),
             HeightVariants::String inner => @string(inner),
@@ -63,7 +73,15 @@ public abstract record class Height
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Height");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class HeightConverter : JsonConverter<Height>
@@ -78,11 +96,9 @@ sealed class HeightConverter : JsonConverter<Height>
 
         try
         {
-            return new HeightVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new Height(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -92,10 +108,10 @@ sealed class HeightConverter : JsonConverter<Height>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new HeightVariants::String(deserialized);
+                return new Height(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

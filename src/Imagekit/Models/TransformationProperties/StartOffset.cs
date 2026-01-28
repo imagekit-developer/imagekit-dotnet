@@ -12,52 +12,60 @@ namespace Imagekit.Models.TransformationProperties;
 ///  Arithmetic expressions are also supported. See [Trim videos – Start offset](https://imagekit.io/docs/trim-videos#start-offset---so).
 /// </summary>
 [JsonConverter(typeof(StartOffsetConverter))]
-public abstract record class StartOffset
+public record class StartOffset
 {
-    internal StartOffset() { }
+    public object Value { get; private init; }
 
-    public static implicit operator StartOffset(double value) =>
-        new StartOffsetVariants::Double(value);
+    public StartOffset(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator StartOffset(string value) =>
-        new StartOffsetVariants::String(value);
+    public StartOffset(string value)
+    {
+        Value = value;
+    }
+
+    StartOffset(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static StartOffset CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as StartOffsetVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as StartOffsetVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<StartOffsetVariants::Double> @double,
-        Action<StartOffsetVariants::String> @string
-    )
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case StartOffsetVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case StartOffsetVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<StartOffsetVariants::Double, T> @double,
-        Func<StartOffsetVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             StartOffsetVariants::Double inner => @double(inner),
             StartOffsetVariants::String inner => @string(inner),
@@ -65,7 +73,15 @@ public abstract record class StartOffset
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of StartOffset");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class StartOffsetConverter : JsonConverter<StartOffset>
@@ -80,11 +96,9 @@ sealed class StartOffsetConverter : JsonConverter<StartOffset>
 
         try
         {
-            return new StartOffsetVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new StartOffset(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -94,10 +108,10 @@ sealed class StartOffsetConverter : JsonConverter<StartOffset>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new StartOffsetVariants::String(deserialized);
+                return new StartOffset(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

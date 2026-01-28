@@ -13,42 +13,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// shadow, or provide a string for a custom shadow. See [Shadow](https://imagekit.io/docs/effects-and-enhancements#shadow---e-shadow).
 /// </summary>
 [JsonConverter(typeof(ShadowConverter))]
-public abstract record class Shadow
+public record class Shadow
 {
-    internal Shadow() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Shadow(string value) => new ShadowVariants::String(value);
-
-    public bool TryPickTrue([NotNullWhen(true)] out JsonElement? value)
+    public Shadow(UnionMember0 value)
     {
-        value = (this as ShadowVariants::True)?.Value;
+        Value = value;
+    }
+
+    public Shadow(string value)
+    {
+        Value = value;
+    }
+
+    Shadow(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Shadow CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickTrue([NotNullWhen(true)] out UnionMember0? value)
+    {
+        value = this.Value as UnionMember0;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as ShadowVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(Action<ShadowVariants::True> true1, Action<ShadowVariants::String> @string)
+    public void Switch(Action<UnionMember0> true1, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case ShadowVariants::True inner:
-                true1(inner);
+            case UnionMember0 value:
+                true1(value);
                 break;
-            case ShadowVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(Func<ShadowVariants::True, T> true1, Func<ShadowVariants::String, T> @string)
+    public T Match<T>(Func<UnionMember0, T> true1, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             ShadowVariants::True inner => true1(inner),
             ShadowVariants::String inner => @string(inner),
@@ -56,7 +74,15 @@ public abstract record class Shadow
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Shadow");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class ShadowConverter : JsonConverter<Shadow>
@@ -71,11 +97,14 @@ sealed class ShadowConverter : JsonConverter<Shadow>
 
         try
         {
-            return new ShadowVariants::True(
-                JsonSerializer.Deserialize<JsonElement>(ref reader, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<UnionMember0>(ref reader, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new Shadow(deserialized);
+            }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -85,10 +114,10 @@ sealed class ShadowConverter : JsonConverter<Shadow>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new ShadowVariants::String(deserialized);
+                return new Shadow(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

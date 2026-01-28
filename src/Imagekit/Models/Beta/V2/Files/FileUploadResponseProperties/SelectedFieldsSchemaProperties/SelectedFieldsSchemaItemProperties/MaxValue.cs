@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Exceptions;
-using Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.MaxValueVariants;
 using System = System;
 
 namespace Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties;
@@ -14,35 +13,51 @@ namespace Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFie
 /// field, it will be a numeric value.
 /// </summary>
 [JsonConverter(typeof(MaxValueConverter))]
-public abstract record class MaxValue
+public record class MaxValue
 {
-    internal MaxValue() { }
+    public object Value { get; private init; }
 
-    public static implicit operator MaxValue(string value) => new String(value);
+    public MaxValue(string value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator MaxValue(double value) => new Double(value);
+    public MaxValue(double value)
+    {
+        Value = value;
+    }
+
+    MaxValue(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static MaxValue CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
-    public void Switch(System::Action<String> @string, System::Action<Double> @double)
+    public void Switch(System::Action<string> @string, System::Action<double> @double)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
-            case Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
@@ -51,19 +66,27 @@ public abstract record class MaxValue
         }
     }
 
-    public T Match<T>(System::Func<String, T> @string, System::Func<Double, T> @double)
+    public T Match<T>(System::Func<string, T> @string, System::Func<double, T> @double)
     {
-        return this switch
+        return this.Value switch
         {
-            String inner => @string(inner),
-            Double inner => @double(inner),
+            string value => @string(value),
+            double value => @double(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of MaxValue"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of MaxValue");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class MaxValueConverter : JsonConverter<MaxValue>
@@ -81,24 +104,24 @@ sealed class MaxValueConverter : JsonConverter<MaxValue>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new String(deserialized);
+                return new MaxValue(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant String", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'string'", e)
             );
         }
 
         try
         {
-            return new Double(JsonSerializer.Deserialize<double>(ref reader, options));
+            return new MaxValue(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant Double", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'double'", e)
             );
         }
 
@@ -107,14 +130,7 @@ sealed class MaxValueConverter : JsonConverter<MaxValue>
 
     public override void Write(Utf8JsonWriter writer, MaxValue value, JsonSerializerOptions options)
     {
-        object variant = value switch
-        {
-            String(var @string) => @string,
-            Double(var @double) => @double,
-            _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of MaxValue"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

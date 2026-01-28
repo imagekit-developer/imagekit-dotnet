@@ -9,14 +9,21 @@ namespace Imagekit.Models.Accounts.URLEndpoints.URLEndpointRequestProperties.URL
 [JsonConverter(typeof(ModelConverter<Cloudinary>))]
 public sealed record class Cloudinary : ModelBase, IFromRaw<Cloudinary>
 {
-    public JsonElement Type
+    public CloudinaryProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<CloudinaryProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -50,12 +57,13 @@ public sealed record class Cloudinary : ModelBase, IFromRaw<Cloudinary>
 
     public override void Validate()
     {
+        this.Type.Validate();
         _ = this.PreserveAssetDeliveryTypes;
     }
 
     public Cloudinary()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"CLOUDINARY\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

@@ -14,47 +14,60 @@ namespace Imagekit.Models.OverlayTimingProperties;
 /// only if the base asset is a video. Maps to `lso` in the URL.
 /// </summary>
 [JsonConverter(typeof(StartConverter))]
-public abstract record class Start
+public record class Start
 {
-    internal Start() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Start(double value) => new StartVariants::Double(value);
+    public Start(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Start(string value) => new StartVariants::String(value);
+    public Start(string value)
+    {
+        Value = value;
+    }
+
+    Start(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Start CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as StartVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as StartVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(Action<StartVariants::Double> @double, Action<StartVariants::String> @string)
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case StartVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case StartVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<StartVariants::Double, T> @double,
-        Func<StartVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             StartVariants::Double inner => @double(inner),
             StartVariants::String inner => @string(inner),
@@ -62,7 +75,15 @@ public abstract record class Start
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Start");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class StartConverter : JsonConverter<Start>
@@ -77,11 +98,9 @@ sealed class StartConverter : JsonConverter<Start>
 
         try
         {
-            return new StartVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new Start(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -91,10 +110,10 @@ sealed class StartConverter : JsonConverter<Start>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new StartVariants::String(deserialized);
+                return new Start(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

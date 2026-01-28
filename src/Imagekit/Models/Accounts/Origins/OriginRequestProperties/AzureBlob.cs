@@ -88,14 +88,21 @@ public sealed record class AzureBlob : ModelBase, IFromRaw<AzureBlob>
         }
     }
 
-    public JsonElement Type
+    public AzureBlobProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AzureBlobProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -172,6 +179,7 @@ public sealed record class AzureBlob : ModelBase, IFromRaw<AzureBlob>
         _ = this.Container;
         _ = this.Name;
         _ = this.SasToken;
+        this.Type.Validate();
         _ = this.BaseURLForCanonicalHeader;
         _ = this.IncludeCanonicalHeader;
         _ = this.Prefix;
@@ -179,7 +187,7 @@ public sealed record class AzureBlob : ModelBase, IFromRaw<AzureBlob>
 
     public AzureBlob()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"AZURE_BLOB\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

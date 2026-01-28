@@ -133,7 +133,7 @@ public sealed record class SolidColorOverlay : ModelBase, IFromRaw<SolidColorOve
 
     public SolidColorOverlay()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"solidColor\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

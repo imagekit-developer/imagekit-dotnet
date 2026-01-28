@@ -5,55 +5,73 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Exceptions;
 using Imagekit.Models.UnnamedSchemaWithArrayParent0Properties;
-using UnnamedSchemaWithArrayParent0Variants = Imagekit.Models.UnnamedSchemaWithArrayParent0Variants;
 
 namespace Imagekit.Models;
 
 [JsonConverter(typeof(UnnamedSchemaWithArrayParent0Converter))]
-public abstract record class UnnamedSchemaWithArrayParent0
+public record class UnnamedSchemaWithArrayParent0
 {
-    internal UnnamedSchemaWithArrayParent0() { }
+    public object Value { get; private init; }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0(RemoveBg value) =>
-        new UnnamedSchemaWithArrayParent0Variants::RemoveBg(value);
+    public UnnamedSchemaWithArrayParent0(RemoveBg value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0(AutoTaggingExtension value) =>
-        new UnnamedSchemaWithArrayParent0Variants::AutoTaggingExtension(value);
+    public UnnamedSchemaWithArrayParent0(AutoTaggingExtension value)
+    {
+        Value = value;
+    }
+
+    public UnnamedSchemaWithArrayParent0(AIAutoDescription value)
+    {
+        Value = value;
+    }
+
+    UnnamedSchemaWithArrayParent0(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static UnnamedSchemaWithArrayParent0 CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickRemoveBg([NotNullWhen(true)] out RemoveBg? value)
     {
-        value = (this as UnnamedSchemaWithArrayParent0Variants::RemoveBg)?.Value;
+        value = this.Value as RemoveBg;
         return value != null;
     }
 
     public bool TryPickAutoTaggingExtension([NotNullWhen(true)] out AutoTaggingExtension? value)
     {
-        value = (this as UnnamedSchemaWithArrayParent0Variants::AutoTaggingExtension)?.Value;
+        value = this.Value as AutoTaggingExtension;
         return value != null;
     }
 
-    public bool TryPickAIAutoDescription([NotNullWhen(true)] out JsonElement? value)
+    public bool TryPickAIAutoDescription([NotNullWhen(true)] out AIAutoDescription? value)
     {
-        value = (this as UnnamedSchemaWithArrayParent0Variants::AIAutoDescription)?.Value;
+        value = this.Value as AIAutoDescription;
         return value != null;
     }
 
     public void Switch(
-        Action<UnnamedSchemaWithArrayParent0Variants::RemoveBg> removeBg,
-        Action<UnnamedSchemaWithArrayParent0Variants::AutoTaggingExtension> autoTaggingExtension,
-        Action<UnnamedSchemaWithArrayParent0Variants::AIAutoDescription> aiAutoDescription
+        Action<RemoveBg> removeBg,
+        Action<AutoTaggingExtension> autoTaggingExtension,
+        Action<AIAutoDescription> aiAutoDescription
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case UnnamedSchemaWithArrayParent0Variants::RemoveBg inner:
-                removeBg(inner);
+            case RemoveBg value:
+                removeBg(value);
                 break;
-            case UnnamedSchemaWithArrayParent0Variants::AutoTaggingExtension inner:
-                autoTaggingExtension(inner);
+            case AutoTaggingExtension value:
+                autoTaggingExtension(value);
                 break;
-            case UnnamedSchemaWithArrayParent0Variants::AIAutoDescription inner:
-                aiAutoDescription(inner);
+            case AIAutoDescription value:
+                aiAutoDescription(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
@@ -63,26 +81,33 @@ public abstract record class UnnamedSchemaWithArrayParent0
     }
 
     public T Match<T>(
-        Func<UnnamedSchemaWithArrayParent0Variants::RemoveBg, T> removeBg,
-        Func<UnnamedSchemaWithArrayParent0Variants::AutoTaggingExtension, T> autoTaggingExtension,
-        Func<UnnamedSchemaWithArrayParent0Variants::AIAutoDescription, T> aiAutoDescription
+        Func<RemoveBg, T> removeBg,
+        Func<AutoTaggingExtension, T> autoTaggingExtension,
+        Func<AIAutoDescription, T> aiAutoDescription
     )
     {
-        return this switch
+        return this.Value switch
         {
-            UnnamedSchemaWithArrayParent0Variants::RemoveBg inner => removeBg(inner),
-            UnnamedSchemaWithArrayParent0Variants::AutoTaggingExtension inner =>
-                autoTaggingExtension(inner),
-            UnnamedSchemaWithArrayParent0Variants::AIAutoDescription inner => aiAutoDescription(
-                inner
-            ),
+            RemoveBg value => removeBg(value),
+            AutoTaggingExtension value => autoTaggingExtension(value),
+            AIAutoDescription value => aiAutoDescription(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of UnnamedSchemaWithArrayParent0"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnnamedSchemaWithArrayParent0"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchemaWithArrayParent0>
@@ -115,14 +140,15 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                     var deserialized = JsonSerializer.Deserialize<RemoveBg>(json, options);
                     if (deserialized != null)
                     {
-                        return new UnnamedSchemaWithArrayParent0Variants::RemoveBg(deserialized);
+                        deserialized.Validate();
+                        return new UnnamedSchemaWithArrayParent0(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(
                         new ImageKitInvalidDataException(
-                            "Data does not match union variant UnnamedSchemaWithArrayParent0Variants::RemoveBg",
+                            "Data does not match union variant 'RemoveBg'",
                             e
                         )
                     );
@@ -136,15 +162,18 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
 
                 try
                 {
-                    return new UnnamedSchemaWithArrayParent0Variants::AIAutoDescription(
-                        JsonSerializer.Deserialize<JsonElement>(json, options)
-                    );
+                    var deserialized = JsonSerializer.Deserialize<AIAutoDescription>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new UnnamedSchemaWithArrayParent0(deserialized);
+                    }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(
                         new ImageKitInvalidDataException(
-                            "Data does not match union variant UnnamedSchemaWithArrayParent0Variants::AIAutoDescription",
+                            "Data does not match union variant 'AIAutoDescription'",
                             e
                         )
                     );
@@ -164,16 +193,15 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                     );
                     if (deserialized != null)
                     {
-                        return new UnnamedSchemaWithArrayParent0Variants::AutoTaggingExtension(
-                            deserialized
-                        );
+                        deserialized.Validate();
+                        return new UnnamedSchemaWithArrayParent0(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(
                         new ImageKitInvalidDataException(
-                            "Data does not match union variant UnnamedSchemaWithArrayParent0Variants::AutoTaggingExtension",
+                            "Data does not match union variant 'AutoTaggingExtension'",
                             e
                         )
                     );
@@ -190,17 +218,7 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            UnnamedSchemaWithArrayParent0Variants::RemoveBg(var removeBg) => removeBg,
-            UnnamedSchemaWithArrayParent0Variants::AutoTaggingExtension(var autoTaggingExtension) =>
-                autoTaggingExtension,
-            UnnamedSchemaWithArrayParent0Variants::AIAutoDescription(var aiAutoDescription) =>
-                aiAutoDescription,
-            _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

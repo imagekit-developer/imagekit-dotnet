@@ -13,79 +13,155 @@ namespace Imagekit.Models;
 /// using layers](https://imagekit.io/docs/transformations#overlay-using-layers).
 /// </summary>
 [JsonConverter(typeof(OverlayConverter))]
-public abstract record class Overlay
+public record class Overlay
 {
-    internal Overlay() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Overlay(TextOverlay value) =>
-        new OverlayVariants::TextOverlay(value);
+    public OverlayPosition? Position
+    {
+        get
+        {
+            return Match<OverlayPosition?>(
+                text: (x) => x.Position,
+                image: (x) => x.Position,
+                video: (x) => x.Position,
+                subtitle: (x) => x.Position,
+                solidColor: (x) => x.Position
+            );
+        }
+    }
 
-    public static implicit operator Overlay(ImageOverlay value) =>
-        new OverlayVariants::ImageOverlay(value);
+    public OverlayTiming? Timing
+    {
+        get
+        {
+            return Match<OverlayTiming?>(
+                text: (x) => x.Timing,
+                image: (x) => x.Timing,
+                video: (x) => x.Timing,
+                subtitle: (x) => x.Timing,
+                solidColor: (x) => x.Timing
+            );
+        }
+    }
 
-    public static implicit operator Overlay(VideoOverlay value) =>
-        new OverlayVariants::VideoOverlay(value);
+    public JsonElement Type
+    {
+        get
+        {
+            return Match(
+                text: (x) => x.Type,
+                image: (x) => x.Type,
+                video: (x) => x.Type,
+                subtitle: (x) => x.Type,
+                solidColor: (x) => x.Type
+            );
+        }
+    }
 
-    public static implicit operator Overlay(SubtitleOverlay value) =>
-        new OverlayVariants::SubtitleOverlay(value);
+    public string? Input
+    {
+        get
+        {
+            return Match<string?>(
+                text: (_) => null,
+                image: (x) => x.Input,
+                video: (x) => x.Input,
+                subtitle: (x) => x.Input,
+                solidColor: (_) => null
+            );
+        }
+    }
 
-    public static implicit operator Overlay(SolidColorOverlay value) =>
-        new OverlayVariants::SolidColorOverlay(value);
+    public Overlay(TextOverlay value)
+    {
+        Value = value;
+    }
+
+    public Overlay(ImageOverlay value)
+    {
+        Value = value;
+    }
+
+    public Overlay(VideoOverlay value)
+    {
+        Value = value;
+    }
+
+    public Overlay(SubtitleOverlay value)
+    {
+        Value = value;
+    }
+
+    public Overlay(SolidColorOverlay value)
+    {
+        Value = value;
+    }
+
+    Overlay(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Overlay CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickText([NotNullWhen(true)] out TextOverlay? value)
     {
-        value = (this as OverlayVariants::TextOverlay)?.Value;
+        value = this.Value as TextOverlay;
         return value != null;
     }
 
     public bool TryPickImage([NotNullWhen(true)] out ImageOverlay? value)
     {
-        value = (this as OverlayVariants::ImageOverlay)?.Value;
+        value = this.Value as ImageOverlay;
         return value != null;
     }
 
     public bool TryPickVideo([NotNullWhen(true)] out VideoOverlay? value)
     {
-        value = (this as OverlayVariants::VideoOverlay)?.Value;
+        value = this.Value as VideoOverlay;
         return value != null;
     }
 
     public bool TryPickSubtitle([NotNullWhen(true)] out SubtitleOverlay? value)
     {
-        value = (this as OverlayVariants::SubtitleOverlay)?.Value;
+        value = this.Value as SubtitleOverlay;
         return value != null;
     }
 
     public bool TryPickSolidColor([NotNullWhen(true)] out SolidColorOverlay? value)
     {
-        value = (this as OverlayVariants::SolidColorOverlay)?.Value;
+        value = this.Value as SolidColorOverlay;
         return value != null;
     }
 
     public void Switch(
-        Action<OverlayVariants::TextOverlay> text,
-        Action<OverlayVariants::ImageOverlay> image,
-        Action<OverlayVariants::VideoOverlay> video,
-        Action<OverlayVariants::SubtitleOverlay> subtitle,
-        Action<OverlayVariants::SolidColorOverlay> solidColor
+        Action<TextOverlay> text,
+        Action<ImageOverlay> image,
+        Action<VideoOverlay> video,
+        Action<SubtitleOverlay> subtitle,
+        Action<SolidColorOverlay> solidColor
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case OverlayVariants::TextOverlay inner:
-                text(inner);
+            case TextOverlay value:
+                text(value);
                 break;
-            case OverlayVariants::ImageOverlay inner:
-                image(inner);
+            case ImageOverlay value:
+                image(value);
                 break;
-            case OverlayVariants::VideoOverlay inner:
-                video(inner);
+            case VideoOverlay value:
+                video(value);
                 break;
-            case OverlayVariants::SubtitleOverlay inner:
-                subtitle(inner);
+            case SubtitleOverlay value:
+                subtitle(value);
                 break;
-            case OverlayVariants::SolidColorOverlay inner:
-                solidColor(inner);
+            case SolidColorOverlay value:
+                solidColor(value);
                 break;
             default:
                 throw new InvalidOperationException();
@@ -93,14 +169,14 @@ public abstract record class Overlay
     }
 
     public T Match<T>(
-        Func<OverlayVariants::TextOverlay, T> text,
-        Func<OverlayVariants::ImageOverlay, T> image,
-        Func<OverlayVariants::VideoOverlay, T> video,
-        Func<OverlayVariants::SubtitleOverlay, T> subtitle,
-        Func<OverlayVariants::SolidColorOverlay, T> solidColor
+        Func<TextOverlay, T> text,
+        Func<ImageOverlay, T> image,
+        Func<VideoOverlay, T> video,
+        Func<SubtitleOverlay, T> subtitle,
+        Func<SolidColorOverlay, T> solidColor
     )
     {
-        return this switch
+        return this.Value switch
         {
             OverlayVariants::TextOverlay inner => text(inner),
             OverlayVariants::ImageOverlay inner => image(inner),
@@ -111,7 +187,15 @@ public abstract record class Overlay
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Overlay");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class OverlayConverter : JsonConverter<Overlay>
@@ -144,10 +228,11 @@ sealed class OverlayConverter : JsonConverter<Overlay>
                     var deserialized = JsonSerializer.Deserialize<TextOverlay>(json, options);
                     if (deserialized != null)
                     {
-                        return new OverlayVariants::TextOverlay(deserialized);
+                        deserialized.Validate();
+                        return new Overlay(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -163,10 +248,11 @@ sealed class OverlayConverter : JsonConverter<Overlay>
                     var deserialized = JsonSerializer.Deserialize<ImageOverlay>(json, options);
                     if (deserialized != null)
                     {
-                        return new OverlayVariants::ImageOverlay(deserialized);
+                        deserialized.Validate();
+                        return new Overlay(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -182,10 +268,11 @@ sealed class OverlayConverter : JsonConverter<Overlay>
                     var deserialized = JsonSerializer.Deserialize<VideoOverlay>(json, options);
                     if (deserialized != null)
                     {
-                        return new OverlayVariants::VideoOverlay(deserialized);
+                        deserialized.Validate();
+                        return new Overlay(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -201,10 +288,11 @@ sealed class OverlayConverter : JsonConverter<Overlay>
                     var deserialized = JsonSerializer.Deserialize<SubtitleOverlay>(json, options);
                     if (deserialized != null)
                     {
-                        return new OverlayVariants::SubtitleOverlay(deserialized);
+                        deserialized.Validate();
+                        return new Overlay(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -220,10 +308,11 @@ sealed class OverlayConverter : JsonConverter<Overlay>
                     var deserialized = JsonSerializer.Deserialize<SolidColorOverlay>(json, options);
                     if (deserialized != null)
                     {
-                        return new OverlayVariants::SolidColorOverlay(deserialized);
+                        deserialized.Validate();
+                        return new Overlay(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }

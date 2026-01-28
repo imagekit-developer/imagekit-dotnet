@@ -16,13 +16,21 @@ public class CustomMetadataFieldServiceTest : TestBase
                 Schema = new()
                 {
                     Type = Type.Number,
-                    DefaultValue = "string",
+                    DefaultValue = new("string"),
                     IsValueRequired = true,
                     MaxLength = 0,
-                    MaxValue = 3000,
+                    MaxValue = new(3000),
                     MinLength = 0,
-                    MinValue = 1000,
-                    SelectOptions = ["small", "medium", "large", 30, 40, true],
+                    MinValue = new(1000),
+                    SelectOptions =
+                    [
+                        new("small"),
+                        new("medium"),
+                        new("large"),
+                        new(30),
+                        new(40),
+                        new(true),
+                    ],
                 },
             }
         );

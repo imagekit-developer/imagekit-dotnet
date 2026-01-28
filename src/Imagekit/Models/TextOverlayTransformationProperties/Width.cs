@@ -14,47 +14,60 @@ namespace Imagekit.Models.TextOverlayTransformationProperties;
 /// [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
 /// </summary>
 [JsonConverter(typeof(WidthConverter))]
-public abstract record class Width
+public record class Width
 {
-    internal Width() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Width(double value) => new WidthVariants::Double(value);
+    public Width(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Width(string value) => new WidthVariants::String(value);
+    public Width(string value)
+    {
+        Value = value;
+    }
+
+    Width(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Width CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as WidthVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as WidthVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(Action<WidthVariants::Double> @double, Action<WidthVariants::String> @string)
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case WidthVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case WidthVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<WidthVariants::Double, T> @double,
-        Func<WidthVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             WidthVariants::Double inner => @double(inner),
             WidthVariants::String inner => @string(inner),
@@ -62,7 +75,15 @@ public abstract record class Width
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Width");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class WidthConverter : JsonConverter<Width>
@@ -77,11 +98,9 @@ sealed class WidthConverter : JsonConverter<Width>
 
         try
         {
-            return new WidthVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new Width(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -91,10 +110,10 @@ sealed class WidthConverter : JsonConverter<Width>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new WidthVariants::String(deserialized);
+                return new Width(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

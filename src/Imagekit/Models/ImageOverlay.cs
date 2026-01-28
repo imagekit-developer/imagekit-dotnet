@@ -159,7 +159,7 @@ public sealed record class ImageOverlay : ModelBase, IFromRaw<ImageOverlay>
 
     public ImageOverlay()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"image\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

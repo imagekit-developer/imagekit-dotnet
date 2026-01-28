@@ -12,50 +12,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
 /// </summary>
 [JsonConverter(typeof(XCenterConverter))]
-public abstract record class XCenter
+public record class XCenter
 {
-    internal XCenter() { }
+    public object Value { get; private init; }
 
-    public static implicit operator XCenter(double value) => new XCenterVariants::Double(value);
+    public XCenter(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator XCenter(string value) => new XCenterVariants::String(value);
+    public XCenter(string value)
+    {
+        Value = value;
+    }
+
+    XCenter(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static XCenter CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as XCenterVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as XCenterVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<XCenterVariants::Double> @double,
-        Action<XCenterVariants::String> @string
-    )
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case XCenterVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case XCenterVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<XCenterVariants::Double, T> @double,
-        Func<XCenterVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             XCenterVariants::Double inner => @double(inner),
             XCenterVariants::String inner => @string(inner),
@@ -63,7 +73,15 @@ public abstract record class XCenter
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of XCenter");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class XCenterConverter : JsonConverter<XCenter>
@@ -78,11 +96,9 @@ sealed class XCenterConverter : JsonConverter<XCenter>
 
         try
         {
-            return new XCenterVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new XCenter(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -92,10 +108,10 @@ sealed class XCenterConverter : JsonConverter<XCenter>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new XCenterVariants::String(deserialized);
+                return new XCenter(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

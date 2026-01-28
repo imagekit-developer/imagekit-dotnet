@@ -15,44 +15,60 @@ namespace Imagekit.Models.OverlayTimingProperties;
 /// is a video. Maps to `leo` in the URL.
 /// </summary>
 [JsonConverter(typeof(EndConverter))]
-public abstract record class End
+public record class End
 {
-    internal End() { }
+    public object Value { get; private init; }
 
-    public static implicit operator End(double value) => new EndVariants::Double(value);
+    public End(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator End(string value) => new EndVariants::String(value);
+    public End(string value)
+    {
+        Value = value;
+    }
+
+    End(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static End CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as EndVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as EndVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(Action<EndVariants::Double> @double, Action<EndVariants::String> @string)
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case EndVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case EndVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(Func<EndVariants::Double, T> @double, Func<EndVariants::String, T> @string)
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             EndVariants::Double inner => @double(inner),
             EndVariants::String inner => @string(inner),
@@ -60,7 +76,15 @@ public abstract record class End
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of End");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class EndConverter : JsonConverter<End>
@@ -75,9 +99,9 @@ sealed class EndConverter : JsonConverter<End>
 
         try
         {
-            return new EndVariants::Double(JsonSerializer.Deserialize<double>(ref reader, options));
+            return new End(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -87,10 +111,10 @@ sealed class EndConverter : JsonConverter<End>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new EndVariants::String(deserialized);
+                return new End(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

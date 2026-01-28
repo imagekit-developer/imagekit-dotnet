@@ -122,14 +122,21 @@ public sealed record class S3 : ModelBase, IFromRaw<S3>
         }
     }
 
-    public JsonElement Type
+    public S3Properties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<S3Properties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -168,12 +175,13 @@ public sealed record class S3 : ModelBase, IFromRaw<S3>
         _ = this.IncludeCanonicalHeader;
         _ = this.Name;
         _ = this.Prefix;
+        this.Type.Validate();
         _ = this.BaseURLForCanonicalHeader;
     }
 
     public S3()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"S3\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

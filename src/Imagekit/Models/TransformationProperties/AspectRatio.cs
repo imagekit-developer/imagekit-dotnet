@@ -13,52 +13,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// or an expression like `iar_div_2`. See [Image resize and crop – Aspect ratio](https://imagekit.io/docs/image-resize-and-crop#aspect-ratio---ar).
 /// </summary>
 [JsonConverter(typeof(AspectRatioConverter))]
-public abstract record class AspectRatio
+public record class AspectRatio
 {
-    internal AspectRatio() { }
+    public object Value { get; private init; }
 
-    public static implicit operator AspectRatio(double value) =>
-        new AspectRatioVariants::Double(value);
+    public AspectRatio(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator AspectRatio(string value) =>
-        new AspectRatioVariants::String(value);
+    public AspectRatio(string value)
+    {
+        Value = value;
+    }
+
+    AspectRatio(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static AspectRatio CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as AspectRatioVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as AspectRatioVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<AspectRatioVariants::Double> @double,
-        Action<AspectRatioVariants::String> @string
-    )
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case AspectRatioVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case AspectRatioVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<AspectRatioVariants::Double, T> @double,
-        Func<AspectRatioVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             AspectRatioVariants::Double inner => @double(inner),
             AspectRatioVariants::String inner => @string(inner),
@@ -66,7 +74,15 @@ public abstract record class AspectRatio
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of AspectRatio");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AspectRatioConverter : JsonConverter<AspectRatio>
@@ -81,11 +97,9 @@ sealed class AspectRatioConverter : JsonConverter<AspectRatio>
 
         try
         {
-            return new AspectRatioVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new AspectRatio(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -95,10 +109,10 @@ sealed class AspectRatioConverter : JsonConverter<AspectRatio>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new AspectRatioVariants::String(deserialized);
+                return new AspectRatio(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

@@ -78,14 +78,21 @@ public sealed record class WebProxy : ModelBase, IFromRaw<WebProxy>
         }
     }
 
-    public JsonElement Type
+    public WebProxyProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<WebProxyProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -122,12 +129,13 @@ public sealed record class WebProxy : ModelBase, IFromRaw<WebProxy>
         _ = this.ID;
         _ = this.IncludeCanonicalHeader;
         _ = this.Name;
+        this.Type.Validate();
         _ = this.BaseURLForCanonicalHeader;
     }
 
     public WebProxy()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"WEB_PROXY\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

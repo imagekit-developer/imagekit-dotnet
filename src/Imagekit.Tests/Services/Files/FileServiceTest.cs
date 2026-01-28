@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Imagekit.Models.Files.UpdateFileRequestProperties;
 using Imagekit.Models.UnnamedSchemaWithArrayParent0Properties;
 using Imagekit.Models.UnnamedSchemaWithArrayParent0Properties.AutoTaggingExtensionProperties;
-using UnnamedSchemaWithArrayParent0Variants = Imagekit.Models.UnnamedSchemaWithArrayParent0Variants;
 
 namespace Imagekit.Tests.Services.Files;
 
@@ -17,49 +16,53 @@ public class FileServiceTest : TestBase
             new()
             {
                 FileID = "fileId",
-                UpdateFileRequest = new UpdateFileDetails()
-                {
-                    CustomCoordinates = "10,10,100,100",
-                    CustomMetadata = new Dictionary<string, JsonElement>()
+                UpdateFileRequest = new(
+                    new UpdateFileDetails()
                     {
-                        { "brand", JsonSerializer.SerializeToElement("bar") },
-                        { "color", JsonSerializer.SerializeToElement("bar") },
-                    },
-                    Description = "description",
-                    Extensions =
-                    [
-                        new RemoveBg()
+                        CustomCoordinates = "10,10,100,100",
+                        CustomMetadata = new Dictionary<string, JsonElement>()
                         {
-                            Options = new()
-                            {
-                                AddShadow = true,
-                                BgColor = "bg_color",
-                                BgImageURL = "bg_image_url",
-                                Semitransparency = true,
-                            },
+                            { "brand", JsonSerializer.SerializeToElement("bar") },
+                            { "color", JsonSerializer.SerializeToElement("bar") },
                         },
-                        new AutoTaggingExtension()
-                        {
-                            MaxTags = 10,
-                            MinConfidence = 80,
-                            Name = Name.GoogleAutoTagging,
-                        },
-                        new AutoTaggingExtension()
-                        {
-                            MaxTags = 10,
-                            MinConfidence = 80,
-                            Name = Name.AwsAutoTagging,
-                        },
-                        new UnnamedSchemaWithArrayParent0Variants::AIAutoDescription(
-                            JsonSerializer.Deserialize<JsonElement>(
-                                "{\"name\":\"ai-auto-description\"}"
-                            )
-                        ),
-                    ],
-                    RemoveAITags = new List<string>() { "car", "vehicle", "motorsports" },
-                    Tags = ["tag1", "tag2"],
-                    WebhookURL = "https://webhook.site/0d6b6c7a-8e5a-4b3a-8b7c-0d6b6c7a8e5a",
-                },
+                        Description = "description",
+                        Extensions =
+                        [
+                            new(
+                                new RemoveBg()
+                                {
+                                    Options = new()
+                                    {
+                                        AddShadow = true,
+                                        BgColor = "bg_color",
+                                        BgImageURL = "bg_image_url",
+                                        Semitransparency = true,
+                                    },
+                                }
+                            ),
+                            new(
+                                new AutoTaggingExtension()
+                                {
+                                    MaxTags = 10,
+                                    MinConfidence = 80,
+                                    Name = Name.GoogleAutoTagging,
+                                }
+                            ),
+                            new(
+                                new AutoTaggingExtension()
+                                {
+                                    MaxTags = 10,
+                                    MinConfidence = 80,
+                                    Name = Name.AwsAutoTagging,
+                                }
+                            ),
+                            new(new()),
+                        ],
+                        RemoveAITags = new(new List<string>() { "car", "vehicle", "motorsports" }),
+                        Tags = ["tag1", "tag2"],
+                        WebhookURL = "https://webhook.site/0d6b6c7a-8e5a-4b3a-8b7c-0d6b6c7a8e5a",
+                    }
+                ),
             }
         );
         file.Validate();

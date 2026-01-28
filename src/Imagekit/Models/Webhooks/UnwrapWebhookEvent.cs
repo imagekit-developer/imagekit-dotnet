@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Exceptions;
-using UnwrapWebhookEventVariants = Imagekit.Models.Webhooks.UnwrapWebhookEventVariants;
 
 namespace Imagekit.Models.Webhooks;
 
@@ -14,36 +13,108 @@ namespace Imagekit.Models.Webhooks;
 /// request. Use this for debugging and tracking transformation lifecycle.
 /// </summary>
 [JsonConverter(typeof(UnwrapWebhookEventConverter))]
-public abstract record class UnwrapWebhookEvent
+public record class UnwrapWebhookEvent
 {
-    internal UnwrapWebhookEvent() { }
+    public object Value { get; private init; }
 
-    public static implicit operator UnwrapWebhookEvent(VideoTransformationAcceptedEvent value) =>
-        new UnwrapWebhookEventVariants::VideoTransformationAcceptedEvent(value);
+    public string ID
+    {
+        get
+        {
+            return Match(
+                videoTransformationAccepted: (x) => x.ID,
+                videoTransformationReady: (x) => x.ID,
+                videoTransformationError: (x) => x.ID,
+                uploadPreTransformSuccess: (x) => x.ID,
+                uploadPreTransformError: (x) => x.ID,
+                uploadPostTransformSuccess: (x) => x.ID,
+                uploadPostTransformError: (x) => x.ID
+            );
+        }
+    }
 
-    public static implicit operator UnwrapWebhookEvent(VideoTransformationReadyEvent value) =>
-        new UnwrapWebhookEventVariants::VideoTransformationReadyEvent(value);
+    public string Type
+    {
+        get
+        {
+            return Match(
+                videoTransformationAccepted: (x) => x.Type,
+                videoTransformationReady: (x) => x.Type,
+                videoTransformationError: (x) => x.Type,
+                uploadPreTransformSuccess: (x) => x.Type,
+                uploadPreTransformError: (x) => x.Type,
+                uploadPostTransformSuccess: (x) => x.Type,
+                uploadPostTransformError: (x) => x.Type
+            );
+        }
+    }
 
-    public static implicit operator UnwrapWebhookEvent(VideoTransformationErrorEvent value) =>
-        new UnwrapWebhookEventVariants::VideoTransformationErrorEvent(value);
+    public DateTime CreatedAt
+    {
+        get
+        {
+            return Match(
+                videoTransformationAccepted: (x) => x.CreatedAt,
+                videoTransformationReady: (x) => x.CreatedAt,
+                videoTransformationError: (x) => x.CreatedAt,
+                uploadPreTransformSuccess: (x) => x.CreatedAt,
+                uploadPreTransformError: (x) => x.CreatedAt,
+                uploadPostTransformSuccess: (x) => x.CreatedAt,
+                uploadPostTransformError: (x) => x.CreatedAt
+            );
+        }
+    }
 
-    public static implicit operator UnwrapWebhookEvent(UploadPreTransformSuccessEvent value) =>
-        new UnwrapWebhookEventVariants::UploadPreTransformSuccessEvent(value);
+    public UnwrapWebhookEvent(VideoTransformationAcceptedEvent value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator UnwrapWebhookEvent(UploadPreTransformErrorEvent value) =>
-        new UnwrapWebhookEventVariants::UploadPreTransformErrorEvent(value);
+    public UnwrapWebhookEvent(VideoTransformationReadyEvent value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator UnwrapWebhookEvent(UploadPostTransformSuccessEvent value) =>
-        new UnwrapWebhookEventVariants::UploadPostTransformSuccessEvent(value);
+    public UnwrapWebhookEvent(VideoTransformationErrorEvent value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator UnwrapWebhookEvent(UploadPostTransformErrorEvent value) =>
-        new UnwrapWebhookEventVariants::UploadPostTransformErrorEvent(value);
+    public UnwrapWebhookEvent(UploadPreTransformSuccessEvent value)
+    {
+        Value = value;
+    }
+
+    public UnwrapWebhookEvent(UploadPreTransformErrorEvent value)
+    {
+        Value = value;
+    }
+
+    public UnwrapWebhookEvent(UploadPostTransformSuccessEvent value)
+    {
+        Value = value;
+    }
+
+    public UnwrapWebhookEvent(UploadPostTransformErrorEvent value)
+    {
+        Value = value;
+    }
+
+    UnwrapWebhookEvent(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static UnwrapWebhookEvent CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickVideoTransformationAccepted(
         [NotNullWhen(true)] out VideoTransformationAcceptedEvent? value
     )
     {
-        value = (this as UnwrapWebhookEventVariants::VideoTransformationAcceptedEvent)?.Value;
+        value = this.Value as VideoTransformationAcceptedEvent;
         return value != null;
     }
 
@@ -51,7 +122,7 @@ public abstract record class UnwrapWebhookEvent
         [NotNullWhen(true)] out VideoTransformationReadyEvent? value
     )
     {
-        value = (this as UnwrapWebhookEventVariants::VideoTransformationReadyEvent)?.Value;
+        value = this.Value as VideoTransformationReadyEvent;
         return value != null;
     }
 
@@ -59,7 +130,7 @@ public abstract record class UnwrapWebhookEvent
         [NotNullWhen(true)] out VideoTransformationErrorEvent? value
     )
     {
-        value = (this as UnwrapWebhookEventVariants::VideoTransformationErrorEvent)?.Value;
+        value = this.Value as VideoTransformationErrorEvent;
         return value != null;
     }
 
@@ -67,7 +138,7 @@ public abstract record class UnwrapWebhookEvent
         [NotNullWhen(true)] out UploadPreTransformSuccessEvent? value
     )
     {
-        value = (this as UnwrapWebhookEventVariants::UploadPreTransformSuccessEvent)?.Value;
+        value = this.Value as UploadPreTransformSuccessEvent;
         return value != null;
     }
 
@@ -75,7 +146,7 @@ public abstract record class UnwrapWebhookEvent
         [NotNullWhen(true)] out UploadPreTransformErrorEvent? value
     )
     {
-        value = (this as UnwrapWebhookEventVariants::UploadPreTransformErrorEvent)?.Value;
+        value = this.Value as UploadPreTransformErrorEvent;
         return value != null;
     }
 
@@ -83,7 +154,7 @@ public abstract record class UnwrapWebhookEvent
         [NotNullWhen(true)] out UploadPostTransformSuccessEvent? value
     )
     {
-        value = (this as UnwrapWebhookEventVariants::UploadPostTransformSuccessEvent)?.Value;
+        value = this.Value as UploadPostTransformSuccessEvent;
         return value != null;
     }
 
@@ -91,42 +162,42 @@ public abstract record class UnwrapWebhookEvent
         [NotNullWhen(true)] out UploadPostTransformErrorEvent? value
     )
     {
-        value = (this as UnwrapWebhookEventVariants::UploadPostTransformErrorEvent)?.Value;
+        value = this.Value as UploadPostTransformErrorEvent;
         return value != null;
     }
 
     public void Switch(
-        Action<UnwrapWebhookEventVariants::VideoTransformationAcceptedEvent> videoTransformationAccepted,
-        Action<UnwrapWebhookEventVariants::VideoTransformationReadyEvent> videoTransformationReady,
-        Action<UnwrapWebhookEventVariants::VideoTransformationErrorEvent> videoTransformationError,
-        Action<UnwrapWebhookEventVariants::UploadPreTransformSuccessEvent> uploadPreTransformSuccess,
-        Action<UnwrapWebhookEventVariants::UploadPreTransformErrorEvent> uploadPreTransformError,
-        Action<UnwrapWebhookEventVariants::UploadPostTransformSuccessEvent> uploadPostTransformSuccess,
-        Action<UnwrapWebhookEventVariants::UploadPostTransformErrorEvent> uploadPostTransformError
+        Action<VideoTransformationAcceptedEvent> videoTransformationAccepted,
+        Action<VideoTransformationReadyEvent> videoTransformationReady,
+        Action<VideoTransformationErrorEvent> videoTransformationError,
+        Action<UploadPreTransformSuccessEvent> uploadPreTransformSuccess,
+        Action<UploadPreTransformErrorEvent> uploadPreTransformError,
+        Action<UploadPostTransformSuccessEvent> uploadPostTransformSuccess,
+        Action<UploadPostTransformErrorEvent> uploadPostTransformError
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case UnwrapWebhookEventVariants::VideoTransformationAcceptedEvent inner:
-                videoTransformationAccepted(inner);
+            case VideoTransformationAcceptedEvent value:
+                videoTransformationAccepted(value);
                 break;
-            case UnwrapWebhookEventVariants::VideoTransformationReadyEvent inner:
-                videoTransformationReady(inner);
+            case VideoTransformationReadyEvent value:
+                videoTransformationReady(value);
                 break;
-            case UnwrapWebhookEventVariants::VideoTransformationErrorEvent inner:
-                videoTransformationError(inner);
+            case VideoTransformationErrorEvent value:
+                videoTransformationError(value);
                 break;
-            case UnwrapWebhookEventVariants::UploadPreTransformSuccessEvent inner:
-                uploadPreTransformSuccess(inner);
+            case UploadPreTransformSuccessEvent value:
+                uploadPreTransformSuccess(value);
                 break;
-            case UnwrapWebhookEventVariants::UploadPreTransformErrorEvent inner:
-                uploadPreTransformError(inner);
+            case UploadPreTransformErrorEvent value:
+                uploadPreTransformError(value);
                 break;
-            case UnwrapWebhookEventVariants::UploadPostTransformSuccessEvent inner:
-                uploadPostTransformSuccess(inner);
+            case UploadPostTransformSuccessEvent value:
+                uploadPostTransformSuccess(value);
                 break;
-            case UnwrapWebhookEventVariants::UploadPostTransformErrorEvent inner:
-                uploadPostTransformError(inner);
+            case UploadPostTransformErrorEvent value:
+                uploadPostTransformError(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
@@ -136,47 +207,41 @@ public abstract record class UnwrapWebhookEvent
     }
 
     public T Match<T>(
-        Func<
-            UnwrapWebhookEventVariants::VideoTransformationAcceptedEvent,
-            T
-        > videoTransformationAccepted,
-        Func<UnwrapWebhookEventVariants::VideoTransformationReadyEvent, T> videoTransformationReady,
-        Func<UnwrapWebhookEventVariants::VideoTransformationErrorEvent, T> videoTransformationError,
-        Func<
-            UnwrapWebhookEventVariants::UploadPreTransformSuccessEvent,
-            T
-        > uploadPreTransformSuccess,
-        Func<UnwrapWebhookEventVariants::UploadPreTransformErrorEvent, T> uploadPreTransformError,
-        Func<
-            UnwrapWebhookEventVariants::UploadPostTransformSuccessEvent,
-            T
-        > uploadPostTransformSuccess,
-        Func<UnwrapWebhookEventVariants::UploadPostTransformErrorEvent, T> uploadPostTransformError
+        Func<VideoTransformationAcceptedEvent, T> videoTransformationAccepted,
+        Func<VideoTransformationReadyEvent, T> videoTransformationReady,
+        Func<VideoTransformationErrorEvent, T> videoTransformationError,
+        Func<UploadPreTransformSuccessEvent, T> uploadPreTransformSuccess,
+        Func<UploadPreTransformErrorEvent, T> uploadPreTransformError,
+        Func<UploadPostTransformSuccessEvent, T> uploadPostTransformSuccess,
+        Func<UploadPostTransformErrorEvent, T> uploadPostTransformError
     )
     {
-        return this switch
+        return this.Value switch
         {
-            UnwrapWebhookEventVariants::VideoTransformationAcceptedEvent inner =>
-                videoTransformationAccepted(inner),
-            UnwrapWebhookEventVariants::VideoTransformationReadyEvent inner =>
-                videoTransformationReady(inner),
-            UnwrapWebhookEventVariants::VideoTransformationErrorEvent inner =>
-                videoTransformationError(inner),
-            UnwrapWebhookEventVariants::UploadPreTransformSuccessEvent inner =>
-                uploadPreTransformSuccess(inner),
-            UnwrapWebhookEventVariants::UploadPreTransformErrorEvent inner =>
-                uploadPreTransformError(inner),
-            UnwrapWebhookEventVariants::UploadPostTransformSuccessEvent inner =>
-                uploadPostTransformSuccess(inner),
-            UnwrapWebhookEventVariants::UploadPostTransformErrorEvent inner =>
-                uploadPostTransformError(inner),
+            VideoTransformationAcceptedEvent value => videoTransformationAccepted(value),
+            VideoTransformationReadyEvent value => videoTransformationReady(value),
+            VideoTransformationErrorEvent value => videoTransformationError(value),
+            UploadPreTransformSuccessEvent value => uploadPreTransformSuccess(value),
+            UploadPreTransformErrorEvent value => uploadPreTransformError(value),
+            UploadPostTransformSuccessEvent value => uploadPostTransformSuccess(value),
+            UploadPostTransformErrorEvent value => uploadPostTransformError(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of UnwrapWebhookEvent"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnwrapWebhookEvent"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
@@ -197,16 +262,15 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
             );
             if (deserialized != null)
             {
-                return new UnwrapWebhookEventVariants::VideoTransformationAcceptedEvent(
-                    deserialized
-                );
+                deserialized.Validate();
+                return new UnwrapWebhookEvent(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
                 new ImageKitInvalidDataException(
-                    "Data does not match union variant UnwrapWebhookEventVariants::VideoTransformationAcceptedEvent",
+                    "Data does not match union variant 'VideoTransformationAcceptedEvent'",
                     e
                 )
             );
@@ -220,14 +284,15 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
             );
             if (deserialized != null)
             {
-                return new UnwrapWebhookEventVariants::VideoTransformationReadyEvent(deserialized);
+                deserialized.Validate();
+                return new UnwrapWebhookEvent(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
                 new ImageKitInvalidDataException(
-                    "Data does not match union variant UnwrapWebhookEventVariants::VideoTransformationReadyEvent",
+                    "Data does not match union variant 'VideoTransformationReadyEvent'",
                     e
                 )
             );
@@ -241,14 +306,15 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
             );
             if (deserialized != null)
             {
-                return new UnwrapWebhookEventVariants::VideoTransformationErrorEvent(deserialized);
+                deserialized.Validate();
+                return new UnwrapWebhookEvent(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
                 new ImageKitInvalidDataException(
-                    "Data does not match union variant UnwrapWebhookEventVariants::VideoTransformationErrorEvent",
+                    "Data does not match union variant 'VideoTransformationErrorEvent'",
                     e
                 )
             );
@@ -262,14 +328,15 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
             );
             if (deserialized != null)
             {
-                return new UnwrapWebhookEventVariants::UploadPreTransformSuccessEvent(deserialized);
+                deserialized.Validate();
+                return new UnwrapWebhookEvent(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
                 new ImageKitInvalidDataException(
-                    "Data does not match union variant UnwrapWebhookEventVariants::UploadPreTransformSuccessEvent",
+                    "Data does not match union variant 'UploadPreTransformSuccessEvent'",
                     e
                 )
             );
@@ -283,14 +350,15 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
             );
             if (deserialized != null)
             {
-                return new UnwrapWebhookEventVariants::UploadPreTransformErrorEvent(deserialized);
+                deserialized.Validate();
+                return new UnwrapWebhookEvent(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
                 new ImageKitInvalidDataException(
-                    "Data does not match union variant UnwrapWebhookEventVariants::UploadPreTransformErrorEvent",
+                    "Data does not match union variant 'UploadPreTransformErrorEvent'",
                     e
                 )
             );
@@ -304,16 +372,15 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
             );
             if (deserialized != null)
             {
-                return new UnwrapWebhookEventVariants::UploadPostTransformSuccessEvent(
-                    deserialized
-                );
+                deserialized.Validate();
+                return new UnwrapWebhookEvent(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
                 new ImageKitInvalidDataException(
-                    "Data does not match union variant UnwrapWebhookEventVariants::UploadPostTransformSuccessEvent",
+                    "Data does not match union variant 'UploadPostTransformSuccessEvent'",
                     e
                 )
             );
@@ -327,14 +394,15 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
             );
             if (deserialized != null)
             {
-                return new UnwrapWebhookEventVariants::UploadPostTransformErrorEvent(deserialized);
+                deserialized.Validate();
+                return new UnwrapWebhookEvent(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
                 new ImageKitInvalidDataException(
-                    "Data does not match union variant UnwrapWebhookEventVariants::UploadPostTransformErrorEvent",
+                    "Data does not match union variant 'UploadPostTransformErrorEvent'",
                     e
                 )
             );
@@ -349,32 +417,7 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            UnwrapWebhookEventVariants::VideoTransformationAcceptedEvent(
-                var videoTransformationAccepted
-            ) => videoTransformationAccepted,
-            UnwrapWebhookEventVariants::VideoTransformationReadyEvent(
-                var videoTransformationReady
-            ) => videoTransformationReady,
-            UnwrapWebhookEventVariants::VideoTransformationErrorEvent(
-                var videoTransformationError
-            ) => videoTransformationError,
-            UnwrapWebhookEventVariants::UploadPreTransformSuccessEvent(
-                var uploadPreTransformSuccess
-            ) => uploadPreTransformSuccess,
-            UnwrapWebhookEventVariants::UploadPreTransformErrorEvent(var uploadPreTransformError) =>
-                uploadPreTransformError,
-            UnwrapWebhookEventVariants::UploadPostTransformSuccessEvent(
-                var uploadPostTransformSuccess
-            ) => uploadPostTransformSuccess,
-            UnwrapWebhookEventVariants::UploadPostTransformErrorEvent(
-                var uploadPostTransformError
-            ) => uploadPostTransformError,
-            _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnwrapWebhookEvent"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

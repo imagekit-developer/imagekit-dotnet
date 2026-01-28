@@ -12,14 +12,21 @@ public sealed record class GifToVideo : ModelBase, IFromRaw<GifToVideo>
     /// <summary>
     /// Converts an animated GIF into an MP4.
     /// </summary>
-    public JsonElement Type
+    public GifToVideoProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<GifToVideoProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -54,12 +61,13 @@ public sealed record class GifToVideo : ModelBase, IFromRaw<GifToVideo>
 
     public override void Validate()
     {
+        this.Type.Validate();
         _ = this.Value;
     }
 
     public GifToVideo()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"gif-to-video\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

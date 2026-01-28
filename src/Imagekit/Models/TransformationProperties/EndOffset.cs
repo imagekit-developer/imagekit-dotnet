@@ -13,50 +13,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// are supported. See [Trim videos – End offset](https://imagekit.io/docs/trim-videos#end-offset---eo).
 /// </summary>
 [JsonConverter(typeof(EndOffsetConverter))]
-public abstract record class EndOffset
+public record class EndOffset
 {
-    internal EndOffset() { }
+    public object Value { get; private init; }
 
-    public static implicit operator EndOffset(double value) => new EndOffsetVariants::Double(value);
+    public EndOffset(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator EndOffset(string value) => new EndOffsetVariants::String(value);
+    public EndOffset(string value)
+    {
+        Value = value;
+    }
+
+    EndOffset(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static EndOffset CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as EndOffsetVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as EndOffsetVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<EndOffsetVariants::Double> @double,
-        Action<EndOffsetVariants::String> @string
-    )
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case EndOffsetVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case EndOffsetVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<EndOffsetVariants::Double, T> @double,
-        Func<EndOffsetVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             EndOffsetVariants::Double inner => @double(inner),
             EndOffsetVariants::String inner => @string(inner),
@@ -64,7 +74,15 @@ public abstract record class EndOffset
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of EndOffset");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class EndOffsetConverter : JsonConverter<EndOffset>
@@ -79,11 +97,9 @@ sealed class EndOffsetConverter : JsonConverter<EndOffset>
 
         try
         {
-            return new EndOffsetVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new EndOffset(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -93,10 +109,10 @@ sealed class EndOffsetConverter : JsonConverter<EndOffset>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new EndOffsetVariants::String(deserialized);
+                return new EndOffset(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

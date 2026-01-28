@@ -13,14 +13,14 @@ public sealed record class Abs : ModelBase, IFromRaw<Abs>
     /// <summary>
     /// Streaming protocol to use (`hls` or `dash`).
     /// </summary>
-    public required ApiEnum<string, Protocol> Protocol
+    public required ApiEnum<string, AbsProperties::Protocol> Protocol
     {
         get
         {
             if (!this.Properties.TryGetValue("protocol", out JsonElement element))
                 throw new ArgumentOutOfRangeException("protocol", "Missing required argument");
 
-            return JsonSerializer.Deserialize<ApiEnum<string, Protocol>>(
+            return JsonSerializer.Deserialize<ApiEnum<string, AbsProperties::Protocol>>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -37,14 +37,21 @@ public sealed record class Abs : ModelBase, IFromRaw<Abs>
     /// <summary>
     /// Adaptive Bitrate Streaming (ABS) setup.
     /// </summary>
-    public JsonElement Type
+    public AbsProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AbsProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -80,12 +87,13 @@ public sealed record class Abs : ModelBase, IFromRaw<Abs>
     public override void Validate()
     {
         this.Protocol.Validate();
+        this.Type.Validate();
         _ = this.Value;
     }
 
     public Abs()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"abs\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

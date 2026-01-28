@@ -12,14 +12,21 @@ public sealed record class Thumbnail : ModelBase, IFromRaw<Thumbnail>
     /// <summary>
     /// Generates a thumbnail image.
     /// </summary>
-    public JsonElement Type
+    public ThumbnailProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<ThumbnailProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -53,12 +60,13 @@ public sealed record class Thumbnail : ModelBase, IFromRaw<Thumbnail>
 
     public override void Validate()
     {
+        this.Type.Validate();
         _ = this.Value;
     }
 
     public Thumbnail()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"thumbnail\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

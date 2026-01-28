@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Models.Accounts.Origins.OriginResponseProperties;
-using OriginResponseVariants = Imagekit.Models.Accounts.Origins.OriginResponseVariants;
 
 namespace Imagekit.Models.Accounts.Origins;
 
@@ -12,118 +11,263 @@ namespace Imagekit.Models.Accounts.Origins;
 /// Origin object as returned by the API (sensitive fields removed).
 /// </summary>
 [JsonConverter(typeof(OriginResponseConverter))]
-public abstract record class OriginResponse
+public record class OriginResponse
 {
-    internal OriginResponse() { }
+    public object Value { get; private init; }
 
-    public static implicit operator OriginResponse(S3 value) =>
-        new OriginResponseVariants::S3(value);
+    public string ID
+    {
+        get
+        {
+            return Match(
+                s3: (x) => x.ID,
+                s3Compatible: (x) => x.ID,
+                cloudinaryBackup: (x) => x.ID,
+                webFolder: (x) => x.ID,
+                webProxy: (x) => x.ID,
+                gcs: (x) => x.ID,
+                azureBlob: (x) => x.ID,
+                akeneoPim: (x) => x.ID
+            );
+        }
+    }
 
-    public static implicit operator OriginResponse(S3Compatible value) =>
-        new OriginResponseVariants::S3Compatible(value);
+    public string? Bucket
+    {
+        get
+        {
+            return Match<string?>(
+                s3: (x) => x.Bucket,
+                s3Compatible: (x) => x.Bucket,
+                cloudinaryBackup: (x) => x.Bucket,
+                webFolder: (_) => null,
+                webProxy: (_) => null,
+                gcs: (x) => x.Bucket,
+                azureBlob: (_) => null,
+                akeneoPim: (_) => null
+            );
+        }
+    }
 
-    public static implicit operator OriginResponse(CloudinaryBackup value) =>
-        new OriginResponseVariants::CloudinaryBackup(value);
+    public bool IncludeCanonicalHeader
+    {
+        get
+        {
+            return Match(
+                s3: (x) => x.IncludeCanonicalHeader,
+                s3Compatible: (x) => x.IncludeCanonicalHeader,
+                cloudinaryBackup: (x) => x.IncludeCanonicalHeader,
+                webFolder: (x) => x.IncludeCanonicalHeader,
+                webProxy: (x) => x.IncludeCanonicalHeader,
+                gcs: (x) => x.IncludeCanonicalHeader,
+                azureBlob: (x) => x.IncludeCanonicalHeader,
+                akeneoPim: (x) => x.IncludeCanonicalHeader
+            );
+        }
+    }
 
-    public static implicit operator OriginResponse(WebFolder value) =>
-        new OriginResponseVariants::WebFolder(value);
+    public string Name
+    {
+        get
+        {
+            return Match(
+                s3: (x) => x.Name,
+                s3Compatible: (x) => x.Name,
+                cloudinaryBackup: (x) => x.Name,
+                webFolder: (x) => x.Name,
+                webProxy: (x) => x.Name,
+                gcs: (x) => x.Name,
+                azureBlob: (x) => x.Name,
+                akeneoPim: (x) => x.Name
+            );
+        }
+    }
 
-    public static implicit operator OriginResponse(WebProxy value) =>
-        new OriginResponseVariants::WebProxy(value);
+    public string? Prefix
+    {
+        get
+        {
+            return Match<string?>(
+                s3: (x) => x.Prefix,
+                s3Compatible: (x) => x.Prefix,
+                cloudinaryBackup: (x) => x.Prefix,
+                webFolder: (_) => null,
+                webProxy: (_) => null,
+                gcs: (x) => x.Prefix,
+                azureBlob: (x) => x.Prefix,
+                akeneoPim: (_) => null
+            );
+        }
+    }
 
-    public static implicit operator OriginResponse(Gcs value) =>
-        new OriginResponseVariants::Gcs(value);
+    public string? BaseURLForCanonicalHeader
+    {
+        get
+        {
+            return Match<string?>(
+                s3: (x) => x.BaseURLForCanonicalHeader,
+                s3Compatible: (x) => x.BaseURLForCanonicalHeader,
+                cloudinaryBackup: (x) => x.BaseURLForCanonicalHeader,
+                webFolder: (x) => x.BaseURLForCanonicalHeader,
+                webProxy: (x) => x.BaseURLForCanonicalHeader,
+                gcs: (x) => x.BaseURLForCanonicalHeader,
+                azureBlob: (x) => x.BaseURLForCanonicalHeader,
+                akeneoPim: (x) => x.BaseURLForCanonicalHeader
+            );
+        }
+    }
 
-    public static implicit operator OriginResponse(AzureBlob value) =>
-        new OriginResponseVariants::AzureBlob(value);
+    public string? BaseURL
+    {
+        get
+        {
+            return Match<string?>(
+                s3: (_) => null,
+                s3Compatible: (_) => null,
+                cloudinaryBackup: (_) => null,
+                webFolder: (x) => x.BaseURL,
+                webProxy: (_) => null,
+                gcs: (_) => null,
+                azureBlob: (_) => null,
+                akeneoPim: (x) => x.BaseURL
+            );
+        }
+    }
 
-    public static implicit operator OriginResponse(AkeneoPim value) =>
-        new OriginResponseVariants::AkeneoPim(value);
+    public OriginResponse(S3 value)
+    {
+        Value = value;
+    }
+
+    public OriginResponse(S3Compatible value)
+    {
+        Value = value;
+    }
+
+    public OriginResponse(CloudinaryBackup value)
+    {
+        Value = value;
+    }
+
+    public OriginResponse(WebFolder value)
+    {
+        Value = value;
+    }
+
+    public OriginResponse(WebProxy value)
+    {
+        Value = value;
+    }
+
+    public OriginResponse(Gcs value)
+    {
+        Value = value;
+    }
+
+    public OriginResponse(AzureBlob value)
+    {
+        Value = value;
+    }
+
+    public OriginResponse(AkeneoPim value)
+    {
+        Value = value;
+    }
+
+    OriginResponse(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static OriginResponse CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickS3([NotNullWhen(true)] out S3? value)
     {
-        value = (this as OriginResponseVariants::S3)?.Value;
+        value = this.Value as S3;
         return value != null;
     }
 
     public bool TryPickS3Compatible([NotNullWhen(true)] out S3Compatible? value)
     {
-        value = (this as OriginResponseVariants::S3Compatible)?.Value;
+        value = this.Value as S3Compatible;
         return value != null;
     }
 
     public bool TryPickCloudinaryBackup([NotNullWhen(true)] out CloudinaryBackup? value)
     {
-        value = (this as OriginResponseVariants::CloudinaryBackup)?.Value;
+        value = this.Value as CloudinaryBackup;
         return value != null;
     }
 
     public bool TryPickWebFolder([NotNullWhen(true)] out WebFolder? value)
     {
-        value = (this as OriginResponseVariants::WebFolder)?.Value;
+        value = this.Value as WebFolder;
         return value != null;
     }
 
     public bool TryPickWebProxy([NotNullWhen(true)] out WebProxy? value)
     {
-        value = (this as OriginResponseVariants::WebProxy)?.Value;
+        value = this.Value as WebProxy;
         return value != null;
     }
 
     public bool TryPickGcs([NotNullWhen(true)] out Gcs? value)
     {
-        value = (this as OriginResponseVariants::Gcs)?.Value;
+        value = this.Value as Gcs;
         return value != null;
     }
 
     public bool TryPickAzureBlob([NotNullWhen(true)] out AzureBlob? value)
     {
-        value = (this as OriginResponseVariants::AzureBlob)?.Value;
+        value = this.Value as AzureBlob;
         return value != null;
     }
 
     public bool TryPickAkeneoPim([NotNullWhen(true)] out AkeneoPim? value)
     {
-        value = (this as OriginResponseVariants::AkeneoPim)?.Value;
+        value = this.Value as AkeneoPim;
         return value != null;
     }
 
     public void Switch(
-        Action<OriginResponseVariants::S3> s3,
-        Action<OriginResponseVariants::S3Compatible> s3Compatible,
-        Action<OriginResponseVariants::CloudinaryBackup> cloudinaryBackup,
-        Action<OriginResponseVariants::WebFolder> webFolder,
-        Action<OriginResponseVariants::WebProxy> webProxy,
-        Action<OriginResponseVariants::Gcs> gcs,
-        Action<OriginResponseVariants::AzureBlob> azureBlob,
-        Action<OriginResponseVariants::AkeneoPim> akeneoPim
+        Action<S3> s3,
+        Action<S3Compatible> s3Compatible,
+        Action<CloudinaryBackup> cloudinaryBackup,
+        Action<WebFolder> webFolder,
+        Action<WebProxy> webProxy,
+        Action<Gcs> gcs,
+        Action<AzureBlob> azureBlob,
+        Action<AkeneoPim> akeneoPim
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case OriginResponseVariants::S3 inner:
-                s3(inner);
+            case S3 value:
+                s3(value);
                 break;
-            case OriginResponseVariants::S3Compatible inner:
-                s3Compatible(inner);
+            case S3Compatible value:
+                s3Compatible(value);
                 break;
-            case OriginResponseVariants::CloudinaryBackup inner:
-                cloudinaryBackup(inner);
+            case CloudinaryBackup value:
+                cloudinaryBackup(value);
                 break;
-            case OriginResponseVariants::WebFolder inner:
-                webFolder(inner);
+            case WebFolder value:
+                webFolder(value);
                 break;
-            case OriginResponseVariants::WebProxy inner:
-                webProxy(inner);
+            case WebProxy value:
+                webProxy(value);
                 break;
-            case OriginResponseVariants::Gcs inner:
-                gcs(inner);
+            case Gcs value:
+                gcs(value);
                 break;
-            case OriginResponseVariants::AzureBlob inner:
-                azureBlob(inner);
+            case AzureBlob value:
+                azureBlob(value);
                 break;
-            case OriginResponseVariants::AkeneoPim inner:
-                akeneoPim(inner);
+            case AkeneoPim value:
+                akeneoPim(value);
                 break;
             default:
                 throw new InvalidOperationException();
@@ -131,17 +275,17 @@ public abstract record class OriginResponse
     }
 
     public T Match<T>(
-        Func<OriginResponseVariants::S3, T> s3,
-        Func<OriginResponseVariants::S3Compatible, T> s3Compatible,
-        Func<OriginResponseVariants::CloudinaryBackup, T> cloudinaryBackup,
-        Func<OriginResponseVariants::WebFolder, T> webFolder,
-        Func<OriginResponseVariants::WebProxy, T> webProxy,
-        Func<OriginResponseVariants::Gcs, T> gcs,
-        Func<OriginResponseVariants::AzureBlob, T> azureBlob,
-        Func<OriginResponseVariants::AkeneoPim, T> akeneoPim
+        Func<S3, T> s3,
+        Func<S3Compatible, T> s3Compatible,
+        Func<CloudinaryBackup, T> cloudinaryBackup,
+        Func<WebFolder, T> webFolder,
+        Func<WebProxy, T> webProxy,
+        Func<Gcs, T> gcs,
+        Func<AzureBlob, T> azureBlob,
+        Func<AkeneoPim, T> akeneoPim
     )
     {
-        return this switch
+        return this.Value switch
         {
             OriginResponseVariants::S3 inner => s3(inner),
             OriginResponseVariants::S3Compatible inner => s3Compatible(inner),
@@ -155,7 +299,17 @@ public abstract record class OriginResponse
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of OriginResponse"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class OriginResponseConverter : JsonConverter<OriginResponse>
@@ -188,10 +342,11 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     var deserialized = JsonSerializer.Deserialize<S3>(json, options);
                     if (deserialized != null)
                     {
-                        return new OriginResponseVariants::S3(deserialized);
+                        deserialized.Validate();
+                        return new OriginResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -207,10 +362,11 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     var deserialized = JsonSerializer.Deserialize<S3Compatible>(json, options);
                     if (deserialized != null)
                     {
-                        return new OriginResponseVariants::S3Compatible(deserialized);
+                        deserialized.Validate();
+                        return new OriginResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -226,10 +382,11 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     var deserialized = JsonSerializer.Deserialize<CloudinaryBackup>(json, options);
                     if (deserialized != null)
                     {
-                        return new OriginResponseVariants::CloudinaryBackup(deserialized);
+                        deserialized.Validate();
+                        return new OriginResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -245,10 +402,11 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     var deserialized = JsonSerializer.Deserialize<WebFolder>(json, options);
                     if (deserialized != null)
                     {
-                        return new OriginResponseVariants::WebFolder(deserialized);
+                        deserialized.Validate();
+                        return new OriginResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -264,10 +422,11 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     var deserialized = JsonSerializer.Deserialize<WebProxy>(json, options);
                     if (deserialized != null)
                     {
-                        return new OriginResponseVariants::WebProxy(deserialized);
+                        deserialized.Validate();
+                        return new OriginResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -283,10 +442,11 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     var deserialized = JsonSerializer.Deserialize<Gcs>(json, options);
                     if (deserialized != null)
                     {
-                        return new OriginResponseVariants::Gcs(deserialized);
+                        deserialized.Validate();
+                        return new OriginResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -302,10 +462,11 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     var deserialized = JsonSerializer.Deserialize<AzureBlob>(json, options);
                     if (deserialized != null)
                     {
-                        return new OriginResponseVariants::AzureBlob(deserialized);
+                        deserialized.Validate();
+                        return new OriginResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -321,10 +482,11 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     var deserialized = JsonSerializer.Deserialize<AkeneoPim>(json, options);
                     if (deserialized != null)
                     {
-                        return new OriginResponseVariants::AkeneoPim(deserialized);
+                        deserialized.Validate();
+                        return new OriginResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }

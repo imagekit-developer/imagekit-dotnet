@@ -120,7 +120,7 @@ public sealed record class IntersectionMember1 : ModelBase, IFromRaw<Intersectio
 
     public IntersectionMember1()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"upload.pre-transform.error\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

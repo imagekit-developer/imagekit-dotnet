@@ -157,7 +157,7 @@ public sealed record class SubtitleOverlay : ModelBase, IFromRaw<SubtitleOverlay
 
     public SubtitleOverlay()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"subtitle\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

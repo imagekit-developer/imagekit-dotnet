@@ -13,14 +13,18 @@ public sealed record class RemoveBg : ModelBase, IFromRaw<RemoveBg>
     /// <summary>
     /// Specifies the background removal extension.
     /// </summary>
-    public JsonElement Name
+    public Name Name
     {
         get
         {
             if (!this.Properties.TryGetValue("name", out JsonElement element))
                 throw new ArgumentOutOfRangeException("name", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<Name>(element, ModelBase.SerializerOptions)
+                ?? throw new ImageKitInvalidDataException(
+                    "'name' cannot be null",
+                    new ArgumentNullException("name")
+                );
         }
         set
         {
@@ -51,12 +55,13 @@ public sealed record class RemoveBg : ModelBase, IFromRaw<RemoveBg>
 
     public override void Validate()
     {
+        this.Name.Validate();
         this.Options?.Validate();
     }
 
     public RemoveBg()
     {
-        this.Name = JsonSerializer.Deserialize<JsonElement>("\"remove-bg\"");
+        this.Name = new();
     }
 
 #pragma warning disable CS8618

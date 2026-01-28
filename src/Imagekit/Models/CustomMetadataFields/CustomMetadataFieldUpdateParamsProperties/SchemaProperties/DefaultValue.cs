@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Models.CustomMetadataFields.CustomMetadataFieldUpdateParamsProperties.SchemaProperties.DefaultValueProperties;
-using DefaultValueVariants = Imagekit.Models.CustomMetadataFields.CustomMetadataFieldUpdateParamsProperties.SchemaProperties.DefaultValueVariants;
 
 namespace Imagekit.Models.CustomMetadataFields.CustomMetadataFieldUpdateParamsProperties.SchemaProperties;
 
@@ -14,66 +13,72 @@ namespace Imagekit.Models.CustomMetadataFields.CustomMetadataFieldUpdateParamsPr
 /// of custom metadata field.
 /// </summary>
 [JsonConverter(typeof(DefaultValueConverter))]
-public abstract record class DefaultValue
+public record class DefaultValue
 {
-    internal DefaultValue() { }
+    public object Value { get; private init; }
 
-    public static implicit operator DefaultValue(string value) =>
-        new DefaultValueVariants::String(value);
+    public DefaultValue(string value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator DefaultValue(double value) =>
-        new DefaultValueVariants::Double(value);
+    public DefaultValue(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator DefaultValue(bool value) =>
-        new DefaultValueVariants::Bool(value);
+    public DefaultValue(bool value)
+    {
+        Value = value;
+    }
 
     public static implicit operator DefaultValue(List<UnnamedSchemaWithArrayParent2> value) =>
         new DefaultValueVariants::Mixed(value);
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as DefaultValueVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as DefaultValueVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickBool([NotNullWhen(true)] out bool? value)
     {
-        value = (this as DefaultValueVariants::Bool)?.Value;
+        value = this.Value as bool?;
         return value != null;
     }
 
     public bool TryPickMixed([NotNullWhen(true)] out List<UnnamedSchemaWithArrayParent2>? value)
     {
-        value = (this as DefaultValueVariants::Mixed)?.Value;
+        value = this.Value as List<UnnamedSchemaWithArrayParent3>;
         return value != null;
     }
 
     public void Switch(
-        Action<DefaultValueVariants::String> @string,
-        Action<DefaultValueVariants::Double> @double,
-        Action<DefaultValueVariants::Bool> @bool,
-        Action<DefaultValueVariants::Mixed> mixed
+        Action<string> @string,
+        Action<double> @double,
+        Action<bool> @bool,
+        Action<List<UnnamedSchemaWithArrayParent3>> mixed
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case DefaultValueVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
-            case DefaultValueVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case DefaultValueVariants::Bool inner:
-                @bool(inner);
+            case bool value:
+                @bool(value);
                 break;
-            case DefaultValueVariants::Mixed inner:
-                mixed(inner);
+            case List<UnnamedSchemaWithArrayParent3> value:
+                mixed(value);
                 break;
             default:
                 throw new InvalidOperationException();
@@ -81,13 +86,13 @@ public abstract record class DefaultValue
     }
 
     public T Match<T>(
-        Func<DefaultValueVariants::String, T> @string,
-        Func<DefaultValueVariants::Double, T> @double,
-        Func<DefaultValueVariants::Bool, T> @bool,
-        Func<DefaultValueVariants::Mixed, T> mixed
+        Func<string, T> @string,
+        Func<double, T> @double,
+        Func<bool, T> @bool,
+        Func<List<UnnamedSchemaWithArrayParent3>, T> mixed
     )
     {
-        return this switch
+        return this.Value switch
         {
             DefaultValueVariants::String inner => @string(inner),
             DefaultValueVariants::Double inner => @double(inner),
@@ -97,7 +102,17 @@ public abstract record class DefaultValue
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of DefaultValue"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DefaultValueConverter : JsonConverter<DefaultValue>
@@ -115,32 +130,28 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new DefaultValueVariants::String(deserialized);
+                return new DefaultValue(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new DefaultValueVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new DefaultValue(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new DefaultValueVariants::Bool(
-                JsonSerializer.Deserialize<bool>(ref reader, options)
-            );
+            return new DefaultValue(JsonSerializer.Deserialize<bool>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -153,10 +164,10 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
             );
             if (deserialized != null)
             {
-                return new DefaultValueVariants::Mixed(deserialized);
+                return new DefaultValue(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

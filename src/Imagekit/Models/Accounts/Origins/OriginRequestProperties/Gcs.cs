@@ -88,14 +88,21 @@ public sealed record class Gcs : ModelBase, IFromRaw<Gcs>
         }
     }
 
-    public JsonElement Type
+    public GcsProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<GcsProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -172,6 +179,7 @@ public sealed record class Gcs : ModelBase, IFromRaw<Gcs>
         _ = this.ClientEmail;
         _ = this.Name;
         _ = this.PrivateKey;
+        this.Type.Validate();
         _ = this.BaseURLForCanonicalHeader;
         _ = this.IncludeCanonicalHeader;
         _ = this.Prefix;
@@ -179,7 +187,7 @@ public sealed record class Gcs : ModelBase, IFromRaw<Gcs>
 
     public Gcs()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"GCS\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

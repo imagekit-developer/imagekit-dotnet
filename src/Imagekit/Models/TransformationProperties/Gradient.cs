@@ -12,48 +12,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// or provide a string for a custom gradient. See [Gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
 /// </summary>
 [JsonConverter(typeof(GradientConverter))]
-public abstract record class Gradient
+public record class Gradient
 {
-    internal Gradient() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Gradient(string value) => new GradientVariants::String(value);
-
-    public bool TryPickTrue([NotNullWhen(true)] out JsonElement? value)
+    public Gradient(UnionMember0 value)
     {
-        value = (this as GradientVariants::True)?.Value;
+        Value = value;
+    }
+
+    public Gradient(string value)
+    {
+        Value = value;
+    }
+
+    Gradient(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Gradient CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickTrue([NotNullWhen(true)] out UnionMember0? value)
+    {
+        value = this.Value as UnionMember0;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as GradientVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<GradientVariants::True> true1,
-        Action<GradientVariants::String> @string
-    )
+    public void Switch(Action<UnionMember0> true1, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case GradientVariants::True inner:
-                true1(inner);
+            case UnionMember0 value:
+                true1(value);
                 break;
-            case GradientVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<GradientVariants::True, T> true1,
-        Func<GradientVariants::String, T> @string
-    )
+    public T Match<T>(Func<UnionMember0, T> true1, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             GradientVariants::True inner => true1(inner),
             GradientVariants::String inner => @string(inner),
@@ -61,7 +73,15 @@ public abstract record class Gradient
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Gradient");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class GradientConverter : JsonConverter<Gradient>
@@ -76,11 +96,14 @@ sealed class GradientConverter : JsonConverter<Gradient>
 
         try
         {
-            return new GradientVariants::True(
-                JsonSerializer.Deserialize<JsonElement>(ref reader, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<UnionMember0>(ref reader, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new Gradient(deserialized);
+            }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -90,10 +113,10 @@ sealed class GradientConverter : JsonConverter<Gradient>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new GradientVariants::String(deserialized);
+                return new Gradient(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

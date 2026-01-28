@@ -45,7 +45,7 @@ public abstract record class UnnamedSchemaWithArrayParent2
         Action<UnnamedSchemaWithArrayParent2Variants::Bool> @bool
     )
     {
-        switch (this)
+        switch (this.Value)
         {
             case UnnamedSchemaWithArrayParent2Variants::String inner:
                 @string(inner);
@@ -67,7 +67,7 @@ public abstract record class UnnamedSchemaWithArrayParent2
         Func<UnnamedSchemaWithArrayParent2Variants::Bool, T> @bool
     )
     {
-        return this switch
+        return this.Value switch
         {
             UnnamedSchemaWithArrayParent2Variants::String inner => @string(inner),
             UnnamedSchemaWithArrayParent2Variants::Double inner => @double(inner),
@@ -76,7 +76,17 @@ public abstract record class UnnamedSchemaWithArrayParent2
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnnamedSchemaWithArrayParent3"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class UnnamedSchemaWithArrayParent2Converter : JsonConverter<UnnamedSchemaWithArrayParent2>
@@ -97,7 +107,7 @@ sealed class UnnamedSchemaWithArrayParent2Converter : JsonConverter<UnnamedSchem
                 return new UnnamedSchemaWithArrayParent2Variants::String(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -108,7 +118,7 @@ sealed class UnnamedSchemaWithArrayParent2Converter : JsonConverter<UnnamedSchem
                 JsonSerializer.Deserialize<double>(ref reader, options)
             );
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -119,7 +129,7 @@ sealed class UnnamedSchemaWithArrayParent2Converter : JsonConverter<UnnamedSchem
                 JsonSerializer.Deserialize<bool>(ref reader, options)
             );
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

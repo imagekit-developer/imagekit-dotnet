@@ -122,14 +122,21 @@ public sealed record class CloudinaryBackup : ModelBase, IFromRaw<CloudinaryBack
         }
     }
 
-    public JsonElement Type
+    public CloudinaryBackupProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<CloudinaryBackupProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -168,12 +175,13 @@ public sealed record class CloudinaryBackup : ModelBase, IFromRaw<CloudinaryBack
         _ = this.IncludeCanonicalHeader;
         _ = this.Name;
         _ = this.Prefix;
+        this.Type.Validate();
         _ = this.BaseURLForCanonicalHeader;
     }
 
     public CloudinaryBackup()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"CLOUDINARY_BACKUP\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

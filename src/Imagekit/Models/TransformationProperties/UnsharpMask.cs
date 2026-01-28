@@ -13,49 +13,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// Mask](https://imagekit.io/docs/effects-and-enhancements#unsharp-mask---e-usm).
 /// </summary>
 [JsonConverter(typeof(UnsharpMaskConverter))]
-public abstract record class UnsharpMask
+public record class UnsharpMask
 {
-    internal UnsharpMask() { }
+    public object Value { get; private init; }
 
-    public static implicit operator UnsharpMask(string value) =>
-        new UnsharpMaskVariants::String(value);
-
-    public bool TryPickTrue([NotNullWhen(true)] out JsonElement? value)
+    public UnsharpMask(UnionMember0 value)
     {
-        value = (this as UnsharpMaskVariants::True)?.Value;
+        Value = value;
+    }
+
+    public UnsharpMask(string value)
+    {
+        Value = value;
+    }
+
+    UnsharpMask(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static UnsharpMask CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickTrue([NotNullWhen(true)] out UnionMember0? value)
+    {
+        value = this.Value as UnionMember0;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as UnsharpMaskVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<UnsharpMaskVariants::True> true1,
-        Action<UnsharpMaskVariants::String> @string
-    )
+    public void Switch(Action<UnionMember0> true1, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case UnsharpMaskVariants::True inner:
-                true1(inner);
+            case UnionMember0 value:
+                true1(value);
                 break;
-            case UnsharpMaskVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<UnsharpMaskVariants::True, T> true1,
-        Func<UnsharpMaskVariants::String, T> @string
-    )
+    public T Match<T>(Func<UnionMember0, T> true1, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             UnsharpMaskVariants::True inner => true1(inner),
             UnsharpMaskVariants::String inner => @string(inner),
@@ -63,7 +74,15 @@ public abstract record class UnsharpMask
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of UnsharpMask");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class UnsharpMaskConverter : JsonConverter<UnsharpMask>
@@ -78,11 +97,14 @@ sealed class UnsharpMaskConverter : JsonConverter<UnsharpMask>
 
         try
         {
-            return new UnsharpMaskVariants::True(
-                JsonSerializer.Deserialize<JsonElement>(ref reader, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<UnionMember0>(ref reader, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new UnsharpMask(deserialized);
+            }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -92,10 +114,10 @@ sealed class UnsharpMaskConverter : JsonConverter<UnsharpMask>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new UnsharpMaskVariants::String(deserialized);
+                return new UnsharpMask(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

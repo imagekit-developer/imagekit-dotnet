@@ -14,44 +14,60 @@ namespace Imagekit.Models.OverlayPositionProperties;
 /// expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
 /// </summary>
 [JsonConverter(typeof(XConverter))]
-public abstract record class X
+public record class X
 {
-    internal X() { }
+    public object Value { get; private init; }
 
-    public static implicit operator X(double value) => new XVariants::Double(value);
+    public X(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator X(string value) => new XVariants::String(value);
+    public X(string value)
+    {
+        Value = value;
+    }
+
+    X(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static X CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as XVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as XVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(Action<XVariants::Double> @double, Action<XVariants::String> @string)
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case XVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case XVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(Func<XVariants::Double, T> @double, Func<XVariants::String, T> @string)
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             XVariants::Double inner => @double(inner),
             XVariants::String inner => @string(inner),
@@ -59,7 +75,15 @@ public abstract record class X
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of X");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class XConverter : JsonConverter<X>
@@ -74,9 +98,9 @@ sealed class XConverter : JsonConverter<X>
 
         try
         {
-            return new XVariants::Double(JsonSerializer.Deserialize<double>(ref reader, options));
+            return new X(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -86,10 +110,10 @@ sealed class XConverter : JsonConverter<X>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new XVariants::String(deserialized);
+                return new X(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

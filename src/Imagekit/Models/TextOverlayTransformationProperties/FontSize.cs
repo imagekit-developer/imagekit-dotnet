@@ -11,50 +11,60 @@ namespace Imagekit.Models.TextOverlayTransformationProperties;
 /// Specifies the font size of the overlaid text. Accepts a numeric value or an arithmetic expression.
 /// </summary>
 [JsonConverter(typeof(FontSizeConverter))]
-public abstract record class FontSize
+public record class FontSize
 {
-    internal FontSize() { }
+    public object Value { get; private init; }
 
-    public static implicit operator FontSize(double value) => new FontSizeVariants::Double(value);
+    public FontSize(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator FontSize(string value) => new FontSizeVariants::String(value);
+    public FontSize(string value)
+    {
+        Value = value;
+    }
+
+    FontSize(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static FontSize CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as FontSizeVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as FontSizeVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<FontSizeVariants::Double> @double,
-        Action<FontSizeVariants::String> @string
-    )
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case FontSizeVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case FontSizeVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<FontSizeVariants::Double, T> @double,
-        Func<FontSizeVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             FontSizeVariants::Double inner => @double(inner),
             FontSizeVariants::String inner => @string(inner),
@@ -62,7 +72,15 @@ public abstract record class FontSize
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of FontSize");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class FontSizeConverter : JsonConverter<FontSize>
@@ -77,11 +95,9 @@ sealed class FontSizeConverter : JsonConverter<FontSize>
 
         try
         {
-            return new FontSizeVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new FontSize(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -91,10 +107,10 @@ sealed class FontSizeConverter : JsonConverter<FontSize>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new FontSizeVariants::String(deserialized);
+                return new FontSize(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

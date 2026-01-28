@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Models.Files;
-using AssetListResponseVariants = Imagekit.Models.Assets.AssetListResponseVariants;
 
 namespace Imagekit.Models.Assets;
 
@@ -12,52 +11,75 @@ namespace Imagekit.Models.Assets;
 /// Object containing details of a file or file version.
 /// </summary>
 [JsonConverter(typeof(AssetListResponseConverter))]
-public abstract record class AssetListResponse
+public record class AssetListResponse
 {
-    internal AssetListResponse() { }
+    public object Value { get; private init; }
 
-    public static implicit operator AssetListResponse(File value) =>
-        new AssetListResponseVariants::File(value);
+    public DateTime? CreatedAt
+    {
+        get { return Match<DateTime?>(file: (x) => x.CreatedAt, folder: (x) => x.CreatedAt); }
+    }
 
-    public static implicit operator AssetListResponse(Folder value) =>
-        new AssetListResponseVariants::Folder(value);
+    public string? Name
+    {
+        get { return Match<string?>(file: (x) => x.Name, folder: (x) => x.Name); }
+    }
+
+    public DateTime? UpdatedAt
+    {
+        get { return Match<DateTime?>(file: (x) => x.UpdatedAt, folder: (x) => x.UpdatedAt); }
+    }
+
+    public AssetListResponse(File value)
+    {
+        Value = value;
+    }
+
+    public AssetListResponse(Folder value)
+    {
+        Value = value;
+    }
+
+    AssetListResponse(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static AssetListResponse CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickFile([NotNullWhen(true)] out File? value)
     {
-        value = (this as AssetListResponseVariants::File)?.Value;
+        value = this.Value as File;
         return value != null;
     }
 
     public bool TryPickFolder([NotNullWhen(true)] out Folder? value)
     {
-        value = (this as AssetListResponseVariants::Folder)?.Value;
+        value = this.Value as Folder;
         return value != null;
     }
 
-    public void Switch(
-        Action<AssetListResponseVariants::File> file,
-        Action<AssetListResponseVariants::Folder> folder
-    )
+    public void Switch(Action<File> file, Action<Folder> folder)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case AssetListResponseVariants::File inner:
-                file(inner);
+            case File value:
+                file(value);
                 break;
-            case AssetListResponseVariants::Folder inner:
-                folder(inner);
+            case Folder value:
+                folder(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<AssetListResponseVariants::File, T> file,
-        Func<AssetListResponseVariants::Folder, T> folder
-    )
+    public T Match<T>(Func<File, T> file, Func<Folder, T> folder)
     {
-        return this switch
+        return this.Value switch
         {
             AssetListResponseVariants::File inner => file(inner),
             AssetListResponseVariants::Folder inner => folder(inner),
@@ -65,7 +87,17 @@ public abstract record class AssetListResponse
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of AssetListResponse"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AssetListResponseConverter : JsonConverter<AssetListResponse>
@@ -98,10 +130,11 @@ sealed class AssetListResponseConverter : JsonConverter<AssetListResponse>
                     var deserialized = JsonSerializer.Deserialize<Folder>(json, options);
                     if (deserialized != null)
                     {
-                        return new AssetListResponseVariants::Folder(deserialized);
+                        deserialized.Validate();
+                        return new AssetListResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -117,10 +150,11 @@ sealed class AssetListResponseConverter : JsonConverter<AssetListResponse>
                     var deserialized = JsonSerializer.Deserialize<File>(json, options);
                     if (deserialized != null)
                     {
-                        return new AssetListResponseVariants::File(deserialized);
+                        deserialized.Validate();
+                        return new AssetListResponse(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }

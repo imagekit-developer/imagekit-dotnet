@@ -13,42 +13,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// image. See [Trim edges](https://imagekit.io/docs/effects-and-enhancements#trim-edges---t).
 /// </summary>
 [JsonConverter(typeof(TrimConverter))]
-public abstract record class Trim
+public record class Trim
 {
-    internal Trim() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Trim(double value) => new TrimVariants::Double(value);
-
-    public bool TryPickTrue([NotNullWhen(true)] out JsonElement? value)
+    public Trim(UnionMember0 value)
     {
-        value = (this as TrimVariants::True)?.Value;
+        Value = value;
+    }
+
+    public Trim(double value)
+    {
+        Value = value;
+    }
+
+    Trim(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Trim CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickTrue([NotNullWhen(true)] out UnionMember0? value)
+    {
+        value = this.Value as UnionMember0;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as TrimVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
-    public void Switch(Action<TrimVariants::True> true1, Action<TrimVariants::Double> @double)
+    public void Switch(Action<UnionMember0> true1, Action<double> @double)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case TrimVariants::True inner:
-                true1(inner);
+            case UnionMember0 value:
+                true1(value);
                 break;
-            case TrimVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(Func<TrimVariants::True, T> true1, Func<TrimVariants::Double, T> @double)
+    public T Match<T>(Func<UnionMember0, T> true1, Func<double, T> @double)
     {
-        return this switch
+        return this.Value switch
         {
             TrimVariants::True inner => true1(inner),
             TrimVariants::Double inner => @double(inner),
@@ -56,7 +74,15 @@ public abstract record class Trim
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Trim");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class TrimConverter : JsonConverter<Trim>
@@ -71,22 +97,23 @@ sealed class TrimConverter : JsonConverter<Trim>
 
         try
         {
-            return new TrimVariants::True(
-                JsonSerializer.Deserialize<JsonElement>(ref reader, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<UnionMember0>(ref reader, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new Trim(deserialized);
+            }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new TrimVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new Trim(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

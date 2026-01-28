@@ -13,45 +13,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// [Sharpen](https://imagekit.io/docs/effects-and-enhancements#sharpen---e-sharpen).
 /// </summary>
 [JsonConverter(typeof(SharpenConverter))]
-public abstract record class Sharpen
+public record class Sharpen
 {
-    internal Sharpen() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Sharpen(double value) => new SharpenVariants::Double(value);
-
-    public bool TryPickTrue([NotNullWhen(true)] out JsonElement? value)
+    public Sharpen(UnionMember0 value)
     {
-        value = (this as SharpenVariants::True)?.Value;
+        Value = value;
+    }
+
+    public Sharpen(double value)
+    {
+        Value = value;
+    }
+
+    Sharpen(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Sharpen CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickTrue([NotNullWhen(true)] out UnionMember0? value)
+    {
+        value = this.Value as UnionMember0;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as SharpenVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
-    public void Switch(Action<SharpenVariants::True> true1, Action<SharpenVariants::Double> @double)
+    public void Switch(Action<UnionMember0> true1, Action<double> @double)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case SharpenVariants::True inner:
-                true1(inner);
+            case UnionMember0 value:
+                true1(value);
                 break;
-            case SharpenVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<SharpenVariants::True, T> true1,
-        Func<SharpenVariants::Double, T> @double
-    )
+    public T Match<T>(Func<UnionMember0, T> true1, Func<double, T> @double)
     {
-        return this switch
+        return this.Value switch
         {
             SharpenVariants::True inner => true1(inner),
             SharpenVariants::Double inner => @double(inner),
@@ -59,7 +74,15 @@ public abstract record class Sharpen
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Sharpen");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class SharpenConverter : JsonConverter<Sharpen>
@@ -74,22 +97,23 @@ sealed class SharpenConverter : JsonConverter<Sharpen>
 
         try
         {
-            return new SharpenVariants::True(
-                JsonSerializer.Deserialize<JsonElement>(ref reader, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<UnionMember0>(ref reader, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new Sharpen(deserialized);
+            }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new SharpenVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new Sharpen(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

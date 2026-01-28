@@ -12,50 +12,60 @@ namespace Imagekit.Models.TextOverlayTransformationProperties;
 /// clockwise rotation or a string prefixed with "N" for counter-clockwise rotation.
 /// </summary>
 [JsonConverter(typeof(RotationConverter))]
-public abstract record class Rotation
+public record class Rotation
 {
-    internal Rotation() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Rotation(double value) => new RotationVariants::Double(value);
+    public Rotation(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator Rotation(string value) => new RotationVariants::String(value);
+    public Rotation(string value)
+    {
+        Value = value;
+    }
+
+    Rotation(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Rotation CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as RotationVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as RotationVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<RotationVariants::Double> @double,
-        Action<RotationVariants::String> @string
-    )
+    public void Switch(Action<double> @double, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case RotationVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case RotationVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<RotationVariants::Double, T> @double,
-        Func<RotationVariants::String, T> @string
-    )
+    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             RotationVariants::Double inner => @double(inner),
             RotationVariants::String inner => @string(inner),
@@ -63,7 +73,15 @@ public abstract record class Rotation
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Rotation");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class RotationConverter : JsonConverter<Rotation>
@@ -78,11 +96,9 @@ sealed class RotationConverter : JsonConverter<Rotation>
 
         try
         {
-            return new RotationVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new Rotation(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -92,10 +108,10 @@ sealed class RotationConverter : JsonConverter<Rotation>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new RotationVariants::String(deserialized);
+                return new Rotation(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

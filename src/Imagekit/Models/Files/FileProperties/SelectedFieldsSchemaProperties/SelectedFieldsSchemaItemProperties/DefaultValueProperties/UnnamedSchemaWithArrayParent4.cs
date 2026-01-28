@@ -3,58 +3,74 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Exceptions;
-using Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.DefaultValueProperties.UnnamedSchemaWithArrayParent4Variants;
 using System = System;
 
 namespace Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.DefaultValueProperties;
 
 [JsonConverter(typeof(UnnamedSchemaWithArrayParent4Converter))]
-public abstract record class UnnamedSchemaWithArrayParent4
+public record class UnnamedSchemaWithArrayParent4
 {
-    internal UnnamedSchemaWithArrayParent4() { }
+    public object Value { get; private init; }
 
-    public static implicit operator UnnamedSchemaWithArrayParent4(string value) =>
-        new String(value);
+    public UnnamedSchemaWithArrayParent4(string value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator UnnamedSchemaWithArrayParent4(double value) =>
-        new Double(value);
+    public UnnamedSchemaWithArrayParent4(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator UnnamedSchemaWithArrayParent4(bool value) => new Bool(value);
+    public UnnamedSchemaWithArrayParent4(bool value)
+    {
+        Value = value;
+    }
+
+    UnnamedSchemaWithArrayParent4(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static UnnamedSchemaWithArrayParent4 CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickBool([NotNullWhen(true)] out bool? value)
     {
-        value = (this as Bool)?.Value;
+        value = this.Value as bool?;
         return value != null;
     }
 
     public void Switch(
-        System::Action<String> @string,
-        System::Action<Double> @double,
-        System::Action<Bool> @bool
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
-            case Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case Bool inner:
-                @bool(inner);
+            case bool value:
+                @bool(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
@@ -64,23 +80,33 @@ public abstract record class UnnamedSchemaWithArrayParent4
     }
 
     public T Match<T>(
-        System::Func<String, T> @string,
-        System::Func<Double, T> @double,
-        System::Func<Bool, T> @bool
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
     )
     {
-        return this switch
+        return this.Value switch
         {
-            String inner => @string(inner),
-            Double inner => @double(inner),
-            Bool inner => @bool(inner),
+            string value => @string(value),
+            double value => @double(value),
+            bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of UnnamedSchemaWithArrayParent4"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UnnamedSchemaWithArrayParent4"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class UnnamedSchemaWithArrayParent4Converter : JsonConverter<UnnamedSchemaWithArrayParent4>
@@ -98,35 +124,39 @@ sealed class UnnamedSchemaWithArrayParent4Converter : JsonConverter<UnnamedSchem
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new String(deserialized);
+                return new UnnamedSchemaWithArrayParent4(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant String", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'string'", e)
             );
         }
 
         try
         {
-            return new Double(JsonSerializer.Deserialize<double>(ref reader, options));
+            return new UnnamedSchemaWithArrayParent4(
+                JsonSerializer.Deserialize<double>(ref reader, options)
+            );
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant Double", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'double'", e)
             );
         }
 
         try
         {
-            return new Bool(JsonSerializer.Deserialize<bool>(ref reader, options));
+            return new UnnamedSchemaWithArrayParent4(
+                JsonSerializer.Deserialize<bool>(ref reader, options)
+            );
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant Bool", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'bool'", e)
             );
         }
 
@@ -139,15 +169,7 @@ sealed class UnnamedSchemaWithArrayParent4Converter : JsonConverter<UnnamedSchem
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            String(var @string) => @string,
-            Double(var @double) => @double,
-            Bool(var @bool) => @bool,
-            _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent4"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

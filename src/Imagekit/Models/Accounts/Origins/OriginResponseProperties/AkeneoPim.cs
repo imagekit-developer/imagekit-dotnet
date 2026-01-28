@@ -100,14 +100,21 @@ public sealed record class AkeneoPim : ModelBase, IFromRaw<AkeneoPim>
         }
     }
 
-    public JsonElement Type
+    public AkeneoPimProperties::Type Type
     {
         get
         {
             if (!this.Properties.TryGetValue("type", out JsonElement element))
                 throw new ArgumentOutOfRangeException("type", "Missing required argument");
 
-            return JsonSerializer.Deserialize<JsonElement>(element, ModelBase.SerializerOptions);
+            return JsonSerializer.Deserialize<AkeneoPimProperties::Type>(
+                    element,
+                    ModelBase.SerializerOptions
+                )
+                ?? throw new ImageKitInvalidDataException(
+                    "'type' cannot be null",
+                    new ArgumentNullException("type")
+                );
         }
         set
         {
@@ -145,12 +152,13 @@ public sealed record class AkeneoPim : ModelBase, IFromRaw<AkeneoPim>
         _ = this.BaseURL;
         _ = this.IncludeCanonicalHeader;
         _ = this.Name;
+        this.Type.Validate();
         _ = this.BaseURLForCanonicalHeader;
     }
 
     public AkeneoPim()
     {
-        this.Type = JsonSerializer.Deserialize<JsonElement>("\"AKENEO_PIM\"");
+        this.Type = new();
     }
 
 #pragma warning disable CS8618

@@ -15,49 +15,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// inside overlay. See [AI Drop Shadow](https://imagekit.io/docs/ai-transformations#ai-drop-shadow-e-dropshadow).
 /// </summary>
 [JsonConverter(typeof(AIDropShadowConverter))]
-public abstract record class AIDropShadow
+public record class AIDropShadow
 {
-    internal AIDropShadow() { }
+    public object Value { get; private init; }
 
-    public static implicit operator AIDropShadow(string value) =>
-        new AIDropShadowVariants::String(value);
-
-    public bool TryPickTrue([NotNullWhen(true)] out JsonElement? value)
+    public AIDropShadow(UnionMember0 value)
     {
-        value = (this as AIDropShadowVariants::True)?.Value;
+        Value = value;
+    }
+
+    public AIDropShadow(string value)
+    {
+        Value = value;
+    }
+
+    AIDropShadow(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static AIDropShadow CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
+
+    public bool TryPickTrue([NotNullWhen(true)] out UnionMember0? value)
+    {
+        value = this.Value as UnionMember0;
         return value != null;
     }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as AIDropShadowVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
-    public void Switch(
-        Action<AIDropShadowVariants::True> true1,
-        Action<AIDropShadowVariants::String> @string
-    )
+    public void Switch(Action<UnionMember0> true1, Action<string> @string)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case AIDropShadowVariants::True inner:
-                true1(inner);
+            case UnionMember0 value:
+                true1(value);
                 break;
-            case AIDropShadowVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<AIDropShadowVariants::True, T> true1,
-        Func<AIDropShadowVariants::String, T> @string
-    )
+    public T Match<T>(Func<UnionMember0, T> true1, Func<string, T> @string)
     {
-        return this switch
+        return this.Value switch
         {
             AIDropShadowVariants::True inner => true1(inner),
             AIDropShadowVariants::String inner => @string(inner),
@@ -65,7 +76,17 @@ public abstract record class AIDropShadow
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of AIDropShadow"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class AIDropShadowConverter : JsonConverter<AIDropShadow>
@@ -80,11 +101,14 @@ sealed class AIDropShadowConverter : JsonConverter<AIDropShadow>
 
         try
         {
-            return new AIDropShadowVariants::True(
-                JsonSerializer.Deserialize<JsonElement>(ref reader, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<UnionMember0>(ref reader, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new AIDropShadow(deserialized);
+            }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -94,10 +118,10 @@ sealed class AIDropShadowConverter : JsonConverter<AIDropShadow>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new AIDropShadowVariants::String(deserialized);
+                return new AIDropShadow(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

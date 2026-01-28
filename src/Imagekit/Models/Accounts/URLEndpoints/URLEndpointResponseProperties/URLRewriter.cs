@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Models.Accounts.URLEndpoints.URLEndpointResponseProperties.URLRewriterProperties;
-using URLRewriterVariants = Imagekit.Models.Accounts.URLEndpoints.URLEndpointResponseProperties.URLRewriterVariants;
 
 namespace Imagekit.Models.Accounts.URLEndpoints.URLEndpointResponseProperties;
 
@@ -12,60 +11,74 @@ namespace Imagekit.Models.Accounts.URLEndpoints.URLEndpointResponseProperties;
 /// Configuration for third-party URL rewriting.
 /// </summary>
 [JsonConverter(typeof(URLRewriterConverter))]
-public abstract record class URLRewriter
+public record class URLRewriter
 {
-    internal URLRewriter() { }
+    public object Value { get; private init; }
 
-    public static implicit operator URLRewriter(Cloudinary value) =>
-        new URLRewriterVariants::Cloudinary(value);
+    public URLRewriter(Cloudinary value)
+    {
+        Value = value;
+    }
+
+    public URLRewriter(Imgix value)
+    {
+        Value = value;
+    }
+
+    public URLRewriter(Akamai value)
+    {
+        Value = value;
+    }
+
+    URLRewriter(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static URLRewriter CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickCloudinary([NotNullWhen(true)] out Cloudinary? value)
     {
-        value = (this as URLRewriterVariants::Cloudinary)?.Value;
+        value = this.Value as Cloudinary;
         return value != null;
     }
 
-    public bool TryPickImgix([NotNullWhen(true)] out JsonElement? value)
+    public bool TryPickImgix([NotNullWhen(true)] out Imgix? value)
     {
-        value = (this as URLRewriterVariants::Imgix)?.Value;
+        value = this.Value as Imgix;
         return value != null;
     }
 
-    public bool TryPickAkamai([NotNullWhen(true)] out JsonElement? value)
+    public bool TryPickAkamai([NotNullWhen(true)] out Akamai? value)
     {
-        value = (this as URLRewriterVariants::Akamai)?.Value;
+        value = this.Value as Akamai;
         return value != null;
     }
 
-    public void Switch(
-        Action<URLRewriterVariants::Cloudinary> cloudinary,
-        Action<URLRewriterVariants::Imgix> imgix,
-        Action<URLRewriterVariants::Akamai> akamai
-    )
+    public void Switch(Action<Cloudinary> cloudinary, Action<Imgix> imgix, Action<Akamai> akamai)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case URLRewriterVariants::Cloudinary inner:
-                cloudinary(inner);
+            case Cloudinary value:
+                cloudinary(value);
                 break;
-            case URLRewriterVariants::Imgix inner:
-                imgix(inner);
+            case Imgix value:
+                imgix(value);
                 break;
-            case URLRewriterVariants::Akamai inner:
-                akamai(inner);
+            case Akamai value:
+                akamai(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<URLRewriterVariants::Cloudinary, T> cloudinary,
-        Func<URLRewriterVariants::Imgix, T> imgix,
-        Func<URLRewriterVariants::Akamai, T> akamai
-    )
+    public T Match<T>(Func<Cloudinary, T> cloudinary, Func<Imgix, T> imgix, Func<Akamai, T> akamai)
     {
-        return this switch
+        return this.Value switch
         {
             URLRewriterVariants::Cloudinary inner => cloudinary(inner),
             URLRewriterVariants::Imgix inner => imgix(inner),
@@ -74,7 +87,15 @@ public abstract record class URLRewriter
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of URLRewriter");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class URLRewriterConverter : JsonConverter<URLRewriter>
@@ -107,10 +128,11 @@ sealed class URLRewriterConverter : JsonConverter<URLRewriter>
                     var deserialized = JsonSerializer.Deserialize<Cloudinary>(json, options);
                     if (deserialized != null)
                     {
-                        return new URLRewriterVariants::Cloudinary(deserialized);
+                        deserialized.Validate();
+                        return new URLRewriter(deserialized);
                     }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -123,11 +145,14 @@ sealed class URLRewriterConverter : JsonConverter<URLRewriter>
 
                 try
                 {
-                    return new URLRewriterVariants::Imgix(
-                        JsonSerializer.Deserialize<JsonElement>(json, options)
-                    );
+                    var deserialized = JsonSerializer.Deserialize<Imgix>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new URLRewriter(deserialized);
+                    }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }
@@ -140,11 +165,14 @@ sealed class URLRewriterConverter : JsonConverter<URLRewriter>
 
                 try
                 {
-                    return new URLRewriterVariants::Akamai(
-                        JsonSerializer.Deserialize<JsonElement>(json, options)
-                    );
+                    var deserialized = JsonSerializer.Deserialize<Akamai>(json, options);
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new URLRewriter(deserialized);
+                    }
                 }
-                catch (JsonException e)
+                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     exceptions.Add(e);
                 }

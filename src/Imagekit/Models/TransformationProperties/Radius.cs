@@ -12,42 +12,60 @@ namespace Imagekit.Models.TransformationProperties;
 /// or oval shape. See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
 /// </summary>
 [JsonConverter(typeof(RadiusConverter))]
-public abstract record class Radius
+public record class Radius
 {
-    internal Radius() { }
+    public object Value { get; private init; }
 
-    public static implicit operator Radius(double value) => new RadiusVariants::Double(value);
+    public Radius(double value)
+    {
+        Value = value;
+    }
+
+    public Radius(UnionMember1 value)
+    {
+        Value = value;
+    }
+
+    Radius(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static Radius CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as RadiusVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
-    public bool TryPickMax([NotNullWhen(true)] out JsonElement? value)
+    public bool TryPickMax([NotNullWhen(true)] out UnionMember1? value)
     {
-        value = (this as RadiusVariants::Max)?.Value;
+        value = this.Value as UnionMember1;
         return value != null;
     }
 
-    public void Switch(Action<RadiusVariants::Double> @double, Action<RadiusVariants::Max> max)
+    public void Switch(Action<double> @double, Action<UnionMember1> max)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case RadiusVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case RadiusVariants::Max inner:
-                max(inner);
+            case UnionMember1 value:
+                max(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(Func<RadiusVariants::Double, T> @double, Func<RadiusVariants::Max, T> max)
+    public T Match<T>(Func<double, T> @double, Func<UnionMember1, T> max)
     {
-        return this switch
+        return this.Value switch
         {
             RadiusVariants::Double inner => @double(inner),
             RadiusVariants::Max inner => max(inner),
@@ -55,7 +73,15 @@ public abstract record class Radius
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of Radius");
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class RadiusConverter : JsonConverter<Radius>
@@ -70,22 +96,23 @@ sealed class RadiusConverter : JsonConverter<Radius>
 
         try
         {
-            return new RadiusVariants::Max(
-                JsonSerializer.Deserialize<JsonElement>(ref reader, options)
-            );
+            var deserialized = JsonSerializer.Deserialize<UnionMember1>(ref reader, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new Radius(deserialized);
+            }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new RadiusVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new Radius(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

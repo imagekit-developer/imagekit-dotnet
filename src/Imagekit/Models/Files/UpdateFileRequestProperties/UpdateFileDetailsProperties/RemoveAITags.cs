@@ -17,42 +17,60 @@ namespace Imagekit.Models.Files.FileUpdateParamsProperties.UpdateProperties.Upda
 /// are processed.
 /// </summary>
 [JsonConverter(typeof(RemoveAITagsConverter))]
-public abstract record class RemoveAITags
+public record class RemoveAITags
 {
-    internal RemoveAITags() { }
+    public object Value { get; private init; }
 
-    public static implicit operator RemoveAITags(List<string> value) => new Strings(value);
+    public RemoveAITags(List<string> value)
+    {
+        Value = value;
+    }
+
+    public RemoveAITags(UnionMember1 value)
+    {
+        Value = value;
+    }
+
+    RemoveAITags(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static RemoveAITags CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickStrings([NotNullWhen(true)] out List<string>? value)
     {
-        value = (this as Strings)?.Value;
+        value = this.Value as List<string>;
         return value != null;
     }
 
-    public bool TryPickAll([NotNullWhen(true)] out JsonElement? value)
+    public bool TryPickAll([NotNullWhen(true)] out UnionMember1? value)
     {
-        value = (this as All)?.Value;
+        value = this.Value as UnionMember1;
         return value != null;
     }
 
-    public void Switch(Action<Strings> strings, Action<All> all)
+    public void Switch(Action<List<string>> strings, Action<UnionMember1> all)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case Strings inner:
-                strings(inner);
+            case List<string> value:
+                strings(value);
                 break;
-            case All inner:
-                all(inner);
+            case UnionMember1 value:
+                all(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(Func<Strings, T> strings, Func<All, T> all)
+    public T Match<T>(Func<List<string>, T> strings, Func<UnionMember1, T> all)
     {
-        return this switch
+        return this.Value switch
         {
             Strings inner => strings(inner),
             All inner => all(inner),
@@ -60,7 +78,17 @@ public abstract record class RemoveAITags
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of RemoveAITags"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class RemoveAITagsConverter : JsonConverter<RemoveAITags>
@@ -75,9 +103,14 @@ sealed class RemoveAITagsConverter : JsonConverter<RemoveAITags>
 
         try
         {
-            return new All(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
+            var deserialized = JsonSerializer.Deserialize<UnionMember1>(ref reader, options);
+            if (deserialized != null)
+            {
+                deserialized.Validate();
+                return new RemoveAITags(deserialized);
+            }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
@@ -87,10 +120,10 @@ sealed class RemoveAITagsConverter : JsonConverter<RemoveAITags>
             var deserialized = JsonSerializer.Deserialize<List<string>>(ref reader, options);
             if (deserialized != null)
             {
-                return new Strings(deserialized);
+                return new RemoveAITags(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

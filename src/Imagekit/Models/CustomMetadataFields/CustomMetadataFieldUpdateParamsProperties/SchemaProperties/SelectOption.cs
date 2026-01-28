@@ -8,66 +8,74 @@ using SelectOptionVariants = Imagekit.Models.CustomMetadataFields.CustomMetadata
 namespace Imagekit.Models.CustomMetadataFields.CustomMetadataFieldUpdateParamsProperties.SchemaProperties;
 
 [JsonConverter(typeof(SelectOptionConverter))]
-public abstract record class SelectOption
+public record class SelectOption
 {
-    internal SelectOption() { }
+    public object Value { get; private init; }
 
-    public static implicit operator SelectOption(string value) =>
-        new SelectOptionVariants::String(value);
+    public SelectOption(string value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator SelectOption(double value) =>
-        new SelectOptionVariants::Double(value);
+    public SelectOption(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator SelectOption(bool value) =>
-        new SelectOptionVariants::Bool(value);
+    public SelectOption(bool value)
+    {
+        Value = value;
+    }
+
+    SelectOption(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static SelectOption CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as SelectOptionVariants::String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as SelectOptionVariants::Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickBool([NotNullWhen(true)] out bool? value)
     {
-        value = (this as SelectOptionVariants::Bool)?.Value;
+        value = this.Value as bool?;
         return value != null;
     }
 
-    public void Switch(
-        Action<SelectOptionVariants::String> @string,
-        Action<SelectOptionVariants::Double> @double,
-        Action<SelectOptionVariants::Bool> @bool
-    )
+    public void Switch(Action<string> @string, Action<double> @double, Action<bool> @bool)
     {
-        switch (this)
+        switch (this.Value)
         {
-            case SelectOptionVariants::String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
-            case SelectOptionVariants::Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case SelectOptionVariants::Bool inner:
-                @bool(inner);
+            case bool value:
+                @bool(value);
                 break;
             default:
                 throw new InvalidOperationException();
         }
     }
 
-    public T Match<T>(
-        Func<SelectOptionVariants::String, T> @string,
-        Func<SelectOptionVariants::Double, T> @double,
-        Func<SelectOptionVariants::Bool, T> @bool
-    )
+    public T Match<T>(Func<string, T> @string, Func<double, T> @double, Func<bool, T> @bool)
     {
-        return this switch
+        return this.Value switch
         {
             SelectOptionVariants::String inner => @string(inner),
             SelectOptionVariants::Double inner => @double(inner),
@@ -76,7 +84,17 @@ public abstract record class SelectOption
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of SelectOption"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class SelectOptionConverter : JsonConverter<SelectOption>
@@ -94,32 +112,28 @@ sealed class SelectOptionConverter : JsonConverter<SelectOption>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new SelectOptionVariants::String(deserialized);
+                return new SelectOption(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new SelectOptionVariants::Double(
-                JsonSerializer.Deserialize<double>(ref reader, options)
-            );
+            return new SelectOption(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }
 
         try
         {
-            return new SelectOptionVariants::Bool(
-                JsonSerializer.Deserialize<bool>(ref reader, options)
-            );
+            return new SelectOption(JsonSerializer.Deserialize<bool>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(e);
         }

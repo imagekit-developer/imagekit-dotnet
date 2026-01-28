@@ -4,7 +4,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Exceptions;
 using Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.DefaultValueProperties;
-using Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.DefaultValueVariants;
 using System = System;
 
 namespace Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties;
@@ -14,63 +13,84 @@ namespace Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFie
 /// `type` of custom metadata field.
 /// </summary>
 [JsonConverter(typeof(DefaultValueConverter))]
-public abstract record class DefaultValue
+public record class DefaultValue
 {
-    internal DefaultValue() { }
+    public object Value { get; private init; }
 
-    public static implicit operator DefaultValue(string value) => new String(value);
+    public DefaultValue(string value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator DefaultValue(double value) => new Double(value);
+    public DefaultValue(double value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator DefaultValue(bool value) => new Bool(value);
+    public DefaultValue(bool value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator DefaultValue(List<UnnamedSchemaWithArrayParent6> value) =>
-        new Mixed(value);
+    public DefaultValue(List<UnnamedSchemaWithArrayParent6> value)
+    {
+        Value = value;
+    }
+
+    DefaultValue(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static DefaultValue CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickString([NotNullWhen(true)] out string? value)
     {
-        value = (this as String)?.Value;
+        value = this.Value as string;
         return value != null;
     }
 
     public bool TryPickDouble([NotNullWhen(true)] out double? value)
     {
-        value = (this as Double)?.Value;
+        value = this.Value as double?;
         return value != null;
     }
 
     public bool TryPickBool([NotNullWhen(true)] out bool? value)
     {
-        value = (this as Bool)?.Value;
+        value = this.Value as bool?;
         return value != null;
     }
 
     public bool TryPickMixed([NotNullWhen(true)] out List<UnnamedSchemaWithArrayParent6>? value)
     {
-        value = (this as Mixed)?.Value;
+        value = this.Value as List<UnnamedSchemaWithArrayParent6>;
         return value != null;
     }
 
     public void Switch(
-        System::Action<String> @string,
-        System::Action<Double> @double,
-        System::Action<Bool> @bool,
-        System::Action<Mixed> mixed
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool,
+        System::Action<List<UnnamedSchemaWithArrayParent6>> mixed
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case String inner:
-                @string(inner);
+            case string value:
+                @string(value);
                 break;
-            case Double inner:
-                @double(inner);
+            case double value:
+                @double(value);
                 break;
-            case Bool inner:
-                @bool(inner);
+            case bool value:
+                @bool(value);
                 break;
-            case Mixed inner:
-                mixed(inner);
+            case List<UnnamedSchemaWithArrayParent6> value:
+                mixed(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
@@ -80,25 +100,35 @@ public abstract record class DefaultValue
     }
 
     public T Match<T>(
-        System::Func<String, T> @string,
-        System::Func<Double, T> @double,
-        System::Func<Bool, T> @bool,
-        System::Func<Mixed, T> mixed
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool,
+        System::Func<List<UnnamedSchemaWithArrayParent6>, T> mixed
     )
     {
-        return this switch
+        return this.Value switch
         {
-            String inner => @string(inner),
-            Double inner => @double(inner),
-            Bool inner => @bool(inner),
-            Mixed inner => mixed(inner),
+            string value => @string(value),
+            double value => @double(value),
+            bool value => @bool(value),
+            List<UnnamedSchemaWithArrayParent6> value => mixed(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of DefaultValue"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of DefaultValue"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class DefaultValueConverter : JsonConverter<DefaultValue>
@@ -116,35 +146,35 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
             var deserialized = JsonSerializer.Deserialize<string>(ref reader, options);
             if (deserialized != null)
             {
-                return new String(deserialized);
+                return new DefaultValue(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant String", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'string'", e)
             );
         }
 
         try
         {
-            return new Double(JsonSerializer.Deserialize<double>(ref reader, options));
+            return new DefaultValue(JsonSerializer.Deserialize<double>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant Double", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'double'", e)
             );
         }
 
         try
         {
-            return new Bool(JsonSerializer.Deserialize<bool>(ref reader, options));
+            return new DefaultValue(JsonSerializer.Deserialize<bool>(ref reader, options));
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant Bool", e)
+                new ImageKitInvalidDataException("Data does not match union variant 'bool'", e)
             );
         }
 
@@ -156,13 +186,16 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
             );
             if (deserialized != null)
             {
-                return new Mixed(deserialized);
+                return new DefaultValue(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
-                new ImageKitInvalidDataException("Data does not match union variant Mixed", e)
+                new ImageKitInvalidDataException(
+                    "Data does not match union variant 'List<UnnamedSchemaWithArrayParent6>'",
+                    e
+                )
             );
         }
 
@@ -175,16 +208,7 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            String(var @string) => @string,
-            Double(var @double) => @double,
-            Bool(var @bool) => @bool,
-            Mixed(var mixed) => mixed,
-            _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of DefaultValue"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }

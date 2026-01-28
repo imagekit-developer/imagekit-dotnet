@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Exceptions;
 using Imagekit.Models.Files.UpdateFileRequestProperties;
-using UpdateFileRequestVariants = Imagekit.Models.Files.UpdateFileRequestVariants;
 
 namespace Imagekit.Models.Files;
 
@@ -13,19 +12,33 @@ namespace Imagekit.Models.Files;
 /// Schema for update file update request.
 /// </summary>
 [JsonConverter(typeof(UpdateFileRequestConverter))]
-public abstract record class UpdateFileRequest
+public record class UpdateFileRequest
 {
-    internal UpdateFileRequest() { }
+    public object Value { get; private init; }
 
-    public static implicit operator UpdateFileRequest(UpdateFileDetails value) =>
-        new UpdateFileRequestVariants::UpdateFileDetails(value);
+    public UpdateFileRequest(UpdateFileDetails value)
+    {
+        Value = value;
+    }
 
-    public static implicit operator UpdateFileRequest(ChangePublicationStatus value) =>
-        new UpdateFileRequestVariants::ChangePublicationStatus(value);
+    public UpdateFileRequest(ChangePublicationStatus value)
+    {
+        Value = value;
+    }
+
+    UpdateFileRequest(UnknownVariant value)
+    {
+        Value = value;
+    }
+
+    public static UpdateFileRequest CreateUnknownVariant(JsonElement value)
+    {
+        return new(new UnknownVariant(value));
+    }
 
     public bool TryPickDetails([NotNullWhen(true)] out UpdateFileDetails? value)
     {
-        value = (this as UpdateFileRequestVariants::UpdateFileDetails)?.Value;
+        value = this.Value as UpdateFileDetails;
         return value != null;
     }
 
@@ -33,22 +46,22 @@ public abstract record class UpdateFileRequest
         [NotNullWhen(true)] out ChangePublicationStatus? value
     )
     {
-        value = (this as UpdateFileRequestVariants::ChangePublicationStatus)?.Value;
+        value = this.Value as ChangePublicationStatus;
         return value != null;
     }
 
     public void Switch(
-        Action<UpdateFileRequestVariants::UpdateFileDetails> details,
-        Action<UpdateFileRequestVariants::ChangePublicationStatus> changePublicationStatus
+        Action<UpdateFileDetails> details,
+        Action<ChangePublicationStatus> changePublicationStatus
     )
     {
-        switch (this)
+        switch (this.Value)
         {
-            case UpdateFileRequestVariants::UpdateFileDetails inner:
-                details(inner);
+            case UpdateFileDetails value:
+                details(value);
                 break;
-            case UpdateFileRequestVariants::ChangePublicationStatus inner:
-                changePublicationStatus(inner);
+            case ChangePublicationStatus value:
+                changePublicationStatus(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
@@ -58,23 +71,31 @@ public abstract record class UpdateFileRequest
     }
 
     public T Match<T>(
-        Func<UpdateFileRequestVariants::UpdateFileDetails, T> details,
-        Func<UpdateFileRequestVariants::ChangePublicationStatus, T> changePublicationStatus
+        Func<UpdateFileDetails, T> details,
+        Func<ChangePublicationStatus, T> changePublicationStatus
     )
     {
-        return this switch
+        return this.Value switch
         {
-            UpdateFileRequestVariants::UpdateFileDetails inner => details(inner),
-            UpdateFileRequestVariants::ChangePublicationStatus inner => changePublicationStatus(
-                inner
-            ),
+            UpdateFileDetails value => details(value),
+            ChangePublicationStatus value => changePublicationStatus(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of UpdateFileRequest"
             ),
         };
     }
 
-    public abstract void Validate();
+    public void Validate()
+    {
+        if (this.Value is not UnknownVariant)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of UpdateFileRequest"
+            );
+        }
+    }
+
+    private record struct UnknownVariant(JsonElement value);
 }
 
 sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>
@@ -92,14 +113,15 @@ sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>
             var deserialized = JsonSerializer.Deserialize<UpdateFileDetails>(ref reader, options);
             if (deserialized != null)
             {
-                return new UpdateFileRequestVariants::UpdateFileDetails(deserialized);
+                deserialized.Validate();
+                return new UpdateFileRequest(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
                 new ImageKitInvalidDataException(
-                    "Data does not match union variant UpdateFileRequestVariants::UpdateFileDetails",
+                    "Data does not match union variant 'UpdateFileDetails'",
                     e
                 )
             );
@@ -113,14 +135,15 @@ sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>
             );
             if (deserialized != null)
             {
-                return new UpdateFileRequestVariants::ChangePublicationStatus(deserialized);
+                deserialized.Validate();
+                return new UpdateFileRequest(deserialized);
             }
         }
-        catch (JsonException e)
+        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             exceptions.Add(
                 new ImageKitInvalidDataException(
-                    "Data does not match union variant UpdateFileRequestVariants::ChangePublicationStatus",
+                    "Data does not match union variant 'ChangePublicationStatus'",
                     e
                 )
             );
@@ -135,15 +158,7 @@ sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>
         JsonSerializerOptions options
     )
     {
-        object variant = value switch
-        {
-            UpdateFileRequestVariants::UpdateFileDetails(var details) => details,
-            UpdateFileRequestVariants::ChangePublicationStatus(var changePublicationStatus) =>
-                changePublicationStatus,
-            _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UpdateFileRequest"
-            ),
-        };
+        object variant = value.Value;
         JsonSerializer.Serialize(writer, variant, options);
     }
 }
