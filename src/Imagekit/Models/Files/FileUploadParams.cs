@@ -240,14 +240,14 @@ public sealed record class FileUploadParams : ParamsBase
     /// Array of extensions to be applied to the asset. Each extension can be configured
     /// with specific parameters based on the extension type.
     /// </summary>
-    public List<FileUploadParamsProperties::Extension>? Extensions
+    public List<UnnamedSchemaWithArrayParent0>? Extensions
     {
         get
         {
             if (!this.BodyProperties.TryGetValue("extensions", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<FileUploadParamsProperties::Extension>?>(
+            return JsonSerializer.Deserialize<List<UnnamedSchemaWithArrayParent0>?>(
                 element,
                 ModelBase.SerializerOptions
             );

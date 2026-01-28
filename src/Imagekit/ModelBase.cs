@@ -3,18 +3,17 @@ using System.Text.Json;
 using Imagekit.Models;
 using Imagekit.Models.Cache.Invalidation.InvalidationGetResponseProperties;
 using Imagekit.Models.CustomMetadataFields.CustomMetadataFieldProperties.SchemaProperties;
-using Imagekit.Models.Files.FileUpdateParamsProperties.UpdateProperties.UpdateFileDetailsProperties.ExtensionProperties.AutoTaggingExtensionProperties;
 using Imagekit.Models.Files.FileUpdateResponseProperties.IntersectionMember1Properties.ExtensionStatusProperties;
 using Imagekit.Models.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.AbsProperties;
 using Imagekit.Models.ImageOverlayProperties.IntersectionMember1Properties;
 using Imagekit.Models.OverlayPositionProperties;
 using Imagekit.Models.SubtitleOverlayTransformationProperties;
 using Imagekit.Models.TextOverlayTransformationProperties;
+using Imagekit.Models.UnnamedSchemaWithArrayParent0Properties.AutoTaggingExtensionProperties;
 using Imagekit.Models.Webhooks.VideoTransformationAcceptedEventProperties.IntersectionMember1Properties.DataProperties.TransformationProperties.OptionsProperties;
 using Imagekit.Models.Webhooks.VideoTransformationErrorEventProperties.IntersectionMember1Properties.DataProperties.TransformationProperties.ErrorProperties;
 using AbsProperties = Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.AbsProperties;
 using AssetListParamsProperties = Imagekit.Models.Assets.AssetListParamsProperties;
-using AutoTaggingExtensionProperties = Imagekit.Models.Files.FileUploadParamsProperties.ExtensionProperties.AutoTaggingExtensionProperties;
 using ExtensionStatusProperties = Imagekit.Models.Files.FileUploadResponseProperties.ExtensionStatusProperties;
 using FileProperties = Imagekit.Models.Files.FileProperties;
 using FileUploadParamsProperties = Imagekit.Models.Files.FileUploadParamsProperties;
@@ -35,6 +34,7 @@ public abstract record class ModelBase
     {
         Converters =
         {
+            new ApiEnumConverter<string, Name>(),
             new ApiEnumConverter<string, Encoding>(),
             new ApiEnumConverter<string, Focus>(),
             new ApiEnumConverter<string, StreamingResolution>(),
@@ -76,8 +76,6 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, ExtensionStatusProperties::AwsAutoTagging>(),
             new ApiEnumConverter<string, ExtensionStatusProperties::GoogleAutoTagging>(),
             new ApiEnumConverter<string, ExtensionStatusProperties::RemoveBg>(),
-            new ApiEnumConverter<string, Name>(),
-            new ApiEnumConverter<string, AutoTaggingExtensionProperties::Name>(),
             new ApiEnumConverter<string, FileUploadParamsProperties::ResponseField>(),
             new ApiEnumConverter<string, Protocol>(),
             new ApiEnumConverter<string, AssetListParamsProperties::FileType>(),
@@ -101,10 +99,6 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 global::Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.ExtensionStatusProperties.RemoveBg
-            >(),
-            new ApiEnumConverter<
-                string,
-                global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.ExtensionProperties.AutoTaggingExtensionProperties.Name
             >(),
             new ApiEnumConverter<
                 string,
