@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties;
 using FileProperties = Imagekit.Models.Files.FileProperties;
 
 namespace Imagekit.Models.Files;
@@ -319,6 +320,36 @@ public sealed record class File : ModelBase, IFromRaw<File>
     }
 
     /// <summary>
+    /// This field is included in the response only if the Path policy feature is
+    /// available in the plan. It contains schema definitions for the custom metadata
+    /// fields selected for the specified file path. Field selection can only be done
+    /// when the Path policy feature is enabled.
+    ///
+    /// Keys are the names of the custom metadata fields; the value object has details
+    /// about the custom metadata schema.
+    /// </summary>
+    public Dictionary<string, SelectedFieldsSchemaItem>? SelectedFieldsSchema
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("selectedFieldsSchema", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Dictionary<string, SelectedFieldsSchemaItem>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["selectedFieldsSchema"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// Size of the file in bytes.
     /// </summary>
     public double? Size
@@ -520,6 +551,13 @@ public sealed record class File : ModelBase, IFromRaw<File>
         _ = this.IsPublished;
         _ = this.Mime;
         _ = this.Name;
+        if (this.SelectedFieldsSchema != null)
+        {
+            foreach (var item in this.SelectedFieldsSchema.Values)
+            {
+                item.Validate();
+            }
+        }
         _ = this.Size;
         foreach (var item in this.Tags ?? [])
         {

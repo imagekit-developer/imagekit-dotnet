@@ -22,6 +22,7 @@ using IntersectionMember1Properties = Imagekit.Models.SubtitleOverlayProperties.
 using JobGetResponseProperties = Imagekit.Models.Folders.Job.JobGetResponseProperties;
 using OptionsProperties = Imagekit.Models.Webhooks.VideoTransformationErrorEventProperties.IntersectionMember1Properties.DataProperties.TransformationProperties.OptionsProperties;
 using SchemaProperties = Imagekit.Models.CustomMetadataFields.CustomMetadataFieldCreateParamsProperties.SchemaProperties;
+using SelectedFieldsSchemaItemProperties = Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties;
 using TransformationProperties = Imagekit.Models.TransformationProperties;
 
 namespace Imagekit;
@@ -66,6 +67,7 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<string, Type>(),
             new ApiEnumConverter<string, SchemaProperties::Type>(),
+            new ApiEnumConverter<string, SelectedFieldsSchemaItemProperties::Type>(),
             new ApiEnumConverter<string, FileProperties::Type>(),
             new ApiEnumConverter<string, FolderProperties::Type>(),
             new ApiEnumConverter<string, AIAutoDescription>(),
@@ -77,6 +79,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, ExtensionStatusProperties::GoogleAutoTagging>(),
             new ApiEnumConverter<string, ExtensionStatusProperties::RemoveBg>(),
             new ApiEnumConverter<string, FileUploadParamsProperties::ResponseField>(),
+            new ApiEnumConverter<
+                string,
+                global::Imagekit.Models.Files.FileUploadParamsProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type
+            >(),
             new ApiEnumConverter<string, Protocol>(),
             new ApiEnumConverter<string, AssetListParamsProperties::FileType>(),
             new ApiEnumConverter<string, AssetListParamsProperties::Sort>(),
@@ -103,6 +109,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.ResponseField
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type
             >(),
             new ApiEnumConverter<string, AbsProperties::Protocol>(),
             new ApiEnumConverter<

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Imagekit.Models.Files.FileUploadParamsProperties.SelectedFieldsSchemaProperties;
 using FileUploadParamsProperties = Imagekit.Models.Files.FileUploadParamsProperties;
 
 namespace Imagekit.Models.Files;
@@ -471,6 +472,36 @@ public sealed record class FileUploadParams : ParamsBase
         set
         {
             this.BodyProperties["responseFields"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
+    /// This field is included in the response only if the Path policy feature is
+    /// available in the plan. It contains schema definitions for the custom metadata
+    /// fields selected for the specified file path. Field selection can only be done
+    /// when the Path policy feature is enabled.
+    ///
+    /// Keys are the names of the custom metadata fields; the value object has details
+    /// about the custom metadata schema.
+    /// </summary>
+    public Dictionary<string, SelectedFieldsSchemaItem>? SelectedFieldsSchema
+    {
+        get
+        {
+            if (!this.BodyProperties.TryGetValue("selectedFieldsSchema", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Dictionary<string, SelectedFieldsSchemaItem>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.BodyProperties["selectedFieldsSchema"] = JsonSerializer.SerializeToElement(
                 value,
                 ModelBase.SerializerOptions
             );
