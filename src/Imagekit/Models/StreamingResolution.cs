@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Exceptions;
 
 namespace Imagekit.Models;
 
@@ -10,13 +11,13 @@ namespace Imagekit.Models;
 [JsonConverter(typeof(StreamingResolutionConverter))]
 public enum StreamingResolution
 {
-    v240,
-    v360,
-    v480,
-    v720,
-    v1080,
-    v1440,
-    v2160,
+    V240,
+    V360,
+    V480,
+    V720,
+    V1080,
+    V1440,
+    V2160,
 }
 
 sealed class StreamingResolutionConverter : JsonConverter<StreamingResolution>
@@ -29,13 +30,13 @@ sealed class StreamingResolutionConverter : JsonConverter<StreamingResolution>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "240" => StreamingResolution.v240,
-            "360" => StreamingResolution.v360,
-            "480" => StreamingResolution.v480,
-            "720" => StreamingResolution.v720,
-            "1080" => StreamingResolution.v1080,
-            "1440" => StreamingResolution.v1440,
-            "2160" => StreamingResolution.v2160,
+            "240" => StreamingResolution.V240,
+            "360" => StreamingResolution.V360,
+            "480" => StreamingResolution.V480,
+            "720" => StreamingResolution.V720,
+            "1080" => StreamingResolution.V1080,
+            "1440" => StreamingResolution.V1440,
+            "2160" => StreamingResolution.V2160,
             _ => (StreamingResolution)(-1),
         };
     }
@@ -50,14 +51,16 @@ sealed class StreamingResolutionConverter : JsonConverter<StreamingResolution>
             writer,
             value switch
             {
-                StreamingResolution.v240 => "240",
-                StreamingResolution.v360 => "360",
-                StreamingResolution.v480 => "480",
-                StreamingResolution.v720 => "720",
-                StreamingResolution.v1080 => "1080",
-                StreamingResolution.v1440 => "1440",
-                StreamingResolution.v2160 => "2160",
-                _ => throw new ArgumentOutOfRangeException(nameof(value)),
+                StreamingResolution.V240 => "240",
+                StreamingResolution.V360 => "360",
+                StreamingResolution.V480 => "480",
+                StreamingResolution.V720 => "720",
+                StreamingResolution.V1080 => "1080",
+                StreamingResolution.V1440 => "1440",
+                StreamingResolution.V2160 => "2160",
+                _ => throw new ImageKitInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
             },
             options
         );
