@@ -78,11 +78,11 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, ExtensionStatusProperties::AwsAutoTagging>(),
             new ApiEnumConverter<string, ExtensionStatusProperties::GoogleAutoTagging>(),
             new ApiEnumConverter<string, ExtensionStatusProperties::RemoveBg>(),
-            new ApiEnumConverter<string, FileUploadParamsProperties::ResponseField>(),
             new ApiEnumConverter<
                 string,
-                global::Imagekit.Models.Files.FileUploadParamsProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type
+                global::Imagekit.Models.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type
             >(),
+            new ApiEnumConverter<string, FileUploadParamsProperties::ResponseField>(),
             new ApiEnumConverter<string, Protocol>(),
             new ApiEnumConverter<string, AssetListParamsProperties::FileType>(),
             new ApiEnumConverter<string, AssetListParamsProperties::Sort>(),
@@ -108,11 +108,11 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
-                global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.ResponseField
+                global::Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type
             >(),
             new ApiEnumConverter<
                 string,
-                global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type
+                global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.ResponseField
             >(),
             new ApiEnumConverter<string, AbsProperties::Protocol>(),
             new ApiEnumConverter<
@@ -146,6 +146,10 @@ public abstract record class ModelBase
             new ApiEnumConverter<
                 string,
                 global::Imagekit.Models.Webhooks.UploadPreTransformSuccessEventProperties.IntersectionMember1Properties.DataProperties.ExtensionStatusProperties.RemoveBg
+            >(),
+            new ApiEnumConverter<
+                string,
+                global::Imagekit.Models.Webhooks.UploadPreTransformSuccessEventProperties.IntersectionMember1Properties.DataProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type
             >(),
             new ApiEnumConverter<
                 string,

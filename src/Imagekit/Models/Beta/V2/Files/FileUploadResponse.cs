@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties;
+using Imagekit.Models.Beta.V2.Files.FileUploadResponseProperties.SelectedFieldsSchemaProperties;
 using Files = Imagekit.Models.Files;
 
 namespace Imagekit.Models.Beta.V2.Files;
@@ -405,6 +406,36 @@ public sealed record class FileUploadResponse : ModelBase, IFromRaw<FileUploadRe
     }
 
     /// <summary>
+    /// This field is included in the response only if the Path policy feature is
+    /// available in the plan. It contains schema definitions for the custom metadata
+    /// fields selected for the specified file path. Field selection can only be done
+    /// when the Path policy feature is enabled.
+    ///
+    /// Keys are the names of the custom metadata fields; the value object has details
+    /// about the custom metadata schema.
+    /// </summary>
+    public Dictionary<string, SelectedFieldsSchemaItem>? SelectedFieldsSchema
+    {
+        get
+        {
+            if (!this.Properties.TryGetValue("selectedFieldsSchema", out JsonElement element))
+                return null;
+
+            return JsonSerializer.Deserialize<Dictionary<string, SelectedFieldsSchemaItem>?>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        }
+        set
+        {
+            this.Properties["selectedFieldsSchema"] = JsonSerializer.SerializeToElement(
+                value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    /// <summary>
     /// Size of the image file in Bytes.
     /// </summary>
     public double? Size
@@ -587,6 +618,13 @@ public sealed record class FileUploadResponse : ModelBase, IFromRaw<FileUploadRe
         _ = this.IsPublished;
         this.Metadata?.Validate();
         _ = this.Name;
+        if (this.SelectedFieldsSchema != null)
+        {
+            foreach (var item in this.SelectedFieldsSchema.Values)
+            {
+                item.Validate();
+            }
+        }
         _ = this.Size;
         foreach (var item in this.Tags ?? [])
         {
