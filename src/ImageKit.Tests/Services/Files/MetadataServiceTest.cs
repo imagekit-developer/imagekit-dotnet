@@ -1,0 +1,27 @@
+using System.Threading.Tasks;
+
+namespace ImageKit.Tests.Services.Files;
+
+public class MetadataServiceTest : TestBase
+{
+    [Fact(Skip = "Prism tests are disabled")]
+    public async Task Get_Works()
+    {
+        var metadata = await this.client.Files.Metadata.Get(
+            "fileId",
+            new(),
+            TestContext.Current.CancellationToken
+        );
+        metadata.Validate();
+    }
+
+    [Fact(Skip = "Prism tests are disabled")]
+    public async Task GetFromUrl_Works()
+    {
+        var metadata = await this.client.Files.Metadata.GetFromUrl(
+            new() { UrlValue = "https://example.com" },
+            TestContext.Current.CancellationToken
+        );
+        metadata.Validate();
+    }
+}

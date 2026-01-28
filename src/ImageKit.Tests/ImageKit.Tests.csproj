@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsTestProject>true</IsTestProject>
+    <IsPackable>false</IsPackable>
+    <OutputType>Exe</OutputType>
+
+    <!-- Run tests on net8.0, which will use the SDK's net8.0 DLL, and on net472, which will use the
+    SDK's netstandard2.0 DLL. -->
+    <TargetFrameworks>net8.0;net472</TargetFrameworks>
+
+    <!-- Disable skipped tests warnings. -->
+    <NoWarn>$(NoWarn),xUnit1004</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageReference Include="xunit.v3" Version="3.2.1" />
+    <PackageReference Include="xunit.analyzers" Version="1.26.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
+    <ProjectReference Include="..\ImageKit\ImageKit.csproj" />
+    <Using Include="Xunit" />
+  </ItemGroup>
+</Project>
