@@ -149,16 +149,21 @@ public abstract record class ParamsBase
 
     protected static void AddDefaultHeaders(HttpRequestMessage request, IImageKitClient client)
     {
-        request.Headers.Add(
-            "Authorization",
-            string.Format(
-                "Basic {0}",
-                Convert.ToBase64String(
-                    Encoding
-                        .GetEncoding("ISO-8859-1")
-                        .GetBytes(string.Format("{0}:{1}", client.PrivateAPIKey, client.Password))
+        if (client.PrivateAPIKey != null && client.Password != null)
+        {
+            request.Headers.Add(
+                "Authorization",
+                string.Format(
+                    "Basic {0}",
+                    Convert.ToBase64String(
+                        Encoding
+                            .GetEncoding("ISO-8859-1")
+                            .GetBytes(
+                                string.Format("{0}:{1}", client.PrivateAPIKey, client.Password)
+                            )
+                    )
                 )
-            )
-        );
+            );
+        }
     }
 }
