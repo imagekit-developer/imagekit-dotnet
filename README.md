@@ -34,18 +34,11 @@ See the [`examples`](examples) directory for complete and runnable examples.
 ```csharp
 using System;
 using Imagekit;
-using Imagekit.Models.Files;
 
 // Configured using the IMAGEKIT_PRIVATE_API_KEY, OPTIONAL_IMAGEKIT_IGNORES_THIS, IMAGEKIT_WEBHOOK_SECRET and IMAGE_KIT_BASE_URL environment variables
 ImageKitClient client = new();
 
-FileUploadParams parameters = new()
-{
-    File = "a value",
-    FileName = "file-name.jpg",
-};
-
-var response = await client.Files.Upload(parameters);
+var response = await client.Files.Upload();
 
 Console.WriteLine(response);
 ```

@@ -87,5 +87,5 @@ public interface IFileService
     /// Instagram, and more. - [Quick start guides](/docs/quick-start-guides) for
     /// various frameworks and technologies.
     /// </summary>
-    Task<FileUploadResponse> Upload(FileUploadParams parameters);
+    Task<FileUploadResponse> Upload(FileUploadParams? parameters = null);
 }

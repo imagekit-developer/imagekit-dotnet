@@ -62,9 +62,7 @@ public class FileServiceTest : TestBase
     [Fact(Skip = "Prism tests are disabled")]
     public async Task Upload_Works()
     {
-        var response = await this.client.Files.Upload(
-            new() { File = "a value", FileName = "fileName" }
-        );
+        var response = await this.client.Files.Upload();
         response.Validate();
     }
 }
