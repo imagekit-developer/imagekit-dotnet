@@ -125,6 +125,7 @@ public sealed record class SolidColorOverlay : ModelBase, IFromRaw<SolidColorOve
         this.Position?.Validate();
         this.Timing?.Validate();
         _ = this.Color;
+        _ = this.Type;
         foreach (var item in this.Transformation ?? [])
         {
             item.Validate();

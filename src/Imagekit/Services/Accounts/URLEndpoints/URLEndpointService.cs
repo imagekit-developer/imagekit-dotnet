@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Imagekit.Core;
 using Imagekit.Models.Accounts.URLEndpoints;
 
 namespace Imagekit.Services.Accounts.URLEndpoints;
@@ -18,109 +17,88 @@ public sealed class URLEndpointService : IURLEndpointService
 
     public async Task<URLEndpointResponse> Create(URLEndpointCreateParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<URLEndpointCreateParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var urlEndpointResponse = await response
+            .Deserialize<URLEndpointResponse>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            urlEndpointResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<URLEndpointResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return urlEndpointResponse;
     }
 
     public async Task<URLEndpointResponse> Update(URLEndpointUpdateParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Put, parameters.Url(this._client))
+        HttpRequest<URLEndpointUpdateParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Put,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var urlEndpointResponse = await response
+            .Deserialize<URLEndpointResponse>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            urlEndpointResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<URLEndpointResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return urlEndpointResponse;
     }
 
     public async Task<List<URLEndpointResponse>> List(URLEndpointListParams? parameters = null)
     {
         parameters ??= new();
 
-        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<URLEndpointListParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var urlEndpointResponses = await response
+            .Deserialize<List<URLEndpointResponse>>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            foreach (var item in urlEndpointResponses)
+            {
+                item.Validate();
+            }
         }
-
-        return JsonSerializer.Deserialize<List<URLEndpointResponse>>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return urlEndpointResponses;
     }
 
     public async Task Delete(URLEndpointDeleteParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Delete, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<URLEndpointDeleteParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
-        }
+            Method = HttpMethod.Delete,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
     }
 
     public async Task<URLEndpointResponse> Get(URLEndpointGetParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<URLEndpointGetParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var urlEndpointResponse = await response
+            .Deserialize<URLEndpointResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            urlEndpointResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<URLEndpointResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return urlEndpointResponse;
     }
 }

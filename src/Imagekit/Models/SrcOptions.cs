@@ -198,13 +198,7 @@ public sealed record class SrcOptions : ModelBase, IFromRaw<SrcOptions>
         _ = this.Src;
         _ = this.URLEndpoint;
         _ = this.ExpiresIn;
-        if (this.QueryParameters != null)
-        {
-            foreach (var item in this.QueryParameters.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.QueryParameters;
         _ = this.Signed;
         foreach (var item in this.Transformation ?? [])
         {

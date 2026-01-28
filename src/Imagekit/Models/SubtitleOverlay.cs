@@ -148,6 +148,7 @@ public sealed record class SubtitleOverlay : ModelBase, IFromRaw<SubtitleOverlay
         this.Position?.Validate();
         this.Timing?.Validate();
         _ = this.Input;
+        _ = this.Type;
         this.Encoding?.Validate();
         foreach (var item in this.Transformation ?? [])
         {

@@ -535,13 +535,7 @@ public sealed record class File : ModelBase, IFromRaw<File>
         }
         _ = this.CreatedAt;
         _ = this.CustomCoordinates;
-        if (this.CustomMetadata != null)
-        {
-            foreach (var item in this.CustomMetadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.CustomMetadata;
         _ = this.Description;
         _ = this.FileID;
         _ = this.FilePath;
@@ -560,10 +554,7 @@ public sealed record class File : ModelBase, IFromRaw<File>
             }
         }
         _ = this.Size;
-        foreach (var item in this.Tags ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Tags;
         _ = this.Thumbnail;
         this.Type?.Validate();
         _ = this.UpdatedAt;

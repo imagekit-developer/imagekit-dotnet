@@ -150,6 +150,7 @@ public sealed record class ImageOverlay : ModelBase, IFromRaw<ImageOverlay>
         this.Position?.Validate();
         this.Timing?.Validate();
         _ = this.Input;
+        _ = this.Type;
         this.Encoding?.Validate();
         foreach (var item in this.Transformation ?? [])
         {

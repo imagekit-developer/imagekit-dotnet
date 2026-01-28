@@ -334,27 +334,15 @@ public sealed record class GetImageAttributesOptions
         _ = this.Src;
         _ = this.URLEndpoint;
         _ = this.ExpiresIn;
-        if (this.QueryParameters != null)
-        {
-            foreach (var item in this.QueryParameters.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.QueryParameters;
         _ = this.Signed;
         foreach (var item in this.Transformation ?? [])
         {
             item.Validate();
         }
         this.TransformationPosition?.Validate();
-        foreach (var item in this.DeviceBreakpoints ?? [])
-        {
-            _ = item;
-        }
-        foreach (var item in this.ImageBreakpoints ?? [])
-        {
-            _ = item;
-        }
+        _ = this.DeviceBreakpoints;
+        _ = this.ImageBreakpoints;
         _ = this.Sizes;
         _ = this.Width;
     }

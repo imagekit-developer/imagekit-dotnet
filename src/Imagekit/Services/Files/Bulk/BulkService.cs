@@ -1,7 +1,6 @@
-using System;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Imagekit.Core;
 using Imagekit.Models.Files.Bulk;
 
 namespace Imagekit.Services.Files.Bulk;
@@ -17,97 +16,71 @@ public sealed class BulkService : IBulkService
 
     public async Task<BulkDeleteResponse> Delete(BulkDeleteParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<BulkDeleteParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var bulk = await response.Deserialize<BulkDeleteResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            bulk.Validate();
         }
-
-        return JsonSerializer.Deserialize<BulkDeleteResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return bulk;
     }
 
     public async Task<BulkAddTagsResponse> AddTags(BulkAddTagsParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<BulkAddTagsParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<BulkAddTagsResponse>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            deserializedResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<BulkAddTagsResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return deserializedResponse;
     }
 
     public async Task<BulkRemoveAITagsResponse> RemoveAITags(BulkRemoveAITagsParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<BulkRemoveAITagsParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<BulkRemoveAITagsResponse>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            deserializedResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<BulkRemoveAITagsResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return deserializedResponse;
     }
 
     public async Task<BulkRemoveTagsResponse> RemoveTags(BulkRemoveTagsParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<BulkRemoveTagsParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<BulkRemoveTagsResponse>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            deserializedResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<BulkRemoveTagsResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return deserializedResponse;
     }
 }

@@ -591,22 +591,10 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
         _ = this.AudioCodec;
         _ = this.BitRate;
         _ = this.CustomCoordinates;
-        if (this.CustomMetadata != null)
-        {
-            foreach (var item in this.CustomMetadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.CustomMetadata;
         _ = this.Description;
         _ = this.Duration;
-        if (this.EmbeddedMetadata != null)
-        {
-            foreach (var item in this.EmbeddedMetadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.EmbeddedMetadata;
         this.ExtensionStatus?.Validate();
         _ = this.FileID;
         _ = this.FilePath;
@@ -624,10 +612,7 @@ public sealed record class Data : ModelBase, IFromRaw<Data>
             }
         }
         _ = this.Size;
-        foreach (var item in this.Tags ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Tags;
         _ = this.ThumbnailURL;
         _ = this.URL;
         this.VersionInfo?.Validate();

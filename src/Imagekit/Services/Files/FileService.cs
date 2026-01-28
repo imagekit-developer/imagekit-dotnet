@@ -1,7 +1,7 @@
 using System;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Imagekit.Core;
 using Imagekit.Models.Files;
 using Imagekit.Services.Files.Bulk;
 using Imagekit.Services.Files.Metadata;
@@ -41,158 +41,111 @@ public sealed class FileService : IFileService
 
     public async Task<FileUpdateResponse> Update(FileUpdateParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Patch, parameters.Url(this._client))
+        HttpRequest<FileUpdateParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Patch,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var file = await response.Deserialize<FileUpdateResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            file.Validate();
         }
-
-        return JsonSerializer.Deserialize<FileUpdateResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return file;
     }
 
     public async Task Delete(FileDeleteParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Delete, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<FileDeleteParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
-        }
+            Method = HttpMethod.Delete,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
     }
 
     public async Task<FileCopyResponse> Copy(FileCopyParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<FileCopyParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<FileCopyResponse>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            deserializedResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<FileCopyResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return deserializedResponse;
     }
 
     public async Task<File> Get(FileGetParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<FileGetParams> request = new() { Method = HttpMethod.Get, Params = parameters };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var file = await response.Deserialize<File>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            file.Validate();
         }
-
-        return JsonSerializer.Deserialize<File>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return file;
     }
 
     public async Task<FileMoveResponse> Move(FileMoveParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<FileMoveParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<FileMoveResponse>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            deserializedResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<FileMoveResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return deserializedResponse;
     }
 
     public async Task<FileRenameResponse> Rename(FileRenameParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Put, parameters.Url(this._client))
+        HttpRequest<FileRenameParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Put,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<FileRenameResponse>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            deserializedResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<FileRenameResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return deserializedResponse;
     }
 
     public async Task<FileUploadResponse> Upload(FileUploadParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<FileUploadParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var deserializedResponse = await response
+            .Deserialize<FileUploadResponse>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            deserializedResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<FileUploadResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return deserializedResponse;
     }
 }

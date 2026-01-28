@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Imagekit.Models.Files.FileUpdateParamsProperties.UpdateProperties.UpdateFileDetailsProperties;
+using Imagekit.Core;
+using Imagekit.Models.Files.UpdateFileRequestProperties.UpdateFileDetailsProperties;
 
-namespace Imagekit.Models.Files.FileUpdateParamsProperties.UpdateProperties;
+namespace Imagekit.Models.Files.UpdateFileRequestProperties;
 
 [JsonConverter(typeof(ModelConverter<UpdateFileDetails>))]
 public sealed record class UpdateFileDetails : ModelBase, IFromRaw<UpdateFileDetails>
@@ -82,14 +83,14 @@ public sealed record class UpdateFileDetails : ModelBase, IFromRaw<UpdateFileDet
     /// Array of extensions to be applied to the asset. Each extension can be configured
     /// with specific parameters based on the extension type.
     /// </summary>
-    public List<Extension>? Extensions
+    public List<UnnamedSchemaWithArrayParent0>? Extensions
     {
         get
         {
             if (!this.Properties.TryGetValue("extensions", out JsonElement element))
                 return null;
 
-            return JsonSerializer.Deserialize<List<Extension>?>(
+            return JsonSerializer.Deserialize<List<UnnamedSchemaWithArrayParent0>?>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -178,23 +179,14 @@ public sealed record class UpdateFileDetails : ModelBase, IFromRaw<UpdateFileDet
     public override void Validate()
     {
         _ = this.CustomCoordinates;
-        if (this.CustomMetadata != null)
-        {
-            foreach (var item in this.CustomMetadata.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.CustomMetadata;
         _ = this.Description;
         foreach (var item in this.Extensions ?? [])
         {
             item.Validate();
         }
         this.RemoveAITags?.Validate();
-        foreach (var item in this.Tags ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Tags;
         _ = this.WebhookURL;
     }
 

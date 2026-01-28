@@ -1,7 +1,6 @@
-using System;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Imagekit.Core;
 using Imagekit.Models.Cache.Invalidation;
 
 namespace Imagekit.Services.Cache.Invalidation;
@@ -17,46 +16,37 @@ public sealed class InvalidationService : IInvalidationService
 
     public async Task<InvalidationCreateResponse> Create(InvalidationCreateParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<InvalidationCreateParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var invalidation = await response
+            .Deserialize<InvalidationCreateResponse>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            invalidation.Validate();
         }
-
-        return JsonSerializer.Deserialize<InvalidationCreateResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return invalidation;
     }
 
     public async Task<InvalidationGetResponse> Get(InvalidationGetParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<InvalidationGetParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var invalidation = await response
+            .Deserialize<InvalidationGetResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            invalidation.Validate();
         }
-
-        return JsonSerializer.Deserialize<InvalidationGetResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return invalidation;
     }
 }

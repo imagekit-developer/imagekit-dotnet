@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Imagekit.Core;
 using Imagekit.Models.CustomMetadataFields;
 
 namespace Imagekit.Services.CustomMetadataFields;
@@ -18,50 +17,38 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
 
     public async Task<CustomMetadataField> Create(CustomMetadataFieldCreateParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<CustomMetadataFieldCreateParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var customMetadataField = await response
+            .Deserialize<CustomMetadataField>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            customMetadataField.Validate();
         }
-
-        return JsonSerializer.Deserialize<CustomMetadataField>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return customMetadataField;
     }
 
     public async Task<CustomMetadataField> Update(CustomMetadataFieldUpdateParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Patch, parameters.Url(this._client))
+        HttpRequest<CustomMetadataFieldUpdateParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Patch,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var customMetadataField = await response
+            .Deserialize<CustomMetadataField>()
             .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            customMetadataField.Validate();
         }
-
-        return JsonSerializer.Deserialize<CustomMetadataField>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return customMetadataField;
     }
 
     public async Task<List<CustomMetadataField>> List(
@@ -70,45 +57,42 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
     {
         parameters ??= new();
 
-        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<CustomMetadataFieldListParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var customMetadataFields = await response
+            .Deserialize<List<CustomMetadataField>>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            foreach (var item in customMetadataFields)
+            {
+                item.Validate();
+            }
         }
-
-        return JsonSerializer.Deserialize<List<CustomMetadataField>>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return customMetadataFields;
     }
 
     public async Task<CustomMetadataFieldDeleteResponse> Delete(
         CustomMetadataFieldDeleteParams parameters
     )
     {
-        using HttpRequestMessage request = new(HttpMethod.Delete, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<CustomMetadataFieldDeleteParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            Method = HttpMethod.Delete,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var customMetadataField = await response
+            .Deserialize<CustomMetadataFieldDeleteResponse>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            customMetadataField.Validate();
         }
-
-        return JsonSerializer.Deserialize<CustomMetadataFieldDeleteResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return customMetadataField;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
 
 namespace Imagekit.Models.Files.MetadataProperties.ExifProperties;
 
@@ -31,10 +32,7 @@ public sealed record class Gps : ModelBase, IFromRaw<Gps>
 
     public override void Validate()
     {
-        foreach (var item in this.GpsVersionID ?? [])
-        {
-            _ = item;
-        }
+        _ = this.GpsVersionID;
     }
 
     public Gps() { }

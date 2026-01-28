@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
 
 namespace Imagekit.Models.Files.Bulk;
 
@@ -31,10 +32,7 @@ public sealed record class BulkRemoveTagsResponse : ModelBase, IFromRaw<BulkRemo
 
     public override void Validate()
     {
-        foreach (var item in this.SuccessfullyUpdatedFileIDs ?? [])
-        {
-            _ = item;
-        }
+        _ = this.SuccessfullyUpdatedFileIDs;
     }
 
     public BulkRemoveTagsResponse() { }

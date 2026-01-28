@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Imagekit.Models.Webhooks.VideoTransformationAcceptedEventProperties.DataProperties.TransformationProperties.OptionsProperties;
+using Imagekit.Core;
+using Imagekit.Models.Webhooks.VideoTransformationAcceptedEventProperties.IntersectionMember1Properties.DataProperties.TransformationProperties.OptionsProperties;
 
-namespace Imagekit.Models.Webhooks.VideoTransformationAcceptedEventProperties.DataProperties.TransformationProperties;
+namespace Imagekit.Models.Webhooks.VideoTransformationAcceptedEventProperties.IntersectionMember1Properties.DataProperties.TransformationProperties;
 
 /// <summary>
 /// Configuration options for video transformations.
@@ -178,10 +179,7 @@ public sealed record class Options : ModelBase, IFromRaw<Options>
         this.Format?.Validate();
         _ = this.Quality;
         this.StreamProtocol?.Validate();
-        foreach (var item in this.Variants ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Variants;
         this.VideoCodec?.Validate();
     }
 

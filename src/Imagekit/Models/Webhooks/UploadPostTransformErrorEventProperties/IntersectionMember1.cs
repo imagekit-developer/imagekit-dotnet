@@ -116,6 +116,7 @@ public sealed record class IntersectionMember1 : ModelBase, IFromRaw<Intersectio
         _ = this.CreatedAt;
         this.Data.Validate();
         this.Request.Validate();
+        _ = this.Type;
     }
 
     public IntersectionMember1()

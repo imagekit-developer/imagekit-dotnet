@@ -115,14 +115,8 @@ public sealed record class IntersectionMember1 : ModelBase, IFromRaw<Intersectio
 
     public override void Validate()
     {
-        foreach (var item in this.DeviceBreakpoints ?? [])
-        {
-            _ = item;
-        }
-        foreach (var item in this.ImageBreakpoints ?? [])
-        {
-            _ = item;
-        }
+        _ = this.DeviceBreakpoints;
+        _ = this.ImageBreakpoints;
         _ = this.Sizes;
         _ = this.Width;
     }

@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Imagekit.Core;
 using Imagekit.Models.Accounts.Origins;
 
 namespace Imagekit.Services.Accounts.Origins;
@@ -18,109 +17,82 @@ public sealed class OriginService : IOriginService
 
     public async Task<OriginResponse> Create(OriginCreateParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Post, parameters.Url(this._client))
+        HttpRequest<OriginCreateParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Post,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var originResponse = await response.Deserialize<OriginResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            originResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<OriginResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return originResponse;
     }
 
     public async Task<OriginResponse> Update(OriginUpdateParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Put, parameters.Url(this._client))
+        HttpRequest<OriginUpdateParams> request = new()
         {
-            Content = parameters.BodyContent(),
+            Method = HttpMethod.Put,
+            Params = parameters,
         };
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var originResponse = await response.Deserialize<OriginResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            originResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<OriginResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return originResponse;
     }
 
     public async Task<List<OriginResponse>> List(OriginListParams? parameters = null)
     {
         parameters ??= new();
 
-        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<OriginListParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var originResponses = await response
+            .Deserialize<List<OriginResponse>>()
+            .ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            foreach (var item in originResponses)
+            {
+                item.Validate();
+            }
         }
-
-        return JsonSerializer.Deserialize<List<OriginResponse>>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return originResponses;
     }
 
     public async Task Delete(OriginDeleteParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Delete, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<OriginDeleteParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
-        }
+            Method = HttpMethod.Delete,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
     }
 
     public async Task<OriginResponse> Get(OriginGetParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<OriginGetParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var originResponse = await response.Deserialize<OriginResponse>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            originResponse.Validate();
         }
-
-        return JsonSerializer.Deserialize<OriginResponse>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return originResponse;
     }
 }

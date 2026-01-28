@@ -149,6 +149,7 @@ public sealed record class TextOverlay : ModelBase, IFromRaw<TextOverlay>
         this.Position?.Validate();
         this.Timing?.Validate();
         _ = this.Text;
+        _ = this.Type;
         this.Encoding?.Validate();
         foreach (var item in this.Transformation ?? [])
         {

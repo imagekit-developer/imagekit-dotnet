@@ -1,7 +1,6 @@
-using System;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Imagekit.Core;
 using Imagekit.Models.Files.Metadata;
 using Files = Imagekit.Models.Files;
 
@@ -18,43 +17,33 @@ public sealed class MetadataService : IMetadataService
 
     public async Task<Files::Metadata> Get(MetadataGetParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<MetadataGetParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var metadata = await response.Deserialize<Files::Metadata>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            metadata.Validate();
         }
-
-        return JsonSerializer.Deserialize<Files::Metadata>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return metadata;
     }
 
     public async Task<Files::Metadata> GetFromURL(MetadataGetFromURLParams parameters)
     {
-        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<MetadataGetFromURLParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var metadata = await response.Deserialize<Files::Metadata>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            metadata.Validate();
         }
-
-        return JsonSerializer.Deserialize<Files::Metadata>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return metadata;
     }
 }

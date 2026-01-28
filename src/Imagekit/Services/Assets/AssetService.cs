@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Imagekit.Core;
 using Imagekit.Models.Assets;
 
 namespace Imagekit.Services.Assets;
@@ -20,22 +19,20 @@ public sealed class AssetService : IAssetService
     {
         parameters ??= new();
 
-        using HttpRequestMessage request = new(HttpMethod.Get, parameters.Url(this._client));
-        parameters.AddHeadersToRequest(request, this._client);
-        using HttpResponseMessage response = await this
-            ._client.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-            .ConfigureAwait(false);
-        if (!response.IsSuccessStatusCode)
+        HttpRequest<AssetListParams> request = new()
         {
-            throw new HttpException(
-                response.StatusCode,
-                await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-            );
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        using var response = await this._client.Execute(request).ConfigureAwait(false);
+        var assets = await response.Deserialize<List<AssetListResponse>>().ConfigureAwait(false);
+        if (this._client.ResponseValidation)
+        {
+            foreach (var item in assets)
+            {
+                item.Validate();
+            }
         }
-
-        return JsonSerializer.Deserialize<List<AssetListResponse>>(
-                await response.Content.ReadAsStreamAsync().ConfigureAwait(false),
-                ModelBase.SerializerOptions
-            ) ?? throw new NullReferenceException();
+        return assets;
     }
 }

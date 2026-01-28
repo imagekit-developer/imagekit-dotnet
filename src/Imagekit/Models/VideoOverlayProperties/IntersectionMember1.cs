@@ -105,6 +105,7 @@ public sealed record class IntersectionMember1 : ModelBase, IFromRaw<Intersectio
     public override void Validate()
     {
         _ = this.Input;
+        _ = this.Type;
         this.Encoding?.Validate();
         foreach (var item in this.Transformation ?? [])
         {

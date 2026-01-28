@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
 using ExifProperties = Imagekit.Models.Files.MetadataProperties.ExifProperties;
 
 namespace Imagekit.Models.Files.MetadataProperties;
@@ -156,13 +157,7 @@ public sealed record class Exif : ModelBase, IFromRaw<Exif>
         this.Gps?.Validate();
         this.Image?.Validate();
         this.Interoperability?.Validate();
-        if (this.Makernote != null)
-        {
-            foreach (var item in this.Makernote.Values)
-            {
-                _ = item;
-            }
-        }
+        _ = this.Makernote;
         this.Thumbnail?.Validate();
     }
 

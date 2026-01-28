@@ -104,10 +104,7 @@ public sealed record class URLEndpointRequest : ModelBase, IFromRaw<URLEndpointR
     public override void Validate()
     {
         _ = this.Description;
-        foreach (var item in this.Origins ?? [])
-        {
-            _ = item;
-        }
+        _ = this.Origins;
         _ = this.URLPrefix;
         this.URLRewriter?.Validate();
     }
