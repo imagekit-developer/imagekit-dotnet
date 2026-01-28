@@ -7,8 +7,12 @@ using TransformationProperties = Imagekit.Models.Webhooks.UploadPostTransformSuc
 
 namespace Imagekit.Models.Webhooks.UploadPostTransformSuccessEventProperties.RequestProperties;
 
-[JsonConverter(typeof(ModelConverter<Transformation>))]
-public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
+[JsonConverter(
+    typeof(ModelConverter<global::Imagekit.Models.Webhooks.UploadPostTransformSuccessEventProperties.IntersectionMember1Properties.RequestProperties.Transformation>)
+)]
+public sealed record class Transformation
+    : ModelBase,
+        IFromRaw<global::Imagekit.Models.Webhooks.UploadPostTransformSuccessEventProperties.IntersectionMember1Properties.RequestProperties.Transformation>
 {
     /// <summary>
     /// Type of the requested post-transformation.
@@ -96,7 +100,9 @@ public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
     }
 #pragma warning restore CS8618
 
-    public static Transformation FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Imagekit.Models.Webhooks.UploadPostTransformSuccessEventProperties.IntersectionMember1Properties.RequestProperties.Transformation FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
 using Imagekit.Models.Files.FileUploadParamsProperties.TransformationProperties;
 
 namespace Imagekit.Models.Files.FileUploadParamsProperties;
@@ -18,8 +19,12 @@ namespace Imagekit.Models.Files.FileUploadParamsProperties;
 ///
 /// You can mix and match any combination of post-processing types.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Transformation>))]
-public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
+[JsonConverter(
+    typeof(ModelConverter<global::Imagekit.Models.Files.FileUploadParamsProperties.Transformation>)
+)]
+public sealed record class Transformation
+    : ModelBase,
+        IFromRaw<global::Imagekit.Models.Files.FileUploadParamsProperties.Transformation>
 {
     /// <summary>
     /// List of transformations to apply *after* the file is uploaded.   Each item
@@ -85,7 +90,9 @@ public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
     }
 #pragma warning restore CS8618
 
-    public static Transformation FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Imagekit.Models.Files.FileUploadParamsProperties.Transformation FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

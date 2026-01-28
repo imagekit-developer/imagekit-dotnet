@@ -6,8 +6,12 @@ using System.Text.Json.Serialization;
 
 namespace Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.TransformationProperties.PostProperties;
 
-[JsonConverter(typeof(ModelConverter<Transformation>))]
-public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
+[JsonConverter(
+    typeof(ModelConverter<global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.Transformation>)
+)]
+public sealed record class Transformation
+    : ModelBase,
+        IFromRaw<global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.Transformation>
 {
     /// <summary>
     /// Transformation type.
@@ -79,7 +83,9 @@ public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
     }
 #pragma warning restore CS8618
 
-    public static Transformation FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Imagekit.Models.Beta.V2.Files.FileUploadParamsProperties.TransformationProperties.PostProperties.Transformation FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

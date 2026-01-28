@@ -8,7 +8,9 @@ namespace Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.Se
 /// <summary>
 /// Type of the custom metadata field.
 /// </summary>
-[JsonConverter(typeof(TypeConverter))]
+[JsonConverter(
+    typeof(global::Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.TypeConverter)
+)]
 public enum Type
 {
     Text,
@@ -20,9 +22,10 @@ public enum Type
     MultiSelect,
 }
 
-sealed class TypeConverter : JsonConverter<Type>
+sealed class TypeConverter
+    : JsonConverter<global::Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type>
 {
-    public override Type Read(
+    public override global::Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -37,11 +40,18 @@ sealed class TypeConverter : JsonConverter<Type>
             "Boolean" => SelectedFieldsSchemaItemProperties.Type.Boolean,
             "SingleSelect" => SelectedFieldsSchemaItemProperties.Type.SingleSelect,
             "MultiSelect" => SelectedFieldsSchemaItemProperties.Type.MultiSelect,
-            _ => (Type)(-1),
+            _ =>
+                (global::Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type)(
+                    -1
+                ),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Type value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Imagekit.Models.Files.FileProperties.SelectedFieldsSchemaProperties.SelectedFieldsSchemaItemProperties.Type value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,

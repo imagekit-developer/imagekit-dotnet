@@ -7,8 +7,12 @@ using TransformationProperties = Imagekit.Models.Webhooks.VideoTransformationRea
 
 namespace Imagekit.Models.Webhooks.VideoTransformationReadyEventProperties.DataProperties;
 
-[JsonConverter(typeof(ModelConverter<Transformation>))]
-public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
+[JsonConverter(
+    typeof(ModelConverter<global::Imagekit.Models.Webhooks.VideoTransformationReadyEventProperties.IntersectionMember1Properties.DataProperties.Transformation>)
+)]
+public sealed record class Transformation
+    : ModelBase,
+        IFromRaw<global::Imagekit.Models.Webhooks.VideoTransformationReadyEventProperties.IntersectionMember1Properties.DataProperties.Transformation>
 {
     /// <summary>
     /// Type of video transformation: - `video-transformation`: Standard video processing
@@ -101,7 +105,9 @@ public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
     }
 #pragma warning restore CS8618
 
-    public static Transformation FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Imagekit.Models.Webhooks.VideoTransformationReadyEventProperties.IntersectionMember1Properties.DataProperties.Transformation FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

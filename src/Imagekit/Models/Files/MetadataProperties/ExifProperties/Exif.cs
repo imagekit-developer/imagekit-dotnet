@@ -2,14 +2,19 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Imagekit.Core;
 
 namespace Imagekit.Models.Files.MetadataProperties.ExifProperties;
 
 /// <summary>
 /// Object containing Exif details.
 /// </summary>
-[JsonConverter(typeof(ModelConverter<Exif>))]
-public sealed record class Exif : ModelBase, IFromRaw<Exif>
+[JsonConverter(
+    typeof(ModelConverter<global::Imagekit.Models.Files.MetadataProperties.ExifProperties.Exif>)
+)]
+public sealed record class Exif
+    : ModelBase,
+        IFromRaw<global::Imagekit.Models.Files.MetadataProperties.ExifProperties.Exif>
 {
     public double? ApertureValue
     {
@@ -519,7 +524,9 @@ public sealed record class Exif : ModelBase, IFromRaw<Exif>
     }
 #pragma warning restore CS8618
 
-    public static Exif FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Imagekit.Models.Files.MetadataProperties.ExifProperties.Exif FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }

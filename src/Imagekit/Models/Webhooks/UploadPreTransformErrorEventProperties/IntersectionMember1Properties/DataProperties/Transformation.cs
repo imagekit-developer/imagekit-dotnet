@@ -7,8 +7,12 @@ using Imagekit.Models.Webhooks.UploadPreTransformErrorEventProperties.DataProper
 
 namespace Imagekit.Models.Webhooks.UploadPreTransformErrorEventProperties.DataProperties;
 
-[JsonConverter(typeof(ModelConverter<Transformation>))]
-public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
+[JsonConverter(
+    typeof(ModelConverter<global::Imagekit.Models.Webhooks.UploadPreTransformErrorEventProperties.IntersectionMember1Properties.DataProperties.Transformation>)
+)]
+public sealed record class Transformation
+    : ModelBase,
+        IFromRaw<global::Imagekit.Models.Webhooks.UploadPreTransformErrorEventProperties.IntersectionMember1Properties.DataProperties.Transformation>
 {
     public required Error Error
     {
@@ -44,7 +48,9 @@ public sealed record class Transformation : ModelBase, IFromRaw<Transformation>
     }
 #pragma warning restore CS8618
 
-    public static Transformation FromRawUnchecked(Dictionary<string, JsonElement> properties)
+    public static global::Imagekit.Models.Webhooks.UploadPreTransformErrorEventProperties.IntersectionMember1Properties.DataProperties.Transformation FromRawUnchecked(
+        Dictionary<string, JsonElement> properties
+    )
     {
         return new(properties);
     }
