@@ -1823,10 +1823,10 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
         }
     }
 
-    public virtual bool Equals(FileUploadResponseSelectedFieldsSchemaItemDefaultValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(FileUploadResponseSelectedFieldsSchemaItemDefaultValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1835,6 +1835,18 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            IReadOnlyList<UnnamedSchemaWithArrayParent11> _ => 3,
+            _ => -1,
+        };
+    }
 }
 
 sealed class FileUploadResponseSelectedFieldsSchemaItemDefaultValueConverter
@@ -2121,10 +2133,10 @@ public record class UnnamedSchemaWithArrayParent11 : ModelBase
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent11? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UnnamedSchemaWithArrayParent11? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2133,6 +2145,17 @@ public record class UnnamedSchemaWithArrayParent11 : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent11Converter : JsonConverter<UnnamedSchemaWithArrayParent11>
@@ -2374,10 +2397,10 @@ public record class FileUploadResponseSelectedFieldsSchemaItemMaxValue : ModelBa
         }
     }
 
-    public virtual bool Equals(FileUploadResponseSelectedFieldsSchemaItemMaxValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(FileUploadResponseSelectedFieldsSchemaItemMaxValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2386,6 +2409,16 @@ public record class FileUploadResponseSelectedFieldsSchemaItemMaxValue : ModelBa
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class FileUploadResponseSelectedFieldsSchemaItemMaxValueConverter
@@ -2619,10 +2652,10 @@ public record class FileUploadResponseSelectedFieldsSchemaItemMinValue : ModelBa
         }
     }
 
-    public virtual bool Equals(FileUploadResponseSelectedFieldsSchemaItemMinValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(FileUploadResponseSelectedFieldsSchemaItemMinValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2631,6 +2664,16 @@ public record class FileUploadResponseSelectedFieldsSchemaItemMinValue : ModelBa
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class FileUploadResponseSelectedFieldsSchemaItemMinValueConverter
@@ -2907,10 +2950,10 @@ public record class FileUploadResponseSelectedFieldsSchemaItemSelectOption : Mod
         }
     }
 
-    public virtual bool Equals(FileUploadResponseSelectedFieldsSchemaItemSelectOption? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(FileUploadResponseSelectedFieldsSchemaItemSelectOption? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2919,6 +2962,17 @@ public record class FileUploadResponseSelectedFieldsSchemaItemSelectOption : Mod
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class FileUploadResponseSelectedFieldsSchemaItemSelectOptionConverter

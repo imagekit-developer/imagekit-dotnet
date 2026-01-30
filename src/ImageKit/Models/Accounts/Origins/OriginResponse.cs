@@ -560,10 +560,10 @@ public record class OriginResponse : ModelBase
         );
     }
 
-    public virtual bool Equals(OriginResponse? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(OriginResponse? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -572,6 +572,22 @@ public record class OriginResponse : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            OriginResponseS3 _ => 0,
+            OriginResponseS3Compatible _ => 1,
+            OriginResponseCloudinaryBackup _ => 2,
+            OriginResponseWebFolder _ => 3,
+            OriginResponseWebProxy _ => 4,
+            OriginResponseGcs _ => 5,
+            OriginResponseAzureBlob _ => 6,
+            OriginResponseAkeneoPim _ => 7,
+            _ => -1,
+        };
+    }
 }
 
 sealed class OriginResponseConverter : JsonConverter<OriginResponse>

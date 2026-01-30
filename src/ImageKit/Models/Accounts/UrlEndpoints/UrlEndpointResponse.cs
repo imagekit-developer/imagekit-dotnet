@@ -385,10 +385,10 @@ public record class UrlEndpointResponseUrlRewriter : ModelBase
         );
     }
 
-    public virtual bool Equals(UrlEndpointResponseUrlRewriter? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UrlEndpointResponseUrlRewriter? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -397,6 +397,17 @@ public record class UrlEndpointResponseUrlRewriter : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            UrlEndpointResponseUrlRewriterCloudinary _ => 0,
+            UrlEndpointResponseUrlRewriterImgix _ => 1,
+            UrlEndpointResponseUrlRewriterAkamai _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UrlEndpointResponseUrlRewriterConverter : JsonConverter<UrlEndpointResponseUrlRewriter>

@@ -380,10 +380,10 @@ public record class Gradient : ModelBase
         this.Switch((true_) => true_.Validate(), (_) => { });
     }
 
-    public virtual bool Equals(Gradient? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Gradient? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -392,6 +392,16 @@ public record class Gradient : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            UnionMember0 _ => 0,
+            string _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class GradientConverter : JsonConverter<Gradient>
@@ -677,10 +687,10 @@ public record class Height : ModelBase
         }
     }
 
-    public virtual bool Equals(Height? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Height? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -689,6 +699,16 @@ public record class Height : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            string _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class HeightConverter : JsonConverter<Height>
@@ -939,10 +959,10 @@ public record class Radius : ModelBase
         this.Switch((_) => { }, (max) => max.Validate(), (_) => { });
     }
 
-    public virtual bool Equals(Radius? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Radius? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -951,6 +971,17 @@ public record class Radius : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            UnionMember1 _ => 1,
+            string _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class RadiusConverter : JsonConverter<Radius>
@@ -1246,10 +1277,10 @@ public record class Width : ModelBase
         }
     }
 
-    public virtual bool Equals(Width? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Width? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1258,6 +1289,16 @@ public record class Width : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            string _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class WidthConverter : JsonConverter<Width>

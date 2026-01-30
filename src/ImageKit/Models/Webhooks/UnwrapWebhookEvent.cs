@@ -452,10 +452,10 @@ public record class UnwrapWebhookEvent : ModelBase
         );
     }
 
-    public virtual bool Equals(UnwrapWebhookEvent? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UnwrapWebhookEvent? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -464,6 +464,21 @@ public record class UnwrapWebhookEvent : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            VideoTransformationAcceptedEvent _ => 0,
+            VideoTransformationReadyEvent _ => 1,
+            VideoTransformationErrorEvent _ => 2,
+            UploadPreTransformSuccessEvent _ => 3,
+            UploadPreTransformErrorEvent _ => 4,
+            UploadPostTransformSuccessEvent _ => 5,
+            UploadPostTransformErrorEvent _ => 6,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>

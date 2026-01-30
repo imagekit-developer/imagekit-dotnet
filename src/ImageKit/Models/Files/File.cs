@@ -1298,10 +1298,10 @@ public record class DefaultValue : ModelBase
         }
     }
 
-    public virtual bool Equals(DefaultValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(DefaultValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1310,6 +1310,18 @@ public record class DefaultValue : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            IReadOnlyList<UnnamedSchemaWithArrayParent10> _ => 3,
+            _ => -1,
+        };
+    }
 }
 
 sealed class DefaultValueConverter : JsonConverter<DefaultValue>
@@ -1595,10 +1607,10 @@ public record class UnnamedSchemaWithArrayParent10 : ModelBase
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent10? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UnnamedSchemaWithArrayParent10? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1607,6 +1619,17 @@ public record class UnnamedSchemaWithArrayParent10 : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent10Converter : JsonConverter<UnnamedSchemaWithArrayParent10>
@@ -1836,10 +1859,10 @@ public record class MaxValue : ModelBase
         }
     }
 
-    public virtual bool Equals(MaxValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(MaxValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1848,6 +1871,16 @@ public record class MaxValue : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class MaxValueConverter : JsonConverter<MaxValue>
@@ -2064,10 +2097,10 @@ public record class MinValue : ModelBase
         }
     }
 
-    public virtual bool Equals(MinValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(MinValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2076,6 +2109,16 @@ public record class MinValue : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class MinValueConverter : JsonConverter<MinValue>
@@ -2332,10 +2375,10 @@ public record class SelectOption : ModelBase
         }
     }
 
-    public virtual bool Equals(SelectOption? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SelectOption? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2344,6 +2387,17 @@ public record class SelectOption : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SelectOptionConverter : JsonConverter<SelectOption>

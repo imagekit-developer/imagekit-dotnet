@@ -196,10 +196,10 @@ public record class UpdateFileRequest : ModelBase
         );
     }
 
-    public virtual bool Equals(UpdateFileRequest? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UpdateFileRequest? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -208,6 +208,16 @@ public record class UpdateFileRequest : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            UpdateFileDetails _ => 0,
+            ChangePublicationStatus _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UpdateFileRequestConverter : JsonConverter<UpdateFileRequest>
@@ -668,10 +678,10 @@ public record class RemoveAITags : ModelBase
         this.Switch((_) => { }, (all) => all.Validate());
     }
 
-    public virtual bool Equals(RemoveAITags? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(RemoveAITags? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -680,6 +690,16 @@ public record class RemoveAITags : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            IReadOnlyList<string> _ => 0,
+            UnionMember1 _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class RemoveAITagsConverter : JsonConverter<RemoveAITags>

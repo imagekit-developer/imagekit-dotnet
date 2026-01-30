@@ -686,10 +686,10 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
         }
     }
 
-    public virtual bool Equals(CustomMetadataFieldSchemaDefaultValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(CustomMetadataFieldSchemaDefaultValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -698,6 +698,18 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            IReadOnlyList<UnnamedSchemaWithArrayParent9> _ => 3,
+            _ => -1,
+        };
+    }
 }
 
 sealed class CustomMetadataFieldSchemaDefaultValueConverter
@@ -984,10 +996,10 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent9? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UnnamedSchemaWithArrayParent9? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -996,6 +1008,17 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent9Converter : JsonConverter<UnnamedSchemaWithArrayParent9>
@@ -1227,10 +1250,10 @@ public record class CustomMetadataFieldSchemaMaxValue : ModelBase
         }
     }
 
-    public virtual bool Equals(CustomMetadataFieldSchemaMaxValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(CustomMetadataFieldSchemaMaxValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1239,6 +1262,16 @@ public record class CustomMetadataFieldSchemaMaxValue : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class CustomMetadataFieldSchemaMaxValueConverter
@@ -1462,10 +1495,10 @@ public record class CustomMetadataFieldSchemaMinValue : ModelBase
         }
     }
 
-    public virtual bool Equals(CustomMetadataFieldSchemaMinValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(CustomMetadataFieldSchemaMinValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1474,6 +1507,16 @@ public record class CustomMetadataFieldSchemaMinValue : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class CustomMetadataFieldSchemaMinValueConverter
@@ -1737,10 +1780,10 @@ public record class CustomMetadataFieldSchemaSelectOption : ModelBase
         }
     }
 
-    public virtual bool Equals(CustomMetadataFieldSchemaSelectOption? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(CustomMetadataFieldSchemaSelectOption? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1749,6 +1792,17 @@ public record class CustomMetadataFieldSchemaSelectOption : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class CustomMetadataFieldSchemaSelectOptionConverter

@@ -473,10 +473,10 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
         );
     }
 
-    public virtual bool Equals(UnsafeUnwrapWebhookEvent? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UnsafeUnwrapWebhookEvent? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -485,6 +485,21 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            VideoTransformationAcceptedEvent _ => 0,
+            VideoTransformationReadyEvent _ => 1,
+            VideoTransformationErrorEvent _ => 2,
+            UploadPreTransformSuccessEvent _ => 3,
+            UploadPreTransformErrorEvent _ => 4,
+            UploadPostTransformSuccessEvent _ => 5,
+            UploadPostTransformErrorEvent _ => 6,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebhookEvent>

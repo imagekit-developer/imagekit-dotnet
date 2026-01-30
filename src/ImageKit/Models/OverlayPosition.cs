@@ -361,10 +361,10 @@ public record class X : ModelBase
         }
     }
 
-    public virtual bool Equals(X? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(X? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -373,6 +373,16 @@ public record class X : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            string _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class XConverter : JsonConverter<X>
@@ -586,10 +596,10 @@ public record class Y : ModelBase
         }
     }
 
-    public virtual bool Equals(Y? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Y? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -598,6 +608,16 @@ public record class Y : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            string _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class YConverter : JsonConverter<Y>

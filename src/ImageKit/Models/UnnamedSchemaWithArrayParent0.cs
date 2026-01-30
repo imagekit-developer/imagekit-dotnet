@@ -332,10 +332,10 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
         );
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent0? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UnnamedSchemaWithArrayParent0? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -344,6 +344,19 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            UnnamedSchemaWithArrayParent0RemoveBg _ => 0,
+            UnnamedSchemaWithArrayParent0AutoTaggingExtension _ => 1,
+            UnnamedSchemaWithArrayParent0AIAutoDescription _ => 2,
+            UnnamedSchemaWithArrayParent0AITasks _ => 3,
+            SavedExtension _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchemaWithArrayParent0>
@@ -1360,10 +1373,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
         );
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent0AITasksTask? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UnnamedSchemaWithArrayParent0AITasksTask? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1372,6 +1385,17 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            UnnamedSchemaWithArrayParent0AITasksTaskSelectTags _ => 0,
+            UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata _ => 1,
+            UnnamedSchemaWithArrayParent0AITasksTaskYesNo _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent0AITasksTaskConverter
@@ -2058,10 +2082,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
 
     public virtual bool Equals(
         UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2070,6 +2094,17 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabularyConverter
@@ -2834,10 +2869,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
 
     public virtual bool Equals(
         UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2846,6 +2881,18 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            IReadOnlyList<UnnamedSchemaWithArrayParent6> _ => 3,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueConverter
@@ -3124,10 +3171,10 @@ public record class UnnamedSchemaWithArrayParent6 : ModelBase
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent6? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UnnamedSchemaWithArrayParent6? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -3136,6 +3183,17 @@ public record class UnnamedSchemaWithArrayParent6 : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent6Converter : JsonConverter<UnnamedSchemaWithArrayParent6>
@@ -3817,10 +3875,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
 
     public virtual bool Equals(
         UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -3829,6 +3887,18 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            IReadOnlyList<UnnamedSchemaWithArrayParent7> _ => 3,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueConverter
@@ -4107,10 +4177,10 @@ public record class UnnamedSchemaWithArrayParent7 : ModelBase
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent7? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UnnamedSchemaWithArrayParent7? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -4119,6 +4189,17 @@ public record class UnnamedSchemaWithArrayParent7 : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent7Converter : JsonConverter<UnnamedSchemaWithArrayParent7>
@@ -4796,10 +4877,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
 
     public virtual bool Equals(
         UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -4808,6 +4889,18 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            IReadOnlyList<UnnamedSchemaWithArrayParent8> _ => 3,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueConverter
@@ -5086,10 +5179,10 @@ public record class UnnamedSchemaWithArrayParent8 : ModelBase
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent8? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(UnnamedSchemaWithArrayParent8? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -5098,6 +5191,17 @@ public record class UnnamedSchemaWithArrayParent8 : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class UnnamedSchemaWithArrayParent8Converter : JsonConverter<UnnamedSchemaWithArrayParent8>

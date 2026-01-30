@@ -592,10 +592,10 @@ public record class FontSize : ModelBase
         }
     }
 
-    public virtual bool Equals(FontSize? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(FontSize? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -604,6 +604,16 @@ public record class FontSize : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            string _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class FontSizeConverter : JsonConverter<FontSize>
@@ -870,10 +880,10 @@ public record class LineHeight : ModelBase
         }
     }
 
-    public virtual bool Equals(LineHeight? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(LineHeight? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -882,6 +892,16 @@ public record class LineHeight : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            string _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LineHeightConverter : JsonConverter<LineHeight>
@@ -1100,10 +1120,10 @@ public record class Padding : ModelBase
         }
     }
 
-    public virtual bool Equals(Padding? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Padding? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1112,6 +1132,16 @@ public record class Padding : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            string _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PaddingConverter : JsonConverter<Padding>
@@ -1383,10 +1413,10 @@ public record class TextOverlayTransformationRadius : ModelBase
         this.Switch((_) => { }, (max) => max.Validate(), (_) => { });
     }
 
-    public virtual bool Equals(TextOverlayTransformationRadius? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(TextOverlayTransformationRadius? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1395,6 +1425,17 @@ public record class TextOverlayTransformationRadius : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            TextOverlayTransformationRadiusUnionMember1 _ => 1,
+            string _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class TextOverlayTransformationRadiusConverter
@@ -1705,10 +1746,10 @@ public record class Rotation : ModelBase
         }
     }
 
-    public virtual bool Equals(Rotation? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Rotation? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1717,6 +1758,16 @@ public record class Rotation : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            string _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class RotationConverter : JsonConverter<Rotation>
@@ -1935,10 +1986,10 @@ public record class TextOverlayTransformationWidth : ModelBase
         }
     }
 
-    public virtual bool Equals(TextOverlayTransformationWidth? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(TextOverlayTransformationWidth? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1947,6 +1998,16 @@ public record class TextOverlayTransformationWidth : ModelBase
 
     public override string ToString() =>
         JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            double _ => 0,
+            string _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class TextOverlayTransformationWidthConverter : JsonConverter<TextOverlayTransformationWidth>
