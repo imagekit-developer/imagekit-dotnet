@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using ImageKit.Core;
 using ImageKit.Exceptions;
@@ -14,6 +15,10 @@ public class FolderTest : TestBase
         var model = new Folder
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FolderID = "folderId",
             FolderPath = "folderPath",
             Name = "name",
@@ -22,6 +27,10 @@ public class FolderTest : TestBase
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Dictionary<string, JsonElement> expectedCustomMetadata = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         string expectedFolderID = "folderId";
         string expectedFolderPath = "folderPath";
         string expectedName = "name";
@@ -29,6 +38,14 @@ public class FolderTest : TestBase
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.NotNull(model.CustomMetadata);
+        Assert.Equal(expectedCustomMetadata.Count, model.CustomMetadata.Count);
+        foreach (var item in expectedCustomMetadata)
+        {
+            Assert.True(model.CustomMetadata.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, model.CustomMetadata[item.Key]));
+        }
         Assert.Equal(expectedFolderID, model.FolderID);
         Assert.Equal(expectedFolderPath, model.FolderPath);
         Assert.Equal(expectedName, model.Name);
@@ -42,6 +59,10 @@ public class FolderTest : TestBase
         var model = new Folder
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FolderID = "folderId",
             FolderPath = "folderPath",
             Name = "name",
@@ -61,6 +82,10 @@ public class FolderTest : TestBase
         var model = new Folder
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FolderID = "folderId",
             FolderPath = "folderPath",
             Name = "name",
@@ -73,6 +98,10 @@ public class FolderTest : TestBase
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        Dictionary<string, JsonElement> expectedCustomMetadata = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         string expectedFolderID = "folderId";
         string expectedFolderPath = "folderPath";
         string expectedName = "name";
@@ -80,6 +109,14 @@ public class FolderTest : TestBase
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.NotNull(deserialized.CustomMetadata);
+        Assert.Equal(expectedCustomMetadata.Count, deserialized.CustomMetadata.Count);
+        foreach (var item in expectedCustomMetadata)
+        {
+            Assert.True(deserialized.CustomMetadata.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, deserialized.CustomMetadata[item.Key]));
+        }
         Assert.Equal(expectedFolderID, deserialized.FolderID);
         Assert.Equal(expectedFolderPath, deserialized.FolderPath);
         Assert.Equal(expectedName, deserialized.Name);
@@ -93,6 +130,10 @@ public class FolderTest : TestBase
         var model = new Folder
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FolderID = "folderId",
             FolderPath = "folderPath",
             Name = "name",
@@ -110,6 +151,8 @@ public class FolderTest : TestBase
 
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
+        Assert.Null(model.CustomMetadata);
+        Assert.False(model.RawData.ContainsKey("customMetadata"));
         Assert.Null(model.FolderID);
         Assert.False(model.RawData.ContainsKey("folderId"));
         Assert.Null(model.FolderPath);
@@ -137,6 +180,7 @@ public class FolderTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
+            CustomMetadata = null,
             FolderID = null,
             FolderPath = null,
             Name = null,
@@ -146,6 +190,8 @@ public class FolderTest : TestBase
 
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
+        Assert.Null(model.CustomMetadata);
+        Assert.False(model.RawData.ContainsKey("customMetadata"));
         Assert.Null(model.FolderID);
         Assert.False(model.RawData.ContainsKey("folderId"));
         Assert.Null(model.FolderPath);
@@ -165,6 +211,7 @@ public class FolderTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
+            CustomMetadata = null,
             FolderID = null,
             FolderPath = null,
             Name = null,
@@ -181,6 +228,10 @@ public class FolderTest : TestBase
         var model = new Folder
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FolderID = "folderId",
             FolderPath = "folderPath",
             Name = "name",

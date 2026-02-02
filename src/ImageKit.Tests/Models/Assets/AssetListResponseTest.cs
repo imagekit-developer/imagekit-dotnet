@@ -84,6 +84,10 @@ public class AssetListResponseTest : TestBase
         AssetListResponse value = new Files::Folder()
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FolderID = "folderId",
             FolderPath = "folderPath",
             Name = "name",
@@ -174,6 +178,10 @@ public class AssetListResponseTest : TestBase
         AssetListResponse value = new Files::Folder()
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FolderID = "folderId",
             FolderPath = "folderPath",
             Name = "name",

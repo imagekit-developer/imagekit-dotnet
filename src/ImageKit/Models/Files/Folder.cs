@@ -35,6 +35,33 @@ public sealed record class Folder : JsonModel
     }
 
     /// <summary>
+    /// An object with custom metadata for the folder. Returns empty object if no
+    /// custom metadata is set.
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? CustomMetadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "customMetadata"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "customMetadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// Unique identifier of the asset.
     /// </summary>
     public string? FolderID
@@ -147,6 +174,7 @@ public sealed record class Folder : JsonModel
     public override void Validate()
     {
         _ = this.CreatedAt;
+        _ = this.CustomMetadata;
         _ = this.FolderID;
         _ = this.FolderPath;
         _ = this.Name;
