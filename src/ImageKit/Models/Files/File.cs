@@ -36,6 +36,48 @@ public sealed record class File : JsonModel
     }
 
     /// <summary>
+    /// The audio codec used in the video (only for video/audio).
+    /// </summary>
+    public string? AudioCodec
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("audioCodec");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("audioCodec", value);
+        }
+    }
+
+    /// <summary>
+    /// The bit rate of the video in kbps (only for video).
+    /// </summary>
+    public long? BitRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("bitRate");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("bitRate", value);
+        }
+    }
+
+    /// <summary>
     /// Date and time when the file was uploaded. The date and time is in ISO8601
     /// format.
     /// </summary>
@@ -115,6 +157,54 @@ public sealed record class File : JsonModel
             }
 
             this._rawData.Set("description", value);
+        }
+    }
+
+    /// <summary>
+    /// The duration of the video in seconds (only for video).
+    /// </summary>
+    public long? Duration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("duration");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("duration", value);
+        }
+    }
+
+    /// <summary>
+    /// Consolidated embedded metadata associated with the file. It includes exif,
+    /// iptc, and xmp data.
+    /// </summary>
+    public IReadOnlyDictionary<string, JsonElement>? EmbeddedMetadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "embeddedMetadata"
+            );
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "embeddedMetadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
         }
     }
 
@@ -491,6 +581,27 @@ public sealed record class File : JsonModel
     }
 
     /// <summary>
+    /// The video codec used in the video (only for video).
+    /// </summary>
+    public string? VideoCodec
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("videoCodec");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("videoCodec", value);
+        }
+    }
+
+    /// <summary>
     /// Width of the file.
     /// </summary>
     public double? Width
@@ -518,10 +629,14 @@ public sealed record class File : JsonModel
         {
             item.Validate();
         }
+        _ = this.AudioCodec;
+        _ = this.BitRate;
         _ = this.CreatedAt;
         _ = this.CustomCoordinates;
         _ = this.CustomMetadata;
         _ = this.Description;
+        _ = this.Duration;
+        _ = this.EmbeddedMetadata;
         _ = this.FileID;
         _ = this.FilePath;
         _ = this.FileType;
@@ -545,6 +660,7 @@ public sealed record class File : JsonModel
         _ = this.UpdatedAt;
         _ = this.Url;
         this.VersionInfo?.Validate();
+        _ = this.VideoCodec;
         _ = this.Width;
     }
 

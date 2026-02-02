@@ -23,6 +23,8 @@ public class AssetListResponseTest : TestBase
                     Source = "source",
                 },
             ],
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -30,6 +32,11 @@ public class AssetListResponseTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -65,6 +72,7 @@ public class AssetListResponseTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
         };
         value.Validate();
@@ -99,6 +107,8 @@ public class AssetListResponseTest : TestBase
                     Source = "source",
                 },
             ],
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -106,6 +116,11 @@ public class AssetListResponseTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -141,6 +156,7 @@ public class AssetListResponseTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);

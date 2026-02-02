@@ -23,6 +23,8 @@ public class FileTest : TestBase
                     Source = "source",
                 },
             ],
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -30,6 +32,11 @@ public class FileTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -65,6 +72,7 @@ public class FileTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
         };
 
@@ -77,6 +85,8 @@ public class FileTest : TestBase
                 Source = "source",
             },
         ];
+        string expectedAudioCodec = "audioCodec";
+        long expectedBitRate = 0;
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedCustomCoordinates = "customCoordinates";
         Dictionary<string, JsonElement> expectedCustomMetadata = new()
@@ -84,6 +94,11 @@ public class FileTest : TestBase
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedDescription = "description";
+        long expectedDuration = 0;
+        Dictionary<string, JsonElement> expectedEmbeddedMetadata = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         string expectedFileID = "fileId";
         string expectedFilePath = "filePath";
         string expectedFileType = "fileType";
@@ -119,6 +134,7 @@ public class FileTest : TestBase
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedUrl = "https://example.com";
         Files::VersionInfo expectedVersionInfo = new() { ID = "id", Name = "name" };
+        string expectedVideoCodec = "videoCodec";
         double expectedWidth = 0;
 
         Assert.NotNull(model.AITags);
@@ -127,6 +143,8 @@ public class FileTest : TestBase
         {
             Assert.Equal(expectedAITags[i], model.AITags[i]);
         }
+        Assert.Equal(expectedAudioCodec, model.AudioCodec);
+        Assert.Equal(expectedBitRate, model.BitRate);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedCustomCoordinates, model.CustomCoordinates);
         Assert.NotNull(model.CustomMetadata);
@@ -138,6 +156,15 @@ public class FileTest : TestBase
             Assert.True(JsonElement.DeepEquals(value, model.CustomMetadata[item.Key]));
         }
         Assert.Equal(expectedDescription, model.Description);
+        Assert.Equal(expectedDuration, model.Duration);
+        Assert.NotNull(model.EmbeddedMetadata);
+        Assert.Equal(expectedEmbeddedMetadata.Count, model.EmbeddedMetadata.Count);
+        foreach (var item in expectedEmbeddedMetadata)
+        {
+            Assert.True(model.EmbeddedMetadata.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, model.EmbeddedMetadata[item.Key]));
+        }
         Assert.Equal(expectedFileID, model.FileID);
         Assert.Equal(expectedFilePath, model.FilePath);
         Assert.Equal(expectedFileType, model.FileType);
@@ -167,6 +194,7 @@ public class FileTest : TestBase
         Assert.Equal(expectedUpdatedAt, model.UpdatedAt);
         Assert.Equal(expectedUrl, model.Url);
         Assert.Equal(expectedVersionInfo, model.VersionInfo);
+        Assert.Equal(expectedVideoCodec, model.VideoCodec);
         Assert.Equal(expectedWidth, model.Width);
     }
 
@@ -184,6 +212,8 @@ public class FileTest : TestBase
                     Source = "source",
                 },
             ],
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -191,6 +221,11 @@ public class FileTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -226,6 +261,7 @@ public class FileTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
         };
 
@@ -252,6 +288,8 @@ public class FileTest : TestBase
                     Source = "source",
                 },
             ],
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -259,6 +297,11 @@ public class FileTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -294,6 +337,7 @@ public class FileTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
         };
 
@@ -313,6 +357,8 @@ public class FileTest : TestBase
                 Source = "source",
             },
         ];
+        string expectedAudioCodec = "audioCodec";
+        long expectedBitRate = 0;
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedCustomCoordinates = "customCoordinates";
         Dictionary<string, JsonElement> expectedCustomMetadata = new()
@@ -320,6 +366,11 @@ public class FileTest : TestBase
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedDescription = "description";
+        long expectedDuration = 0;
+        Dictionary<string, JsonElement> expectedEmbeddedMetadata = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
         string expectedFileID = "fileId";
         string expectedFilePath = "filePath";
         string expectedFileType = "fileType";
@@ -355,6 +406,7 @@ public class FileTest : TestBase
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedUrl = "https://example.com";
         Files::VersionInfo expectedVersionInfo = new() { ID = "id", Name = "name" };
+        string expectedVideoCodec = "videoCodec";
         double expectedWidth = 0;
 
         Assert.NotNull(deserialized.AITags);
@@ -363,6 +415,8 @@ public class FileTest : TestBase
         {
             Assert.Equal(expectedAITags[i], deserialized.AITags[i]);
         }
+        Assert.Equal(expectedAudioCodec, deserialized.AudioCodec);
+        Assert.Equal(expectedBitRate, deserialized.BitRate);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedCustomCoordinates, deserialized.CustomCoordinates);
         Assert.NotNull(deserialized.CustomMetadata);
@@ -374,6 +428,15 @@ public class FileTest : TestBase
             Assert.True(JsonElement.DeepEquals(value, deserialized.CustomMetadata[item.Key]));
         }
         Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.Equal(expectedDuration, deserialized.Duration);
+        Assert.NotNull(deserialized.EmbeddedMetadata);
+        Assert.Equal(expectedEmbeddedMetadata.Count, deserialized.EmbeddedMetadata.Count);
+        foreach (var item in expectedEmbeddedMetadata)
+        {
+            Assert.True(deserialized.EmbeddedMetadata.TryGetValue(item.Key, out var value));
+
+            Assert.True(JsonElement.DeepEquals(value, deserialized.EmbeddedMetadata[item.Key]));
+        }
         Assert.Equal(expectedFileID, deserialized.FileID);
         Assert.Equal(expectedFilePath, deserialized.FilePath);
         Assert.Equal(expectedFileType, deserialized.FileType);
@@ -403,6 +466,7 @@ public class FileTest : TestBase
         Assert.Equal(expectedUpdatedAt, deserialized.UpdatedAt);
         Assert.Equal(expectedUrl, deserialized.Url);
         Assert.Equal(expectedVersionInfo, deserialized.VersionInfo);
+        Assert.Equal(expectedVideoCodec, deserialized.VideoCodec);
         Assert.Equal(expectedWidth, deserialized.Width);
     }
 
@@ -420,6 +484,8 @@ public class FileTest : TestBase
                     Source = "source",
                 },
             ],
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -427,6 +493,11 @@ public class FileTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -462,6 +533,7 @@ public class FileTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
         };
 
@@ -486,12 +558,20 @@ public class FileTest : TestBase
             Tags = ["string"],
         };
 
+        Assert.Null(model.AudioCodec);
+        Assert.False(model.RawData.ContainsKey("audioCodec"));
+        Assert.Null(model.BitRate);
+        Assert.False(model.RawData.ContainsKey("bitRate"));
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
         Assert.Null(model.CustomMetadata);
         Assert.False(model.RawData.ContainsKey("customMetadata"));
         Assert.Null(model.Description);
         Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.Duration);
+        Assert.False(model.RawData.ContainsKey("duration"));
+        Assert.Null(model.EmbeddedMetadata);
+        Assert.False(model.RawData.ContainsKey("embeddedMetadata"));
         Assert.Null(model.FileID);
         Assert.False(model.RawData.ContainsKey("fileId"));
         Assert.Null(model.FilePath);
@@ -524,6 +604,8 @@ public class FileTest : TestBase
         Assert.False(model.RawData.ContainsKey("url"));
         Assert.Null(model.VersionInfo);
         Assert.False(model.RawData.ContainsKey("versionInfo"));
+        Assert.Null(model.VideoCodec);
+        Assert.False(model.RawData.ContainsKey("videoCodec"));
         Assert.Null(model.Width);
         Assert.False(model.RawData.ContainsKey("width"));
     }
@@ -567,9 +649,13 @@ public class FileTest : TestBase
             Tags = ["string"],
 
             // Null should be interpreted as omitted for these properties
+            AudioCodec = null,
+            BitRate = null,
             CreatedAt = null,
             CustomMetadata = null,
             Description = null,
+            Duration = null,
+            EmbeddedMetadata = null,
             FileID = null,
             FilePath = null,
             FileType = null,
@@ -586,15 +672,24 @@ public class FileTest : TestBase
             UpdatedAt = null,
             Url = null,
             VersionInfo = null,
+            VideoCodec = null,
             Width = null,
         };
 
+        Assert.Null(model.AudioCodec);
+        Assert.False(model.RawData.ContainsKey("audioCodec"));
+        Assert.Null(model.BitRate);
+        Assert.False(model.RawData.ContainsKey("bitRate"));
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
         Assert.Null(model.CustomMetadata);
         Assert.False(model.RawData.ContainsKey("customMetadata"));
         Assert.Null(model.Description);
         Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.Duration);
+        Assert.False(model.RawData.ContainsKey("duration"));
+        Assert.Null(model.EmbeddedMetadata);
+        Assert.False(model.RawData.ContainsKey("embeddedMetadata"));
         Assert.Null(model.FileID);
         Assert.False(model.RawData.ContainsKey("fileId"));
         Assert.Null(model.FilePath);
@@ -627,6 +722,8 @@ public class FileTest : TestBase
         Assert.False(model.RawData.ContainsKey("url"));
         Assert.Null(model.VersionInfo);
         Assert.False(model.RawData.ContainsKey("versionInfo"));
+        Assert.Null(model.VideoCodec);
+        Assert.False(model.RawData.ContainsKey("videoCodec"));
         Assert.Null(model.Width);
         Assert.False(model.RawData.ContainsKey("width"));
     }
@@ -649,9 +746,13 @@ public class FileTest : TestBase
             Tags = ["string"],
 
             // Null should be interpreted as omitted for these properties
+            AudioCodec = null,
+            BitRate = null,
             CreatedAt = null,
             CustomMetadata = null,
             Description = null,
+            Duration = null,
+            EmbeddedMetadata = null,
             FileID = null,
             FilePath = null,
             FileType = null,
@@ -668,6 +769,7 @@ public class FileTest : TestBase
             UpdatedAt = null,
             Url = null,
             VersionInfo = null,
+            VideoCodec = null,
             Width = null,
         };
 
@@ -679,12 +781,19 @@ public class FileTest : TestBase
     {
         var model = new Files::File
         {
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -719,6 +828,7 @@ public class FileTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
         };
 
@@ -735,12 +845,19 @@ public class FileTest : TestBase
     {
         var model = new Files::File
         {
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -775,6 +892,7 @@ public class FileTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
         };
 
@@ -786,12 +904,19 @@ public class FileTest : TestBase
     {
         var model = new Files::File
         {
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -826,6 +951,7 @@ public class FileTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
 
             AITags = null,
@@ -846,12 +972,19 @@ public class FileTest : TestBase
     {
         var model = new Files::File
         {
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -886,6 +1019,7 @@ public class FileTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
 
             AITags = null,
@@ -910,6 +1044,8 @@ public class FileTest : TestBase
                     Source = "source",
                 },
             ],
+            AudioCodec = "audioCodec",
+            BitRate = 0,
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -917,6 +1053,11 @@ public class FileTest : TestBase
                 { "foo", JsonSerializer.SerializeToElement("bar") },
             },
             Description = "description",
+            Duration = 0,
+            EmbeddedMetadata = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
             FileID = "fileId",
             FilePath = "filePath",
             FileType = "fileType",
@@ -952,6 +1093,7 @@ public class FileTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
+            VideoCodec = "videoCodec",
             Width = 0,
         };
 
