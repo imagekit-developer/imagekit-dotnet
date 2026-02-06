@@ -457,19 +457,19 @@ public class PostTransformationTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new PostTransformation { Value = "w-400,h-400,q-70" };
+        var model = new PostTransformation { ValueValue = "w-400,h-400,q-70" };
 
         JsonElement expectedType = JsonSerializer.SerializeToElement("transformation");
-        string expectedValue = "w-400,h-400,q-70";
+        string expectedValueValue = "w-400,h-400,q-70";
 
         Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
-        Assert.Equal(expectedValue, model.Value);
+        Assert.Equal(expectedValueValue, model.ValueValue);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new PostTransformation { Value = "w-400,h-400,q-70" };
+        var model = new PostTransformation { ValueValue = "w-400,h-400,q-70" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<PostTransformation>(
@@ -483,7 +483,7 @@ public class PostTransformationTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new PostTransformation { Value = "w-400,h-400,q-70" };
+        var model = new PostTransformation { ValueValue = "w-400,h-400,q-70" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<PostTransformation>(
@@ -493,16 +493,16 @@ public class PostTransformationTest : TestBase
         Assert.NotNull(deserialized);
 
         JsonElement expectedType = JsonSerializer.SerializeToElement("transformation");
-        string expectedValue = "w-400,h-400,q-70";
+        string expectedValueValue = "w-400,h-400,q-70";
 
         Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
-        Assert.Equal(expectedValue, deserialized.Value);
+        Assert.Equal(expectedValueValue, deserialized.ValueValue);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new PostTransformation { Value = "w-400,h-400,q-70" };
+        var model = new PostTransformation { ValueValue = "w-400,h-400,q-70" };
 
         model.Validate();
     }
@@ -510,7 +510,7 @@ public class PostTransformationTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new PostTransformation { Value = "w-400,h-400,q-70" };
+        var model = new PostTransformation { ValueValue = "w-400,h-400,q-70" };
 
         PostTransformation copied = new(model);
 

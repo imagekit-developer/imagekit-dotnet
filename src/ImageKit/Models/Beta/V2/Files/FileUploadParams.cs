@@ -815,12 +815,12 @@ public record class Post : ModelBase
         }
     }
 
-    public string? Value1
+    public string? ValueValue
     {
         get
         {
             return Match<string?>(
-                transformation: (x) => x.Value,
+                transformation: (x) => x.ValueValue,
                 gifToVideo: (x) => x.Value,
                 thumbnail: (x) => x.Value,
                 abs: (x) => x.Value
@@ -1220,7 +1220,7 @@ public sealed record class PostTransformation : JsonModel
     /// Transformation string (e.g. `w-200,h-200`).   Same syntax as ImageKit URL-based
     /// transformations.
     /// </summary>
-    public required string Value
+    public required string ValueValue
     {
         get
         {
@@ -1237,7 +1237,7 @@ public sealed record class PostTransformation : JsonModel
         {
             throw new ImageKitInvalidDataException("Invalid value given for constant");
         }
-        _ = this.Value;
+        _ = this.ValueValue;
     }
 
     public PostTransformation()
@@ -1275,10 +1275,10 @@ public sealed record class PostTransformation : JsonModel
     }
 
     [SetsRequiredMembers]
-    public PostTransformation(string value)
+    public PostTransformation(string valueValue)
         : this()
     {
-        this.Value = value;
+        this.ValueValue = valueValue;
     }
 }
 
