@@ -1821,6 +1821,18 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
                 "Data did not match any variant of FileUploadResponseSelectedFieldsSchemaItemDefaultValue"
             );
         }
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
     public virtual bool Equals(FileUploadResponseSelectedFieldsSchemaItemDefaultValue? other) =>
@@ -1901,6 +1913,10 @@ sealed class FileUploadResponseSelectedFieldsSchemaItemDefaultValueConverter
             );
             if (deserialized != null)
             {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }

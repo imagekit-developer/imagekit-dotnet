@@ -684,6 +684,18 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
                 "Data did not match any variant of CustomMetadataFieldSchemaDefaultValue"
             );
         }
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
     public virtual bool Equals(CustomMetadataFieldSchemaDefaultValue? other) =>
@@ -764,6 +776,10 @@ sealed class CustomMetadataFieldSchemaDefaultValueConverter
             );
             if (deserialized != null)
             {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }

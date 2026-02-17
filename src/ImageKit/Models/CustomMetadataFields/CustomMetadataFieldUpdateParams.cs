@@ -712,6 +712,18 @@ public record class CustomMetadataFieldUpdateParamsSchemaDefaultValue : ModelBas
                 "Data did not match any variant of CustomMetadataFieldUpdateParamsSchemaDefaultValue"
             );
         }
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
     public virtual bool Equals(CustomMetadataFieldUpdateParamsSchemaDefaultValue? other) =>
@@ -792,6 +804,10 @@ sealed class CustomMetadataFieldUpdateParamsSchemaDefaultValueConverter
             );
             if (deserialized != null)
             {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }

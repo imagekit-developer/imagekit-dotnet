@@ -2874,6 +2874,18 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
                 "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue"
             );
         }
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
     public virtual bool Equals(
@@ -2956,6 +2968,10 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueCo
             );
             if (deserialized != null)
             {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }
@@ -3886,6 +3902,18 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
                 "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue"
             );
         }
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
     public virtual bool Equals(
@@ -3968,6 +3996,10 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
             );
             if (deserialized != null)
             {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }
@@ -4894,6 +4926,18 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
                 "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue"
             );
         }
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
     public virtual bool Equals(
@@ -4976,6 +5020,10 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueC
             );
             if (deserialized != null)
             {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }

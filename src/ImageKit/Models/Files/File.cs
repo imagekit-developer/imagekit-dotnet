@@ -1412,6 +1412,18 @@ public record class DefaultValue : ModelBase
                 "Data did not match any variant of DefaultValue"
             );
         }
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
     public virtual bool Equals(DefaultValue? other) =>
@@ -1491,6 +1503,10 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
             );
             if (deserialized != null)
             {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }

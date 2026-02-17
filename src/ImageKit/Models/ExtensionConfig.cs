@@ -2553,6 +2553,18 @@ public record class SetMetadataValue : ModelBase
                 "Data did not match any variant of SetMetadataValue"
             );
         }
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
     public virtual bool Equals(SetMetadataValue? other) =>
@@ -2632,6 +2644,10 @@ sealed class SetMetadataValueConverter : JsonConverter<SetMetadataValue>
             );
             if (deserialized != null)
             {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }
@@ -3495,6 +3511,18 @@ public record class OnUnknownSetMetadataValue : ModelBase
                 "Data did not match any variant of OnUnknownSetMetadataValue"
             );
         }
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
     public virtual bool Equals(OnUnknownSetMetadataValue? other) =>
@@ -3574,6 +3602,10 @@ sealed class OnUnknownSetMetadataValueConverter : JsonConverter<OnUnknownSetMeta
             );
             if (deserialized != null)
             {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }
@@ -4439,6 +4471,18 @@ public record class OnYesSetMetadataValue : ModelBase
                 "Data did not match any variant of OnYesSetMetadataValue"
             );
         }
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
     public virtual bool Equals(OnYesSetMetadataValue? other) =>
@@ -4518,6 +4562,10 @@ sealed class OnYesSetMetadataValueConverter : JsonConverter<OnYesSetMetadataValu
             );
             if (deserialized != null)
             {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }
