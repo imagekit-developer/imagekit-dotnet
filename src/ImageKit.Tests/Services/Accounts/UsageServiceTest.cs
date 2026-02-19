@@ -4,7 +4,7 @@ namespace ImageKit.Tests.Services.Accounts;
 
 public class UsageServiceTest : TestBase
 {
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Get_Works()
     {
         var usage = await this.client.Accounts.Usage.Get(

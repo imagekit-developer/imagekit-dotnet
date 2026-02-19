@@ -5,7 +5,7 @@ namespace ImageKit.Tests.Services;
 
 public class SavedExtensionServiceTest : TestBase
 {
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Create_Works()
     {
         var savedExtension = await this.client.SavedExtensions.Create(
@@ -29,7 +29,7 @@ public class SavedExtensionServiceTest : TestBase
         savedExtension.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Update_Works()
     {
         var savedExtension = await this.client.SavedExtensions.Update(
@@ -40,7 +40,7 @@ public class SavedExtensionServiceTest : TestBase
         savedExtension.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task List_Works()
     {
         var savedExtensions = await this.client.SavedExtensions.List(
@@ -53,7 +53,7 @@ public class SavedExtensionServiceTest : TestBase
         }
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
         await this.client.SavedExtensions.Delete(
@@ -63,7 +63,7 @@ public class SavedExtensionServiceTest : TestBase
         );
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Get_Works()
     {
         var savedExtension = await this.client.SavedExtensions.Get(

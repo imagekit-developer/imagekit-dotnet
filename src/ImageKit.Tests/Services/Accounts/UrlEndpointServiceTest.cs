@@ -4,7 +4,7 @@ namespace ImageKit.Tests.Services.Accounts;
 
 public class UrlEndpointServiceTest : TestBase
 {
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Create_Works()
     {
         var urlEndpointResponse = await this.client.Accounts.UrlEndpoints.Create(
@@ -14,7 +14,7 @@ public class UrlEndpointServiceTest : TestBase
         urlEndpointResponse.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Update_Works()
     {
         var urlEndpointResponse = await this.client.Accounts.UrlEndpoints.Update(
@@ -25,7 +25,7 @@ public class UrlEndpointServiceTest : TestBase
         urlEndpointResponse.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task List_Works()
     {
         var urlEndpointResponses = await this.client.Accounts.UrlEndpoints.List(
@@ -38,7 +38,7 @@ public class UrlEndpointServiceTest : TestBase
         }
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
         await this.client.Accounts.UrlEndpoints.Delete(
@@ -48,7 +48,7 @@ public class UrlEndpointServiceTest : TestBase
         );
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Get_Works()
     {
         var urlEndpointResponse = await this.client.Accounts.UrlEndpoints.Get(

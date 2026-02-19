@@ -5,7 +5,7 @@ namespace ImageKit.Tests.Services.Accounts;
 
 public class OriginServiceTest : TestBase
 {
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Create_Works()
     {
         var originResponse = await this.client.Accounts.Origins.Create(
@@ -27,7 +27,7 @@ public class OriginServiceTest : TestBase
         originResponse.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Update_Works()
     {
         var originResponse = await this.client.Accounts.Origins.Update(
@@ -50,7 +50,7 @@ public class OriginServiceTest : TestBase
         originResponse.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task List_Works()
     {
         var originResponses = await this.client.Accounts.Origins.List(
@@ -63,7 +63,7 @@ public class OriginServiceTest : TestBase
         }
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
         await this.client.Accounts.Origins.Delete(
@@ -73,7 +73,7 @@ public class OriginServiceTest : TestBase
         );
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Get_Works()
     {
         var originResponse = await this.client.Accounts.Origins.Get(

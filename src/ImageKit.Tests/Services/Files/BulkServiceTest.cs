@@ -4,7 +4,7 @@ namespace ImageKit.Tests.Services.Files;
 
 public class BulkServiceTest : TestBase
 {
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
         var bulk = await this.client.Files.Bulk.Delete(
@@ -14,7 +14,7 @@ public class BulkServiceTest : TestBase
         bulk.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task AddTags_Works()
     {
         var response = await this.client.Files.Bulk.AddTags(
@@ -28,7 +28,7 @@ public class BulkServiceTest : TestBase
         response.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task RemoveAITags_Works()
     {
         var response = await this.client.Files.Bulk.RemoveAITags(
@@ -42,7 +42,7 @@ public class BulkServiceTest : TestBase
         response.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task RemoveTags_Works()
     {
         var response = await this.client.Files.Bulk.RemoveTags(

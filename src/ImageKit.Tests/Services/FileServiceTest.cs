@@ -9,7 +9,7 @@ namespace ImageKit.Tests.Services;
 
 public class FileServiceTest : TestBase
 {
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Update_Works()
     {
         var file = await this.client.Files.Update(
@@ -75,13 +75,13 @@ public class FileServiceTest : TestBase
         file.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
         await this.client.Files.Delete("fileId", new(), TestContext.Current.CancellationToken);
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Copy_Works()
     {
         var response = await this.client.Files.Copy(
@@ -95,7 +95,7 @@ public class FileServiceTest : TestBase
         response.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Get_Works()
     {
         var file = await this.client.Files.Get(
@@ -106,7 +106,7 @@ public class FileServiceTest : TestBase
         file.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Move_Works()
     {
         var response = await this.client.Files.Move(
@@ -120,7 +120,7 @@ public class FileServiceTest : TestBase
         response.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Rename_Works()
     {
         var response = await this.client.Files.Rename(
@@ -130,7 +130,7 @@ public class FileServiceTest : TestBase
         response.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Upload_Works()
     {
         var response = await this.client.Files.Upload(

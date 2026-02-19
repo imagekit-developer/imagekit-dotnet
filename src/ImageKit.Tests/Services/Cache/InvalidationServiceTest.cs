@@ -4,7 +4,7 @@ namespace ImageKit.Tests.Services.Cache;
 
 public class InvalidationServiceTest : TestBase
 {
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Create_Works()
     {
         var invalidation = await this.client.Cache.Invalidation.Create(
@@ -14,7 +14,7 @@ public class InvalidationServiceTest : TestBase
         invalidation.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Get_Works()
     {
         var invalidation = await this.client.Cache.Invalidation.Get(

@@ -5,7 +5,7 @@ namespace ImageKit.Tests.Services;
 
 public class CustomMetadataFieldServiceTest : TestBase
 {
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Create_Works()
     {
         var customMetadataField = await this.client.CustomMetadataFields.Create(
@@ -30,7 +30,7 @@ public class CustomMetadataFieldServiceTest : TestBase
         customMetadataField.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Update_Works()
     {
         var customMetadataField = await this.client.CustomMetadataFields.Update(
@@ -41,7 +41,7 @@ public class CustomMetadataFieldServiceTest : TestBase
         customMetadataField.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task List_Works()
     {
         var customMetadataFields = await this.client.CustomMetadataFields.List(
@@ -54,7 +54,7 @@ public class CustomMetadataFieldServiceTest : TestBase
         }
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
         var customMetadataField = await this.client.CustomMetadataFields.Delete(

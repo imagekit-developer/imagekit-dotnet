@@ -4,7 +4,7 @@ namespace ImageKit.Tests.Services.Files;
 
 public class MetadataServiceTest : TestBase
 {
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Get_Works()
     {
         var metadata = await this.client.Files.Metadata.Get(
@@ -15,7 +15,7 @@ public class MetadataServiceTest : TestBase
         metadata.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task GetFromUrl_Works()
     {
         var metadata = await this.client.Files.Metadata.GetFromUrl(

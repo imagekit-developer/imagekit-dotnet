@@ -4,7 +4,7 @@ namespace ImageKit.Tests.Services;
 
 public class FolderServiceTest : TestBase
 {
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Create_Works()
     {
         var folder = await this.client.Folders.Create(
@@ -14,7 +14,7 @@ public class FolderServiceTest : TestBase
         folder.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
         var folder = await this.client.Folders.Delete(
@@ -24,7 +24,7 @@ public class FolderServiceTest : TestBase
         folder.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Copy_Works()
     {
         var response = await this.client.Folders.Copy(
@@ -38,7 +38,7 @@ public class FolderServiceTest : TestBase
         response.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Move_Works()
     {
         var response = await this.client.Folders.Move(
@@ -52,7 +52,7 @@ public class FolderServiceTest : TestBase
         response.Validate();
     }
 
-    [Fact(Skip = "Prism tests are disabled")]
+    [Fact(Skip = "Mock server tests are disabled")]
     public async Task Rename_Works()
     {
         var response = await this.client.Folders.Rename(
