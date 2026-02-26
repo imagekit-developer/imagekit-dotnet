@@ -125,9 +125,11 @@ public interface IFileService
     /// security by verifying the entire payload using JWT.</para>
     ///
     /// <para>**File size limit** \ On the free plan, the maximum upload file sizes
-    /// are 20MB for images, audio, and raw files and 100MB for videos. On the paid
-    /// plan, these limits increase to 40MB for images, audio, and raw files and 2GB
-    /// for videos. These limits can be further increased with higher-tier plans.</para>
+    /// are 25MB for images, audio, and raw files and 100MB for videos. On the Lite
+    /// paid plan, these limits increase to 40MB for images, audio, and raw files
+    /// and 300MB for videos, whereas on the Pro paid plan, these limits increase
+    /// to 50MB for images, audio, and raw files and 2GB for videos. These limits
+    /// can be further increased with enterprise plans.</para>
     ///
     /// <para>**Version limit** \ A file can have a maximum of 100 versions.</para>
     ///

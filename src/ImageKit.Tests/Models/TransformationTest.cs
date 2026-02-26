@@ -126,7 +126,7 @@ public class TransformationTest : TestBase
         ApiEnum<string, CropMode> expectedCropMode = CropMode.PadResize;
         string expectedDefaultImage = "defaultImage";
         string expectedDistort = "distort";
-        double expectedDpr = 2;
+        Dpr expectedDpr = 2;
         TransformationDuration expectedDuration = 0;
         EndOffset expectedEndOffset = 0;
         ApiEnum<string, TransformationFlip> expectedFlip = TransformationFlip.H;
@@ -492,7 +492,7 @@ public class TransformationTest : TestBase
         ApiEnum<string, CropMode> expectedCropMode = CropMode.PadResize;
         string expectedDefaultImage = "defaultImage";
         string expectedDistort = "distort";
-        double expectedDpr = 2;
+        Dpr expectedDpr = 2;
         TransformationDuration expectedDuration = 0;
         EndOffset expectedEndOffset = 0;
         ApiEnum<string, TransformationFlip> expectedFlip = TransformationFlip.H;
@@ -1870,6 +1870,43 @@ public class CropModeTest : TestBase
             json,
             ModelBase.SerializerOptions
         );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class DprTest : TestBase
+{
+    [Fact]
+    public void DoubleValidationWorks()
+    {
+        Dpr value = 0;
+        value.Validate();
+    }
+
+    [Fact]
+    public void StringValidationWorks()
+    {
+        Dpr value = "string";
+        value.Validate();
+    }
+
+    [Fact]
+    public void DoubleSerializationRoundtripWorks()
+    {
+        Dpr value = 0;
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Dpr>(element, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void StringSerializationRoundtripWorks()
+    {
+        Dpr value = "string";
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Dpr>(element, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
