@@ -134,7 +134,7 @@ public class FileServiceTest : TestBase
     public async Task Upload_Works()
     {
         var response = await this.client.Files.Upload(
-            new() { File = Encoding.UTF8.GetBytes("text"), FileName = "fileName" },
+            new() { File = Encoding.UTF8.GetBytes("Example data"), FileName = "fileName" },
             TestContext.Current.CancellationToken
         );
         response.Validate();

@@ -14,7 +14,7 @@ public class FileUploadParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        BinaryContent file = Encoding.UTF8.GetBytes("text");
+        BinaryContent file = Encoding.UTF8.GetBytes("Example data");
 
         var parameters = new FileUploadParams
         {
@@ -256,7 +256,7 @@ public class FileUploadParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        BinaryContent file = Encoding.UTF8.GetBytes("text");
+        BinaryContent file = Encoding.UTF8.GetBytes("Example data");
 
         var parameters = new FileUploadParams { File = file, FileName = "fileName" };
 
@@ -301,7 +301,7 @@ public class FileUploadParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
     {
-        BinaryContent file = Encoding.UTF8.GetBytes("text");
+        BinaryContent file = Encoding.UTF8.GetBytes("Example data");
 
         var parameters = new FileUploadParams
         {
@@ -372,7 +372,7 @@ public class FileUploadParamsTest : TestBase
     {
         FileUploadParams parameters = new()
         {
-            File = Encoding.UTF8.GetBytes("text"),
+            File = Encoding.UTF8.GetBytes("Example data"),
             FileName = "fileName",
         };
 
@@ -386,7 +386,7 @@ public class FileUploadParamsTest : TestBase
     {
         var parameters = new FileUploadParams
         {
-            File = Encoding.UTF8.GetBytes("text"),
+            File = Encoding.UTF8.GetBytes("Example data"),
             FileName = "fileName",
             Token = "token",
             Checks = "\"request.folder\" : \"marketing/\"\n",
