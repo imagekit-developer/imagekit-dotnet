@@ -29,11 +29,11 @@ public interface IBulkService
     /// <summary>
     /// This API deletes multiple files and all their file versions permanently.
     ///
-    /// <para>Note: If a file or specific transformation has been requested in the
-    /// past, then the response is cached. Deleting a file does not purge the cache.
-    /// You can purge the cache using purge cache API.</para>
+    /// <para>Note: If a file or specific transformation has been requested in the past,
+    /// then the response is cached. Deleting a file does not purge the cache. You can
+    /// purge the cache using purge cache API.</para>
     ///
-    /// <para>A maximum of 100 files can be deleted at a time.</para>
+    /// <para>A maximum of 100 files can be deleted at a time. </para>
     /// </summary>
     Task<BulkDeleteResponse> Delete(
         BulkDeleteParams parameters,
@@ -50,8 +50,8 @@ public interface IBulkService
     );
 
     /// <summary>
-    /// This API removes AITags from multiple files in bulk. A maximum of 50 files
-    /// can be specified at a time.
+    /// This API removes AITags from multiple files in bulk. A maximum of 50 files can
+    /// be specified at a time.
     /// </summary>
     Task<BulkRemoveAITagsResponse> RemoveAITags(
         BulkRemoveAITagsParams parameters,
@@ -59,8 +59,8 @@ public interface IBulkService
     );
 
     /// <summary>
-    /// This API removes tags from multiple files in bulk. A maximum of 50 files
-    /// can be specified at a time.
+    /// This API removes tags from multiple files in bulk. A maximum of 50 files can be
+    /// specified at a time.
     /// </summary>
     Task<BulkRemoveTagsResponse> RemoveTags(
         BulkRemoveTagsParams parameters,
@@ -82,7 +82,7 @@ public interface IBulkServiceWithRawResponse
     IBulkServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/files/batch/deleteByFileIds`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/files/batch/deleteByFileIds</c>, but is otherwise the
     /// same as <see cref="IBulkService.Delete(BulkDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<BulkDeleteResponse>> Delete(
@@ -91,7 +91,7 @@ public interface IBulkServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/files/addTags`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/files/addTags</c>, but is otherwise the
     /// same as <see cref="IBulkService.AddTags(BulkAddTagsParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<BulkAddTagsResponse>> AddTags(
@@ -100,7 +100,7 @@ public interface IBulkServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/files/removeAITags`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/files/removeAITags</c>, but is otherwise the
     /// same as <see cref="IBulkService.RemoveAITags(BulkRemoveAITagsParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<BulkRemoveAITagsResponse>> RemoveAITags(
@@ -109,7 +109,7 @@ public interface IBulkServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/files/removeTags`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/files/removeTags</c>, but is otherwise the
     /// same as <see cref="IBulkService.RemoveTags(BulkRemoveTagsParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<BulkRemoveTagsResponse>> RemoveTags(

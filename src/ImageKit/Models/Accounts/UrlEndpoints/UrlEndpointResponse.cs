@@ -203,7 +203,7 @@ public record class UrlEndpointResponseUrlRewriter : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UrlEndpointResponseUrlRewriterCloudinary"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -226,7 +226,7 @@ public record class UrlEndpointResponseUrlRewriter : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UrlEndpointResponseUrlRewriterImgix"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -247,7 +247,7 @@ public record class UrlEndpointResponseUrlRewriter : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UrlEndpointResponseUrlRewriterAkamai"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -267,7 +267,7 @@ public record class UrlEndpointResponseUrlRewriter : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -278,9 +278,9 @@ public record class UrlEndpointResponseUrlRewriter : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (UrlEndpointResponseUrlRewriterCloudinary value) => {...},
-    ///     (UrlEndpointResponseUrlRewriterImgix value) => {...},
-    ///     (UrlEndpointResponseUrlRewriterAkamai value) => {...}
+    ///     (UrlEndpointResponseUrlRewriterCloudinary value) =&gt; {...},
+    ///     (UrlEndpointResponseUrlRewriterImgix value) =&gt; {...},
+    ///     (UrlEndpointResponseUrlRewriterAkamai value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -313,7 +313,7 @@ public record class UrlEndpointResponseUrlRewriter : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -324,9 +324,9 @@ public record class UrlEndpointResponseUrlRewriter : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (UrlEndpointResponseUrlRewriterCloudinary value) => {...},
-    ///     (UrlEndpointResponseUrlRewriterImgix value) => {...},
-    ///     (UrlEndpointResponseUrlRewriterAkamai value) => {...}
+    ///     (UrlEndpointResponseUrlRewriterCloudinary value) =&gt; {...},
+    ///     (UrlEndpointResponseUrlRewriterImgix value) =&gt; {...},
+    ///     (UrlEndpointResponseUrlRewriterAkamai value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -526,7 +526,7 @@ sealed class UrlEndpointResponseUrlRewriterConverter : JsonConverter<UrlEndpoint
 public sealed record class UrlEndpointResponseUrlRewriterCloudinary : JsonModel
 {
     /// <summary>
-    /// Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
+    /// Whether to preserve `&lt;asset_type&gt;/&lt;delivery_type&gt;` in the rewritten URL.
     /// </summary>
     public required bool PreserveAssetDeliveryTypes
     {

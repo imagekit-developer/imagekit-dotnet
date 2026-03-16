@@ -28,8 +28,8 @@ public interface IOriginService
     IOriginService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// **Note:** This API is currently in beta.   Creates a new origin and returns
-    /// the origin object.
+    /// **Note:** This API is currently in beta.   Creates a new origin and returns the
+    /// origin object.
     /// </summary>
     Task<OriginResponse> Create(
         OriginCreateParams parameters,
@@ -37,8 +37,8 @@ public interface IOriginService
     );
 
     /// <summary>
-    /// **Note:** This API is currently in beta.   Updates the origin identified by
-    /// `id` and returns the updated origin object.
+    /// **Note:** This API is currently in beta.   Updates the origin identified by `id`
+    /// and returns the updated origin object.
     /// </summary>
     Task<OriginResponse> Update(
         OriginUpdateParams parameters,
@@ -63,8 +63,8 @@ public interface IOriginService
 
     /// <summary>
     /// **Note:** This API is currently in beta.   Permanently removes the origin
-    /// identified by `id`. If the origin is in use by any URL‑endpoints, the API
-    /// will return an error.
+    /// identified by `id`. If the origin is in use by any URL‑endpoints, the API will
+    /// return an error.
     /// </summary>
     Task Delete(OriginDeleteParams parameters, CancellationToken cancellationToken = default);
 
@@ -76,8 +76,8 @@ public interface IOriginService
     );
 
     /// <summary>
-    /// **Note:** This API is currently in beta.   Retrieves the origin identified
-    /// by `id`.
+    /// **Note:** This API is currently in beta.   Retrieves the origin identified by
+    /// `id`.
     /// </summary>
     Task<OriginResponse> Get(
         OriginGetParams parameters,
@@ -106,7 +106,7 @@ public interface IOriginServiceWithRawResponse
     IOriginServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/accounts/origins`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/accounts/origins</c>, but is otherwise the
     /// same as <see cref="IOriginService.Create(OriginCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<OriginResponse>> Create(
@@ -115,7 +115,7 @@ public interface IOriginServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /v1/accounts/origins/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /v1/accounts/origins/{id}</c>, but is otherwise the
     /// same as <see cref="IOriginService.Update(OriginUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<OriginResponse>> Update(
@@ -131,7 +131,7 @@ public interface IOriginServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/accounts/origins`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/accounts/origins</c>, but is otherwise the
     /// same as <see cref="IOriginService.List(OriginListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<List<OriginResponse>>> List(
@@ -140,7 +140,7 @@ public interface IOriginServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/accounts/origins/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/accounts/origins/{id}</c>, but is otherwise the
     /// same as <see cref="IOriginService.Delete(OriginDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(
@@ -156,7 +156,7 @@ public interface IOriginServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/accounts/origins/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/accounts/origins/{id}</c>, but is otherwise the
     /// same as <see cref="IOriginService.Get(OriginGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<OriginResponse>> Get(

@@ -27,9 +27,9 @@ public interface IInvalidationService
     IInvalidationService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// This API will purge CDN cache and ImageKit.io's internal cache for a file.
-    ///  Note: Purge cache is an asynchronous process and it may take some time to
-    /// reflect the changes.
+    /// This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note:
+    /// Purge cache is an asynchronous process and it may take some time to reflect the changes.
+    ///
     /// </summary>
     Task<InvalidationCreateResponse> Create(
         InvalidationCreateParams parameters,
@@ -66,7 +66,7 @@ public interface IInvalidationServiceWithRawResponse
     IInvalidationServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/files/purge`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/files/purge</c>, but is otherwise the
     /// same as <see cref="IInvalidationService.Create(InvalidationCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<InvalidationCreateResponse>> Create(
@@ -75,7 +75,7 @@ public interface IInvalidationServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/files/purge/{requestId}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/files/purge/{requestId}</c>, but is otherwise the
     /// same as <see cref="IInvalidationService.Get(InvalidationGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<InvalidationGetResponse>> Get(

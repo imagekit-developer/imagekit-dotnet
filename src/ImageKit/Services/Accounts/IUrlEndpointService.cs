@@ -107,7 +107,7 @@ public interface IUrlEndpointServiceWithRawResponse
     IUrlEndpointServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/accounts/url-endpoints`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/accounts/url-endpoints</c>, but is otherwise the
     /// same as <see cref="IUrlEndpointService.Create(UrlEndpointCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<UrlEndpointResponse>> Create(
@@ -116,7 +116,7 @@ public interface IUrlEndpointServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /v1/accounts/url-endpoints/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /v1/accounts/url-endpoints/{id}</c>, but is otherwise the
     /// same as <see cref="IUrlEndpointService.Update(UrlEndpointUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<UrlEndpointResponse>> Update(
@@ -132,7 +132,7 @@ public interface IUrlEndpointServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/accounts/url-endpoints`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/accounts/url-endpoints</c>, but is otherwise the
     /// same as <see cref="IUrlEndpointService.List(UrlEndpointListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<List<UrlEndpointResponse>>> List(
@@ -141,7 +141,7 @@ public interface IUrlEndpointServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/accounts/url-endpoints/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/accounts/url-endpoints/{id}</c>, but is otherwise the
     /// same as <see cref="IUrlEndpointService.Delete(UrlEndpointDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(
@@ -157,7 +157,7 @@ public interface IUrlEndpointServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/accounts/url-endpoints/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/accounts/url-endpoints/{id}</c>, but is otherwise the
     /// same as <see cref="IUrlEndpointService.Get(UrlEndpointGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<UrlEndpointResponse>> Get(

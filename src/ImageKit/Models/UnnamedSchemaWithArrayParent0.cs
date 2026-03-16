@@ -79,7 +79,7 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UnnamedSchemaWithArrayParent0RemoveBg"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -102,7 +102,7 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UnnamedSchemaWithArrayParent0AutoTaggingExtension"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -125,7 +125,7 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UnnamedSchemaWithArrayParent0AIAutoDescription"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -148,7 +148,7 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UnnamedSchemaWithArrayParent0AITasks"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -169,7 +169,7 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SavedExtension"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -189,7 +189,7 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -200,11 +200,11 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (UnnamedSchemaWithArrayParent0RemoveBg value) => {...},
-    ///     (UnnamedSchemaWithArrayParent0AutoTaggingExtension value) => {...},
-    ///     (UnnamedSchemaWithArrayParent0AIAutoDescription value) => {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasks value) => {...},
-    ///     (SavedExtension value) => {...}
+    ///     (UnnamedSchemaWithArrayParent0RemoveBg value) =&gt; {...},
+    ///     (UnnamedSchemaWithArrayParent0AutoTaggingExtension value) =&gt; {...},
+    ///     (UnnamedSchemaWithArrayParent0AIAutoDescription value) =&gt; {...},
+    ///     (UnnamedSchemaWithArrayParent0AITasks value) =&gt; {...},
+    ///     (SavedExtension value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -245,7 +245,7 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -256,11 +256,11 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (UnnamedSchemaWithArrayParent0RemoveBg value) => {...},
-    ///     (UnnamedSchemaWithArrayParent0AutoTaggingExtension value) => {...},
-    ///     (UnnamedSchemaWithArrayParent0AIAutoDescription value) => {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasks value) => {...},
-    ///     (SavedExtension value) => {...}
+    ///     (UnnamedSchemaWithArrayParent0RemoveBg value) =&gt; {...},
+    ///     (UnnamedSchemaWithArrayParent0AutoTaggingExtension value) =&gt; {...},
+    ///     (UnnamedSchemaWithArrayParent0AIAutoDescription value) =&gt; {...},
+    ///     (UnnamedSchemaWithArrayParent0AITasks value) =&gt; {...},
+    ///     (SavedExtension value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1190,7 +1190,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UnnamedSchemaWithArrayParent0AITasksTaskSelectTags"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1213,7 +1213,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1236,7 +1236,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNo"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1258,7 +1258,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1269,9 +1269,9 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectTags value) => {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata value) => {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskYesNo value) => {...}
+    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectTags value) =&gt; {...},
+    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata value) =&gt; {...},
+    ///     (UnnamedSchemaWithArrayParent0AITasksTaskYesNo value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1304,7 +1304,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1315,9 +1315,9 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectTags value) => {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata value) => {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskYesNo value) => {...}
+    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectTags value) =&gt; {...},
+    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata value) =&gt; {...},
+    ///     (UnnamedSchemaWithArrayParent0AITasksTaskYesNo value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1919,7 +1919,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1940,7 +1940,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1961,7 +1961,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1981,7 +1981,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1992,9 +1992,9 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2023,7 +2023,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -2034,9 +2034,9 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2666,7 +2666,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2687,7 +2687,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2708,7 +2708,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2727,14 +2727,14 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="IReadOnlyList<UnnamedSchemaWithArrayParent6>"/>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent6</c>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList<UnnamedSchemaWithArrayParent6>`
+    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent6&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -2751,7 +2751,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -2762,10 +2762,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...},
-    ///     (IReadOnlyList<UnnamedSchemaWithArrayParent6> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...},
+    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent6&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2802,7 +2802,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -2813,10 +2813,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...},
-    ///     (IReadOnlyList<UnnamedSchemaWithArrayParent6> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...},
+    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent6&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3038,7 +3038,7 @@ public record class UnnamedSchemaWithArrayParent6 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3059,7 +3059,7 @@ public record class UnnamedSchemaWithArrayParent6 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3080,7 +3080,7 @@ public record class UnnamedSchemaWithArrayParent6 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3100,7 +3100,7 @@ public record class UnnamedSchemaWithArrayParent6 : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3111,9 +3111,9 @@ public record class UnnamedSchemaWithArrayParent6 : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3142,7 +3142,7 @@ public record class UnnamedSchemaWithArrayParent6 : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3153,9 +3153,9 @@ public record class UnnamedSchemaWithArrayParent6 : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3694,7 +3694,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3715,7 +3715,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3736,7 +3736,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3755,14 +3755,14 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="IReadOnlyList<UnnamedSchemaWithArrayParent7>"/>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent7</c>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList<UnnamedSchemaWithArrayParent7>`
+    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent7&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -3779,7 +3779,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3790,10 +3790,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...},
-    ///     (IReadOnlyList<UnnamedSchemaWithArrayParent7> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...},
+    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent7&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3830,7 +3830,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3841,10 +3841,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...},
-    ///     (IReadOnlyList<UnnamedSchemaWithArrayParent7> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...},
+    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent7&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4066,7 +4066,7 @@ public record class UnnamedSchemaWithArrayParent7 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4087,7 +4087,7 @@ public record class UnnamedSchemaWithArrayParent7 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4108,7 +4108,7 @@ public record class UnnamedSchemaWithArrayParent7 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4128,7 +4128,7 @@ public record class UnnamedSchemaWithArrayParent7 : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4139,9 +4139,9 @@ public record class UnnamedSchemaWithArrayParent7 : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4170,7 +4170,7 @@ public record class UnnamedSchemaWithArrayParent7 : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4181,9 +4181,9 @@ public record class UnnamedSchemaWithArrayParent7 : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4718,7 +4718,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4739,7 +4739,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4760,7 +4760,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4779,14 +4779,14 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="IReadOnlyList<UnnamedSchemaWithArrayParent8>"/>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent8</c>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList<UnnamedSchemaWithArrayParent8>`
+    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent8&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -4803,7 +4803,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4814,10 +4814,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...},
-    ///     (IReadOnlyList<UnnamedSchemaWithArrayParent8> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...},
+    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent8&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4854,7 +4854,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4865,10 +4865,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...},
-    ///     (IReadOnlyList<UnnamedSchemaWithArrayParent8> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...},
+    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent8&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5090,7 +5090,7 @@ public record class UnnamedSchemaWithArrayParent8 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5111,7 +5111,7 @@ public record class UnnamedSchemaWithArrayParent8 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5132,7 +5132,7 @@ public record class UnnamedSchemaWithArrayParent8 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5152,7 +5152,7 @@ public record class UnnamedSchemaWithArrayParent8 : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -5163,9 +5163,9 @@ public record class UnnamedSchemaWithArrayParent8 : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5194,7 +5194,7 @@ public record class UnnamedSchemaWithArrayParent8 : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -5205,9 +5205,9 @@ public record class UnnamedSchemaWithArrayParent8 : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

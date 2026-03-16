@@ -56,7 +56,7 @@ public interface IJobServiceWithRawResponse
     IJobServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/bulkJobs/{jobId}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/bulkJobs/{jobId}</c>, but is otherwise the
     /// same as <see cref="IJobService.Get(JobGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<JobGetResponse>> Get(

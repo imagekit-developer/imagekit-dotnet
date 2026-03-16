@@ -28,10 +28,10 @@ public interface ICustomMetadataFieldService
     ICustomMetadataFieldService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// This API creates a new custom metadata field. Once a custom metadata field
-    /// is created either through this API or using the dashboard UI, its value can
-    /// be set on the assets. The value of a field for an asset can be set using
-    /// the media library UI or programmatically through upload or update assets API.
+    /// This API creates a new custom metadata field. Once a custom metadata field is
+    /// created either through this API or using the dashboard UI, its value can be set
+    /// on the assets. The value of a field for an asset can be set using the media
+    /// library UI or programmatically through upload or update assets API.
     /// </summary>
     Task<CustomMetadataField> Create(
         CustomMetadataFieldCreateParams parameters,
@@ -59,9 +59,9 @@ public interface ICustomMetadataFieldService
     /// fields in the API response.
     ///
     /// <para>You can also filter results by a specific folder path to retrieve custom
-    /// metadata fields applicable at that location. This path-specific filtering
-    /// is useful when using the **Path policy** feature to determine which custom
-    /// metadata fields are selected for a given path.</para>
+    /// metadata fields applicable at that location. This path-specific filtering is
+    /// useful when using the **Path policy** feature to determine which custom metadata
+    /// fields are selected for a given path. </para>
     /// </summary>
     Task<List<CustomMetadataField>> List(
         CustomMetadataFieldListParams? parameters = null,
@@ -101,7 +101,7 @@ public interface ICustomMetadataFieldServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/customMetadataFields`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/customMetadataFields</c>, but is otherwise the
     /// same as <see cref="ICustomMetadataFieldService.Create(CustomMetadataFieldCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CustomMetadataField>> Create(
@@ -110,7 +110,7 @@ public interface ICustomMetadataFieldServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `patch /v1/customMetadataFields/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>patch /v1/customMetadataFields/{id}</c>, but is otherwise the
     /// same as <see cref="ICustomMetadataFieldService.Update(CustomMetadataFieldUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CustomMetadataField>> Update(
@@ -126,7 +126,7 @@ public interface ICustomMetadataFieldServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/customMetadataFields`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/customMetadataFields</c>, but is otherwise the
     /// same as <see cref="ICustomMetadataFieldService.List(CustomMetadataFieldListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<List<CustomMetadataField>>> List(
@@ -135,7 +135,7 @@ public interface ICustomMetadataFieldServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/customMetadataFields/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/customMetadataFields/{id}</c>, but is otherwise the
     /// same as <see cref="ICustomMetadataFieldService.Delete(CustomMetadataFieldDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CustomMetadataFieldDeleteResponse>> Delete(

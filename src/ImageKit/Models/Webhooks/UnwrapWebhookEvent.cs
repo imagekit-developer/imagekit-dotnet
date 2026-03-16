@@ -129,7 +129,7 @@ public record class UnwrapWebhookEvent : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="VideoTransformationAcceptedEvent"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -152,7 +152,7 @@ public record class UnwrapWebhookEvent : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="VideoTransformationReadyEvent"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -175,7 +175,7 @@ public record class UnwrapWebhookEvent : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="VideoTransformationErrorEvent"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -198,7 +198,7 @@ public record class UnwrapWebhookEvent : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UploadPreTransformSuccessEvent"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -221,7 +221,7 @@ public record class UnwrapWebhookEvent : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UploadPreTransformErrorEvent"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -244,7 +244,7 @@ public record class UnwrapWebhookEvent : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UploadPostTransformSuccessEvent"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -267,7 +267,7 @@ public record class UnwrapWebhookEvent : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UploadPostTransformErrorEvent"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -289,7 +289,7 @@ public record class UnwrapWebhookEvent : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -300,13 +300,13 @@ public record class UnwrapWebhookEvent : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (VideoTransformationAcceptedEvent value) => {...},
-    ///     (VideoTransformationReadyEvent value) => {...},
-    ///     (VideoTransformationErrorEvent value) => {...},
-    ///     (UploadPreTransformSuccessEvent value) => {...},
-    ///     (UploadPreTransformErrorEvent value) => {...},
-    ///     (UploadPostTransformSuccessEvent value) => {...},
-    ///     (UploadPostTransformErrorEvent value) => {...}
+    ///     (VideoTransformationAcceptedEvent value) =&gt; {...},
+    ///     (VideoTransformationReadyEvent value) =&gt; {...},
+    ///     (VideoTransformationErrorEvent value) =&gt; {...},
+    ///     (UploadPreTransformSuccessEvent value) =&gt; {...},
+    ///     (UploadPreTransformErrorEvent value) =&gt; {...},
+    ///     (UploadPostTransformSuccessEvent value) =&gt; {...},
+    ///     (UploadPostTransformErrorEvent value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -355,7 +355,7 @@ public record class UnwrapWebhookEvent : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -366,13 +366,13 @@ public record class UnwrapWebhookEvent : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (VideoTransformationAcceptedEvent value) => {...},
-    ///     (VideoTransformationReadyEvent value) => {...},
-    ///     (VideoTransformationErrorEvent value) => {...},
-    ///     (UploadPreTransformSuccessEvent value) => {...},
-    ///     (UploadPreTransformErrorEvent value) => {...},
-    ///     (UploadPostTransformSuccessEvent value) => {...},
-    ///     (UploadPostTransformErrorEvent value) => {...}
+    ///     (VideoTransformationAcceptedEvent value) =&gt; {...},
+    ///     (VideoTransformationReadyEvent value) =&gt; {...},
+    ///     (VideoTransformationErrorEvent value) =&gt; {...},
+    ///     (UploadPreTransformSuccessEvent value) =&gt; {...},
+    ///     (UploadPreTransformErrorEvent value) =&gt; {...},
+    ///     (UploadPostTransformSuccessEvent value) =&gt; {...},
+    ///     (UploadPostTransformErrorEvent value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

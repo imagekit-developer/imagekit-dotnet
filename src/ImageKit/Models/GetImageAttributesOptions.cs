@@ -10,8 +10,8 @@ namespace ImageKit.Models;
 
 /// <summary>
 /// Options for generating responsive image attributes including `src`, `srcSet`,
-/// and `sizes` for HTML `<img>` elements.  This schema extends `SrcOptions` to add
-/// support for responsive image generation with breakpoints.
+/// and `sizes` for HTML `&lt;img&gt;` elements.  This schema extends `SrcOptions`
+/// to add support for responsive image generation with breakpoints.
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<GetImageAttributesOptions, GetImageAttributesOptionsFromRaw>)

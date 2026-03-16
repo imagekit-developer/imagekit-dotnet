@@ -53,7 +53,7 @@ public interface IAssetServiceWithRawResponse
     IAssetServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/files`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/files</c>, but is otherwise the
     /// same as <see cref="IAssetService.List(AssetListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<List<AssetListResponse>>> List(

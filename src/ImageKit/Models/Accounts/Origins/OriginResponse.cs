@@ -223,7 +223,7 @@ public record class OriginResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="OriginResponseS3"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -244,7 +244,7 @@ public record class OriginResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="OriginResponseS3Compatible"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -265,7 +265,7 @@ public record class OriginResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="OriginResponseCloudinaryBackup"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -288,7 +288,7 @@ public record class OriginResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="OriginResponseWebFolder"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -309,7 +309,7 @@ public record class OriginResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="OriginResponseWebProxy"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -330,7 +330,7 @@ public record class OriginResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="OriginResponseGcs"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -351,7 +351,7 @@ public record class OriginResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="OriginResponseAzureBlob"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -372,7 +372,7 @@ public record class OriginResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="OriginResponseAkeneoPim"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -392,7 +392,7 @@ public record class OriginResponse : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -403,14 +403,14 @@ public record class OriginResponse : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (OriginResponseS3 value) => {...},
-    ///     (OriginResponseS3Compatible value) => {...},
-    ///     (OriginResponseCloudinaryBackup value) => {...},
-    ///     (OriginResponseWebFolder value) => {...},
-    ///     (OriginResponseWebProxy value) => {...},
-    ///     (OriginResponseGcs value) => {...},
-    ///     (OriginResponseAzureBlob value) => {...},
-    ///     (OriginResponseAkeneoPim value) => {...}
+    ///     (OriginResponseS3 value) =&gt; {...},
+    ///     (OriginResponseS3Compatible value) =&gt; {...},
+    ///     (OriginResponseCloudinaryBackup value) =&gt; {...},
+    ///     (OriginResponseWebFolder value) =&gt; {...},
+    ///     (OriginResponseWebProxy value) =&gt; {...},
+    ///     (OriginResponseGcs value) =&gt; {...},
+    ///     (OriginResponseAzureBlob value) =&gt; {...},
+    ///     (OriginResponseAkeneoPim value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -463,7 +463,7 @@ public record class OriginResponse : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -474,14 +474,14 @@ public record class OriginResponse : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (OriginResponseS3 value) => {...},
-    ///     (OriginResponseS3Compatible value) => {...},
-    ///     (OriginResponseCloudinaryBackup value) => {...},
-    ///     (OriginResponseWebFolder value) => {...},
-    ///     (OriginResponseWebProxy value) => {...},
-    ///     (OriginResponseGcs value) => {...},
-    ///     (OriginResponseAzureBlob value) => {...},
-    ///     (OriginResponseAkeneoPim value) => {...}
+    ///     (OriginResponseS3 value) =&gt; {...},
+    ///     (OriginResponseS3Compatible value) =&gt; {...},
+    ///     (OriginResponseCloudinaryBackup value) =&gt; {...},
+    ///     (OriginResponseWebFolder value) =&gt; {...},
+    ///     (OriginResponseWebProxy value) =&gt; {...},
+    ///     (OriginResponseGcs value) =&gt; {...},
+    ///     (OriginResponseAzureBlob value) =&gt; {...},
+    ///     (OriginResponseAkeneoPim value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

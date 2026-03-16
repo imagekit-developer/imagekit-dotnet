@@ -30,8 +30,8 @@ public interface IFolderService
     IJobService Job { get; }
 
     /// <summary>
-    /// This will create a new folder. You can specify the folder name and location
-    /// of the parent folder where this new folder should be created.
+    /// This will create a new folder. You can specify the folder name and location of
+    /// the parent folder where this new folder should be created.
     /// </summary>
     Task<FolderCreateResponse> Create(
         FolderCreateParams parameters,
@@ -39,8 +39,8 @@ public interface IFolderService
     );
 
     /// <summary>
-    /// This will delete a folder and all its contents permanently. The API returns
-    /// an empty response.
+    /// This will delete a folder and all its contents permanently. The API returns an
+    /// empty response.
     /// </summary>
     Task<FolderDeleteResponse> Delete(
         FolderDeleteParams parameters,
@@ -49,10 +49,10 @@ public interface IFolderService
 
     /// <summary>
     /// This will copy one folder into another. The selected folder, its nested folders,
-    /// files, and their versions (in `includeVersions` is set to true) are copied
-    /// in this operation. Note: If any file at the destination has the same name
-    /// as the source file, then the source file and its versions will be appended
-    /// to the destination file version history.
+    /// files, and their versions (in `includeVersions` is set to true) are copied in
+    /// this operation. Note: If any file at the destination has the same name as the
+    /// source file, then the source file and its versions will be appended to the
+    /// destination file version history.
     /// </summary>
     Task<FolderCopyResponse> Copy(
         FolderCopyParams parameters,
@@ -61,9 +61,9 @@ public interface IFolderService
 
     /// <summary>
     /// This will move one folder into another. The selected folder, its nested folders,
-    /// files, and their versions are moved in this operation. Note: If any file
-    /// at the destination has the same name as the source file, then the source
-    /// file and its versions will be appended to the destination file version history.
+    /// files, and their versions are moved in this operation. Note: If any file at the
+    /// destination has the same name as the source file, then the source file and its
+    /// versions will be appended to the destination file version history.
     /// </summary>
     Task<FolderMoveResponse> Move(
         FolderMoveParams parameters,
@@ -71,9 +71,9 @@ public interface IFolderService
     );
 
     /// <summary>
-    /// This API allows you to rename an existing folder. The folder and all its
-    /// nested assets and sub-folders will remain unchanged, but their paths will
-    /// be updated to reflect the new folder name.
+    /// This API allows you to rename an existing folder. The folder and all its nested
+    /// assets and sub-folders will remain unchanged, but their paths will be updated to
+    /// reflect the new folder name.
     /// </summary>
     Task<FolderRenameResponse> Rename(
         FolderRenameParams parameters,
@@ -97,7 +97,7 @@ public interface IFolderServiceWithRawResponse
     IJobServiceWithRawResponse Job { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/folder`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/folder</c>, but is otherwise the
     /// same as <see cref="IFolderService.Create(FolderCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FolderCreateResponse>> Create(
@@ -106,7 +106,7 @@ public interface IFolderServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/folder`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/folder</c>, but is otherwise the
     /// same as <see cref="IFolderService.Delete(FolderDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FolderDeleteResponse>> Delete(
@@ -115,7 +115,7 @@ public interface IFolderServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/bulkJobs/copyFolder`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/bulkJobs/copyFolder</c>, but is otherwise the
     /// same as <see cref="IFolderService.Copy(FolderCopyParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FolderCopyResponse>> Copy(
@@ -124,7 +124,7 @@ public interface IFolderServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/bulkJobs/moveFolder`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/bulkJobs/moveFolder</c>, but is otherwise the
     /// same as <see cref="IFolderService.Move(FolderMoveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FolderMoveResponse>> Move(
@@ -133,7 +133,7 @@ public interface IFolderServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/bulkJobs/renameFolder`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/bulkJobs/renameFolder</c>, but is otherwise the
     /// same as <see cref="IFolderService.Rename(FolderRenameParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FolderRenameResponse>> Rename(

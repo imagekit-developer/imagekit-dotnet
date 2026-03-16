@@ -47,8 +47,8 @@ public interface IVersionService
     /// This API deletes a non-current file version permanently. The API returns an
     /// empty response.
     ///
-    /// <para>Note: If you want to delete all versions of a file, use the delete
-    /// file API.</para>
+    /// <para>Note: If you want to delete all versions of a file, use the delete file
+    /// API. </para>
     /// </summary>
     Task<VersionDeleteResponse> Delete(
         VersionDeleteParams parameters,
@@ -104,7 +104,7 @@ public interface IVersionServiceWithRawResponse
     IVersionServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/files/{fileId}/versions`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/files/{fileId}/versions</c>, but is otherwise the
     /// same as <see cref="IVersionService.List(VersionListParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<List<File>>> List(
@@ -120,7 +120,7 @@ public interface IVersionServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/files/{fileId}/versions/{versionId}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/files/{fileId}/versions/{versionId}</c>, but is otherwise the
     /// same as <see cref="IVersionService.Delete(VersionDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<VersionDeleteResponse>> Delete(
@@ -136,7 +136,7 @@ public interface IVersionServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/files/{fileId}/versions/{versionId}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/files/{fileId}/versions/{versionId}</c>, but is otherwise the
     /// same as <see cref="IVersionService.Get(VersionGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<File>> Get(
@@ -152,7 +152,7 @@ public interface IVersionServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /v1/files/{fileId}/versions/{versionId}/restore`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /v1/files/{fileId}/versions/{versionId}/restore</c>, but is otherwise the
     /// same as <see cref="IVersionService.Restore(VersionRestoreParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<File>> Restore(

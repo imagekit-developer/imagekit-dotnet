@@ -33,8 +33,8 @@ public interface ISavedExtensionService
     /// complex extension configurations (like AI tasks) and reuse them by referencing
     /// the ID in upload or update file APIs.
     ///
-    /// <para>**Saved extension limit** \ You can create a maximum of 100 saved extensions
-    /// per account.</para>
+    /// <para>**Saved extension limit** \ You can create a maximum of 100 saved
+    /// extensions per account. </para>
     /// </summary>
     Task<Models::SharedSavedExtension> Create(
         SavedExtensionCreateParams parameters,
@@ -42,8 +42,8 @@ public interface ISavedExtensionService
     );
 
     /// <summary>
-    /// This API updates an existing saved extension. You can update the name, description,
-    /// or config.
+    /// This API updates an existing saved extension. You can update the name,
+    /// description, or config.
     /// </summary>
     Task<Models::SharedSavedExtension> Update(
         SavedExtensionUpdateParams parameters,
@@ -59,8 +59,8 @@ public interface ISavedExtensionService
 
     /// <summary>
     /// This API returns an array of all saved extensions for your account. Saved
-    /// extensions allow you to save complex extension configurations and reuse them
-    /// by referencing them by ID in upload or update file APIs.
+    /// extensions allow you to save complex extension configurations and reuse them by
+    /// referencing them by ID in upload or update file APIs.
     /// </summary>
     Task<List<Models::SharedSavedExtension>> List(
         SavedExtensionListParams? parameters = null,
@@ -112,7 +112,7 @@ public interface ISavedExtensionServiceWithRawResponse
     ISavedExtensionServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/saved-extensions`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/saved-extensions</c>, but is otherwise the
     /// same as <see cref="ISavedExtensionService.Create(SavedExtensionCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Models::SharedSavedExtension>> Create(
@@ -121,7 +121,7 @@ public interface ISavedExtensionServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `patch /v1/saved-extensions/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>patch /v1/saved-extensions/{id}</c>, but is otherwise the
     /// same as <see cref="ISavedExtensionService.Update(SavedExtensionUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Models::SharedSavedExtension>> Update(
@@ -137,7 +137,7 @@ public interface ISavedExtensionServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/saved-extensions`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/saved-extensions</c>, but is otherwise the
     /// same as <see cref="ISavedExtensionService.List(SavedExtensionListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<List<Models::SharedSavedExtension>>> List(
@@ -146,7 +146,7 @@ public interface ISavedExtensionServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/saved-extensions/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/saved-extensions/{id}</c>, but is otherwise the
     /// same as <see cref="ISavedExtensionService.Delete(SavedExtensionDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(
@@ -162,7 +162,7 @@ public interface ISavedExtensionServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/saved-extensions/{id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/saved-extensions/{id}</c>, but is otherwise the
     /// same as <see cref="ISavedExtensionService.Get(SavedExtensionGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Models::SharedSavedExtension>> Get(

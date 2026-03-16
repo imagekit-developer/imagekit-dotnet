@@ -8,8 +8,8 @@ using ImageKit.Core;
 namespace ImageKit.Models;
 
 /// <summary>
-/// Resulting set of attributes suitable for an HTML `<img>` element. Useful for
-/// enabling responsive image loading with `srcSet` and `sizes`.
+/// Resulting set of attributes suitable for an HTML `&lt;img&gt;` element. Useful
+/// for enabling responsive image loading with `srcSet` and `sizes`.
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<ResponsiveImageAttributes, ResponsiveImageAttributesFromRaw>)

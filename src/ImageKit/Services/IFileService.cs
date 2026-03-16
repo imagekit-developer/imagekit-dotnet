@@ -53,9 +53,9 @@ public interface IFileService
     /// <summary>
     /// This API deletes the file and all its file versions permanently.
     ///
-    /// <para>Note: If a file or specific transformation has been requested in the
-    /// past, then the response is cached. Deleting a file does not purge the cache.
-    /// You can purge the cache using purge cache API.</para>
+    /// <para>Note: If a file or specific transformation has been requested in the past,
+    /// then the response is cached. Deleting a file does not purge the cache. You can
+    /// purge the cache using purge cache API. </para>
     /// </summary>
     Task Delete(FileDeleteParams parameters, CancellationToken cancellationToken = default);
 
@@ -69,9 +69,9 @@ public interface IFileService
     /// <summary>
     /// This will copy a file from one folder to another.
     ///
-    /// <para>Note: If any file at the destination has the same name as the source
-    /// file, then the source file and its versions (if `includeFileVersions` is set
-    /// to true) will be appended to the destination file version history.</para>
+    /// <para>Note: If any file at the destination has the same name as the source file,
+    /// then the source file and its versions (if `includeFileVersions` is set to true)
+    /// will be appended to the destination file version history. </para>
     /// </summary>
     Task<FileCopyResponse> Copy(
         FileCopyParams parameters,
@@ -94,8 +94,8 @@ public interface IFileService
     /// <summary>
     /// This will move a file and all its versions from one folder to another.
     ///
-    /// <para>Note: If any file at the destination has the same name as the source
-    /// file, then the source file and its versions will be appended to the destination file.</para>
+    /// <para>Note: If any file at the destination has the same name as the source file,
+    /// then the source file and its versions will be appended to the destination file. </para>
     /// </summary>
     Task<FileMoveResponse> Move(
         FileMoveParams parameters,
@@ -103,11 +103,11 @@ public interface IFileService
     );
 
     /// <summary>
-    /// You can rename an already existing file in the media library using rename
-    /// file API. This operation would rename all file versions of the file.
+    /// You can rename an already existing file in the media library using rename file
+    /// API. This operation would rename all file versions of the file.
     ///
-    /// <para>Note: The old URLs will stop working. The file/file version URLs cached
-    /// on CDN will continue to work unless a purge is requested.</para>
+    /// <para>Note: The old URLs will stop working. The file/file version URLs cached on
+    /// CDN will continue to work unless a purge is requested. </para>
     /// </summary>
     Task<FileRenameResponse> Rename(
         FileRenameParams parameters,
@@ -115,30 +115,32 @@ public interface IFileService
     );
 
     /// <summary>
-    /// ImageKit.io allows you to upload files directly from both the server and
-    /// client sides. For server-side uploads, private API key authentication is
-    /// used. For client-side uploads, generate a one-time `token`, `signature`, and
-    /// `expire` from your secure backend using private API. [Learn more](/docs/api-reference/upload-file/upload-file#how-to-implement-client-side-file-upload)
+    /// ImageKit.io allows you to upload files directly from both the server and client
+    /// sides. For server-side uploads, private API key authentication is used. For
+    /// client-side uploads, generate a one-time `token`, `signature`, and `expire` from
+    /// your secure backend using private API. [Learn
+    /// more](/docs/api-reference/upload-file/upload-file#how-to-implement-client-side-file-upload)
     /// about how to implement client-side file upload.
     ///
     /// <para>The [V2 API](/docs/api-reference/upload-file/upload-file-v2) enhances
     /// security by verifying the entire payload using JWT.</para>
     ///
-    /// <para>**File size limit** \ On the free plan, the maximum upload file sizes
-    /// are 25MB for images, audio, and raw files and 100MB for videos. On the Lite
-    /// paid plan, these limits increase to 40MB for images, audio, and raw files
-    /// and 300MB for videos, whereas on the Pro paid plan, these limits increase
-    /// to 50MB for images, audio, and raw files and 2GB for videos. These limits
-    /// can be further increased with enterprise plans.</para>
+    /// <para>**File size limit** \ On the free plan, the maximum upload file sizes are
+    /// 25MB for images, audio, and raw files and 100MB for videos. On the Lite paid
+    /// plan, these limits increase to 40MB for images, audio, and raw files and 300MB
+    /// for videos, whereas on the Pro paid plan, these limits increase to 50MB for
+    /// images, audio, and raw files and 2GB for videos. These limits can be further
+    /// increased with enterprise plans.</para>
     ///
     /// <para>**Version limit** \ A file can have a maximum of 100 versions.</para>
     ///
     /// <para>**Demo applications**</para>
     ///
-    /// <para>- A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader),
-    /// supporting file selections from local storage, URL, Dropbox, Google Drive,
-    /// Instagram, and more. - [Quick start guides](/docs/quick-start-guides) for
-    /// various frameworks and technologies.</para>
+    /// <para>- A full-fledged [upload widget using
+    /// Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file
+    /// selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
+    /// - [Quick start guides](/docs/quick-start-guides) for various frameworks and
+    /// technologies. </para>
     /// </summary>
     Task<FileUploadResponse> Upload(
         FileUploadParams parameters,
@@ -166,7 +168,7 @@ public interface IFileServiceWithRawResponse
     IMetadataServiceWithRawResponse Metadata { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `patch /v1/files/{fileId}/details`, but is otherwise the
+    /// Returns a raw HTTP response for <c>patch /v1/files/{fileId}/details</c>, but is otherwise the
     /// same as <see cref="IFileService.Update(FileUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FileUpdateResponse>> Update(
@@ -182,7 +184,7 @@ public interface IFileServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /v1/files/{fileId}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /v1/files/{fileId}</c>, but is otherwise the
     /// same as <see cref="IFileService.Delete(FileDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(
@@ -198,7 +200,7 @@ public interface IFileServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/files/copy`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/files/copy</c>, but is otherwise the
     /// same as <see cref="IFileService.Copy(FileCopyParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FileCopyResponse>> Copy(
@@ -207,7 +209,7 @@ public interface IFileServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/files/{fileId}/details`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/files/{fileId}/details</c>, but is otherwise the
     /// same as <see cref="IFileService.Get(FileGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<File>> Get(
@@ -223,7 +225,7 @@ public interface IFileServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /v1/files/move`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /v1/files/move</c>, but is otherwise the
     /// same as <see cref="IFileService.Move(FileMoveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FileMoveResponse>> Move(
@@ -232,7 +234,7 @@ public interface IFileServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /v1/files/rename`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /v1/files/rename</c>, but is otherwise the
     /// same as <see cref="IFileService.Rename(FileRenameParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FileRenameResponse>> Rename(
@@ -241,7 +243,7 @@ public interface IFileServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /api/v1/files/upload`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /api/v1/files/upload</c>, but is otherwise the
     /// same as <see cref="IFileService.Upload(FileUploadParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FileUploadResponse>> Upload(

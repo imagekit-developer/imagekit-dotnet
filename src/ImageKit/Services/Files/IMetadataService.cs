@@ -32,7 +32,7 @@ public interface IMetadataService
     /// files in the ImageKit.io media library using this API.
     ///
     /// <para>You can also get the metadata in upload API response by passing `metadata`
-    /// in `responseFields` parameter.</para>
+    /// in `responseFields` parameter. </para>
     /// </summary>
     Task<FileMetadata> Get(
         MetadataGetParams parameters,
@@ -47,8 +47,8 @@ public interface IMetadataService
     );
 
     /// <summary>
-    /// Get image EXIF, pHash, and other metadata from ImageKit.io powered remote
-    /// URL using this API.
+    /// Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL
+    /// using this API.
     /// </summary>
     Task<FileMetadata> GetFromUrl(
         MetadataGetFromUrlParams parameters,
@@ -70,7 +70,7 @@ public interface IMetadataServiceWithRawResponse
     IMetadataServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/files/{fileId}/metadata`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/files/{fileId}/metadata</c>, but is otherwise the
     /// same as <see cref="IMetadataService.Get(MetadataGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FileMetadata>> Get(
@@ -86,7 +86,7 @@ public interface IMetadataServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/metadata`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/metadata</c>, but is otherwise the
     /// same as <see cref="IMetadataService.GetFromUrl(MetadataGetFromUrlParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<FileMetadata>> GetFromUrl(

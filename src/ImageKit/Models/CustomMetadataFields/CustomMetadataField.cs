@@ -480,7 +480,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -501,7 +501,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -522,7 +522,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -541,14 +541,14 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="IReadOnlyList<UnnamedSchemaWithArrayParent9>"/>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent9</c>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList<UnnamedSchemaWithArrayParent9>`
+    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent9&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -565,7 +565,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -576,10 +576,10 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...},
-    ///     (IReadOnlyList<UnnamedSchemaWithArrayParent9> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...},
+    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent9&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -616,7 +616,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -627,10 +627,10 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...},
-    ///     (IReadOnlyList<UnnamedSchemaWithArrayParent9> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...},
+    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent9&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -846,7 +846,7 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -867,7 +867,7 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -888,7 +888,7 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -908,7 +908,7 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -919,9 +919,9 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -954,7 +954,7 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -965,9 +965,9 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1140,7 +1140,7 @@ public record class CustomMetadataFieldSchemaMaxValue : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1161,7 +1161,7 @@ public record class CustomMetadataFieldSchemaMaxValue : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1181,7 +1181,7 @@ public record class CustomMetadataFieldSchemaMaxValue : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1192,8 +1192,8 @@ public record class CustomMetadataFieldSchemaMaxValue : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1219,7 +1219,7 @@ public record class CustomMetadataFieldSchemaMaxValue : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1230,8 +1230,8 @@ public record class CustomMetadataFieldSchemaMaxValue : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1388,7 +1388,7 @@ public record class CustomMetadataFieldSchemaMinValue : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1409,7 +1409,7 @@ public record class CustomMetadataFieldSchemaMinValue : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1429,7 +1429,7 @@ public record class CustomMetadataFieldSchemaMinValue : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1440,8 +1440,8 @@ public record class CustomMetadataFieldSchemaMinValue : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1467,7 +1467,7 @@ public record class CustomMetadataFieldSchemaMinValue : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1478,8 +1478,8 @@ public record class CustomMetadataFieldSchemaMinValue : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1637,7 +1637,7 @@ public record class CustomMetadataFieldSchemaSelectOption : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1658,7 +1658,7 @@ public record class CustomMetadataFieldSchemaSelectOption : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1679,7 +1679,7 @@ public record class CustomMetadataFieldSchemaSelectOption : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1699,7 +1699,7 @@ public record class CustomMetadataFieldSchemaSelectOption : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1710,9 +1710,9 @@ public record class CustomMetadataFieldSchemaSelectOption : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1745,7 +1745,7 @@ public record class CustomMetadataFieldSchemaSelectOption : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1756,9 +1756,9 @@ public record class CustomMetadataFieldSchemaSelectOption : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

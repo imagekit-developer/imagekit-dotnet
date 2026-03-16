@@ -95,7 +95,7 @@ public record class AssetListParams : ParamsBase
     }
 
     /// <summary>
-    /// Query string in a Lucene-like query language e.g. `createdAt > "7d"`.
+    /// Query string in a Lucene-like query language e.g. `createdAt &gt; "7d"`.
     ///
     /// <para>Note : When the searchQuery parameter is present, the following query
     /// parameters will have no effect on the result:</para>
@@ -222,7 +222,7 @@ public record class AssetListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static AssetListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData

@@ -28,9 +28,9 @@ public interface IUsageService
 
     /// <summary>
     /// Get the account usage information between two dates. Note that the API response
-    /// includes data from the start date while excluding data from the end date.
-    /// In other words, the data covers the period starting from the specified start
-    /// date up to, but not including, the end date.
+    /// includes data from the start date while excluding data from the end date. In
+    /// other words, the data covers the period starting from the specified start date
+    /// up to, but not including, the end date.
     /// </summary>
     Task<UsageGetResponse> Get(
         UsageGetParams parameters,
@@ -52,7 +52,7 @@ public interface IUsageServiceWithRawResponse
     IUsageServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /v1/accounts/usage`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /v1/accounts/usage</c>, but is otherwise the
     /// same as <see cref="IUsageService.Get(UsageGetParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<UsageGetResponse>> Get(

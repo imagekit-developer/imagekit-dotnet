@@ -649,7 +649,7 @@ public record class FileUploadParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static FileUploadParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -969,7 +969,7 @@ public record class Post : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PostTransformation"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -990,7 +990,7 @@ public record class Post : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="GifToVideo"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1011,7 +1011,7 @@ public record class Post : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Thumbnail"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1032,7 +1032,7 @@ public record class Post : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Abs"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1052,7 +1052,7 @@ public record class Post : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1063,10 +1063,10 @@ public record class Post : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (PostTransformation value) => {...},
-    ///     (GifToVideo value) => {...},
-    ///     (Thumbnail value) => {...},
-    ///     (Abs value) => {...}
+    ///     (PostTransformation value) =&gt; {...},
+    ///     (GifToVideo value) =&gt; {...},
+    ///     (Thumbnail value) =&gt; {...},
+    ///     (Abs value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1101,7 +1101,7 @@ public record class Post : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1112,10 +1112,10 @@ public record class Post : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (PostTransformation value) => {...},
-    ///     (GifToVideo value) => {...},
-    ///     (Thumbnail value) => {...},
-    ///     (Abs value) => {...}
+    ///     (PostTransformation value) =&gt; {...},
+    ///     (GifToVideo value) =&gt; {...},
+    ///     (Thumbnail value) =&gt; {...},
+    ///     (Abs value) =&gt; {...}
     /// );
     /// </code>
     /// </example>

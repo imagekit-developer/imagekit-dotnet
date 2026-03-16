@@ -310,7 +310,7 @@ public sealed record class Transformation : JsonModel
     }
 
     /// <summary>
-    /// Adds a border to the output media. Accepts a string in the format `<border-width>_<hex-code>`
+    /// Adds a border to the output media. Accepts a string in the format `&lt;border-width&gt;_&lt;hex-code&gt;`
     ///  (e.g., `5_FFF000` for a 5px yellow border), or an expression like `ih_div_20_FF00FF`.
     /// See [Border](https://imagekit.io/docs/effects-and-enhancements#border---b).
     /// </summary>
@@ -405,7 +405,7 @@ public sealed record class Transformation : JsonModel
     }
 
     /// <summary>
-    /// Crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
+    /// Crop modes for image resizing. See [Crop modes &amp; focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
     /// </summary>
     public ApiEnum<string, Crop>? Crop
     {
@@ -426,7 +426,7 @@ public sealed record class Transformation : JsonModel
     }
 
     /// <summary>
-    /// Additional crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
+    /// Additional crop modes for image resizing. See [Crop modes &amp; focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
     /// </summary>
     public ApiEnum<string, CropMode>? CropMode
     {
@@ -1256,7 +1256,7 @@ public sealed record class Transformation : JsonModel
 
     /// <summary>
     /// Accepts a numeric value that determines how much to zoom in or out of the
-    /// cropped area.  It should be used in conjunction with fo-face or fo-<object_name>.
+    /// cropped area.  It should be used in conjunction with fo-face or fo-&lt;object_name&gt;.
     /// See [Zoom](https://imagekit.io/docs/image-resize-and-crop#zoom---z).
     /// </summary>
     public double? Zoom
@@ -1420,7 +1420,7 @@ public record class AIDropShadow : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="AIDropShadowUnionMember0"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1441,7 +1441,7 @@ public record class AIDropShadow : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1461,7 +1461,7 @@ public record class AIDropShadow : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1472,8 +1472,8 @@ public record class AIDropShadow : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (AIDropShadowUnionMember0 value) => {...},
-    ///     (string value) => {...}
+    ///     (AIDropShadowUnionMember0 value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1499,7 +1499,7 @@ public record class AIDropShadow : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -1510,8 +1510,8 @@ public record class AIDropShadow : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (AIDropShadowUnionMember0 value) => {...},
-    ///     (string value) => {...}
+    ///     (AIDropShadowUnionMember0 value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1975,7 +1975,7 @@ public record class AspectRatio : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1996,7 +1996,7 @@ public record class AspectRatio : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2016,7 +2016,7 @@ public record class AspectRatio : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -2027,8 +2027,8 @@ public record class AspectRatio : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2054,7 +2054,7 @@ public record class AspectRatio : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -2065,8 +2065,8 @@ public record class AspectRatio : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2272,7 +2272,7 @@ sealed class ContrastStretchConverter : JsonConverter<ContrastStretch>
 }
 
 /// <summary>
-/// Crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
+/// Crop modes for image resizing. See [Crop modes &amp; focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
 /// </summary>
 [JsonConverter(typeof(CropConverter))]
 public enum Crop
@@ -2324,7 +2324,7 @@ sealed class CropConverter : JsonConverter<Crop>
 }
 
 /// <summary>
-/// Additional crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
+/// Additional crop modes for image resizing. See [Crop modes &amp; focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
 /// </summary>
 [JsonConverter(typeof(CropModeConverter))]
 public enum CropMode
@@ -2413,7 +2413,7 @@ public record class TransformationDuration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2434,7 +2434,7 @@ public record class TransformationDuration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2454,7 +2454,7 @@ public record class TransformationDuration : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -2465,8 +2465,8 @@ public record class TransformationDuration : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2492,7 +2492,7 @@ public record class TransformationDuration : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -2503,8 +2503,8 @@ public record class TransformationDuration : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2660,7 +2660,7 @@ public record class EndOffset : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2681,7 +2681,7 @@ public record class EndOffset : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2701,7 +2701,7 @@ public record class EndOffset : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -2712,8 +2712,8 @@ public record class EndOffset : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2739,7 +2739,7 @@ public record class EndOffset : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -2750,8 +2750,8 @@ public record class EndOffset : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3037,7 +3037,7 @@ public record class TransformationGradient : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="TransformationGradientUnionMember0"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3058,7 +3058,7 @@ public record class TransformationGradient : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3078,7 +3078,7 @@ public record class TransformationGradient : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3089,8 +3089,8 @@ public record class TransformationGradient : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (TransformationGradientUnionMember0 value) => {...},
-    ///     (string value) => {...}
+    ///     (TransformationGradientUnionMember0 value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3116,7 +3116,7 @@ public record class TransformationGradient : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3127,8 +3127,8 @@ public record class TransformationGradient : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (TransformationGradientUnionMember0 value) => {...},
-    ///     (string value) => {...}
+    ///     (TransformationGradientUnionMember0 value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3412,7 +3412,7 @@ public record class TransformationHeight : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3433,7 +3433,7 @@ public record class TransformationHeight : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3453,7 +3453,7 @@ public record class TransformationHeight : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3464,8 +3464,8 @@ public record class TransformationHeight : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3491,7 +3491,7 @@ public record class TransformationHeight : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3502,8 +3502,8 @@ public record class TransformationHeight : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3660,7 +3660,7 @@ public record class Page : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3681,7 +3681,7 @@ public record class Page : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3701,7 +3701,7 @@ public record class Page : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3712,8 +3712,8 @@ public record class Page : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3737,7 +3737,7 @@ public record class Page : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3748,8 +3748,8 @@ public record class Page : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3905,7 +3905,7 @@ public record class TransformationRadius : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3926,7 +3926,7 @@ public record class TransformationRadius : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="TransformationRadiusUnionMember1"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3947,7 +3947,7 @@ public record class TransformationRadius : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3967,7 +3967,7 @@ public record class TransformationRadius : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -3978,9 +3978,9 @@ public record class TransformationRadius : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (TransformationRadiusUnionMember1 value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (TransformationRadiusUnionMember1 value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4013,7 +4013,7 @@ public record class TransformationRadius : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4024,9 +4024,9 @@ public record class TransformationRadius : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (TransformationRadiusUnionMember1 value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (TransformationRadiusUnionMember1 value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4281,7 +4281,7 @@ public record class TransformationRotation : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4302,7 +4302,7 @@ public record class TransformationRotation : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4322,7 +4322,7 @@ public record class TransformationRotation : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4333,8 +4333,8 @@ public record class TransformationRotation : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4360,7 +4360,7 @@ public record class TransformationRotation : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4371,8 +4371,8 @@ public record class TransformationRotation : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4528,7 +4528,7 @@ public record class Shadow : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="ShadowUnionMember0"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4549,7 +4549,7 @@ public record class Shadow : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4569,7 +4569,7 @@ public record class Shadow : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4580,8 +4580,8 @@ public record class Shadow : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (ShadowUnionMember0 value) => {...},
-    ///     (string value) => {...}
+    ///     (ShadowUnionMember0 value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4605,7 +4605,7 @@ public record class Shadow : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4616,8 +4616,8 @@ public record class Shadow : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (ShadowUnionMember0 value) => {...},
-    ///     (string value) => {...}
+    ///     (ShadowUnionMember0 value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4839,7 +4839,7 @@ public record class Sharpen : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharpenUnionMember0"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4860,7 +4860,7 @@ public record class Sharpen : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4880,7 +4880,7 @@ public record class Sharpen : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4891,8 +4891,8 @@ public record class Sharpen : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharpenUnionMember0 value) => {...},
-    ///     (double value) => {...}
+    ///     (SharpenUnionMember0 value) =&gt; {...},
+    ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4916,7 +4916,7 @@ public record class Sharpen : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -4927,8 +4927,8 @@ public record class Sharpen : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharpenUnionMember0 value) => {...},
-    ///     (double value) => {...}
+    ///     (SharpenUnionMember0 value) =&gt; {...},
+    ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5148,7 +5148,7 @@ public record class StartOffset : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5169,7 +5169,7 @@ public record class StartOffset : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5189,7 +5189,7 @@ public record class StartOffset : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -5200,8 +5200,8 @@ public record class StartOffset : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5227,7 +5227,7 @@ public record class StartOffset : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -5238,8 +5238,8 @@ public record class StartOffset : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5393,7 +5393,7 @@ public record class Trim : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="TrimUnionMember0"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5414,7 +5414,7 @@ public record class Trim : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5434,7 +5434,7 @@ public record class Trim : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -5445,8 +5445,8 @@ public record class Trim : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (TrimUnionMember0 value) => {...},
-    ///     (double value) => {...}
+    ///     (TrimUnionMember0 value) =&gt; {...},
+    ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5470,7 +5470,7 @@ public record class Trim : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -5481,8 +5481,8 @@ public record class Trim : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (TrimUnionMember0 value) => {...},
-    ///     (double value) => {...}
+    ///     (TrimUnionMember0 value) =&gt; {...},
+    ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5701,7 +5701,7 @@ public record class UnsharpMask : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UnsharpMaskUnionMember0"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5722,7 +5722,7 @@ public record class UnsharpMask : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5742,7 +5742,7 @@ public record class UnsharpMask : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -5753,8 +5753,8 @@ public record class UnsharpMask : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (UnsharpMaskUnionMember0 value) => {...},
-    ///     (string value) => {...}
+    ///     (UnsharpMaskUnionMember0 value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5780,7 +5780,7 @@ public record class UnsharpMask : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -5791,8 +5791,8 @@ public record class UnsharpMask : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (UnsharpMaskUnionMember0 value) => {...},
-    ///     (string value) => {...}
+    ///     (UnsharpMaskUnionMember0 value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6080,7 +6080,7 @@ public record class TransformationWidth : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6101,7 +6101,7 @@ public record class TransformationWidth : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6121,7 +6121,7 @@ public record class TransformationWidth : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -6132,8 +6132,8 @@ public record class TransformationWidth : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6159,7 +6159,7 @@ public record class TransformationWidth : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -6170,8 +6170,8 @@ public record class TransformationWidth : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6325,7 +6325,7 @@ public record class TransformationX : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6346,7 +6346,7 @@ public record class TransformationX : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6366,7 +6366,7 @@ public record class TransformationX : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -6377,8 +6377,8 @@ public record class TransformationX : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6404,7 +6404,7 @@ public record class TransformationX : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -6415,8 +6415,8 @@ public record class TransformationX : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6571,7 +6571,7 @@ public record class XCenter : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6592,7 +6592,7 @@ public record class XCenter : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6612,7 +6612,7 @@ public record class XCenter : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -6623,8 +6623,8 @@ public record class XCenter : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6648,7 +6648,7 @@ public record class XCenter : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -6659,8 +6659,8 @@ public record class XCenter : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6808,7 +6808,7 @@ public record class TransformationY : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6829,7 +6829,7 @@ public record class TransformationY : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6849,7 +6849,7 @@ public record class TransformationY : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -6860,8 +6860,8 @@ public record class TransformationY : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6887,7 +6887,7 @@ public record class TransformationY : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -6898,8 +6898,8 @@ public record class TransformationY : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -7054,7 +7054,7 @@ public record class YCenter : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -7075,7 +7075,7 @@ public record class YCenter : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -7095,7 +7095,7 @@ public record class YCenter : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -7106,8 +7106,8 @@ public record class YCenter : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -7131,7 +7131,7 @@ public record class YCenter : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="ImageKitInvalidDataException">
@@ -7142,8 +7142,8 @@ public record class YCenter : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) => {...},
-    ///     (string value) => {...}
+    ///     (double value) =&gt; {...},
+    ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
