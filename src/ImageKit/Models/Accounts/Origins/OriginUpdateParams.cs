@@ -19,11 +19,7 @@ namespace ImageKit.Models.Accounts.Origins;
 /// </summary>
 public record class OriginUpdateParams : ParamsBase
 {
-    readonly JsonDictionary _rawBodyData = new();
-    public IReadOnlyDictionary<string, JsonElement> RawBodyData
-    {
-        get { return this._rawBodyData.Freeze(); }
-    }
+    public JsonElement RawBodyData { get; private init; }
 
     public string? ID { get; init; }
 
@@ -34,10 +30,12 @@ public record class OriginUpdateParams : ParamsBase
     {
         get
         {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<OriginRequest>("OriginRequest");
+            return WrappedJsonSerializer.GetNotNullClass<OriginRequest>(
+                this.RawBodyData,
+                "RawBodyData"
+            );
         }
-        init { this._rawBodyData.Set("OriginRequest", value); }
+        init { this.RawBodyData = JsonSerializer.SerializeToElement(value); }
     }
 
     public OriginUpdateParams() { }
@@ -49,19 +47,19 @@ public record class OriginUpdateParams : ParamsBase
     {
         this.ID = originUpdateParams.ID;
 
-        this._rawBodyData = new(originUpdateParams._rawBodyData);
+        this.RawBodyData = originUpdateParams.RawBodyData;
     }
 #pragma warning restore CS8618
 
     public OriginUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
     }
 
 #pragma warning disable CS8618
@@ -69,13 +67,13 @@ public record class OriginUpdateParams : ParamsBase
     OriginUpdateParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData,
+        JsonElement rawBodyData,
         string id
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
         this.ID = id;
     }
 #pragma warning restore CS8618
@@ -84,14 +82,14 @@ public record class OriginUpdateParams : ParamsBase
     public static OriginUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        JsonElement rawBodyData,
         string id
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            rawBodyData,
             id
         );
     }
@@ -108,7 +106,7 @@ public record class OriginUpdateParams : ParamsBase
                     ["QueryData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
                     ),
-                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this.RawBodyData),
                 }
             ),
             ModelBase.ToStringSerializerOptions
@@ -123,7 +121,7 @@ public record class OriginUpdateParams : ParamsBase
         return (this.ID?.Equals(other.ID) ?? other.ID == null)
             && this._rawHeaderData.Equals(other._rawHeaderData)
             && this._rawQueryData.Equals(other._rawQueryData)
-            && this._rawBodyData.Equals(other._rawBodyData);
+            && this.RawBodyData.Equals(other.RawBodyData);
     }
 
     public override Uri Url(ClientOptions options)

@@ -20,11 +20,7 @@ namespace ImageKit.Models.Files;
 /// </summary>
 public record class FileUpdateParams : ParamsBase
 {
-    readonly JsonDictionary _rawBodyData = new();
-    public IReadOnlyDictionary<string, JsonElement> RawBodyData
-    {
-        get { return this._rawBodyData.Freeze(); }
-    }
+    public JsonElement RawBodyData { get; private init; }
 
     public string? FileID { get; init; }
 
@@ -35,10 +31,12 @@ public record class FileUpdateParams : ParamsBase
     {
         get
         {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<UpdateFileRequest>("UpdateFileRequest");
+            return WrappedJsonSerializer.GetNotNullClass<UpdateFileRequest>(
+                this.RawBodyData,
+                "RawBodyData"
+            );
         }
-        init { this._rawBodyData.Set("UpdateFileRequest", value); }
+        init { this.RawBodyData = JsonSerializer.SerializeToElement(value); }
     }
 
     public FileUpdateParams() { }
@@ -50,19 +48,19 @@ public record class FileUpdateParams : ParamsBase
     {
         this.FileID = fileUpdateParams.FileID;
 
-        this._rawBodyData = new(fileUpdateParams._rawBodyData);
+        this.RawBodyData = fileUpdateParams.RawBodyData;
     }
 #pragma warning restore CS8618
 
     public FileUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
     }
 
 #pragma warning disable CS8618
@@ -70,13 +68,13 @@ public record class FileUpdateParams : ParamsBase
     FileUpdateParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData,
+        JsonElement rawBodyData,
         string fileID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
         this.FileID = fileID;
     }
 #pragma warning restore CS8618
@@ -85,14 +83,14 @@ public record class FileUpdateParams : ParamsBase
     public static FileUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        JsonElement rawBodyData,
         string fileID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            rawBodyData,
             fileID
         );
     }
@@ -109,7 +107,7 @@ public record class FileUpdateParams : ParamsBase
                     ["QueryData"] = FriendlyJsonPrinter.PrintValue(
                         JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
                     ),
-                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this.RawBodyData),
                 }
             ),
             ModelBase.ToStringSerializerOptions
@@ -124,7 +122,7 @@ public record class FileUpdateParams : ParamsBase
         return (this.FileID?.Equals(other.FileID) ?? other.FileID == null)
             && this._rawHeaderData.Equals(other._rawHeaderData)
             && this._rawQueryData.Equals(other._rawQueryData)
-            && this._rawBodyData.Equals(other._rawBodyData);
+            && this.RawBodyData.Equals(other.RawBodyData);
     }
 
     public override Uri Url(ClientOptions options)
