@@ -22,7 +22,8 @@ public record struct ClientOptions()
     /// <summary>
     /// The HTTP client to use for making requests in the SDK.
     /// </summary>
-    public HttpClient HttpClient { get; set; } = new();
+    public HttpClient HttpClient { get; set; } =
+        new(new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.Available });
 
     Lazy<string> _baseUrl = new(() =>
         Environment.GetEnvironmentVariable("IMAGE_KIT_BASE_URL") ?? EnvironmentUrl.Production
