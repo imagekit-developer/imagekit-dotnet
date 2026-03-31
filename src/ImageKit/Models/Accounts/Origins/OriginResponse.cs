@@ -624,11 +624,10 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -645,11 +644,10 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -666,11 +664,10 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -687,11 +684,10 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -708,11 +704,10 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -729,11 +724,10 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -750,11 +744,10 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -771,11 +764,10 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

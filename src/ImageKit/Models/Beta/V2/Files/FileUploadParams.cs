@@ -1151,12 +1151,10 @@ sealed class PostConverter : JsonConverter<Post>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1170,12 +1168,10 @@ sealed class PostConverter : JsonConverter<Post>
                     var deserialized = JsonSerializer.Deserialize<GifToVideo>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1189,12 +1185,10 @@ sealed class PostConverter : JsonConverter<Post>
                     var deserialized = JsonSerializer.Deserialize<Thumbnail>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1208,12 +1202,10 @@ sealed class PostConverter : JsonConverter<Post>
                     var deserialized = JsonSerializer.Deserialize<Abs>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

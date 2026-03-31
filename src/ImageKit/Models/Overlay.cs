@@ -431,11 +431,10 @@ sealed class OverlayConverter : JsonConverter<Overlay>
                     var deserialized = JsonSerializer.Deserialize<TextOverlay>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -449,11 +448,10 @@ sealed class OverlayConverter : JsonConverter<Overlay>
                     var deserialized = JsonSerializer.Deserialize<ImageOverlay>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -467,11 +465,10 @@ sealed class OverlayConverter : JsonConverter<Overlay>
                     var deserialized = JsonSerializer.Deserialize<VideoOverlay>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -488,11 +485,10 @@ sealed class OverlayConverter : JsonConverter<Overlay>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -509,11 +505,10 @@ sealed class OverlayConverter : JsonConverter<Overlay>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

@@ -265,12 +265,10 @@ sealed class AssetListResponseConverter : JsonConverter<AssetListResponse>
                     var deserialized = JsonSerializer.Deserialize<Folder>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -284,12 +282,10 @@ sealed class AssetListResponseConverter : JsonConverter<AssetListResponse>
                     var deserialized = JsonSerializer.Deserialize<File>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

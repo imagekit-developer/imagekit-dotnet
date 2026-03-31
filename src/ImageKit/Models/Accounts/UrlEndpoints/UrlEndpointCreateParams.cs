@@ -490,11 +490,10 @@ sealed class UrlRewriterConverter : JsonConverter<UrlRewriter>
                     var deserialized = JsonSerializer.Deserialize<Cloudinary>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -508,11 +507,10 @@ sealed class UrlRewriterConverter : JsonConverter<UrlRewriter>
                     var deserialized = JsonSerializer.Deserialize<Imgix>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -526,11 +524,10 @@ sealed class UrlRewriterConverter : JsonConverter<UrlRewriter>
                     var deserialized = JsonSerializer.Deserialize<Akamai>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

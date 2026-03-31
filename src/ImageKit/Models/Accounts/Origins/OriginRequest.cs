@@ -635,11 +635,10 @@ sealed class OriginRequestConverter : JsonConverter<OriginRequest>
                     var deserialized = JsonSerializer.Deserialize<S3>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -653,11 +652,10 @@ sealed class OriginRequestConverter : JsonConverter<OriginRequest>
                     var deserialized = JsonSerializer.Deserialize<S3Compatible>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -674,11 +672,10 @@ sealed class OriginRequestConverter : JsonConverter<OriginRequest>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -692,11 +689,10 @@ sealed class OriginRequestConverter : JsonConverter<OriginRequest>
                     var deserialized = JsonSerializer.Deserialize<WebFolder>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -710,11 +706,10 @@ sealed class OriginRequestConverter : JsonConverter<OriginRequest>
                     var deserialized = JsonSerializer.Deserialize<WebProxy>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -728,11 +723,10 @@ sealed class OriginRequestConverter : JsonConverter<OriginRequest>
                     var deserialized = JsonSerializer.Deserialize<Gcs>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -746,11 +740,10 @@ sealed class OriginRequestConverter : JsonConverter<OriginRequest>
                     var deserialized = JsonSerializer.Deserialize<AzureBlob>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -764,11 +757,10 @@ sealed class OriginRequestConverter : JsonConverter<OriginRequest>
                     var deserialized = JsonSerializer.Deserialize<AkeneoPim>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

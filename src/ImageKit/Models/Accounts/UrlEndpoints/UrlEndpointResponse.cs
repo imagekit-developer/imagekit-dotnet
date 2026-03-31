@@ -445,11 +445,10 @@ sealed class UrlEndpointResponseUrlRewriterConverter : JsonConverter<UrlEndpoint
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -467,11 +466,10 @@ sealed class UrlEndpointResponseUrlRewriterConverter : JsonConverter<UrlEndpoint
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -489,11 +487,10 @@ sealed class UrlEndpointResponseUrlRewriterConverter : JsonConverter<UrlEndpoint
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

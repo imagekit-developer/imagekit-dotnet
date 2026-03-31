@@ -394,11 +394,10 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -416,11 +415,10 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -438,11 +436,10 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -456,11 +453,10 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                     var deserialized = JsonSerializer.Deserialize<SavedExtension>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -478,11 +474,10 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1437,11 +1432,10 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1459,11 +1453,10 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1481,11 +1474,10 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

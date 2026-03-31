@@ -327,11 +327,10 @@ sealed class ExtensionConfigConverter : JsonConverter<ExtensionConfig>
                     var deserialized = JsonSerializer.Deserialize<RemoveBg>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -348,11 +347,10 @@ sealed class ExtensionConfigConverter : JsonConverter<ExtensionConfig>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -366,11 +364,10 @@ sealed class ExtensionConfigConverter : JsonConverter<ExtensionConfig>
                     var deserialized = JsonSerializer.Deserialize<AITasks>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -387,11 +384,10 @@ sealed class ExtensionConfigConverter : JsonConverter<ExtensionConfig>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1249,11 +1245,10 @@ sealed class TaskConverter : JsonConverter<Task>
                     var deserialized = JsonSerializer.Deserialize<SelectTags>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1267,11 +1262,10 @@ sealed class TaskConverter : JsonConverter<Task>
                     var deserialized = JsonSerializer.Deserialize<SelectMetadata>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1285,11 +1279,10 @@ sealed class TaskConverter : JsonConverter<Task>
                     var deserialized = JsonSerializer.Deserialize<YesNo>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
