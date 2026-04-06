@@ -1193,12 +1193,12 @@ public sealed record class Transformation : JsonModel
     /// Focus using cropped image coordinates - X center coordinate. See [Focus using
     /// cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
     /// </summary>
-    public XCenter? XCenter
+    public TransformationXCenter? XCenter
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<XCenter>("xCenter");
+            return this._rawData.GetNullableClass<TransformationXCenter>("xCenter");
         }
         init
         {
@@ -1236,12 +1236,12 @@ public sealed record class Transformation : JsonModel
     /// Focus using cropped image coordinates - Y center coordinate. See [Focus using
     /// cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
     /// </summary>
-    public YCenter? YCenter
+    public TransformationYCenter? YCenter
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<YCenter>("yCenter");
+            return this._rawData.GetNullableClass<TransformationYCenter>("yCenter");
         }
         init
         {
@@ -6532,8 +6532,8 @@ sealed class TransformationXConverter : JsonConverter<TransformationX>
 /// Focus using cropped image coordinates - X center coordinate. See [Focus using
 /// cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
 /// </summary>
-[JsonConverter(typeof(XCenterConverter))]
-public record class XCenter : ModelBase
+[JsonConverter(typeof(TransformationXCenterConverter))]
+public record class TransformationXCenter : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -6550,19 +6550,19 @@ public record class XCenter : ModelBase
         }
     }
 
-    public XCenter(double value, JsonElement? element = null)
+    public TransformationXCenter(double value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public XCenter(string value, JsonElement? element = null)
+    public TransformationXCenter(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public XCenter(JsonElement element)
+    public TransformationXCenter(JsonElement element)
     {
         this._element = element;
     }
@@ -6640,7 +6640,9 @@ public record class XCenter : ModelBase
                 @string(value);
                 break;
             default:
-                throw new ImageKitInvalidDataException("Data did not match any variant of XCenter");
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of TransformationXCenter"
+                );
         }
     }
 
@@ -6672,14 +6674,14 @@ public record class XCenter : ModelBase
             double value => @double(value),
             string value => @string(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of XCenter"
+                "Data did not match any variant of TransformationXCenter"
             ),
         };
     }
 
-    public static implicit operator XCenter(double value) => new(value);
+    public static implicit operator TransformationXCenter(double value) => new(value);
 
-    public static implicit operator XCenter(string value) => new(value);
+    public static implicit operator TransformationXCenter(string value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -6695,11 +6697,13 @@ public record class XCenter : ModelBase
     {
         if (this.Value == null)
         {
-            throw new ImageKitInvalidDataException("Data did not match any variant of XCenter");
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of TransformationXCenter"
+            );
         }
     }
 
-    public virtual bool Equals(XCenter? other) =>
+    public virtual bool Equals(TransformationXCenter? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -6726,9 +6730,9 @@ public record class XCenter : ModelBase
     }
 }
 
-sealed class XCenterConverter : JsonConverter<XCenter>
+sealed class TransformationXCenterConverter : JsonConverter<TransformationXCenter>
 {
-    public override XCenter? Read(
+    public override TransformationXCenter? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -6760,7 +6764,11 @@ sealed class XCenterConverter : JsonConverter<XCenter>
         return new(element);
     }
 
-    public override void Write(Utf8JsonWriter writer, XCenter value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        TransformationXCenter value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(writer, value.Json, options);
     }
@@ -7015,8 +7023,8 @@ sealed class TransformationYConverter : JsonConverter<TransformationY>
 /// Focus using cropped image coordinates - Y center coordinate. See [Focus using
 /// cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
 /// </summary>
-[JsonConverter(typeof(YCenterConverter))]
-public record class YCenter : ModelBase
+[JsonConverter(typeof(TransformationYCenterConverter))]
+public record class TransformationYCenter : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -7033,19 +7041,19 @@ public record class YCenter : ModelBase
         }
     }
 
-    public YCenter(double value, JsonElement? element = null)
+    public TransformationYCenter(double value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public YCenter(string value, JsonElement? element = null)
+    public TransformationYCenter(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public YCenter(JsonElement element)
+    public TransformationYCenter(JsonElement element)
     {
         this._element = element;
     }
@@ -7123,7 +7131,9 @@ public record class YCenter : ModelBase
                 @string(value);
                 break;
             default:
-                throw new ImageKitInvalidDataException("Data did not match any variant of YCenter");
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of TransformationYCenter"
+                );
         }
     }
 
@@ -7155,14 +7165,14 @@ public record class YCenter : ModelBase
             double value => @double(value),
             string value => @string(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of YCenter"
+                "Data did not match any variant of TransformationYCenter"
             ),
         };
     }
 
-    public static implicit operator YCenter(double value) => new(value);
+    public static implicit operator TransformationYCenter(double value) => new(value);
 
-    public static implicit operator YCenter(string value) => new(value);
+    public static implicit operator TransformationYCenter(string value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -7178,11 +7188,13 @@ public record class YCenter : ModelBase
     {
         if (this.Value == null)
         {
-            throw new ImageKitInvalidDataException("Data did not match any variant of YCenter");
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of TransformationYCenter"
+            );
         }
     }
 
-    public virtual bool Equals(YCenter? other) =>
+    public virtual bool Equals(TransformationYCenter? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -7209,9 +7221,9 @@ public record class YCenter : ModelBase
     }
 }
 
-sealed class YCenterConverter : JsonConverter<YCenter>
+sealed class TransformationYCenterConverter : JsonConverter<TransformationYCenter>
 {
-    public override YCenter? Read(
+    public override TransformationYCenter? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -7243,7 +7255,11 @@ sealed class YCenterConverter : JsonConverter<YCenter>
         return new(element);
     }
 
-    public override void Write(Utf8JsonWriter writer, YCenter value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        TransformationYCenter value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(writer, value.Json, options);
     }

@@ -16,9 +16,12 @@ public class VideoOverlayTest : TestBase
             LayerMode = LayerMode.Multiply,
             Position = new()
             {
+                AnchorPoint = AnchorPoint.Top,
                 Focus = Focus.Center,
                 X = 0,
+                XCenter = 0,
                 Y = 0,
+                YCenter = 0,
             },
             Timing = new()
             {
@@ -71,9 +74,12 @@ public class VideoOverlayTest : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -129,9 +135,12 @@ public class VideoOverlayTest : TestBase
         ApiEnum<string, LayerMode> expectedLayerMode = LayerMode.Multiply;
         OverlayPosition expectedPosition = new()
         {
+            AnchorPoint = AnchorPoint.Top,
             Focus = Focus.Center,
             X = 0,
+            XCenter = 0,
             Y = 0,
+            YCenter = 0,
         };
         OverlayTiming expectedTiming = new()
         {
@@ -186,9 +195,12 @@ public class VideoOverlayTest : TestBase
                     LayerMode = LayerMode.Multiply,
                     Position = new()
                     {
+                        AnchorPoint = AnchorPoint.Top,
                         Focus = Focus.Center,
                         X = 0,
+                        XCenter = 0,
                         Y = 0,
+                        YCenter = 0,
                     },
                     Timing = new()
                     {
@@ -262,9 +274,12 @@ public class VideoOverlayTest : TestBase
             LayerMode = LayerMode.Multiply,
             Position = new()
             {
+                AnchorPoint = AnchorPoint.Top,
                 Focus = Focus.Center,
                 X = 0,
+                XCenter = 0,
                 Y = 0,
+                YCenter = 0,
             },
             Timing = new()
             {
@@ -317,9 +332,12 @@ public class VideoOverlayTest : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -389,9 +407,12 @@ public class VideoOverlayTest : TestBase
             LayerMode = LayerMode.Multiply,
             Position = new()
             {
+                AnchorPoint = AnchorPoint.Top,
                 Focus = Focus.Center,
                 X = 0,
+                XCenter = 0,
                 Y = 0,
+                YCenter = 0,
             },
             Timing = new()
             {
@@ -444,9 +465,12 @@ public class VideoOverlayTest : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -509,9 +533,12 @@ public class VideoOverlayTest : TestBase
         ApiEnum<string, LayerMode> expectedLayerMode = LayerMode.Multiply;
         OverlayPosition expectedPosition = new()
         {
+            AnchorPoint = AnchorPoint.Top,
             Focus = Focus.Center,
             X = 0,
+            XCenter = 0,
             Y = 0,
+            YCenter = 0,
         };
         OverlayTiming expectedTiming = new()
         {
@@ -566,9 +593,12 @@ public class VideoOverlayTest : TestBase
                     LayerMode = LayerMode.Multiply,
                     Position = new()
                     {
+                        AnchorPoint = AnchorPoint.Top,
                         Focus = Focus.Center,
                         X = 0,
+                        XCenter = 0,
                         Y = 0,
+                        YCenter = 0,
                     },
                     Timing = new()
                     {
@@ -642,9 +672,12 @@ public class VideoOverlayTest : TestBase
             LayerMode = LayerMode.Multiply,
             Position = new()
             {
+                AnchorPoint = AnchorPoint.Top,
                 Focus = Focus.Center,
                 X = 0,
+                XCenter = 0,
                 Y = 0,
+                YCenter = 0,
             },
             Timing = new()
             {
@@ -697,9 +730,12 @@ public class VideoOverlayTest : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -833,9 +869,12 @@ public class VideoOverlayTest : TestBase
             LayerMode = LayerMode.Multiply,
             Position = new()
             {
+                AnchorPoint = AnchorPoint.Top,
                 Focus = Focus.Center,
                 X = 0,
+                XCenter = 0,
                 Y = 0,
+                YCenter = 0,
             },
             Timing = new()
             {
@@ -888,9 +927,12 @@ public class VideoOverlayTest : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -1001,9 +1043,12 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -1103,9 +1148,12 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                     LayerMode = LayerMode.Multiply,
                     Position = new()
                     {
+                        AnchorPoint = AnchorPoint.Top,
                         Focus = Focus.Center,
                         X = 0,
+                        XCenter = 0,
                         Y = 0,
+                        YCenter = 0,
                     },
                     Timing = new()
                     {
@@ -1218,9 +1266,12 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -1332,9 +1383,12 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -1441,9 +1495,12 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                     LayerMode = LayerMode.Multiply,
                     Position = new()
                     {
+                        AnchorPoint = AnchorPoint.Top,
                         Focus = Focus.Center,
                         X = 0,
+                        XCenter = 0,
                         Y = 0,
+                        YCenter = 0,
                     },
                     Timing = new()
                     {
@@ -1556,9 +1613,12 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -1716,9 +1776,12 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {

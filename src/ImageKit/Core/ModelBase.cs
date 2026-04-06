@@ -32,6 +32,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Name>(),
             new ApiEnumConverter<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName>(),
             new ApiEnumConverter<string, Encoding>(),
+            new ApiEnumConverter<string, AnchorPoint>(),
             new ApiEnumConverter<string, Focus>(),
             new ApiEnumConverter<string, StreamingResolution>(),
             new ApiEnumConverter<string, SubtitleOverlayIntersectionMember1Encoding>(),

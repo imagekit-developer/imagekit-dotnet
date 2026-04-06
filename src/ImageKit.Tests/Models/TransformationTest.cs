@@ -52,9 +52,12 @@ public class TransformationTest : TestBase
                 LayerMode = LayerMode.Multiply,
                 Position = new()
                 {
+                    AnchorPoint = AnchorPoint.Top,
                     Focus = Focus.Center,
                     X = 0,
+                    XCenter = 0,
                     Y = 0,
+                    YCenter = 0,
                 },
                 Timing = new()
                 {
@@ -145,9 +148,12 @@ public class TransformationTest : TestBase
             LayerMode = LayerMode.Multiply,
             Position = new()
             {
+                AnchorPoint = AnchorPoint.Top,
                 Focus = Focus.Center,
                 X = 0,
+                XCenter = 0,
                 Y = 0,
+                YCenter = 0,
             },
             Timing = new()
             {
@@ -195,9 +201,9 @@ public class TransformationTest : TestBase
         ApiEnum<string, VideoCodec> expectedVideoCodec = VideoCodec.H264;
         TransformationWidth expectedWidth = 300;
         TransformationX expectedX = 0;
-        XCenter expectedXCenter = 0;
+        TransformationXCenter expectedXCenter = 0;
         TransformationY expectedY = 0;
-        YCenter expectedYCenter = 0;
+        TransformationYCenter expectedYCenter = 0;
         double expectedZoom = 0;
 
         Assert.Equal(expectedAIChangeBackground, model.AIChangeBackground);
@@ -305,9 +311,12 @@ public class TransformationTest : TestBase
                 LayerMode = LayerMode.Multiply,
                 Position = new()
                 {
+                    AnchorPoint = AnchorPoint.Top,
                     Focus = Focus.Center,
                     X = 0,
+                    XCenter = 0,
                     Y = 0,
+                    YCenter = 0,
                 },
                 Timing = new()
                 {
@@ -411,9 +420,12 @@ public class TransformationTest : TestBase
                 LayerMode = LayerMode.Multiply,
                 Position = new()
                 {
+                    AnchorPoint = AnchorPoint.Top,
                     Focus = Focus.Center,
                     X = 0,
+                    XCenter = 0,
                     Y = 0,
+                    YCenter = 0,
                 },
                 Timing = new()
                 {
@@ -511,9 +523,12 @@ public class TransformationTest : TestBase
             LayerMode = LayerMode.Multiply,
             Position = new()
             {
+                AnchorPoint = AnchorPoint.Top,
                 Focus = Focus.Center,
                 X = 0,
+                XCenter = 0,
                 Y = 0,
+                YCenter = 0,
             },
             Timing = new()
             {
@@ -561,9 +576,9 @@ public class TransformationTest : TestBase
         ApiEnum<string, VideoCodec> expectedVideoCodec = VideoCodec.H264;
         TransformationWidth expectedWidth = 300;
         TransformationX expectedX = 0;
-        XCenter expectedXCenter = 0;
+        TransformationXCenter expectedXCenter = 0;
         TransformationY expectedY = 0;
-        YCenter expectedYCenter = 0;
+        TransformationYCenter expectedYCenter = 0;
         double expectedZoom = 0;
 
         Assert.Equal(expectedAIChangeBackground, deserialized.AIChangeBackground);
@@ -671,9 +686,12 @@ public class TransformationTest : TestBase
                 LayerMode = LayerMode.Multiply,
                 Position = new()
                 {
+                    AnchorPoint = AnchorPoint.Top,
                     Focus = Focus.Center,
                     X = 0,
+                    XCenter = 0,
                     Y = 0,
+                    YCenter = 0,
                 },
                 Timing = new()
                 {
@@ -1131,9 +1149,12 @@ public class TransformationTest : TestBase
                 LayerMode = LayerMode.Multiply,
                 Position = new()
                 {
+                    AnchorPoint = AnchorPoint.Top,
                     Focus = Focus.Center,
                     X = 0,
+                    XCenter = 0,
                     Y = 0,
+                    YCenter = 0,
                 },
                 Timing = new()
                 {
@@ -3209,28 +3230,28 @@ public class TransformationXTest : TestBase
     }
 }
 
-public class XCenterTest : TestBase
+public class TransformationXCenterTest : TestBase
 {
     [Fact]
     public void DoubleValidationWorks()
     {
-        XCenter value = 0;
+        TransformationXCenter value = 0;
         value.Validate();
     }
 
     [Fact]
     public void StringValidationWorks()
     {
-        XCenter value = "string";
+        TransformationXCenter value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        XCenter value = 0;
+        TransformationXCenter value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<XCenter>(
+        var deserialized = JsonSerializer.Deserialize<TransformationXCenter>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3241,9 +3262,9 @@ public class XCenterTest : TestBase
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        XCenter value = "string";
+        TransformationXCenter value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<XCenter>(
+        var deserialized = JsonSerializer.Deserialize<TransformationXCenter>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3295,28 +3316,28 @@ public class TransformationYTest : TestBase
     }
 }
 
-public class YCenterTest : TestBase
+public class TransformationYCenterTest : TestBase
 {
     [Fact]
     public void DoubleValidationWorks()
     {
-        YCenter value = 0;
+        TransformationYCenter value = 0;
         value.Validate();
     }
 
     [Fact]
     public void StringValidationWorks()
     {
-        YCenter value = "string";
+        TransformationYCenter value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        YCenter value = 0;
+        TransformationYCenter value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<YCenter>(
+        var deserialized = JsonSerializer.Deserialize<TransformationYCenter>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3327,9 +3348,9 @@ public class YCenterTest : TestBase
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        YCenter value = "string";
+        TransformationYCenter value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<YCenter>(
+        var deserialized = JsonSerializer.Deserialize<TransformationYCenter>(
             element,
             ModelBase.SerializerOptions
         );
