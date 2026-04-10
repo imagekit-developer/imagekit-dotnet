@@ -60,9 +60,12 @@ public class GetImageAttributesOptionsTest : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -168,9 +171,12 @@ public class GetImageAttributesOptionsTest : TestBase
                     LayerMode = LayerMode.Multiply,
                     Position = new()
                     {
+                        AnchorPoint = AnchorPoint.Top,
                         Focus = Focus.Center,
                         X = 0,
+                        XCenter = 0,
                         Y = 0,
+                        YCenter = 0,
                     },
                     Timing = new()
                     {
@@ -316,9 +322,12 @@ public class GetImageAttributesOptionsTest : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -438,9 +447,12 @@ public class GetImageAttributesOptionsTest : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -553,9 +565,12 @@ public class GetImageAttributesOptionsTest : TestBase
                     LayerMode = LayerMode.Multiply,
                     Position = new()
                     {
+                        AnchorPoint = AnchorPoint.Top,
                         Focus = Focus.Center,
                         X = 0,
+                        XCenter = 0,
                         Y = 0,
+                        YCenter = 0,
                     },
                     Timing = new()
                     {
@@ -701,9 +716,12 @@ public class GetImageAttributesOptionsTest : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
@@ -921,9 +939,12 @@ public class GetImageAttributesOptionsTest : TestBase
                         LayerMode = LayerMode.Multiply,
                         Position = new()
                         {
+                            AnchorPoint = AnchorPoint.Top,
                             Focus = Focus.Center,
                             X = 0,
+                            XCenter = 0,
                             Y = 0,
+                            YCenter = 0,
                         },
                         Timing = new()
                         {
