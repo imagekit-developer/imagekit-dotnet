@@ -145,7 +145,13 @@ public class UploadPreTransformSuccessEventTest : TestBase
                         new()
                         {
                             Type = SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new UnnamedSchemaWithArrayParent13(true),
+                                    new UnnamedSchemaWithArrayParent13(10),
+                                    new UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -298,7 +304,13 @@ public class UploadPreTransformSuccessEventTest : TestBase
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -466,7 +478,13 @@ public class UploadPreTransformSuccessEventTest : TestBase
                         new()
                         {
                             Type = SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new UnnamedSchemaWithArrayParent13(true),
+                                    new UnnamedSchemaWithArrayParent13(10),
+                                    new UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -633,7 +651,13 @@ public class UploadPreTransformSuccessEventTest : TestBase
                         new()
                         {
                             Type = SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new UnnamedSchemaWithArrayParent13(true),
+                                    new UnnamedSchemaWithArrayParent13(10),
+                                    new UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -793,7 +817,13 @@ public class UploadPreTransformSuccessEventTest : TestBase
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -961,7 +991,13 @@ public class UploadPreTransformSuccessEventTest : TestBase
                         new()
                         {
                             Type = SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new UnnamedSchemaWithArrayParent13(true),
+                                    new UnnamedSchemaWithArrayParent13(10),
+                                    new UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -1122,7 +1158,13 @@ public class UploadPreTransformSuccessEventTest : TestBase
                         new()
                         {
                             Type = SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new UnnamedSchemaWithArrayParent13(true),
+                                    new UnnamedSchemaWithArrayParent13(10),
+                                    new UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -1286,7 +1328,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                         new()
                         {
                             Type = SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new UnnamedSchemaWithArrayParent13(true),
+                                    new UnnamedSchemaWithArrayParent13(10),
+                                    new UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -1437,7 +1485,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1605,7 +1659,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                         new()
                         {
                             Type = SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new UnnamedSchemaWithArrayParent13(true),
+                                    new UnnamedSchemaWithArrayParent13(10),
+                                    new UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -1771,7 +1831,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                         new()
                         {
                             Type = SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new UnnamedSchemaWithArrayParent13(true),
+                                    new UnnamedSchemaWithArrayParent13(10),
+                                    new UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -1930,7 +1996,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -2098,7 +2170,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                         new()
                         {
                             Type = SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new UnnamedSchemaWithArrayParent13(true),
+                                    new UnnamedSchemaWithArrayParent13(10),
+                                    new UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -2257,7 +2335,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                         new()
                         {
                             Type = SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new UnnamedSchemaWithArrayParent13(true),
+                                    new UnnamedSchemaWithArrayParent13(10),
+                                    new UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -2418,7 +2502,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -2564,7 +2654,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                 new()
                 {
                     Type = SelectedFieldsSchemaItemType.Text,
-                    DefaultValue = "string",
+                    DefaultValue = new(
+                        [
+                            new UnnamedSchemaWithArrayParent13(true),
+                            new UnnamedSchemaWithArrayParent13(10),
+                            new UnnamedSchemaWithArrayParent13("Hello"),
+                        ]
+                    ),
                     IsValueRequired = true,
                     MaxLength = 0,
                     MaxValue = "string",
@@ -2772,7 +2868,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -2933,7 +3035,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -3087,7 +3195,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                 new()
                 {
                     Type = SelectedFieldsSchemaItemType.Text,
-                    DefaultValue = "string",
+                    DefaultValue = new(
+                        [
+                            new UnnamedSchemaWithArrayParent13(true),
+                            new UnnamedSchemaWithArrayParent13(10),
+                            new UnnamedSchemaWithArrayParent13("Hello"),
+                        ]
+                    ),
                     IsValueRequired = true,
                     MaxLength = 0,
                     MaxValue = "string",
@@ -3295,7 +3409,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -3657,7 +3777,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -3805,7 +3931,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -3948,7 +4080,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -4100,7 +4238,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -4257,7 +4401,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     new()
                     {
                         Type = SelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent13(true),
+                                new UnnamedSchemaWithArrayParent13(10),
+                                new UnnamedSchemaWithArrayParent13("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -4914,7 +5064,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new SelectedFieldsSchemaItem
         {
             Type = SelectedFieldsSchemaItemType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent13(true),
+                    new UnnamedSchemaWithArrayParent13(10),
+                    new UnnamedSchemaWithArrayParent13("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -4927,7 +5083,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
 
         ApiEnum<string, SelectedFieldsSchemaItemType> expectedType =
             SelectedFieldsSchemaItemType.Text;
-        DefaultValue expectedDefaultValue = "string";
+        DefaultValue expectedDefaultValue = new(
+            [
+                new UnnamedSchemaWithArrayParent13(true),
+                new UnnamedSchemaWithArrayParent13(10),
+                new UnnamedSchemaWithArrayParent13("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         MaxValue expectedMaxValue = "string";
@@ -4960,7 +5122,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new SelectedFieldsSchemaItem
         {
             Type = SelectedFieldsSchemaItemType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent13(true),
+                    new UnnamedSchemaWithArrayParent13(10),
+                    new UnnamedSchemaWithArrayParent13("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -4986,7 +5154,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new SelectedFieldsSchemaItem
         {
             Type = SelectedFieldsSchemaItemType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent13(true),
+                    new UnnamedSchemaWithArrayParent13(10),
+                    new UnnamedSchemaWithArrayParent13("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -5006,7 +5180,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
 
         ApiEnum<string, SelectedFieldsSchemaItemType> expectedType =
             SelectedFieldsSchemaItemType.Text;
-        DefaultValue expectedDefaultValue = "string";
+        DefaultValue expectedDefaultValue = new(
+            [
+                new UnnamedSchemaWithArrayParent13(true),
+                new UnnamedSchemaWithArrayParent13(10),
+                new UnnamedSchemaWithArrayParent13("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         MaxValue expectedMaxValue = "string";
@@ -5039,7 +5219,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new SelectedFieldsSchemaItem
         {
             Type = SelectedFieldsSchemaItemType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent13(true),
+                    new UnnamedSchemaWithArrayParent13(10),
+                    new UnnamedSchemaWithArrayParent13("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -5153,7 +5339,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new SelectedFieldsSchemaItem
         {
             Type = SelectedFieldsSchemaItemType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent13(true),
+                    new UnnamedSchemaWithArrayParent13(10),
+                    new UnnamedSchemaWithArrayParent13("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",

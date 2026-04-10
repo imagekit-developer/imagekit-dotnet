@@ -53,7 +53,13 @@ public class FileTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -115,7 +121,13 @@ public class FileTest : TestBase
                 new()
                 {
                     Type = Files::Type.Text,
-                    DefaultValue = "string",
+                    DefaultValue = new(
+                        [
+                            new Files::UnnamedSchemaWithArrayParent10(true),
+                            new Files::UnnamedSchemaWithArrayParent10(10),
+                            new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                        ]
+                    ),
                     IsValueRequired = true,
                     MaxLength = 0,
                     MaxValue = "string",
@@ -242,7 +254,13 @@ public class FileTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -318,7 +336,13 @@ public class FileTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -387,7 +411,13 @@ public class FileTest : TestBase
                 new()
                 {
                     Type = Files::Type.Text,
-                    DefaultValue = "string",
+                    DefaultValue = new(
+                        [
+                            new Files::UnnamedSchemaWithArrayParent10(true),
+                            new Files::UnnamedSchemaWithArrayParent10(10),
+                            new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                        ]
+                    ),
                     IsValueRequired = true,
                     MaxLength = 0,
                     MaxValue = "string",
@@ -514,7 +544,13 @@ public class FileTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -810,7 +846,13 @@ public class FileTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -874,7 +916,13 @@ public class FileTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -933,7 +981,13 @@ public class FileTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1001,7 +1055,13 @@ public class FileTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1074,7 +1134,13 @@ public class FileTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1260,7 +1326,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new Files::SelectedFieldsSchemaItem
         {
             Type = Files::Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new Files::UnnamedSchemaWithArrayParent10(true),
+                    new Files::UnnamedSchemaWithArrayParent10(10),
+                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -1272,7 +1344,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         };
 
         ApiEnum<string, Files::Type> expectedType = Files::Type.Text;
-        Files::DefaultValue expectedDefaultValue = "string";
+        Files::DefaultValue expectedDefaultValue = new(
+            [
+                new Files::UnnamedSchemaWithArrayParent10(true),
+                new Files::UnnamedSchemaWithArrayParent10(10),
+                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         Files::MaxValue expectedMaxValue = "string";
@@ -1313,7 +1391,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new Files::SelectedFieldsSchemaItem
         {
             Type = Files::Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new Files::UnnamedSchemaWithArrayParent10(true),
+                    new Files::UnnamedSchemaWithArrayParent10(10),
+                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -1339,7 +1423,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new Files::SelectedFieldsSchemaItem
         {
             Type = Files::Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new Files::UnnamedSchemaWithArrayParent10(true),
+                    new Files::UnnamedSchemaWithArrayParent10(10),
+                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -1358,7 +1448,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         Assert.NotNull(deserialized);
 
         ApiEnum<string, Files::Type> expectedType = Files::Type.Text;
-        Files::DefaultValue expectedDefaultValue = "string";
+        Files::DefaultValue expectedDefaultValue = new(
+            [
+                new Files::UnnamedSchemaWithArrayParent10(true),
+                new Files::UnnamedSchemaWithArrayParent10(10),
+                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         Files::MaxValue expectedMaxValue = "string";
@@ -1399,7 +1495,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new Files::SelectedFieldsSchemaItem
         {
             Type = Files::Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new Files::UnnamedSchemaWithArrayParent10(true),
+                    new Files::UnnamedSchemaWithArrayParent10(10),
+                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -1513,7 +1615,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new Files::SelectedFieldsSchemaItem
         {
             Type = Files::Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new Files::UnnamedSchemaWithArrayParent10(true),
+                    new Files::UnnamedSchemaWithArrayParent10(10),
+                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",

@@ -19,7 +19,13 @@ public class CustomMetadataFieldTest : TestBase
             Schema = new()
             {
                 Type = CustomMetadataFieldSchemaType.Text,
-                DefaultValue = "string",
+                DefaultValue = new(
+                    [
+                        new UnnamedSchemaWithArrayParent9(true),
+                        new UnnamedSchemaWithArrayParent9(10),
+                        new UnnamedSchemaWithArrayParent9("Hello"),
+                    ]
+                ),
                 IsValueRequired = true,
                 MaxLength = 0,
                 MaxValue = "string",
@@ -35,7 +41,13 @@ public class CustomMetadataFieldTest : TestBase
         CustomMetadataFieldSchema expectedSchema = new()
         {
             Type = CustomMetadataFieldSchemaType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent9(true),
+                    new UnnamedSchemaWithArrayParent9(10),
+                    new UnnamedSchemaWithArrayParent9("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -61,7 +73,13 @@ public class CustomMetadataFieldTest : TestBase
             Schema = new()
             {
                 Type = CustomMetadataFieldSchemaType.Text,
-                DefaultValue = "string",
+                DefaultValue = new(
+                    [
+                        new UnnamedSchemaWithArrayParent9(true),
+                        new UnnamedSchemaWithArrayParent9(10),
+                        new UnnamedSchemaWithArrayParent9("Hello"),
+                    ]
+                ),
                 IsValueRequired = true,
                 MaxLength = 0,
                 MaxValue = "string",
@@ -91,7 +109,13 @@ public class CustomMetadataFieldTest : TestBase
             Schema = new()
             {
                 Type = CustomMetadataFieldSchemaType.Text,
-                DefaultValue = "string",
+                DefaultValue = new(
+                    [
+                        new UnnamedSchemaWithArrayParent9(true),
+                        new UnnamedSchemaWithArrayParent9(10),
+                        new UnnamedSchemaWithArrayParent9("Hello"),
+                    ]
+                ),
                 IsValueRequired = true,
                 MaxLength = 0,
                 MaxValue = "string",
@@ -114,7 +138,13 @@ public class CustomMetadataFieldTest : TestBase
         CustomMetadataFieldSchema expectedSchema = new()
         {
             Type = CustomMetadataFieldSchemaType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent9(true),
+                    new UnnamedSchemaWithArrayParent9(10),
+                    new UnnamedSchemaWithArrayParent9("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -140,7 +170,13 @@ public class CustomMetadataFieldTest : TestBase
             Schema = new()
             {
                 Type = CustomMetadataFieldSchemaType.Text,
-                DefaultValue = "string",
+                DefaultValue = new(
+                    [
+                        new UnnamedSchemaWithArrayParent9(true),
+                        new UnnamedSchemaWithArrayParent9(10),
+                        new UnnamedSchemaWithArrayParent9("Hello"),
+                    ]
+                ),
                 IsValueRequired = true,
                 MaxLength = 0,
                 MaxValue = "string",
@@ -164,7 +200,13 @@ public class CustomMetadataFieldTest : TestBase
             Schema = new()
             {
                 Type = CustomMetadataFieldSchemaType.Text,
-                DefaultValue = "string",
+                DefaultValue = new(
+                    [
+                        new UnnamedSchemaWithArrayParent9(true),
+                        new UnnamedSchemaWithArrayParent9(10),
+                        new UnnamedSchemaWithArrayParent9("Hello"),
+                    ]
+                ),
                 IsValueRequired = true,
                 MaxLength = 0,
                 MaxValue = "string",
@@ -188,7 +230,13 @@ public class CustomMetadataFieldSchemaTest : TestBase
         var model = new CustomMetadataFieldSchema
         {
             Type = CustomMetadataFieldSchemaType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent9(true),
+                    new UnnamedSchemaWithArrayParent9(10),
+                    new UnnamedSchemaWithArrayParent9("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -199,7 +247,13 @@ public class CustomMetadataFieldSchemaTest : TestBase
 
         ApiEnum<string, CustomMetadataFieldSchemaType> expectedType =
             CustomMetadataFieldSchemaType.Text;
-        CustomMetadataFieldSchemaDefaultValue expectedDefaultValue = "string";
+        CustomMetadataFieldSchemaDefaultValue expectedDefaultValue = new(
+            [
+                new UnnamedSchemaWithArrayParent9(true),
+                new UnnamedSchemaWithArrayParent9(10),
+                new UnnamedSchemaWithArrayParent9("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         CustomMetadataFieldSchemaMaxValue expectedMaxValue = "string";
@@ -236,7 +290,13 @@ public class CustomMetadataFieldSchemaTest : TestBase
         var model = new CustomMetadataFieldSchema
         {
             Type = CustomMetadataFieldSchemaType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent9(true),
+                    new UnnamedSchemaWithArrayParent9(10),
+                    new UnnamedSchemaWithArrayParent9("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -260,7 +320,13 @@ public class CustomMetadataFieldSchemaTest : TestBase
         var model = new CustomMetadataFieldSchema
         {
             Type = CustomMetadataFieldSchemaType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent9(true),
+                    new UnnamedSchemaWithArrayParent9(10),
+                    new UnnamedSchemaWithArrayParent9("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -278,7 +344,13 @@ public class CustomMetadataFieldSchemaTest : TestBase
 
         ApiEnum<string, CustomMetadataFieldSchemaType> expectedType =
             CustomMetadataFieldSchemaType.Text;
-        CustomMetadataFieldSchemaDefaultValue expectedDefaultValue = "string";
+        CustomMetadataFieldSchemaDefaultValue expectedDefaultValue = new(
+            [
+                new UnnamedSchemaWithArrayParent9(true),
+                new UnnamedSchemaWithArrayParent9(10),
+                new UnnamedSchemaWithArrayParent9("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         CustomMetadataFieldSchemaMaxValue expectedMaxValue = "string";
@@ -315,7 +387,13 @@ public class CustomMetadataFieldSchemaTest : TestBase
         var model = new CustomMetadataFieldSchema
         {
             Type = CustomMetadataFieldSchemaType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent9(true),
+                    new UnnamedSchemaWithArrayParent9(10),
+                    new UnnamedSchemaWithArrayParent9("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -415,7 +493,13 @@ public class CustomMetadataFieldSchemaTest : TestBase
         var model = new CustomMetadataFieldSchema
         {
             Type = CustomMetadataFieldSchemaType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent9(true),
+                    new UnnamedSchemaWithArrayParent9(10),
+                    new UnnamedSchemaWithArrayParent9("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",

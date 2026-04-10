@@ -53,7 +53,13 @@ public class AssetListResponseTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -141,7 +147,13 @@ public class AssetListResponseTest : TestBase
                     new()
                     {
                         Type = Files::Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new Files::UnnamedSchemaWithArrayParent10(true),
+                                new Files::UnnamedSchemaWithArrayParent10(10),
+                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",

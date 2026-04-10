@@ -16,7 +16,13 @@ public class CustomMetadataFieldServiceTest : TestBase
                 Schema = new()
                 {
                     Type = Type.Number,
-                    DefaultValue = "string",
+                    DefaultValue = new(
+                        [
+                            new UnnamedSchemaWithArrayParent1(true),
+                            new UnnamedSchemaWithArrayParent1(10),
+                            new UnnamedSchemaWithArrayParent1("Hello"),
+                        ]
+                    ),
                     IsValueRequired = true,
                     MaxLength = 0,
                     MaxValue = 3000,

@@ -19,7 +19,13 @@ public class CustomMetadataFieldCreateParamsTest : TestBase
             Schema = new()
             {
                 Type = CustomMetadataFields::Type.Number,
-                DefaultValue = "string",
+                DefaultValue = new(
+                    [
+                        new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                        new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                        new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+                    ]
+                ),
                 IsValueRequired = true,
                 MaxLength = 0,
                 MaxValue = 3000,
@@ -34,7 +40,13 @@ public class CustomMetadataFieldCreateParamsTest : TestBase
         CustomMetadataFields::Schema expectedSchema = new()
         {
             Type = CustomMetadataFields::Type.Number,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = 3000,
@@ -58,7 +70,13 @@ public class CustomMetadataFieldCreateParamsTest : TestBase
             Schema = new()
             {
                 Type = CustomMetadataFields::Type.Number,
-                DefaultValue = "string",
+                DefaultValue = new(
+                    [
+                        new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                        new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                        new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+                    ]
+                ),
                 IsValueRequired = true,
                 MaxLength = 0,
                 MaxValue = 3000,
@@ -83,7 +101,13 @@ public class CustomMetadataFieldCreateParamsTest : TestBase
             Schema = new()
             {
                 Type = CustomMetadataFields::Type.Number,
-                DefaultValue = "string",
+                DefaultValue = new(
+                    [
+                        new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                        new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                        new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+                    ]
+                ),
                 IsValueRequired = true,
                 MaxLength = 0,
                 MaxValue = 3000,
@@ -107,7 +131,13 @@ public class SchemaTest : TestBase
         var model = new CustomMetadataFields::Schema
         {
             Type = CustomMetadataFields::Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -117,7 +147,13 @@ public class SchemaTest : TestBase
         };
 
         ApiEnum<string, CustomMetadataFields::Type> expectedType = CustomMetadataFields::Type.Text;
-        CustomMetadataFields::DefaultValue expectedDefaultValue = "string";
+        CustomMetadataFields::DefaultValue expectedDefaultValue = new(
+            [
+                new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         CustomMetadataFields::MaxValue expectedMaxValue = "string";
@@ -154,7 +190,13 @@ public class SchemaTest : TestBase
         var model = new CustomMetadataFields::Schema
         {
             Type = CustomMetadataFields::Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -178,7 +220,13 @@ public class SchemaTest : TestBase
         var model = new CustomMetadataFields::Schema
         {
             Type = CustomMetadataFields::Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -195,7 +243,13 @@ public class SchemaTest : TestBase
         Assert.NotNull(deserialized);
 
         ApiEnum<string, CustomMetadataFields::Type> expectedType = CustomMetadataFields::Type.Text;
-        CustomMetadataFields::DefaultValue expectedDefaultValue = "string";
+        CustomMetadataFields::DefaultValue expectedDefaultValue = new(
+            [
+                new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         CustomMetadataFields::MaxValue expectedMaxValue = "string";
@@ -232,7 +286,13 @@ public class SchemaTest : TestBase
         var model = new CustomMetadataFields::Schema
         {
             Type = CustomMetadataFields::Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -332,7 +392,13 @@ public class SchemaTest : TestBase
         var model = new CustomMetadataFields::Schema
         {
             Type = CustomMetadataFields::Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(true),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1(10),
+                    new CustomMetadataFields::UnnamedSchemaWithArrayParent1("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",

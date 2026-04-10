@@ -21,7 +21,7 @@ public class TextOverlayTransformationTest : TestBase
             InnerAlignment = InnerAlignment.Left,
             LineHeight = 0,
             Padding = 0,
-            Radius = 0,
+            Radius = new TextOverlayTransformationRadiusUnionMember1(),
             Rotation = 0,
             Typography = "typography",
             Width = 0,
@@ -36,7 +36,8 @@ public class TextOverlayTransformationTest : TestBase
         ApiEnum<string, InnerAlignment> expectedInnerAlignment = InnerAlignment.Left;
         LineHeight expectedLineHeight = 0;
         Padding expectedPadding = 0;
-        TextOverlayTransformationRadius expectedRadius = 0;
+        TextOverlayTransformationRadius expectedRadius =
+            new TextOverlayTransformationRadiusUnionMember1();
         Rotation expectedRotation = 0;
         string expectedTypography = "typography";
         TextOverlayTransformationWidth expectedWidth = 0;
@@ -70,7 +71,7 @@ public class TextOverlayTransformationTest : TestBase
             InnerAlignment = InnerAlignment.Left,
             LineHeight = 0,
             Padding = 0,
-            Radius = 0,
+            Radius = new TextOverlayTransformationRadiusUnionMember1(),
             Rotation = 0,
             Typography = "typography",
             Width = 0,
@@ -99,7 +100,7 @@ public class TextOverlayTransformationTest : TestBase
             InnerAlignment = InnerAlignment.Left,
             LineHeight = 0,
             Padding = 0,
-            Radius = 0,
+            Radius = new TextOverlayTransformationRadiusUnionMember1(),
             Rotation = 0,
             Typography = "typography",
             Width = 0,
@@ -121,7 +122,8 @@ public class TextOverlayTransformationTest : TestBase
         ApiEnum<string, InnerAlignment> expectedInnerAlignment = InnerAlignment.Left;
         LineHeight expectedLineHeight = 0;
         Padding expectedPadding = 0;
-        TextOverlayTransformationRadius expectedRadius = 0;
+        TextOverlayTransformationRadius expectedRadius =
+            new TextOverlayTransformationRadiusUnionMember1();
         Rotation expectedRotation = 0;
         string expectedTypography = "typography";
         TextOverlayTransformationWidth expectedWidth = 0;
@@ -155,7 +157,7 @@ public class TextOverlayTransformationTest : TestBase
             InnerAlignment = InnerAlignment.Left,
             LineHeight = 0,
             Padding = 0,
-            Radius = 0,
+            Radius = new TextOverlayTransformationRadiusUnionMember1(),
             Rotation = 0,
             Typography = "typography",
             Width = 0,
@@ -292,7 +294,7 @@ public class TextOverlayTransformationTest : TestBase
             InnerAlignment = InnerAlignment.Left,
             LineHeight = 0,
             Padding = 0,
-            Radius = 0,
+            Radius = new TextOverlayTransformationRadiusUnionMember1(),
             Rotation = 0,
             Typography = "typography",
             Width = 0,

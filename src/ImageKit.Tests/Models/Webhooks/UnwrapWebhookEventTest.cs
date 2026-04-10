@@ -276,7 +276,13 @@ public class UnwrapWebhookEventTest : TestBase
                         new()
                         {
                             Type = Webhooks::SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new Webhooks::UnnamedSchemaWithArrayParent13(true),
+                                    new Webhooks::UnnamedSchemaWithArrayParent13(10),
+                                    new Webhooks::UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -433,7 +439,13 @@ public class UnwrapWebhookEventTest : TestBase
                         new()
                         {
                             Type = Files::Type.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new Files::UnnamedSchemaWithArrayParent10(true),
+                                    new Files::UnnamedSchemaWithArrayParent10(10),
+                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -508,7 +520,13 @@ public class UnwrapWebhookEventTest : TestBase
                         new()
                         {
                             Type = Files::Type.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new Files::UnnamedSchemaWithArrayParent10(true),
+                                    new Files::UnnamedSchemaWithArrayParent10(10),
+                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -596,7 +614,13 @@ public class UnwrapWebhookEventTest : TestBase
                         new()
                         {
                             Type = Files::Type.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new Files::UnnamedSchemaWithArrayParent10(true),
+                                    new Files::UnnamedSchemaWithArrayParent10(10),
+                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -920,7 +944,13 @@ public class UnwrapWebhookEventTest : TestBase
                         new()
                         {
                             Type = Webhooks::SelectedFieldsSchemaItemType.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new Webhooks::UnnamedSchemaWithArrayParent13(true),
+                                    new Webhooks::UnnamedSchemaWithArrayParent13(10),
+                                    new Webhooks::UnnamedSchemaWithArrayParent13("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -1101,7 +1131,13 @@ public class UnwrapWebhookEventTest : TestBase
                         new()
                         {
                             Type = Files::Type.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new Files::UnnamedSchemaWithArrayParent10(true),
+                                    new Files::UnnamedSchemaWithArrayParent10(10),
+                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -1182,7 +1218,13 @@ public class UnwrapWebhookEventTest : TestBase
                         new()
                         {
                             Type = Files::Type.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new Files::UnnamedSchemaWithArrayParent10(true),
+                                    new Files::UnnamedSchemaWithArrayParent10(10),
+                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",
@@ -1282,7 +1324,13 @@ public class UnwrapWebhookEventTest : TestBase
                         new()
                         {
                             Type = Files::Type.Text,
-                            DefaultValue = "string",
+                            DefaultValue = new(
+                                [
+                                    new Files::UnnamedSchemaWithArrayParent10(true),
+                                    new Files::UnnamedSchemaWithArrayParent10(10),
+                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                ]
+                            ),
                             IsValueRequired = true,
                             MaxLength = 0,
                             MaxValue = "string",

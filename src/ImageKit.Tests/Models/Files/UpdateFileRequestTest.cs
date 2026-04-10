@@ -77,7 +77,7 @@ public class UpdateFileRequestTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -162,7 +162,7 @@ public class UpdateFileRequestTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -262,7 +262,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -330,7 +330,7 @@ public class UpdateFileDetailsTest : TestBase
             ),
             new SavedExtension("ext_abc123"),
         ];
-        Files::RemoveAITags expectedRemoveAITags = new(["string"]);
+        Files::RemoveAITags expectedRemoveAITags = new Files::UnionMember1();
         List<string> expectedTags = ["tag1", "tag2"];
         string expectedWebhookUrl = "https://example.com";
 
@@ -428,7 +428,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -510,7 +510,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -585,7 +585,7 @@ public class UpdateFileDetailsTest : TestBase
             ),
             new SavedExtension("ext_abc123"),
         ];
-        Files::RemoveAITags expectedRemoveAITags = new(["string"]);
+        Files::RemoveAITags expectedRemoveAITags = new Files::UnionMember1();
         List<string> expectedTags = ["tag1", "tag2"];
         string expectedWebhookUrl = "https://example.com";
 
@@ -683,7 +683,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -838,7 +838,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             WebhookUrl = "https://example.com",
         };
 
@@ -915,7 +915,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             WebhookUrl = "https://example.com",
         };
 
@@ -989,7 +989,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             WebhookUrl = "https://example.com",
 
             CustomCoordinates = null,
@@ -1069,7 +1069,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             WebhookUrl = "https://example.com",
 
             CustomCoordinates = null,
@@ -1147,7 +1147,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new(["string"]),
+            RemoveAITags = new Files::UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };

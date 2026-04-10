@@ -139,7 +139,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent12(true),
+                                new UnnamedSchemaWithArrayParent12(10),
+                                new UnnamedSchemaWithArrayParent12("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -285,7 +291,13 @@ public class FileUploadResponseTest : TestBase
                 new()
                 {
                     Type = Type.Text,
-                    DefaultValue = "string",
+                    DefaultValue = new(
+                        [
+                            new UnnamedSchemaWithArrayParent12(true),
+                            new UnnamedSchemaWithArrayParent12(10),
+                            new UnnamedSchemaWithArrayParent12("Hello"),
+                        ]
+                    ),
                     IsValueRequired = true,
                     MaxLength = 0,
                     MaxValue = "string",
@@ -493,7 +505,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent12(true),
+                                new UnnamedSchemaWithArrayParent12(10),
+                                new UnnamedSchemaWithArrayParent12("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -653,7 +671,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent12(true),
+                                new UnnamedSchemaWithArrayParent12(10),
+                                new UnnamedSchemaWithArrayParent12("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -806,7 +830,13 @@ public class FileUploadResponseTest : TestBase
                 new()
                 {
                     Type = Type.Text,
-                    DefaultValue = "string",
+                    DefaultValue = new(
+                        [
+                            new UnnamedSchemaWithArrayParent12(true),
+                            new UnnamedSchemaWithArrayParent12(10),
+                            new UnnamedSchemaWithArrayParent12("Hello"),
+                        ]
+                    ),
                     IsValueRequired = true,
                     MaxLength = 0,
                     MaxValue = "string",
@@ -1014,7 +1044,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent12(true),
+                                new UnnamedSchemaWithArrayParent12(10),
+                                new UnnamedSchemaWithArrayParent12("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1376,7 +1412,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent12(true),
+                                new UnnamedSchemaWithArrayParent12(10),
+                                new UnnamedSchemaWithArrayParent12("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1524,7 +1566,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent12(true),
+                                new UnnamedSchemaWithArrayParent12(10),
+                                new UnnamedSchemaWithArrayParent12("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1667,7 +1715,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent12(true),
+                                new UnnamedSchemaWithArrayParent12(10),
+                                new UnnamedSchemaWithArrayParent12("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1819,7 +1873,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent12(true),
+                                new UnnamedSchemaWithArrayParent12(10),
+                                new UnnamedSchemaWithArrayParent12("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1976,7 +2036,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = Type.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent12(true),
+                                new UnnamedSchemaWithArrayParent12(10),
+                                new UnnamedSchemaWithArrayParent12("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -2633,7 +2699,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new SelectedFieldsSchemaItem
         {
             Type = Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent12(true),
+                    new UnnamedSchemaWithArrayParent12(10),
+                    new UnnamedSchemaWithArrayParent12("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -2645,7 +2717,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         };
 
         ApiEnum<string, Type> expectedType = Type.Text;
-        DefaultValue expectedDefaultValue = "string";
+        DefaultValue expectedDefaultValue = new(
+            [
+                new UnnamedSchemaWithArrayParent12(true),
+                new UnnamedSchemaWithArrayParent12(10),
+                new UnnamedSchemaWithArrayParent12("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         MaxValue expectedMaxValue = "string";
@@ -2678,7 +2756,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new SelectedFieldsSchemaItem
         {
             Type = Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent12(true),
+                    new UnnamedSchemaWithArrayParent12(10),
+                    new UnnamedSchemaWithArrayParent12("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -2704,7 +2788,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new SelectedFieldsSchemaItem
         {
             Type = Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent12(true),
+                    new UnnamedSchemaWithArrayParent12(10),
+                    new UnnamedSchemaWithArrayParent12("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -2723,7 +2813,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         Assert.NotNull(deserialized);
 
         ApiEnum<string, Type> expectedType = Type.Text;
-        DefaultValue expectedDefaultValue = "string";
+        DefaultValue expectedDefaultValue = new(
+            [
+                new UnnamedSchemaWithArrayParent12(true),
+                new UnnamedSchemaWithArrayParent12(10),
+                new UnnamedSchemaWithArrayParent12("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         MaxValue expectedMaxValue = "string";
@@ -2756,7 +2852,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new SelectedFieldsSchemaItem
         {
             Type = Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent12(true),
+                    new UnnamedSchemaWithArrayParent12(10),
+                    new UnnamedSchemaWithArrayParent12("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -2870,7 +2972,13 @@ public class SelectedFieldsSchemaItemTest : TestBase
         var model = new SelectedFieldsSchemaItem
         {
             Type = Type.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent12(true),
+                    new UnnamedSchemaWithArrayParent12(10),
+                    new UnnamedSchemaWithArrayParent12("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",

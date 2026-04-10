@@ -17,7 +17,13 @@ public class CustomMetadataFieldUpdateParamsTest : TestBase
             Label = "price",
             Schema = new()
             {
-                DefaultValue = "string",
+                DefaultValue = new(
+                    [
+                        new UnnamedSchemaWithArrayParent2(true),
+                        new UnnamedSchemaWithArrayParent2(10),
+                        new UnnamedSchemaWithArrayParent2("Hello"),
+                    ]
+                ),
                 IsValueRequired = true,
                 MaxLength = 0,
                 MaxValue = 3000,
@@ -31,7 +37,13 @@ public class CustomMetadataFieldUpdateParamsTest : TestBase
         string expectedLabel = "price";
         CustomMetadataFieldUpdateParamsSchema expectedSchema = new()
         {
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = 3000,
@@ -93,7 +105,13 @@ public class CustomMetadataFieldUpdateParamsTest : TestBase
             Label = "price",
             Schema = new()
             {
-                DefaultValue = "string",
+                DefaultValue = new(
+                    [
+                        new UnnamedSchemaWithArrayParent2(true),
+                        new UnnamedSchemaWithArrayParent2(10),
+                        new UnnamedSchemaWithArrayParent2("Hello"),
+                    ]
+                ),
                 IsValueRequired = true,
                 MaxLength = 0,
                 MaxValue = 3000,
@@ -116,7 +134,13 @@ public class CustomMetadataFieldUpdateParamsSchemaTest : TestBase
     {
         var model = new CustomMetadataFieldUpdateParamsSchema
         {
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -125,7 +149,13 @@ public class CustomMetadataFieldUpdateParamsSchemaTest : TestBase
             SelectOptions = ["small", "medium", "large", 30, 40, true],
         };
 
-        CustomMetadataFieldUpdateParamsSchemaDefaultValue expectedDefaultValue = "string";
+        CustomMetadataFieldUpdateParamsSchemaDefaultValue expectedDefaultValue = new(
+            [
+                new UnnamedSchemaWithArrayParent2(true),
+                new UnnamedSchemaWithArrayParent2(10),
+                new UnnamedSchemaWithArrayParent2("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         CustomMetadataFieldUpdateParamsSchemaMaxValue expectedMaxValue = "string";
@@ -160,7 +190,13 @@ public class CustomMetadataFieldUpdateParamsSchemaTest : TestBase
     {
         var model = new CustomMetadataFieldUpdateParamsSchema
         {
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -183,7 +219,13 @@ public class CustomMetadataFieldUpdateParamsSchemaTest : TestBase
     {
         var model = new CustomMetadataFieldUpdateParamsSchema
         {
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -199,7 +241,13 @@ public class CustomMetadataFieldUpdateParamsSchemaTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        CustomMetadataFieldUpdateParamsSchemaDefaultValue expectedDefaultValue = "string";
+        CustomMetadataFieldUpdateParamsSchemaDefaultValue expectedDefaultValue = new(
+            [
+                new UnnamedSchemaWithArrayParent2(true),
+                new UnnamedSchemaWithArrayParent2(10),
+                new UnnamedSchemaWithArrayParent2("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         CustomMetadataFieldUpdateParamsSchemaMaxValue expectedMaxValue = "string";
@@ -234,7 +282,13 @@ public class CustomMetadataFieldUpdateParamsSchemaTest : TestBase
     {
         var model = new CustomMetadataFieldUpdateParamsSchema
         {
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -329,7 +383,13 @@ public class CustomMetadataFieldUpdateParamsSchemaTest : TestBase
     {
         var model = new CustomMetadataFieldUpdateParamsSchema
         {
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",

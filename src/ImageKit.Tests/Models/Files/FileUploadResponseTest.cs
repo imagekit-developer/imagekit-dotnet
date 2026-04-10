@@ -141,7 +141,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent11(true),
+                                new UnnamedSchemaWithArrayParent11(10),
+                                new UnnamedSchemaWithArrayParent11("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -290,7 +296,13 @@ public class FileUploadResponseTest : TestBase
                 new()
                 {
                     Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                    DefaultValue = "string",
+                    DefaultValue = new(
+                        [
+                            new UnnamedSchemaWithArrayParent11(true),
+                            new UnnamedSchemaWithArrayParent11(10),
+                            new UnnamedSchemaWithArrayParent11("Hello"),
+                        ]
+                    ),
                     IsValueRequired = true,
                     MaxLength = 0,
                     MaxValue = "string",
@@ -501,7 +513,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent11(true),
+                                new UnnamedSchemaWithArrayParent11(10),
+                                new UnnamedSchemaWithArrayParent11("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -664,7 +682,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent11(true),
+                                new UnnamedSchemaWithArrayParent11(10),
+                                new UnnamedSchemaWithArrayParent11("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -820,7 +844,13 @@ public class FileUploadResponseTest : TestBase
                 new()
                 {
                     Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                    DefaultValue = "string",
+                    DefaultValue = new(
+                        [
+                            new UnnamedSchemaWithArrayParent11(true),
+                            new UnnamedSchemaWithArrayParent11(10),
+                            new UnnamedSchemaWithArrayParent11("Hello"),
+                        ]
+                    ),
                     IsValueRequired = true,
                     MaxLength = 0,
                     MaxValue = "string",
@@ -1031,7 +1061,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent11(true),
+                                new UnnamedSchemaWithArrayParent11(10),
+                                new UnnamedSchemaWithArrayParent11("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1396,7 +1432,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent11(true),
+                                new UnnamedSchemaWithArrayParent11(10),
+                                new UnnamedSchemaWithArrayParent11("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1547,7 +1589,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent11(true),
+                                new UnnamedSchemaWithArrayParent11(10),
+                                new UnnamedSchemaWithArrayParent11("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1693,7 +1741,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent11(true),
+                                new UnnamedSchemaWithArrayParent11(10),
+                                new UnnamedSchemaWithArrayParent11("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -1848,7 +1902,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent11(true),
+                                new UnnamedSchemaWithArrayParent11(10),
+                                new UnnamedSchemaWithArrayParent11("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -2008,7 +2068,13 @@ public class FileUploadResponseTest : TestBase
                     new()
                     {
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-                        DefaultValue = "string",
+                        DefaultValue = new(
+                            [
+                                new UnnamedSchemaWithArrayParent11(true),
+                                new UnnamedSchemaWithArrayParent11(10),
+                                new UnnamedSchemaWithArrayParent11("Hello"),
+                            ]
+                        ),
                         IsValueRequired = true,
                         MaxLength = 0,
                         MaxValue = "string",
@@ -2675,7 +2741,13 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
         var model = new FileUploadResponseSelectedFieldsSchemaItem
         {
             Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent11(true),
+                    new UnnamedSchemaWithArrayParent11(10),
+                    new UnnamedSchemaWithArrayParent11("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -2688,7 +2760,13 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
 
         ApiEnum<string, FileUploadResponseSelectedFieldsSchemaItemType> expectedType =
             FileUploadResponseSelectedFieldsSchemaItemType.Text;
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue expectedDefaultValue = "string";
+        FileUploadResponseSelectedFieldsSchemaItemDefaultValue expectedDefaultValue = new(
+            [
+                new UnnamedSchemaWithArrayParent11(true),
+                new UnnamedSchemaWithArrayParent11(10),
+                new UnnamedSchemaWithArrayParent11("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         FileUploadResponseSelectedFieldsSchemaItemMaxValue expectedMaxValue = "string";
@@ -2729,7 +2807,13 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
         var model = new FileUploadResponseSelectedFieldsSchemaItem
         {
             Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent11(true),
+                    new UnnamedSchemaWithArrayParent11(10),
+                    new UnnamedSchemaWithArrayParent11("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -2755,7 +2839,13 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
         var model = new FileUploadResponseSelectedFieldsSchemaItem
         {
             Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent11(true),
+                    new UnnamedSchemaWithArrayParent11(10),
+                    new UnnamedSchemaWithArrayParent11("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -2775,7 +2865,13 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
 
         ApiEnum<string, FileUploadResponseSelectedFieldsSchemaItemType> expectedType =
             FileUploadResponseSelectedFieldsSchemaItemType.Text;
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue expectedDefaultValue = "string";
+        FileUploadResponseSelectedFieldsSchemaItemDefaultValue expectedDefaultValue = new(
+            [
+                new UnnamedSchemaWithArrayParent11(true),
+                new UnnamedSchemaWithArrayParent11(10),
+                new UnnamedSchemaWithArrayParent11("Hello"),
+            ]
+        );
         bool expectedIsValueRequired = true;
         double expectedMaxLength = 0;
         FileUploadResponseSelectedFieldsSchemaItemMaxValue expectedMaxValue = "string";
@@ -2816,7 +2912,13 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
         var model = new FileUploadResponseSelectedFieldsSchemaItem
         {
             Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent11(true),
+                    new UnnamedSchemaWithArrayParent11(10),
+                    new UnnamedSchemaWithArrayParent11("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",
@@ -2936,7 +3038,13 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
         var model = new FileUploadResponseSelectedFieldsSchemaItem
         {
             Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-            DefaultValue = "string",
+            DefaultValue = new(
+                [
+                    new UnnamedSchemaWithArrayParent11(true),
+                    new UnnamedSchemaWithArrayParent11(10),
+                    new UnnamedSchemaWithArrayParent11("Hello"),
+                ]
+            ),
             IsValueRequired = true,
             MaxLength = 0,
             MaxValue = "string",

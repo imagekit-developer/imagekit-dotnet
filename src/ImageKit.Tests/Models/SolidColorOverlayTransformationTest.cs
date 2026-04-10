@@ -16,7 +16,7 @@ public class SolidColorOverlayTransformationTest : TestBase
             Background = "background",
             Gradient = new UnionMember0(),
             Height = 0,
-            Radius = 0,
+            Radius = new UnionMember1(),
             Width = 0,
         };
 
@@ -24,7 +24,7 @@ public class SolidColorOverlayTransformationTest : TestBase
         string expectedBackground = "background";
         Gradient expectedGradient = new UnionMember0();
         Height expectedHeight = 0;
-        Radius expectedRadius = 0;
+        Radius expectedRadius = new UnionMember1();
         Width expectedWidth = 0;
 
         Assert.Equal(expectedAlpha, model.Alpha);
@@ -44,7 +44,7 @@ public class SolidColorOverlayTransformationTest : TestBase
             Background = "background",
             Gradient = new UnionMember0(),
             Height = 0,
-            Radius = 0,
+            Radius = new UnionMember1(),
             Width = 0,
         };
 
@@ -66,7 +66,7 @@ public class SolidColorOverlayTransformationTest : TestBase
             Background = "background",
             Gradient = new UnionMember0(),
             Height = 0,
-            Radius = 0,
+            Radius = new UnionMember1(),
             Width = 0,
         };
 
@@ -81,7 +81,7 @@ public class SolidColorOverlayTransformationTest : TestBase
         string expectedBackground = "background";
         Gradient expectedGradient = new UnionMember0();
         Height expectedHeight = 0;
-        Radius expectedRadius = 0;
+        Radius expectedRadius = new UnionMember1();
         Width expectedWidth = 0;
 
         Assert.Equal(expectedAlpha, deserialized.Alpha);
@@ -101,7 +101,7 @@ public class SolidColorOverlayTransformationTest : TestBase
             Background = "background",
             Gradient = new UnionMember0(),
             Height = 0,
-            Radius = 0,
+            Radius = new UnionMember1(),
             Width = 0,
         };
 
@@ -189,7 +189,7 @@ public class SolidColorOverlayTransformationTest : TestBase
             Background = "background",
             Gradient = new UnionMember0(),
             Height = 0,
-            Radius = 0,
+            Radius = new UnionMember1(),
             Width = 0,
         };
 
