@@ -57,14 +57,12 @@ public sealed record class UploadPostTransformErrorEvent : JsonModel
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required UploadPostTransformErrorEventIntersectionMember1Data Data
+    public required Data Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPostTransformErrorEventIntersectionMember1Data>(
-                "data"
-            );
+            return this._rawData.GetNotNullClass<Data>("data");
         }
         init { this._rawData.Set("data", value); }
     }
@@ -137,13 +135,8 @@ class UploadPostTransformErrorEventFromRaw : IFromRawJson<UploadPostTransformErr
 /// Triggered when a post-transformation fails. The original file remains available,
 /// but the requested transformation could not be generated.
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        UploadPostTransformErrorEventIntersectionMember1,
-        UploadPostTransformErrorEventIntersectionMember1FromRaw
-    >)
-)]
-public sealed record class UploadPostTransformErrorEventIntersectionMember1 : JsonModel
+[JsonConverter(typeof(JsonModelConverter<IntersectionMember1, IntersectionMember1FromRaw>))]
+public sealed record class IntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -158,14 +151,12 @@ public sealed record class UploadPostTransformErrorEventIntersectionMember1 : Js
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required UploadPostTransformErrorEventIntersectionMember1Data Data
+    public required Data Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPostTransformErrorEventIntersectionMember1Data>(
-                "data"
-            );
+            return this._rawData.GetNotNullClass<Data>("data");
         }
         init { this._rawData.Set("data", value); }
     }
@@ -207,22 +198,18 @@ public sealed record class UploadPostTransformErrorEventIntersectionMember1 : Js
         }
     }
 
-    public UploadPostTransformErrorEventIntersectionMember1()
+    public IntersectionMember1()
     {
         this.Type = JsonSerializer.SerializeToElement("upload.post-transform.error");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UploadPostTransformErrorEventIntersectionMember1(
-        UploadPostTransformErrorEventIntersectionMember1 uploadPostTransformErrorEventIntersectionMember1
-    )
-        : base(uploadPostTransformErrorEventIntersectionMember1) { }
+    public IntersectionMember1(IntersectionMember1 intersectionMember1)
+        : base(intersectionMember1) { }
 #pragma warning restore CS8618
 
-    public UploadPostTransformErrorEventIntersectionMember1(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public IntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -231,14 +218,14 @@ public sealed record class UploadPostTransformErrorEventIntersectionMember1 : Js
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UploadPostTransformErrorEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    IntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UploadPostTransformErrorEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static UploadPostTransformErrorEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="IntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static IntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -246,22 +233,15 @@ public sealed record class UploadPostTransformErrorEventIntersectionMember1 : Js
     }
 }
 
-class UploadPostTransformErrorEventIntersectionMember1FromRaw
-    : IFromRawJson<UploadPostTransformErrorEventIntersectionMember1>
+class IntersectionMember1FromRaw : IFromRawJson<IntersectionMember1>
 {
     /// <inheritdoc/>
-    public UploadPostTransformErrorEventIntersectionMember1 FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UploadPostTransformErrorEventIntersectionMember1.FromRawUnchecked(rawData);
+    public IntersectionMember1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        IntersectionMember1.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        UploadPostTransformErrorEventIntersectionMember1Data,
-        UploadPostTransformErrorEventIntersectionMember1DataFromRaw
-    >)
-)]
-public sealed record class UploadPostTransformErrorEventIntersectionMember1Data : JsonModel
+[JsonConverter(typeof(JsonModelConverter<Data, DataFromRaw>))]
+public sealed record class Data : JsonModel
 {
     /// <summary>
     /// Unique identifier of the originally uploaded file.
@@ -335,49 +315,39 @@ public sealed record class UploadPostTransformErrorEventIntersectionMember1Data 
         _ = this.Url;
     }
 
-    public UploadPostTransformErrorEventIntersectionMember1Data() { }
+    public Data() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UploadPostTransformErrorEventIntersectionMember1Data(
-        UploadPostTransformErrorEventIntersectionMember1Data uploadPostTransformErrorEventIntersectionMember1Data
-    )
-        : base(uploadPostTransformErrorEventIntersectionMember1Data) { }
+    public Data(Data data)
+        : base(data) { }
 #pragma warning restore CS8618
 
-    public UploadPostTransformErrorEventIntersectionMember1Data(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UploadPostTransformErrorEventIntersectionMember1Data(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    Data(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UploadPostTransformErrorEventIntersectionMember1DataFromRaw.FromRawUnchecked"/>
-    public static UploadPostTransformErrorEventIntersectionMember1Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
+    public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class UploadPostTransformErrorEventIntersectionMember1DataFromRaw
-    : IFromRawJson<UploadPostTransformErrorEventIntersectionMember1Data>
+class DataFromRaw : IFromRawJson<Data>
 {
     /// <inheritdoc/>
-    public UploadPostTransformErrorEventIntersectionMember1Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UploadPostTransformErrorEventIntersectionMember1Data.FromRawUnchecked(rawData);
+    public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Data.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<Transformation, TransformationFromRaw>))]

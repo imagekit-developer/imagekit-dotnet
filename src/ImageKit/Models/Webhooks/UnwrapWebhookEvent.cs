@@ -42,11 +42,11 @@ public record class UnwrapWebhookEvent : ModelBase
                 uploadPreTransformError: (x) => x.ID,
                 uploadPostTransformSuccess: (x) => x.ID,
                 uploadPostTransformError: (x) => x.ID,
-                damFileCreate: (x) => x.ID,
-                damFileUpdate: (x) => x.ID,
-                damFileDelete: (x) => x.ID,
-                damFileVersionCreate: (x) => x.ID,
-                damFileVersionDelete: (x) => x.ID
+                fileCreated: (x) => x.STAINLESS_FIXME_ID,
+                fileUpdated: (x) => x.STAINLESS_FIXME_ID,
+                fileDeleted: (x) => x.STAINLESS_FIXME_ID,
+                fileVersionCreated: (x) => x.STAINLESS_FIXME_ID,
+                fileVersionDeleted: (x) => x.STAINLESS_FIXME_ID
             );
         }
     }
@@ -63,11 +63,11 @@ public record class UnwrapWebhookEvent : ModelBase
                 uploadPreTransformError: (x) => x.Type,
                 uploadPostTransformSuccess: (x) => x.Type,
                 uploadPostTransformError: (x) => x.Type,
-                damFileCreate: (x) => x.Type,
-                damFileUpdate: (x) => x.Type,
-                damFileDelete: (x) => x.Type,
-                damFileVersionCreate: (x) => x.Type,
-                damFileVersionDelete: (x) => x.Type
+                fileCreated: (x) => x.STAINLESS_FIXME_Type,
+                fileUpdated: (x) => x.STAINLESS_FIXME_Type,
+                fileDeleted: (x) => x.STAINLESS_FIXME_Type,
+                fileVersionCreated: (x) => x.STAINLESS_FIXME_Type,
+                fileVersionDeleted: (x) => x.STAINLESS_FIXME_Type
             );
         }
     }
@@ -84,11 +84,11 @@ public record class UnwrapWebhookEvent : ModelBase
                 uploadPreTransformError: (x) => x.CreatedAt,
                 uploadPostTransformSuccess: (x) => x.CreatedAt,
                 uploadPostTransformError: (x) => x.CreatedAt,
-                damFileCreate: (x) => x.CreatedAt,
-                damFileUpdate: (x) => x.CreatedAt,
-                damFileDelete: (x) => x.CreatedAt,
-                damFileVersionCreate: (x) => x.CreatedAt,
-                damFileVersionDelete: (x) => x.CreatedAt
+                fileCreated: (x) => x.STAINLESS_FIXME_CreatedAt,
+                fileUpdated: (x) => x.STAINLESS_FIXME_CreatedAt,
+                fileDeleted: (x) => x.STAINLESS_FIXME_CreatedAt,
+                fileVersionCreated: (x) => x.STAINLESS_FIXME_CreatedAt,
+                fileVersionDeleted: (x) => x.STAINLESS_FIXME_CreatedAt
             );
         }
     }
@@ -135,31 +135,31 @@ public record class UnwrapWebhookEvent : ModelBase
         this._element = element;
     }
 
-    public UnwrapWebhookEvent(DamFileCreateEvent value, JsonElement? element = null)
+    public UnwrapWebhookEvent(FileCreatedWebhookEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnwrapWebhookEvent(DamFileUpdateEvent value, JsonElement? element = null)
+    public UnwrapWebhookEvent(FileUpdatedWebhookEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnwrapWebhookEvent(DamFileDeleteEvent value, JsonElement? element = null)
+    public UnwrapWebhookEvent(FileDeletedWebhookEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnwrapWebhookEvent(DamFileVersionCreateEvent value, JsonElement? element = null)
+    public UnwrapWebhookEvent(FileVersionCreatedWebhookEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnwrapWebhookEvent(DamFileVersionDeleteEvent value, JsonElement? element = null)
+    public UnwrapWebhookEvent(FileVersionDeletedWebhookEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -333,110 +333,110 @@ public record class UnwrapWebhookEvent : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="DamFileCreateEvent"/>.
+    /// type <see cref="FileCreatedWebhookEvent"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickDamFileCreate(out var value)) {
-    ///     // `value` is of type `DamFileCreateEvent`
+    /// if (instance.TryPickFileCreated(out var value)) {
+    ///     // `value` is of type `FileCreatedWebhookEvent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickDamFileCreate([NotNullWhen(true)] out DamFileCreateEvent? value)
+    public bool TryPickFileCreated([NotNullWhen(true)] out FileCreatedWebhookEvent? value)
     {
-        value = this.Value as DamFileCreateEvent;
+        value = this.Value as FileCreatedWebhookEvent;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="DamFileUpdateEvent"/>.
+    /// type <see cref="FileUpdatedWebhookEvent"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickDamFileUpdate(out var value)) {
-    ///     // `value` is of type `DamFileUpdateEvent`
+    /// if (instance.TryPickFileUpdated(out var value)) {
+    ///     // `value` is of type `FileUpdatedWebhookEvent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickDamFileUpdate([NotNullWhen(true)] out DamFileUpdateEvent? value)
+    public bool TryPickFileUpdated([NotNullWhen(true)] out FileUpdatedWebhookEvent? value)
     {
-        value = this.Value as DamFileUpdateEvent;
+        value = this.Value as FileUpdatedWebhookEvent;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="DamFileDeleteEvent"/>.
+    /// type <see cref="FileDeletedWebhookEvent"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickDamFileDelete(out var value)) {
-    ///     // `value` is of type `DamFileDeleteEvent`
+    /// if (instance.TryPickFileDeleted(out var value)) {
+    ///     // `value` is of type `FileDeletedWebhookEvent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickDamFileDelete([NotNullWhen(true)] out DamFileDeleteEvent? value)
+    public bool TryPickFileDeleted([NotNullWhen(true)] out FileDeletedWebhookEvent? value)
     {
-        value = this.Value as DamFileDeleteEvent;
+        value = this.Value as FileDeletedWebhookEvent;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="DamFileVersionCreateEvent"/>.
+    /// type <see cref="FileVersionCreatedWebhookEvent"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickDamFileVersionCreate(out var value)) {
-    ///     // `value` is of type `DamFileVersionCreateEvent`
+    /// if (instance.TryPickFileVersionCreated(out var value)) {
+    ///     // `value` is of type `FileVersionCreatedWebhookEvent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickDamFileVersionCreate(
-        [NotNullWhen(true)] out DamFileVersionCreateEvent? value
+    public bool TryPickFileVersionCreated(
+        [NotNullWhen(true)] out FileVersionCreatedWebhookEvent? value
     )
     {
-        value = this.Value as DamFileVersionCreateEvent;
+        value = this.Value as FileVersionCreatedWebhookEvent;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="DamFileVersionDeleteEvent"/>.
+    /// type <see cref="FileVersionDeletedWebhookEvent"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickDamFileVersionDelete(out var value)) {
-    ///     // `value` is of type `DamFileVersionDeleteEvent`
+    /// if (instance.TryPickFileVersionDeleted(out var value)) {
+    ///     // `value` is of type `FileVersionDeletedWebhookEvent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickDamFileVersionDelete(
-        [NotNullWhen(true)] out DamFileVersionDeleteEvent? value
+    public bool TryPickFileVersionDeleted(
+        [NotNullWhen(true)] out FileVersionDeletedWebhookEvent? value
     )
     {
-        value = this.Value as DamFileVersionDeleteEvent;
+        value = this.Value as FileVersionDeletedWebhookEvent;
         return value != null;
     }
 
@@ -461,11 +461,11 @@ public record class UnwrapWebhookEvent : ModelBase
     ///     (UploadPreTransformErrorEvent value) =&gt; {...},
     ///     (UploadPostTransformSuccessEvent value) =&gt; {...},
     ///     (UploadPostTransformErrorEvent value) =&gt; {...},
-    ///     (DamFileCreateEvent value) =&gt; {...},
-    ///     (DamFileUpdateEvent value) =&gt; {...},
-    ///     (DamFileDeleteEvent value) =&gt; {...},
-    ///     (DamFileVersionCreateEvent value) =&gt; {...},
-    ///     (DamFileVersionDeleteEvent value) =&gt; {...}
+    ///     (FileCreatedWebhookEvent value) =&gt; {...},
+    ///     (FileUpdatedWebhookEvent value) =&gt; {...},
+    ///     (FileDeletedWebhookEvent value) =&gt; {...},
+    ///     (FileVersionCreatedWebhookEvent value) =&gt; {...},
+    ///     (FileVersionDeletedWebhookEvent value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -478,11 +478,11 @@ public record class UnwrapWebhookEvent : ModelBase
         System::Action<UploadPreTransformErrorEvent> uploadPreTransformError,
         System::Action<UploadPostTransformSuccessEvent> uploadPostTransformSuccess,
         System::Action<UploadPostTransformErrorEvent> uploadPostTransformError,
-        System::Action<DamFileCreateEvent> damFileCreate,
-        System::Action<DamFileUpdateEvent> damFileUpdate,
-        System::Action<DamFileDeleteEvent> damFileDelete,
-        System::Action<DamFileVersionCreateEvent> damFileVersionCreate,
-        System::Action<DamFileVersionDeleteEvent> damFileVersionDelete
+        System::Action<FileCreatedWebhookEvent> fileCreated,
+        System::Action<FileUpdatedWebhookEvent> fileUpdated,
+        System::Action<FileDeletedWebhookEvent> fileDeleted,
+        System::Action<FileVersionCreatedWebhookEvent> fileVersionCreated,
+        System::Action<FileVersionDeletedWebhookEvent> fileVersionDeleted
     )
     {
         switch (this.Value)
@@ -508,20 +508,20 @@ public record class UnwrapWebhookEvent : ModelBase
             case UploadPostTransformErrorEvent value:
                 uploadPostTransformError(value);
                 break;
-            case DamFileCreateEvent value:
-                damFileCreate(value);
+            case FileCreatedWebhookEvent value:
+                fileCreated(value);
                 break;
-            case DamFileUpdateEvent value:
-                damFileUpdate(value);
+            case FileUpdatedWebhookEvent value:
+                fileUpdated(value);
                 break;
-            case DamFileDeleteEvent value:
-                damFileDelete(value);
+            case FileDeletedWebhookEvent value:
+                fileDeleted(value);
                 break;
-            case DamFileVersionCreateEvent value:
-                damFileVersionCreate(value);
+            case FileVersionCreatedWebhookEvent value:
+                fileVersionCreated(value);
                 break;
-            case DamFileVersionDeleteEvent value:
-                damFileVersionDelete(value);
+            case FileVersionDeletedWebhookEvent value:
+                fileVersionDeleted(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
@@ -552,11 +552,11 @@ public record class UnwrapWebhookEvent : ModelBase
     ///     (UploadPreTransformErrorEvent value) =&gt; {...},
     ///     (UploadPostTransformSuccessEvent value) =&gt; {...},
     ///     (UploadPostTransformErrorEvent value) =&gt; {...},
-    ///     (DamFileCreateEvent value) =&gt; {...},
-    ///     (DamFileUpdateEvent value) =&gt; {...},
-    ///     (DamFileDeleteEvent value) =&gt; {...},
-    ///     (DamFileVersionCreateEvent value) =&gt; {...},
-    ///     (DamFileVersionDeleteEvent value) =&gt; {...}
+    ///     (FileCreatedWebhookEvent value) =&gt; {...},
+    ///     (FileUpdatedWebhookEvent value) =&gt; {...},
+    ///     (FileDeletedWebhookEvent value) =&gt; {...},
+    ///     (FileVersionCreatedWebhookEvent value) =&gt; {...},
+    ///     (FileVersionDeletedWebhookEvent value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -569,11 +569,11 @@ public record class UnwrapWebhookEvent : ModelBase
         System::Func<UploadPreTransformErrorEvent, T> uploadPreTransformError,
         System::Func<UploadPostTransformSuccessEvent, T> uploadPostTransformSuccess,
         System::Func<UploadPostTransformErrorEvent, T> uploadPostTransformError,
-        System::Func<DamFileCreateEvent, T> damFileCreate,
-        System::Func<DamFileUpdateEvent, T> damFileUpdate,
-        System::Func<DamFileDeleteEvent, T> damFileDelete,
-        System::Func<DamFileVersionCreateEvent, T> damFileVersionCreate,
-        System::Func<DamFileVersionDeleteEvent, T> damFileVersionDelete
+        System::Func<FileCreatedWebhookEvent, T> fileCreated,
+        System::Func<FileUpdatedWebhookEvent, T> fileUpdated,
+        System::Func<FileDeletedWebhookEvent, T> fileDeleted,
+        System::Func<FileVersionCreatedWebhookEvent, T> fileVersionCreated,
+        System::Func<FileVersionDeletedWebhookEvent, T> fileVersionDeleted
     )
     {
         return this.Value switch
@@ -585,11 +585,11 @@ public record class UnwrapWebhookEvent : ModelBase
             UploadPreTransformErrorEvent value => uploadPreTransformError(value),
             UploadPostTransformSuccessEvent value => uploadPostTransformSuccess(value),
             UploadPostTransformErrorEvent value => uploadPostTransformError(value),
-            DamFileCreateEvent value => damFileCreate(value),
-            DamFileUpdateEvent value => damFileUpdate(value),
-            DamFileDeleteEvent value => damFileDelete(value),
-            DamFileVersionCreateEvent value => damFileVersionCreate(value),
-            DamFileVersionDeleteEvent value => damFileVersionDelete(value),
+            FileCreatedWebhookEvent value => fileCreated(value),
+            FileUpdatedWebhookEvent value => fileUpdated(value),
+            FileDeletedWebhookEvent value => fileDeleted(value),
+            FileVersionCreatedWebhookEvent value => fileVersionCreated(value),
+            FileVersionDeletedWebhookEvent value => fileVersionDeleted(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of UnwrapWebhookEvent"
             ),
@@ -617,16 +617,16 @@ public record class UnwrapWebhookEvent : ModelBase
     public static implicit operator UnwrapWebhookEvent(UploadPostTransformErrorEvent value) =>
         new(value);
 
-    public static implicit operator UnwrapWebhookEvent(DamFileCreateEvent value) => new(value);
+    public static implicit operator UnwrapWebhookEvent(FileCreatedWebhookEvent value) => new(value);
 
-    public static implicit operator UnwrapWebhookEvent(DamFileUpdateEvent value) => new(value);
+    public static implicit operator UnwrapWebhookEvent(FileUpdatedWebhookEvent value) => new(value);
 
-    public static implicit operator UnwrapWebhookEvent(DamFileDeleteEvent value) => new(value);
+    public static implicit operator UnwrapWebhookEvent(FileDeletedWebhookEvent value) => new(value);
 
-    public static implicit operator UnwrapWebhookEvent(DamFileVersionCreateEvent value) =>
+    public static implicit operator UnwrapWebhookEvent(FileVersionCreatedWebhookEvent value) =>
         new(value);
 
-    public static implicit operator UnwrapWebhookEvent(DamFileVersionDeleteEvent value) =>
+    public static implicit operator UnwrapWebhookEvent(FileVersionDeletedWebhookEvent value) =>
         new(value);
 
     /// <summary>
@@ -655,11 +655,11 @@ public record class UnwrapWebhookEvent : ModelBase
             (uploadPreTransformError) => uploadPreTransformError.Validate(),
             (uploadPostTransformSuccess) => uploadPostTransformSuccess.Validate(),
             (uploadPostTransformError) => uploadPostTransformError.Validate(),
-            (damFileCreate) => damFileCreate.Validate(),
-            (damFileUpdate) => damFileUpdate.Validate(),
-            (damFileDelete) => damFileDelete.Validate(),
-            (damFileVersionCreate) => damFileVersionCreate.Validate(),
-            (damFileVersionDelete) => damFileVersionDelete.Validate()
+            (fileCreated) => fileCreated.Validate(),
+            (fileUpdated) => fileUpdated.Validate(),
+            (fileDeleted) => fileDeleted.Validate(),
+            (fileVersionCreated) => fileVersionCreated.Validate(),
+            (fileVersionDeleted) => fileVersionDeleted.Validate()
         );
     }
 
@@ -690,11 +690,11 @@ public record class UnwrapWebhookEvent : ModelBase
             UploadPreTransformErrorEvent _ => 4,
             UploadPostTransformSuccessEvent _ => 5,
             UploadPostTransformErrorEvent _ => 6,
-            DamFileCreateEvent _ => 7,
-            DamFileUpdateEvent _ => 8,
-            DamFileDeleteEvent _ => 9,
-            DamFileVersionCreateEvent _ => 10,
-            DamFileVersionDeleteEvent _ => 11,
+            FileCreatedWebhookEvent _ => 7,
+            FileUpdatedWebhookEvent _ => 8,
+            FileDeletedWebhookEvent _ => 9,
+            FileVersionCreatedWebhookEvent _ => 10,
+            FileVersionDeletedWebhookEvent _ => 11,
             _ => -1,
         };
     }
@@ -851,7 +851,7 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<DamFileCreateEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileCreatedWebhookEvent>(
                         element,
                         options
                     );
@@ -869,7 +869,7 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<DamFileUpdateEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileUpdatedWebhookEvent>(
                         element,
                         options
                     );
@@ -887,7 +887,7 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<DamFileDeleteEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileDeletedWebhookEvent>(
                         element,
                         options
                     );
@@ -905,7 +905,7 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<DamFileVersionCreateEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileVersionCreatedWebhookEvent>(
                         element,
                         options
                     );
@@ -923,7 +923,7 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<DamFileVersionDeleteEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileVersionDeletedWebhookEvent>(
                         element,
                         options
                     );

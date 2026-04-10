@@ -12,8 +12,8 @@ namespace ImageKit.Models.Webhooks;
 /// <summary>
 /// Triggered when a file is deleted.
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<DamFileDeleteEvent, DamFileDeleteEventFromRaw>))]
-public sealed record class DamFileDeleteEvent : JsonModel
+[JsonConverter(typeof(JsonModelConverter<FileDeletedWebhookEvent, FileDeletedWebhookEventFromRaw>))]
+public sealed record class FileDeletedWebhookEvent : JsonModel
 {
     /// <summary>
     /// Unique identifier for the event.
@@ -54,18 +54,21 @@ public sealed record class DamFileDeleteEvent : JsonModel
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required Data Data
+    public required FileDeletedWebhookEventIntersectionMember1Data Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<Data>("data");
+            return this._rawData.GetNotNullClass<FileDeletedWebhookEventIntersectionMember1Data>(
+                "data"
+            );
         }
         init { this._rawData.Set("data", value); }
     }
 
-    public static implicit operator BaseWebhookEvent(DamFileDeleteEvent damFileDeleteEvent) =>
-        new() { ID = damFileDeleteEvent.ID, Type = damFileDeleteEvent.Type };
+    public static implicit operator BaseWebhookEvent(
+        FileDeletedWebhookEvent fileDeletedWebhookEvent
+    ) => new() { ID = fileDeletedWebhookEvent.ID, Type = fileDeletedWebhookEvent.Type };
 
     /// <inheritdoc/>
     public override void Validate()
@@ -76,29 +79,29 @@ public sealed record class DamFileDeleteEvent : JsonModel
         this.Data.Validate();
     }
 
-    public DamFileDeleteEvent() { }
+    public FileDeletedWebhookEvent() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public DamFileDeleteEvent(DamFileDeleteEvent damFileDeleteEvent)
-        : base(damFileDeleteEvent) { }
+    public FileDeletedWebhookEvent(FileDeletedWebhookEvent fileDeletedWebhookEvent)
+        : base(fileDeletedWebhookEvent) { }
 #pragma warning restore CS8618
 
-    public DamFileDeleteEvent(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FileDeletedWebhookEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DamFileDeleteEvent(FrozenDictionary<string, JsonElement> rawData)
+    FileDeletedWebhookEvent(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="DamFileDeleteEventFromRaw.FromRawUnchecked"/>
-    public static DamFileDeleteEvent FromRawUnchecked(
+    /// <inheritdoc cref="FileDeletedWebhookEventFromRaw.FromRawUnchecked"/>
+    public static FileDeletedWebhookEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -106,11 +109,12 @@ public sealed record class DamFileDeleteEvent : JsonModel
     }
 }
 
-class DamFileDeleteEventFromRaw : IFromRawJson<DamFileDeleteEvent>
+class FileDeletedWebhookEventFromRaw : IFromRawJson<FileDeletedWebhookEvent>
 {
     /// <inheritdoc/>
-    public DamFileDeleteEvent FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        DamFileDeleteEvent.FromRawUnchecked(rawData);
+    public FileDeletedWebhookEvent FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => FileDeletedWebhookEvent.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -118,11 +122,11 @@ class DamFileDeleteEventFromRaw : IFromRawJson<DamFileDeleteEvent>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        DamFileDeleteEventIntersectionMember1,
-        DamFileDeleteEventIntersectionMember1FromRaw
+        FileDeletedWebhookEventIntersectionMember1,
+        FileDeletedWebhookEventIntersectionMember1FromRaw
     >)
 )]
-public sealed record class DamFileDeleteEventIntersectionMember1 : JsonModel
+public sealed record class FileDeletedWebhookEventIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -137,12 +141,14 @@ public sealed record class DamFileDeleteEventIntersectionMember1 : JsonModel
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required Data Data
+    public required FileDeletedWebhookEventIntersectionMember1Data Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<Data>("data");
+            return this._rawData.GetNotNullClass<FileDeletedWebhookEventIntersectionMember1Data>(
+                "data"
+            );
         }
         init { this._rawData.Set("data", value); }
     }
@@ -171,20 +177,22 @@ public sealed record class DamFileDeleteEventIntersectionMember1 : JsonModel
         }
     }
 
-    public DamFileDeleteEventIntersectionMember1()
+    public FileDeletedWebhookEventIntersectionMember1()
     {
         this.Type = JsonSerializer.SerializeToElement("file.deleted");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public DamFileDeleteEventIntersectionMember1(
-        DamFileDeleteEventIntersectionMember1 damFileDeleteEventIntersectionMember1
+    public FileDeletedWebhookEventIntersectionMember1(
+        FileDeletedWebhookEventIntersectionMember1 fileDeletedWebhookEventIntersectionMember1
     )
-        : base(damFileDeleteEventIntersectionMember1) { }
+        : base(fileDeletedWebhookEventIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public DamFileDeleteEventIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FileDeletedWebhookEventIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
 
@@ -193,14 +201,14 @@ public sealed record class DamFileDeleteEventIntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DamFileDeleteEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    FileDeletedWebhookEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="DamFileDeleteEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static DamFileDeleteEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="FileDeletedWebhookEventIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static FileDeletedWebhookEventIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -208,17 +216,22 @@ public sealed record class DamFileDeleteEventIntersectionMember1 : JsonModel
     }
 }
 
-class DamFileDeleteEventIntersectionMember1FromRaw
-    : IFromRawJson<DamFileDeleteEventIntersectionMember1>
+class FileDeletedWebhookEventIntersectionMember1FromRaw
+    : IFromRawJson<FileDeletedWebhookEventIntersectionMember1>
 {
     /// <inheritdoc/>
-    public DamFileDeleteEventIntersectionMember1 FromRawUnchecked(
+    public FileDeletedWebhookEventIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => DamFileDeleteEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => FileDeletedWebhookEventIntersectionMember1.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<Data, DataFromRaw>))]
-public sealed record class Data : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        FileDeletedWebhookEventIntersectionMember1Data,
+        FileDeletedWebhookEventIntersectionMember1DataFromRaw
+    >)
+)]
+public sealed record class FileDeletedWebhookEventIntersectionMember1Data : JsonModel
 {
     /// <summary>
     /// The unique `fileId` of the deleted file.
@@ -239,44 +252,52 @@ public sealed record class Data : JsonModel
         _ = this.FileID;
     }
 
-    public Data() { }
+    public FileDeletedWebhookEventIntersectionMember1Data() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Data(Data data)
-        : base(data) { }
+    public FileDeletedWebhookEventIntersectionMember1Data(
+        FileDeletedWebhookEventIntersectionMember1Data fileDeletedWebhookEventIntersectionMember1Data
+    )
+        : base(fileDeletedWebhookEventIntersectionMember1Data) { }
 #pragma warning restore CS8618
 
-    public Data(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FileDeletedWebhookEventIntersectionMember1Data(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Data(FrozenDictionary<string, JsonElement> rawData)
+    FileDeletedWebhookEventIntersectionMember1Data(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
-    public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="FileDeletedWebhookEventIntersectionMember1DataFromRaw.FromRawUnchecked"/>
+    public static FileDeletedWebhookEventIntersectionMember1Data FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Data(string fileID)
+    public FileDeletedWebhookEventIntersectionMember1Data(string fileID)
         : this()
     {
         this.FileID = fileID;
     }
 }
 
-class DataFromRaw : IFromRawJson<Data>
+class FileDeletedWebhookEventIntersectionMember1DataFromRaw
+    : IFromRawJson<FileDeletedWebhookEventIntersectionMember1Data>
 {
     /// <inheritdoc/>
-    public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Data.FromRawUnchecked(rawData);
+    public FileDeletedWebhookEventIntersectionMember1Data FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => FileDeletedWebhookEventIntersectionMember1Data.FromRawUnchecked(rawData);
 }

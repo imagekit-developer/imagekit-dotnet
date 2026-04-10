@@ -14,9 +14,12 @@ namespace ImageKit.Models.Webhooks;
 /// Triggered when a file version is created.
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<DamFileVersionCreateEvent, DamFileVersionCreateEventFromRaw>)
+    typeof(JsonModelConverter<
+        FileVersionCreatedWebhookEvent,
+        FileVersionCreatedWebhookEventFromRaw
+    >)
 )]
-public sealed record class DamFileVersionCreateEvent : JsonModel
+public sealed record class FileVersionCreatedWebhookEvent : JsonModel
 {
     /// <summary>
     /// Unique identifier for the event.
@@ -71,8 +74,13 @@ public sealed record class DamFileVersionCreateEvent : JsonModel
     }
 
     public static implicit operator BaseWebhookEvent(
-        DamFileVersionCreateEvent damFileVersionCreateEvent
-    ) => new() { ID = damFileVersionCreateEvent.ID, Type = damFileVersionCreateEvent.Type };
+        FileVersionCreatedWebhookEvent fileVersionCreatedWebhookEvent
+    ) =>
+        new()
+        {
+            ID = fileVersionCreatedWebhookEvent.ID,
+            Type = fileVersionCreatedWebhookEvent.Type,
+        };
 
     /// <inheritdoc/>
     public override void Validate()
@@ -83,29 +91,31 @@ public sealed record class DamFileVersionCreateEvent : JsonModel
         this.Data.Validate();
     }
 
-    public DamFileVersionCreateEvent() { }
+    public FileVersionCreatedWebhookEvent() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public DamFileVersionCreateEvent(DamFileVersionCreateEvent damFileVersionCreateEvent)
-        : base(damFileVersionCreateEvent) { }
+    public FileVersionCreatedWebhookEvent(
+        FileVersionCreatedWebhookEvent fileVersionCreatedWebhookEvent
+    )
+        : base(fileVersionCreatedWebhookEvent) { }
 #pragma warning restore CS8618
 
-    public DamFileVersionCreateEvent(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FileVersionCreatedWebhookEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DamFileVersionCreateEvent(FrozenDictionary<string, JsonElement> rawData)
+    FileVersionCreatedWebhookEvent(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="DamFileVersionCreateEventFromRaw.FromRawUnchecked"/>
-    public static DamFileVersionCreateEvent FromRawUnchecked(
+    /// <inheritdoc cref="FileVersionCreatedWebhookEventFromRaw.FromRawUnchecked"/>
+    public static FileVersionCreatedWebhookEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -113,12 +123,12 @@ public sealed record class DamFileVersionCreateEvent : JsonModel
     }
 }
 
-class DamFileVersionCreateEventFromRaw : IFromRawJson<DamFileVersionCreateEvent>
+class FileVersionCreatedWebhookEventFromRaw : IFromRawJson<FileVersionCreatedWebhookEvent>
 {
     /// <inheritdoc/>
-    public DamFileVersionCreateEvent FromRawUnchecked(
+    public FileVersionCreatedWebhookEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => DamFileVersionCreateEvent.FromRawUnchecked(rawData);
+    ) => FileVersionCreatedWebhookEvent.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -126,11 +136,11 @@ class DamFileVersionCreateEventFromRaw : IFromRawJson<DamFileVersionCreateEvent>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        DamFileVersionCreateEventIntersectionMember1,
-        DamFileVersionCreateEventIntersectionMember1FromRaw
+        FileVersionCreatedWebhookEventIntersectionMember1,
+        FileVersionCreatedWebhookEventIntersectionMember1FromRaw
     >)
 )]
-public sealed record class DamFileVersionCreateEventIntersectionMember1 : JsonModel
+public sealed record class FileVersionCreatedWebhookEventIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -187,20 +197,20 @@ public sealed record class DamFileVersionCreateEventIntersectionMember1 : JsonMo
         }
     }
 
-    public DamFileVersionCreateEventIntersectionMember1()
+    public FileVersionCreatedWebhookEventIntersectionMember1()
     {
         this.Type = JsonSerializer.SerializeToElement("file-version.created");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public DamFileVersionCreateEventIntersectionMember1(
-        DamFileVersionCreateEventIntersectionMember1 damFileVersionCreateEventIntersectionMember1
+    public FileVersionCreatedWebhookEventIntersectionMember1(
+        FileVersionCreatedWebhookEventIntersectionMember1 fileVersionCreatedWebhookEventIntersectionMember1
     )
-        : base(damFileVersionCreateEventIntersectionMember1) { }
+        : base(fileVersionCreatedWebhookEventIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public DamFileVersionCreateEventIntersectionMember1(
+    public FileVersionCreatedWebhookEventIntersectionMember1(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -211,14 +221,14 @@ public sealed record class DamFileVersionCreateEventIntersectionMember1 : JsonMo
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DamFileVersionCreateEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    FileVersionCreatedWebhookEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="DamFileVersionCreateEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static DamFileVersionCreateEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="FileVersionCreatedWebhookEventIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static FileVersionCreatedWebhookEventIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -226,11 +236,11 @@ public sealed record class DamFileVersionCreateEventIntersectionMember1 : JsonMo
     }
 }
 
-class DamFileVersionCreateEventIntersectionMember1FromRaw
-    : IFromRawJson<DamFileVersionCreateEventIntersectionMember1>
+class FileVersionCreatedWebhookEventIntersectionMember1FromRaw
+    : IFromRawJson<FileVersionCreatedWebhookEventIntersectionMember1>
 {
     /// <inheritdoc/>
-    public DamFileVersionCreateEventIntersectionMember1 FromRawUnchecked(
+    public FileVersionCreatedWebhookEventIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => DamFileVersionCreateEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => FileVersionCreatedWebhookEventIntersectionMember1.FromRawUnchecked(rawData);
 }

@@ -5,27 +5,23 @@ using ImageKit.Models.Webhooks;
 
 namespace ImageKit.Tests.Models.Webhooks;
 
-public class DamFileVersionDeleteEventTest : TestBase
+public class FileDeletedWebhookEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DamFileVersionDeleteEvent
+        var model = new FileDeletedWebhookEvent
         {
             ID = "id",
             Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new() { FileID = "fileId", VersionID = "versionId" },
+            Data = new("fileId"),
         };
 
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        DamFileVersionDeleteEventIntersectionMember1Data expectedData = new()
-        {
-            FileID = "fileId",
-            VersionID = "versionId",
-        };
+        FileDeletedWebhookEventIntersectionMember1Data expectedData = new("fileId");
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedType, model.Type);
@@ -36,16 +32,16 @@ public class DamFileVersionDeleteEventTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DamFileVersionDeleteEvent
+        var model = new FileDeletedWebhookEvent
         {
             ID = "id",
             Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new() { FileID = "fileId", VersionID = "versionId" },
+            Data = new("fileId"),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DamFileVersionDeleteEvent>(
+        var deserialized = JsonSerializer.Deserialize<FileDeletedWebhookEvent>(
             json,
             ModelBase.SerializerOptions
         );
@@ -56,16 +52,16 @@ public class DamFileVersionDeleteEventTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DamFileVersionDeleteEvent
+        var model = new FileDeletedWebhookEvent
         {
             ID = "id",
             Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new() { FileID = "fileId", VersionID = "versionId" },
+            Data = new("fileId"),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DamFileVersionDeleteEvent>(
+        var deserialized = JsonSerializer.Deserialize<FileDeletedWebhookEvent>(
             element,
             ModelBase.SerializerOptions
         );
@@ -74,11 +70,7 @@ public class DamFileVersionDeleteEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        DamFileVersionDeleteEventIntersectionMember1Data expectedData = new()
-        {
-            FileID = "fileId",
-            VersionID = "versionId",
-        };
+        FileDeletedWebhookEventIntersectionMember1Data expectedData = new("fileId");
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedType, deserialized.Type);
@@ -89,12 +81,12 @@ public class DamFileVersionDeleteEventTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DamFileVersionDeleteEvent
+        var model = new FileDeletedWebhookEvent
         {
             ID = "id",
             Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new() { FileID = "fileId", VersionID = "versionId" },
+            Data = new("fileId"),
         };
 
         model.Validate();
@@ -103,38 +95,34 @@ public class DamFileVersionDeleteEventTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new DamFileVersionDeleteEvent
+        var model = new FileDeletedWebhookEvent
         {
             ID = "id",
             Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new() { FileID = "fileId", VersionID = "versionId" },
+            Data = new("fileId"),
         };
 
-        DamFileVersionDeleteEvent copied = new(model);
+        FileDeletedWebhookEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class DamFileVersionDeleteEventIntersectionMember1Test : TestBase
+public class FileDeletedWebhookEventIntersectionMember1Test : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DamFileVersionDeleteEventIntersectionMember1
+        var model = new FileDeletedWebhookEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new() { FileID = "fileId", VersionID = "versionId" },
+            Data = new("fileId"),
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        DamFileVersionDeleteEventIntersectionMember1Data expectedData = new()
-        {
-            FileID = "fileId",
-            VersionID = "versionId",
-        };
-        JsonElement expectedType = JsonSerializer.SerializeToElement("file-version.deleted");
+        FileDeletedWebhookEventIntersectionMember1Data expectedData = new("fileId");
+        JsonElement expectedType = JsonSerializer.SerializeToElement("file.deleted");
 
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedData, model.Data);
@@ -144,14 +132,14 @@ public class DamFileVersionDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DamFileVersionDeleteEventIntersectionMember1
+        var model = new FileDeletedWebhookEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new() { FileID = "fileId", VersionID = "versionId" },
+            Data = new("fileId"),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DamFileVersionDeleteEventIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FileDeletedWebhookEventIntersectionMember1>(
             json,
             ModelBase.SerializerOptions
         );
@@ -162,26 +150,22 @@ public class DamFileVersionDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DamFileVersionDeleteEventIntersectionMember1
+        var model = new FileDeletedWebhookEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new() { FileID = "fileId", VersionID = "versionId" },
+            Data = new("fileId"),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DamFileVersionDeleteEventIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FileDeletedWebhookEventIntersectionMember1>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        DamFileVersionDeleteEventIntersectionMember1Data expectedData = new()
-        {
-            FileID = "fileId",
-            VersionID = "versionId",
-        };
-        JsonElement expectedType = JsonSerializer.SerializeToElement("file-version.deleted");
+        FileDeletedWebhookEventIntersectionMember1Data expectedData = new("fileId");
+        JsonElement expectedType = JsonSerializer.SerializeToElement("file.deleted");
 
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedData, deserialized.Data);
@@ -191,10 +175,10 @@ public class DamFileVersionDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DamFileVersionDeleteEventIntersectionMember1
+        var model = new FileDeletedWebhookEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new() { FileID = "fileId", VersionID = "versionId" },
+            Data = new("fileId"),
         };
 
         model.Validate();
@@ -203,48 +187,38 @@ public class DamFileVersionDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new DamFileVersionDeleteEventIntersectionMember1
+        var model = new FileDeletedWebhookEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new() { FileID = "fileId", VersionID = "versionId" },
+            Data = new("fileId"),
         };
 
-        DamFileVersionDeleteEventIntersectionMember1 copied = new(model);
+        FileDeletedWebhookEventIntersectionMember1 copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class DamFileVersionDeleteEventIntersectionMember1DataTest : TestBase
+public class FileDeletedWebhookEventIntersectionMember1DataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DamFileVersionDeleteEventIntersectionMember1Data
-        {
-            FileID = "fileId",
-            VersionID = "versionId",
-        };
+        var model = new FileDeletedWebhookEventIntersectionMember1Data { FileID = "fileId" };
 
         string expectedFileID = "fileId";
-        string expectedVersionID = "versionId";
 
         Assert.Equal(expectedFileID, model.FileID);
-        Assert.Equal(expectedVersionID, model.VersionID);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DamFileVersionDeleteEventIntersectionMember1Data
-        {
-            FileID = "fileId",
-            VersionID = "versionId",
-        };
+        var model = new FileDeletedWebhookEventIntersectionMember1Data { FileID = "fileId" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<DamFileVersionDeleteEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<FileDeletedWebhookEventIntersectionMember1Data>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -255,35 +229,25 @@ public class DamFileVersionDeleteEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DamFileVersionDeleteEventIntersectionMember1Data
-        {
-            FileID = "fileId",
-            VersionID = "versionId",
-        };
+        var model = new FileDeletedWebhookEventIntersectionMember1Data { FileID = "fileId" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<DamFileVersionDeleteEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<FileDeletedWebhookEventIntersectionMember1Data>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
         string expectedFileID = "fileId";
-        string expectedVersionID = "versionId";
 
         Assert.Equal(expectedFileID, deserialized.FileID);
-        Assert.Equal(expectedVersionID, deserialized.VersionID);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new DamFileVersionDeleteEventIntersectionMember1Data
-        {
-            FileID = "fileId",
-            VersionID = "versionId",
-        };
+        var model = new FileDeletedWebhookEventIntersectionMember1Data { FileID = "fileId" };
 
         model.Validate();
     }
@@ -291,13 +255,9 @@ public class DamFileVersionDeleteEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new DamFileVersionDeleteEventIntersectionMember1Data
-        {
-            FileID = "fileId",
-            VersionID = "versionId",
-        };
+        var model = new FileDeletedWebhookEventIntersectionMember1Data { FileID = "fileId" };
 
-        DamFileVersionDeleteEventIntersectionMember1Data copied = new(model);
+        FileDeletedWebhookEventIntersectionMember1Data copied = new(model);
 
         Assert.Equal(model, copied);
     }
