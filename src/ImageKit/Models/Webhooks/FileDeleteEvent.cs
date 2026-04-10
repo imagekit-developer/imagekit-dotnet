@@ -12,8 +12,8 @@ namespace ImageKit.Models.Webhooks;
 /// <summary>
 /// Triggered when a file is deleted.
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<FileDeletedWebhookEvent, FileDeletedWebhookEventFromRaw>))]
-public sealed record class FileDeletedWebhookEvent : JsonModel
+[JsonConverter(typeof(JsonModelConverter<FileDeleteEvent, FileDeleteEventFromRaw>))]
+public sealed record class FileDeleteEvent : JsonModel
 {
     /// <summary>
     /// Unique identifier for the event.
@@ -54,21 +54,18 @@ public sealed record class FileDeletedWebhookEvent : JsonModel
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required FileDeletedWebhookEventIntersectionMember1Data Data
+    public required Data Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<FileDeletedWebhookEventIntersectionMember1Data>(
-                "data"
-            );
+            return this._rawData.GetNotNullClass<Data>("data");
         }
         init { this._rawData.Set("data", value); }
     }
 
-    public static implicit operator BaseWebhookEvent(
-        FileDeletedWebhookEvent fileDeletedWebhookEvent
-    ) => new() { ID = fileDeletedWebhookEvent.ID, Type = fileDeletedWebhookEvent.Type };
+    public static implicit operator BaseWebhookEvent(FileDeleteEvent fileDeleteEvent) =>
+        new() { ID = fileDeleteEvent.ID, Type = fileDeleteEvent.Type };
 
     /// <inheritdoc/>
     public override void Validate()
@@ -79,42 +76,39 @@ public sealed record class FileDeletedWebhookEvent : JsonModel
         this.Data.Validate();
     }
 
-    public FileDeletedWebhookEvent() { }
+    public FileDeleteEvent() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FileDeletedWebhookEvent(FileDeletedWebhookEvent fileDeletedWebhookEvent)
-        : base(fileDeletedWebhookEvent) { }
+    public FileDeleteEvent(FileDeleteEvent fileDeleteEvent)
+        : base(fileDeleteEvent) { }
 #pragma warning restore CS8618
 
-    public FileDeletedWebhookEvent(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FileDeleteEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FileDeletedWebhookEvent(FrozenDictionary<string, JsonElement> rawData)
+    FileDeleteEvent(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FileDeletedWebhookEventFromRaw.FromRawUnchecked"/>
-    public static FileDeletedWebhookEvent FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="FileDeleteEventFromRaw.FromRawUnchecked"/>
+    public static FileDeleteEvent FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class FileDeletedWebhookEventFromRaw : IFromRawJson<FileDeletedWebhookEvent>
+class FileDeleteEventFromRaw : IFromRawJson<FileDeleteEvent>
 {
     /// <inheritdoc/>
-    public FileDeletedWebhookEvent FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FileDeletedWebhookEvent.FromRawUnchecked(rawData);
+    public FileDeleteEvent FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        FileDeleteEvent.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -122,11 +116,11 @@ class FileDeletedWebhookEventFromRaw : IFromRawJson<FileDeletedWebhookEvent>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        FileDeletedWebhookEventIntersectionMember1,
-        FileDeletedWebhookEventIntersectionMember1FromRaw
+        FileDeleteEventIntersectionMember1,
+        FileDeleteEventIntersectionMember1FromRaw
     >)
 )]
-public sealed record class FileDeletedWebhookEventIntersectionMember1 : JsonModel
+public sealed record class FileDeleteEventIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -141,14 +135,12 @@ public sealed record class FileDeletedWebhookEventIntersectionMember1 : JsonMode
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required FileDeletedWebhookEventIntersectionMember1Data Data
+    public required Data Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<FileDeletedWebhookEventIntersectionMember1Data>(
-                "data"
-            );
+            return this._rawData.GetNotNullClass<Data>("data");
         }
         init { this._rawData.Set("data", value); }
     }
@@ -177,22 +169,20 @@ public sealed record class FileDeletedWebhookEventIntersectionMember1 : JsonMode
         }
     }
 
-    public FileDeletedWebhookEventIntersectionMember1()
+    public FileDeleteEventIntersectionMember1()
     {
         this.Type = JsonSerializer.SerializeToElement("file.deleted");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FileDeletedWebhookEventIntersectionMember1(
-        FileDeletedWebhookEventIntersectionMember1 fileDeletedWebhookEventIntersectionMember1
+    public FileDeleteEventIntersectionMember1(
+        FileDeleteEventIntersectionMember1 fileDeleteEventIntersectionMember1
     )
-        : base(fileDeletedWebhookEventIntersectionMember1) { }
+        : base(fileDeleteEventIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public FileDeletedWebhookEventIntersectionMember1(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public FileDeleteEventIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -201,14 +191,14 @@ public sealed record class FileDeletedWebhookEventIntersectionMember1 : JsonMode
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FileDeletedWebhookEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    FileDeleteEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FileDeletedWebhookEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static FileDeletedWebhookEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="FileDeleteEventIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static FileDeleteEventIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -216,22 +206,16 @@ public sealed record class FileDeletedWebhookEventIntersectionMember1 : JsonMode
     }
 }
 
-class FileDeletedWebhookEventIntersectionMember1FromRaw
-    : IFromRawJson<FileDeletedWebhookEventIntersectionMember1>
+class FileDeleteEventIntersectionMember1FromRaw : IFromRawJson<FileDeleteEventIntersectionMember1>
 {
     /// <inheritdoc/>
-    public FileDeletedWebhookEventIntersectionMember1 FromRawUnchecked(
+    public FileDeleteEventIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FileDeletedWebhookEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => FileDeleteEventIntersectionMember1.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        FileDeletedWebhookEventIntersectionMember1Data,
-        FileDeletedWebhookEventIntersectionMember1DataFromRaw
-    >)
-)]
-public sealed record class FileDeletedWebhookEventIntersectionMember1Data : JsonModel
+[JsonConverter(typeof(JsonModelConverter<Data, DataFromRaw>))]
+public sealed record class Data : JsonModel
 {
     /// <summary>
     /// The unique `fileId` of the deleted file.
@@ -252,52 +236,44 @@ public sealed record class FileDeletedWebhookEventIntersectionMember1Data : Json
         _ = this.FileID;
     }
 
-    public FileDeletedWebhookEventIntersectionMember1Data() { }
+    public Data() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FileDeletedWebhookEventIntersectionMember1Data(
-        FileDeletedWebhookEventIntersectionMember1Data fileDeletedWebhookEventIntersectionMember1Data
-    )
-        : base(fileDeletedWebhookEventIntersectionMember1Data) { }
+    public Data(Data data)
+        : base(data) { }
 #pragma warning restore CS8618
 
-    public FileDeletedWebhookEventIntersectionMember1Data(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FileDeletedWebhookEventIntersectionMember1Data(FrozenDictionary<string, JsonElement> rawData)
+    Data(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FileDeletedWebhookEventIntersectionMember1DataFromRaw.FromRawUnchecked"/>
-    public static FileDeletedWebhookEventIntersectionMember1Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="DataFromRaw.FromRawUnchecked"/>
+    public static Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public FileDeletedWebhookEventIntersectionMember1Data(string fileID)
+    public Data(string fileID)
         : this()
     {
         this.FileID = fileID;
     }
 }
 
-class FileDeletedWebhookEventIntersectionMember1DataFromRaw
-    : IFromRawJson<FileDeletedWebhookEventIntersectionMember1Data>
+class DataFromRaw : IFromRawJson<Data>
 {
     /// <inheritdoc/>
-    public FileDeletedWebhookEventIntersectionMember1Data FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FileDeletedWebhookEventIntersectionMember1Data.FromRawUnchecked(rawData);
+    public Data FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Data.FromRawUnchecked(rawData);
 }

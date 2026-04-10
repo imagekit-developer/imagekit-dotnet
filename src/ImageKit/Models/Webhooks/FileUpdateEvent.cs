@@ -13,8 +13,8 @@ namespace ImageKit.Models.Webhooks;
 /// <summary>
 /// Triggered when a file is updated.
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<FileUpdatedWebhookEvent, FileUpdatedWebhookEventFromRaw>))]
-public sealed record class FileUpdatedWebhookEvent : JsonModel
+[JsonConverter(typeof(JsonModelConverter<FileUpdateEvent, FileUpdateEventFromRaw>))]
+public sealed record class FileUpdateEvent : JsonModel
 {
     /// <summary>
     /// Unique identifier for the event.
@@ -68,9 +68,8 @@ public sealed record class FileUpdatedWebhookEvent : JsonModel
         init { this._rawData.Set("data", value); }
     }
 
-    public static implicit operator BaseWebhookEvent(
-        FileUpdatedWebhookEvent fileUpdatedWebhookEvent
-    ) => new() { ID = fileUpdatedWebhookEvent.ID, Type = fileUpdatedWebhookEvent.Type };
+    public static implicit operator BaseWebhookEvent(FileUpdateEvent fileUpdateEvent) =>
+        new() { ID = fileUpdateEvent.ID, Type = fileUpdateEvent.Type };
 
     /// <inheritdoc/>
     public override void Validate()
@@ -81,42 +80,39 @@ public sealed record class FileUpdatedWebhookEvent : JsonModel
         this.Data.Validate();
     }
 
-    public FileUpdatedWebhookEvent() { }
+    public FileUpdateEvent() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FileUpdatedWebhookEvent(FileUpdatedWebhookEvent fileUpdatedWebhookEvent)
-        : base(fileUpdatedWebhookEvent) { }
+    public FileUpdateEvent(FileUpdateEvent fileUpdateEvent)
+        : base(fileUpdateEvent) { }
 #pragma warning restore CS8618
 
-    public FileUpdatedWebhookEvent(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FileUpdateEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FileUpdatedWebhookEvent(FrozenDictionary<string, JsonElement> rawData)
+    FileUpdateEvent(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FileUpdatedWebhookEventFromRaw.FromRawUnchecked"/>
-    public static FileUpdatedWebhookEvent FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="FileUpdateEventFromRaw.FromRawUnchecked"/>
+    public static FileUpdateEvent FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class FileUpdatedWebhookEventFromRaw : IFromRawJson<FileUpdatedWebhookEvent>
+class FileUpdateEventFromRaw : IFromRawJson<FileUpdateEvent>
 {
     /// <inheritdoc/>
-    public FileUpdatedWebhookEvent FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FileUpdatedWebhookEvent.FromRawUnchecked(rawData);
+    public FileUpdateEvent FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        FileUpdateEvent.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -124,11 +120,11 @@ class FileUpdatedWebhookEventFromRaw : IFromRawJson<FileUpdatedWebhookEvent>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        FileUpdatedWebhookEventIntersectionMember1,
-        FileUpdatedWebhookEventIntersectionMember1FromRaw
+        FileUpdateEventIntersectionMember1,
+        FileUpdateEventIntersectionMember1FromRaw
     >)
 )]
-public sealed record class FileUpdatedWebhookEventIntersectionMember1 : JsonModel
+public sealed record class FileUpdateEventIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -180,22 +176,20 @@ public sealed record class FileUpdatedWebhookEventIntersectionMember1 : JsonMode
         }
     }
 
-    public FileUpdatedWebhookEventIntersectionMember1()
+    public FileUpdateEventIntersectionMember1()
     {
         this.Type = JsonSerializer.SerializeToElement("file.updated");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FileUpdatedWebhookEventIntersectionMember1(
-        FileUpdatedWebhookEventIntersectionMember1 fileUpdatedWebhookEventIntersectionMember1
+    public FileUpdateEventIntersectionMember1(
+        FileUpdateEventIntersectionMember1 fileUpdateEventIntersectionMember1
     )
-        : base(fileUpdatedWebhookEventIntersectionMember1) { }
+        : base(fileUpdateEventIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public FileUpdatedWebhookEventIntersectionMember1(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public FileUpdateEventIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -204,14 +198,14 @@ public sealed record class FileUpdatedWebhookEventIntersectionMember1 : JsonMode
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FileUpdatedWebhookEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    FileUpdateEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FileUpdatedWebhookEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static FileUpdatedWebhookEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="FileUpdateEventIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static FileUpdateEventIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -219,11 +213,10 @@ public sealed record class FileUpdatedWebhookEventIntersectionMember1 : JsonMode
     }
 }
 
-class FileUpdatedWebhookEventIntersectionMember1FromRaw
-    : IFromRawJson<FileUpdatedWebhookEventIntersectionMember1>
+class FileUpdateEventIntersectionMember1FromRaw : IFromRawJson<FileUpdateEventIntersectionMember1>
 {
     /// <inheritdoc/>
-    public FileUpdatedWebhookEventIntersectionMember1 FromRawUnchecked(
+    public FileUpdateEventIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FileUpdatedWebhookEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => FileUpdateEventIntersectionMember1.FromRawUnchecked(rawData);
 }

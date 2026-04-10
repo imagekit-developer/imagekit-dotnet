@@ -385,14 +385,14 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
     }
 
     [Fact]
-    public void FileCreatedValidationWorks()
+    public void FileCreateValidationWorks()
     {
-        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileCreatedWebhookEvent()
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileCreateEvent()
         {
             ID = "id",
             Type = "file.created",
-            STAINLESS_FIXME_CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            STAINLESS_FIXME_Data = new()
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
             {
                 AITags =
                 [
@@ -460,14 +460,14 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
     }
 
     [Fact]
-    public void FileUpdatedValidationWorks()
+    public void FileUpdateValidationWorks()
     {
-        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileUpdatedWebhookEvent()
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileUpdateEvent()
         {
             ID = "id",
             Type = "file.updated",
-            STAINLESS_FIXME_CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            STAINLESS_FIXME_Data = new()
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
             {
                 AITags =
                 [
@@ -535,27 +535,27 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
     }
 
     [Fact]
-    public void FileDeletedValidationWorks()
+    public void FileDeleteValidationWorks()
     {
-        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileDeletedWebhookEvent()
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileDeleteEvent()
         {
             ID = "id",
             Type = "file.deleted",
-            STAINLESS_FIXME_CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            STAINLESS_FIXME_Data = new("fileId"),
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new("fileId"),
         };
         value.Validate();
     }
 
     [Fact]
-    public void FileVersionCreatedValidationWorks()
+    public void FileVersionCreateValidationWorks()
     {
-        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileVersionCreatedWebhookEvent()
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileVersionCreateEvent()
         {
             ID = "id",
             Type = "file-version.created",
-            STAINLESS_FIXME_CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            STAINLESS_FIXME_Data = new()
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
             {
                 AITags =
                 [
@@ -623,18 +623,14 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
     }
 
     [Fact]
-    public void FileVersionDeletedValidationWorks()
+    public void FileVersionDeleteValidationWorks()
     {
-        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileVersionDeletedWebhookEvent()
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileVersionDeleteEvent()
         {
             ID = "id",
             Type = "file-version.deleted",
-            STAINLESS_FIXME_CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            STAINLESS_FIXME_Data = new()
-            {
-                STAINLESS_FIXME_FileID = "fileId",
-                STAINLESS_FIXME_VersionID = "versionId",
-            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new() { FileID = "fileId", VersionID = "versionId" },
         };
         value.Validate();
     }
@@ -1057,14 +1053,14 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
     }
 
     [Fact]
-    public void FileCreatedSerializationRoundtripWorks()
+    public void FileCreateSerializationRoundtripWorks()
     {
-        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileCreatedWebhookEvent()
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileCreateEvent()
         {
             ID = "id",
             Type = "file.created",
-            STAINLESS_FIXME_CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            STAINLESS_FIXME_Data = new()
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
             {
                 AITags =
                 [
@@ -1138,14 +1134,14 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
     }
 
     [Fact]
-    public void FileUpdatedSerializationRoundtripWorks()
+    public void FileUpdateSerializationRoundtripWorks()
     {
-        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileUpdatedWebhookEvent()
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileUpdateEvent()
         {
             ID = "id",
             Type = "file.updated",
-            STAINLESS_FIXME_CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            STAINLESS_FIXME_Data = new()
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
             {
                 AITags =
                 [
@@ -1219,14 +1215,14 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
     }
 
     [Fact]
-    public void FileDeletedSerializationRoundtripWorks()
+    public void FileDeleteSerializationRoundtripWorks()
     {
-        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileDeletedWebhookEvent()
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileDeleteEvent()
         {
             ID = "id",
             Type = "file.deleted",
-            STAINLESS_FIXME_CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            STAINLESS_FIXME_Data = new("fileId"),
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new("fileId"),
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Webhooks::UnsafeUnwrapWebhookEvent>(
@@ -1238,14 +1234,14 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
     }
 
     [Fact]
-    public void FileVersionCreatedSerializationRoundtripWorks()
+    public void FileVersionCreateSerializationRoundtripWorks()
     {
-        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileVersionCreatedWebhookEvent()
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileVersionCreateEvent()
         {
             ID = "id",
             Type = "file-version.created",
-            STAINLESS_FIXME_CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            STAINLESS_FIXME_Data = new()
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
             {
                 AITags =
                 [
@@ -1319,18 +1315,14 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
     }
 
     [Fact]
-    public void FileVersionDeletedSerializationRoundtripWorks()
+    public void FileVersionDeleteSerializationRoundtripWorks()
     {
-        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileVersionDeletedWebhookEvent()
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FileVersionDeleteEvent()
         {
             ID = "id",
             Type = "file-version.deleted",
-            STAINLESS_FIXME_CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            STAINLESS_FIXME_Data = new()
-            {
-                STAINLESS_FIXME_FileID = "fileId",
-                STAINLESS_FIXME_VersionID = "versionId",
-            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new() { FileID = "fileId", VersionID = "versionId" },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Webhooks::UnsafeUnwrapWebhookEvent>(

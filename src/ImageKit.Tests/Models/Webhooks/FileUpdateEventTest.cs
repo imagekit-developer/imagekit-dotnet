@@ -7,12 +7,12 @@ using Files = ImageKit.Models.Files;
 
 namespace ImageKit.Tests.Models.Webhooks;
 
-public class FileVersionCreatedWebhookEventTest : TestBase
+public class FileUpdateEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FileVersionCreatedWebhookEvent
+        var model = new FileUpdateEvent
         {
             ID = "id",
             Type = "type",
@@ -158,7 +158,7 @@ public class FileVersionCreatedWebhookEventTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FileVersionCreatedWebhookEvent
+        var model = new FileUpdateEvent
         {
             ID = "id",
             Type = "type",
@@ -229,7 +229,7 @@ public class FileVersionCreatedWebhookEventTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileVersionCreatedWebhookEvent>(
+        var deserialized = JsonSerializer.Deserialize<FileUpdateEvent>(
             json,
             ModelBase.SerializerOptions
         );
@@ -240,7 +240,7 @@ public class FileVersionCreatedWebhookEventTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FileVersionCreatedWebhookEvent
+        var model = new FileUpdateEvent
         {
             ID = "id",
             Type = "type",
@@ -311,7 +311,7 @@ public class FileVersionCreatedWebhookEventTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileVersionCreatedWebhookEvent>(
+        var deserialized = JsonSerializer.Deserialize<FileUpdateEvent>(
             element,
             ModelBase.SerializerOptions
         );
@@ -393,7 +393,7 @@ public class FileVersionCreatedWebhookEventTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FileVersionCreatedWebhookEvent
+        var model = new FileUpdateEvent
         {
             ID = "id",
             Type = "type",
@@ -469,7 +469,7 @@ public class FileVersionCreatedWebhookEventTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FileVersionCreatedWebhookEvent
+        var model = new FileUpdateEvent
         {
             ID = "id",
             Type = "type",
@@ -539,18 +539,18 @@ public class FileVersionCreatedWebhookEventTest : TestBase
             },
         };
 
-        FileVersionCreatedWebhookEvent copied = new(model);
+        FileUpdateEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class FileVersionCreatedWebhookEventIntersectionMember1Test : TestBase
+public class FileUpdateEventIntersectionMember1Test : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FileVersionCreatedWebhookEventIntersectionMember1
+        var model = new FileUpdateEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -682,7 +682,7 @@ public class FileVersionCreatedWebhookEventIntersectionMember1Test : TestBase
             VideoCodec = "videoCodec",
             Width = 0,
         };
-        JsonElement expectedType = JsonSerializer.SerializeToElement("file-version.created");
+        JsonElement expectedType = JsonSerializer.SerializeToElement("file.updated");
 
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedData, model.Data);
@@ -692,7 +692,7 @@ public class FileVersionCreatedWebhookEventIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FileVersionCreatedWebhookEventIntersectionMember1
+        var model = new FileUpdateEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -761,11 +761,10 @@ public class FileVersionCreatedWebhookEventIntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileVersionCreatedWebhookEventIntersectionMember1>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<FileUpdateEventIntersectionMember1>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -773,7 +772,7 @@ public class FileVersionCreatedWebhookEventIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FileVersionCreatedWebhookEventIntersectionMember1
+        var model = new FileUpdateEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -842,11 +841,10 @@ public class FileVersionCreatedWebhookEventIntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileVersionCreatedWebhookEventIntersectionMember1>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<FileUpdateEventIntersectionMember1>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -913,7 +911,7 @@ public class FileVersionCreatedWebhookEventIntersectionMember1Test : TestBase
             VideoCodec = "videoCodec",
             Width = 0,
         };
-        JsonElement expectedType = JsonSerializer.SerializeToElement("file-version.created");
+        JsonElement expectedType = JsonSerializer.SerializeToElement("file.updated");
 
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedData, deserialized.Data);
@@ -923,7 +921,7 @@ public class FileVersionCreatedWebhookEventIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FileVersionCreatedWebhookEventIntersectionMember1
+        var model = new FileUpdateEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -997,7 +995,7 @@ public class FileVersionCreatedWebhookEventIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FileVersionCreatedWebhookEventIntersectionMember1
+        var model = new FileUpdateEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1065,7 +1063,7 @@ public class FileVersionCreatedWebhookEventIntersectionMember1Test : TestBase
             },
         };
 
-        FileVersionCreatedWebhookEventIntersectionMember1 copied = new(model);
+        FileUpdateEventIntersectionMember1 copied = new(model);
 
         Assert.Equal(model, copied);
     }

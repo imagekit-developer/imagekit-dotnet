@@ -42,11 +42,11 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
                 uploadPreTransformError: (x) => x.ID,
                 uploadPostTransformSuccess: (x) => x.ID,
                 uploadPostTransformError: (x) => x.ID,
-                fileCreated: (x) => x.STAINLESS_FIXME_ID,
-                fileUpdated: (x) => x.STAINLESS_FIXME_ID,
-                fileDeleted: (x) => x.STAINLESS_FIXME_ID,
-                fileVersionCreated: (x) => x.STAINLESS_FIXME_ID,
-                fileVersionDeleted: (x) => x.STAINLESS_FIXME_ID
+                fileCreate: (x) => x.ID,
+                fileUpdate: (x) => x.ID,
+                fileDelete: (x) => x.ID,
+                fileVersionCreate: (x) => x.ID,
+                fileVersionDelete: (x) => x.ID
             );
         }
     }
@@ -63,11 +63,11 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
                 uploadPreTransformError: (x) => x.Type,
                 uploadPostTransformSuccess: (x) => x.Type,
                 uploadPostTransformError: (x) => x.Type,
-                fileCreated: (x) => x.STAINLESS_FIXME_Type,
-                fileUpdated: (x) => x.STAINLESS_FIXME_Type,
-                fileDeleted: (x) => x.STAINLESS_FIXME_Type,
-                fileVersionCreated: (x) => x.STAINLESS_FIXME_Type,
-                fileVersionDeleted: (x) => x.STAINLESS_FIXME_Type
+                fileCreate: (x) => x.Type,
+                fileUpdate: (x) => x.Type,
+                fileDelete: (x) => x.Type,
+                fileVersionCreate: (x) => x.Type,
+                fileVersionDelete: (x) => x.Type
             );
         }
     }
@@ -84,11 +84,11 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
                 uploadPreTransformError: (x) => x.CreatedAt,
                 uploadPostTransformSuccess: (x) => x.CreatedAt,
                 uploadPostTransformError: (x) => x.CreatedAt,
-                fileCreated: (x) => x.STAINLESS_FIXME_CreatedAt,
-                fileUpdated: (x) => x.STAINLESS_FIXME_CreatedAt,
-                fileDeleted: (x) => x.STAINLESS_FIXME_CreatedAt,
-                fileVersionCreated: (x) => x.STAINLESS_FIXME_CreatedAt,
-                fileVersionDeleted: (x) => x.STAINLESS_FIXME_CreatedAt
+                fileCreate: (x) => x.CreatedAt,
+                fileUpdate: (x) => x.CreatedAt,
+                fileDelete: (x) => x.CreatedAt,
+                fileVersionCreate: (x) => x.CreatedAt,
+                fileVersionDelete: (x) => x.CreatedAt
             );
         }
     }
@@ -153,37 +153,31 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
         this._element = element;
     }
 
-    public UnsafeUnwrapWebhookEvent(FileCreatedWebhookEvent value, JsonElement? element = null)
+    public UnsafeUnwrapWebhookEvent(FileCreateEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnsafeUnwrapWebhookEvent(FileUpdatedWebhookEvent value, JsonElement? element = null)
+    public UnsafeUnwrapWebhookEvent(FileUpdateEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnsafeUnwrapWebhookEvent(FileDeletedWebhookEvent value, JsonElement? element = null)
+    public UnsafeUnwrapWebhookEvent(FileDeleteEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnsafeUnwrapWebhookEvent(
-        FileVersionCreatedWebhookEvent value,
-        JsonElement? element = null
-    )
+    public UnsafeUnwrapWebhookEvent(FileVersionCreateEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnsafeUnwrapWebhookEvent(
-        FileVersionDeletedWebhookEvent value,
-        JsonElement? element = null
-    )
+    public UnsafeUnwrapWebhookEvent(FileVersionDeleteEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -357,110 +351,106 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="FileCreatedWebhookEvent"/>.
+    /// type <see cref="FileCreateEvent"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickFileCreated(out var value)) {
-    ///     // `value` is of type `FileCreatedWebhookEvent`
+    /// if (instance.TryPickFileCreate(out var value)) {
+    ///     // `value` is of type `FileCreateEvent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickFileCreated([NotNullWhen(true)] out FileCreatedWebhookEvent? value)
+    public bool TryPickFileCreate([NotNullWhen(true)] out FileCreateEvent? value)
     {
-        value = this.Value as FileCreatedWebhookEvent;
+        value = this.Value as FileCreateEvent;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="FileUpdatedWebhookEvent"/>.
+    /// type <see cref="FileUpdateEvent"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickFileUpdated(out var value)) {
-    ///     // `value` is of type `FileUpdatedWebhookEvent`
+    /// if (instance.TryPickFileUpdate(out var value)) {
+    ///     // `value` is of type `FileUpdateEvent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickFileUpdated([NotNullWhen(true)] out FileUpdatedWebhookEvent? value)
+    public bool TryPickFileUpdate([NotNullWhen(true)] out FileUpdateEvent? value)
     {
-        value = this.Value as FileUpdatedWebhookEvent;
+        value = this.Value as FileUpdateEvent;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="FileDeletedWebhookEvent"/>.
+    /// type <see cref="FileDeleteEvent"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickFileDeleted(out var value)) {
-    ///     // `value` is of type `FileDeletedWebhookEvent`
+    /// if (instance.TryPickFileDelete(out var value)) {
+    ///     // `value` is of type `FileDeleteEvent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickFileDeleted([NotNullWhen(true)] out FileDeletedWebhookEvent? value)
+    public bool TryPickFileDelete([NotNullWhen(true)] out FileDeleteEvent? value)
     {
-        value = this.Value as FileDeletedWebhookEvent;
+        value = this.Value as FileDeleteEvent;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="FileVersionCreatedWebhookEvent"/>.
+    /// type <see cref="FileVersionCreateEvent"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickFileVersionCreated(out var value)) {
-    ///     // `value` is of type `FileVersionCreatedWebhookEvent`
+    /// if (instance.TryPickFileVersionCreate(out var value)) {
+    ///     // `value` is of type `FileVersionCreateEvent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickFileVersionCreated(
-        [NotNullWhen(true)] out FileVersionCreatedWebhookEvent? value
-    )
+    public bool TryPickFileVersionCreate([NotNullWhen(true)] out FileVersionCreateEvent? value)
     {
-        value = this.Value as FileVersionCreatedWebhookEvent;
+        value = this.Value as FileVersionCreateEvent;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="FileVersionDeletedWebhookEvent"/>.
+    /// type <see cref="FileVersionDeleteEvent"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickFileVersionDeleted(out var value)) {
-    ///     // `value` is of type `FileVersionDeletedWebhookEvent`
+    /// if (instance.TryPickFileVersionDelete(out var value)) {
+    ///     // `value` is of type `FileVersionDeleteEvent`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickFileVersionDeleted(
-        [NotNullWhen(true)] out FileVersionDeletedWebhookEvent? value
-    )
+    public bool TryPickFileVersionDelete([NotNullWhen(true)] out FileVersionDeleteEvent? value)
     {
-        value = this.Value as FileVersionDeletedWebhookEvent;
+        value = this.Value as FileVersionDeleteEvent;
         return value != null;
     }
 
@@ -485,11 +475,11 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     ///     (UploadPreTransformErrorEvent value) =&gt; {...},
     ///     (UploadPostTransformSuccessEvent value) =&gt; {...},
     ///     (UploadPostTransformErrorEvent value) =&gt; {...},
-    ///     (FileCreatedWebhookEvent value) =&gt; {...},
-    ///     (FileUpdatedWebhookEvent value) =&gt; {...},
-    ///     (FileDeletedWebhookEvent value) =&gt; {...},
-    ///     (FileVersionCreatedWebhookEvent value) =&gt; {...},
-    ///     (FileVersionDeletedWebhookEvent value) =&gt; {...}
+    ///     (FileCreateEvent value) =&gt; {...},
+    ///     (FileUpdateEvent value) =&gt; {...},
+    ///     (FileDeleteEvent value) =&gt; {...},
+    ///     (FileVersionCreateEvent value) =&gt; {...},
+    ///     (FileVersionDeleteEvent value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -502,11 +492,11 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
         System::Action<UploadPreTransformErrorEvent> uploadPreTransformError,
         System::Action<UploadPostTransformSuccessEvent> uploadPostTransformSuccess,
         System::Action<UploadPostTransformErrorEvent> uploadPostTransformError,
-        System::Action<FileCreatedWebhookEvent> fileCreated,
-        System::Action<FileUpdatedWebhookEvent> fileUpdated,
-        System::Action<FileDeletedWebhookEvent> fileDeleted,
-        System::Action<FileVersionCreatedWebhookEvent> fileVersionCreated,
-        System::Action<FileVersionDeletedWebhookEvent> fileVersionDeleted
+        System::Action<FileCreateEvent> fileCreate,
+        System::Action<FileUpdateEvent> fileUpdate,
+        System::Action<FileDeleteEvent> fileDelete,
+        System::Action<FileVersionCreateEvent> fileVersionCreate,
+        System::Action<FileVersionDeleteEvent> fileVersionDelete
     )
     {
         switch (this.Value)
@@ -532,20 +522,20 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             case UploadPostTransformErrorEvent value:
                 uploadPostTransformError(value);
                 break;
-            case FileCreatedWebhookEvent value:
-                fileCreated(value);
+            case FileCreateEvent value:
+                fileCreate(value);
                 break;
-            case FileUpdatedWebhookEvent value:
-                fileUpdated(value);
+            case FileUpdateEvent value:
+                fileUpdate(value);
                 break;
-            case FileDeletedWebhookEvent value:
-                fileDeleted(value);
+            case FileDeleteEvent value:
+                fileDelete(value);
                 break;
-            case FileVersionCreatedWebhookEvent value:
-                fileVersionCreated(value);
+            case FileVersionCreateEvent value:
+                fileVersionCreate(value);
                 break;
-            case FileVersionDeletedWebhookEvent value:
-                fileVersionDeleted(value);
+            case FileVersionDeleteEvent value:
+                fileVersionDelete(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
@@ -576,11 +566,11 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     ///     (UploadPreTransformErrorEvent value) =&gt; {...},
     ///     (UploadPostTransformSuccessEvent value) =&gt; {...},
     ///     (UploadPostTransformErrorEvent value) =&gt; {...},
-    ///     (FileCreatedWebhookEvent value) =&gt; {...},
-    ///     (FileUpdatedWebhookEvent value) =&gt; {...},
-    ///     (FileDeletedWebhookEvent value) =&gt; {...},
-    ///     (FileVersionCreatedWebhookEvent value) =&gt; {...},
-    ///     (FileVersionDeletedWebhookEvent value) =&gt; {...}
+    ///     (FileCreateEvent value) =&gt; {...},
+    ///     (FileUpdateEvent value) =&gt; {...},
+    ///     (FileDeleteEvent value) =&gt; {...},
+    ///     (FileVersionCreateEvent value) =&gt; {...},
+    ///     (FileVersionDeleteEvent value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -593,11 +583,11 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
         System::Func<UploadPreTransformErrorEvent, T> uploadPreTransformError,
         System::Func<UploadPostTransformSuccessEvent, T> uploadPostTransformSuccess,
         System::Func<UploadPostTransformErrorEvent, T> uploadPostTransformError,
-        System::Func<FileCreatedWebhookEvent, T> fileCreated,
-        System::Func<FileUpdatedWebhookEvent, T> fileUpdated,
-        System::Func<FileDeletedWebhookEvent, T> fileDeleted,
-        System::Func<FileVersionCreatedWebhookEvent, T> fileVersionCreated,
-        System::Func<FileVersionDeletedWebhookEvent, T> fileVersionDeleted
+        System::Func<FileCreateEvent, T> fileCreate,
+        System::Func<FileUpdateEvent, T> fileUpdate,
+        System::Func<FileDeleteEvent, T> fileDelete,
+        System::Func<FileVersionCreateEvent, T> fileVersionCreate,
+        System::Func<FileVersionDeleteEvent, T> fileVersionDelete
     )
     {
         return this.Value switch
@@ -609,11 +599,11 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             UploadPreTransformErrorEvent value => uploadPreTransformError(value),
             UploadPostTransformSuccessEvent value => uploadPostTransformSuccess(value),
             UploadPostTransformErrorEvent value => uploadPostTransformError(value),
-            FileCreatedWebhookEvent value => fileCreated(value),
-            FileUpdatedWebhookEvent value => fileUpdated(value),
-            FileDeletedWebhookEvent value => fileDeleted(value),
-            FileVersionCreatedWebhookEvent value => fileVersionCreated(value),
-            FileVersionDeletedWebhookEvent value => fileVersionDeleted(value),
+            FileCreateEvent value => fileCreate(value),
+            FileUpdateEvent value => fileUpdate(value),
+            FileDeleteEvent value => fileDelete(value),
+            FileVersionCreateEvent value => fileVersionCreate(value),
+            FileVersionDeleteEvent value => fileVersionDelete(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of UnsafeUnwrapWebhookEvent"
             ),
@@ -644,22 +634,17 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     public static implicit operator UnsafeUnwrapWebhookEvent(UploadPostTransformErrorEvent value) =>
         new(value);
 
-    public static implicit operator UnsafeUnwrapWebhookEvent(FileCreatedWebhookEvent value) =>
+    public static implicit operator UnsafeUnwrapWebhookEvent(FileCreateEvent value) => new(value);
+
+    public static implicit operator UnsafeUnwrapWebhookEvent(FileUpdateEvent value) => new(value);
+
+    public static implicit operator UnsafeUnwrapWebhookEvent(FileDeleteEvent value) => new(value);
+
+    public static implicit operator UnsafeUnwrapWebhookEvent(FileVersionCreateEvent value) =>
         new(value);
 
-    public static implicit operator UnsafeUnwrapWebhookEvent(FileUpdatedWebhookEvent value) =>
+    public static implicit operator UnsafeUnwrapWebhookEvent(FileVersionDeleteEvent value) =>
         new(value);
-
-    public static implicit operator UnsafeUnwrapWebhookEvent(FileDeletedWebhookEvent value) =>
-        new(value);
-
-    public static implicit operator UnsafeUnwrapWebhookEvent(
-        FileVersionCreatedWebhookEvent value
-    ) => new(value);
-
-    public static implicit operator UnsafeUnwrapWebhookEvent(
-        FileVersionDeletedWebhookEvent value
-    ) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -687,11 +672,11 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             (uploadPreTransformError) => uploadPreTransformError.Validate(),
             (uploadPostTransformSuccess) => uploadPostTransformSuccess.Validate(),
             (uploadPostTransformError) => uploadPostTransformError.Validate(),
-            (fileCreated) => fileCreated.Validate(),
-            (fileUpdated) => fileUpdated.Validate(),
-            (fileDeleted) => fileDeleted.Validate(),
-            (fileVersionCreated) => fileVersionCreated.Validate(),
-            (fileVersionDeleted) => fileVersionDeleted.Validate()
+            (fileCreate) => fileCreate.Validate(),
+            (fileUpdate) => fileUpdate.Validate(),
+            (fileDelete) => fileDelete.Validate(),
+            (fileVersionCreate) => fileVersionCreate.Validate(),
+            (fileVersionDelete) => fileVersionDelete.Validate()
         );
     }
 
@@ -722,11 +707,11 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             UploadPreTransformErrorEvent _ => 4,
             UploadPostTransformSuccessEvent _ => 5,
             UploadPostTransformErrorEvent _ => 6,
-            FileCreatedWebhookEvent _ => 7,
-            FileUpdatedWebhookEvent _ => 8,
-            FileDeletedWebhookEvent _ => 9,
-            FileVersionCreatedWebhookEvent _ => 10,
-            FileVersionDeletedWebhookEvent _ => 11,
+            FileCreateEvent _ => 7,
+            FileUpdateEvent _ => 8,
+            FileDeleteEvent _ => 9,
+            FileVersionCreateEvent _ => 10,
+            FileVersionDeleteEvent _ => 11,
             _ => -1,
         };
     }
@@ -883,7 +868,7 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FileCreatedWebhookEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileCreateEvent>(
                         element,
                         options
                     );
@@ -901,7 +886,7 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FileUpdatedWebhookEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileUpdateEvent>(
                         element,
                         options
                     );
@@ -919,7 +904,7 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FileDeletedWebhookEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileDeleteEvent>(
                         element,
                         options
                     );
@@ -937,7 +922,7 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FileVersionCreatedWebhookEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileVersionCreateEvent>(
                         element,
                         options
                     );
@@ -955,7 +940,7 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FileVersionDeletedWebhookEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileVersionDeleteEvent>(
                         element,
                         options
                     );
