@@ -62,7 +62,7 @@ public class FolderRenameParamsTest : TestBase
             NewFolderName = "new-folder-name",
         };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/bulkJobs/renameFolder"), url);
     }

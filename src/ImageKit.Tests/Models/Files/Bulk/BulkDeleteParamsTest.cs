@@ -31,7 +31,7 @@ public class BulkDeleteParamsTest : TestBase
             FileIds = ["598821f949c0a938d57563bd", "598821f949c0a938d57563be"],
         };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/files/batch/deleteByFileIds"), url);
     }

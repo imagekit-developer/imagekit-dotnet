@@ -22,7 +22,7 @@ public class UsageGetParamsTest : TestBase
     {
         UsageGetParams parameters = new() { EndDate = "2019-12-27", StartDate = "2019-12-27" };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.Equal(
             new Uri(

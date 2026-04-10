@@ -400,7 +400,7 @@ public class FileUploadParamsTest : TestBase
             FileName = "fileName",
         };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/api/v1/files/upload"), url);
     }

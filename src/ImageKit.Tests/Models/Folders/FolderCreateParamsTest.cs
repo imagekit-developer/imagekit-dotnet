@@ -30,7 +30,7 @@ public class FolderCreateParamsTest : TestBase
             ParentFolderPath = "/product/images/",
         };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/folder"), url);
     }

@@ -54,7 +54,11 @@ Or manually:
 ```csharp
 using ImageKit;
 
-ImageKitClient client = new() { PrivateKey = "My Private Key" };
+ImageKitClient client = new()
+{
+    PrivateKey = "My Private Key",
+    Password = "My Password",
+};
 ```
 
 Or using a combination of the two approaches.

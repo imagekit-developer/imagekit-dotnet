@@ -20,7 +20,7 @@ public class InvalidationGetParamsTest : TestBase
     {
         InvalidationGetParams parameters = new() { RequestID = "requestId" };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/files/purge/requestId"), url);
     }

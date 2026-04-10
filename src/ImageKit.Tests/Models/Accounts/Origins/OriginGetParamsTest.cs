@@ -20,7 +20,7 @@ public class OriginGetParamsTest : TestBase
     {
         OriginGetParams parameters = new() { ID = "id" };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/accounts/origins/id"), url);
     }

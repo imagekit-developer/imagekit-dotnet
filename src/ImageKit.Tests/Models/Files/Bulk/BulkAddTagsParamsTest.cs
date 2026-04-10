@@ -39,7 +39,7 @@ public class BulkAddTagsParamsTest : TestBase
             Tags = ["t-shirt", "round-neck", "sale2019"],
         };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/files/addTags"), url);
     }

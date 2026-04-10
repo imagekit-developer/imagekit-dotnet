@@ -30,7 +30,7 @@ public class FolderMoveParamsTest : TestBase
             SourceFolderPath = "/path/of/source/folder",
         };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/bulkJobs/moveFolder"), url);
     }

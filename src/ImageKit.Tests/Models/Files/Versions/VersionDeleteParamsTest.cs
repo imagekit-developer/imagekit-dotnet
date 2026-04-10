@@ -22,7 +22,7 @@ public class VersionDeleteParamsTest : TestBase
     {
         VersionDeleteParams parameters = new() { FileID = "fileId", VersionID = "versionId" };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/files/fileId/versions/versionId"), url);
     }
