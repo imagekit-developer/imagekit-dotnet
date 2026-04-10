@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using ImageKit.Core;
 using ImageKit.Exceptions;
+using ImageKit.Models.Files;
 
 namespace ImageKit.Models.Webhooks;
 
@@ -56,12 +57,15 @@ public sealed record class DamFileVersionCreateEvent : JsonModel
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required JsonElement Data
+    /// <summary>
+    /// Object containing details of a file or file version.
+    /// </summary>
+    public required File Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("data");
+            return this._rawData.GetNotNullClass<File>("data");
         }
         init { this._rawData.Set("data", value); }
     }
@@ -76,7 +80,7 @@ public sealed record class DamFileVersionCreateEvent : JsonModel
         _ = this.ID;
         _ = this.Type;
         _ = this.CreatedAt;
-        _ = this.Data;
+        this.Data.Validate();
     }
 
     public DamFileVersionCreateEvent() { }
@@ -141,12 +145,15 @@ public sealed record class DamFileVersionCreateEventIntersectionMember1 : JsonMo
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required JsonElement Data
+    /// <summary>
+    /// Object containing details of a file or file version.
+    /// </summary>
+    public required File Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("data");
+            return this._rawData.GetNotNullClass<File>("data");
         }
         init { this._rawData.Set("data", value); }
     }
@@ -168,7 +175,7 @@ public sealed record class DamFileVersionCreateEventIntersectionMember1 : JsonMo
     public override void Validate()
     {
         _ = this.CreatedAt;
-        _ = this.Data;
+        this.Data.Validate();
         if (
             !JsonElement.DeepEquals(
                 this.Type,
