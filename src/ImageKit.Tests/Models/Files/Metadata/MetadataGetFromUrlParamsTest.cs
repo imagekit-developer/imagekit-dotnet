@@ -20,7 +20,7 @@ public class MetadataGetFromUrlParamsTest : TestBase
     {
         MetadataGetFromUrlParams parameters = new() { UrlValue = "https://example.com" };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
 
         Assert.Equal(
             new Uri("https://api.imagekit.io/v1/metadata?url=https%3a%2f%2fexample.com"),

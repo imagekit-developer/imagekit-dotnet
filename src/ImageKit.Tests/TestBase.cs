@@ -14,7 +14,6 @@ public class TestBase
             BaseUrl =
                 Environment.GetEnvironmentVariable("TEST_API_BASE_URL") ?? "http://localhost:4010",
             PrivateKey = "My Private Key",
-            Password = "My Password",
         };
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using ImageKit.Core;
+using Files = ImageKit.Models.Files;
 using Webhooks = ImageKit.Models.Webhooks;
 
 namespace ImageKit.Tests.Models.Webhooks;
@@ -379,6 +380,195 @@ public class UnwrapWebhookEventTest : TestBase
                 },
                 XRequestID = "x_request_id",
             },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void DamFileCreateValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::DamFileCreateEvent()
+        {
+            ID = "id",
+            Type = "file.created",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                HasAlpha = true,
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Mime = "mime",
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Files::Type.Text,
+                            DefaultValue = "string",
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                Thumbnail = "https://example.com",
+                Type = Files::FileType.File,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Url = "https://example.com",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void DamFileUpdateValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::DamFileUpdateEvent()
+        {
+            ID = "id",
+            Type = "file.updated",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                HasAlpha = true,
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Mime = "mime",
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Files::Type.Text,
+                            DefaultValue = "string",
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                Thumbnail = "https://example.com",
+                Type = Files::FileType.File,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Url = "https://example.com",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void DamFileDeleteValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::DamFileDeleteEvent()
+        {
+            ID = "id",
+            Type = "file.deleted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new("fileId"),
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void DamFileVersionCreateValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::DamFileVersionCreateEvent()
+        {
+            ID = "id",
+            Type = "file-version.created",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = JsonSerializer.Deserialize<JsonElement>("{}"),
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void DamFileVersionDeleteValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::DamFileVersionDeleteEvent()
+        {
+            ID = "id",
+            Type = "file-version.deleted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new() { FileID = "fileId", VersionID = "versionId" },
         };
         value.Validate();
     }
@@ -790,6 +980,225 @@ public class UnwrapWebhookEventTest : TestBase
                 },
                 XRequestID = "x_request_id",
             },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void DamFileCreateSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::DamFileCreateEvent()
+        {
+            ID = "id",
+            Type = "file.created",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                HasAlpha = true,
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Mime = "mime",
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Files::Type.Text,
+                            DefaultValue = "string",
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                Thumbnail = "https://example.com",
+                Type = Files::FileType.File,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Url = "https://example.com",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void DamFileUpdateSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::DamFileUpdateEvent()
+        {
+            ID = "id",
+            Type = "file.updated",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                HasAlpha = true,
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Mime = "mime",
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Files::Type.Text,
+                            DefaultValue = "string",
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                Thumbnail = "https://example.com",
+                Type = Files::FileType.File,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Url = "https://example.com",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void DamFileDeleteSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::DamFileDeleteEvent()
+        {
+            ID = "id",
+            Type = "file.deleted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new("fileId"),
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void DamFileVersionCreateSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::DamFileVersionCreateEvent()
+        {
+            ID = "id",
+            Type = "file-version.created",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = JsonSerializer.Deserialize<JsonElement>("{}"),
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void DamFileVersionDeleteSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::DamFileVersionDeleteEvent()
+        {
+            ID = "id",
+            Type = "file-version.deleted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new() { FileID = "fileId", VersionID = "versionId" },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(

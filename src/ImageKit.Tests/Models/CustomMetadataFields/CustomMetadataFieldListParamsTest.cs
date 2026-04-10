@@ -57,7 +57,7 @@ public class CustomMetadataFieldListParamsTest : TestBase
             IncludeDeleted = true,
         };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
 
         Assert.Equal(
             new Uri(

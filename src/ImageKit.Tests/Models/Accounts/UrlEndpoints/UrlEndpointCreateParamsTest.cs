@@ -75,7 +75,7 @@ public class UrlEndpointCreateParamsTest : TestBase
     {
         UrlEndpointCreateParams parameters = new() { Description = "My custom URL endpoint" };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/accounts/url-endpoints"), url);
     }

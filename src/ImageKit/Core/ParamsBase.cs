@@ -196,22 +196,6 @@ public abstract record class ParamsBase
             request.Headers.Add(header.Key, header.Value);
         }
 
-        if (options.PrivateKey != null && options.Password != null)
-        {
-            request.Headers.Add(
-                "Authorization",
-                string.Format(
-                    "Basic {0}",
-                    Convert.ToBase64String(
-                        Encoding
-                            .GetEncoding("ISO-8859-1")
-                            .GetBytes(
-                                string.Format("{0}:{1}", options.PrivateKey, options.Password)
-                            )
-                    )
-                )
-            );
-        }
         request.Headers.Add(
             "X-Stainless-Timeout",
             (options.Timeout ?? ClientOptions.DefaultTimeout).TotalSeconds.ToString()

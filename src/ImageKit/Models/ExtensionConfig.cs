@@ -1374,10 +1374,8 @@ public sealed record class SelectTags : JsonModel
     }
 
     /// <summary>
-    /// Array of possible tag values. The combined length of all strings must not
-    /// exceed 500 characters, and values cannot include the `%` character. When
-    /// providing large vocabularies (more than 30 items), the AI may not follow
-    /// the list strictly.
+    /// Array of possible tag values. Combined length of all strings must not exceed
+    /// 500 characters. Cannot contain the `%` character.
     /// </summary>
     public IReadOnlyList<string>? Vocabulary
     {
@@ -1546,10 +1544,7 @@ public sealed record class SelectMetadata : JsonModel
     }
 
     /// <summary>
-    /// An array of possible values matching the custom metadata field type. If not
-    /// provided for SingleSelect or MultiSelect field types, all values from the
-    /// custom metadata field definition will be used. When providing large vocabularies
-    /// (above 30 items), the AI may not strictly adhere to the list.
+    /// Array of possible values matching the custom metadata field type.
     /// </summary>
     public IReadOnlyList<Vocabulary>? Vocabulary
     {

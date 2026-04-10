@@ -26,7 +26,7 @@ public class InvalidationCreateParamsTest : TestBase
             UrlValue = "https://ik.imagekit.io/your_imagekit_id/default-image.jpg",
         };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/files/purge"), url);
     }

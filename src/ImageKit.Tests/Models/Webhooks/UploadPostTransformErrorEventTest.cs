@@ -39,7 +39,7 @@ public class UploadPostTransformErrorEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::Data expectedData = new()
+        Webhooks::UploadPostTransformErrorEventIntersectionMember1Data expectedData = new()
         {
             FileID = "fileId",
             Name = "name",
@@ -140,7 +140,7 @@ public class UploadPostTransformErrorEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::Data expectedData = new()
+        Webhooks::UploadPostTransformErrorEventIntersectionMember1Data expectedData = new()
         {
             FileID = "fileId",
             Name = "name",
@@ -231,12 +231,12 @@ public class UploadPostTransformErrorEventTest : TestBase
     }
 }
 
-public class IntersectionMember1Test : TestBase
+public class UploadPostTransformErrorEventIntersectionMember1Test : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::IntersectionMember1
+        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -260,7 +260,7 @@ public class IntersectionMember1Test : TestBase
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::Data expectedData = new()
+        Webhooks::UploadPostTransformErrorEventIntersectionMember1Data expectedData = new()
         {
             FileID = "fileId",
             Name = "name",
@@ -289,7 +289,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::IntersectionMember1
+        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -313,10 +313,11 @@ public class IntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::IntersectionMember1>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventIntersectionMember1>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -324,7 +325,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::IntersectionMember1
+        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -348,14 +349,15 @@ public class IntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::IntersectionMember1>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventIntersectionMember1>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::Data expectedData = new()
+        Webhooks::UploadPostTransformErrorEventIntersectionMember1Data expectedData = new()
         {
             FileID = "fileId",
             Name = "name",
@@ -384,7 +386,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::IntersectionMember1
+        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -413,7 +415,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::IntersectionMember1
+        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -436,18 +438,18 @@ public class IntersectionMember1Test : TestBase
             },
         };
 
-        Webhooks::IntersectionMember1 copied = new(model);
+        Webhooks::UploadPostTransformErrorEventIntersectionMember1 copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class DataTest : TestBase
+public class UploadPostTransformErrorEventIntersectionMember1DataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::Data
+        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1Data
         {
             FileID = "fileId",
             Name = "name",
@@ -474,7 +476,7 @@ public class DataTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::Data
+        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1Data
         {
             FileID = "fileId",
             Name = "name",
@@ -484,10 +486,11 @@ public class DataTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::Data>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventIntersectionMember1Data>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -495,7 +498,7 @@ public class DataTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::Data
+        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1Data
         {
             FileID = "fileId",
             Name = "name",
@@ -505,10 +508,11 @@ public class DataTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::Data>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventIntersectionMember1Data>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedFileID = "fileId";
@@ -529,7 +533,7 @@ public class DataTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::Data
+        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1Data
         {
             FileID = "fileId",
             Name = "name",
@@ -544,7 +548,7 @@ public class DataTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::Data
+        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1Data
         {
             FileID = "fileId",
             Name = "name",
@@ -553,7 +557,7 @@ public class DataTest : TestBase
             Url = "https://example.com",
         };
 
-        Webhooks::Data copied = new(model);
+        Webhooks::UploadPostTransformErrorEventIntersectionMember1Data copied = new(model);
 
         Assert.Equal(model, copied);
     }

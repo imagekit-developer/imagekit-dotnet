@@ -30,7 +30,7 @@ public class FileMoveParamsTest : TestBase
             SourceFilePath = "/path/to/file.jpg",
         };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
 
         Assert.Equal(new Uri("https://api.imagekit.io/v1/files/move"), url);
     }

@@ -105,7 +105,7 @@ public class AssetListParamsTest : TestBase
             Type = Assets::Type.File,
         };
 
-        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
+        var url = parameters.Url(new() { PrivateKey = "My Private Key" });
 
         Assert.Equal(
             new Uri(
