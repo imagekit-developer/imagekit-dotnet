@@ -18,9 +18,7 @@ namespace ImageKit.Models.Beta.V2.Files;
 public sealed record class FileUploadResponse : JsonModel
 {
     /// <summary>
-    /// Array of `AITags` associated with the image. If no `AITags` are set, it will
-    /// be null. These tags can be added using the `google-auto-tagging` or `aws-auto-tagging`
-    /// extensions.
+    /// An array of tags assigned to the uploaded file by auto tagging.
     /// </summary>
     public IReadOnlyList<AITag>? AITags
     {
@@ -653,6 +651,10 @@ class FileUploadResponseFromRaw : IFromRawJson<FileUploadResponse>
         FileUploadResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// AI-generated tag associated with an image. These tags can be added using the `google-auto-tagging`
+/// or `aws-auto-tagging` extensions.
+/// </summary>
 [JsonConverter(typeof(JsonModelConverter<AITag, AITagFromRaw>))]
 public sealed record class AITag : JsonModel
 {
