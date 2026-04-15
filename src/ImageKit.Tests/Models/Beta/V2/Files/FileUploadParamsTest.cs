@@ -378,7 +378,9 @@ public class FileUploadParamsTest : TestBase
 
         var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
-        Assert.Equal(new Uri("https://api.imagekit.io/api/v2/files/upload"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.imagekit.io/api/v2/files/upload"), url)
+        );
     }
 
     [Fact]

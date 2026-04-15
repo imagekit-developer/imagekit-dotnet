@@ -22,9 +22,11 @@ public class MetadataGetFromUrlParamsTest : TestBase
 
         var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
-        Assert.Equal(
-            new Uri("https://api.imagekit.io/v1/metadata?url=https%3a%2f%2fexample.com"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.imagekit.io/v1/metadata?url=https%3a%2f%2fexample.com"),
+                url
+            )
         );
     }
 

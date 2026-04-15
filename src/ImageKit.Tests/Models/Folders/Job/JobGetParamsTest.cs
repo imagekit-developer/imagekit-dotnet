@@ -22,7 +22,7 @@ public class JobGetParamsTest : TestBase
 
         var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
-        Assert.Equal(new Uri("https://api.imagekit.io/v1/bulkJobs/jobId"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.imagekit.io/v1/bulkJobs/jobId"), url));
     }
 
     [Fact]

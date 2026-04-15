@@ -107,11 +107,13 @@ public class AssetListParamsTest : TestBase
 
         var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.imagekit.io/v1/files?fileType=all&limit=1&path=path&searchQuery=searchQuery&skip=0&sort=ASC_NAME&type=file"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.imagekit.io/v1/files?fileType=all&limit=1&path=path&searchQuery=searchQuery&skip=0&sort=ASC_NAME&type=file"
+                ),
+                url
+            )
         );
     }
 

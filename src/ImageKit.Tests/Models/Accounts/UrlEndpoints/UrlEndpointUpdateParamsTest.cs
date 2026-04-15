@@ -96,7 +96,9 @@ public class UrlEndpointUpdateParamsTest : TestBase
 
         var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
-        Assert.Equal(new Uri("https://api.imagekit.io/v1/accounts/url-endpoints/id"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.imagekit.io/v1/accounts/url-endpoints/id"), url)
+        );
     }
 
     [Fact]

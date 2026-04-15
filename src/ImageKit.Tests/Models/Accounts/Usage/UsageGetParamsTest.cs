@@ -24,11 +24,13 @@ public class UsageGetParamsTest : TestBase
 
         var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.imagekit.io/v1/accounts/usage?endDate=2019-12-27&startDate=2019-12-27"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.imagekit.io/v1/accounts/usage?endDate=2019-12-27&startDate=2019-12-27"
+                ),
+                url
+            )
         );
     }
 
