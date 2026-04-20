@@ -523,10 +523,7 @@ public record class DefaultValue : ModelBase
         this._element = element;
     }
 
-    public DefaultValue(
-        IReadOnlyList<UnnamedSchemaWithArrayParent1> value,
-        JsonElement? element = null
-    )
+    public DefaultValue(IReadOnlyList<DefaultValueItem> value, JsonElement? element = null)
     {
         this.Value = ImmutableArray.ToImmutableArray(value);
         this._element = element;
@@ -602,24 +599,22 @@ public record class DefaultValue : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent1</c>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>DefaultValueItem</c>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent1&gt;`
+    ///     // `value` is of type `IReadOnlyList&lt;DefaultValueItem&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickMixed(
-        [NotNullWhen(true)] out IReadOnlyList<UnnamedSchemaWithArrayParent1>? value
-    )
+    public bool TryPickMixed([NotNullWhen(true)] out IReadOnlyList<DefaultValueItem>? value)
     {
-        value = this.Value as IReadOnlyList<UnnamedSchemaWithArrayParent1>;
+        value = this.Value as IReadOnlyList<DefaultValueItem>;
         return value != null;
     }
 
@@ -640,7 +635,7 @@ public record class DefaultValue : ModelBase
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent1&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;DefaultValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -649,7 +644,7 @@ public record class DefaultValue : ModelBase
         System::Action<string> @string,
         System::Action<double> @double,
         System::Action<bool> @bool,
-        System::Action<IReadOnlyList<UnnamedSchemaWithArrayParent1>> mixed
+        System::Action<IReadOnlyList<DefaultValueItem>> mixed
     )
     {
         switch (this.Value)
@@ -663,7 +658,7 @@ public record class DefaultValue : ModelBase
             case bool value:
                 @bool(value);
                 break;
-            case IReadOnlyList<UnnamedSchemaWithArrayParent1> value:
+            case IReadOnlyList<DefaultValueItem> value:
                 mixed(value);
                 break;
             default:
@@ -691,7 +686,7 @@ public record class DefaultValue : ModelBase
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent1&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;DefaultValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -700,7 +695,7 @@ public record class DefaultValue : ModelBase
         System::Func<string, T> @string,
         System::Func<double, T> @double,
         System::Func<bool, T> @bool,
-        System::Func<IReadOnlyList<UnnamedSchemaWithArrayParent1>, T> mixed
+        System::Func<IReadOnlyList<DefaultValueItem>, T> mixed
     )
     {
         return this.Value switch
@@ -708,7 +703,7 @@ public record class DefaultValue : ModelBase
             string value => @string(value),
             double value => @double(value),
             bool value => @bool(value),
-            IReadOnlyList<UnnamedSchemaWithArrayParent1> value => mixed(value),
+            IReadOnlyList<DefaultValueItem> value => mixed(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of DefaultValue"
             ),
@@ -721,8 +716,8 @@ public record class DefaultValue : ModelBase
 
     public static implicit operator DefaultValue(bool value) => new(value);
 
-    public static implicit operator DefaultValue(List<UnnamedSchemaWithArrayParent1> value) =>
-        new((IReadOnlyList<UnnamedSchemaWithArrayParent1>)value);
+    public static implicit operator DefaultValue(List<DefaultValueItem> value) =>
+        new((IReadOnlyList<DefaultValueItem>)value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -779,7 +774,7 @@ public record class DefaultValue : ModelBase
             string _ => 0,
             double _ => 1,
             bool _ => 2,
-            IReadOnlyList<UnnamedSchemaWithArrayParent1> _ => 3,
+            IReadOnlyList<DefaultValueItem> _ => 3,
             _ => -1,
         };
     }
@@ -827,10 +822,7 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<List<UnnamedSchemaWithArrayParent1>>(
-                element,
-                options
-            );
+            var deserialized = JsonSerializer.Deserialize<List<DefaultValueItem>>(element, options);
             if (deserialized != null)
             {
                 foreach (var item in deserialized)
@@ -858,8 +850,8 @@ sealed class DefaultValueConverter : JsonConverter<DefaultValue>
     }
 }
 
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent1Converter))]
-public record class UnnamedSchemaWithArrayParent1 : ModelBase
+[JsonConverter(typeof(DefaultValueItemConverter))]
+public record class DefaultValueItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -876,25 +868,25 @@ public record class UnnamedSchemaWithArrayParent1 : ModelBase
         }
     }
 
-    public UnnamedSchemaWithArrayParent1(string value, JsonElement? element = null)
+    public DefaultValueItem(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent1(double value, JsonElement? element = null)
+    public DefaultValueItem(double value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent1(bool value, JsonElement? element = null)
+    public DefaultValueItem(bool value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent1(JsonElement element)
+    public DefaultValueItem(JsonElement element)
     {
         this._element = element;
     }
@@ -1002,7 +994,7 @@ public record class UnnamedSchemaWithArrayParent1 : ModelBase
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent1"
+                    "Data did not match any variant of DefaultValueItem"
                 );
         }
     }
@@ -1041,16 +1033,16 @@ public record class UnnamedSchemaWithArrayParent1 : ModelBase
             double value => @double(value),
             bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent1"
+                "Data did not match any variant of DefaultValueItem"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent1(string value) => new(value);
+    public static implicit operator DefaultValueItem(string value) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent1(double value) => new(value);
+    public static implicit operator DefaultValueItem(double value) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent1(bool value) => new(value);
+    public static implicit operator DefaultValueItem(bool value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -1067,12 +1059,12 @@ public record class UnnamedSchemaWithArrayParent1 : ModelBase
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent1"
+                "Data did not match any variant of DefaultValueItem"
             );
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent1? other) =>
+    public virtual bool Equals(DefaultValueItem? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -1100,9 +1092,9 @@ public record class UnnamedSchemaWithArrayParent1 : ModelBase
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent1Converter : JsonConverter<UnnamedSchemaWithArrayParent1>
+sealed class DefaultValueItemConverter : JsonConverter<DefaultValueItem>
 {
-    public override UnnamedSchemaWithArrayParent1? Read(
+    public override DefaultValueItem? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1145,7 +1137,7 @@ sealed class UnnamedSchemaWithArrayParent1Converter : JsonConverter<UnnamedSchem
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent1 value,
+        DefaultValueItem value,
         JsonSerializerOptions options
     )
     {

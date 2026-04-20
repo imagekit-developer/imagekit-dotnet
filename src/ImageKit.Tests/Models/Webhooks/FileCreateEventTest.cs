@@ -60,9 +60,9 @@ public class FileCreateEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent10(true),
-                                    new Files::UnnamedSchemaWithArrayParent10(10),
-                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent1(true),
+                                    new Files::UnnamedSchemaWithArrayParent1(10),
+                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -134,9 +134,9 @@ public class FileCreateEventTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent10(true),
-                                new Files::UnnamedSchemaWithArrayParent10(10),
-                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent1(true),
+                                new Files::UnnamedSchemaWithArrayParent1(10),
+                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -218,9 +218,9 @@ public class FileCreateEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent10(true),
-                                    new Files::UnnamedSchemaWithArrayParent10(10),
-                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent1(true),
+                                    new Files::UnnamedSchemaWithArrayParent1(10),
+                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -306,9 +306,9 @@ public class FileCreateEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent10(true),
-                                    new Files::UnnamedSchemaWithArrayParent10(10),
-                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent1(true),
+                                    new Files::UnnamedSchemaWithArrayParent1(10),
+                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -387,9 +387,9 @@ public class FileCreateEventTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent10(true),
-                                new Files::UnnamedSchemaWithArrayParent10(10),
-                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent1(true),
+                                new Files::UnnamedSchemaWithArrayParent1(10),
+                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -471,9 +471,9 @@ public class FileCreateEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent10(true),
-                                    new Files::UnnamedSchemaWithArrayParent10(10),
-                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent1(true),
+                                    new Files::UnnamedSchemaWithArrayParent1(10),
+                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -553,9 +553,9 @@ public class FileCreateEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent10(true),
-                                    new Files::UnnamedSchemaWithArrayParent10(10),
-                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent1(true),
+                                    new Files::UnnamedSchemaWithArrayParent1(10),
+                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -638,9 +638,9 @@ public class IntersectionMember1Test : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent10(true),
-                                    new Files::UnnamedSchemaWithArrayParent10(10),
-                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent1(true),
+                                    new Files::UnnamedSchemaWithArrayParent1(10),
+                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -710,9 +710,9 @@ public class IntersectionMember1Test : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent10(true),
-                                new Files::UnnamedSchemaWithArrayParent10(10),
-                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent1(true),
+                                new Files::UnnamedSchemaWithArrayParent1(10),
+                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -792,9 +792,9 @@ public class IntersectionMember1Test : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent10(true),
-                                    new Files::UnnamedSchemaWithArrayParent10(10),
-                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent1(true),
+                                    new Files::UnnamedSchemaWithArrayParent1(10),
+                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -878,9 +878,9 @@ public class IntersectionMember1Test : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent10(true),
-                                    new Files::UnnamedSchemaWithArrayParent10(10),
-                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent1(true),
+                                    new Files::UnnamedSchemaWithArrayParent1(10),
+                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -957,9 +957,9 @@ public class IntersectionMember1Test : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent10(true),
-                                new Files::UnnamedSchemaWithArrayParent10(10),
-                                new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent1(true),
+                                new Files::UnnamedSchemaWithArrayParent1(10),
+                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1039,9 +1039,9 @@ public class IntersectionMember1Test : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent10(true),
-                                    new Files::UnnamedSchemaWithArrayParent10(10),
-                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent1(true),
+                                    new Files::UnnamedSchemaWithArrayParent1(10),
+                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1119,9 +1119,9 @@ public class IntersectionMember1Test : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent10(true),
-                                    new Files::UnnamedSchemaWithArrayParent10(10),
-                                    new Files::UnnamedSchemaWithArrayParent10("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent1(true),
+                                    new Files::UnnamedSchemaWithArrayParent1(10),
+                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,

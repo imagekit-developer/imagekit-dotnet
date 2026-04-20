@@ -2126,7 +2126,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueTe
     public void MixedValidationWorks()
     {
         UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value = new(
-            [new UnnamedSchemaWithArrayParent6("string")]
+            [
+                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
+                    "string"
+                ),
+            ]
         );
         value.Validate();
     }
@@ -2177,7 +2181,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueTe
     public void MixedSerializationRoundtripWorks()
     {
         UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value = new(
-            [new UnnamedSchemaWithArrayParent6("string")]
+            [
+                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
+                    "string"
+                ),
+            ]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
@@ -2190,38 +2198,44 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueTe
     }
 }
 
-public class UnnamedSchemaWithArrayParent6Test : TestBase
+public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemTest
+    : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent6 value = "string";
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
+            "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent6 value = 0;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
+            0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent6 value = true;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
+            true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent6 value = "string";
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
+            "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent6>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2229,12 +2243,14 @@ public class UnnamedSchemaWithArrayParent6Test : TestBase
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent6 value = 0;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
+            0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent6>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2242,12 +2258,14 @@ public class UnnamedSchemaWithArrayParent6Test : TestBase
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent6 value = true;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
+            true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent6>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2667,7 +2685,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     public void MixedValidationWorks()
     {
         UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value = new(
-            [new UnnamedSchemaWithArrayParent7("string")]
+            [
+                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
+                    "string"
+                ),
+            ]
         );
         value.Validate();
     }
@@ -2718,7 +2740,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     public void MixedSerializationRoundtripWorks()
     {
         UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value = new(
-            [new UnnamedSchemaWithArrayParent7("string")]
+            [
+                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
+                    "string"
+                ),
+            ]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
@@ -2731,38 +2757,44 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     }
 }
 
-public class UnnamedSchemaWithArrayParent7Test : TestBase
+public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItemTest
+    : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent7 value = "string";
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
+            "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent7 value = 0;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
+            0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent7 value = true;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
+            true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent7 value = "string";
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
+            "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent7>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2770,12 +2802,14 @@ public class UnnamedSchemaWithArrayParent7Test : TestBase
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent7 value = 0;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
+            0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent7>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -2783,12 +2817,14 @@ public class UnnamedSchemaWithArrayParent7Test : TestBase
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent7 value = true;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
+            true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent7>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3206,7 +3242,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueT
     public void MixedValidationWorks()
     {
         UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value = new(
-            [new UnnamedSchemaWithArrayParent8("string")]
+            [
+                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
+                    "string"
+                ),
+            ]
         );
         value.Validate();
     }
@@ -3257,7 +3297,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueT
     public void MixedSerializationRoundtripWorks()
     {
         UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value = new(
-            [new UnnamedSchemaWithArrayParent8("string")]
+            [
+                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
+                    "string"
+                ),
+            ]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
@@ -3270,38 +3314,44 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueT
     }
 }
 
-public class UnnamedSchemaWithArrayParent8Test : TestBase
+public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItemTest
+    : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent8 value = "string";
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
+            "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent8 value = 0;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
+            0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent8 value = true;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
+            true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent8 value = "string";
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
+            "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent8>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3309,12 +3359,14 @@ public class UnnamedSchemaWithArrayParent8Test : TestBase
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent8 value = 0;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
+            0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent8>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -3322,12 +3374,14 @@ public class UnnamedSchemaWithArrayParent8Test : TestBase
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent8 value = true;
+        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
+            true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent8>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }

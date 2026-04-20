@@ -21,9 +21,9 @@ public class CustomMetadataFieldTest : TestBase
                 Type = CustomMetadataFieldSchemaType.Text,
                 DefaultValue = new(
                     [
-                        new UnnamedSchemaWithArrayParent9(true),
-                        new UnnamedSchemaWithArrayParent9(10),
-                        new UnnamedSchemaWithArrayParent9("Hello"),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                     ]
                 ),
                 IsValueRequired = true,
@@ -43,9 +43,9 @@ public class CustomMetadataFieldTest : TestBase
             Type = CustomMetadataFieldSchemaType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent9(true),
-                    new UnnamedSchemaWithArrayParent9(10),
-                    new UnnamedSchemaWithArrayParent9("Hello"),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -75,9 +75,9 @@ public class CustomMetadataFieldTest : TestBase
                 Type = CustomMetadataFieldSchemaType.Text,
                 DefaultValue = new(
                     [
-                        new UnnamedSchemaWithArrayParent9(true),
-                        new UnnamedSchemaWithArrayParent9(10),
-                        new UnnamedSchemaWithArrayParent9("Hello"),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                     ]
                 ),
                 IsValueRequired = true,
@@ -111,9 +111,9 @@ public class CustomMetadataFieldTest : TestBase
                 Type = CustomMetadataFieldSchemaType.Text,
                 DefaultValue = new(
                     [
-                        new UnnamedSchemaWithArrayParent9(true),
-                        new UnnamedSchemaWithArrayParent9(10),
-                        new UnnamedSchemaWithArrayParent9("Hello"),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                     ]
                 ),
                 IsValueRequired = true,
@@ -140,9 +140,9 @@ public class CustomMetadataFieldTest : TestBase
             Type = CustomMetadataFieldSchemaType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent9(true),
-                    new UnnamedSchemaWithArrayParent9(10),
-                    new UnnamedSchemaWithArrayParent9("Hello"),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -172,9 +172,9 @@ public class CustomMetadataFieldTest : TestBase
                 Type = CustomMetadataFieldSchemaType.Text,
                 DefaultValue = new(
                     [
-                        new UnnamedSchemaWithArrayParent9(true),
-                        new UnnamedSchemaWithArrayParent9(10),
-                        new UnnamedSchemaWithArrayParent9("Hello"),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                     ]
                 ),
                 IsValueRequired = true,
@@ -202,9 +202,9 @@ public class CustomMetadataFieldTest : TestBase
                 Type = CustomMetadataFieldSchemaType.Text,
                 DefaultValue = new(
                     [
-                        new UnnamedSchemaWithArrayParent9(true),
-                        new UnnamedSchemaWithArrayParent9(10),
-                        new UnnamedSchemaWithArrayParent9("Hello"),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                     ]
                 ),
                 IsValueRequired = true,
@@ -232,9 +232,9 @@ public class CustomMetadataFieldSchemaTest : TestBase
             Type = CustomMetadataFieldSchemaType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent9(true),
-                    new UnnamedSchemaWithArrayParent9(10),
-                    new UnnamedSchemaWithArrayParent9("Hello"),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -249,9 +249,9 @@ public class CustomMetadataFieldSchemaTest : TestBase
             CustomMetadataFieldSchemaType.Text;
         CustomMetadataFieldSchemaDefaultValue expectedDefaultValue = new(
             [
-                new UnnamedSchemaWithArrayParent9(true),
-                new UnnamedSchemaWithArrayParent9(10),
-                new UnnamedSchemaWithArrayParent9("Hello"),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
             ]
         );
         bool expectedIsValueRequired = true;
@@ -292,9 +292,9 @@ public class CustomMetadataFieldSchemaTest : TestBase
             Type = CustomMetadataFieldSchemaType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent9(true),
-                    new UnnamedSchemaWithArrayParent9(10),
-                    new UnnamedSchemaWithArrayParent9("Hello"),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -322,9 +322,9 @@ public class CustomMetadataFieldSchemaTest : TestBase
             Type = CustomMetadataFieldSchemaType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent9(true),
-                    new UnnamedSchemaWithArrayParent9(10),
-                    new UnnamedSchemaWithArrayParent9("Hello"),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -346,9 +346,9 @@ public class CustomMetadataFieldSchemaTest : TestBase
             CustomMetadataFieldSchemaType.Text;
         CustomMetadataFieldSchemaDefaultValue expectedDefaultValue = new(
             [
-                new UnnamedSchemaWithArrayParent9(true),
-                new UnnamedSchemaWithArrayParent9(10),
-                new UnnamedSchemaWithArrayParent9("Hello"),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
             ]
         );
         bool expectedIsValueRequired = true;
@@ -389,9 +389,9 @@ public class CustomMetadataFieldSchemaTest : TestBase
             Type = CustomMetadataFieldSchemaType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent9(true),
-                    new UnnamedSchemaWithArrayParent9(10),
-                    new UnnamedSchemaWithArrayParent9("Hello"),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -495,9 +495,9 @@ public class CustomMetadataFieldSchemaTest : TestBase
             Type = CustomMetadataFieldSchemaType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent9(true),
-                    new UnnamedSchemaWithArrayParent9(10),
-                    new UnnamedSchemaWithArrayParent9("Hello"),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                    new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -608,9 +608,9 @@ public class CustomMetadataFieldSchemaDefaultValueTest : TestBase
     {
         CustomMetadataFieldSchemaDefaultValue value = new(
             [
-                new UnnamedSchemaWithArrayParent9(true),
-                new UnnamedSchemaWithArrayParent9(10),
-                new UnnamedSchemaWithArrayParent9("Hello"),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
             ]
         );
         value.Validate();
@@ -660,9 +660,9 @@ public class CustomMetadataFieldSchemaDefaultValueTest : TestBase
     {
         CustomMetadataFieldSchemaDefaultValue value = new(
             [
-                new UnnamedSchemaWithArrayParent9(true),
-                new UnnamedSchemaWithArrayParent9(10),
-                new UnnamedSchemaWithArrayParent9("Hello"),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
             ]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -675,38 +675,39 @@ public class CustomMetadataFieldSchemaDefaultValueTest : TestBase
     }
 }
 
-public class UnnamedSchemaWithArrayParent9Test : TestBase
+public class CustomMetadataFieldSchemaDefaultValueDefaultValueItemTest : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent9 value = "string";
+        CustomMetadataFieldSchemaDefaultValueDefaultValueItem value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent9 value = 0;
+        CustomMetadataFieldSchemaDefaultValueDefaultValueItem value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent9 value = true;
+        CustomMetadataFieldSchemaDefaultValueDefaultValueItem value = true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent9 value = "string";
+        CustomMetadataFieldSchemaDefaultValueDefaultValueItem value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent9>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<CustomMetadataFieldSchemaDefaultValueDefaultValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -714,12 +715,13 @@ public class UnnamedSchemaWithArrayParent9Test : TestBase
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent9 value = 0;
+        CustomMetadataFieldSchemaDefaultValueDefaultValueItem value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent9>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<CustomMetadataFieldSchemaDefaultValueDefaultValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }
@@ -727,12 +729,13 @@ public class UnnamedSchemaWithArrayParent9Test : TestBase
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent9 value = true;
+        CustomMetadataFieldSchemaDefaultValueDefaultValueItem value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent9>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<CustomMetadataFieldSchemaDefaultValueDefaultValueItem>(
+                element,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(value, deserialized);
     }

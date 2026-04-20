@@ -143,9 +143,9 @@ public class FileUploadResponseTest : TestBase
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent11(true),
-                                new UnnamedSchemaWithArrayParent11(10),
-                                new UnnamedSchemaWithArrayParent11("Hello"),
+                                new UnnamedSchemaWithArrayParent2(true),
+                                new UnnamedSchemaWithArrayParent2(10),
+                                new UnnamedSchemaWithArrayParent2("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -298,9 +298,9 @@ public class FileUploadResponseTest : TestBase
                     Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                     DefaultValue = new(
                         [
-                            new UnnamedSchemaWithArrayParent11(true),
-                            new UnnamedSchemaWithArrayParent11(10),
-                            new UnnamedSchemaWithArrayParent11("Hello"),
+                            new UnnamedSchemaWithArrayParent2(true),
+                            new UnnamedSchemaWithArrayParent2(10),
+                            new UnnamedSchemaWithArrayParent2("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -515,9 +515,9 @@ public class FileUploadResponseTest : TestBase
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent11(true),
-                                new UnnamedSchemaWithArrayParent11(10),
-                                new UnnamedSchemaWithArrayParent11("Hello"),
+                                new UnnamedSchemaWithArrayParent2(true),
+                                new UnnamedSchemaWithArrayParent2(10),
+                                new UnnamedSchemaWithArrayParent2("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -684,9 +684,9 @@ public class FileUploadResponseTest : TestBase
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent11(true),
-                                new UnnamedSchemaWithArrayParent11(10),
-                                new UnnamedSchemaWithArrayParent11("Hello"),
+                                new UnnamedSchemaWithArrayParent2(true),
+                                new UnnamedSchemaWithArrayParent2(10),
+                                new UnnamedSchemaWithArrayParent2("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -846,9 +846,9 @@ public class FileUploadResponseTest : TestBase
                     Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                     DefaultValue = new(
                         [
-                            new UnnamedSchemaWithArrayParent11(true),
-                            new UnnamedSchemaWithArrayParent11(10),
-                            new UnnamedSchemaWithArrayParent11("Hello"),
+                            new UnnamedSchemaWithArrayParent2(true),
+                            new UnnamedSchemaWithArrayParent2(10),
+                            new UnnamedSchemaWithArrayParent2("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -1063,9 +1063,9 @@ public class FileUploadResponseTest : TestBase
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent11(true),
-                                new UnnamedSchemaWithArrayParent11(10),
-                                new UnnamedSchemaWithArrayParent11("Hello"),
+                                new UnnamedSchemaWithArrayParent2(true),
+                                new UnnamedSchemaWithArrayParent2(10),
+                                new UnnamedSchemaWithArrayParent2("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1434,9 +1434,9 @@ public class FileUploadResponseTest : TestBase
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent11(true),
-                                new UnnamedSchemaWithArrayParent11(10),
-                                new UnnamedSchemaWithArrayParent11("Hello"),
+                                new UnnamedSchemaWithArrayParent2(true),
+                                new UnnamedSchemaWithArrayParent2(10),
+                                new UnnamedSchemaWithArrayParent2("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1591,9 +1591,9 @@ public class FileUploadResponseTest : TestBase
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent11(true),
-                                new UnnamedSchemaWithArrayParent11(10),
-                                new UnnamedSchemaWithArrayParent11("Hello"),
+                                new UnnamedSchemaWithArrayParent2(true),
+                                new UnnamedSchemaWithArrayParent2(10),
+                                new UnnamedSchemaWithArrayParent2("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1743,9 +1743,9 @@ public class FileUploadResponseTest : TestBase
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent11(true),
-                                new UnnamedSchemaWithArrayParent11(10),
-                                new UnnamedSchemaWithArrayParent11("Hello"),
+                                new UnnamedSchemaWithArrayParent2(true),
+                                new UnnamedSchemaWithArrayParent2(10),
+                                new UnnamedSchemaWithArrayParent2("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1904,9 +1904,9 @@ public class FileUploadResponseTest : TestBase
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent11(true),
-                                new UnnamedSchemaWithArrayParent11(10),
-                                new UnnamedSchemaWithArrayParent11("Hello"),
+                                new UnnamedSchemaWithArrayParent2(true),
+                                new UnnamedSchemaWithArrayParent2(10),
+                                new UnnamedSchemaWithArrayParent2("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -2070,9 +2070,9 @@ public class FileUploadResponseTest : TestBase
                         Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent11(true),
-                                new UnnamedSchemaWithArrayParent11(10),
-                                new UnnamedSchemaWithArrayParent11("Hello"),
+                                new UnnamedSchemaWithArrayParent2(true),
+                                new UnnamedSchemaWithArrayParent2(10),
+                                new UnnamedSchemaWithArrayParent2("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -2743,9 +2743,9 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
             Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent11(true),
-                    new UnnamedSchemaWithArrayParent11(10),
-                    new UnnamedSchemaWithArrayParent11("Hello"),
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -2762,9 +2762,9 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
             FileUploadResponseSelectedFieldsSchemaItemType.Text;
         FileUploadResponseSelectedFieldsSchemaItemDefaultValue expectedDefaultValue = new(
             [
-                new UnnamedSchemaWithArrayParent11(true),
-                new UnnamedSchemaWithArrayParent11(10),
-                new UnnamedSchemaWithArrayParent11("Hello"),
+                new UnnamedSchemaWithArrayParent2(true),
+                new UnnamedSchemaWithArrayParent2(10),
+                new UnnamedSchemaWithArrayParent2("Hello"),
             ]
         );
         bool expectedIsValueRequired = true;
@@ -2809,9 +2809,9 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
             Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent11(true),
-                    new UnnamedSchemaWithArrayParent11(10),
-                    new UnnamedSchemaWithArrayParent11("Hello"),
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -2841,9 +2841,9 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
             Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent11(true),
-                    new UnnamedSchemaWithArrayParent11(10),
-                    new UnnamedSchemaWithArrayParent11("Hello"),
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -2867,9 +2867,9 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
             FileUploadResponseSelectedFieldsSchemaItemType.Text;
         FileUploadResponseSelectedFieldsSchemaItemDefaultValue expectedDefaultValue = new(
             [
-                new UnnamedSchemaWithArrayParent11(true),
-                new UnnamedSchemaWithArrayParent11(10),
-                new UnnamedSchemaWithArrayParent11("Hello"),
+                new UnnamedSchemaWithArrayParent2(true),
+                new UnnamedSchemaWithArrayParent2(10),
+                new UnnamedSchemaWithArrayParent2("Hello"),
             ]
         );
         bool expectedIsValueRequired = true;
@@ -2914,9 +2914,9 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
             Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent11(true),
-                    new UnnamedSchemaWithArrayParent11(10),
-                    new UnnamedSchemaWithArrayParent11("Hello"),
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -3040,9 +3040,9 @@ public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
             Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent11(true),
-                    new UnnamedSchemaWithArrayParent11(10),
-                    new UnnamedSchemaWithArrayParent11("Hello"),
+                    new UnnamedSchemaWithArrayParent2(true),
+                    new UnnamedSchemaWithArrayParent2(10),
+                    new UnnamedSchemaWithArrayParent2("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -3155,9 +3155,9 @@ public class FileUploadResponseSelectedFieldsSchemaItemDefaultValueTest : TestBa
     {
         FileUploadResponseSelectedFieldsSchemaItemDefaultValue value = new(
             [
-                new UnnamedSchemaWithArrayParent11(true),
-                new UnnamedSchemaWithArrayParent11(10),
-                new UnnamedSchemaWithArrayParent11("Hello"),
+                new UnnamedSchemaWithArrayParent2(true),
+                new UnnamedSchemaWithArrayParent2(10),
+                new UnnamedSchemaWithArrayParent2("Hello"),
             ]
         );
         value.Validate();
@@ -3210,9 +3210,9 @@ public class FileUploadResponseSelectedFieldsSchemaItemDefaultValueTest : TestBa
     {
         FileUploadResponseSelectedFieldsSchemaItemDefaultValue value = new(
             [
-                new UnnamedSchemaWithArrayParent11(true),
-                new UnnamedSchemaWithArrayParent11(10),
-                new UnnamedSchemaWithArrayParent11("Hello"),
+                new UnnamedSchemaWithArrayParent2(true),
+                new UnnamedSchemaWithArrayParent2(10),
+                new UnnamedSchemaWithArrayParent2("Hello"),
             ]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -3226,35 +3226,35 @@ public class FileUploadResponseSelectedFieldsSchemaItemDefaultValueTest : TestBa
     }
 }
 
-public class UnnamedSchemaWithArrayParent11Test : TestBase
+public class UnnamedSchemaWithArrayParent2Test : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent11 value = "string";
+        UnnamedSchemaWithArrayParent2 value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent11 value = 0;
+        UnnamedSchemaWithArrayParent2 value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent11 value = true;
+        UnnamedSchemaWithArrayParent2 value = true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent11 value = "string";
+        UnnamedSchemaWithArrayParent2 value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent11>(
+        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent2>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3265,9 +3265,9 @@ public class UnnamedSchemaWithArrayParent11Test : TestBase
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent11 value = 0;
+        UnnamedSchemaWithArrayParent2 value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent11>(
+        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent2>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3278,9 +3278,9 @@ public class UnnamedSchemaWithArrayParent11Test : TestBase
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent11 value = true;
+        UnnamedSchemaWithArrayParent2 value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent11>(
+        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent2>(
             element,
             ModelBase.SerializerOptions
         );

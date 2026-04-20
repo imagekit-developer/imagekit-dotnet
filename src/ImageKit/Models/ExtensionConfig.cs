@@ -2332,10 +2332,7 @@ public record class SetMetadataValue : ModelBase
         this._element = element;
     }
 
-    public SetMetadataValue(
-        IReadOnlyList<UnnamedSchemaWithArrayParent3> value,
-        JsonElement? element = null
-    )
+    public SetMetadataValue(IReadOnlyList<MetadataValueItem> value, JsonElement? element = null)
     {
         this.Value = ImmutableArray.ToImmutableArray(value);
         this._element = element;
@@ -2411,24 +2408,22 @@ public record class SetMetadataValue : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent3</c>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>MetadataValueItem</c>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent3&gt;`
+    ///     // `value` is of type `IReadOnlyList&lt;MetadataValueItem&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickMixed(
-        [NotNullWhen(true)] out IReadOnlyList<UnnamedSchemaWithArrayParent3>? value
-    )
+    public bool TryPickMixed([NotNullWhen(true)] out IReadOnlyList<MetadataValueItem>? value)
     {
-        value = this.Value as IReadOnlyList<UnnamedSchemaWithArrayParent3>;
+        value = this.Value as IReadOnlyList<MetadataValueItem>;
         return value != null;
     }
 
@@ -2449,7 +2444,7 @@ public record class SetMetadataValue : ModelBase
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent3&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;MetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2458,7 +2453,7 @@ public record class SetMetadataValue : ModelBase
         Action<string> @string,
         Action<double> @double,
         Action<bool> @bool,
-        Action<IReadOnlyList<UnnamedSchemaWithArrayParent3>> mixed
+        Action<IReadOnlyList<MetadataValueItem>> mixed
     )
     {
         switch (this.Value)
@@ -2472,7 +2467,7 @@ public record class SetMetadataValue : ModelBase
             case bool value:
                 @bool(value);
                 break;
-            case IReadOnlyList<UnnamedSchemaWithArrayParent3> value:
+            case IReadOnlyList<MetadataValueItem> value:
                 mixed(value);
                 break;
             default:
@@ -2500,7 +2495,7 @@ public record class SetMetadataValue : ModelBase
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent3&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;MetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2509,7 +2504,7 @@ public record class SetMetadataValue : ModelBase
         Func<string, T> @string,
         Func<double, T> @double,
         Func<bool, T> @bool,
-        Func<IReadOnlyList<UnnamedSchemaWithArrayParent3>, T> mixed
+        Func<IReadOnlyList<MetadataValueItem>, T> mixed
     )
     {
         return this.Value switch
@@ -2517,7 +2512,7 @@ public record class SetMetadataValue : ModelBase
             string value => @string(value),
             double value => @double(value),
             bool value => @bool(value),
-            IReadOnlyList<UnnamedSchemaWithArrayParent3> value => mixed(value),
+            IReadOnlyList<MetadataValueItem> value => mixed(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of SetMetadataValue"
             ),
@@ -2530,8 +2525,8 @@ public record class SetMetadataValue : ModelBase
 
     public static implicit operator SetMetadataValue(bool value) => new(value);
 
-    public static implicit operator SetMetadataValue(List<UnnamedSchemaWithArrayParent3> value) =>
-        new((IReadOnlyList<UnnamedSchemaWithArrayParent3>)value);
+    public static implicit operator SetMetadataValue(List<MetadataValueItem> value) =>
+        new((IReadOnlyList<MetadataValueItem>)value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -2588,7 +2583,7 @@ public record class SetMetadataValue : ModelBase
             string _ => 0,
             double _ => 1,
             bool _ => 2,
-            IReadOnlyList<UnnamedSchemaWithArrayParent3> _ => 3,
+            IReadOnlyList<MetadataValueItem> _ => 3,
             _ => -1,
         };
     }
@@ -2636,7 +2631,7 @@ sealed class SetMetadataValueConverter : JsonConverter<SetMetadataValue>
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<List<UnnamedSchemaWithArrayParent3>>(
+            var deserialized = JsonSerializer.Deserialize<List<MetadataValueItem>>(
                 element,
                 options
             );
@@ -2667,8 +2662,8 @@ sealed class SetMetadataValueConverter : JsonConverter<SetMetadataValue>
     }
 }
 
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent3Converter))]
-public record class UnnamedSchemaWithArrayParent3 : ModelBase
+[JsonConverter(typeof(MetadataValueItemConverter))]
+public record class MetadataValueItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -2685,25 +2680,25 @@ public record class UnnamedSchemaWithArrayParent3 : ModelBase
         }
     }
 
-    public UnnamedSchemaWithArrayParent3(string value, JsonElement? element = null)
+    public MetadataValueItem(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent3(double value, JsonElement? element = null)
+    public MetadataValueItem(double value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent3(bool value, JsonElement? element = null)
+    public MetadataValueItem(bool value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent3(JsonElement element)
+    public MetadataValueItem(JsonElement element)
     {
         this._element = element;
     }
@@ -2807,7 +2802,7 @@ public record class UnnamedSchemaWithArrayParent3 : ModelBase
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent3"
+                    "Data did not match any variant of MetadataValueItem"
                 );
         }
     }
@@ -2842,16 +2837,16 @@ public record class UnnamedSchemaWithArrayParent3 : ModelBase
             double value => @double(value),
             bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent3"
+                "Data did not match any variant of MetadataValueItem"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent3(string value) => new(value);
+    public static implicit operator MetadataValueItem(string value) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent3(double value) => new(value);
+    public static implicit operator MetadataValueItem(double value) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent3(bool value) => new(value);
+    public static implicit operator MetadataValueItem(bool value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -2868,12 +2863,12 @@ public record class UnnamedSchemaWithArrayParent3 : ModelBase
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent3"
+                "Data did not match any variant of MetadataValueItem"
             );
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent3? other) =>
+    public virtual bool Equals(MetadataValueItem? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -2901,9 +2896,9 @@ public record class UnnamedSchemaWithArrayParent3 : ModelBase
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent3Converter : JsonConverter<UnnamedSchemaWithArrayParent3>
+sealed class MetadataValueItemConverter : JsonConverter<MetadataValueItem>
 {
-    public override UnnamedSchemaWithArrayParent3? Read(
+    public override MetadataValueItem? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -2946,7 +2941,7 @@ sealed class UnnamedSchemaWithArrayParent3Converter : JsonConverter<UnnamedSchem
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent3 value,
+        MetadataValueItem value,
         JsonSerializerOptions options
     )
     {
@@ -3290,7 +3285,7 @@ public record class OnUnknownSetMetadataValue : ModelBase
     }
 
     public OnUnknownSetMetadataValue(
-        IReadOnlyList<UnnamedSchemaWithArrayParent4> value,
+        IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem> value,
         JsonElement? element = null
     )
     {
@@ -3368,24 +3363,24 @@ public record class OnUnknownSetMetadataValue : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent4</c>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>OnUnknownSetMetadataValueMetadataValueItem</c>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent4&gt;`
+    ///     // `value` is of type `IReadOnlyList&lt;OnUnknownSetMetadataValueMetadataValueItem&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
     public bool TryPickMixed(
-        [NotNullWhen(true)] out IReadOnlyList<UnnamedSchemaWithArrayParent4>? value
+        [NotNullWhen(true)] out IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem>? value
     )
     {
-        value = this.Value as IReadOnlyList<UnnamedSchemaWithArrayParent4>;
+        value = this.Value as IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem>;
         return value != null;
     }
 
@@ -3406,7 +3401,7 @@ public record class OnUnknownSetMetadataValue : ModelBase
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent4&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;OnUnknownSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3415,7 +3410,7 @@ public record class OnUnknownSetMetadataValue : ModelBase
         Action<string> @string,
         Action<double> @double,
         Action<bool> @bool,
-        Action<IReadOnlyList<UnnamedSchemaWithArrayParent4>> mixed
+        Action<IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem>> mixed
     )
     {
         switch (this.Value)
@@ -3429,7 +3424,7 @@ public record class OnUnknownSetMetadataValue : ModelBase
             case bool value:
                 @bool(value);
                 break;
-            case IReadOnlyList<UnnamedSchemaWithArrayParent4> value:
+            case IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem> value:
                 mixed(value);
                 break;
             default:
@@ -3457,7 +3452,7 @@ public record class OnUnknownSetMetadataValue : ModelBase
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent4&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;OnUnknownSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3466,7 +3461,7 @@ public record class OnUnknownSetMetadataValue : ModelBase
         Func<string, T> @string,
         Func<double, T> @double,
         Func<bool, T> @bool,
-        Func<IReadOnlyList<UnnamedSchemaWithArrayParent4>, T> mixed
+        Func<IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem>, T> mixed
     )
     {
         return this.Value switch
@@ -3474,7 +3469,7 @@ public record class OnUnknownSetMetadataValue : ModelBase
             string value => @string(value),
             double value => @double(value),
             bool value => @bool(value),
-            IReadOnlyList<UnnamedSchemaWithArrayParent4> value => mixed(value),
+            IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem> value => mixed(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of OnUnknownSetMetadataValue"
             ),
@@ -3488,8 +3483,8 @@ public record class OnUnknownSetMetadataValue : ModelBase
     public static implicit operator OnUnknownSetMetadataValue(bool value) => new(value);
 
     public static implicit operator OnUnknownSetMetadataValue(
-        List<UnnamedSchemaWithArrayParent4> value
-    ) => new((IReadOnlyList<UnnamedSchemaWithArrayParent4>)value);
+        List<OnUnknownSetMetadataValueMetadataValueItem> value
+    ) => new((IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem>)value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -3546,7 +3541,7 @@ public record class OnUnknownSetMetadataValue : ModelBase
             string _ => 0,
             double _ => 1,
             bool _ => 2,
-            IReadOnlyList<UnnamedSchemaWithArrayParent4> _ => 3,
+            IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem> _ => 3,
             _ => -1,
         };
     }
@@ -3594,10 +3589,9 @@ sealed class OnUnknownSetMetadataValueConverter : JsonConverter<OnUnknownSetMeta
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<List<UnnamedSchemaWithArrayParent4>>(
-                element,
-                options
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                List<OnUnknownSetMetadataValueMetadataValueItem>
+            >(element, options);
             if (deserialized != null)
             {
                 foreach (var item in deserialized)
@@ -3625,8 +3619,8 @@ sealed class OnUnknownSetMetadataValueConverter : JsonConverter<OnUnknownSetMeta
     }
 }
 
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent4Converter))]
-public record class UnnamedSchemaWithArrayParent4 : ModelBase
+[JsonConverter(typeof(OnUnknownSetMetadataValueMetadataValueItemConverter))]
+public record class OnUnknownSetMetadataValueMetadataValueItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -3643,25 +3637,25 @@ public record class UnnamedSchemaWithArrayParent4 : ModelBase
         }
     }
 
-    public UnnamedSchemaWithArrayParent4(string value, JsonElement? element = null)
+    public OnUnknownSetMetadataValueMetadataValueItem(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent4(double value, JsonElement? element = null)
+    public OnUnknownSetMetadataValueMetadataValueItem(double value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent4(bool value, JsonElement? element = null)
+    public OnUnknownSetMetadataValueMetadataValueItem(bool value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent4(JsonElement element)
+    public OnUnknownSetMetadataValueMetadataValueItem(JsonElement element)
     {
         this._element = element;
     }
@@ -3765,7 +3759,7 @@ public record class UnnamedSchemaWithArrayParent4 : ModelBase
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent4"
+                    "Data did not match any variant of OnUnknownSetMetadataValueMetadataValueItem"
                 );
         }
     }
@@ -3800,16 +3794,19 @@ public record class UnnamedSchemaWithArrayParent4 : ModelBase
             double value => @double(value),
             bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent4"
+                "Data did not match any variant of OnUnknownSetMetadataValueMetadataValueItem"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent4(string value) => new(value);
+    public static implicit operator OnUnknownSetMetadataValueMetadataValueItem(string value) =>
+        new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent4(double value) => new(value);
+    public static implicit operator OnUnknownSetMetadataValueMetadataValueItem(double value) =>
+        new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent4(bool value) => new(value);
+    public static implicit operator OnUnknownSetMetadataValueMetadataValueItem(bool value) =>
+        new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -3826,12 +3823,12 @@ public record class UnnamedSchemaWithArrayParent4 : ModelBase
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent4"
+                "Data did not match any variant of OnUnknownSetMetadataValueMetadataValueItem"
             );
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent4? other) =>
+    public virtual bool Equals(OnUnknownSetMetadataValueMetadataValueItem? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -3859,9 +3856,10 @@ public record class UnnamedSchemaWithArrayParent4 : ModelBase
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent4Converter : JsonConverter<UnnamedSchemaWithArrayParent4>
+sealed class OnUnknownSetMetadataValueMetadataValueItemConverter
+    : JsonConverter<OnUnknownSetMetadataValueMetadataValueItem>
 {
-    public override UnnamedSchemaWithArrayParent4? Read(
+    public override OnUnknownSetMetadataValueMetadataValueItem? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -3904,7 +3902,7 @@ sealed class UnnamedSchemaWithArrayParent4Converter : JsonConverter<UnnamedSchem
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent4 value,
+        OnUnknownSetMetadataValueMetadataValueItem value,
         JsonSerializerOptions options
     )
     {
@@ -4250,7 +4248,7 @@ public record class OnYesSetMetadataValue : ModelBase
     }
 
     public OnYesSetMetadataValue(
-        IReadOnlyList<UnnamedSchemaWithArrayParent5> value,
+        IReadOnlyList<OnYesSetMetadataValueMetadataValueItem> value,
         JsonElement? element = null
     )
     {
@@ -4328,24 +4326,24 @@ public record class OnYesSetMetadataValue : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent5</c>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>OnYesSetMetadataValueMetadataValueItem</c>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent5&gt;`
+    ///     // `value` is of type `IReadOnlyList&lt;OnYesSetMetadataValueMetadataValueItem&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
     public bool TryPickMixed(
-        [NotNullWhen(true)] out IReadOnlyList<UnnamedSchemaWithArrayParent5>? value
+        [NotNullWhen(true)] out IReadOnlyList<OnYesSetMetadataValueMetadataValueItem>? value
     )
     {
-        value = this.Value as IReadOnlyList<UnnamedSchemaWithArrayParent5>;
+        value = this.Value as IReadOnlyList<OnYesSetMetadataValueMetadataValueItem>;
         return value != null;
     }
 
@@ -4366,7 +4364,7 @@ public record class OnYesSetMetadataValue : ModelBase
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent5&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;OnYesSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4375,7 +4373,7 @@ public record class OnYesSetMetadataValue : ModelBase
         Action<string> @string,
         Action<double> @double,
         Action<bool> @bool,
-        Action<IReadOnlyList<UnnamedSchemaWithArrayParent5>> mixed
+        Action<IReadOnlyList<OnYesSetMetadataValueMetadataValueItem>> mixed
     )
     {
         switch (this.Value)
@@ -4389,7 +4387,7 @@ public record class OnYesSetMetadataValue : ModelBase
             case bool value:
                 @bool(value);
                 break;
-            case IReadOnlyList<UnnamedSchemaWithArrayParent5> value:
+            case IReadOnlyList<OnYesSetMetadataValueMetadataValueItem> value:
                 mixed(value);
                 break;
             default:
@@ -4417,7 +4415,7 @@ public record class OnYesSetMetadataValue : ModelBase
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent5&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;OnYesSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4426,7 +4424,7 @@ public record class OnYesSetMetadataValue : ModelBase
         Func<string, T> @string,
         Func<double, T> @double,
         Func<bool, T> @bool,
-        Func<IReadOnlyList<UnnamedSchemaWithArrayParent5>, T> mixed
+        Func<IReadOnlyList<OnYesSetMetadataValueMetadataValueItem>, T> mixed
     )
     {
         return this.Value switch
@@ -4434,7 +4432,7 @@ public record class OnYesSetMetadataValue : ModelBase
             string value => @string(value),
             double value => @double(value),
             bool value => @bool(value),
-            IReadOnlyList<UnnamedSchemaWithArrayParent5> value => mixed(value),
+            IReadOnlyList<OnYesSetMetadataValueMetadataValueItem> value => mixed(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of OnYesSetMetadataValue"
             ),
@@ -4448,8 +4446,8 @@ public record class OnYesSetMetadataValue : ModelBase
     public static implicit operator OnYesSetMetadataValue(bool value) => new(value);
 
     public static implicit operator OnYesSetMetadataValue(
-        List<UnnamedSchemaWithArrayParent5> value
-    ) => new((IReadOnlyList<UnnamedSchemaWithArrayParent5>)value);
+        List<OnYesSetMetadataValueMetadataValueItem> value
+    ) => new((IReadOnlyList<OnYesSetMetadataValueMetadataValueItem>)value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -4506,7 +4504,7 @@ public record class OnYesSetMetadataValue : ModelBase
             string _ => 0,
             double _ => 1,
             bool _ => 2,
-            IReadOnlyList<UnnamedSchemaWithArrayParent5> _ => 3,
+            IReadOnlyList<OnYesSetMetadataValueMetadataValueItem> _ => 3,
             _ => -1,
         };
     }
@@ -4554,10 +4552,9 @@ sealed class OnYesSetMetadataValueConverter : JsonConverter<OnYesSetMetadataValu
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<List<UnnamedSchemaWithArrayParent5>>(
-                element,
-                options
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                List<OnYesSetMetadataValueMetadataValueItem>
+            >(element, options);
             if (deserialized != null)
             {
                 foreach (var item in deserialized)
@@ -4585,8 +4582,8 @@ sealed class OnYesSetMetadataValueConverter : JsonConverter<OnYesSetMetadataValu
     }
 }
 
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent5Converter))]
-public record class UnnamedSchemaWithArrayParent5 : ModelBase
+[JsonConverter(typeof(OnYesSetMetadataValueMetadataValueItemConverter))]
+public record class OnYesSetMetadataValueMetadataValueItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -4603,25 +4600,25 @@ public record class UnnamedSchemaWithArrayParent5 : ModelBase
         }
     }
 
-    public UnnamedSchemaWithArrayParent5(string value, JsonElement? element = null)
+    public OnYesSetMetadataValueMetadataValueItem(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent5(double value, JsonElement? element = null)
+    public OnYesSetMetadataValueMetadataValueItem(double value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent5(bool value, JsonElement? element = null)
+    public OnYesSetMetadataValueMetadataValueItem(bool value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent5(JsonElement element)
+    public OnYesSetMetadataValueMetadataValueItem(JsonElement element)
     {
         this._element = element;
     }
@@ -4725,7 +4722,7 @@ public record class UnnamedSchemaWithArrayParent5 : ModelBase
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent5"
+                    "Data did not match any variant of OnYesSetMetadataValueMetadataValueItem"
                 );
         }
     }
@@ -4760,16 +4757,19 @@ public record class UnnamedSchemaWithArrayParent5 : ModelBase
             double value => @double(value),
             bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent5"
+                "Data did not match any variant of OnYesSetMetadataValueMetadataValueItem"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent5(string value) => new(value);
+    public static implicit operator OnYesSetMetadataValueMetadataValueItem(string value) =>
+        new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent5(double value) => new(value);
+    public static implicit operator OnYesSetMetadataValueMetadataValueItem(double value) =>
+        new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent5(bool value) => new(value);
+    public static implicit operator OnYesSetMetadataValueMetadataValueItem(bool value) =>
+        new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -4786,12 +4786,12 @@ public record class UnnamedSchemaWithArrayParent5 : ModelBase
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent5"
+                "Data did not match any variant of OnYesSetMetadataValueMetadataValueItem"
             );
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent5? other) =>
+    public virtual bool Equals(OnYesSetMetadataValueMetadataValueItem? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -4819,9 +4819,10 @@ public record class UnnamedSchemaWithArrayParent5 : ModelBase
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent5Converter : JsonConverter<UnnamedSchemaWithArrayParent5>
+sealed class OnYesSetMetadataValueMetadataValueItemConverter
+    : JsonConverter<OnYesSetMetadataValueMetadataValueItem>
 {
-    public override UnnamedSchemaWithArrayParent5? Read(
+    public override OnYesSetMetadataValueMetadataValueItem? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -4864,7 +4865,7 @@ sealed class UnnamedSchemaWithArrayParent5Converter : JsonConverter<UnnamedSchem
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent5 value,
+        OnYesSetMetadataValueMetadataValueItem value,
         JsonSerializerOptions options
     )
     {

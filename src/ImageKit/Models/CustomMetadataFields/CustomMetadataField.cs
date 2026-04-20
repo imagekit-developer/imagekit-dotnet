@@ -463,7 +463,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     }
 
     public CustomMetadataFieldSchemaDefaultValue(
-        IReadOnlyList<UnnamedSchemaWithArrayParent9> value,
+        IReadOnlyList<CustomMetadataFieldSchemaDefaultValueDefaultValueItem> value,
         JsonElement? element = null
     )
     {
@@ -541,24 +541,25 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent9</c>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>CustomMetadataFieldSchemaDefaultValueDefaultValueItem</c>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent9&gt;`
+    ///     // `value` is of type `IReadOnlyList&lt;CustomMetadataFieldSchemaDefaultValueDefaultValueItem&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
     public bool TryPickMixed(
-        [NotNullWhen(true)] out IReadOnlyList<UnnamedSchemaWithArrayParent9>? value
+        [NotNullWhen(true)]
+            out IReadOnlyList<CustomMetadataFieldSchemaDefaultValueDefaultValueItem>? value
     )
     {
-        value = this.Value as IReadOnlyList<UnnamedSchemaWithArrayParent9>;
+        value = this.Value as IReadOnlyList<CustomMetadataFieldSchemaDefaultValueDefaultValueItem>;
         return value != null;
     }
 
@@ -579,7 +580,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent9&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;CustomMetadataFieldSchemaDefaultValueDefaultValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -588,7 +589,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
         System::Action<string> @string,
         System::Action<double> @double,
         System::Action<bool> @bool,
-        System::Action<IReadOnlyList<UnnamedSchemaWithArrayParent9>> mixed
+        System::Action<IReadOnlyList<CustomMetadataFieldSchemaDefaultValueDefaultValueItem>> mixed
     )
     {
         switch (this.Value)
@@ -602,7 +603,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
             case bool value:
                 @bool(value);
                 break;
-            case IReadOnlyList<UnnamedSchemaWithArrayParent9> value:
+            case IReadOnlyList<CustomMetadataFieldSchemaDefaultValueDefaultValueItem> value:
                 mixed(value);
                 break;
             default:
@@ -630,7 +631,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent9&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;CustomMetadataFieldSchemaDefaultValueDefaultValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -639,7 +640,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
         System::Func<string, T> @string,
         System::Func<double, T> @double,
         System::Func<bool, T> @bool,
-        System::Func<IReadOnlyList<UnnamedSchemaWithArrayParent9>, T> mixed
+        System::Func<IReadOnlyList<CustomMetadataFieldSchemaDefaultValueDefaultValueItem>, T> mixed
     )
     {
         return this.Value switch
@@ -647,7 +648,9 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
             string value => @string(value),
             double value => @double(value),
             bool value => @bool(value),
-            IReadOnlyList<UnnamedSchemaWithArrayParent9> value => mixed(value),
+            IReadOnlyList<CustomMetadataFieldSchemaDefaultValueDefaultValueItem> value => mixed(
+                value
+            ),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of CustomMetadataFieldSchemaDefaultValue"
             ),
@@ -663,8 +666,8 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
     public static implicit operator CustomMetadataFieldSchemaDefaultValue(bool value) => new(value);
 
     public static implicit operator CustomMetadataFieldSchemaDefaultValue(
-        List<UnnamedSchemaWithArrayParent9> value
-    ) => new((IReadOnlyList<UnnamedSchemaWithArrayParent9>)value);
+        List<CustomMetadataFieldSchemaDefaultValueDefaultValueItem> value
+    ) => new((IReadOnlyList<CustomMetadataFieldSchemaDefaultValueDefaultValueItem>)value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -721,7 +724,7 @@ public record class CustomMetadataFieldSchemaDefaultValue : ModelBase
             string _ => 0,
             double _ => 1,
             bool _ => 2,
-            IReadOnlyList<UnnamedSchemaWithArrayParent9> _ => 3,
+            IReadOnlyList<CustomMetadataFieldSchemaDefaultValueDefaultValueItem> _ => 3,
             _ => -1,
         };
     }
@@ -770,10 +773,9 @@ sealed class CustomMetadataFieldSchemaDefaultValueConverter
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<List<UnnamedSchemaWithArrayParent9>>(
-                element,
-                options
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                List<CustomMetadataFieldSchemaDefaultValueDefaultValueItem>
+            >(element, options);
             if (deserialized != null)
             {
                 foreach (var item in deserialized)
@@ -801,8 +803,8 @@ sealed class CustomMetadataFieldSchemaDefaultValueConverter
     }
 }
 
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent9Converter))]
-public record class UnnamedSchemaWithArrayParent9 : ModelBase
+[JsonConverter(typeof(CustomMetadataFieldSchemaDefaultValueDefaultValueItemConverter))]
+public record class CustomMetadataFieldSchemaDefaultValueDefaultValueItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -819,25 +821,34 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
         }
     }
 
-    public UnnamedSchemaWithArrayParent9(string value, JsonElement? element = null)
+    public CustomMetadataFieldSchemaDefaultValueDefaultValueItem(
+        string value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent9(double value, JsonElement? element = null)
+    public CustomMetadataFieldSchemaDefaultValueDefaultValueItem(
+        double value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent9(bool value, JsonElement? element = null)
+    public CustomMetadataFieldSchemaDefaultValueDefaultValueItem(
+        bool value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent9(JsonElement element)
+    public CustomMetadataFieldSchemaDefaultValueDefaultValueItem(JsonElement element)
     {
         this._element = element;
     }
@@ -945,7 +956,7 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent9"
+                    "Data did not match any variant of CustomMetadataFieldSchemaDefaultValueDefaultValueItem"
                 );
         }
     }
@@ -984,16 +995,22 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
             double value => @double(value),
             bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent9"
+                "Data did not match any variant of CustomMetadataFieldSchemaDefaultValueDefaultValueItem"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent9(string value) => new(value);
+    public static implicit operator CustomMetadataFieldSchemaDefaultValueDefaultValueItem(
+        string value
+    ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent9(double value) => new(value);
+    public static implicit operator CustomMetadataFieldSchemaDefaultValueDefaultValueItem(
+        double value
+    ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent9(bool value) => new(value);
+    public static implicit operator CustomMetadataFieldSchemaDefaultValueDefaultValueItem(
+        bool value
+    ) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -1010,12 +1027,12 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent9"
+                "Data did not match any variant of CustomMetadataFieldSchemaDefaultValueDefaultValueItem"
             );
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent9? other) =>
+    public virtual bool Equals(CustomMetadataFieldSchemaDefaultValueDefaultValueItem? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -1043,9 +1060,10 @@ public record class UnnamedSchemaWithArrayParent9 : ModelBase
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent9Converter : JsonConverter<UnnamedSchemaWithArrayParent9>
+sealed class CustomMetadataFieldSchemaDefaultValueDefaultValueItemConverter
+    : JsonConverter<CustomMetadataFieldSchemaDefaultValueDefaultValueItem>
 {
-    public override UnnamedSchemaWithArrayParent9? Read(
+    public override CustomMetadataFieldSchemaDefaultValueDefaultValueItem? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1088,7 +1106,7 @@ sealed class UnnamedSchemaWithArrayParent9Converter : JsonConverter<UnnamedSchem
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent9 value,
+        CustomMetadataFieldSchemaDefaultValueDefaultValueItem value,
         JsonSerializerOptions options
     )
     {

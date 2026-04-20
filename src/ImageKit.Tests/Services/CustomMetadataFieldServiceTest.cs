@@ -18,9 +18,9 @@ public class CustomMetadataFieldServiceTest : TestBase
                     Type = Type.Number,
                     DefaultValue = new(
                         [
-                            new UnnamedSchemaWithArrayParent1(true),
-                            new UnnamedSchemaWithArrayParent1(10),
-                            new UnnamedSchemaWithArrayParent1("Hello"),
+                            new DefaultValueItem(true),
+                            new DefaultValueItem(10),
+                            new DefaultValueItem("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
