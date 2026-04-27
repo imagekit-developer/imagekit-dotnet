@@ -18,7 +18,7 @@ public abstract record class ParamsBase
     static ParamsBase()
     {
         var runtime = GetRuntime();
-        defaultHeaders = new Dictionary<string, string>
+        var headers = new Dictionary<string, string>
         {
             ["User-Agent"] = GetUserAgent(),
             ["X-Stainless-Arch"] = GetOSArch(),
@@ -28,6 +28,21 @@ public abstract record class ParamsBase
             ["X-Stainless-Runtime"] = runtime.Name,
             ["X-Stainless-Runtime-Version"] = runtime.Version,
         };
+
+        var customHeadersEnv = Environment.GetEnvironmentVariable("IMAGE_KIT_CUSTOM_HEADERS");
+        if (customHeadersEnv != null)
+        {
+            foreach (var line in customHeadersEnv.Split('\n'))
+            {
+                var colon = line.IndexOf(':');
+                if (colon >= 0)
+                {
+                    headers[line.Substring(0, colon).Trim()] = line.Substring(colon + 1).Trim();
+                }
+            }
+        }
+
+        defaultHeaders = headers;
     }
 
     private protected JsonDictionary _rawQueryData = new();
