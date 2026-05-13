@@ -26,6 +26,7 @@ public class TransformationTest : TestBase
             Background = "red",
             Blur = 10,
             Border = "5_FF0000",
+            Colorize = "colorize",
             ColorProfile = true,
             ColorReplace = "colorReplace",
             ContrastStretch = ContrastStretch.True,
@@ -122,6 +123,7 @@ public class TransformationTest : TestBase
         string expectedBackground = "red";
         double expectedBlur = 10;
         string expectedBorder = "5_FF0000";
+        string expectedColorize = "colorize";
         bool expectedColorProfile = true;
         string expectedColorReplace = "colorReplace";
         ApiEnum<bool, ContrastStretch> expectedContrastStretch = ContrastStretch.True;
@@ -219,6 +221,7 @@ public class TransformationTest : TestBase
         Assert.Equal(expectedBackground, model.Background);
         Assert.Equal(expectedBlur, model.Blur);
         Assert.Equal(expectedBorder, model.Border);
+        Assert.Equal(expectedColorize, model.Colorize);
         Assert.Equal(expectedColorProfile, model.ColorProfile);
         Assert.Equal(expectedColorReplace, model.ColorReplace);
         Assert.Equal(expectedContrastStretch, model.ContrastStretch);
@@ -285,6 +288,7 @@ public class TransformationTest : TestBase
             Background = "red",
             Blur = 10,
             Border = "5_FF0000",
+            Colorize = "colorize",
             ColorProfile = true,
             ColorReplace = "colorReplace",
             ContrastStretch = ContrastStretch.True,
@@ -394,6 +398,7 @@ public class TransformationTest : TestBase
             Background = "red",
             Blur = 10,
             Border = "5_FF0000",
+            Colorize = "colorize",
             ColorProfile = true,
             ColorReplace = "colorReplace",
             ContrastStretch = ContrastStretch.True,
@@ -497,6 +502,7 @@ public class TransformationTest : TestBase
         string expectedBackground = "red";
         double expectedBlur = 10;
         string expectedBorder = "5_FF0000";
+        string expectedColorize = "colorize";
         bool expectedColorProfile = true;
         string expectedColorReplace = "colorReplace";
         ApiEnum<bool, ContrastStretch> expectedContrastStretch = ContrastStretch.True;
@@ -594,6 +600,7 @@ public class TransformationTest : TestBase
         Assert.Equal(expectedBackground, deserialized.Background);
         Assert.Equal(expectedBlur, deserialized.Blur);
         Assert.Equal(expectedBorder, deserialized.Border);
+        Assert.Equal(expectedColorize, deserialized.Colorize);
         Assert.Equal(expectedColorProfile, deserialized.ColorProfile);
         Assert.Equal(expectedColorReplace, deserialized.ColorReplace);
         Assert.Equal(expectedContrastStretch, deserialized.ContrastStretch);
@@ -660,6 +667,7 @@ public class TransformationTest : TestBase
             Background = "red",
             Blur = 10,
             Border = "5_FF0000",
+            Colorize = "colorize",
             ColorProfile = true,
             ColorReplace = "colorReplace",
             ContrastStretch = ContrastStretch.True,
@@ -776,6 +784,8 @@ public class TransformationTest : TestBase
         Assert.False(model.RawData.ContainsKey("blur"));
         Assert.Null(model.Border);
         Assert.False(model.RawData.ContainsKey("border"));
+        Assert.Null(model.Colorize);
+        Assert.False(model.RawData.ContainsKey("colorize"));
         Assert.Null(model.ColorProfile);
         Assert.False(model.RawData.ContainsKey("colorProfile"));
         Assert.Null(model.ColorReplace);
@@ -887,6 +897,7 @@ public class TransformationTest : TestBase
             Background = null,
             Blur = null,
             Border = null,
+            Colorize = null,
             ColorProfile = null,
             ColorReplace = null,
             ContrastStretch = null,
@@ -956,6 +967,8 @@ public class TransformationTest : TestBase
         Assert.False(model.RawData.ContainsKey("blur"));
         Assert.Null(model.Border);
         Assert.False(model.RawData.ContainsKey("border"));
+        Assert.Null(model.Colorize);
+        Assert.False(model.RawData.ContainsKey("colorize"));
         Assert.Null(model.ColorProfile);
         Assert.False(model.RawData.ContainsKey("colorProfile"));
         Assert.Null(model.ColorReplace);
@@ -1059,6 +1072,7 @@ public class TransformationTest : TestBase
             Background = null,
             Blur = null,
             Border = null,
+            Colorize = null,
             ColorProfile = null,
             ColorReplace = null,
             ContrastStretch = null,
@@ -1123,6 +1137,7 @@ public class TransformationTest : TestBase
             Background = "red",
             Blur = 10,
             Border = "5_FF0000",
+            Colorize = "colorize",
             ColorProfile = true,
             ColorReplace = "colorReplace",
             ContrastStretch = ContrastStretch.True,
@@ -1780,6 +1795,7 @@ public class CropTest : TestBase
     [InlineData(Crop.AtMaxEnlarge)]
     [InlineData(Crop.AtLeast)]
     [InlineData(Crop.MaintainRatio)]
+    [InlineData(Crop.MaintainRatioNoEnlarge)]
     public void Validation_Works(Crop rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -1805,6 +1821,7 @@ public class CropTest : TestBase
     [InlineData(Crop.AtMaxEnlarge)]
     [InlineData(Crop.AtLeast)]
     [InlineData(Crop.MaintainRatio)]
+    [InlineData(Crop.MaintainRatioNoEnlarge)]
     public void SerializationRoundtrip_Works(Crop rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -1842,6 +1859,8 @@ public class CropModeTest : TestBase
     [InlineData(CropMode.PadResize)]
     [InlineData(CropMode.Extract)]
     [InlineData(CropMode.PadExtract)]
+    [InlineData(CropMode.PadResizeNoEnlarge)]
+    [InlineData(CropMode.PadExtractNoShrink)]
     public void Validation_Works(CropMode rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -1865,6 +1884,8 @@ public class CropModeTest : TestBase
     [InlineData(CropMode.PadResize)]
     [InlineData(CropMode.Extract)]
     [InlineData(CropMode.PadExtract)]
+    [InlineData(CropMode.PadResizeNoEnlarge)]
+    [InlineData(CropMode.PadExtractNoShrink)]
     public void SerializationRoundtrip_Works(CropMode rawValue)
     {
         // force implicit conversion because Theory can't do that for us

@@ -333,6 +333,30 @@ public sealed record class Transformation : JsonModel
     }
 
     /// <summary>
+    /// Applies a color tint to the image. Accepts color and intensity as optional
+    /// parameters. - `co-color` - Color to apply (e.g., `red`, `blue`, `FF0022`).
+    /// Default is gray color. - `in-intensity` - Intensity of the color (0-100).
+    /// Default is 35. See [Colorize](https://imagekit.io/docs/effects-and-enhancements#colorize---e-colorize).
+    /// </summary>
+    public string? Colorize
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("colorize");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("colorize", value);
+        }
+    }
+
+    /// <summary>
     /// Indicates whether the output image should retain the original color profile.
     /// See [Color profile](https://imagekit.io/docs/image-optimization#color-profile---cp).
     /// </summary>
@@ -1293,6 +1317,7 @@ public sealed record class Transformation : JsonModel
         _ = this.Background;
         _ = this.Blur;
         _ = this.Border;
+        _ = this.Colorize;
         _ = this.ColorProfile;
         _ = this.ColorReplace;
         this.ContrastStretch?.Validate();
@@ -2282,6 +2307,7 @@ public enum Crop
     AtMaxEnlarge,
     AtLeast,
     MaintainRatio,
+    MaintainRatioNoEnlarge,
 }
 
 sealed class CropConverter : JsonConverter<Crop>
@@ -2299,6 +2325,7 @@ sealed class CropConverter : JsonConverter<Crop>
             "at_max_enlarge" => Crop.AtMaxEnlarge,
             "at_least" => Crop.AtLeast,
             "maintain_ratio" => Crop.MaintainRatio,
+            "maintain_ratio_no_enlarge" => Crop.MaintainRatioNoEnlarge,
             _ => (Crop)(-1),
         };
     }
@@ -2314,6 +2341,7 @@ sealed class CropConverter : JsonConverter<Crop>
                 Crop.AtMaxEnlarge => "at_max_enlarge",
                 Crop.AtLeast => "at_least",
                 Crop.MaintainRatio => "maintain_ratio",
+                Crop.MaintainRatioNoEnlarge => "maintain_ratio_no_enlarge",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -2332,6 +2360,8 @@ public enum CropMode
     PadResize,
     Extract,
     PadExtract,
+    PadResizeNoEnlarge,
+    PadExtractNoShrink,
 }
 
 sealed class CropModeConverter : JsonConverter<CropMode>
@@ -2347,6 +2377,8 @@ sealed class CropModeConverter : JsonConverter<CropMode>
             "pad_resize" => CropMode.PadResize,
             "extract" => CropMode.Extract,
             "pad_extract" => CropMode.PadExtract,
+            "pad_resize_no_enlarge" => CropMode.PadResizeNoEnlarge,
+            "pad_extract_no_shrink" => CropMode.PadExtractNoShrink,
             _ => (CropMode)(-1),
         };
     }
@@ -2360,6 +2392,8 @@ sealed class CropModeConverter : JsonConverter<CropMode>
                 CropMode.PadResize => "pad_resize",
                 CropMode.Extract => "extract",
                 CropMode.PadExtract => "pad_extract",
+                CropMode.PadResizeNoEnlarge => "pad_resize_no_enlarge",
+                CropMode.PadExtractNoShrink => "pad_extract_no_shrink",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
