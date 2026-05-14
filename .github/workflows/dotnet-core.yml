@@ -2,9 +2,9 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
   release:
     types:
       - published
@@ -22,8 +22,8 @@ env:
   NUGET_KEY: ${{ secrets.NUGET_APIKEY }}
   ATTRIBUTE_NAME: nupkg
   NUGET_OUTPUT_PATH: nuget-package
-  Solution_Name: Imagekit.sln
-  
+  Solution_Name: Imagekit.slnx
+
 jobs:
   build:
     name: Build and test
@@ -37,33 +37,30 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: |
-            2.1.x
-            3.1.x
-            5.0.x
             6.0.x
-            7.0.x
             8.0.x
+            10.0.x
       - name: Build Release
-        run: dotnet build Imagekit.sln -c Release /p:ContinuousIntegrationBuild=true    
+        run: dotnet build Imagekit.slnx -c Release /p:ContinuousIntegrationBuild=true
 
-       # run: dotnet test --no-build Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release
+        # run: dotnet test --no-build Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release
       - name: Run test suite
         run: dotnet test Imagekit.UnitTests/Imagekit.UnitTests.csproj --verbosity minimal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-        
+
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          file: ./Imagekit.UnitTests/coverage.net6.0.opencover.xml
+          file: ./Imagekit.UnitTests/coverage.net10.0.opencover.xml
 
       - name: Pack
-        run: dotnet pack Imagekit.sln -c Release --no-build --output ${{ env.NUGET_OUTPUT_PATH }}
+        run: dotnet pack Imagekit.slnx -c Release --no-build --output ${{ env.NUGET_OUTPUT_PATH }}
 
-      - name: 'Upload Artifact'
+      - name: "Upload Artifact"
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ATTRIBUTE_NAME }}
           path: ${{ env.NUGET_OUTPUT_PATH }}
-            
+
   Publish:
     needs: build
     if: (github.event_name == 'release') || (github.ref == 'refs/tags/*')
@@ -77,7 +74,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 10.0.x
 
       - name: Publish NuGet packages to NuGet
         run: dotnet nuget push "*.nupkg" -k ${{ secrets.NUGET_APIKEY }} --source ${{ env.NUGET_FEED }} --no-symbols true --skip-duplicate

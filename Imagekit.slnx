@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Project Path="Imagekit.UnitTests/Imagekit.UnitTests.csproj" />
+  <Project Path="Imagekit/Imagekit.csproj" />
+  <Properties Name="MonoDevelopProperties">
+    <Property Name="$0.DotNetNamingPolicy" Value="$1" />
+    <Property Name="$0.StandardHeader" Value="$2" />
+    <Property Name="$0.VersionControlPolicy" Value="$3" />
+    <Property Name="$1.DirectoryNamespaceAssociation" Value="PrefixedHierarchical" />
+    <Property Name="Policies" Value="$0" />
+  </Properties>
+</Solution>

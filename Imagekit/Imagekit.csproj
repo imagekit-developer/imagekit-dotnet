@@ -4,8 +4,8 @@
 		<OutputType>Library</OutputType>
 		<RootNamespace>Imagekit</RootNamespace>
 		<AssemblyName>Imagekit</AssemblyName>
-		<TargetFrameworks>net7.0;net5.0;net6.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
-		<LangVersion>8</LangVersion>
+		<TargetFrameworks>net10.0;net8.0;net6.0;netstandard2.0</TargetFrameworks>
+		<LangVersion>14</LangVersion>
 		<Copyright>© Imagekit Private Limited 2019</Copyright>
 		<DevelopmentDependency>false</DevelopmentDependency>
 		<!--<PackageIcon>https://imagekit.io/favicon.png</PackageIcon>-->
@@ -25,61 +25,53 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageReleaseNotes>-Fixes</PackageReleaseNotes>
 		<CheckEolTargetFramework>false</CheckEolTargetFramework>
-		
+
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0|AnyCPU'">
+		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0|AnyCPU'">
+		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-	  <WarningLevel>4</WarningLevel>
+		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-	  <WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-	  <WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-	  <WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-	  <NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-	  <WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
+		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
+		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -87,38 +79,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.8" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-		<PackageReference Update="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-	</ItemGroup>
-
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Update="Newtonsoft.Json" Version="12.0.3" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.8" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.8" />
+	</ItemGroup>
+
 	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-		<PackageReference Update="Newtonsoft.Json" Version="12.0.3" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
-		<PackageReference Update="Newtonsoft.Json" Version="11.0.1" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.8" />
 	</ItemGroup>
 </Project>
