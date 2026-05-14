@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
@@ -41,7 +42,7 @@ namespace Imagekit.UnitTests
         }
 
         [Fact]
-        public void GetFileRequest_Default()
+        public async Task GetFileRequest_Default()
         {
             GetFileListRequest ob = new GetFileListRequest
             {
@@ -63,20 +64,20 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (ResultList)restClient.GetFileListRequestAsync(ob).Result;
+            var response = (ResultList)await restClient.GetFileListRequestAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
             responseObj1 = JToken.Parse(responseObj1).ToString();
 
             Assert.Equal(responseObj.Raw, responseObj1);
         }
         [Fact]
-        public async void GetFileRequestByNameWithoutSearchQuery()
+        public async Task GetFileRequestByNameWithoutSearchQuery()
         {
             GetFileListRequest ob = new GetFileListRequest
             {
-               
+
                 Name = "file_name.jpg",
-               
+
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -97,14 +98,14 @@ namespace Imagekit.UnitTests
             Console.WriteLine(responseObj.Raw);
         }
         [Fact]
-        public void GetFileRequestByName()
+        public async Task GetFileRequestByName()
         {
             GetFileListRequest ob = new GetFileListRequest
             {
-               
+
                 SearchQuery = "name = \"file_name.jpg\"",
 
-               
+
             };
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -116,14 +117,14 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (ResultList)restClient.GetFileListRequestAsync(ob).Result;
+            var response = (ResultList)await restClient.GetFileListRequestAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
             responseObj1 = JToken.Parse(responseObj1).ToString();
 
             Assert.Equal(responseObj.Raw, responseObj1);
         }
         [Fact]
-        public void GetFileRequestByTag()
+        public async Task GetFileRequestByTag()
         {
             GetFileListRequest ob = new GetFileListRequest
             {
@@ -141,17 +142,17 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (ResultList)restClient.GetFileListRequestAsync(ob).Result;
+            var response = (ResultList)await restClient.GetFileListRequestAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
             responseObj1 = JToken.Parse(responseObj1).ToString();
 
             Assert.Equal(responseObj.Raw, responseObj1);
         }
         [Fact]
-        public void GetFileRequestWithoutFilter_Default()
+        public async Task GetFileRequestWithoutFilter_Default()
         {
             GetFileListRequest ob = new GetFileListRequest();
-            
+
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
             var httpResponse = new HttpResponseMessage
@@ -162,7 +163,7 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (ResultList)restClient.GetFileListRequestAsync(ob).Result;
+            var response = (ResultList)await restClient.GetFileListRequestAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
             responseObj1 = JToken.Parse(responseObj1).ToString();
 
@@ -170,7 +171,7 @@ namespace Imagekit.UnitTests
         }
 
         [Fact]
-        public void GetFileDetail_Default()
+        public async Task GetFileDetail_Default()
         {
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -182,13 +183,13 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (Result)restClient.GetFileDetailAsync("abc").Result;
+            var response = (Result)await restClient.GetFileDetailAsync("abc");
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void GetFile_ID_Detail_Exception()
+        public async Task GetFile_ID_Detail_Exception()
         {
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -199,12 +200,12 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.GetFileDetailAsync(""));
-            Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.GetFileDetailAsync(""));
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
         }
 
         [Fact]
-        public void PurgeCache_Default()
+        public async Task PurgeCache_Default()
         {
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -216,12 +217,12 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.PurgeCacheAsync("abc").Result;
+            var response = await restClient.PurgeCacheAsync("abc");
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void PurgeStatus_Default()
+        public async Task PurgeStatus_Default()
         {
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -233,13 +234,13 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.PurgeStatusAsync("abc").Result;
+            var response = await restClient.PurgeStatusAsync("abc");
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void DeleteFile_Default()
+        public async Task DeleteFile_Default()
         {
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -251,12 +252,12 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (ResultDelete)restClient.DeleteFileAsync("abc").Result;
+            var response = (ResultDelete)await restClient.DeleteFileAsync("abc");
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void Delete_File_ID_Exception()
+        public async Task Delete_File_ID_Exception()
         {
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
 
@@ -267,13 +268,13 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteFileAsync(""));
-            Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteFileAsync(""));
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
         }
 
 
         [Fact]
-        public void BulkDeleteFiles_Default()
+        public async Task BulkDeleteFiles_Default()
         {
             List<string> ob = new List<string>
             {
@@ -291,13 +292,13 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (ResultFileDelete)restClient.BulkDeleteFilesAsync(ob).Result;
+            var response = (ResultFileDelete)await restClient.BulkDeleteFilesAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
-            responseObj1=JToken.Parse(responseObj1).ToString();
+            responseObj1 = JToken.Parse(responseObj1).ToString();
             Assert.Equal(responseObj.Raw, responseObj1);
         }
         [Fact]
-        public void Bulk_Delete_Files_Input_Missing_Exception()
+        public async Task Bulk_Delete_Files_Input_Missing_Exception()
         {
             List<string> ob = new List<string>();
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -309,12 +310,12 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.BulkDeleteFilesAsync(ob));
-            Assert.Equal(ErrorMessages.ListFilesInputMissing, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.BulkDeleteFilesAsync(ob));
+            Assert.Equal(ErrorMessages.ListFilesInputMissing, ex.Message);
         }
 
         [Fact]
-        public void Missing_Filed_Null_Exception()
+        public async Task Missing_Filed_Null_Exception()
         {
             TagsRequest ob = new TagsRequest
             {
@@ -331,15 +332,15 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
-            Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
+            Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Message);
         }
 
 
 
 
         [Fact]
-        public void Missing_Remove_Filed_Null_Exception()
+        public async Task Missing_Remove_Filed_Null_Exception()
         {
             TagsRequest ob = new TagsRequest
             {
@@ -356,13 +357,13 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
-            Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
+            Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Message);
         }
 
 
         [Fact]
-        public void Missing_AI_Filed_Null_Exception()
+        public async Task Missing_AI_Filed_Null_Exception()
         {
             AITagsRequest ob = new AITagsRequest
             {
@@ -379,12 +380,12 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.RemoveAITagsAsync(ob));
-            Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.RemoveAITagsAsync(ob));
+            Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Message);
         }
 
         [Fact]
-        public void DeleteFileVersion_Default()
+        public async Task DeleteFileVersion_Default()
         {
             DeleteFileVersionRequest model = new DeleteFileVersionRequest
             {
@@ -401,13 +402,13 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.DeleteFileVersionAsync(model).Result;
+            var response = await restClient.DeleteFileVersionAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void Missing_Object_FileVersionException()
+        public async Task Missing_Object_FileVersionException()
         {
             DeleteFileVersionRequest model = null;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -419,11 +420,11 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteFileVersionAsync(model));
-            Assert.Equal(ErrorMessages.InvalidDelVerValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteFileVersionAsync(model));
+            Assert.Equal(ErrorMessages.InvalidDelVerValue, ex.Message);
         }
         [Fact]
-        public void Missing_fileId_FileVersionException()
+        public async Task Missing_fileId_FileVersionException()
         {
             DeleteFileVersionRequest model = new DeleteFileVersionRequest
             {
@@ -438,12 +439,12 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteFileVersionAsync(model));
-            Assert.Equal(ErrorMessages.InvalidFieldIdDelVerValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteFileVersionAsync(model));
+            Assert.Equal(ErrorMessages.InvalidFieldIdDelVerValue, ex.Message);
         }
 
         [Fact]
-        public void Missing_versionId_FileVersionException()
+        public async Task Missing_versionId_FileVersionException()
         {
             DeleteFileVersionRequest model = new DeleteFileVersionRequest
             {
@@ -459,12 +460,12 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteFileVersionAsync(model));
-            Assert.Equal(ErrorMessages.InvalidversionIdDelVerValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteFileVersionAsync(model));
+            Assert.Equal(ErrorMessages.InvalidversionIdDelVerValue, ex.Message);
         }
 
         [Fact]
-        public void CopyFile_Default()
+        public async Task CopyFile_Default()
         {
             CopyFileRequest model = new CopyFileRequest
             {
@@ -481,12 +482,12 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.CopyFileAsync(model).Result;
+            var response = await restClient.CopyFileAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void Missing_Obj_CopyFileException()
+        public async Task Missing_Obj_CopyFileException()
         {
             CopyFileRequest model = null;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -498,14 +499,14 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.CopyFileAsync(model));
-            Assert.Equal(ErrorMessages.InvalidCopyValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.CopyFileAsync(model));
+            Assert.Equal(ErrorMessages.InvalidCopyValue, ex.Message);
         }
 
 
 
         [Fact]
-        public void Missing_Source_CopyFileException()
+        public async Task Missing_Source_CopyFileException()
         {
             CopyFileRequest model = new CopyFileRequest
             {
@@ -520,12 +521,12 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.CopyFileAsync(model));
-            Assert.Equal(ErrorMessages.InvalidSourceValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.CopyFileAsync(model));
+            Assert.Equal(ErrorMessages.InvalidSourceValue, ex.Message);
         }
 
         [Fact]
-        public void Missing_Destination_CopyFileException()
+        public async Task Missing_Destination_CopyFileException()
         {
             CopyFileRequest model = new CopyFileRequest
             {
@@ -540,12 +541,12 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.CopyFileAsync(model));
-            Assert.Equal(ErrorMessages.InvalidDestinationValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.CopyFileAsync(model));
+            Assert.Equal(ErrorMessages.InvalidDestinationValue, ex.Message);
         }
 
         [Fact]
-        public void MoveFile_Default()
+        public async Task MoveFile_Default()
         {
             MoveFileRequest model = new MoveFileRequest
             {
@@ -562,12 +563,12 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.MoveFileAsync(model).Result;
+            var response = await restClient.MoveFileAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void Missing_Obj_MoveFileException()
+        public async Task Missing_Obj_MoveFileException()
         {
             MoveFileRequest model = null;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -579,12 +580,12 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.MoveFileAsync(model));
-            Assert.Equal(ErrorMessages.InvalidCopyValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.MoveFileAsync(model));
+            Assert.Equal(ErrorMessages.InvalidCopyValue, ex.Message);
         }
 
         [Fact]
-        public void Missing_Source_MoveFileException()
+        public async Task Missing_Source_MoveFileException()
         {
             MoveFileRequest model = new MoveFileRequest
             {
@@ -599,12 +600,12 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.MoveFileAsync(model));
-            Assert.Equal(ErrorMessages.InvalidSourceValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.MoveFileAsync(model));
+            Assert.Equal(ErrorMessages.InvalidSourceValue, ex.Message);
         }
 
         [Fact]
-        public void Missing_Destination_MoveFileException()
+        public async Task Missing_Destination_MoveFileException()
         {
             MoveFileRequest model = new MoveFileRequest
             {
@@ -619,12 +620,12 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.MoveFileAsync(model));
-            Assert.Equal(ErrorMessages.InvalidDestinationValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.MoveFileAsync(model));
+            Assert.Equal(ErrorMessages.InvalidDestinationValue, ex.Message);
         }
 
         [Fact]
-        public void RenameFile_Default()
+        public async Task RenameFile_Default()
         {
             RenameFileRequest model = new RenameFileRequest
             {
@@ -642,12 +643,12 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.RenameFileAsync(model).Result;
+            var response = await restClient.RenameFileAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void Missing_FilePath_RenameFileException()
+        public async Task Missing_FilePath_RenameFileException()
         {
             RenameFileRequest model = new RenameFileRequest
             {
@@ -662,11 +663,11 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.RenameFileAsync(model));
-            Assert.Equal(ErrorMessages.InvalidRenameFilePathValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.RenameFileAsync(model));
+            Assert.Equal(ErrorMessages.InvalidRenameFilePathValue, ex.Message);
         }
         [Fact]
-        public void Missing_NewFileName_RenameFileException()
+        public async Task Missing_NewFileName_RenameFileException()
         {
             RenameFileRequest model = new RenameFileRequest
             {
@@ -681,13 +682,13 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.RenameFileAsync(model));
-            Assert.Equal(ErrorMessages.InvalidRenameNewFileNameValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.RenameFileAsync(model));
+            Assert.Equal(ErrorMessages.InvalidRenameNewFileNameValue, ex.Message);
         }
 
 
         [Fact]
-        public void GetBulkJobStatus_Default()
+        public async Task GetBulkJobStatus_Default()
         {
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
@@ -698,12 +699,12 @@ namespace Imagekit.UnitTests
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetBulkJobStatusAsync("abc").Result;
+            var response = await restClient.GetBulkJobStatusAsync("abc");
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void Missing_Job_Id_BulkJobStatusException()
+        public async Task Missing_Job_Id_BulkJobStatusException()
         {
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -715,8 +716,8 @@ namespace Imagekit.UnitTests
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.GetBulkJobStatusAsync(""));
-            Assert.Equal(ErrorMessages.InvalidJobValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.GetBulkJobStatusAsync(""));
+            Assert.Equal(ErrorMessages.InvalidJobValue, ex.Message);
         }
     }
 }

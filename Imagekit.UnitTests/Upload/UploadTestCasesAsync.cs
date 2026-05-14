@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Xunit;
 using Imagekit.Models;
 using System.Collections;
@@ -18,7 +19,7 @@ namespace Imagekit.UnitTests.Upload
 
 
         [Fact]
-        public void Upload_InvalidObject_Exception()
+        public async Task Upload_InvalidObject_Exception()
         {
 
             FileCreateRequest ob = null;
@@ -31,11 +32,11 @@ namespace Imagekit.UnitTests.Upload
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UploadAsync(ob));
-            Assert.Equal(ErrorMessages.InvalidFileUploadObjValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.UploadAsync(ob));
+            Assert.Equal(ErrorMessages.InvalidFileUploadObjValue, ex.Message);
         }
         [Fact]
-        public void Upload_InvalidFileName_Exception()
+        public async Task Upload_InvalidFileName_Exception()
         {
             FileCreateRequest ob = new FileCreateRequest
             {
@@ -50,11 +51,11 @@ namespace Imagekit.UnitTests.Upload
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UploadAsync(ob));
-            Assert.Equal(ErrorMessages.MissingUploadFilenameParameter, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.UploadAsync(ob));
+            Assert.Equal(ErrorMessages.MissingUploadFilenameParameter, ex.Message);
         }
         [Fact]
-        public void Upload_InvalidFileParam_Exception()
+        public async Task Upload_InvalidFileParam_Exception()
         {
 
             FileCreateRequest ob = new FileCreateRequest
@@ -71,8 +72,8 @@ namespace Imagekit.UnitTests.Upload
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UploadAsync(ob));
-            Assert.Equal(ErrorMessages.InvalidFileValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.UploadAsync(ob));
+            Assert.Equal(ErrorMessages.InvalidFileValue, ex.Message);
         }
 
         [Fact]
@@ -99,7 +100,7 @@ namespace Imagekit.UnitTests.Upload
         }
 
         [Fact]
-        public void UploadFileByBytes_Default()
+        public async Task UploadFileByBytes_Default()
         {
 
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
@@ -121,13 +122,13 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (Result)restClient.UploadAsync(ob).Result;
+            var response = (Result)await restClient.UploadAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void UploadFileByBase64_Default()
+        public async Task UploadFileByBase64_Default()
         {
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
             FileCreateRequest ob = new FileCreateRequest
@@ -146,12 +147,12 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (Result)restClient.UploadAsync(ob).Result;
+            var response = (Result)await restClient.UploadAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void UploadFile_Default()
+        public async Task UploadFile_Default()
         {
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
             FileCreateRequest ob = new FileCreateRequest
@@ -166,7 +167,7 @@ namespace Imagekit.UnitTests.Upload
                 "Engineer"
             };
             ob.tags = tags;
-           
+
             string customCoordinates = "10,10,20,20";
             ob.customCoordinates = customCoordinates;
             List<string> responseFields = new List<string>
@@ -192,7 +193,7 @@ namespace Imagekit.UnitTests.Upload
             UploadTransformation uploadTransformation = new UploadTransformation
             {
                 pre = "l-text,i-Imagekit,fs-50,l-end",
-                post =  postTransformations,
+                post = postTransformations,
             };
             model1.Add(bck);
             ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
@@ -221,13 +222,13 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (Result)restClient.UploadAsync(ob).Result;
+            var response = (Result)await restClient.UploadAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void UploadFile_Null_List()
+        public async Task UploadFile_Null_List()
         {
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
             FileCreateRequest ob = new FileCreateRequest
@@ -275,14 +276,14 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (Result)restClient.UploadAsync(ob).Result;
+            var response = (Result)await restClient.UploadAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
 
         [Fact]
-        public void UploadFile_Null_Object_List()
+        public async Task UploadFile_Null_Object_List()
         {
             string base64 = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
             FileCreateRequest ob = new FileCreateRequest
@@ -313,13 +314,13 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (Result)restClient.UploadAsync(ob).Result;
+            var response = (Result)await restClient.UploadAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void UpdateFile_Missing_File_Id()
+        public async Task UpdateFile_Missing_File_Id()
         {
             FileUpdateRequest ob = new FileUpdateRequest
             {
@@ -337,12 +338,12 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateFileDetailAsync(ob));
-            Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateFileDetailAsync(ob));
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
         }
 
         [Fact]
-        public void UpdateFile_Default()
+        public async Task UpdateFile_Default()
         {
             FileUpdateRequest ob = new FileUpdateRequest
             {
@@ -389,13 +390,13 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (Result)restClient.UpdateFileDetailAsync(ob).Result;
+            var response = (Result)await restClient.UpdateFileDetailAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void UpdateFile_Publish_Status()
+        public async Task UpdateFile_Publish_Status()
         {
             FileUpdateRequest ob = new FileUpdateRequest
             {
@@ -417,12 +418,12 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (Result)restClient.UpdateFileDetailAsync(ob).Result;
+            var response = (Result)await restClient.UpdateFileDetailAsync(ob);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
-       
+
     }
 }
 

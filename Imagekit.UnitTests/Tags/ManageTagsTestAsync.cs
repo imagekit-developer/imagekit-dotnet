@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Imagekit.UnitTests.Tags
@@ -16,7 +17,7 @@ namespace Imagekit.UnitTests.Tags
 
 
         [Fact]
-        public void AddTags_Default()
+        public async Task AddTags_Default()
         {
             TagsRequest tagsRequest = new TagsRequest
             {
@@ -40,13 +41,13 @@ namespace Imagekit.UnitTests.Tags
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.ManageTagsAsync(tagsRequest, "addTags").Result;
+            var response = await restClient.ManageTagsAsync(tagsRequest, "addTags");
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void AddTags_Null_Exception()
+        public async Task AddTags_Null_Exception()
         {
             TagsRequest ob = null;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -58,11 +59,11 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
-            Assert.Equal(ErrorMessages.InvalidTagValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
+            Assert.Equal(ErrorMessages.InvalidTagValue, ex.Message);
         }
         [Fact]
-        public void Missing_Tags_Null_Exception()
+        public async Task Missing_Tags_Null_Exception()
         {
             TagsRequest ob = new TagsRequest
             {
@@ -78,12 +79,12 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
-            Assert.Equal(ErrorMessages.InvalidTagParamValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
+            Assert.Equal(ErrorMessages.InvalidTagParamValue, ex.Message);
         }
 
         [Fact]
-        public void Missing_Filed_Null_Exception()
+        public async Task Missing_Filed_Null_Exception()
         {
             TagsRequest ob = new TagsRequest
             {
@@ -100,13 +101,13 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
-            Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
+            Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Message);
         }
 
 
         [Fact]
-        public void RemoveTags_Default()
+        public async Task RemoveTags_Default()
         {
             TagsRequest tagsRequest = new TagsRequest
             {
@@ -130,13 +131,13 @@ namespace Imagekit.UnitTests.Tags
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.ManageTagsAsync(tagsRequest, "addTags").Result;
+            var response = await restClient.ManageTagsAsync(tagsRequest, "addTags");
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void Remove_Tags_Object_Exception()
+        public async Task Remove_Tags_Object_Exception()
         {
             TagsRequest ob = null;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -148,11 +149,11 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
-            Assert.Equal(ErrorMessages.InvalidTagValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
+            Assert.Equal(ErrorMessages.InvalidTagValue, ex.Message);
         }
         [Fact]
-        public void Missing_Remove_Tags_Null_Exception()
+        public async Task Missing_Remove_Tags_Null_Exception()
         {
             TagsRequest ob = new TagsRequest
             {
@@ -168,13 +169,13 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
-            Assert.Equal(ErrorMessages.InvalidTagParamValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.ManageTagsAsync(ob, ""));
+            Assert.Equal(ErrorMessages.InvalidTagParamValue, ex.Message);
         }
 
 
         [Fact]
-        public void Remove_AITags_Null_Exception()
+        public async Task Remove_AITags_Null_Exception()
         {
             AITagsRequest ob = null;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -186,11 +187,11 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.RemoveAITagsAsync(ob));
-            Assert.Equal(ErrorMessages.InvalidTagValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.RemoveAITagsAsync(ob));
+            Assert.Equal(ErrorMessages.InvalidTagValue, ex.Message);
         }
         [Fact]
-        public void Missing_AI_Tags_Null_Exception()
+        public async Task Missing_AI_Tags_Null_Exception()
         {
             AITagsRequest ob = new AITagsRequest
             {
@@ -206,12 +207,12 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.RemoveAITagsAsync(ob));
-            Assert.Equal(ErrorMessages.InvalidTagParamValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.RemoveAITagsAsync(ob));
+            Assert.Equal(ErrorMessages.InvalidTagParamValue, ex.Message);
         }
 
         [Fact]
-        public void Missing_AI_Filed_Null_Exception()
+        public async Task Missing_AI_Filed_Null_Exception()
         {
             AITagsRequest ob = new AITagsRequest
             {
@@ -228,8 +229,8 @@ namespace Imagekit.UnitTests.Tags
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.RemoveAITagsAsync(ob));
-            Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.RemoveAITagsAsync(ob));
+            Assert.Equal(ErrorMessages.InvalidFiledParamValue, ex.Message);
         }
 
     }

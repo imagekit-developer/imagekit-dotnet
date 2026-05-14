@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net10.0;net8.0;net6.0</TargetFrameworks>
+		<TargetFrameworks>net10.0;net8.0</TargetFrameworks>
 		<LangVersion>14</LangVersion>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<CheckEolTargetFramework>false</CheckEolTargetFramework>
@@ -63,7 +63,7 @@
 		<PackageReference Include="Moq" Version="4.20.72" />
 		<PackageReference Include="Bogus" Version="35.6.5" />
 		<PackageReference Include="System.Linq.Async" Version="7.0.1" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
 		<PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="18.5.1" Condition="$(TargetFramework.StartsWith('net4')) AND '$(OS)' == 'Unix'" />
 	</ItemGroup>
 	<ItemGroup>

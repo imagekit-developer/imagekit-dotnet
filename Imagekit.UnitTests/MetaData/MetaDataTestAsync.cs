@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Imagekit.Models.Response;
 using Xunit;
 using static Imagekit.Models.CustomMetaDataFieldSchemaObject;
@@ -21,7 +22,7 @@ namespace Imagekit.UnitTests.MetaData
 
 
         [Fact]
-        public void GetFileMetadata_Default()
+        public async Task GetFileMetadata_Default()
         {
 
 
@@ -35,7 +36,7 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (ResultMetaData)restClient.GetFileMetaDataAsync("abc").Result;
+            var response = (ResultMetaData)await restClient.GetFileMetaDataAsync("abc");
             var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
             responseObj1 = JToken.Parse(responseObj1).ToString();
 
@@ -60,7 +61,7 @@ namespace Imagekit.UnitTests.MetaData
 
 
         [Fact]
-        public void GetRemoteFileMetadata_Default()
+        public async Task GetRemoteFileMetadata_Default()
         {
 
 
@@ -74,14 +75,14 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = (ResultMetaData)restClient.GetRemoteFileMetaDataAsync("abc").Result;
+            var response = (ResultMetaData)await restClient.GetRemoteFileMetaDataAsync("abc");
             var responseObj1 = JsonConvert.SerializeObject(responseObj.Raw);
             responseObj1 = JToken.Parse(responseObj1).ToString();
 
             Assert.Equal(responseObj.Raw, responseObj1);
         }
         [Fact]
-        public void GetRemoteFileMetadataException()
+        public async Task GetRemoteFileMetadataException()
         {
             List<string> ob = new List<string>();
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -93,13 +94,13 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.GetRemoteFileMetaDataAsync(""));
-            Assert.Equal(ErrorMessages.InvalidUrlValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.GetRemoteFileMetaDataAsync(""));
+            Assert.Equal(ErrorMessages.InvalidUrlValue, ex.Message);
         }
 
 
         [Fact]
-        public void GetCustomMetaDataFields_Default()
+        public async Task GetCustomMetaDataFields_Default()
         {
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -111,13 +112,13 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.GetCustomMetaDataFieldsAsync(true).Result;
+            var response = await restClient.GetCustomMetaDataFieldsAsync(true);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void CreateCustomMetaDataFields_Default()
+        public async Task CreateCustomMetaDataFields_Default()
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
@@ -144,13 +145,13 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
+            var response = await restClient.CreateCustomMetaDataFieldsAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void CreateCustomMetaDataFields_Type_Date()
+        public async Task CreateCustomMetaDataFields_Type_Date()
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
@@ -177,12 +178,12 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
+            var response = await restClient.CreateCustomMetaDataFieldsAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void CreateCustomMetaDataFields_Type_Text()
+        public async Task CreateCustomMetaDataFields_Type_Text()
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
@@ -194,7 +195,7 @@ namespace Imagekit.UnitTests.MetaData
                 type = "Number",
                 minValue = 1000,
                 maxValue = 3000
-                
+
             };
 
             model.schema = schema;
@@ -207,13 +208,13 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
+            var response = await restClient.CreateCustomMetaDataFieldsAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void CreateCustomMetaDataFields_Type_TextArea()
+        public async Task CreateCustomMetaDataFields_Type_TextArea()
         {
 
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
@@ -226,7 +227,7 @@ namespace Imagekit.UnitTests.MetaData
                 type = "Number",
                 minValue = 1000,
                 maxValue = 3000
-               
+
             };
 
             model.schema = schema;
@@ -239,15 +240,15 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
+            var response = await restClient.CreateCustomMetaDataFieldsAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void CreateCustomMetaDataFields_successExpected_type_SingleSelect()
+        public async Task CreateCustomMetaDataFields_successExpected_type_SingleSelect()
         {
-         
+
             List<object> objectList = new List<object>
             {
                 "small",
@@ -280,12 +281,12 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
+            var response = await restClient.CreateCustomMetaDataFieldsAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void CreateCustomMetaDataFields_successExpected_type_MultiSelect()
+        public async Task CreateCustomMetaDataFields_successExpected_type_MultiSelect()
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
@@ -315,7 +316,7 @@ namespace Imagekit.UnitTests.MetaData
             };
 
             model.schema = schema;
-            
+
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
             {
@@ -325,12 +326,12 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.CreateCustomMetaDataFieldsAsync(model).Result;
+            var response = await restClient.CreateCustomMetaDataFieldsAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void CreateCustomMetaDataFieldsException()
+        public async Task CreateCustomMetaDataFieldsException()
         {
             CustomMetaDataFieldCreateRequest model = null;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -342,11 +343,11 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.CreateCustomMetaDataFieldsAsync(model));
-            Assert.Equal(ErrorMessages.InvalidMetaTagValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.CreateCustomMetaDataFieldsAsync(model));
+            Assert.Equal(ErrorMessages.InvalidMetaTagValue, ex.Message);
         }
         [Fact]
-        public void Missing_Name_CustomMetaDataFieldsException()
+        public async Task Missing_Name_CustomMetaDataFieldsException()
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
@@ -367,11 +368,11 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.CreateCustomMetaDataFieldsAsync(model));
-            Assert.Equal(ErrorMessages.InvalidMetaTagNameValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.CreateCustomMetaDataFieldsAsync(model));
+            Assert.Equal(ErrorMessages.InvalidMetaTagNameValue, ex.Message);
         }
         [Fact]
-        public void Missing_Label_CustomMetaDataFieldsException()
+        public async Task Missing_Label_CustomMetaDataFieldsException()
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
@@ -395,11 +396,11 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.CreateCustomMetaDataFieldsAsync(model));
-            Assert.Equal(ErrorMessages.InvalidMetaTagLabelValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.CreateCustomMetaDataFieldsAsync(model));
+            Assert.Equal(ErrorMessages.InvalidMetaTagLabelValue, ex.Message);
         }
         [Fact]
-        public void Missing_Schema_CustomMetaDataFieldsException()
+        public async Task Missing_Schema_CustomMetaDataFieldsException()
         {
             CustomMetaDataFieldCreateRequest model = new CustomMetaDataFieldCreateRequest
             {
@@ -416,12 +417,12 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.CreateCustomMetaDataFieldsAsync(model));
-            Assert.Equal(ErrorMessages.InvalidMetaTagSchemaValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.CreateCustomMetaDataFieldsAsync(model));
+            Assert.Equal(ErrorMessages.InvalidMetaTagSchemaValue, ex.Message);
         }
 
         [Fact]
-        public void DeleteCustomMetaDataField_Default()
+        public async Task DeleteCustomMetaDataField_Default()
         {
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
             var httpResponse = new HttpResponseMessage
@@ -432,14 +433,14 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.DeleteCustomMetaDataFieldAsync("abc").Result;
+            var response = await restClient.DeleteCustomMetaDataFieldAsync("abc");
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
 
         [Fact]
-        public void Missing_fileId_CustomMetaDataFieldException()
+        public async Task Missing_fileId_CustomMetaDataFieldException()
         {
 
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -451,14 +452,14 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteCustomMetaDataFieldAsync(""));
-            Assert.Equal(ErrorMessages.InvalidfileIdsValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.DeleteCustomMetaDataFieldAsync(""));
+            Assert.Equal(ErrorMessages.InvalidfileIdsValue, ex.Message);
         }
 
 
 
         [Fact]
-        public void UpdateCustomMetaDataFields_Default()
+        public async Task UpdateCustomMetaDataFields_Default()
         {
             CustomMetaDataFieldUpdateRequest model = new CustomMetaDataFieldUpdateRequest
             {
@@ -481,13 +482,13 @@ namespace Imagekit.UnitTests.MetaData
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var response = restClient.UpdateCustomMetaDataFieldsAsync(model).Result;
+            var response = await restClient.UpdateCustomMetaDataFieldsAsync(model);
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
 
         [Fact]
-        public void Missing_Object_CustomMetaDataFieldsException()
+        public async Task Missing_Object_CustomMetaDataFieldsException()
         {
             CustomMetaDataFieldUpdateRequest model = null;
             var responseObj = TestHelpers.ImagekitResponseFaker.Generate();
@@ -499,12 +500,12 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateCustomMetaDataFieldsAsync(model));
-            Assert.Equal(ErrorMessages.InvalidMetaTagValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateCustomMetaDataFieldsAsync(model));
+            Assert.Equal(ErrorMessages.InvalidMetaTagValue, ex.Message);
         }
 
         [Fact]
-        public void Missing_ID_CustomUpdateMetaDataFieldsException()
+        public async Task Missing_ID_CustomUpdateMetaDataFieldsException()
         {
             CustomMetaDataFieldUpdateRequest model = new CustomMetaDataFieldUpdateRequest
             {
@@ -525,11 +526,11 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateCustomMetaDataFieldsAsync(model));
-            Assert.Equal(ErrorMessages.InvalidMetaTagIdValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateCustomMetaDataFieldsAsync(model));
+            Assert.Equal(ErrorMessages.InvalidMetaTagIdValue, ex.Message);
         }
         [Fact]
-        public void Missing_Schema_CustomUpdateMetaDataFieldsException()
+        public async Task Missing_Schema_CustomUpdateMetaDataFieldsException()
         {
             CustomMetaDataFieldUpdateRequest model = new CustomMetaDataFieldUpdateRequest
             {
@@ -545,8 +546,8 @@ namespace Imagekit.UnitTests.MetaData
             };
             var httpClient = TestHelpers.GetTestHttpClient(httpResponse);
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateCustomMetaDataFieldsAsync(model));
-            Assert.Equal(ErrorMessages.InvalidMetaTagSchemaValue, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateCustomMetaDataFieldsAsync(model));
+            Assert.Equal(ErrorMessages.InvalidMetaTagSchemaValue, ex.Message);
         }
 
     }

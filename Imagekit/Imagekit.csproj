@@ -4,7 +4,7 @@
 		<OutputType>Library</OutputType>
 		<RootNamespace>Imagekit</RootNamespace>
 		<AssemblyName>Imagekit</AssemblyName>
-		<TargetFrameworks>net10.0;net8.0;net6.0;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net10.0;net8.0;netstandard2.0</TargetFrameworks>
 		<LangVersion>14</LangVersion>
 		<Copyright>© Imagekit Private Limited 2019</Copyright>
 		<DevelopmentDependency>false</DevelopmentDependency>
@@ -52,18 +52,6 @@
 		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
-		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
-		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
-		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
 		<NoWarn>1701;1702;1591;NU5125;NU5048;NU1504;NU5125;SYSLIB0014;</NoWarn>
 		<WarningsAsErrors>$(WarningsAsErrors);</WarningsAsErrors>
@@ -90,25 +78,5 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.8" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.8" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.8" />
 	</ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Xunit;
 using Imagekit.Models;
 using System.Collections;
@@ -182,7 +183,7 @@ namespace Imagekit.UnitTests.Upload
             BackGroundImage bck = new BackGroundImage
             {
                 name = "remove-bg",
-                options = new options() { add_shadow = true,  bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+                options = new options() { add_shadow = true, bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
             model1.Add(bck);
             ob.extensions = model1;
@@ -237,7 +238,7 @@ namespace Imagekit.UnitTests.Upload
             BackGroundImage bck = new BackGroundImage
             {
                 name = "remove-bg",
-                options = new options() { add_shadow = true,  bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
+                options = new options() { add_shadow = true, bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
             };
             model1.Add(bck);
             ob.webhookUrl = "https://webhook.site/c78d617f-33bc-40d9-9e61-608999721e2e";
@@ -310,7 +311,7 @@ namespace Imagekit.UnitTests.Upload
             Assert.Equal(responseObj1, response.Raw);
         }
         [Fact]
-        public void UpdateFile_Missing_File_Id()
+        public async Task UpdateFile_Missing_File_Id()
         {
             FileUpdateRequest ob = new FileUpdateRequest
             {
@@ -328,8 +329,8 @@ namespace Imagekit.UnitTests.Upload
 
             var restClient = new RestClient(GOOD_PUBLICKEY, GOOD_URLENDPOINT, httpClient);
 
-            var ex = Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateFileDetailAsync(ob));
-            Assert.Equal(ErrorMessages.FileIdMissing, ex.Result.Message);
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await restClient.UpdateFileDetailAsync(ob));
+            Assert.Equal(ErrorMessages.FileIdMissing, ex.Message);
         }
         [Fact]
         public void UpdateFile_Default()
@@ -412,7 +413,7 @@ namespace Imagekit.UnitTests.Upload
             var responseObj1 = JsonConvert.SerializeObject(responseObj);
             Assert.Equal(responseObj1, response.Raw);
         }
-       
+
     }
 }
 
