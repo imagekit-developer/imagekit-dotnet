@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: |
             8.0.x
@@ -42,12 +42,11 @@ jobs:
       - name: Build Release
         run: dotnet build Imagekit.slnx -c Release /p:ContinuousIntegrationBuild=true
 
-        # run: dotnet test --no-build Imagekit.UnitTests/Imagekit.UnitTests.csproj -c Release
       - name: Run test suite
         run: dotnet test Imagekit.UnitTests/Imagekit.UnitTests.csproj --verbosity minimal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
       - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v6
         with:
           file: ./Imagekit.UnitTests/coverage.net10.0.opencover.xml
 
@@ -55,7 +54,7 @@ jobs:
         run: dotnet pack Imagekit.slnx -c Release --no-build --output ${{ env.NUGET_OUTPUT_PATH }}
 
       - name: "Upload Artifact"
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.ATTRIBUTE_NAME }}
           path: ${{ env.NUGET_OUTPUT_PATH }}
@@ -66,12 +65,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v8
         with:
           name: ${{ env.ATTRIBUTE_NAME }}
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 10.0.x
 
