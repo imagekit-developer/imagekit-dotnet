@@ -446,15 +446,6 @@ public class DummyCreateParamsTest : TestBase
                     },
                 ],
             },
-            SolidColorOverlayTransformation = new()
-            {
-                Alpha = 1,
-                Background = "background",
-                Gradient = new Default(),
-                Height = 0,
-                Radius = new Max(),
-                Width = 0,
-            },
             SrcOptions = new()
             {
                 Src = "/my-image.jpg",
@@ -1319,15 +1310,6 @@ public class DummyCreateParamsTest : TestBase
                 },
             ],
         };
-        SolidColorOverlayTransformation expectedSolidColorOverlayTransformation = new()
-        {
-            Alpha = 1,
-            Background = "background",
-            Gradient = new Default(),
-            Height = 0,
-            Radius = new Max(),
-            Width = 0,
-        };
         SrcOptions expectedSrcOptions = new()
         {
             Src = "/my-image.jpg",
@@ -1775,10 +1757,6 @@ public class DummyCreateParamsTest : TestBase
         Assert.Equal(expectedResponsiveImageAttributes, parameters.ResponsiveImageAttributes);
         Assert.Equal(expectedSavedExtensions, parameters.SavedExtensions);
         Assert.Equal(expectedSolidColorOverlay, parameters.SolidColorOverlay);
-        Assert.Equal(
-            expectedSolidColorOverlayTransformation,
-            parameters.SolidColorOverlayTransformation
-        );
         Assert.Equal(expectedSrcOptions, parameters.SrcOptions);
         Assert.Equal(expectedStreamingResolution, parameters.StreamingResolution);
         Assert.Equal(expectedSubtitleOverlay, parameters.SubtitleOverlay);
@@ -1820,8 +1798,6 @@ public class DummyCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("savedExtensions"));
         Assert.Null(parameters.SolidColorOverlay);
         Assert.False(parameters.RawBodyData.ContainsKey("solidColorOverlay"));
-        Assert.Null(parameters.SolidColorOverlayTransformation);
-        Assert.False(parameters.RawBodyData.ContainsKey("solidColorOverlayTransformation"));
         Assert.Null(parameters.SrcOptions);
         Assert.False(parameters.RawBodyData.ContainsKey("srcOptions"));
         Assert.Null(parameters.StreamingResolution);
@@ -1859,7 +1835,6 @@ public class DummyCreateParamsTest : TestBase
             ResponsiveImageAttributes = null,
             SavedExtensions = null,
             SolidColorOverlay = null,
-            SolidColorOverlayTransformation = null,
             SrcOptions = null,
             StreamingResolution = null,
             SubtitleOverlay = null,
@@ -1893,8 +1868,6 @@ public class DummyCreateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("savedExtensions"));
         Assert.Null(parameters.SolidColorOverlay);
         Assert.False(parameters.RawBodyData.ContainsKey("solidColorOverlay"));
-        Assert.Null(parameters.SolidColorOverlayTransformation);
-        Assert.False(parameters.RawBodyData.ContainsKey("solidColorOverlayTransformation"));
         Assert.Null(parameters.SrcOptions);
         Assert.False(parameters.RawBodyData.ContainsKey("srcOptions"));
         Assert.Null(parameters.StreamingResolution);
@@ -2362,15 +2335,6 @@ public class DummyCreateParamsTest : TestBase
                         Width = 0,
                     },
                 ],
-            },
-            SolidColorOverlayTransformation = new()
-            {
-                Alpha = 1,
-                Background = "background",
-                Gradient = new Default(),
-                Height = 0,
-                Radius = new Max(),
-                Width = 0,
             },
             SrcOptions = new()
             {

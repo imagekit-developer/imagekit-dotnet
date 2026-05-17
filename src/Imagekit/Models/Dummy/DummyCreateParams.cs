@@ -256,26 +256,6 @@ public record class DummyCreateParams : ParamsBase
         }
     }
 
-    public SolidColorOverlayTransformation? SolidColorOverlayTransformation
-    {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableClass<SolidColorOverlayTransformation>(
-                "solidColorOverlayTransformation"
-            );
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawBodyData.Set("solidColorOverlayTransformation", value);
-        }
-    }
-
     /// <summary>
     /// Options for generating ImageKit URLs with transformations. See the [Transformations guide](https://imagekit.io/docs/transformations).
     /// </summary>
