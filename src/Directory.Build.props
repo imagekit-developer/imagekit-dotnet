@@ -6,7 +6,7 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>Copyright 2026 Image Kit</Copyright>
     <PackageProjectUrl>https://imagekit.io/docs/api-reference</PackageProjectUrl>
-    <RepositoryUrl>https://www.github.com/stainless-sdks/imagekit-diversion-csharp</RepositoryUrl>
+    <RepositoryUrl>https://www.github.com/imagekit-developer/imagekit-dotnet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
     <!-- Documentation-->
