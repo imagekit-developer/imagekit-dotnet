@@ -6,9 +6,10 @@ The REST API documentation can be found on [imagekit.io](https://imagekit.io/doc
 
 ## Installation
 
+Install the package from [NuGet](https://www.nuget.org/packages/Imagekit):
+
 ```bash
-git clone git@github.com:imagekit-developer/imagekit-dotnet.git
-dotnet add reference imagekit-dotnet/src/Imagekit
+dotnet add package Imagekit
 ```
 
 ## Requirements
