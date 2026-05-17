@@ -60,20 +60,20 @@ public class UnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
+                        Webhooks::VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -716,20 +716,20 @@ public class UnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
+                        Webhooks::VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {

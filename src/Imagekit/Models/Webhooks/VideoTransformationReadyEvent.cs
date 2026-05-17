@@ -60,14 +60,12 @@ public sealed record class VideoTransformationReadyEvent : JsonModel
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required VideoTransformationReadyEventVideoTransformationReadyEventData Data
+    public required VideoTransformationReadyEventChangedData Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventData>(
-                "data"
-            );
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventChangedData>("data");
         }
         init { this._rawData.Set("data", value); }
     }
@@ -75,12 +73,12 @@ public sealed record class VideoTransformationReadyEvent : JsonModel
     /// <summary>
     /// Information about the original request that triggered the video transformation.
     /// </summary>
-    public required VideoTransformationReadyEventVideoTransformationReadyEventRequest Request
+    public required VideoTransformationReadyEventChangedRequest Request
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventRequest>(
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventChangedRequest>(
                 "request"
             );
         }
@@ -171,11 +169,11 @@ class VideoTransformationReadyEventFromRaw : IFromRawJson<VideoTransformationRea
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventVideoTransformationReadyEvent,
-        VideoTransformationReadyEventVideoTransformationReadyEventFromRaw
+        VideoTransformationReadyEventChanged,
+        VideoTransformationReadyEventChangedFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventVideoTransformationReadyEvent : JsonModel
+public sealed record class VideoTransformationReadyEventChanged : JsonModel
 {
     /// <summary>
     /// Timestamp when the event was created in ISO8601 format.
@@ -190,14 +188,12 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required VideoTransformationReadyEventVideoTransformationReadyEventData Data
+    public required VideoTransformationReadyEventChangedData Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventData>(
-                "data"
-            );
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventChangedData>("data");
         }
         init { this._rawData.Set("data", value); }
     }
@@ -205,12 +201,12 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     /// <summary>
     /// Information about the original request that triggered the video transformation.
     /// </summary>
-    public required VideoTransformationReadyEventVideoTransformationReadyEventRequest Request
+    public required VideoTransformationReadyEventChangedRequest Request
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventRequest>(
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventChangedRequest>(
                 "request"
             );
         }
@@ -266,22 +262,20 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
         this.Timings?.Validate();
     }
 
-    public VideoTransformationReadyEventVideoTransformationReadyEvent()
+    public VideoTransformationReadyEventChanged()
     {
         this.Type = JsonSerializer.SerializeToElement("video.transformation.ready");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventVideoTransformationReadyEvent(
-        VideoTransformationReadyEventVideoTransformationReadyEvent videoTransformationReadyEventVideoTransformationReadyEvent
+    public VideoTransformationReadyEventChanged(
+        VideoTransformationReadyEventChanged videoTransformationReadyEventChanged
     )
-        : base(videoTransformationReadyEventVideoTransformationReadyEvent) { }
+        : base(videoTransformationReadyEventChanged) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventVideoTransformationReadyEvent(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public VideoTransformationReadyEventChanged(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -290,16 +284,14 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventVideoTransformationReadyEvent(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    VideoTransformationReadyEventChanged(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventVideoTransformationReadyEvent FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventChangedFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventChanged FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -307,45 +299,44 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     }
 }
 
-class VideoTransformationReadyEventVideoTransformationReadyEventFromRaw
-    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEvent>
+class VideoTransformationReadyEventChangedFromRaw
+    : IFromRawJson<VideoTransformationReadyEventChanged>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventVideoTransformationReadyEvent FromRawUnchecked(
+    public VideoTransformationReadyEventChanged FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => VideoTransformationReadyEventVideoTransformationReadyEvent.FromRawUnchecked(rawData);
+    ) => VideoTransformationReadyEventChanged.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventVideoTransformationReadyEventData,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataFromRaw
+        VideoTransformationReadyEventChangedData,
+        VideoTransformationReadyEventChangedDataFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventData
-    : JsonModel
+public sealed record class VideoTransformationReadyEventChangedData : JsonModel
 {
     /// <summary>
     /// Information about the source video asset being transformed.
     /// </summary>
-    public required VideoTransformationReadyEventVideoTransformationReadyEventDataAsset Asset
+    public required VideoTransformationReadyEventChangedDataAsset Asset
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventDataAsset>(
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventChangedDataAsset>(
                 "asset"
             );
         }
         init { this._rawData.Set("asset", value); }
     }
 
-    public required VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation Transformation
+    public required VideoTransformationReadyEventChangedDataTransformation Transformation
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation>(
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventChangedDataTransformation>(
                 "transformation"
             );
         }
@@ -359,17 +350,17 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
         this.Transformation.Validate();
     }
 
-    public VideoTransformationReadyEventVideoTransformationReadyEventData() { }
+    public VideoTransformationReadyEventChangedData() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventVideoTransformationReadyEventData(
-        VideoTransformationReadyEventVideoTransformationReadyEventData videoTransformationReadyEventVideoTransformationReadyEventData
+    public VideoTransformationReadyEventChangedData(
+        VideoTransformationReadyEventChangedData videoTransformationReadyEventChangedData
     )
-        : base(videoTransformationReadyEventVideoTransformationReadyEventData) { }
+        : base(videoTransformationReadyEventChangedData) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventVideoTransformationReadyEventData(
+    public VideoTransformationReadyEventChangedData(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -378,16 +369,14 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventVideoTransformationReadyEventData(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    VideoTransformationReadyEventChangedData(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventDataFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventVideoTransformationReadyEventData FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventChangedDataFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventChangedData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -395,13 +384,13 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     }
 }
 
-class VideoTransformationReadyEventVideoTransformationReadyEventDataFromRaw
-    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventData>
+class VideoTransformationReadyEventChangedDataFromRaw
+    : IFromRawJson<VideoTransformationReadyEventChangedData>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventVideoTransformationReadyEventData FromRawUnchecked(
+    public VideoTransformationReadyEventChangedData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => VideoTransformationReadyEventVideoTransformationReadyEventData.FromRawUnchecked(rawData);
+    ) => VideoTransformationReadyEventChangedData.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -409,12 +398,11 @@ class VideoTransformationReadyEventVideoTransformationReadyEventDataFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventVideoTransformationReadyEventDataAsset,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataAssetFromRaw
+        VideoTransformationReadyEventChangedDataAsset,
+        VideoTransformationReadyEventChangedDataAssetFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventDataAsset
-    : JsonModel
+public sealed record class VideoTransformationReadyEventChangedDataAsset : JsonModel
 {
     /// <summary>
     /// URL to download or access the source video file.
@@ -435,17 +423,17 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
         _ = this.Url;
     }
 
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataAsset() { }
+    public VideoTransformationReadyEventChangedDataAsset() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataAsset(
-        VideoTransformationReadyEventVideoTransformationReadyEventDataAsset videoTransformationReadyEventVideoTransformationReadyEventDataAsset
+    public VideoTransformationReadyEventChangedDataAsset(
+        VideoTransformationReadyEventChangedDataAsset videoTransformationReadyEventChangedDataAsset
     )
-        : base(videoTransformationReadyEventVideoTransformationReadyEventDataAsset) { }
+        : base(videoTransformationReadyEventChangedDataAsset) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataAsset(
+    public VideoTransformationReadyEventChangedDataAsset(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -454,16 +442,14 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventVideoTransformationReadyEventDataAsset(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    VideoTransformationReadyEventChangedDataAsset(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventDataAssetFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventVideoTransformationReadyEventDataAsset FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventChangedDataAssetFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventChangedDataAsset FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -471,52 +457,42 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     }
 
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataAsset(string url)
+    public VideoTransformationReadyEventChangedDataAsset(string url)
         : this()
     {
         this.Url = url;
     }
 }
 
-class VideoTransformationReadyEventVideoTransformationReadyEventDataAssetFromRaw
-    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventDataAsset>
+class VideoTransformationReadyEventChangedDataAssetFromRaw
+    : IFromRawJson<VideoTransformationReadyEventChangedDataAsset>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataAsset FromRawUnchecked(
+    public VideoTransformationReadyEventChangedDataAsset FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        VideoTransformationReadyEventVideoTransformationReadyEventDataAsset.FromRawUnchecked(
-            rawData
-        );
+    ) => VideoTransformationReadyEventChangedDataAsset.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationFromRaw
+        VideoTransformationReadyEventChangedDataTransformation,
+        VideoTransformationReadyEventChangedDataTransformationFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
-    : JsonModel
+public sealed record class VideoTransformationReadyEventChangedDataTransformation : JsonModel
 {
     /// <summary>
     /// Type of video transformation: - `video-transformation`: Standard video processing
     /// (resize, format conversion, etc.) - `gif-to-video`: Convert animated GIF
     /// to video format - `video-thumbnail`: Generate thumbnail image from video
     /// </summary>
-    public required ApiEnum<
-        string,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
-    > Type
+    public required ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType> Type
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
-                ApiEnum<
-                    string,
-                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
-                >
+                ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType>
             >("type");
         }
         init { this._rawData.Set("type", value); }
@@ -525,12 +501,12 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     /// <summary>
     /// Configuration options for video transformations.
     /// </summary>
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions? Options
+    public VideoTransformationReadyEventChangedDataTransformationOptions? Options
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions>(
+            return this._rawData.GetNullableClass<VideoTransformationReadyEventChangedDataTransformationOptions>(
                 "options"
             );
         }
@@ -574,17 +550,17 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
         this.Output?.Validate();
     }
 
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation() { }
+    public VideoTransformationReadyEventChangedDataTransformation() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation(
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation videoTransformationReadyEventVideoTransformationReadyEventDataTransformation
+    public VideoTransformationReadyEventChangedDataTransformation(
+        VideoTransformationReadyEventChangedDataTransformation videoTransformationReadyEventChangedDataTransformation
     )
-        : base(videoTransformationReadyEventVideoTransformationReadyEventDataTransformation) { }
+        : base(videoTransformationReadyEventChangedDataTransformation) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation(
+    public VideoTransformationReadyEventChangedDataTransformation(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -593,7 +569,7 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation(
+    VideoTransformationReadyEventChangedDataTransformation(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -601,8 +577,8 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventChangedDataTransformationFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventChangedDataTransformation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -610,11 +586,8 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     }
 
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation(
-        ApiEnum<
-            string,
-            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
-        > type
+    public VideoTransformationReadyEventChangedDataTransformation(
+        ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType> type
     )
         : this()
     {
@@ -622,16 +595,13 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     }
 }
 
-class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationFromRaw
-    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation>
+class VideoTransformationReadyEventChangedDataTransformationFromRaw
+    : IFromRawJson<VideoTransformationReadyEventChangedDataTransformation>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation FromRawUnchecked(
+    public VideoTransformationReadyEventChangedDataTransformation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation.FromRawUnchecked(
-            rawData
-        );
+    ) => VideoTransformationReadyEventChangedDataTransformation.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -639,20 +609,18 @@ class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformati
 /// (resize, format conversion, etc.) - `gif-to-video`: Convert animated GIF to video
 /// format - `video-thumbnail`: Generate thumbnail image from video
 /// </summary>
-[JsonConverter(
-    typeof(VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationTypeConverter)
-)]
-public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
+[JsonConverter(typeof(VideoTransformationReadyEventChangedDataTransformationTypeConverter))]
+public enum VideoTransformationReadyEventChangedDataTransformationType
 {
     VideoTransformation,
     GifToVideo,
     VideoThumbnail,
 }
 
-sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationTypeConverter
-    : JsonConverter<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType>
+sealed class VideoTransformationReadyEventChangedDataTransformationTypeConverter
+    : JsonConverter<VideoTransformationReadyEventChangedDataTransformationType>
 {
-    public override VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType Read(
+    public override VideoTransformationReadyEventChangedDataTransformationType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -661,20 +629,17 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "video-transformation" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
-            "gif-to-video" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.GifToVideo,
+                VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+            "gif-to-video" => VideoTransformationReadyEventChangedDataTransformationType.GifToVideo,
             "video-thumbnail" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoThumbnail,
-            _ => (VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType)(
-                -1
-            ),
+                VideoTransformationReadyEventChangedDataTransformationType.VideoThumbnail,
+            _ => (VideoTransformationReadyEventChangedDataTransformationType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType value,
+        VideoTransformationReadyEventChangedDataTransformationType value,
         JsonSerializerOptions options
     )
     {
@@ -682,11 +647,11 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
             writer,
             value switch
             {
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation =>
+                VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation =>
                     "video-transformation",
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.GifToVideo =>
+                VideoTransformationReadyEventChangedDataTransformationType.GifToVideo =>
                     "gif-to-video",
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoThumbnail =>
+                VideoTransformationReadyEventChangedDataTransformationType.VideoThumbnail =>
                     "video-thumbnail",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -702,19 +667,18 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFromRaw
+        VideoTransformationReadyEventChangedDataTransformationOptions,
+        VideoTransformationReadyEventChangedDataTransformationOptionsFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
-    : JsonModel
+public sealed record class VideoTransformationReadyEventChangedDataTransformationOptions : JsonModel
 {
     /// <summary>
     /// Audio codec used for encoding (aac or opus).
     /// </summary>
     public ApiEnum<
         string,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
+        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec
     >? AudioCodec
     {
         get
@@ -723,7 +687,7 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
             return this._rawData.GetNullableClass<
                 ApiEnum<
                     string,
-                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
+                    VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec
                 >
             >("audio_codec");
         }
@@ -764,17 +728,14 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     /// </summary>
     public ApiEnum<
         string,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
+        VideoTransformationReadyEventChangedDataTransformationOptionsFormat
     >? Format
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableClass<
-                ApiEnum<
-                    string,
-                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
-                >
+                ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsFormat>
             >("format");
         }
         init
@@ -814,7 +775,7 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     /// </summary>
     public ApiEnum<
         string,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
+        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
     >? StreamProtocol
     {
         get
@@ -823,7 +784,7 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
             return this._rawData.GetNullableClass<
                 ApiEnum<
                     string,
-                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
+                    VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
                 >
             >("stream_protocol");
         }
@@ -867,7 +828,7 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     /// </summary>
     public ApiEnum<
         string,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
+        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec
     >? VideoCodec
     {
         get
@@ -876,7 +837,7 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
             return this._rawData.GetNullableClass<
                 ApiEnum<
                     string,
-                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
+                    VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec
                 >
             >("video_codec");
         }
@@ -903,18 +864,17 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
         this.VideoCodec?.Validate();
     }
 
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions() { }
+    public VideoTransformationReadyEventChangedDataTransformationOptions() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions(
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions videoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
+    public VideoTransformationReadyEventChangedDataTransformationOptions(
+        VideoTransformationReadyEventChangedDataTransformationOptions videoTransformationReadyEventChangedDataTransformationOptions
     )
-        : base(videoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions)
-    { }
+        : base(videoTransformationReadyEventChangedDataTransformationOptions) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions(
+    public VideoTransformationReadyEventChangedDataTransformationOptions(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -923,7 +883,7 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions(
+    VideoTransformationReadyEventChangedDataTransformationOptions(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -931,8 +891,8 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventChangedDataTransformationOptionsFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventChangedDataTransformationOptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -940,34 +900,31 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     }
 }
 
-class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFromRaw
-    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions>
+class VideoTransformationReadyEventChangedDataTransformationOptionsFromRaw
+    : IFromRawJson<VideoTransformationReadyEventChangedDataTransformationOptions>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions FromRawUnchecked(
+    public VideoTransformationReadyEventChangedDataTransformationOptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions.FromRawUnchecked(
-            rawData
-        );
+    ) => VideoTransformationReadyEventChangedDataTransformationOptions.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Audio codec used for encoding (aac or opus).
 /// </summary>
 [JsonConverter(
-    typeof(VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodecConverter)
+    typeof(VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodecConverter)
 )]
-public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
+public enum VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec
 {
     Aac,
     Opus,
 }
 
-sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodecConverter
-    : JsonConverter<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec>
+sealed class VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodecConverter
+    : JsonConverter<VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec>
 {
-    public override VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec Read(
+    public override VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -975,20 +932,15 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "aac" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
-            "opus" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Opus,
-            _ =>
-                (VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec)(
-                    -1
-                ),
+            "aac" => VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+            "opus" => VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Opus,
+            _ => (VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec value,
+        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec value,
         JsonSerializerOptions options
     )
     {
@@ -996,9 +948,9 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
             writer,
             value switch
             {
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac =>
+                VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac =>
                     "aac",
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Opus =>
+                VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Opus =>
                     "opus",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -1013,9 +965,9 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
 /// Output format for the transformed video or thumbnail.
 /// </summary>
 [JsonConverter(
-    typeof(VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormatConverter)
+    typeof(VideoTransformationReadyEventChangedDataTransformationOptionsFormatConverter)
 )]
-public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
+public enum VideoTransformationReadyEventChangedDataTransformationOptionsFormat
 {
     Mp4,
     Webm,
@@ -1024,10 +976,10 @@ public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransf
     Webp,
 }
 
-sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormatConverter
-    : JsonConverter<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat>
+sealed class VideoTransformationReadyEventChangedDataTransformationOptionsFormatConverter
+    : JsonConverter<VideoTransformationReadyEventChangedDataTransformationOptionsFormat>
 {
-    public override VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat Read(
+    public override VideoTransformationReadyEventChangedDataTransformationOptionsFormat Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1035,26 +987,18 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "mp4" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
-            "webm" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webm,
-            "jpg" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Jpg,
-            "png" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Png,
-            "webp" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webp,
-            _ =>
-                (VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat)(
-                    -1
-                ),
+            "mp4" => VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+            "webm" => VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Webm,
+            "jpg" => VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Jpg,
+            "png" => VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Png,
+            "webp" => VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Webp,
+            _ => (VideoTransformationReadyEventChangedDataTransformationOptionsFormat)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat value,
+        VideoTransformationReadyEventChangedDataTransformationOptionsFormat value,
         JsonSerializerOptions options
     )
     {
@@ -1062,16 +1006,11 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
             writer,
             value switch
             {
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4 =>
-                    "mp4",
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webm =>
-                    "webm",
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Jpg =>
-                    "jpg",
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Png =>
-                    "png",
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webp =>
-                    "webp",
+                VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4 => "mp4",
+                VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Webm => "webm",
+                VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Jpg => "jpg",
+                VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Png => "png",
+                VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Webp => "webp",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1085,18 +1024,18 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
 /// Streaming protocol for adaptive bitrate streaming.
 /// </summary>
 [JsonConverter(
-    typeof(VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocolConverter)
+    typeof(VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocolConverter)
 )]
-public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
+public enum VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
 {
     Hls,
     Dash,
 }
 
-sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocolConverter
-    : JsonConverter<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol>
+sealed class VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocolConverter
+    : JsonConverter<VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol>
 {
-    public override VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol Read(
+    public override VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1105,19 +1044,16 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "HLS" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
             "DASH" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Dash,
-            _ =>
-                (VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol)(
-                    -1
-                ),
+                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Dash,
+            _ => (VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol value,
+        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol value,
         JsonSerializerOptions options
     )
     {
@@ -1125,9 +1061,9 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
             writer,
             value switch
             {
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls =>
+                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls =>
                     "HLS",
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Dash =>
+                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Dash =>
                     "DASH",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -1142,19 +1078,19 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
 /// Video codec used for encoding (h264, vp9, or av1).
 /// </summary>
 [JsonConverter(
-    typeof(VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodecConverter)
+    typeof(VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodecConverter)
 )]
-public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
+public enum VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec
 {
     H264,
     Vp9,
     Av1,
 }
 
-sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodecConverter
-    : JsonConverter<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec>
+sealed class VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodecConverter
+    : JsonConverter<VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec>
 {
-    public override VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec Read(
+    public override VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1162,22 +1098,16 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "h264" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
-            "vp9" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Vp9,
-            "av1" =>
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Av1,
-            _ =>
-                (VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec)(
-                    -1
-                ),
+            "h264" => VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+            "vp9" => VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.Vp9,
+            "av1" => VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.Av1,
+            _ => (VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec value,
+        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec value,
         JsonSerializerOptions options
     )
     {
@@ -1185,11 +1115,11 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
             writer,
             value switch
             {
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264 =>
+                VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264 =>
                     "h264",
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Vp9 =>
+                VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.Vp9 =>
                     "vp9",
-                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Av1 =>
+                VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.Av1 =>
                     "av1",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -1396,12 +1326,11 @@ class VideoMetadataFromRaw : IFromRawJson<VideoMetadata>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventVideoTransformationReadyEventRequest,
-        VideoTransformationReadyEventVideoTransformationReadyEventRequestFromRaw
+        VideoTransformationReadyEventChangedRequest,
+        VideoTransformationReadyEventChangedRequestFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventRequest
-    : JsonModel
+public sealed record class VideoTransformationReadyEventChangedRequest : JsonModel
 {
     /// <summary>
     /// Full URL of the transformation request that was submitted.
@@ -1458,17 +1387,17 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
         _ = this.UserAgent;
     }
 
-    public VideoTransformationReadyEventVideoTransformationReadyEventRequest() { }
+    public VideoTransformationReadyEventChangedRequest() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventVideoTransformationReadyEventRequest(
-        VideoTransformationReadyEventVideoTransformationReadyEventRequest videoTransformationReadyEventVideoTransformationReadyEventRequest
+    public VideoTransformationReadyEventChangedRequest(
+        VideoTransformationReadyEventChangedRequest videoTransformationReadyEventChangedRequest
     )
-        : base(videoTransformationReadyEventVideoTransformationReadyEventRequest) { }
+        : base(videoTransformationReadyEventChangedRequest) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventVideoTransformationReadyEventRequest(
+    public VideoTransformationReadyEventChangedRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1477,16 +1406,14 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventVideoTransformationReadyEventRequest(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    VideoTransformationReadyEventChangedRequest(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventRequestFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventVideoTransformationReadyEventRequest FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventChangedRequestFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventChangedRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1494,14 +1421,13 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     }
 }
 
-class VideoTransformationReadyEventVideoTransformationReadyEventRequestFromRaw
-    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventRequest>
+class VideoTransformationReadyEventChangedRequestFromRaw
+    : IFromRawJson<VideoTransformationReadyEventChangedRequest>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventVideoTransformationReadyEventRequest FromRawUnchecked(
+    public VideoTransformationReadyEventChangedRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        VideoTransformationReadyEventVideoTransformationReadyEventRequest.FromRawUnchecked(rawData);
+    ) => VideoTransformationReadyEventChangedRequest.FromRawUnchecked(rawData);
 }
 
 /// <summary>
