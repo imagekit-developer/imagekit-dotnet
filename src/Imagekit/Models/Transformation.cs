@@ -1424,7 +1424,7 @@ public record class AIDropShadow : ModelBase
         }
     }
 
-    public AIDropShadow(AIDropShadowUnionMember0 value, JsonElement? element = null)
+    public AIDropShadow(AIDropShadowDefault value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1443,22 +1443,22 @@ public record class AIDropShadow : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="AIDropShadowUnionMember0"/>.
+    /// type <see cref="AIDropShadowDefault"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickTrue(out var value)) {
-    ///     // `value` is of type `AIDropShadowUnionMember0`
+    /// if (instance.TryPickDefault(out var value)) {
+    ///     // `value` is of type `AIDropShadowDefault`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickTrue([NotNullWhen(true)] out AIDropShadowUnionMember0? value)
+    public bool TryPickDefault([NotNullWhen(true)] out AIDropShadowDefault? value)
     {
-        value = this.Value as AIDropShadowUnionMember0;
+        value = this.Value as AIDropShadowDefault;
         return value != null;
     }
 
@@ -1497,18 +1497,18 @@ public record class AIDropShadow : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (AIDropShadowUnionMember0 value) =&gt; {...},
+    ///     (AIDropShadowDefault value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<AIDropShadowUnionMember0> true_, Action<string> @string)
+    public void Switch(Action<AIDropShadowDefault> default_, Action<string> @string)
     {
         switch (this.Value)
         {
-            case AIDropShadowUnionMember0 value:
-                true_(value);
+            case AIDropShadowDefault value:
+                default_(value);
                 break;
             case string value:
                 @string(value);
@@ -1535,17 +1535,17 @@ public record class AIDropShadow : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (AIDropShadowUnionMember0 value) =&gt; {...},
+    ///     (AIDropShadowDefault value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<AIDropShadowUnionMember0, T> true_, Func<string, T> @string)
+    public T Match<T>(Func<AIDropShadowDefault, T> default_, Func<string, T> @string)
     {
         return this.Value switch
         {
-            AIDropShadowUnionMember0 value => true_(value),
+            AIDropShadowDefault value => default_(value),
             string value => @string(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of AIDropShadow"
@@ -1553,7 +1553,7 @@ public record class AIDropShadow : ModelBase
         };
     }
 
-    public static implicit operator AIDropShadow(AIDropShadowUnionMember0 value) => new(value);
+    public static implicit operator AIDropShadow(AIDropShadowDefault value) => new(value);
 
     public static implicit operator AIDropShadow(string value) => new(value);
 
@@ -1575,7 +1575,7 @@ public record class AIDropShadow : ModelBase
                 "Data did not match any variant of AIDropShadow"
             );
         }
-        this.Switch((true_) => true_.Validate(), (_) => { });
+        this.Switch((default_) => default_.Validate(), (_) => { });
     }
 
     public virtual bool Equals(AIDropShadow? other) =>
@@ -1598,7 +1598,7 @@ public record class AIDropShadow : ModelBase
     {
         return this.Value switch
         {
-            AIDropShadowUnionMember0 _ => 0,
+            AIDropShadowDefault _ => 0,
             string _ => 1,
             _ => -1,
         };
@@ -1616,10 +1616,7 @@ sealed class AIDropShadowConverter : JsonConverter<AIDropShadow>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<AIDropShadowUnionMember0>(
-                element,
-                options
-            );
+            var deserialized = JsonSerializer.Deserialize<AIDropShadowDefault>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -1657,17 +1654,17 @@ sealed class AIDropShadowConverter : JsonConverter<AIDropShadow>
     }
 }
 
-[JsonConverter(typeof(AIDropShadowUnionMember0Converter))]
-public record class AIDropShadowUnionMember0
+[JsonConverter(typeof(AIDropShadowDefaultConverter))]
+public record class AIDropShadowDefault
 {
     public JsonElement Element { get; private init; }
 
-    public AIDropShadowUnionMember0()
+    public AIDropShadowDefault()
     {
         Element = JsonSerializer.SerializeToElement(true);
     }
 
-    internal AIDropShadowUnionMember0(JsonElement element)
+    internal AIDropShadowDefault(JsonElement element)
     {
         Element = element;
     }
@@ -1683,11 +1680,9 @@ public record class AIDropShadowUnionMember0
     /// </summary>
     public void Validate()
     {
-        if (this != new AIDropShadowUnionMember0())
+        if (this != new AIDropShadowDefault())
         {
-            throw new ImageKitInvalidDataException(
-                "Invalid value given for 'AIDropShadowUnionMember0'"
-            );
+            throw new ImageKitInvalidDataException("Invalid value given for 'AIDropShadowDefault'");
         }
     }
 
@@ -1696,7 +1691,7 @@ public record class AIDropShadowUnionMember0
         return 0;
     }
 
-    public virtual bool Equals(AIDropShadowUnionMember0? other)
+    public virtual bool Equals(AIDropShadowDefault? other)
     {
         if (other == null)
         {
@@ -1707,9 +1702,9 @@ public record class AIDropShadowUnionMember0
     }
 }
 
-class AIDropShadowUnionMember0Converter : JsonConverter<AIDropShadowUnionMember0>
+class AIDropShadowDefaultConverter : JsonConverter<AIDropShadowDefault>
 {
-    public override AIDropShadowUnionMember0? Read(
+    public override AIDropShadowDefault? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -1720,7 +1715,7 @@ class AIDropShadowUnionMember0Converter : JsonConverter<AIDropShadowUnionMember0
 
     public override void Write(
         Utf8JsonWriter writer,
-        AIDropShadowUnionMember0 value,
+        AIDropShadowDefault value,
         JsonSerializerOptions options
     )
     {
@@ -3047,10 +3042,7 @@ public record class TransformationGradient : ModelBase
         }
     }
 
-    public TransformationGradient(
-        TransformationGradientUnionMember0 value,
-        JsonElement? element = null
-    )
+    public TransformationGradient(TransformationGradientDefault value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -3069,22 +3061,22 @@ public record class TransformationGradient : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="TransformationGradientUnionMember0"/>.
+    /// type <see cref="TransformationGradientDefault"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickTrue(out var value)) {
-    ///     // `value` is of type `TransformationGradientUnionMember0`
+    /// if (instance.TryPickDefault(out var value)) {
+    ///     // `value` is of type `TransformationGradientDefault`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickTrue([NotNullWhen(true)] out TransformationGradientUnionMember0? value)
+    public bool TryPickDefault([NotNullWhen(true)] out TransformationGradientDefault? value)
     {
-        value = this.Value as TransformationGradientUnionMember0;
+        value = this.Value as TransformationGradientDefault;
         return value != null;
     }
 
@@ -3123,18 +3115,18 @@ public record class TransformationGradient : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (TransformationGradientUnionMember0 value) =&gt; {...},
+    ///     (TransformationGradientDefault value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<TransformationGradientUnionMember0> true_, Action<string> @string)
+    public void Switch(Action<TransformationGradientDefault> default_, Action<string> @string)
     {
         switch (this.Value)
         {
-            case TransformationGradientUnionMember0 value:
-                true_(value);
+            case TransformationGradientDefault value:
+                default_(value);
                 break;
             case string value:
                 @string(value);
@@ -3161,17 +3153,17 @@ public record class TransformationGradient : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (TransformationGradientUnionMember0 value) =&gt; {...},
+    ///     (TransformationGradientDefault value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<TransformationGradientUnionMember0, T> true_, Func<string, T> @string)
+    public T Match<T>(Func<TransformationGradientDefault, T> default_, Func<string, T> @string)
     {
         return this.Value switch
         {
-            TransformationGradientUnionMember0 value => true_(value),
+            TransformationGradientDefault value => default_(value),
             string value => @string(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of TransformationGradient"
@@ -3179,9 +3171,8 @@ public record class TransformationGradient : ModelBase
         };
     }
 
-    public static implicit operator TransformationGradient(
-        TransformationGradientUnionMember0 value
-    ) => new(value);
+    public static implicit operator TransformationGradient(TransformationGradientDefault value) =>
+        new(value);
 
     public static implicit operator TransformationGradient(string value) => new(value);
 
@@ -3203,7 +3194,7 @@ public record class TransformationGradient : ModelBase
                 "Data did not match any variant of TransformationGradient"
             );
         }
-        this.Switch((true_) => true_.Validate(), (_) => { });
+        this.Switch((default_) => default_.Validate(), (_) => { });
     }
 
     public virtual bool Equals(TransformationGradient? other) =>
@@ -3226,7 +3217,7 @@ public record class TransformationGradient : ModelBase
     {
         return this.Value switch
         {
-            TransformationGradientUnionMember0 _ => 0,
+            TransformationGradientDefault _ => 0,
             string _ => 1,
             _ => -1,
         };
@@ -3244,7 +3235,7 @@ sealed class TransformationGradientConverter : JsonConverter<TransformationGradi
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<TransformationGradientUnionMember0>(
+            var deserialized = JsonSerializer.Deserialize<TransformationGradientDefault>(
                 element,
                 options
             );
@@ -3285,17 +3276,17 @@ sealed class TransformationGradientConverter : JsonConverter<TransformationGradi
     }
 }
 
-[JsonConverter(typeof(TransformationGradientUnionMember0Converter))]
-public record class TransformationGradientUnionMember0
+[JsonConverter(typeof(TransformationGradientDefaultConverter))]
+public record class TransformationGradientDefault
 {
     public JsonElement Element { get; private init; }
 
-    public TransformationGradientUnionMember0()
+    public TransformationGradientDefault()
     {
         Element = JsonSerializer.SerializeToElement(true);
     }
 
-    internal TransformationGradientUnionMember0(JsonElement element)
+    internal TransformationGradientDefault(JsonElement element)
     {
         Element = element;
     }
@@ -3311,10 +3302,10 @@ public record class TransformationGradientUnionMember0
     /// </summary>
     public void Validate()
     {
-        if (this != new TransformationGradientUnionMember0())
+        if (this != new TransformationGradientDefault())
         {
             throw new ImageKitInvalidDataException(
-                "Invalid value given for 'TransformationGradientUnionMember0'"
+                "Invalid value given for 'TransformationGradientDefault'"
             );
         }
     }
@@ -3324,7 +3315,7 @@ public record class TransformationGradientUnionMember0
         return 0;
     }
 
-    public virtual bool Equals(TransformationGradientUnionMember0? other)
+    public virtual bool Equals(TransformationGradientDefault? other)
     {
         if (other == null)
         {
@@ -3335,10 +3326,9 @@ public record class TransformationGradientUnionMember0
     }
 }
 
-class TransformationGradientUnionMember0Converter
-    : JsonConverter<TransformationGradientUnionMember0>
+class TransformationGradientDefaultConverter : JsonConverter<TransformationGradientDefault>
 {
-    public override TransformationGradientUnionMember0? Read(
+    public override TransformationGradientDefault? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -3349,7 +3339,7 @@ class TransformationGradientUnionMember0Converter
 
     public override void Write(
         Utf8JsonWriter writer,
-        TransformationGradientUnionMember0 value,
+        TransformationGradientDefault value,
         JsonSerializerOptions options
     )
     {
@@ -3918,7 +3908,7 @@ public record class TransformationRadius : ModelBase
         this._element = element;
     }
 
-    public TransformationRadius(TransformationRadiusUnionMember1 value, JsonElement? element = null)
+    public TransformationRadius(TransformationRadiusMax value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -3958,22 +3948,22 @@ public record class TransformationRadius : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="TransformationRadiusUnionMember1"/>.
+    /// type <see cref="TransformationRadiusMax"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMax(out var value)) {
-    ///     // `value` is of type `TransformationRadiusUnionMember1`
+    ///     // `value` is of type `TransformationRadiusMax`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickMax([NotNullWhen(true)] out TransformationRadiusUnionMember1? value)
+    public bool TryPickMax([NotNullWhen(true)] out TransformationRadiusMax? value)
     {
-        value = this.Value as TransformationRadiusUnionMember1;
+        value = this.Value as TransformationRadiusMax;
         return value != null;
     }
 
@@ -4013,7 +4003,7 @@ public record class TransformationRadius : ModelBase
     /// <code>
     /// instance.Switch(
     ///     (double value) =&gt; {...},
-    ///     (TransformationRadiusUnionMember1 value) =&gt; {...},
+    ///     (TransformationRadiusMax value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
@@ -4021,7 +4011,7 @@ public record class TransformationRadius : ModelBase
     /// </summary>
     public void Switch(
         Action<double> @double,
-        Action<TransformationRadiusUnionMember1> max,
+        Action<TransformationRadiusMax> max,
         Action<string> @string
     )
     {
@@ -4030,7 +4020,7 @@ public record class TransformationRadius : ModelBase
             case double value:
                 @double(value);
                 break;
-            case TransformationRadiusUnionMember1 value:
+            case TransformationRadiusMax value:
                 max(value);
                 break;
             case string value:
@@ -4059,7 +4049,7 @@ public record class TransformationRadius : ModelBase
     /// <code>
     /// var result = instance.Match(
     ///     (double value) =&gt; {...},
-    ///     (TransformationRadiusUnionMember1 value) =&gt; {...},
+    ///     (TransformationRadiusMax value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
@@ -4067,14 +4057,14 @@ public record class TransformationRadius : ModelBase
     /// </summary>
     public T Match<T>(
         Func<double, T> @double,
-        Func<TransformationRadiusUnionMember1, T> max,
+        Func<TransformationRadiusMax, T> max,
         Func<string, T> @string
     )
     {
         return this.Value switch
         {
             double value => @double(value),
-            TransformationRadiusUnionMember1 value => max(value),
+            TransformationRadiusMax value => max(value),
             string value => @string(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of TransformationRadius"
@@ -4084,7 +4074,7 @@ public record class TransformationRadius : ModelBase
 
     public static implicit operator TransformationRadius(double value) => new(value);
 
-    public static implicit operator TransformationRadius(TransformationRadiusUnionMember1 value) =>
+    public static implicit operator TransformationRadius(TransformationRadiusMax value) =>
         new(value);
 
     public static implicit operator TransformationRadius(string value) => new(value);
@@ -4131,7 +4121,7 @@ public record class TransformationRadius : ModelBase
         return this.Value switch
         {
             double _ => 0,
-            TransformationRadiusUnionMember1 _ => 1,
+            TransformationRadiusMax _ => 1,
             string _ => 2,
             _ => -1,
         };
@@ -4149,7 +4139,7 @@ sealed class TransformationRadiusConverter : JsonConverter<TransformationRadius>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<TransformationRadiusUnionMember1>(
+            var deserialized = JsonSerializer.Deserialize<TransformationRadiusMax>(
                 element,
                 options
             );
@@ -4199,17 +4189,17 @@ sealed class TransformationRadiusConverter : JsonConverter<TransformationRadius>
     }
 }
 
-[JsonConverter(typeof(TransformationRadiusUnionMember1Converter))]
-public record class TransformationRadiusUnionMember1
+[JsonConverter(typeof(TransformationRadiusMaxConverter))]
+public record class TransformationRadiusMax
 {
     public JsonElement Element { get; private init; }
 
-    public TransformationRadiusUnionMember1()
+    public TransformationRadiusMax()
     {
         Element = JsonSerializer.SerializeToElement("max");
     }
 
-    internal TransformationRadiusUnionMember1(JsonElement element)
+    internal TransformationRadiusMax(JsonElement element)
     {
         Element = element;
     }
@@ -4225,10 +4215,10 @@ public record class TransformationRadiusUnionMember1
     /// </summary>
     public void Validate()
     {
-        if (this != new TransformationRadiusUnionMember1())
+        if (this != new TransformationRadiusMax())
         {
             throw new ImageKitInvalidDataException(
-                "Invalid value given for 'TransformationRadiusUnionMember1'"
+                "Invalid value given for 'TransformationRadiusMax'"
             );
         }
     }
@@ -4238,7 +4228,7 @@ public record class TransformationRadiusUnionMember1
         return 0;
     }
 
-    public virtual bool Equals(TransformationRadiusUnionMember1? other)
+    public virtual bool Equals(TransformationRadiusMax? other)
     {
         if (other == null)
         {
@@ -4249,9 +4239,9 @@ public record class TransformationRadiusUnionMember1
     }
 }
 
-class TransformationRadiusUnionMember1Converter : JsonConverter<TransformationRadiusUnionMember1>
+class TransformationRadiusMaxConverter : JsonConverter<TransformationRadiusMax>
 {
-    public override TransformationRadiusUnionMember1? Read(
+    public override TransformationRadiusMax? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -4262,7 +4252,7 @@ class TransformationRadiusUnionMember1Converter : JsonConverter<TransformationRa
 
     public override void Write(
         Utf8JsonWriter writer,
-        TransformationRadiusUnionMember1 value,
+        TransformationRadiusMax value,
         JsonSerializerOptions options
     )
     {
@@ -4541,7 +4531,7 @@ public record class Shadow : ModelBase
         }
     }
 
-    public Shadow(ShadowUnionMember0 value, JsonElement? element = null)
+    public Shadow(ShadowDefault value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -4560,22 +4550,22 @@ public record class Shadow : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="ShadowUnionMember0"/>.
+    /// type <see cref="ShadowDefault"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickTrue(out var value)) {
-    ///     // `value` is of type `ShadowUnionMember0`
+    /// if (instance.TryPickDefault(out var value)) {
+    ///     // `value` is of type `ShadowDefault`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickTrue([NotNullWhen(true)] out ShadowUnionMember0? value)
+    public bool TryPickDefault([NotNullWhen(true)] out ShadowDefault? value)
     {
-        value = this.Value as ShadowUnionMember0;
+        value = this.Value as ShadowDefault;
         return value != null;
     }
 
@@ -4614,18 +4604,18 @@ public record class Shadow : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (ShadowUnionMember0 value) =&gt; {...},
+    ///     (ShadowDefault value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<ShadowUnionMember0> true_, Action<string> @string)
+    public void Switch(Action<ShadowDefault> default_, Action<string> @string)
     {
         switch (this.Value)
         {
-            case ShadowUnionMember0 value:
-                true_(value);
+            case ShadowDefault value:
+                default_(value);
                 break;
             case string value:
                 @string(value);
@@ -4650,23 +4640,23 @@ public record class Shadow : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (ShadowUnionMember0 value) =&gt; {...},
+    ///     (ShadowDefault value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<ShadowUnionMember0, T> true_, Func<string, T> @string)
+    public T Match<T>(Func<ShadowDefault, T> default_, Func<string, T> @string)
     {
         return this.Value switch
         {
-            ShadowUnionMember0 value => true_(value),
+            ShadowDefault value => default_(value),
             string value => @string(value),
             _ => throw new ImageKitInvalidDataException("Data did not match any variant of Shadow"),
         };
     }
 
-    public static implicit operator Shadow(ShadowUnionMember0 value) => new(value);
+    public static implicit operator Shadow(ShadowDefault value) => new(value);
 
     public static implicit operator Shadow(string value) => new(value);
 
@@ -4686,7 +4676,7 @@ public record class Shadow : ModelBase
         {
             throw new ImageKitInvalidDataException("Data did not match any variant of Shadow");
         }
-        this.Switch((true_) => true_.Validate(), (_) => { });
+        this.Switch((default_) => default_.Validate(), (_) => { });
     }
 
     public virtual bool Equals(Shadow? other) =>
@@ -4709,7 +4699,7 @@ public record class Shadow : ModelBase
     {
         return this.Value switch
         {
-            ShadowUnionMember0 _ => 0,
+            ShadowDefault _ => 0,
             string _ => 1,
             _ => -1,
         };
@@ -4727,7 +4717,7 @@ sealed class ShadowConverter : JsonConverter<Shadow>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<ShadowUnionMember0>(element, options);
+            var deserialized = JsonSerializer.Deserialize<ShadowDefault>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -4761,17 +4751,17 @@ sealed class ShadowConverter : JsonConverter<Shadow>
     }
 }
 
-[JsonConverter(typeof(ShadowUnionMember0Converter))]
-public record class ShadowUnionMember0
+[JsonConverter(typeof(ShadowDefaultConverter))]
+public record class ShadowDefault
 {
     public JsonElement Element { get; private init; }
 
-    public ShadowUnionMember0()
+    public ShadowDefault()
     {
         Element = JsonSerializer.SerializeToElement(true);
     }
 
-    internal ShadowUnionMember0(JsonElement element)
+    internal ShadowDefault(JsonElement element)
     {
         Element = element;
     }
@@ -4787,9 +4777,9 @@ public record class ShadowUnionMember0
     /// </summary>
     public void Validate()
     {
-        if (this != new ShadowUnionMember0())
+        if (this != new ShadowDefault())
         {
-            throw new ImageKitInvalidDataException("Invalid value given for 'ShadowUnionMember0'");
+            throw new ImageKitInvalidDataException("Invalid value given for 'ShadowDefault'");
         }
     }
 
@@ -4798,7 +4788,7 @@ public record class ShadowUnionMember0
         return 0;
     }
 
-    public virtual bool Equals(ShadowUnionMember0? other)
+    public virtual bool Equals(ShadowDefault? other)
     {
         if (other == null)
         {
@@ -4809,9 +4799,9 @@ public record class ShadowUnionMember0
     }
 }
 
-class ShadowUnionMember0Converter : JsonConverter<ShadowUnionMember0>
+class ShadowDefaultConverter : JsonConverter<ShadowDefault>
 {
-    public override ShadowUnionMember0? Read(
+    public override ShadowDefault? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -4822,7 +4812,7 @@ class ShadowUnionMember0Converter : JsonConverter<ShadowUnionMember0>
 
     public override void Write(
         Utf8JsonWriter writer,
-        ShadowUnionMember0 value,
+        ShadowDefault value,
         JsonSerializerOptions options
     )
     {
@@ -4852,7 +4842,7 @@ public record class Sharpen : ModelBase
         }
     }
 
-    public Sharpen(SharpenUnionMember0 value, JsonElement? element = null)
+    public Sharpen(SharpenDefault value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -4871,22 +4861,22 @@ public record class Sharpen : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="SharpenUnionMember0"/>.
+    /// type <see cref="SharpenDefault"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickTrue(out var value)) {
-    ///     // `value` is of type `SharpenUnionMember0`
+    /// if (instance.TryPickDefault(out var value)) {
+    ///     // `value` is of type `SharpenDefault`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickTrue([NotNullWhen(true)] out SharpenUnionMember0? value)
+    public bool TryPickDefault([NotNullWhen(true)] out SharpenDefault? value)
     {
-        value = this.Value as SharpenUnionMember0;
+        value = this.Value as SharpenDefault;
         return value != null;
     }
 
@@ -4925,18 +4915,18 @@ public record class Sharpen : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharpenUnionMember0 value) =&gt; {...},
+    ///     (SharpenDefault value) =&gt; {...},
     ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<SharpenUnionMember0> true_, Action<double> @double)
+    public void Switch(Action<SharpenDefault> default_, Action<double> @double)
     {
         switch (this.Value)
         {
-            case SharpenUnionMember0 value:
-                true_(value);
+            case SharpenDefault value:
+                default_(value);
                 break;
             case double value:
                 @double(value);
@@ -4961,17 +4951,17 @@ public record class Sharpen : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharpenUnionMember0 value) =&gt; {...},
+    ///     (SharpenDefault value) =&gt; {...},
     ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<SharpenUnionMember0, T> true_, Func<double, T> @double)
+    public T Match<T>(Func<SharpenDefault, T> default_, Func<double, T> @double)
     {
         return this.Value switch
         {
-            SharpenUnionMember0 value => true_(value),
+            SharpenDefault value => default_(value),
             double value => @double(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of Sharpen"
@@ -4979,7 +4969,7 @@ public record class Sharpen : ModelBase
         };
     }
 
-    public static implicit operator Sharpen(SharpenUnionMember0 value) => new(value);
+    public static implicit operator Sharpen(SharpenDefault value) => new(value);
 
     public static implicit operator Sharpen(double value) => new(value);
 
@@ -4999,7 +4989,7 @@ public record class Sharpen : ModelBase
         {
             throw new ImageKitInvalidDataException("Data did not match any variant of Sharpen");
         }
-        this.Switch((true_) => true_.Validate(), (_) => { });
+        this.Switch((default_) => default_.Validate(), (_) => { });
     }
 
     public virtual bool Equals(Sharpen? other) =>
@@ -5022,7 +5012,7 @@ public record class Sharpen : ModelBase
     {
         return this.Value switch
         {
-            SharpenUnionMember0 _ => 0,
+            SharpenDefault _ => 0,
             double _ => 1,
             _ => -1,
         };
@@ -5040,7 +5030,7 @@ sealed class SharpenConverter : JsonConverter<Sharpen>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<SharpenUnionMember0>(element, options);
+            var deserialized = JsonSerializer.Deserialize<SharpenDefault>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -5070,17 +5060,17 @@ sealed class SharpenConverter : JsonConverter<Sharpen>
     }
 }
 
-[JsonConverter(typeof(SharpenUnionMember0Converter))]
-public record class SharpenUnionMember0
+[JsonConverter(typeof(SharpenDefaultConverter))]
+public record class SharpenDefault
 {
     public JsonElement Element { get; private init; }
 
-    public SharpenUnionMember0()
+    public SharpenDefault()
     {
         Element = JsonSerializer.SerializeToElement(true);
     }
 
-    internal SharpenUnionMember0(JsonElement element)
+    internal SharpenDefault(JsonElement element)
     {
         Element = element;
     }
@@ -5096,9 +5086,9 @@ public record class SharpenUnionMember0
     /// </summary>
     public void Validate()
     {
-        if (this != new SharpenUnionMember0())
+        if (this != new SharpenDefault())
         {
-            throw new ImageKitInvalidDataException("Invalid value given for 'SharpenUnionMember0'");
+            throw new ImageKitInvalidDataException("Invalid value given for 'SharpenDefault'");
         }
     }
 
@@ -5107,7 +5097,7 @@ public record class SharpenUnionMember0
         return 0;
     }
 
-    public virtual bool Equals(SharpenUnionMember0? other)
+    public virtual bool Equals(SharpenDefault? other)
     {
         if (other == null)
         {
@@ -5118,9 +5108,9 @@ public record class SharpenUnionMember0
     }
 }
 
-class SharpenUnionMember0Converter : JsonConverter<SharpenUnionMember0>
+class SharpenDefaultConverter : JsonConverter<SharpenDefault>
 {
-    public override SharpenUnionMember0? Read(
+    public override SharpenDefault? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -5131,7 +5121,7 @@ class SharpenUnionMember0Converter : JsonConverter<SharpenUnionMember0>
 
     public override void Write(
         Utf8JsonWriter writer,
-        SharpenUnionMember0 value,
+        SharpenDefault value,
         JsonSerializerOptions options
     )
     {
@@ -5406,7 +5396,7 @@ public record class Trim : ModelBase
         }
     }
 
-    public Trim(TrimUnionMember0 value, JsonElement? element = null)
+    public Trim(TrimDefault value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -5425,22 +5415,22 @@ public record class Trim : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="TrimUnionMember0"/>.
+    /// type <see cref="TrimDefault"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickTrue(out var value)) {
-    ///     // `value` is of type `TrimUnionMember0`
+    /// if (instance.TryPickDefault(out var value)) {
+    ///     // `value` is of type `TrimDefault`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickTrue([NotNullWhen(true)] out TrimUnionMember0? value)
+    public bool TryPickDefault([NotNullWhen(true)] out TrimDefault? value)
     {
-        value = this.Value as TrimUnionMember0;
+        value = this.Value as TrimDefault;
         return value != null;
     }
 
@@ -5479,18 +5469,18 @@ public record class Trim : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (TrimUnionMember0 value) =&gt; {...},
+    ///     (TrimDefault value) =&gt; {...},
     ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<TrimUnionMember0> true_, Action<double> @double)
+    public void Switch(Action<TrimDefault> default_, Action<double> @double)
     {
         switch (this.Value)
         {
-            case TrimUnionMember0 value:
-                true_(value);
+            case TrimDefault value:
+                default_(value);
                 break;
             case double value:
                 @double(value);
@@ -5515,23 +5505,23 @@ public record class Trim : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (TrimUnionMember0 value) =&gt; {...},
+    ///     (TrimDefault value) =&gt; {...},
     ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<TrimUnionMember0, T> true_, Func<double, T> @double)
+    public T Match<T>(Func<TrimDefault, T> default_, Func<double, T> @double)
     {
         return this.Value switch
         {
-            TrimUnionMember0 value => true_(value),
+            TrimDefault value => default_(value),
             double value => @double(value),
             _ => throw new ImageKitInvalidDataException("Data did not match any variant of Trim"),
         };
     }
 
-    public static implicit operator Trim(TrimUnionMember0 value) => new(value);
+    public static implicit operator Trim(TrimDefault value) => new(value);
 
     public static implicit operator Trim(double value) => new(value);
 
@@ -5551,7 +5541,7 @@ public record class Trim : ModelBase
         {
             throw new ImageKitInvalidDataException("Data did not match any variant of Trim");
         }
-        this.Switch((true_) => true_.Validate(), (_) => { });
+        this.Switch((default_) => default_.Validate(), (_) => { });
     }
 
     public virtual bool Equals(Trim? other) =>
@@ -5574,7 +5564,7 @@ public record class Trim : ModelBase
     {
         return this.Value switch
         {
-            TrimUnionMember0 _ => 0,
+            TrimDefault _ => 0,
             double _ => 1,
             _ => -1,
         };
@@ -5592,7 +5582,7 @@ sealed class TrimConverter : JsonConverter<Trim>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<TrimUnionMember0>(element, options);
+            var deserialized = JsonSerializer.Deserialize<TrimDefault>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -5622,17 +5612,17 @@ sealed class TrimConverter : JsonConverter<Trim>
     }
 }
 
-[JsonConverter(typeof(TrimUnionMember0Converter))]
-public record class TrimUnionMember0
+[JsonConverter(typeof(TrimDefaultConverter))]
+public record class TrimDefault
 {
     public JsonElement Element { get; private init; }
 
-    public TrimUnionMember0()
+    public TrimDefault()
     {
         Element = JsonSerializer.SerializeToElement(true);
     }
 
-    internal TrimUnionMember0(JsonElement element)
+    internal TrimDefault(JsonElement element)
     {
         Element = element;
     }
@@ -5648,9 +5638,9 @@ public record class TrimUnionMember0
     /// </summary>
     public void Validate()
     {
-        if (this != new TrimUnionMember0())
+        if (this != new TrimDefault())
         {
-            throw new ImageKitInvalidDataException("Invalid value given for 'TrimUnionMember0'");
+            throw new ImageKitInvalidDataException("Invalid value given for 'TrimDefault'");
         }
     }
 
@@ -5659,7 +5649,7 @@ public record class TrimUnionMember0
         return 0;
     }
 
-    public virtual bool Equals(TrimUnionMember0? other)
+    public virtual bool Equals(TrimDefault? other)
     {
         if (other == null)
         {
@@ -5670,9 +5660,9 @@ public record class TrimUnionMember0
     }
 }
 
-class TrimUnionMember0Converter : JsonConverter<TrimUnionMember0>
+class TrimDefaultConverter : JsonConverter<TrimDefault>
 {
-    public override TrimUnionMember0? Read(
+    public override TrimDefault? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -5683,7 +5673,7 @@ class TrimUnionMember0Converter : JsonConverter<TrimUnionMember0>
 
     public override void Write(
         Utf8JsonWriter writer,
-        TrimUnionMember0 value,
+        TrimDefault value,
         JsonSerializerOptions options
     )
     {
@@ -5714,7 +5704,7 @@ public record class UnsharpMask : ModelBase
         }
     }
 
-    public UnsharpMask(UnsharpMaskUnionMember0 value, JsonElement? element = null)
+    public UnsharpMask(UnsharpMaskDefault value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -5733,22 +5723,22 @@ public record class UnsharpMask : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnsharpMaskUnionMember0"/>.
+    /// type <see cref="UnsharpMaskDefault"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickTrue(out var value)) {
-    ///     // `value` is of type `UnsharpMaskUnionMember0`
+    /// if (instance.TryPickDefault(out var value)) {
+    ///     // `value` is of type `UnsharpMaskDefault`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickTrue([NotNullWhen(true)] out UnsharpMaskUnionMember0? value)
+    public bool TryPickDefault([NotNullWhen(true)] out UnsharpMaskDefault? value)
     {
-        value = this.Value as UnsharpMaskUnionMember0;
+        value = this.Value as UnsharpMaskDefault;
         return value != null;
     }
 
@@ -5787,18 +5777,18 @@ public record class UnsharpMask : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (UnsharpMaskUnionMember0 value) =&gt; {...},
+    ///     (UnsharpMaskDefault value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<UnsharpMaskUnionMember0> true_, Action<string> @string)
+    public void Switch(Action<UnsharpMaskDefault> default_, Action<string> @string)
     {
         switch (this.Value)
         {
-            case UnsharpMaskUnionMember0 value:
-                true_(value);
+            case UnsharpMaskDefault value:
+                default_(value);
                 break;
             case string value:
                 @string(value);
@@ -5825,17 +5815,17 @@ public record class UnsharpMask : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (UnsharpMaskUnionMember0 value) =&gt; {...},
+    ///     (UnsharpMaskDefault value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<UnsharpMaskUnionMember0, T> true_, Func<string, T> @string)
+    public T Match<T>(Func<UnsharpMaskDefault, T> default_, Func<string, T> @string)
     {
         return this.Value switch
         {
-            UnsharpMaskUnionMember0 value => true_(value),
+            UnsharpMaskDefault value => default_(value),
             string value => @string(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of UnsharpMask"
@@ -5843,7 +5833,7 @@ public record class UnsharpMask : ModelBase
         };
     }
 
-    public static implicit operator UnsharpMask(UnsharpMaskUnionMember0 value) => new(value);
+    public static implicit operator UnsharpMask(UnsharpMaskDefault value) => new(value);
 
     public static implicit operator UnsharpMask(string value) => new(value);
 
@@ -5863,7 +5853,7 @@ public record class UnsharpMask : ModelBase
         {
             throw new ImageKitInvalidDataException("Data did not match any variant of UnsharpMask");
         }
-        this.Switch((true_) => true_.Validate(), (_) => { });
+        this.Switch((default_) => default_.Validate(), (_) => { });
     }
 
     public virtual bool Equals(UnsharpMask? other) =>
@@ -5886,7 +5876,7 @@ public record class UnsharpMask : ModelBase
     {
         return this.Value switch
         {
-            UnsharpMaskUnionMember0 _ => 0,
+            UnsharpMaskDefault _ => 0,
             string _ => 1,
             _ => -1,
         };
@@ -5904,10 +5894,7 @@ sealed class UnsharpMaskConverter : JsonConverter<UnsharpMask>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<UnsharpMaskUnionMember0>(
-                element,
-                options
-            );
+            var deserialized = JsonSerializer.Deserialize<UnsharpMaskDefault>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -5945,17 +5932,17 @@ sealed class UnsharpMaskConverter : JsonConverter<UnsharpMask>
     }
 }
 
-[JsonConverter(typeof(UnsharpMaskUnionMember0Converter))]
-public record class UnsharpMaskUnionMember0
+[JsonConverter(typeof(UnsharpMaskDefaultConverter))]
+public record class UnsharpMaskDefault
 {
     public JsonElement Element { get; private init; }
 
-    public UnsharpMaskUnionMember0()
+    public UnsharpMaskDefault()
     {
         Element = JsonSerializer.SerializeToElement(true);
     }
 
-    internal UnsharpMaskUnionMember0(JsonElement element)
+    internal UnsharpMaskDefault(JsonElement element)
     {
         Element = element;
     }
@@ -5971,11 +5958,9 @@ public record class UnsharpMaskUnionMember0
     /// </summary>
     public void Validate()
     {
-        if (this != new UnsharpMaskUnionMember0())
+        if (this != new UnsharpMaskDefault())
         {
-            throw new ImageKitInvalidDataException(
-                "Invalid value given for 'UnsharpMaskUnionMember0'"
-            );
+            throw new ImageKitInvalidDataException("Invalid value given for 'UnsharpMaskDefault'");
         }
     }
 
@@ -5984,7 +5969,7 @@ public record class UnsharpMaskUnionMember0
         return 0;
     }
 
-    public virtual bool Equals(UnsharpMaskUnionMember0? other)
+    public virtual bool Equals(UnsharpMaskDefault? other)
     {
         if (other == null)
         {
@@ -5995,9 +5980,9 @@ public record class UnsharpMaskUnionMember0
     }
 }
 
-class UnsharpMaskUnionMember0Converter : JsonConverter<UnsharpMaskUnionMember0>
+class UnsharpMaskDefaultConverter : JsonConverter<UnsharpMaskDefault>
 {
-    public override UnsharpMaskUnionMember0? Read(
+    public override UnsharpMaskDefault? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -6008,7 +5993,7 @@ class UnsharpMaskUnionMember0Converter : JsonConverter<UnsharpMaskUnionMember0>
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnsharpMaskUnionMember0 value,
+        UnsharpMaskDefault value,
         JsonSerializerOptions options
     )
     {

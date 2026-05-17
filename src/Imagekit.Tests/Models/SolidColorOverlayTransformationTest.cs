@@ -14,17 +14,17 @@ public class SolidColorOverlayTransformationTest : TestBase
         {
             Alpha = 1,
             Background = "background",
-            Gradient = new UnionMember0(),
+            Gradient = new Default(),
             Height = 0,
-            Radius = new UnionMember1(),
+            Radius = new Max(),
             Width = 0,
         };
 
         double expectedAlpha = 1;
         string expectedBackground = "background";
-        Gradient expectedGradient = new UnionMember0();
+        Gradient expectedGradient = new Default();
         Height expectedHeight = 0;
-        Radius expectedRadius = new UnionMember1();
+        Radius expectedRadius = new Max();
         Width expectedWidth = 0;
 
         Assert.Equal(expectedAlpha, model.Alpha);
@@ -42,9 +42,9 @@ public class SolidColorOverlayTransformationTest : TestBase
         {
             Alpha = 1,
             Background = "background",
-            Gradient = new UnionMember0(),
+            Gradient = new Default(),
             Height = 0,
-            Radius = new UnionMember1(),
+            Radius = new Max(),
             Width = 0,
         };
 
@@ -64,9 +64,9 @@ public class SolidColorOverlayTransformationTest : TestBase
         {
             Alpha = 1,
             Background = "background",
-            Gradient = new UnionMember0(),
+            Gradient = new Default(),
             Height = 0,
-            Radius = new UnionMember1(),
+            Radius = new Max(),
             Width = 0,
         };
 
@@ -79,9 +79,9 @@ public class SolidColorOverlayTransformationTest : TestBase
 
         double expectedAlpha = 1;
         string expectedBackground = "background";
-        Gradient expectedGradient = new UnionMember0();
+        Gradient expectedGradient = new Default();
         Height expectedHeight = 0;
-        Radius expectedRadius = new UnionMember1();
+        Radius expectedRadius = new Max();
         Width expectedWidth = 0;
 
         Assert.Equal(expectedAlpha, deserialized.Alpha);
@@ -99,9 +99,9 @@ public class SolidColorOverlayTransformationTest : TestBase
         {
             Alpha = 1,
             Background = "background",
-            Gradient = new UnionMember0(),
+            Gradient = new Default(),
             Height = 0,
-            Radius = new UnionMember1(),
+            Radius = new Max(),
             Width = 0,
         };
 
@@ -187,9 +187,9 @@ public class SolidColorOverlayTransformationTest : TestBase
         {
             Alpha = 1,
             Background = "background",
-            Gradient = new UnionMember0(),
+            Gradient = new Default(),
             Height = 0,
-            Radius = new UnionMember1(),
+            Radius = new Max(),
             Width = 0,
         };
 
@@ -202,9 +202,9 @@ public class SolidColorOverlayTransformationTest : TestBase
 public class GradientTest : TestBase
 {
     [Fact]
-    public void TrueValidationWorks()
+    public void DefaultValidationWorks()
     {
-        Gradient value = new UnionMember0();
+        Gradient value = new Default();
         value.Validate();
     }
 
@@ -216,9 +216,9 @@ public class GradientTest : TestBase
     }
 
     [Fact]
-    public void TrueSerializationRoundtripWorks()
+    public void DefaultSerializationRoundtripWorks()
     {
-        Gradient value = new UnionMember0();
+        Gradient value = new Default();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Gradient>(
             element,
@@ -242,19 +242,19 @@ public class GradientTest : TestBase
     }
 }
 
-public class UnionMember0Test : TestBase
+public class DefaultTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new UnionMember0();
+        var constant = new Default();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember0>(
+        var constant = JsonSerializer.Deserialize<Default>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
@@ -266,7 +266,7 @@ public class UnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember0>(
+        var constant = JsonSerializer.Deserialize<Default>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -278,9 +278,9 @@ public class UnionMember0Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new UnionMember0();
+        var constant = new Default();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<Default>(
             element,
             ModelBase.SerializerOptions
         );
@@ -291,12 +291,12 @@ public class UnionMember0Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember0>(
+        var constant = JsonSerializer.Deserialize<Default>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<Default>(
             element,
             ModelBase.SerializerOptions
         );
@@ -307,12 +307,12 @@ public class UnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember0>(
+        var constant = JsonSerializer.Deserialize<Default>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<Default>(
             element,
             ModelBase.SerializerOptions
         );
@@ -370,7 +370,7 @@ public class RadiusTest : TestBase
     [Fact]
     public void MaxValidationWorks()
     {
-        Radius value = new UnionMember1();
+        Radius value = new Max();
         value.Validate();
     }
 
@@ -394,7 +394,7 @@ public class RadiusTest : TestBase
     [Fact]
     public void MaxSerializationRoundtripWorks()
     {
-        Radius value = new UnionMember1();
+        Radius value = new Max();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Radius>(element, ModelBase.SerializerOptions);
 
@@ -412,19 +412,19 @@ public class RadiusTest : TestBase
     }
 }
 
-public class UnionMember1Test : TestBase
+public class MaxTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new UnionMember1();
+        var constant = new Max();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember1>(
+        var constant = JsonSerializer.Deserialize<Max>(
             JsonSerializer.SerializeToElement("max"),
             ModelBase.SerializerOptions
         );
@@ -436,7 +436,7 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember1>(
+        var constant = JsonSerializer.Deserialize<Max>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -448,12 +448,9 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new UnionMember1();
+        var constant = new Max();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnionMember1>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<Max>(element, ModelBase.SerializerOptions);
 
         Assert.Equal(constant, deserialized);
     }
@@ -461,15 +458,12 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember1>(
+        var constant = JsonSerializer.Deserialize<Max>(
             JsonSerializer.SerializeToElement("max"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnionMember1>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<Max>(element, ModelBase.SerializerOptions);
 
         Assert.Equal(constant, deserialized);
     }
@@ -477,15 +471,12 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember1>(
+        var constant = JsonSerializer.Deserialize<Max>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnionMember1>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<Max>(element, ModelBase.SerializerOptions);
 
         Assert.Equal(constant, deserialized);
     }

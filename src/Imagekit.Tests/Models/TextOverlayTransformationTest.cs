@@ -21,7 +21,7 @@ public class TextOverlayTransformationTest : TestBase
             InnerAlignment = InnerAlignment.Left,
             LineHeight = 0,
             Padding = 0,
-            Radius = new TextOverlayTransformationRadiusUnionMember1(),
+            Radius = new TextOverlayTransformationRadiusMax(),
             Rotation = 0,
             Typography = "typography",
             Width = 0,
@@ -36,8 +36,7 @@ public class TextOverlayTransformationTest : TestBase
         ApiEnum<string, InnerAlignment> expectedInnerAlignment = InnerAlignment.Left;
         LineHeight expectedLineHeight = 0;
         Padding expectedPadding = 0;
-        TextOverlayTransformationRadius expectedRadius =
-            new TextOverlayTransformationRadiusUnionMember1();
+        TextOverlayTransformationRadius expectedRadius = new TextOverlayTransformationRadiusMax();
         Rotation expectedRotation = 0;
         string expectedTypography = "typography";
         TextOverlayTransformationWidth expectedWidth = 0;
@@ -71,7 +70,7 @@ public class TextOverlayTransformationTest : TestBase
             InnerAlignment = InnerAlignment.Left,
             LineHeight = 0,
             Padding = 0,
-            Radius = new TextOverlayTransformationRadiusUnionMember1(),
+            Radius = new TextOverlayTransformationRadiusMax(),
             Rotation = 0,
             Typography = "typography",
             Width = 0,
@@ -100,7 +99,7 @@ public class TextOverlayTransformationTest : TestBase
             InnerAlignment = InnerAlignment.Left,
             LineHeight = 0,
             Padding = 0,
-            Radius = new TextOverlayTransformationRadiusUnionMember1(),
+            Radius = new TextOverlayTransformationRadiusMax(),
             Rotation = 0,
             Typography = "typography",
             Width = 0,
@@ -122,8 +121,7 @@ public class TextOverlayTransformationTest : TestBase
         ApiEnum<string, InnerAlignment> expectedInnerAlignment = InnerAlignment.Left;
         LineHeight expectedLineHeight = 0;
         Padding expectedPadding = 0;
-        TextOverlayTransformationRadius expectedRadius =
-            new TextOverlayTransformationRadiusUnionMember1();
+        TextOverlayTransformationRadius expectedRadius = new TextOverlayTransformationRadiusMax();
         Rotation expectedRotation = 0;
         string expectedTypography = "typography";
         TextOverlayTransformationWidth expectedWidth = 0;
@@ -157,7 +155,7 @@ public class TextOverlayTransformationTest : TestBase
             InnerAlignment = InnerAlignment.Left,
             LineHeight = 0,
             Padding = 0,
-            Radius = new TextOverlayTransformationRadiusUnionMember1(),
+            Radius = new TextOverlayTransformationRadiusMax(),
             Rotation = 0,
             Typography = "typography",
             Width = 0,
@@ -294,7 +292,7 @@ public class TextOverlayTransformationTest : TestBase
             InnerAlignment = InnerAlignment.Left,
             LineHeight = 0,
             Padding = 0,
-            Radius = new TextOverlayTransformationRadiusUnionMember1(),
+            Radius = new TextOverlayTransformationRadiusMax(),
             Rotation = 0,
             Typography = "typography",
             Width = 0,
@@ -569,7 +567,7 @@ public class TextOverlayTransformationRadiusTest : TestBase
     [Fact]
     public void MaxValidationWorks()
     {
-        TextOverlayTransformationRadius value = new TextOverlayTransformationRadiusUnionMember1();
+        TextOverlayTransformationRadius value = new TextOverlayTransformationRadiusMax();
         value.Validate();
     }
 
@@ -596,7 +594,7 @@ public class TextOverlayTransformationRadiusTest : TestBase
     [Fact]
     public void MaxSerializationRoundtripWorks()
     {
-        TextOverlayTransformationRadius value = new TextOverlayTransformationRadiusUnionMember1();
+        TextOverlayTransformationRadius value = new TextOverlayTransformationRadiusMax();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TextOverlayTransformationRadius>(
             element,
@@ -620,19 +618,19 @@ public class TextOverlayTransformationRadiusTest : TestBase
     }
 }
 
-public class TextOverlayTransformationRadiusUnionMember1Test : TestBase
+public class TextOverlayTransformationRadiusMaxTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new TextOverlayTransformationRadiusUnionMember1();
+        var constant = new TextOverlayTransformationRadiusMax();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<TextOverlayTransformationRadiusUnionMember1>(
+        var constant = JsonSerializer.Deserialize<TextOverlayTransformationRadiusMax>(
             JsonSerializer.SerializeToElement("max"),
             ModelBase.SerializerOptions
         );
@@ -644,7 +642,7 @@ public class TextOverlayTransformationRadiusUnionMember1Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<TextOverlayTransformationRadiusUnionMember1>(
+        var constant = JsonSerializer.Deserialize<TextOverlayTransformationRadiusMax>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -656,9 +654,9 @@ public class TextOverlayTransformationRadiusUnionMember1Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new TextOverlayTransformationRadiusUnionMember1();
+        var constant = new TextOverlayTransformationRadiusMax();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TextOverlayTransformationRadiusUnionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TextOverlayTransformationRadiusMax>(
             element,
             ModelBase.SerializerOptions
         );
@@ -669,12 +667,12 @@ public class TextOverlayTransformationRadiusUnionMember1Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<TextOverlayTransformationRadiusUnionMember1>(
+        var constant = JsonSerializer.Deserialize<TextOverlayTransformationRadiusMax>(
             JsonSerializer.SerializeToElement("max"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TextOverlayTransformationRadiusUnionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TextOverlayTransformationRadiusMax>(
             element,
             ModelBase.SerializerOptions
         );
@@ -685,12 +683,12 @@ public class TextOverlayTransformationRadiusUnionMember1Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<TextOverlayTransformationRadiusUnionMember1>(
+        var constant = JsonSerializer.Deserialize<TextOverlayTransformationRadiusMax>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TextOverlayTransformationRadiusUnionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TextOverlayTransformationRadiusMax>(
             element,
             ModelBase.SerializerOptions
         );

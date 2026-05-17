@@ -228,7 +228,7 @@ public record class Gradient : ModelBase
         }
     }
 
-    public Gradient(UnionMember0 value, JsonElement? element = null)
+    public Gradient(Default value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -247,22 +247,22 @@ public record class Gradient : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnionMember0"/>.
+    /// type <see cref="Default"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickTrue(out var value)) {
-    ///     // `value` is of type `UnionMember0`
+    /// if (instance.TryPickDefault(out var value)) {
+    ///     // `value` is of type `Default`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickTrue([NotNullWhen(true)] out UnionMember0? value)
+    public bool TryPickDefault([NotNullWhen(true)] out Default? value)
     {
-        value = this.Value as UnionMember0;
+        value = this.Value as Default;
         return value != null;
     }
 
@@ -301,18 +301,18 @@ public record class Gradient : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (UnionMember0 value) =&gt; {...},
+    ///     (Default value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<UnionMember0> true_, Action<string> @string)
+    public void Switch(Action<Default> default_, Action<string> @string)
     {
         switch (this.Value)
         {
-            case UnionMember0 value:
-                true_(value);
+            case Default value:
+                default_(value);
                 break;
             case string value:
                 @string(value);
@@ -339,17 +339,17 @@ public record class Gradient : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (UnionMember0 value) =&gt; {...},
+    ///     (Default value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<UnionMember0, T> true_, Func<string, T> @string)
+    public T Match<T>(Func<Default, T> default_, Func<string, T> @string)
     {
         return this.Value switch
         {
-            UnionMember0 value => true_(value),
+            Default value => default_(value),
             string value => @string(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of Gradient"
@@ -357,7 +357,7 @@ public record class Gradient : ModelBase
         };
     }
 
-    public static implicit operator Gradient(UnionMember0 value) => new(value);
+    public static implicit operator Gradient(Default value) => new(value);
 
     public static implicit operator Gradient(string value) => new(value);
 
@@ -377,7 +377,7 @@ public record class Gradient : ModelBase
         {
             throw new ImageKitInvalidDataException("Data did not match any variant of Gradient");
         }
-        this.Switch((true_) => true_.Validate(), (_) => { });
+        this.Switch((default_) => default_.Validate(), (_) => { });
     }
 
     public virtual bool Equals(Gradient? other) =>
@@ -400,7 +400,7 @@ public record class Gradient : ModelBase
     {
         return this.Value switch
         {
-            UnionMember0 _ => 0,
+            Default _ => 0,
             string _ => 1,
             _ => -1,
         };
@@ -418,7 +418,7 @@ sealed class GradientConverter : JsonConverter<Gradient>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<UnionMember0>(element, options);
+            var deserialized = JsonSerializer.Deserialize<Default>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -452,17 +452,17 @@ sealed class GradientConverter : JsonConverter<Gradient>
     }
 }
 
-[JsonConverter(typeof(UnionMember0Converter))]
-public record class UnionMember0
+[JsonConverter(typeof(DefaultConverter))]
+public record class Default
 {
     public JsonElement Element { get; private init; }
 
-    public UnionMember0()
+    public Default()
     {
         Element = JsonSerializer.SerializeToElement(true);
     }
 
-    internal UnionMember0(JsonElement element)
+    internal Default(JsonElement element)
     {
         Element = element;
     }
@@ -478,9 +478,9 @@ public record class UnionMember0
     /// </summary>
     public void Validate()
     {
-        if (this != new UnionMember0())
+        if (this != new Default())
         {
-            throw new ImageKitInvalidDataException("Invalid value given for 'UnionMember0'");
+            throw new ImageKitInvalidDataException("Invalid value given for 'Default'");
         }
     }
 
@@ -489,7 +489,7 @@ public record class UnionMember0
         return 0;
     }
 
-    public virtual bool Equals(UnionMember0? other)
+    public virtual bool Equals(Default? other)
     {
         if (other == null)
         {
@@ -500,9 +500,9 @@ public record class UnionMember0
     }
 }
 
-class UnionMember0Converter : JsonConverter<UnionMember0>
+class DefaultConverter : JsonConverter<Default>
 {
-    public override UnionMember0? Read(
+    public override Default? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -511,11 +511,7 @@ class UnionMember0Converter : JsonConverter<UnionMember0>
         return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        UnionMember0 value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Default value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value.Element, options);
     }
@@ -788,7 +784,7 @@ public record class Radius : ModelBase
         this._element = element;
     }
 
-    public Radius(UnionMember1 value, JsonElement? element = null)
+    public Radius(Max value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -828,22 +824,22 @@ public record class Radius : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnionMember1"/>.
+    /// type <see cref="Max"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMax(out var value)) {
-    ///     // `value` is of type `UnionMember1`
+    ///     // `value` is of type `Max`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickMax([NotNullWhen(true)] out UnionMember1? value)
+    public bool TryPickMax([NotNullWhen(true)] out Max? value)
     {
-        value = this.Value as UnionMember1;
+        value = this.Value as Max;
         return value != null;
     }
 
@@ -883,20 +879,20 @@ public record class Radius : ModelBase
     /// <code>
     /// instance.Switch(
     ///     (double value) =&gt; {...},
-    ///     (UnionMember1 value) =&gt; {...},
+    ///     (Max value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<double> @double, Action<UnionMember1> max, Action<string> @string)
+    public void Switch(Action<double> @double, Action<Max> max, Action<string> @string)
     {
         switch (this.Value)
         {
             case double value:
                 @double(value);
                 break;
-            case UnionMember1 value:
+            case Max value:
                 max(value);
                 break;
             case string value:
@@ -923,18 +919,18 @@ public record class Radius : ModelBase
     /// <code>
     /// var result = instance.Match(
     ///     (double value) =&gt; {...},
-    ///     (UnionMember1 value) =&gt; {...},
+    ///     (Max value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<double, T> @double, Func<UnionMember1, T> max, Func<string, T> @string)
+    public T Match<T>(Func<double, T> @double, Func<Max, T> max, Func<string, T> @string)
     {
         return this.Value switch
         {
             double value => @double(value),
-            UnionMember1 value => max(value),
+            Max value => max(value),
             string value => @string(value),
             _ => throw new ImageKitInvalidDataException("Data did not match any variant of Radius"),
         };
@@ -942,7 +938,7 @@ public record class Radius : ModelBase
 
     public static implicit operator Radius(double value) => new(value);
 
-    public static implicit operator Radius(UnionMember1 value) => new(value);
+    public static implicit operator Radius(Max value) => new(value);
 
     public static implicit operator Radius(string value) => new(value);
 
@@ -986,7 +982,7 @@ public record class Radius : ModelBase
         return this.Value switch
         {
             double _ => 0,
-            UnionMember1 _ => 1,
+            Max _ => 1,
             string _ => 2,
             _ => -1,
         };
@@ -1004,7 +1000,7 @@ sealed class RadiusConverter : JsonConverter<Radius>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<UnionMember1>(element, options);
+            var deserialized = JsonSerializer.Deserialize<Max>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -1047,17 +1043,17 @@ sealed class RadiusConverter : JsonConverter<Radius>
     }
 }
 
-[JsonConverter(typeof(UnionMember1Converter))]
-public record class UnionMember1
+[JsonConverter(typeof(MaxConverter))]
+public record class Max
 {
     public JsonElement Element { get; private init; }
 
-    public UnionMember1()
+    public Max()
     {
         Element = JsonSerializer.SerializeToElement("max");
     }
 
-    internal UnionMember1(JsonElement element)
+    internal Max(JsonElement element)
     {
         Element = element;
     }
@@ -1073,9 +1069,9 @@ public record class UnionMember1
     /// </summary>
     public void Validate()
     {
-        if (this != new UnionMember1())
+        if (this != new Max())
         {
-            throw new ImageKitInvalidDataException("Invalid value given for 'UnionMember1'");
+            throw new ImageKitInvalidDataException("Invalid value given for 'Max'");
         }
     }
 
@@ -1084,7 +1080,7 @@ public record class UnionMember1
         return 0;
     }
 
-    public virtual bool Equals(UnionMember1? other)
+    public virtual bool Equals(Max? other)
     {
         if (other == null)
         {
@@ -1095,9 +1091,9 @@ public record class UnionMember1
     }
 }
 
-class UnionMember1Converter : JsonConverter<UnionMember1>
+class MaxConverter : JsonConverter<Max>
 {
-    public override UnionMember1? Read(
+    public override Max? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -1106,11 +1102,7 @@ class UnionMember1Converter : JsonConverter<UnionMember1>
         return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        UnionMember1 value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Max value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value.Element, options);
     }

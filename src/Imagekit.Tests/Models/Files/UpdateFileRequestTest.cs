@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using Imagekit.Models;
 using Imagekit.Models.Files;
-using Models = Imagekit.Models;
 
 namespace Imagekit.Tests.Models.Files;
 
@@ -22,7 +22,7 @@ public class UpdateFileRequestTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -32,23 +32,23 @@ public class UpdateFileRequestTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -75,7 +75,7 @@ public class UpdateFileRequestTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
@@ -107,7 +107,7 @@ public class UpdateFileRequestTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -117,23 +117,23 @@ public class UpdateFileRequestTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -160,7 +160,7 @@ public class UpdateFileRequestTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
@@ -207,7 +207,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -217,23 +217,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -260,7 +260,7 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
@@ -273,9 +273,9 @@ public class UpdateFileDetailsTest : TestBase
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedDescription = "description";
-        List<Models::ExtensionItem> expectedExtensions =
+        List<ExtensionItem> expectedExtensions =
         [
-            new Models::ExtensionItemRemoveBg()
+            new ExtensionItemRemoveBg()
             {
                 Options = new()
                 {
@@ -285,23 +285,23 @@ public class UpdateFileDetailsTest : TestBase
                     Semitransparency = true,
                 },
             },
-            new Models::ExtensionItemAutoTaggingExtension()
+            new ExtensionItemAutoTaggingExtension()
             {
                 MaxTags = 5,
                 MinConfidence = 95,
-                Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
             },
-            new Models::ExtensionItemAIAutoDescription(),
-            new Models::ExtensionItemAITasks(
+            new ExtensionItemAIAutoDescription(),
+            new ExtensionItemAITasks(
                 [
-                    new Models::ExtensionItemAITasksTaskSelectTags()
+                    new ExtensionItemAITasksTaskSelectTags()
                     {
                         Instruction = "What types of clothing items are visible in this image?",
                         MaxSelections = 1,
                         MinSelections = 0,
                         Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                     },
-                    new Models::ExtensionItemAITasksTaskYesNo()
+                    new ExtensionItemAITasksTaskYesNo()
                     {
                         Instruction = "Is this a luxury or high-end fashion item?",
                         OnNo = new()
@@ -328,7 +328,7 @@ public class UpdateFileDetailsTest : TestBase
                     },
                 ]
             ),
-            new Models::SavedExtension("ext_abc123"),
+            new SavedExtension("ext_abc123"),
         ];
         RemoveAITags expectedRemoveAITags = new UnionMember1();
         List<string> expectedTags = ["tag1", "tag2"];
@@ -373,7 +373,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -383,23 +383,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -426,7 +426,7 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
@@ -455,7 +455,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -465,23 +465,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -508,7 +508,7 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
@@ -528,9 +528,9 @@ public class UpdateFileDetailsTest : TestBase
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedDescription = "description";
-        List<Models::ExtensionItem> expectedExtensions =
+        List<ExtensionItem> expectedExtensions =
         [
-            new Models::ExtensionItemRemoveBg()
+            new ExtensionItemRemoveBg()
             {
                 Options = new()
                 {
@@ -540,23 +540,23 @@ public class UpdateFileDetailsTest : TestBase
                     Semitransparency = true,
                 },
             },
-            new Models::ExtensionItemAutoTaggingExtension()
+            new ExtensionItemAutoTaggingExtension()
             {
                 MaxTags = 5,
                 MinConfidence = 95,
-                Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
             },
-            new Models::ExtensionItemAIAutoDescription(),
-            new Models::ExtensionItemAITasks(
+            new ExtensionItemAIAutoDescription(),
+            new ExtensionItemAITasks(
                 [
-                    new Models::ExtensionItemAITasksTaskSelectTags()
+                    new ExtensionItemAITasksTaskSelectTags()
                     {
                         Instruction = "What types of clothing items are visible in this image?",
                         MaxSelections = 1,
                         MinSelections = 0,
                         Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                     },
-                    new Models::ExtensionItemAITasksTaskYesNo()
+                    new ExtensionItemAITasksTaskYesNo()
                     {
                         Instruction = "Is this a luxury or high-end fashion item?",
                         OnNo = new()
@@ -583,7 +583,7 @@ public class UpdateFileDetailsTest : TestBase
                     },
                 ]
             ),
-            new Models::SavedExtension("ext_abc123"),
+            new SavedExtension("ext_abc123"),
         ];
         RemoveAITags expectedRemoveAITags = new UnionMember1();
         List<string> expectedTags = ["tag1", "tag2"];
@@ -628,7 +628,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -638,23 +638,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -681,7 +681,7 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
@@ -783,7 +783,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -793,23 +793,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -836,7 +836,7 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             WebhookUrl = "https://example.com",
@@ -860,7 +860,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -870,23 +870,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -913,7 +913,7 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             WebhookUrl = "https://example.com",
@@ -934,7 +934,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -944,23 +944,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -987,7 +987,7 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             WebhookUrl = "https://example.com",
@@ -1014,7 +1014,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -1024,23 +1024,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -1067,7 +1067,7 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             WebhookUrl = "https://example.com",
@@ -1092,7 +1092,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new Models::ExtensionItemRemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -1102,23 +1102,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::ExtensionItemAutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::ExtensionItemAIAutoDescription(),
-                new Models::ExtensionItemAITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new Models::ExtensionItemAITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::ExtensionItemAITasksTaskYesNo()
+                        new ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -1145,7 +1145,7 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new Models::SavedExtension("ext_abc123"),
+                new SavedExtension("ext_abc123"),
             ],
             RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],

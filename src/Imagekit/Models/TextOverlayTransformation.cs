@@ -1225,7 +1225,7 @@ public record class TextOverlayTransformationRadius : ModelBase
     }
 
     public TextOverlayTransformationRadius(
-        TextOverlayTransformationRadiusUnionMember1 value,
+        TextOverlayTransformationRadiusMax value,
         JsonElement? element = null
     )
     {
@@ -1267,24 +1267,22 @@ public record class TextOverlayTransformationRadius : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="TextOverlayTransformationRadiusUnionMember1"/>.
+    /// type <see cref="TextOverlayTransformationRadiusMax"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMax(out var value)) {
-    ///     // `value` is of type `TextOverlayTransformationRadiusUnionMember1`
+    ///     // `value` is of type `TextOverlayTransformationRadiusMax`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickMax(
-        [NotNullWhen(true)] out TextOverlayTransformationRadiusUnionMember1? value
-    )
+    public bool TryPickMax([NotNullWhen(true)] out TextOverlayTransformationRadiusMax? value)
     {
-        value = this.Value as TextOverlayTransformationRadiusUnionMember1;
+        value = this.Value as TextOverlayTransformationRadiusMax;
         return value != null;
     }
 
@@ -1324,7 +1322,7 @@ public record class TextOverlayTransformationRadius : ModelBase
     /// <code>
     /// instance.Switch(
     ///     (double value) =&gt; {...},
-    ///     (TextOverlayTransformationRadiusUnionMember1 value) =&gt; {...},
+    ///     (TextOverlayTransformationRadiusMax value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
@@ -1332,7 +1330,7 @@ public record class TextOverlayTransformationRadius : ModelBase
     /// </summary>
     public void Switch(
         Action<double> @double,
-        Action<TextOverlayTransformationRadiusUnionMember1> max,
+        Action<TextOverlayTransformationRadiusMax> max,
         Action<string> @string
     )
     {
@@ -1341,7 +1339,7 @@ public record class TextOverlayTransformationRadius : ModelBase
             case double value:
                 @double(value);
                 break;
-            case TextOverlayTransformationRadiusUnionMember1 value:
+            case TextOverlayTransformationRadiusMax value:
                 max(value);
                 break;
             case string value:
@@ -1370,7 +1368,7 @@ public record class TextOverlayTransformationRadius : ModelBase
     /// <code>
     /// var result = instance.Match(
     ///     (double value) =&gt; {...},
-    ///     (TextOverlayTransformationRadiusUnionMember1 value) =&gt; {...},
+    ///     (TextOverlayTransformationRadiusMax value) =&gt; {...},
     ///     (string value) =&gt; {...}
     /// );
     /// </code>
@@ -1378,14 +1376,14 @@ public record class TextOverlayTransformationRadius : ModelBase
     /// </summary>
     public T Match<T>(
         Func<double, T> @double,
-        Func<TextOverlayTransformationRadiusUnionMember1, T> max,
+        Func<TextOverlayTransformationRadiusMax, T> max,
         Func<string, T> @string
     )
     {
         return this.Value switch
         {
             double value => @double(value),
-            TextOverlayTransformationRadiusUnionMember1 value => max(value),
+            TextOverlayTransformationRadiusMax value => max(value),
             string value => @string(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of TextOverlayTransformationRadius"
@@ -1396,7 +1394,7 @@ public record class TextOverlayTransformationRadius : ModelBase
     public static implicit operator TextOverlayTransformationRadius(double value) => new(value);
 
     public static implicit operator TextOverlayTransformationRadius(
-        TextOverlayTransformationRadiusUnionMember1 value
+        TextOverlayTransformationRadiusMax value
     ) => new(value);
 
     public static implicit operator TextOverlayTransformationRadius(string value) => new(value);
@@ -1443,7 +1441,7 @@ public record class TextOverlayTransformationRadius : ModelBase
         return this.Value switch
         {
             double _ => 0,
-            TextOverlayTransformationRadiusUnionMember1 _ => 1,
+            TextOverlayTransformationRadiusMax _ => 1,
             string _ => 2,
             _ => -1,
         };
@@ -1462,11 +1460,10 @@ sealed class TextOverlayTransformationRadiusConverter
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized =
-                JsonSerializer.Deserialize<TextOverlayTransformationRadiusUnionMember1>(
-                    element,
-                    options
-                );
+            var deserialized = JsonSerializer.Deserialize<TextOverlayTransformationRadiusMax>(
+                element,
+                options
+            );
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -1513,17 +1510,17 @@ sealed class TextOverlayTransformationRadiusConverter
     }
 }
 
-[JsonConverter(typeof(TextOverlayTransformationRadiusUnionMember1Converter))]
-public record class TextOverlayTransformationRadiusUnionMember1
+[JsonConverter(typeof(TextOverlayTransformationRadiusMaxConverter))]
+public record class TextOverlayTransformationRadiusMax
 {
     public JsonElement Element { get; private init; }
 
-    public TextOverlayTransformationRadiusUnionMember1()
+    public TextOverlayTransformationRadiusMax()
     {
         Element = JsonSerializer.SerializeToElement("max");
     }
 
-    internal TextOverlayTransformationRadiusUnionMember1(JsonElement element)
+    internal TextOverlayTransformationRadiusMax(JsonElement element)
     {
         Element = element;
     }
@@ -1539,10 +1536,10 @@ public record class TextOverlayTransformationRadiusUnionMember1
     /// </summary>
     public void Validate()
     {
-        if (this != new TextOverlayTransformationRadiusUnionMember1())
+        if (this != new TextOverlayTransformationRadiusMax())
         {
             throw new ImageKitInvalidDataException(
-                "Invalid value given for 'TextOverlayTransformationRadiusUnionMember1'"
+                "Invalid value given for 'TextOverlayTransformationRadiusMax'"
             );
         }
     }
@@ -1552,7 +1549,7 @@ public record class TextOverlayTransformationRadiusUnionMember1
         return 0;
     }
 
-    public virtual bool Equals(TextOverlayTransformationRadiusUnionMember1? other)
+    public virtual bool Equals(TextOverlayTransformationRadiusMax? other)
     {
         if (other == null)
         {
@@ -1563,10 +1560,10 @@ public record class TextOverlayTransformationRadiusUnionMember1
     }
 }
 
-class TextOverlayTransformationRadiusUnionMember1Converter
-    : JsonConverter<TextOverlayTransformationRadiusUnionMember1>
+class TextOverlayTransformationRadiusMaxConverter
+    : JsonConverter<TextOverlayTransformationRadiusMax>
 {
-    public override TextOverlayTransformationRadiusUnionMember1? Read(
+    public override TextOverlayTransformationRadiusMax? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -1577,7 +1574,7 @@ class TextOverlayTransformationRadiusUnionMember1Converter
 
     public override void Write(
         Utf8JsonWriter writer,
-        TextOverlayTransformationRadiusUnionMember1 value,
+        TextOverlayTransformationRadiusMax value,
         JsonSerializerOptions options
     )
     {

@@ -14,7 +14,7 @@ public class TransformationTest : TestBase
         var model = new Transformation
         {
             AIChangeBackground = "aiChangeBackground",
-            AIDropShadow = new AIDropShadowUnionMember0(),
+            AIDropShadow = new AIDropShadowDefault(),
             AIEdit = "aiEdit",
             AIRemoveBackground = AIRemoveBackground.True,
             AIRemoveBackgroundExternal = AIRemoveBackgroundExternal.True,
@@ -40,7 +40,7 @@ public class TransformationTest : TestBase
             Flip = TransformationFlip.H,
             Focus = "center",
             Format = Format.Auto,
-            Gradient = new TransformationGradientUnionMember0(),
+            Gradient = new TransformationGradientDefault(),
             Grayscale = Grayscale.True,
             Height = 200,
             Lossless = true,
@@ -81,7 +81,7 @@ public class TransformationTest : TestBase
                         InnerAlignment = InnerAlignment.Left,
                         LineHeight = 0,
                         Padding = 0,
-                        Radius = new TextOverlayTransformationRadiusUnionMember1(),
+                        Radius = new TextOverlayTransformationRadiusMax(),
                         Rotation = 0,
                         Typography = "typography",
                         Width = 0,
@@ -94,12 +94,12 @@ public class TransformationTest : TestBase
             Radius = 20,
             Raw = "raw",
             Rotation = 90,
-            Shadow = new ShadowUnionMember0(),
-            Sharpen = new SharpenUnionMember0(),
+            Shadow = new ShadowDefault(),
+            Sharpen = new SharpenDefault(),
             StartOffset = 0,
             StreamingResolutions = [StreamingResolution.V240],
-            Trim = new TrimUnionMember0(),
-            UnsharpMask = new UnsharpMaskUnionMember0(),
+            Trim = new TrimDefault(),
+            UnsharpMask = new UnsharpMaskDefault(),
             VideoCodec = VideoCodec.H264,
             Width = 300,
             X = 0,
@@ -110,7 +110,7 @@ public class TransformationTest : TestBase
         };
 
         string expectedAIChangeBackground = "aiChangeBackground";
-        AIDropShadow expectedAIDropShadow = new AIDropShadowUnionMember0();
+        AIDropShadow expectedAIDropShadow = new AIDropShadowDefault();
         string expectedAIEdit = "aiEdit";
         ApiEnum<bool, AIRemoveBackground> expectedAIRemoveBackground = AIRemoveBackground.True;
         ApiEnum<bool, AIRemoveBackgroundExternal> expectedAIRemoveBackgroundExternal =
@@ -137,7 +137,7 @@ public class TransformationTest : TestBase
         ApiEnum<string, TransformationFlip> expectedFlip = TransformationFlip.H;
         string expectedFocus = "center";
         ApiEnum<string, Format> expectedFormat = Format.Auto;
-        TransformationGradient expectedGradient = new TransformationGradientUnionMember0();
+        TransformationGradient expectedGradient = new TransformationGradientDefault();
         ApiEnum<bool, Grayscale> expectedGrayscale = Grayscale.True;
         TransformationHeight expectedHeight = 200;
         bool expectedLossless = true;
@@ -178,7 +178,7 @@ public class TransformationTest : TestBase
                     InnerAlignment = InnerAlignment.Left,
                     LineHeight = 0,
                     Padding = 0,
-                    Radius = new TextOverlayTransformationRadiusUnionMember1(),
+                    Radius = new TextOverlayTransformationRadiusMax(),
                     Rotation = 0,
                     Typography = "typography",
                     Width = 0,
@@ -191,15 +191,15 @@ public class TransformationTest : TestBase
         TransformationRadius expectedRadius = 20;
         string expectedRaw = "raw";
         TransformationRotation expectedRotation = 90;
-        Shadow expectedShadow = new ShadowUnionMember0();
-        Sharpen expectedSharpen = new SharpenUnionMember0();
+        Shadow expectedShadow = new ShadowDefault();
+        Sharpen expectedSharpen = new SharpenDefault();
         StartOffset expectedStartOffset = 0;
         List<ApiEnum<string, StreamingResolution>> expectedStreamingResolutions =
         [
             StreamingResolution.V240,
         ];
-        Trim expectedTrim = new TrimUnionMember0();
-        UnsharpMask expectedUnsharpMask = new UnsharpMaskUnionMember0();
+        Trim expectedTrim = new TrimDefault();
+        UnsharpMask expectedUnsharpMask = new UnsharpMaskDefault();
         ApiEnum<string, VideoCodec> expectedVideoCodec = VideoCodec.H264;
         TransformationWidth expectedWidth = 300;
         TransformationX expectedX = 0;
@@ -276,7 +276,7 @@ public class TransformationTest : TestBase
         var model = new Transformation
         {
             AIChangeBackground = "aiChangeBackground",
-            AIDropShadow = new AIDropShadowUnionMember0(),
+            AIDropShadow = new AIDropShadowDefault(),
             AIEdit = "aiEdit",
             AIRemoveBackground = AIRemoveBackground.True,
             AIRemoveBackgroundExternal = AIRemoveBackgroundExternal.True,
@@ -302,7 +302,7 @@ public class TransformationTest : TestBase
             Flip = TransformationFlip.H,
             Focus = "center",
             Format = Format.Auto,
-            Gradient = new TransformationGradientUnionMember0(),
+            Gradient = new TransformationGradientDefault(),
             Grayscale = Grayscale.True,
             Height = 200,
             Lossless = true,
@@ -343,7 +343,7 @@ public class TransformationTest : TestBase
                         InnerAlignment = InnerAlignment.Left,
                         LineHeight = 0,
                         Padding = 0,
-                        Radius = new TextOverlayTransformationRadiusUnionMember1(),
+                        Radius = new TextOverlayTransformationRadiusMax(),
                         Rotation = 0,
                         Typography = "typography",
                         Width = 0,
@@ -356,12 +356,12 @@ public class TransformationTest : TestBase
             Radius = 20,
             Raw = "raw",
             Rotation = 90,
-            Shadow = new ShadowUnionMember0(),
-            Sharpen = new SharpenUnionMember0(),
+            Shadow = new ShadowDefault(),
+            Sharpen = new SharpenDefault(),
             StartOffset = 0,
             StreamingResolutions = [StreamingResolution.V240],
-            Trim = new TrimUnionMember0(),
-            UnsharpMask = new UnsharpMaskUnionMember0(),
+            Trim = new TrimDefault(),
+            UnsharpMask = new UnsharpMaskDefault(),
             VideoCodec = VideoCodec.H264,
             Width = 300,
             X = 0,
@@ -386,7 +386,7 @@ public class TransformationTest : TestBase
         var model = new Transformation
         {
             AIChangeBackground = "aiChangeBackground",
-            AIDropShadow = new AIDropShadowUnionMember0(),
+            AIDropShadow = new AIDropShadowDefault(),
             AIEdit = "aiEdit",
             AIRemoveBackground = AIRemoveBackground.True,
             AIRemoveBackgroundExternal = AIRemoveBackgroundExternal.True,
@@ -412,7 +412,7 @@ public class TransformationTest : TestBase
             Flip = TransformationFlip.H,
             Focus = "center",
             Format = Format.Auto,
-            Gradient = new TransformationGradientUnionMember0(),
+            Gradient = new TransformationGradientDefault(),
             Grayscale = Grayscale.True,
             Height = 200,
             Lossless = true,
@@ -453,7 +453,7 @@ public class TransformationTest : TestBase
                         InnerAlignment = InnerAlignment.Left,
                         LineHeight = 0,
                         Padding = 0,
-                        Radius = new TextOverlayTransformationRadiusUnionMember1(),
+                        Radius = new TextOverlayTransformationRadiusMax(),
                         Rotation = 0,
                         Typography = "typography",
                         Width = 0,
@@ -466,12 +466,12 @@ public class TransformationTest : TestBase
             Radius = 20,
             Raw = "raw",
             Rotation = 90,
-            Shadow = new ShadowUnionMember0(),
-            Sharpen = new SharpenUnionMember0(),
+            Shadow = new ShadowDefault(),
+            Sharpen = new SharpenDefault(),
             StartOffset = 0,
             StreamingResolutions = [StreamingResolution.V240],
-            Trim = new TrimUnionMember0(),
-            UnsharpMask = new UnsharpMaskUnionMember0(),
+            Trim = new TrimDefault(),
+            UnsharpMask = new UnsharpMaskDefault(),
             VideoCodec = VideoCodec.H264,
             Width = 300,
             X = 0,
@@ -489,7 +489,7 @@ public class TransformationTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedAIChangeBackground = "aiChangeBackground";
-        AIDropShadow expectedAIDropShadow = new AIDropShadowUnionMember0();
+        AIDropShadow expectedAIDropShadow = new AIDropShadowDefault();
         string expectedAIEdit = "aiEdit";
         ApiEnum<bool, AIRemoveBackground> expectedAIRemoveBackground = AIRemoveBackground.True;
         ApiEnum<bool, AIRemoveBackgroundExternal> expectedAIRemoveBackgroundExternal =
@@ -516,7 +516,7 @@ public class TransformationTest : TestBase
         ApiEnum<string, TransformationFlip> expectedFlip = TransformationFlip.H;
         string expectedFocus = "center";
         ApiEnum<string, Format> expectedFormat = Format.Auto;
-        TransformationGradient expectedGradient = new TransformationGradientUnionMember0();
+        TransformationGradient expectedGradient = new TransformationGradientDefault();
         ApiEnum<bool, Grayscale> expectedGrayscale = Grayscale.True;
         TransformationHeight expectedHeight = 200;
         bool expectedLossless = true;
@@ -557,7 +557,7 @@ public class TransformationTest : TestBase
                     InnerAlignment = InnerAlignment.Left,
                     LineHeight = 0,
                     Padding = 0,
-                    Radius = new TextOverlayTransformationRadiusUnionMember1(),
+                    Radius = new TextOverlayTransformationRadiusMax(),
                     Rotation = 0,
                     Typography = "typography",
                     Width = 0,
@@ -570,15 +570,15 @@ public class TransformationTest : TestBase
         TransformationRadius expectedRadius = 20;
         string expectedRaw = "raw";
         TransformationRotation expectedRotation = 90;
-        Shadow expectedShadow = new ShadowUnionMember0();
-        Sharpen expectedSharpen = new SharpenUnionMember0();
+        Shadow expectedShadow = new ShadowDefault();
+        Sharpen expectedSharpen = new SharpenDefault();
         StartOffset expectedStartOffset = 0;
         List<ApiEnum<string, StreamingResolution>> expectedStreamingResolutions =
         [
             StreamingResolution.V240,
         ];
-        Trim expectedTrim = new TrimUnionMember0();
-        UnsharpMask expectedUnsharpMask = new UnsharpMaskUnionMember0();
+        Trim expectedTrim = new TrimDefault();
+        UnsharpMask expectedUnsharpMask = new UnsharpMaskDefault();
         ApiEnum<string, VideoCodec> expectedVideoCodec = VideoCodec.H264;
         TransformationWidth expectedWidth = 300;
         TransformationX expectedX = 0;
@@ -655,7 +655,7 @@ public class TransformationTest : TestBase
         var model = new Transformation
         {
             AIChangeBackground = "aiChangeBackground",
-            AIDropShadow = new AIDropShadowUnionMember0(),
+            AIDropShadow = new AIDropShadowDefault(),
             AIEdit = "aiEdit",
             AIRemoveBackground = AIRemoveBackground.True,
             AIRemoveBackgroundExternal = AIRemoveBackgroundExternal.True,
@@ -681,7 +681,7 @@ public class TransformationTest : TestBase
             Flip = TransformationFlip.H,
             Focus = "center",
             Format = Format.Auto,
-            Gradient = new TransformationGradientUnionMember0(),
+            Gradient = new TransformationGradientDefault(),
             Grayscale = Grayscale.True,
             Height = 200,
             Lossless = true,
@@ -722,7 +722,7 @@ public class TransformationTest : TestBase
                         InnerAlignment = InnerAlignment.Left,
                         LineHeight = 0,
                         Padding = 0,
-                        Radius = new TextOverlayTransformationRadiusUnionMember1(),
+                        Radius = new TextOverlayTransformationRadiusMax(),
                         Rotation = 0,
                         Typography = "typography",
                         Width = 0,
@@ -735,12 +735,12 @@ public class TransformationTest : TestBase
             Radius = 20,
             Raw = "raw",
             Rotation = 90,
-            Shadow = new ShadowUnionMember0(),
-            Sharpen = new SharpenUnionMember0(),
+            Shadow = new ShadowDefault(),
+            Sharpen = new SharpenDefault(),
             StartOffset = 0,
             StreamingResolutions = [StreamingResolution.V240],
-            Trim = new TrimUnionMember0(),
-            UnsharpMask = new UnsharpMaskUnionMember0(),
+            Trim = new TrimDefault(),
+            UnsharpMask = new UnsharpMaskDefault(),
             VideoCodec = VideoCodec.H264,
             Width = 300,
             X = 0,
@@ -1125,7 +1125,7 @@ public class TransformationTest : TestBase
         var model = new Transformation
         {
             AIChangeBackground = "aiChangeBackground",
-            AIDropShadow = new AIDropShadowUnionMember0(),
+            AIDropShadow = new AIDropShadowDefault(),
             AIEdit = "aiEdit",
             AIRemoveBackground = AIRemoveBackground.True,
             AIRemoveBackgroundExternal = AIRemoveBackgroundExternal.True,
@@ -1151,7 +1151,7 @@ public class TransformationTest : TestBase
             Flip = TransformationFlip.H,
             Focus = "center",
             Format = Format.Auto,
-            Gradient = new TransformationGradientUnionMember0(),
+            Gradient = new TransformationGradientDefault(),
             Grayscale = Grayscale.True,
             Height = 200,
             Lossless = true,
@@ -1192,7 +1192,7 @@ public class TransformationTest : TestBase
                         InnerAlignment = InnerAlignment.Left,
                         LineHeight = 0,
                         Padding = 0,
-                        Radius = new TextOverlayTransformationRadiusUnionMember1(),
+                        Radius = new TextOverlayTransformationRadiusMax(),
                         Rotation = 0,
                         Typography = "typography",
                         Width = 0,
@@ -1205,12 +1205,12 @@ public class TransformationTest : TestBase
             Radius = 20,
             Raw = "raw",
             Rotation = 90,
-            Shadow = new ShadowUnionMember0(),
-            Sharpen = new SharpenUnionMember0(),
+            Shadow = new ShadowDefault(),
+            Sharpen = new SharpenDefault(),
             StartOffset = 0,
             StreamingResolutions = [StreamingResolution.V240],
-            Trim = new TrimUnionMember0(),
-            UnsharpMask = new UnsharpMaskUnionMember0(),
+            Trim = new TrimDefault(),
+            UnsharpMask = new UnsharpMaskDefault(),
             VideoCodec = VideoCodec.H264,
             Width = 300,
             X = 0,
@@ -1229,9 +1229,9 @@ public class TransformationTest : TestBase
 public class AIDropShadowTest : TestBase
 {
     [Fact]
-    public void TrueValidationWorks()
+    public void DefaultValidationWorks()
     {
-        AIDropShadow value = new AIDropShadowUnionMember0();
+        AIDropShadow value = new AIDropShadowDefault();
         value.Validate();
     }
 
@@ -1243,9 +1243,9 @@ public class AIDropShadowTest : TestBase
     }
 
     [Fact]
-    public void TrueSerializationRoundtripWorks()
+    public void DefaultSerializationRoundtripWorks()
     {
-        AIDropShadow value = new AIDropShadowUnionMember0();
+        AIDropShadow value = new AIDropShadowDefault();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<AIDropShadow>(
             element,
@@ -1269,19 +1269,19 @@ public class AIDropShadowTest : TestBase
     }
 }
 
-public class AIDropShadowUnionMember0Test : TestBase
+public class AIDropShadowDefaultTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new AIDropShadowUnionMember0();
+        var constant = new AIDropShadowDefault();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<AIDropShadowUnionMember0>(
+        var constant = JsonSerializer.Deserialize<AIDropShadowDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
@@ -1293,7 +1293,7 @@ public class AIDropShadowUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<AIDropShadowUnionMember0>(
+        var constant = JsonSerializer.Deserialize<AIDropShadowDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -1305,9 +1305,9 @@ public class AIDropShadowUnionMember0Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new AIDropShadowUnionMember0();
+        var constant = new AIDropShadowDefault();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<AIDropShadowUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<AIDropShadowDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1318,12 +1318,12 @@ public class AIDropShadowUnionMember0Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<AIDropShadowUnionMember0>(
+        var constant = JsonSerializer.Deserialize<AIDropShadowDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<AIDropShadowUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<AIDropShadowDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1334,12 +1334,12 @@ public class AIDropShadowUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<AIDropShadowUnionMember0>(
+        var constant = JsonSerializer.Deserialize<AIDropShadowDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<AIDropShadowUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<AIDropShadowDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2144,9 +2144,9 @@ public class FormatTest : TestBase
 public class TransformationGradientTest : TestBase
 {
     [Fact]
-    public void TrueValidationWorks()
+    public void DefaultValidationWorks()
     {
-        TransformationGradient value = new TransformationGradientUnionMember0();
+        TransformationGradient value = new TransformationGradientDefault();
         value.Validate();
     }
 
@@ -2158,9 +2158,9 @@ public class TransformationGradientTest : TestBase
     }
 
     [Fact]
-    public void TrueSerializationRoundtripWorks()
+    public void DefaultSerializationRoundtripWorks()
     {
-        TransformationGradient value = new TransformationGradientUnionMember0();
+        TransformationGradient value = new TransformationGradientDefault();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TransformationGradient>(
             element,
@@ -2184,19 +2184,19 @@ public class TransformationGradientTest : TestBase
     }
 }
 
-public class TransformationGradientUnionMember0Test : TestBase
+public class TransformationGradientDefaultTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new TransformationGradientUnionMember0();
+        var constant = new TransformationGradientDefault();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<TransformationGradientUnionMember0>(
+        var constant = JsonSerializer.Deserialize<TransformationGradientDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
@@ -2208,7 +2208,7 @@ public class TransformationGradientUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<TransformationGradientUnionMember0>(
+        var constant = JsonSerializer.Deserialize<TransformationGradientDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -2220,9 +2220,9 @@ public class TransformationGradientUnionMember0Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new TransformationGradientUnionMember0();
+        var constant = new TransformationGradientDefault();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TransformationGradientUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<TransformationGradientDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2233,12 +2233,12 @@ public class TransformationGradientUnionMember0Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<TransformationGradientUnionMember0>(
+        var constant = JsonSerializer.Deserialize<TransformationGradientDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TransformationGradientUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<TransformationGradientDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2249,12 +2249,12 @@ public class TransformationGradientUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<TransformationGradientUnionMember0>(
+        var constant = JsonSerializer.Deserialize<TransformationGradientDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TransformationGradientUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<TransformationGradientDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2411,7 +2411,7 @@ public class TransformationRadiusTest : TestBase
     [Fact]
     public void MaxValidationWorks()
     {
-        TransformationRadius value = new TransformationRadiusUnionMember1();
+        TransformationRadius value = new TransformationRadiusMax();
         value.Validate();
     }
 
@@ -2438,7 +2438,7 @@ public class TransformationRadiusTest : TestBase
     [Fact]
     public void MaxSerializationRoundtripWorks()
     {
-        TransformationRadius value = new TransformationRadiusUnionMember1();
+        TransformationRadius value = new TransformationRadiusMax();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<TransformationRadius>(
             element,
@@ -2462,19 +2462,19 @@ public class TransformationRadiusTest : TestBase
     }
 }
 
-public class TransformationRadiusUnionMember1Test : TestBase
+public class TransformationRadiusMaxTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new TransformationRadiusUnionMember1();
+        var constant = new TransformationRadiusMax();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<TransformationRadiusUnionMember1>(
+        var constant = JsonSerializer.Deserialize<TransformationRadiusMax>(
             JsonSerializer.SerializeToElement("max"),
             ModelBase.SerializerOptions
         );
@@ -2486,7 +2486,7 @@ public class TransformationRadiusUnionMember1Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<TransformationRadiusUnionMember1>(
+        var constant = JsonSerializer.Deserialize<TransformationRadiusMax>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -2498,9 +2498,9 @@ public class TransformationRadiusUnionMember1Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new TransformationRadiusUnionMember1();
+        var constant = new TransformationRadiusMax();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TransformationRadiusUnionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TransformationRadiusMax>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2511,12 +2511,12 @@ public class TransformationRadiusUnionMember1Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<TransformationRadiusUnionMember1>(
+        var constant = JsonSerializer.Deserialize<TransformationRadiusMax>(
             JsonSerializer.SerializeToElement("max"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TransformationRadiusUnionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TransformationRadiusMax>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2527,12 +2527,12 @@ public class TransformationRadiusUnionMember1Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<TransformationRadiusUnionMember1>(
+        var constant = JsonSerializer.Deserialize<TransformationRadiusMax>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TransformationRadiusUnionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TransformationRadiusMax>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2587,9 +2587,9 @@ public class TransformationRotationTest : TestBase
 public class ShadowTest : TestBase
 {
     [Fact]
-    public void TrueValidationWorks()
+    public void DefaultValidationWorks()
     {
-        Shadow value = new ShadowUnionMember0();
+        Shadow value = new ShadowDefault();
         value.Validate();
     }
 
@@ -2601,9 +2601,9 @@ public class ShadowTest : TestBase
     }
 
     [Fact]
-    public void TrueSerializationRoundtripWorks()
+    public void DefaultSerializationRoundtripWorks()
     {
-        Shadow value = new ShadowUnionMember0();
+        Shadow value = new ShadowDefault();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Shadow>(element, ModelBase.SerializerOptions);
 
@@ -2621,19 +2621,19 @@ public class ShadowTest : TestBase
     }
 }
 
-public class ShadowUnionMember0Test : TestBase
+public class ShadowDefaultTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new ShadowUnionMember0();
+        var constant = new ShadowDefault();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<ShadowUnionMember0>(
+        var constant = JsonSerializer.Deserialize<ShadowDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
@@ -2645,7 +2645,7 @@ public class ShadowUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<ShadowUnionMember0>(
+        var constant = JsonSerializer.Deserialize<ShadowDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -2657,9 +2657,9 @@ public class ShadowUnionMember0Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new ShadowUnionMember0();
+        var constant = new ShadowDefault();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ShadowUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<ShadowDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2670,12 +2670,12 @@ public class ShadowUnionMember0Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<ShadowUnionMember0>(
+        var constant = JsonSerializer.Deserialize<ShadowDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ShadowUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<ShadowDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2686,12 +2686,12 @@ public class ShadowUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<ShadowUnionMember0>(
+        var constant = JsonSerializer.Deserialize<ShadowDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ShadowUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<ShadowDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2703,9 +2703,9 @@ public class ShadowUnionMember0Test : TestBase
 public class SharpenTest : TestBase
 {
     [Fact]
-    public void TrueValidationWorks()
+    public void DefaultValidationWorks()
     {
-        Sharpen value = new SharpenUnionMember0();
+        Sharpen value = new SharpenDefault();
         value.Validate();
     }
 
@@ -2717,9 +2717,9 @@ public class SharpenTest : TestBase
     }
 
     [Fact]
-    public void TrueSerializationRoundtripWorks()
+    public void DefaultSerializationRoundtripWorks()
     {
-        Sharpen value = new SharpenUnionMember0();
+        Sharpen value = new SharpenDefault();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Sharpen>(
             element,
@@ -2743,19 +2743,19 @@ public class SharpenTest : TestBase
     }
 }
 
-public class SharpenUnionMember0Test : TestBase
+public class SharpenDefaultTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new SharpenUnionMember0();
+        var constant = new SharpenDefault();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<SharpenUnionMember0>(
+        var constant = JsonSerializer.Deserialize<SharpenDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
@@ -2767,7 +2767,7 @@ public class SharpenUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<SharpenUnionMember0>(
+        var constant = JsonSerializer.Deserialize<SharpenDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -2779,9 +2779,9 @@ public class SharpenUnionMember0Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new SharpenUnionMember0();
+        var constant = new SharpenDefault();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SharpenUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<SharpenDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2792,12 +2792,12 @@ public class SharpenUnionMember0Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<SharpenUnionMember0>(
+        var constant = JsonSerializer.Deserialize<SharpenDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SharpenUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<SharpenDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2808,12 +2808,12 @@ public class SharpenUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<SharpenUnionMember0>(
+        var constant = JsonSerializer.Deserialize<SharpenDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SharpenUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<SharpenDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2868,9 +2868,9 @@ public class StartOffsetTest : TestBase
 public class TrimTest : TestBase
 {
     [Fact]
-    public void TrueValidationWorks()
+    public void DefaultValidationWorks()
     {
-        Trim value = new TrimUnionMember0();
+        Trim value = new TrimDefault();
         value.Validate();
     }
 
@@ -2882,9 +2882,9 @@ public class TrimTest : TestBase
     }
 
     [Fact]
-    public void TrueSerializationRoundtripWorks()
+    public void DefaultSerializationRoundtripWorks()
     {
-        Trim value = new TrimUnionMember0();
+        Trim value = new TrimDefault();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Trim>(element, ModelBase.SerializerOptions);
 
@@ -2902,19 +2902,19 @@ public class TrimTest : TestBase
     }
 }
 
-public class TrimUnionMember0Test : TestBase
+public class TrimDefaultTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new TrimUnionMember0();
+        var constant = new TrimDefault();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<TrimUnionMember0>(
+        var constant = JsonSerializer.Deserialize<TrimDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
@@ -2926,7 +2926,7 @@ public class TrimUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<TrimUnionMember0>(
+        var constant = JsonSerializer.Deserialize<TrimDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -2938,9 +2938,9 @@ public class TrimUnionMember0Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new TrimUnionMember0();
+        var constant = new TrimDefault();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TrimUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<TrimDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2951,12 +2951,12 @@ public class TrimUnionMember0Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<TrimUnionMember0>(
+        var constant = JsonSerializer.Deserialize<TrimDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TrimUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<TrimDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2967,12 +2967,12 @@ public class TrimUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<TrimUnionMember0>(
+        var constant = JsonSerializer.Deserialize<TrimDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TrimUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<TrimDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2984,9 +2984,9 @@ public class TrimUnionMember0Test : TestBase
 public class UnsharpMaskTest : TestBase
 {
     [Fact]
-    public void TrueValidationWorks()
+    public void DefaultValidationWorks()
     {
-        UnsharpMask value = new UnsharpMaskUnionMember0();
+        UnsharpMask value = new UnsharpMaskDefault();
         value.Validate();
     }
 
@@ -2998,9 +2998,9 @@ public class UnsharpMaskTest : TestBase
     }
 
     [Fact]
-    public void TrueSerializationRoundtripWorks()
+    public void DefaultSerializationRoundtripWorks()
     {
-        UnsharpMask value = new UnsharpMaskUnionMember0();
+        UnsharpMask value = new UnsharpMaskDefault();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<UnsharpMask>(
             element,
@@ -3024,19 +3024,19 @@ public class UnsharpMaskTest : TestBase
     }
 }
 
-public class UnsharpMaskUnionMember0Test : TestBase
+public class UnsharpMaskDefaultTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new UnsharpMaskUnionMember0();
+        var constant = new UnsharpMaskDefault();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnsharpMaskUnionMember0>(
+        var constant = JsonSerializer.Deserialize<UnsharpMaskDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
@@ -3048,7 +3048,7 @@ public class UnsharpMaskUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnsharpMaskUnionMember0>(
+        var constant = JsonSerializer.Deserialize<UnsharpMaskDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -3060,9 +3060,9 @@ public class UnsharpMaskUnionMember0Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new UnsharpMaskUnionMember0();
+        var constant = new UnsharpMaskDefault();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnsharpMaskUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<UnsharpMaskDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3073,12 +3073,12 @@ public class UnsharpMaskUnionMember0Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnsharpMaskUnionMember0>(
+        var constant = JsonSerializer.Deserialize<UnsharpMaskDefault>(
             JsonSerializer.SerializeToElement(true),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnsharpMaskUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<UnsharpMaskDefault>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3089,12 +3089,12 @@ public class UnsharpMaskUnionMember0Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnsharpMaskUnionMember0>(
+        var constant = JsonSerializer.Deserialize<UnsharpMaskDefault>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnsharpMaskUnionMember0>(
+        var deserialized = JsonSerializer.Deserialize<UnsharpMaskDefault>(
             element,
             ModelBase.SerializerOptions
         );
