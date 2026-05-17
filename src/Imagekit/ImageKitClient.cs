@@ -86,6 +86,12 @@ public sealed class ImageKitClient : IImageKitClient
         return new ImageKitClient(modifier(this._options));
     }
 
+    readonly Lazy<IDummyService> _dummy;
+    public IDummyService Dummy
+    {
+        get { return _dummy.Value; }
+    }
+
     readonly Lazy<ICustomMetadataFieldService> _customMetadataFields;
     public ICustomMetadataFieldService CustomMetadataFields
     {
@@ -147,6 +153,7 @@ public sealed class ImageKitClient : IImageKitClient
         _options = new();
 
         _withRawResponse = new(() => new ImageKitClientWithRawResponse(this._options));
+        _dummy = new(() => new DummyService(this));
         _customMetadataFields = new(() => new CustomMetadataFieldService(this));
         _files = new(() => new FileService(this));
         _savedExtensions = new(() => new SavedExtensionService(this));
@@ -243,6 +250,12 @@ public sealed class ImageKitClientWithRawResponse : IImageKitClientWithRawRespon
     public IImageKitClientWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
         return new ImageKitClientWithRawResponse(modifier(this._options));
+    }
+
+    readonly Lazy<IDummyServiceWithRawResponse> _dummy;
+    public IDummyServiceWithRawResponse Dummy
+    {
+        get { return _dummy.Value; }
     }
 
     readonly Lazy<ICustomMetadataFieldServiceWithRawResponse> _customMetadataFields;
@@ -497,6 +510,7 @@ public sealed class ImageKitClientWithRawResponse : IImageKitClientWithRawRespon
     {
         _options = new();
 
+        _dummy = new(() => new DummyServiceWithRawResponse(this));
         _customMetadataFields = new(() => new CustomMetadataFieldServiceWithRawResponse(this));
         _files = new(() => new FileServiceWithRawResponse(this));
         _savedExtensions = new(() => new SavedExtensionServiceWithRawResponse(this));

@@ -68,6 +68,8 @@ public interface IImageKitClient : IDisposable
     /// </summary>
     IImageKitClient WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
+    IDummyService Dummy { get; }
+
     ICustomMetadataFieldService CustomMetadataFields { get; }
 
     IFileService Files { get; }
@@ -132,6 +134,8 @@ public interface IImageKitClientWithRawResponse : IDisposable
     /// <para>The original service is not modified.</para>
     /// </summary>
     IImageKitClientWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    IDummyServiceWithRawResponse Dummy { get; }
 
     ICustomMetadataFieldServiceWithRawResponse CustomMetadataFields { get; }
 
