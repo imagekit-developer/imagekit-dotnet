@@ -346,14 +346,12 @@ public sealed record class UpdateFileDetails : JsonModel
     /// Array of extensions to be applied to the asset. Each extension can be configured
     /// with specific parameters based on the extension type.
     /// </summary>
-    public IReadOnlyList<UnnamedSchemaWithArrayParent0>? Extensions
+    public IReadOnlyList<ExtensionItem>? Extensions
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<ImmutableArray<UnnamedSchemaWithArrayParent0>>(
-                "extensions"
-            );
+            return this._rawData.GetNullableStruct<ImmutableArray<ExtensionItem>>("extensions");
         }
         init
         {
@@ -362,7 +360,7 @@ public sealed record class UpdateFileDetails : JsonModel
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<UnnamedSchemaWithArrayParent0>?>(
+            this._rawData.Set<ImmutableArray<ExtensionItem>?>(
                 "extensions",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );

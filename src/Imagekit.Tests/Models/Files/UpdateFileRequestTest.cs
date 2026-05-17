@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Imagekit.Core;
 using Imagekit.Exceptions;
-using Imagekit.Models;
-using Files = Imagekit.Models.Files;
+using Imagekit.Models.Files;
+using Models = Imagekit.Models;
 
 namespace Imagekit.Tests.Models.Files;
 
@@ -12,7 +12,7 @@ public class UpdateFileRequestTest : TestBase
     [Fact]
     public void DetailsValidationWorks()
     {
-        Files::UpdateFileRequest value = new Files::UpdateFileDetails()
+        UpdateFileRequest value = new UpdateFileDetails()
         {
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -22,7 +22,7 @@ public class UpdateFileRequestTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -32,23 +32,23 @@ public class UpdateFileRequestTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -75,9 +75,9 @@ public class UpdateFileRequestTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -87,7 +87,7 @@ public class UpdateFileRequestTest : TestBase
     [Fact]
     public void ChangePublicationStatusValidationWorks()
     {
-        Files::UpdateFileRequest value = new Files::ChangePublicationStatus()
+        UpdateFileRequest value = new ChangePublicationStatus()
         {
             Publish = new() { IsPublished = true, IncludeFileVersions = true },
         };
@@ -97,7 +97,7 @@ public class UpdateFileRequestTest : TestBase
     [Fact]
     public void DetailsSerializationRoundtripWorks()
     {
-        Files::UpdateFileRequest value = new Files::UpdateFileDetails()
+        UpdateFileRequest value = new UpdateFileDetails()
         {
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -107,7 +107,7 @@ public class UpdateFileRequestTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -117,23 +117,23 @@ public class UpdateFileRequestTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -160,14 +160,14 @@ public class UpdateFileRequestTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::UpdateFileRequest>(
+        var deserialized = JsonSerializer.Deserialize<UpdateFileRequest>(
             element,
             ModelBase.SerializerOptions
         );
@@ -178,12 +178,12 @@ public class UpdateFileRequestTest : TestBase
     [Fact]
     public void ChangePublicationStatusSerializationRoundtripWorks()
     {
-        Files::UpdateFileRequest value = new Files::ChangePublicationStatus()
+        UpdateFileRequest value = new ChangePublicationStatus()
         {
             Publish = new() { IsPublished = true, IncludeFileVersions = true },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::UpdateFileRequest>(
+        var deserialized = JsonSerializer.Deserialize<UpdateFileRequest>(
             element,
             ModelBase.SerializerOptions
         );
@@ -197,7 +197,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -207,7 +207,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -217,23 +217,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -260,9 +260,9 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -273,9 +273,9 @@ public class UpdateFileDetailsTest : TestBase
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedDescription = "description";
-        List<UnnamedSchemaWithArrayParent0> expectedExtensions =
+        List<Models::ExtensionItem> expectedExtensions =
         [
-            new UnnamedSchemaWithArrayParent0RemoveBg()
+            new Models::ExtensionItemRemoveBg()
             {
                 Options = new()
                 {
@@ -285,23 +285,23 @@ public class UpdateFileDetailsTest : TestBase
                     Semitransparency = true,
                 },
             },
-            new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+            new Models::ExtensionItemAutoTaggingExtension()
             {
                 MaxTags = 5,
                 MinConfidence = 95,
-                Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
             },
-            new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-            new UnnamedSchemaWithArrayParent0AITasks(
+            new Models::ExtensionItemAIAutoDescription(),
+            new Models::ExtensionItemAITasks(
                 [
-                    new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                    new Models::ExtensionItemAITasksTaskSelectTags()
                     {
                         Instruction = "What types of clothing items are visible in this image?",
                         MaxSelections = 1,
                         MinSelections = 0,
                         Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                     },
-                    new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                    new Models::ExtensionItemAITasksTaskYesNo()
                     {
                         Instruction = "Is this a luxury or high-end fashion item?",
                         OnNo = new()
@@ -328,9 +328,9 @@ public class UpdateFileDetailsTest : TestBase
                     },
                 ]
             ),
-            new SavedExtension("ext_abc123"),
+            new Models::SavedExtension("ext_abc123"),
         ];
-        Files::RemoveAITags expectedRemoveAITags = new Files::UnionMember1();
+        RemoveAITags expectedRemoveAITags = new UnionMember1();
         List<string> expectedTags = ["tag1", "tag2"];
         string expectedWebhookUrl = "https://example.com";
 
@@ -363,7 +363,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -373,7 +373,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -383,23 +383,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -426,15 +426,15 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::UpdateFileDetails>(
+        var deserialized = JsonSerializer.Deserialize<UpdateFileDetails>(
             json,
             ModelBase.SerializerOptions
         );
@@ -445,7 +445,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -455,7 +455,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -465,23 +465,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -508,15 +508,15 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::UpdateFileDetails>(
+        var deserialized = JsonSerializer.Deserialize<UpdateFileDetails>(
             element,
             ModelBase.SerializerOptions
         );
@@ -528,9 +528,9 @@ public class UpdateFileDetailsTest : TestBase
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedDescription = "description";
-        List<UnnamedSchemaWithArrayParent0> expectedExtensions =
+        List<Models::ExtensionItem> expectedExtensions =
         [
-            new UnnamedSchemaWithArrayParent0RemoveBg()
+            new Models::ExtensionItemRemoveBg()
             {
                 Options = new()
                 {
@@ -540,23 +540,23 @@ public class UpdateFileDetailsTest : TestBase
                     Semitransparency = true,
                 },
             },
-            new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+            new Models::ExtensionItemAutoTaggingExtension()
             {
                 MaxTags = 5,
                 MinConfidence = 95,
-                Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
             },
-            new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-            new UnnamedSchemaWithArrayParent0AITasks(
+            new Models::ExtensionItemAIAutoDescription(),
+            new Models::ExtensionItemAITasks(
                 [
-                    new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                    new Models::ExtensionItemAITasksTaskSelectTags()
                     {
                         Instruction = "What types of clothing items are visible in this image?",
                         MaxSelections = 1,
                         MinSelections = 0,
                         Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                     },
-                    new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                    new Models::ExtensionItemAITasksTaskYesNo()
                     {
                         Instruction = "Is this a luxury or high-end fashion item?",
                         OnNo = new()
@@ -583,9 +583,9 @@ public class UpdateFileDetailsTest : TestBase
                     },
                 ]
             ),
-            new SavedExtension("ext_abc123"),
+            new Models::SavedExtension("ext_abc123"),
         ];
-        Files::RemoveAITags expectedRemoveAITags = new Files::UnionMember1();
+        RemoveAITags expectedRemoveAITags = new UnionMember1();
         List<string> expectedTags = ["tag1", "tag2"];
         string expectedWebhookUrl = "https://example.com";
 
@@ -618,7 +618,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -628,7 +628,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -638,23 +638,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -681,9 +681,9 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -694,7 +694,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomCoordinates = "customCoordinates",
             Tags = ["tag1", "tag2"],
@@ -715,7 +715,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomCoordinates = "customCoordinates",
             Tags = ["tag1", "tag2"],
@@ -727,7 +727,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomCoordinates = "customCoordinates",
             Tags = ["tag1", "tag2"],
@@ -755,7 +755,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomCoordinates = "customCoordinates",
             Tags = ["tag1", "tag2"],
@@ -774,7 +774,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
@@ -783,7 +783,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -793,23 +793,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -836,9 +836,9 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             WebhookUrl = "https://example.com",
         };
 
@@ -851,7 +851,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
@@ -860,7 +860,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -870,23 +870,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -913,9 +913,9 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             WebhookUrl = "https://example.com",
         };
 
@@ -925,7 +925,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
@@ -934,7 +934,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -944,23 +944,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -987,9 +987,9 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             WebhookUrl = "https://example.com",
 
             CustomCoordinates = null,
@@ -1005,7 +1005,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
@@ -1014,7 +1014,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -1024,23 +1024,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -1067,9 +1067,9 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             WebhookUrl = "https://example.com",
 
             CustomCoordinates = null,
@@ -1082,7 +1082,7 @@ public class UpdateFileDetailsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Files::UpdateFileDetails
+        var model = new UpdateFileDetails
         {
             CustomCoordinates = "customCoordinates",
             CustomMetadata = new Dictionary<string, JsonElement>()
@@ -1092,7 +1092,7 @@ public class UpdateFileDetailsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -1102,23 +1102,23 @@ public class UpdateFileDetailsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -1145,14 +1145,14 @@ public class UpdateFileDetailsTest : TestBase
                         },
                     ]
                 ),
-                new SavedExtension("ext_abc123"),
+                new Models::SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new Files::UnionMember1(),
+            RemoveAITags = new UnionMember1(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
 
-        Files::UpdateFileDetails copied = new(model);
+        UpdateFileDetails copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -1163,23 +1163,23 @@ public class RemoveAITagsTest : TestBase
     [Fact]
     public void StringsValidationWorks()
     {
-        Files::RemoveAITags value = new(["string"]);
+        RemoveAITags value = new(["string"]);
         value.Validate();
     }
 
     [Fact]
     public void AllValidationWorks()
     {
-        Files::RemoveAITags value = new Files::UnionMember1();
+        RemoveAITags value = new UnionMember1();
         value.Validate();
     }
 
     [Fact]
     public void StringsSerializationRoundtripWorks()
     {
-        Files::RemoveAITags value = new(["string"]);
+        RemoveAITags value = new(["string"]);
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::RemoveAITags>(
+        var deserialized = JsonSerializer.Deserialize<RemoveAITags>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1190,9 +1190,9 @@ public class RemoveAITagsTest : TestBase
     [Fact]
     public void AllSerializationRoundtripWorks()
     {
-        Files::RemoveAITags value = new Files::UnionMember1();
+        RemoveAITags value = new UnionMember1();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::RemoveAITags>(
+        var deserialized = JsonSerializer.Deserialize<RemoveAITags>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1206,14 +1206,14 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new Files::UnionMember1();
+        var constant = new UnionMember1();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<Files::UnionMember1>(
+        var constant = JsonSerializer.Deserialize<UnionMember1>(
             JsonSerializer.SerializeToElement("all"),
             ModelBase.SerializerOptions
         );
@@ -1225,7 +1225,7 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<Files::UnionMember1>(
+        var constant = JsonSerializer.Deserialize<UnionMember1>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -1237,9 +1237,9 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new Files::UnionMember1();
+        var constant = new UnionMember1();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::UnionMember1>(
+        var deserialized = JsonSerializer.Deserialize<UnionMember1>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1250,12 +1250,12 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<Files::UnionMember1>(
+        var constant = JsonSerializer.Deserialize<UnionMember1>(
             JsonSerializer.SerializeToElement("all"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::UnionMember1>(
+        var deserialized = JsonSerializer.Deserialize<UnionMember1>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1266,12 +1266,12 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<Files::UnionMember1>(
+        var constant = JsonSerializer.Deserialize<UnionMember1>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::UnionMember1>(
+        var deserialized = JsonSerializer.Deserialize<UnionMember1>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1285,12 +1285,12 @@ public class ChangePublicationStatusTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Files::ChangePublicationStatus
+        var model = new ChangePublicationStatus
         {
             Publish = new() { IsPublished = true, IncludeFileVersions = true },
         };
 
-        Files::Publish expectedPublish = new() { IsPublished = true, IncludeFileVersions = true };
+        Publish expectedPublish = new() { IsPublished = true, IncludeFileVersions = true };
 
         Assert.Equal(expectedPublish, model.Publish);
     }
@@ -1298,13 +1298,13 @@ public class ChangePublicationStatusTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Files::ChangePublicationStatus
+        var model = new ChangePublicationStatus
         {
             Publish = new() { IsPublished = true, IncludeFileVersions = true },
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::ChangePublicationStatus>(
+        var deserialized = JsonSerializer.Deserialize<ChangePublicationStatus>(
             json,
             ModelBase.SerializerOptions
         );
@@ -1315,19 +1315,19 @@ public class ChangePublicationStatusTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Files::ChangePublicationStatus
+        var model = new ChangePublicationStatus
         {
             Publish = new() { IsPublished = true, IncludeFileVersions = true },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::ChangePublicationStatus>(
+        var deserialized = JsonSerializer.Deserialize<ChangePublicationStatus>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
-        Files::Publish expectedPublish = new() { IsPublished = true, IncludeFileVersions = true };
+        Publish expectedPublish = new() { IsPublished = true, IncludeFileVersions = true };
 
         Assert.Equal(expectedPublish, deserialized.Publish);
     }
@@ -1335,7 +1335,7 @@ public class ChangePublicationStatusTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Files::ChangePublicationStatus
+        var model = new ChangePublicationStatus
         {
             Publish = new() { IsPublished = true, IncludeFileVersions = true },
         };
@@ -1346,7 +1346,7 @@ public class ChangePublicationStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Files::ChangePublicationStatus { };
+        var model = new ChangePublicationStatus { };
 
         Assert.Null(model.Publish);
         Assert.False(model.RawData.ContainsKey("publish"));
@@ -1355,7 +1355,7 @@ public class ChangePublicationStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Files::ChangePublicationStatus { };
+        var model = new ChangePublicationStatus { };
 
         model.Validate();
     }
@@ -1363,7 +1363,7 @@ public class ChangePublicationStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Files::ChangePublicationStatus
+        var model = new ChangePublicationStatus
         {
             // Null should be interpreted as omitted for these properties
             Publish = null,
@@ -1376,7 +1376,7 @@ public class ChangePublicationStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Files::ChangePublicationStatus
+        var model = new ChangePublicationStatus
         {
             // Null should be interpreted as omitted for these properties
             Publish = null,
@@ -1388,12 +1388,12 @@ public class ChangePublicationStatusTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Files::ChangePublicationStatus
+        var model = new ChangePublicationStatus
         {
             Publish = new() { IsPublished = true, IncludeFileVersions = true },
         };
 
-        Files::ChangePublicationStatus copied = new(model);
+        ChangePublicationStatus copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -1404,7 +1404,7 @@ public class PublishTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Files::Publish { IsPublished = true, IncludeFileVersions = true };
+        var model = new Publish { IsPublished = true, IncludeFileVersions = true };
 
         bool expectedIsPublished = true;
         bool expectedIncludeFileVersions = true;
@@ -1416,13 +1416,10 @@ public class PublishTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Files::Publish { IsPublished = true, IncludeFileVersions = true };
+        var model = new Publish { IsPublished = true, IncludeFileVersions = true };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::Publish>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<Publish>(json, ModelBase.SerializerOptions);
 
         Assert.Equal(model, deserialized);
     }
@@ -1430,10 +1427,10 @@ public class PublishTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Files::Publish { IsPublished = true, IncludeFileVersions = true };
+        var model = new Publish { IsPublished = true, IncludeFileVersions = true };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::Publish>(
+        var deserialized = JsonSerializer.Deserialize<Publish>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1449,7 +1446,7 @@ public class PublishTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Files::Publish { IsPublished = true, IncludeFileVersions = true };
+        var model = new Publish { IsPublished = true, IncludeFileVersions = true };
 
         model.Validate();
     }
@@ -1457,7 +1454,7 @@ public class PublishTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Files::Publish { IsPublished = true };
+        var model = new Publish { IsPublished = true };
 
         Assert.Null(model.IncludeFileVersions);
         Assert.False(model.RawData.ContainsKey("includeFileVersions"));
@@ -1466,7 +1463,7 @@ public class PublishTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Files::Publish { IsPublished = true };
+        var model = new Publish { IsPublished = true };
 
         model.Validate();
     }
@@ -1474,7 +1471,7 @@ public class PublishTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Files::Publish
+        var model = new Publish
         {
             IsPublished = true,
 
@@ -1489,7 +1486,7 @@ public class PublishTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Files::Publish
+        var model = new Publish
         {
             IsPublished = true,
 
@@ -1503,9 +1500,9 @@ public class PublishTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Files::Publish { IsPublished = true, IncludeFileVersions = true };
+        var model = new Publish { IsPublished = true, IncludeFileVersions = true };
 
-        Files::Publish copied = new(model);
+        Publish copied = new(model);
 
         Assert.Equal(model, copied);
     }

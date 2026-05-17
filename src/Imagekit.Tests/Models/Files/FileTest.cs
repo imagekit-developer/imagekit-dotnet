@@ -55,9 +55,9 @@ public class FileTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent1(true),
-                                new Files::UnnamedSchemaWithArrayParent1(10),
-                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent0(true),
+                                new Files::UnnamedSchemaWithArrayParent0(10),
+                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -123,9 +123,9 @@ public class FileTest : TestBase
                     Type = Files::Type.Text,
                     DefaultValue = new(
                         [
-                            new Files::UnnamedSchemaWithArrayParent1(true),
-                            new Files::UnnamedSchemaWithArrayParent1(10),
-                            new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                            new Files::UnnamedSchemaWithArrayParent0(true),
+                            new Files::UnnamedSchemaWithArrayParent0(10),
+                            new Files::UnnamedSchemaWithArrayParent0("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -256,9 +256,9 @@ public class FileTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent1(true),
-                                new Files::UnnamedSchemaWithArrayParent1(10),
-                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent0(true),
+                                new Files::UnnamedSchemaWithArrayParent0(10),
+                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -338,9 +338,9 @@ public class FileTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent1(true),
-                                new Files::UnnamedSchemaWithArrayParent1(10),
-                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent0(true),
+                                new Files::UnnamedSchemaWithArrayParent0(10),
+                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -413,9 +413,9 @@ public class FileTest : TestBase
                     Type = Files::Type.Text,
                     DefaultValue = new(
                         [
-                            new Files::UnnamedSchemaWithArrayParent1(true),
-                            new Files::UnnamedSchemaWithArrayParent1(10),
-                            new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                            new Files::UnnamedSchemaWithArrayParent0(true),
+                            new Files::UnnamedSchemaWithArrayParent0(10),
+                            new Files::UnnamedSchemaWithArrayParent0("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -546,9 +546,9 @@ public class FileTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent1(true),
-                                new Files::UnnamedSchemaWithArrayParent1(10),
-                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent0(true),
+                                new Files::UnnamedSchemaWithArrayParent0(10),
+                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -848,9 +848,9 @@ public class FileTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent1(true),
-                                new Files::UnnamedSchemaWithArrayParent1(10),
-                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent0(true),
+                                new Files::UnnamedSchemaWithArrayParent0(10),
+                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -918,9 +918,9 @@ public class FileTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent1(true),
-                                new Files::UnnamedSchemaWithArrayParent1(10),
-                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent0(true),
+                                new Files::UnnamedSchemaWithArrayParent0(10),
+                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -983,9 +983,9 @@ public class FileTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent1(true),
-                                new Files::UnnamedSchemaWithArrayParent1(10),
-                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent0(true),
+                                new Files::UnnamedSchemaWithArrayParent0(10),
+                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1057,9 +1057,9 @@ public class FileTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent1(true),
-                                new Files::UnnamedSchemaWithArrayParent1(10),
-                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent0(true),
+                                new Files::UnnamedSchemaWithArrayParent0(10),
+                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1136,9 +1136,9 @@ public class FileTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent1(true),
-                                new Files::UnnamedSchemaWithArrayParent1(10),
-                                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                new Files::UnnamedSchemaWithArrayParent0(true),
+                                new Files::UnnamedSchemaWithArrayParent0(10),
+                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1328,9 +1328,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             Type = Files::Type.Text,
             DefaultValue = new(
                 [
-                    new Files::UnnamedSchemaWithArrayParent1(true),
-                    new Files::UnnamedSchemaWithArrayParent1(10),
-                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                    new Files::UnnamedSchemaWithArrayParent0(true),
+                    new Files::UnnamedSchemaWithArrayParent0(10),
+                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -1346,9 +1346,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
         ApiEnum<string, Files::Type> expectedType = Files::Type.Text;
         Files::DefaultValue expectedDefaultValue = new(
             [
-                new Files::UnnamedSchemaWithArrayParent1(true),
-                new Files::UnnamedSchemaWithArrayParent1(10),
-                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                new Files::UnnamedSchemaWithArrayParent0(true),
+                new Files::UnnamedSchemaWithArrayParent0(10),
+                new Files::UnnamedSchemaWithArrayParent0("Hello"),
             ]
         );
         bool expectedIsValueRequired = true;
@@ -1393,9 +1393,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             Type = Files::Type.Text,
             DefaultValue = new(
                 [
-                    new Files::UnnamedSchemaWithArrayParent1(true),
-                    new Files::UnnamedSchemaWithArrayParent1(10),
-                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                    new Files::UnnamedSchemaWithArrayParent0(true),
+                    new Files::UnnamedSchemaWithArrayParent0(10),
+                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -1425,9 +1425,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             Type = Files::Type.Text,
             DefaultValue = new(
                 [
-                    new Files::UnnamedSchemaWithArrayParent1(true),
-                    new Files::UnnamedSchemaWithArrayParent1(10),
-                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                    new Files::UnnamedSchemaWithArrayParent0(true),
+                    new Files::UnnamedSchemaWithArrayParent0(10),
+                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -1450,9 +1450,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
         ApiEnum<string, Files::Type> expectedType = Files::Type.Text;
         Files::DefaultValue expectedDefaultValue = new(
             [
-                new Files::UnnamedSchemaWithArrayParent1(true),
-                new Files::UnnamedSchemaWithArrayParent1(10),
-                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                new Files::UnnamedSchemaWithArrayParent0(true),
+                new Files::UnnamedSchemaWithArrayParent0(10),
+                new Files::UnnamedSchemaWithArrayParent0("Hello"),
             ]
         );
         bool expectedIsValueRequired = true;
@@ -1497,9 +1497,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             Type = Files::Type.Text,
             DefaultValue = new(
                 [
-                    new Files::UnnamedSchemaWithArrayParent1(true),
-                    new Files::UnnamedSchemaWithArrayParent1(10),
-                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                    new Files::UnnamedSchemaWithArrayParent0(true),
+                    new Files::UnnamedSchemaWithArrayParent0(10),
+                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -1617,9 +1617,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             Type = Files::Type.Text,
             DefaultValue = new(
                 [
-                    new Files::UnnamedSchemaWithArrayParent1(true),
-                    new Files::UnnamedSchemaWithArrayParent1(10),
-                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                    new Files::UnnamedSchemaWithArrayParent0(true),
+                    new Files::UnnamedSchemaWithArrayParent0(10),
+                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -1734,9 +1734,9 @@ public class DefaultValueTest : TestBase
     {
         Files::DefaultValue value = new(
             [
-                new Files::UnnamedSchemaWithArrayParent1(true),
-                new Files::UnnamedSchemaWithArrayParent1(10),
-                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                new Files::UnnamedSchemaWithArrayParent0(true),
+                new Files::UnnamedSchemaWithArrayParent0(10),
+                new Files::UnnamedSchemaWithArrayParent0("Hello"),
             ]
         );
         value.Validate();
@@ -1786,9 +1786,9 @@ public class DefaultValueTest : TestBase
     {
         Files::DefaultValue value = new(
             [
-                new Files::UnnamedSchemaWithArrayParent1(true),
-                new Files::UnnamedSchemaWithArrayParent1(10),
-                new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                new Files::UnnamedSchemaWithArrayParent0(true),
+                new Files::UnnamedSchemaWithArrayParent0(10),
+                new Files::UnnamedSchemaWithArrayParent0("Hello"),
             ]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -1801,35 +1801,35 @@ public class DefaultValueTest : TestBase
     }
 }
 
-public class UnnamedSchemaWithArrayParent1Test : TestBase
+public class UnnamedSchemaWithArrayParent0Test : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        Files::UnnamedSchemaWithArrayParent1 value = "string";
+        Files::UnnamedSchemaWithArrayParent0 value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        Files::UnnamedSchemaWithArrayParent1 value = 0;
+        Files::UnnamedSchemaWithArrayParent0 value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        Files::UnnamedSchemaWithArrayParent1 value = true;
+        Files::UnnamedSchemaWithArrayParent0 value = true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        Files::UnnamedSchemaWithArrayParent1 value = "string";
+        Files::UnnamedSchemaWithArrayParent0 value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::UnnamedSchemaWithArrayParent1>(
+        var deserialized = JsonSerializer.Deserialize<Files::UnnamedSchemaWithArrayParent0>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1840,9 +1840,9 @@ public class UnnamedSchemaWithArrayParent1Test : TestBase
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        Files::UnnamedSchemaWithArrayParent1 value = 0;
+        Files::UnnamedSchemaWithArrayParent0 value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::UnnamedSchemaWithArrayParent1>(
+        var deserialized = JsonSerializer.Deserialize<Files::UnnamedSchemaWithArrayParent0>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1853,9 +1853,9 @@ public class UnnamedSchemaWithArrayParent1Test : TestBase
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        Files::UnnamedSchemaWithArrayParent1 value = true;
+        Files::UnnamedSchemaWithArrayParent0 value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::UnnamedSchemaWithArrayParent1>(
+        var deserialized = JsonSerializer.Deserialize<Files::UnnamedSchemaWithArrayParent0>(
             element,
             ModelBase.SerializerOptions
         );

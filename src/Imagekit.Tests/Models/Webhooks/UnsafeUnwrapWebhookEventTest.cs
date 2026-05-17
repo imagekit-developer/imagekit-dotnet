@@ -278,9 +278,9 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                             Type = Webhooks::SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new Webhooks::UnnamedSchemaWithArrayParent4(true),
-                                    new Webhooks::UnnamedSchemaWithArrayParent4(10),
-                                    new Webhooks::UnnamedSchemaWithArrayParent4("Hello"),
+                                    new Webhooks::UnnamedSchemaWithArrayParent3(true),
+                                    new Webhooks::UnnamedSchemaWithArrayParent3(10),
+                                    new Webhooks::UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -441,9 +441,9 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent1(true),
-                                    new Files::UnnamedSchemaWithArrayParent1(10),
-                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent0(true),
+                                    new Files::UnnamedSchemaWithArrayParent0(10),
+                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -522,9 +522,9 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent1(true),
-                                    new Files::UnnamedSchemaWithArrayParent1(10),
-                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent0(true),
+                                    new Files::UnnamedSchemaWithArrayParent0(10),
+                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -616,9 +616,9 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent1(true),
-                                    new Files::UnnamedSchemaWithArrayParent1(10),
-                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent0(true),
+                                    new Files::UnnamedSchemaWithArrayParent0(10),
+                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -946,9 +946,9 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                             Type = Webhooks::SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new Webhooks::UnnamedSchemaWithArrayParent4(true),
-                                    new Webhooks::UnnamedSchemaWithArrayParent4(10),
-                                    new Webhooks::UnnamedSchemaWithArrayParent4("Hello"),
+                                    new Webhooks::UnnamedSchemaWithArrayParent3(true),
+                                    new Webhooks::UnnamedSchemaWithArrayParent3(10),
+                                    new Webhooks::UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1133,9 +1133,9 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent1(true),
-                                    new Files::UnnamedSchemaWithArrayParent1(10),
-                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent0(true),
+                                    new Files::UnnamedSchemaWithArrayParent0(10),
+                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1220,9 +1220,9 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent1(true),
-                                    new Files::UnnamedSchemaWithArrayParent1(10),
-                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent0(true),
+                                    new Files::UnnamedSchemaWithArrayParent0(10),
+                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1326,9 +1326,9 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent1(true),
-                                    new Files::UnnamedSchemaWithArrayParent1(10),
-                                    new Files::UnnamedSchemaWithArrayParent1("Hello"),
+                                    new Files::UnnamedSchemaWithArrayParent0(true),
+                                    new Files::UnnamedSchemaWithArrayParent0(10),
+                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,

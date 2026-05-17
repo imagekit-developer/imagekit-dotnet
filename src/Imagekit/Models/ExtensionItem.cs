@@ -10,8 +10,8 @@ using Imagekit.Exceptions;
 
 namespace Imagekit.Models;
 
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent0Converter))]
-public record class UnnamedSchemaWithArrayParent0 : ModelBase
+[JsonConverter(typeof(ExtensionItemConverter))]
+public record class ExtensionItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -28,140 +28,126 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
         }
     }
 
-    public UnnamedSchemaWithArrayParent0(
-        UnnamedSchemaWithArrayParent0RemoveBg value,
-        JsonElement? element = null
-    )
+    public ExtensionItem(ExtensionItemRemoveBg value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0(
-        UnnamedSchemaWithArrayParent0AutoTaggingExtension value,
-        JsonElement? element = null
-    )
+    public ExtensionItem(ExtensionItemAutoTaggingExtension value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0(
-        UnnamedSchemaWithArrayParent0AIAutoDescription value,
-        JsonElement? element = null
-    )
+    public ExtensionItem(ExtensionItemAIAutoDescription value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0(
-        UnnamedSchemaWithArrayParent0AITasks value,
-        JsonElement? element = null
-    )
+    public ExtensionItem(ExtensionItemAITasks value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0(SavedExtension value, JsonElement? element = null)
+    public ExtensionItem(SavedExtension value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0(JsonElement element)
+    public ExtensionItem(JsonElement element)
     {
         this._element = element;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnnamedSchemaWithArrayParent0RemoveBg"/>.
+    /// type <see cref="ExtensionItemRemoveBg"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickRemoveBg(out var value)) {
-    ///     // `value` is of type `UnnamedSchemaWithArrayParent0RemoveBg`
+    ///     // `value` is of type `ExtensionItemRemoveBg`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickRemoveBg(
-        [NotNullWhen(true)] out UnnamedSchemaWithArrayParent0RemoveBg? value
-    )
+    public bool TryPickRemoveBg([NotNullWhen(true)] out ExtensionItemRemoveBg? value)
     {
-        value = this.Value as UnnamedSchemaWithArrayParent0RemoveBg;
+        value = this.Value as ExtensionItemRemoveBg;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnnamedSchemaWithArrayParent0AutoTaggingExtension"/>.
+    /// type <see cref="ExtensionItemAutoTaggingExtension"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickAutoTaggingExtension(out var value)) {
-    ///     // `value` is of type `UnnamedSchemaWithArrayParent0AutoTaggingExtension`
+    ///     // `value` is of type `ExtensionItemAutoTaggingExtension`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
     public bool TryPickAutoTaggingExtension(
-        [NotNullWhen(true)] out UnnamedSchemaWithArrayParent0AutoTaggingExtension? value
+        [NotNullWhen(true)] out ExtensionItemAutoTaggingExtension? value
     )
     {
-        value = this.Value as UnnamedSchemaWithArrayParent0AutoTaggingExtension;
+        value = this.Value as ExtensionItemAutoTaggingExtension;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnnamedSchemaWithArrayParent0AIAutoDescription"/>.
+    /// type <see cref="ExtensionItemAIAutoDescription"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickAIAutoDescription(out var value)) {
-    ///     // `value` is of type `UnnamedSchemaWithArrayParent0AIAutoDescription`
+    ///     // `value` is of type `ExtensionItemAIAutoDescription`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
     public bool TryPickAIAutoDescription(
-        [NotNullWhen(true)] out UnnamedSchemaWithArrayParent0AIAutoDescription? value
+        [NotNullWhen(true)] out ExtensionItemAIAutoDescription? value
     )
     {
-        value = this.Value as UnnamedSchemaWithArrayParent0AIAutoDescription;
+        value = this.Value as ExtensionItemAIAutoDescription;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnnamedSchemaWithArrayParent0AITasks"/>.
+    /// type <see cref="ExtensionItemAITasks"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickAITasks(out var value)) {
-    ///     // `value` is of type `UnnamedSchemaWithArrayParent0AITasks`
+    ///     // `value` is of type `ExtensionItemAITasks`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickAITasks([NotNullWhen(true)] out UnnamedSchemaWithArrayParent0AITasks? value)
+    public bool TryPickAITasks([NotNullWhen(true)] out ExtensionItemAITasks? value)
     {
-        value = this.Value as UnnamedSchemaWithArrayParent0AITasks;
+        value = this.Value as ExtensionItemAITasks;
         return value != null;
     }
 
@@ -200,35 +186,35 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (UnnamedSchemaWithArrayParent0RemoveBg value) =&gt; {...},
-    ///     (UnnamedSchemaWithArrayParent0AutoTaggingExtension value) =&gt; {...},
-    ///     (UnnamedSchemaWithArrayParent0AIAutoDescription value) =&gt; {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasks value) =&gt; {...},
+    ///     (ExtensionItemRemoveBg value) =&gt; {...},
+    ///     (ExtensionItemAutoTaggingExtension value) =&gt; {...},
+    ///     (ExtensionItemAIAutoDescription value) =&gt; {...},
+    ///     (ExtensionItemAITasks value) =&gt; {...},
     ///     (SavedExtension value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
     public void Switch(
-        Action<UnnamedSchemaWithArrayParent0RemoveBg> removeBg,
-        Action<UnnamedSchemaWithArrayParent0AutoTaggingExtension> autoTaggingExtension,
-        Action<UnnamedSchemaWithArrayParent0AIAutoDescription> aiAutoDescription,
-        Action<UnnamedSchemaWithArrayParent0AITasks> aiTasks,
+        Action<ExtensionItemRemoveBg> removeBg,
+        Action<ExtensionItemAutoTaggingExtension> autoTaggingExtension,
+        Action<ExtensionItemAIAutoDescription> aiAutoDescription,
+        Action<ExtensionItemAITasks> aiTasks,
         Action<SavedExtension> savedExtension
     )
     {
         switch (this.Value)
         {
-            case UnnamedSchemaWithArrayParent0RemoveBg value:
+            case ExtensionItemRemoveBg value:
                 removeBg(value);
                 break;
-            case UnnamedSchemaWithArrayParent0AutoTaggingExtension value:
+            case ExtensionItemAutoTaggingExtension value:
                 autoTaggingExtension(value);
                 break;
-            case UnnamedSchemaWithArrayParent0AIAutoDescription value:
+            case ExtensionItemAIAutoDescription value:
                 aiAutoDescription(value);
                 break;
-            case UnnamedSchemaWithArrayParent0AITasks value:
+            case ExtensionItemAITasks value:
                 aiTasks(value);
                 break;
             case SavedExtension value:
@@ -236,7 +222,7 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent0"
+                    "Data did not match any variant of ExtensionItem"
                 );
         }
     }
@@ -256,54 +242,47 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (UnnamedSchemaWithArrayParent0RemoveBg value) =&gt; {...},
-    ///     (UnnamedSchemaWithArrayParent0AutoTaggingExtension value) =&gt; {...},
-    ///     (UnnamedSchemaWithArrayParent0AIAutoDescription value) =&gt; {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasks value) =&gt; {...},
+    ///     (ExtensionItemRemoveBg value) =&gt; {...},
+    ///     (ExtensionItemAutoTaggingExtension value) =&gt; {...},
+    ///     (ExtensionItemAIAutoDescription value) =&gt; {...},
+    ///     (ExtensionItemAITasks value) =&gt; {...},
     ///     (SavedExtension value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<UnnamedSchemaWithArrayParent0RemoveBg, T> removeBg,
-        Func<UnnamedSchemaWithArrayParent0AutoTaggingExtension, T> autoTaggingExtension,
-        Func<UnnamedSchemaWithArrayParent0AIAutoDescription, T> aiAutoDescription,
-        Func<UnnamedSchemaWithArrayParent0AITasks, T> aiTasks,
+        Func<ExtensionItemRemoveBg, T> removeBg,
+        Func<ExtensionItemAutoTaggingExtension, T> autoTaggingExtension,
+        Func<ExtensionItemAIAutoDescription, T> aiAutoDescription,
+        Func<ExtensionItemAITasks, T> aiTasks,
         Func<SavedExtension, T> savedExtension
     )
     {
         return this.Value switch
         {
-            UnnamedSchemaWithArrayParent0RemoveBg value => removeBg(value),
-            UnnamedSchemaWithArrayParent0AutoTaggingExtension value => autoTaggingExtension(value),
-            UnnamedSchemaWithArrayParent0AIAutoDescription value => aiAutoDescription(value),
-            UnnamedSchemaWithArrayParent0AITasks value => aiTasks(value),
+            ExtensionItemRemoveBg value => removeBg(value),
+            ExtensionItemAutoTaggingExtension value => autoTaggingExtension(value),
+            ExtensionItemAIAutoDescription value => aiAutoDescription(value),
+            ExtensionItemAITasks value => aiTasks(value),
             SavedExtension value => savedExtension(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0"
+                "Data did not match any variant of ExtensionItem"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0(
-        UnnamedSchemaWithArrayParent0RemoveBg value
-    ) => new(value);
+    public static implicit operator ExtensionItem(ExtensionItemRemoveBg value) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0(
-        UnnamedSchemaWithArrayParent0AutoTaggingExtension value
-    ) => new(value);
-
-    public static implicit operator UnnamedSchemaWithArrayParent0(
-        UnnamedSchemaWithArrayParent0AIAutoDescription value
-    ) => new(value);
-
-    public static implicit operator UnnamedSchemaWithArrayParent0(
-        UnnamedSchemaWithArrayParent0AITasks value
-    ) => new(value);
-
-    public static implicit operator UnnamedSchemaWithArrayParent0(SavedExtension value) =>
+    public static implicit operator ExtensionItem(ExtensionItemAutoTaggingExtension value) =>
         new(value);
+
+    public static implicit operator ExtensionItem(ExtensionItemAIAutoDescription value) =>
+        new(value);
+
+    public static implicit operator ExtensionItem(ExtensionItemAITasks value) => new(value);
+
+    public static implicit operator ExtensionItem(SavedExtension value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -320,7 +299,7 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0"
+                "Data did not match any variant of ExtensionItem"
             );
         }
         this.Switch(
@@ -332,7 +311,7 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
         );
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent0? other) =>
+    public virtual bool Equals(ExtensionItem? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -352,19 +331,19 @@ public record class UnnamedSchemaWithArrayParent0 : ModelBase
     {
         return this.Value switch
         {
-            UnnamedSchemaWithArrayParent0RemoveBg _ => 0,
-            UnnamedSchemaWithArrayParent0AutoTaggingExtension _ => 1,
-            UnnamedSchemaWithArrayParent0AIAutoDescription _ => 2,
-            UnnamedSchemaWithArrayParent0AITasks _ => 3,
+            ExtensionItemRemoveBg _ => 0,
+            ExtensionItemAutoTaggingExtension _ => 1,
+            ExtensionItemAIAutoDescription _ => 2,
+            ExtensionItemAITasks _ => 3,
             SavedExtension _ => 4,
             _ => -1,
         };
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchemaWithArrayParent0>
+sealed class ExtensionItemConverter : JsonConverter<ExtensionItem>
 {
-    public override UnnamedSchemaWithArrayParent0? Read(
+    public override ExtensionItem? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -387,11 +366,10 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0RemoveBg>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<ExtensionItemRemoveBg>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new(deserialized, element);
@@ -408,11 +386,10 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AIAutoDescription>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<ExtensionItemAIAutoDescription>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new(deserialized, element);
@@ -429,11 +406,10 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasks>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasks>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new(deserialized, element);
@@ -468,7 +444,7 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AutoTaggingExtension>(
+                        JsonSerializer.Deserialize<ExtensionItemAutoTaggingExtension>(
                             element,
                             options
                         );
@@ -489,7 +465,7 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0 value,
+        ExtensionItem value,
         JsonSerializerOptions options
     )
     {
@@ -497,13 +473,8 @@ sealed class UnnamedSchemaWithArrayParent0Converter : JsonConverter<UnnamedSchem
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0RemoveBg,
-        UnnamedSchemaWithArrayParent0RemoveBgFromRaw
-    >)
-)]
-public sealed record class UnnamedSchemaWithArrayParent0RemoveBg : JsonModel
+[JsonConverter(typeof(JsonModelConverter<ExtensionItemRemoveBg, ExtensionItemRemoveBgFromRaw>))]
+public sealed record class ExtensionItemRemoveBg : JsonModel
 {
     /// <summary>
     /// Specifies the background removal extension.
@@ -518,14 +489,12 @@ public sealed record class UnnamedSchemaWithArrayParent0RemoveBg : JsonModel
         init { this._rawData.Set("name", value); }
     }
 
-    public UnnamedSchemaWithArrayParent0RemoveBgOptions? Options
+    public ExtensionItemRemoveBgOptions? Options
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<UnnamedSchemaWithArrayParent0RemoveBgOptions>(
-                "options"
-            );
+            return this._rawData.GetNullableClass<ExtensionItemRemoveBgOptions>("options");
         }
         init
         {
@@ -548,20 +517,18 @@ public sealed record class UnnamedSchemaWithArrayParent0RemoveBg : JsonModel
         this.Options?.Validate();
     }
 
-    public UnnamedSchemaWithArrayParent0RemoveBg()
+    public ExtensionItemRemoveBg()
     {
         this.Name = JsonSerializer.SerializeToElement("remove-bg");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0RemoveBg(
-        UnnamedSchemaWithArrayParent0RemoveBg unnamedSchemaWithArrayParent0RemoveBg
-    )
-        : base(unnamedSchemaWithArrayParent0RemoveBg) { }
+    public ExtensionItemRemoveBg(ExtensionItemRemoveBg extensionItemRemoveBg)
+        : base(extensionItemRemoveBg) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0RemoveBg(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ExtensionItemRemoveBg(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -570,14 +537,14 @@ public sealed record class UnnamedSchemaWithArrayParent0RemoveBg : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0RemoveBg(FrozenDictionary<string, JsonElement> rawData)
+    ExtensionItemRemoveBg(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0RemoveBgFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0RemoveBg FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemRemoveBgFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemRemoveBg FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -585,22 +552,18 @@ public sealed record class UnnamedSchemaWithArrayParent0RemoveBg : JsonModel
     }
 }
 
-class UnnamedSchemaWithArrayParent0RemoveBgFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0RemoveBg>
+class ExtensionItemRemoveBgFromRaw : IFromRawJson<ExtensionItemRemoveBg>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0RemoveBg FromRawUnchecked(
+    public ExtensionItemRemoveBg FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0RemoveBg.FromRawUnchecked(rawData);
+    ) => ExtensionItemRemoveBg.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0RemoveBgOptions,
-        UnnamedSchemaWithArrayParent0RemoveBgOptionsFromRaw
-    >)
+    typeof(JsonModelConverter<ExtensionItemRemoveBgOptions, ExtensionItemRemoveBgOptionsFromRaw>)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0RemoveBgOptions : JsonModel
+public sealed record class ExtensionItemRemoveBgOptions : JsonModel
 {
     /// <summary>
     /// Whether to add an artificial shadow to the result. Default is false. Note:
@@ -700,33 +663,29 @@ public sealed record class UnnamedSchemaWithArrayParent0RemoveBgOptions : JsonMo
         _ = this.Semitransparency;
     }
 
-    public UnnamedSchemaWithArrayParent0RemoveBgOptions() { }
+    public ExtensionItemRemoveBgOptions() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0RemoveBgOptions(
-        UnnamedSchemaWithArrayParent0RemoveBgOptions unnamedSchemaWithArrayParent0RemoveBgOptions
-    )
-        : base(unnamedSchemaWithArrayParent0RemoveBgOptions) { }
+    public ExtensionItemRemoveBgOptions(ExtensionItemRemoveBgOptions extensionItemRemoveBgOptions)
+        : base(extensionItemRemoveBgOptions) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0RemoveBgOptions(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public ExtensionItemRemoveBgOptions(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0RemoveBgOptions(FrozenDictionary<string, JsonElement> rawData)
+    ExtensionItemRemoveBgOptions(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0RemoveBgOptionsFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0RemoveBgOptions FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemRemoveBgOptionsFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemRemoveBgOptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -734,22 +693,21 @@ public sealed record class UnnamedSchemaWithArrayParent0RemoveBgOptions : JsonMo
     }
 }
 
-class UnnamedSchemaWithArrayParent0RemoveBgOptionsFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0RemoveBgOptions>
+class ExtensionItemRemoveBgOptionsFromRaw : IFromRawJson<ExtensionItemRemoveBgOptions>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0RemoveBgOptions FromRawUnchecked(
+    public ExtensionItemRemoveBgOptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0RemoveBgOptions.FromRawUnchecked(rawData);
+    ) => ExtensionItemRemoveBgOptions.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AutoTaggingExtension,
-        UnnamedSchemaWithArrayParent0AutoTaggingExtensionFromRaw
+        ExtensionItemAutoTaggingExtension,
+        ExtensionItemAutoTaggingExtensionFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AutoTaggingExtension : JsonModel
+public sealed record class ExtensionItemAutoTaggingExtension : JsonModel
 {
     /// <summary>
     /// Maximum number of tags to attach to the asset.
@@ -780,13 +738,13 @@ public sealed record class UnnamedSchemaWithArrayParent0AutoTaggingExtension : J
     /// <summary>
     /// Specifies the auto-tagging extension used.
     /// </summary>
-    public required ApiEnum<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName> Name
+    public required ApiEnum<string, ExtensionItemAutoTaggingExtensionName> Name
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
-                ApiEnum<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName>
+                ApiEnum<string, ExtensionItemAutoTaggingExtensionName>
             >("name");
         }
         init { this._rawData.Set("name", value); }
@@ -800,33 +758,31 @@ public sealed record class UnnamedSchemaWithArrayParent0AutoTaggingExtension : J
         this.Name.Validate();
     }
 
-    public UnnamedSchemaWithArrayParent0AutoTaggingExtension() { }
+    public ExtensionItemAutoTaggingExtension() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AutoTaggingExtension(
-        UnnamedSchemaWithArrayParent0AutoTaggingExtension unnamedSchemaWithArrayParent0AutoTaggingExtension
+    public ExtensionItemAutoTaggingExtension(
+        ExtensionItemAutoTaggingExtension extensionItemAutoTaggingExtension
     )
-        : base(unnamedSchemaWithArrayParent0AutoTaggingExtension) { }
+        : base(extensionItemAutoTaggingExtension) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AutoTaggingExtension(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public ExtensionItemAutoTaggingExtension(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AutoTaggingExtension(FrozenDictionary<string, JsonElement> rawData)
+    ExtensionItemAutoTaggingExtension(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AutoTaggingExtensionFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AutoTaggingExtension FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAutoTaggingExtensionFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAutoTaggingExtension FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -834,29 +790,28 @@ public sealed record class UnnamedSchemaWithArrayParent0AutoTaggingExtension : J
     }
 }
 
-class UnnamedSchemaWithArrayParent0AutoTaggingExtensionFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AutoTaggingExtension>
+class ExtensionItemAutoTaggingExtensionFromRaw : IFromRawJson<ExtensionItemAutoTaggingExtension>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AutoTaggingExtension FromRawUnchecked(
+    public ExtensionItemAutoTaggingExtension FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AutoTaggingExtension.FromRawUnchecked(rawData);
+    ) => ExtensionItemAutoTaggingExtension.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Specifies the auto-tagging extension used.
 /// </summary>
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent0AutoTaggingExtensionNameConverter))]
-public enum UnnamedSchemaWithArrayParent0AutoTaggingExtensionName
+[JsonConverter(typeof(ExtensionItemAutoTaggingExtensionNameConverter))]
+public enum ExtensionItemAutoTaggingExtensionName
 {
     GoogleAutoTagging,
     AwsAutoTagging,
 }
 
-sealed class UnnamedSchemaWithArrayParent0AutoTaggingExtensionNameConverter
-    : JsonConverter<UnnamedSchemaWithArrayParent0AutoTaggingExtensionName>
+sealed class ExtensionItemAutoTaggingExtensionNameConverter
+    : JsonConverter<ExtensionItemAutoTaggingExtensionName>
 {
-    public override UnnamedSchemaWithArrayParent0AutoTaggingExtensionName Read(
+    public override ExtensionItemAutoTaggingExtensionName Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -864,17 +819,15 @@ sealed class UnnamedSchemaWithArrayParent0AutoTaggingExtensionNameConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "google-auto-tagging" =>
-                UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
-            "aws-auto-tagging" =>
-                UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.AwsAutoTagging,
-            _ => (UnnamedSchemaWithArrayParent0AutoTaggingExtensionName)(-1),
+            "google-auto-tagging" => ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+            "aws-auto-tagging" => ExtensionItemAutoTaggingExtensionName.AwsAutoTagging,
+            _ => (ExtensionItemAutoTaggingExtensionName)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0AutoTaggingExtensionName value,
+        ExtensionItemAutoTaggingExtensionName value,
         JsonSerializerOptions options
     )
     {
@@ -882,10 +835,8 @@ sealed class UnnamedSchemaWithArrayParent0AutoTaggingExtensionNameConverter
             writer,
             value switch
             {
-                UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging =>
-                    "google-auto-tagging",
-                UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.AwsAutoTagging =>
-                    "aws-auto-tagging",
+                ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging => "google-auto-tagging",
+                ExtensionItemAutoTaggingExtensionName.AwsAutoTagging => "aws-auto-tagging",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -895,12 +846,12 @@ sealed class UnnamedSchemaWithArrayParent0AutoTaggingExtensionNameConverter
     }
 }
 
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent0AIAutoDescriptionConverter))]
-public record class UnnamedSchemaWithArrayParent0AIAutoDescription
+[JsonConverter(typeof(ExtensionItemAIAutoDescriptionConverter))]
+public record class ExtensionItemAIAutoDescription
 {
     public JsonElement Element { get; private init; }
 
-    public UnnamedSchemaWithArrayParent0AIAutoDescription()
+    public ExtensionItemAIAutoDescription()
     {
         Element = JsonSerializer.Deserialize<JsonElement>(
             """
@@ -911,7 +862,7 @@ public record class UnnamedSchemaWithArrayParent0AIAutoDescription
         );
     }
 
-    internal UnnamedSchemaWithArrayParent0AIAutoDescription(JsonElement element)
+    internal ExtensionItemAIAutoDescription(JsonElement element)
     {
         Element = element;
     }
@@ -927,10 +878,10 @@ public record class UnnamedSchemaWithArrayParent0AIAutoDescription
     /// </summary>
     public void Validate()
     {
-        if (this != new UnnamedSchemaWithArrayParent0AIAutoDescription())
+        if (this != new ExtensionItemAIAutoDescription())
         {
             throw new ImageKitInvalidDataException(
-                "Invalid value given for 'UnnamedSchemaWithArrayParent0AIAutoDescription'"
+                "Invalid value given for 'ExtensionItemAIAutoDescription'"
             );
         }
     }
@@ -940,7 +891,7 @@ public record class UnnamedSchemaWithArrayParent0AIAutoDescription
         return 0;
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent0AIAutoDescription? other)
+    public virtual bool Equals(ExtensionItemAIAutoDescription? other)
     {
         if (other == null)
         {
@@ -951,10 +902,9 @@ public record class UnnamedSchemaWithArrayParent0AIAutoDescription
     }
 }
 
-class UnnamedSchemaWithArrayParent0AIAutoDescriptionConverter
-    : JsonConverter<UnnamedSchemaWithArrayParent0AIAutoDescription>
+class ExtensionItemAIAutoDescriptionConverter : JsonConverter<ExtensionItemAIAutoDescription>
 {
-    public override UnnamedSchemaWithArrayParent0AIAutoDescription? Read(
+    public override ExtensionItemAIAutoDescription? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -965,7 +915,7 @@ class UnnamedSchemaWithArrayParent0AIAutoDescriptionConverter
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0AIAutoDescription value,
+        ExtensionItemAIAutoDescription value,
         JsonSerializerOptions options
     )
     {
@@ -973,13 +923,8 @@ class UnnamedSchemaWithArrayParent0AIAutoDescriptionConverter
     }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasks,
-        UnnamedSchemaWithArrayParent0AITasksFromRaw
-    >)
-)]
-public sealed record class UnnamedSchemaWithArrayParent0AITasks : JsonModel
+[JsonConverter(typeof(JsonModelConverter<ExtensionItemAITasks, ExtensionItemAITasksFromRaw>))]
+public sealed record class ExtensionItemAITasks : JsonModel
 {
     /// <summary>
     /// Specifies the AI tasks extension for automated image analysis using AI models.
@@ -997,18 +942,18 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasks : JsonModel
     /// <summary>
     /// Array of task objects defining AI operations to perform on the asset.
     /// </summary>
-    public required IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTask> Tasks
+    public required IReadOnlyList<ExtensionItemAITasksTask> Tasks
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTask>
-            >("tasks");
+            return this._rawData.GetNotNullStruct<ImmutableArray<ExtensionItemAITasksTask>>(
+                "tasks"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTask>>(
+            this._rawData.Set<ImmutableArray<ExtensionItemAITasksTask>>(
                 "tasks",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -1028,20 +973,18 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasks : JsonModel
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasks()
+    public ExtensionItemAITasks()
     {
         this.Name = JsonSerializer.SerializeToElement("ai-tasks");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasks(
-        UnnamedSchemaWithArrayParent0AITasks unnamedSchemaWithArrayParent0AITasks
-    )
-        : base(unnamedSchemaWithArrayParent0AITasks) { }
+    public ExtensionItemAITasks(ExtensionItemAITasks extensionItemAITasks)
+        : base(extensionItemAITasks) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasks(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ExtensionItemAITasks(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -1050,14 +993,14 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasks : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasks(FrozenDictionary<string, JsonElement> rawData)
+    ExtensionItemAITasks(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasks FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasks FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1065,26 +1008,23 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasks : JsonModel
     }
 
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasks(
-        IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTask> tasks
-    )
+    public ExtensionItemAITasks(IReadOnlyList<ExtensionItemAITasksTask> tasks)
         : this()
     {
         this.Tasks = tasks;
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasks>
+class ExtensionItemAITasksFromRaw : IFromRawJson<ExtensionItemAITasks>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasks FromRawUnchecked(
+    public ExtensionItemAITasks FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasks.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasks.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent0AITasksTaskConverter))]
-public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
+[JsonConverter(typeof(ExtensionItemAITasksTaskConverter))]
+public record class ExtensionItemAITasksTask : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1149,8 +1089,8 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTask(
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectTags value,
+    public ExtensionItemAITasksTask(
+        ExtensionItemAITasksTaskSelectTags value,
         JsonElement? element = null
     )
     {
@@ -1158,8 +1098,8 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTask(
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata value,
+    public ExtensionItemAITasksTask(
+        ExtensionItemAITasksTaskSelectMetadata value,
         JsonElement? element = null
     )
     {
@@ -1167,8 +1107,8 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTask(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNo value,
+    public ExtensionItemAITasksTask(
+        ExtensionItemAITasksTaskYesNo value,
         JsonElement? element = null
     )
     {
@@ -1176,77 +1116,73 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTask(JsonElement element)
+    public ExtensionItemAITasksTask(JsonElement element)
     {
         this._element = element;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnnamedSchemaWithArrayParent0AITasksTaskSelectTags"/>.
+    /// type <see cref="ExtensionItemAITasksTaskSelectTags"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickSelectTags(out var value)) {
-    ///     // `value` is of type `UnnamedSchemaWithArrayParent0AITasksTaskSelectTags`
+    ///     // `value` is of type `ExtensionItemAITasksTaskSelectTags`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickSelectTags(
-        [NotNullWhen(true)] out UnnamedSchemaWithArrayParent0AITasksTaskSelectTags? value
-    )
+    public bool TryPickSelectTags([NotNullWhen(true)] out ExtensionItemAITasksTaskSelectTags? value)
     {
-        value = this.Value as UnnamedSchemaWithArrayParent0AITasksTaskSelectTags;
+        value = this.Value as ExtensionItemAITasksTaskSelectTags;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata"/>.
+    /// type <see cref="ExtensionItemAITasksTaskSelectMetadata"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickSelectMetadata(out var value)) {
-    ///     // `value` is of type `UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata`
+    ///     // `value` is of type `ExtensionItemAITasksTaskSelectMetadata`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
     public bool TryPickSelectMetadata(
-        [NotNullWhen(true)] out UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata? value
+        [NotNullWhen(true)] out ExtensionItemAITasksTaskSelectMetadata? value
     )
     {
-        value = this.Value as UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata;
+        value = this.Value as ExtensionItemAITasksTaskSelectMetadata;
         return value != null;
     }
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNo"/>.
+    /// type <see cref="ExtensionItemAITasksTaskYesNo"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickYesNo(out var value)) {
-    ///     // `value` is of type `UnnamedSchemaWithArrayParent0AITasksTaskYesNo`
+    ///     // `value` is of type `ExtensionItemAITasksTaskYesNo`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickYesNo(
-        [NotNullWhen(true)] out UnnamedSchemaWithArrayParent0AITasksTaskYesNo? value
-    )
+    public bool TryPickYesNo([NotNullWhen(true)] out ExtensionItemAITasksTaskYesNo? value)
     {
-        value = this.Value as UnnamedSchemaWithArrayParent0AITasksTaskYesNo;
+        value = this.Value as ExtensionItemAITasksTaskYesNo;
         return value != null;
     }
 
@@ -1264,33 +1200,33 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectTags value) =&gt; {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata value) =&gt; {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskYesNo value) =&gt; {...}
+    ///     (ExtensionItemAITasksTaskSelectTags value) =&gt; {...},
+    ///     (ExtensionItemAITasksTaskSelectMetadata value) =&gt; {...},
+    ///     (ExtensionItemAITasksTaskYesNo value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
     public void Switch(
-        Action<UnnamedSchemaWithArrayParent0AITasksTaskSelectTags> selectTags,
-        Action<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata> selectMetadata,
-        Action<UnnamedSchemaWithArrayParent0AITasksTaskYesNo> yesNo
+        Action<ExtensionItemAITasksTaskSelectTags> selectTags,
+        Action<ExtensionItemAITasksTaskSelectMetadata> selectMetadata,
+        Action<ExtensionItemAITasksTaskYesNo> yesNo
     )
     {
         switch (this.Value)
         {
-            case UnnamedSchemaWithArrayParent0AITasksTaskSelectTags value:
+            case ExtensionItemAITasksTaskSelectTags value:
                 selectTags(value);
                 break;
-            case UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata value:
+            case ExtensionItemAITasksTaskSelectMetadata value:
                 selectMetadata(value);
                 break;
-            case UnnamedSchemaWithArrayParent0AITasksTaskYesNo value:
+            case ExtensionItemAITasksTaskYesNo value:
                 yesNo(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTask"
+                    "Data did not match any variant of ExtensionItemAITasksTask"
                 );
         }
     }
@@ -1310,41 +1246,40 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectTags value) =&gt; {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata value) =&gt; {...},
-    ///     (UnnamedSchemaWithArrayParent0AITasksTaskYesNo value) =&gt; {...}
+    ///     (ExtensionItemAITasksTaskSelectTags value) =&gt; {...},
+    ///     (ExtensionItemAITasksTaskSelectMetadata value) =&gt; {...},
+    ///     (ExtensionItemAITasksTaskYesNo value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<UnnamedSchemaWithArrayParent0AITasksTaskSelectTags, T> selectTags,
-        Func<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata, T> selectMetadata,
-        Func<UnnamedSchemaWithArrayParent0AITasksTaskYesNo, T> yesNo
+        Func<ExtensionItemAITasksTaskSelectTags, T> selectTags,
+        Func<ExtensionItemAITasksTaskSelectMetadata, T> selectMetadata,
+        Func<ExtensionItemAITasksTaskYesNo, T> yesNo
     )
     {
         return this.Value switch
         {
-            UnnamedSchemaWithArrayParent0AITasksTaskSelectTags value => selectTags(value),
-            UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata value => selectMetadata(value),
-            UnnamedSchemaWithArrayParent0AITasksTaskYesNo value => yesNo(value),
+            ExtensionItemAITasksTaskSelectTags value => selectTags(value),
+            ExtensionItemAITasksTaskSelectMetadata value => selectMetadata(value),
+            ExtensionItemAITasksTaskYesNo value => yesNo(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTask"
+                "Data did not match any variant of ExtensionItemAITasksTask"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTask(
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectTags value
+    public static implicit operator ExtensionItemAITasksTask(
+        ExtensionItemAITasksTaskSelectTags value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTask(
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata value
+    public static implicit operator ExtensionItemAITasksTask(
+        ExtensionItemAITasksTaskSelectMetadata value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTask(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNo value
-    ) => new(value);
+    public static implicit operator ExtensionItemAITasksTask(ExtensionItemAITasksTaskYesNo value) =>
+        new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -1361,7 +1296,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTask"
+                "Data did not match any variant of ExtensionItemAITasksTask"
             );
         }
         this.Switch(
@@ -1371,7 +1306,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
         );
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent0AITasksTask? other) =>
+    public virtual bool Equals(ExtensionItemAITasksTask? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -1391,18 +1326,17 @@ public record class UnnamedSchemaWithArrayParent0AITasksTask : ModelBase
     {
         return this.Value switch
         {
-            UnnamedSchemaWithArrayParent0AITasksTaskSelectTags _ => 0,
-            UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata _ => 1,
-            UnnamedSchemaWithArrayParent0AITasksTaskYesNo _ => 2,
+            ExtensionItemAITasksTaskSelectTags _ => 0,
+            ExtensionItemAITasksTaskSelectMetadata _ => 1,
+            ExtensionItemAITasksTaskYesNo _ => 2,
             _ => -1,
         };
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent0AITasksTaskConverter
-    : JsonConverter<UnnamedSchemaWithArrayParent0AITasksTask>
+sealed class ExtensionItemAITasksTaskConverter : JsonConverter<ExtensionItemAITasksTask>
 {
-    public override UnnamedSchemaWithArrayParent0AITasksTask? Read(
+    public override ExtensionItemAITasksTask? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -1426,7 +1360,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskConverter
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskSelectTags>(
+                        JsonSerializer.Deserialize<ExtensionItemAITasksTaskSelectTags>(
                             element,
                             options
                         );
@@ -1447,7 +1381,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskConverter
                 try
                 {
                     var deserialized =
-                        JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata>(
+                        JsonSerializer.Deserialize<ExtensionItemAITasksTaskSelectMetadata>(
                             element,
                             options
                         );
@@ -1467,11 +1401,10 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskConverter
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNo>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNo>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
                         return new(deserialized, element);
@@ -1486,14 +1419,14 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskConverter
             }
             default:
             {
-                return new UnnamedSchemaWithArrayParent0AITasksTask(element);
+                return new ExtensionItemAITasksTask(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0AITasksTask value,
+        ExtensionItemAITasksTask value,
         JsonSerializerOptions options
     )
     {
@@ -1503,11 +1436,11 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskConverter
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectTags,
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsFromRaw
+        ExtensionItemAITasksTaskSelectTags,
+        ExtensionItemAITasksTaskSelectTagsFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskSelectTags : JsonModel
+public sealed record class ExtensionItemAITasksTaskSelectTags : JsonModel
 {
     /// <summary>
     /// The question or instruction for the AI to analyze the image.
@@ -1617,22 +1550,20 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskSelectTags : 
         _ = this.Vocabulary;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+    public ExtensionItemAITasksTaskSelectTags()
     {
         this.Type = JsonSerializer.SerializeToElement("select_tags");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectTags(
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectTags unnamedSchemaWithArrayParent0AITasksTaskSelectTags
+    public ExtensionItemAITasksTaskSelectTags(
+        ExtensionItemAITasksTaskSelectTags extensionItemAITasksTaskSelectTags
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskSelectTags) { }
+        : base(extensionItemAITasksTaskSelectTags) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectTags(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public ExtensionItemAITasksTaskSelectTags(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -1641,16 +1572,14 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskSelectTags : 
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskSelectTags(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    ExtensionItemAITasksTaskSelectTags(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskSelectTags FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskSelectTagsFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskSelectTags FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1658,29 +1587,28 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskSelectTags : 
     }
 
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectTags(string instruction)
+    public ExtensionItemAITasksTaskSelectTags(string instruction)
         : this()
     {
         this.Instruction = instruction;
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskSelectTags>
+class ExtensionItemAITasksTaskSelectTagsFromRaw : IFromRawJson<ExtensionItemAITasksTaskSelectTags>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectTags FromRawUnchecked(
+    public ExtensionItemAITasksTaskSelectTags FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasksTaskSelectTags.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskSelectTags.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata,
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataFromRaw
+        ExtensionItemAITasksTaskSelectMetadata,
+        ExtensionItemAITasksTaskSelectMetadataFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata : JsonModel
+public sealed record class ExtensionItemAITasksTaskSelectMetadata : JsonModel
 {
     /// <summary>
     /// Name of the custom metadata field to set. The field must exist in your account.
@@ -1770,13 +1698,13 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadat
     /// custom metadata field definition will be used. When providing large vocabularies
     /// (above 30 items), the AI may not strictly adhere to the list.
     /// </summary>
-    public IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary>? Vocabulary
+    public IReadOnlyList<ExtensionItemAITasksTaskSelectMetadataVocabulary>? Vocabulary
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
-                ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary>
+                ImmutableArray<ExtensionItemAITasksTaskSelectMetadataVocabulary>
             >("vocabulary");
         }
         init
@@ -1786,7 +1714,7 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadat
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary>?>(
+            this._rawData.Set<ImmutableArray<ExtensionItemAITasksTaskSelectMetadataVocabulary>?>(
                 "vocabulary",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -1812,22 +1740,20 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadat
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata()
+    public ExtensionItemAITasksTaskSelectMetadata()
     {
         this.Type = JsonSerializer.SerializeToElement("select_metadata");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata(
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata unnamedSchemaWithArrayParent0AITasksTaskSelectMetadata
+    public ExtensionItemAITasksTaskSelectMetadata(
+        ExtensionItemAITasksTaskSelectMetadata extensionItemAITasksTaskSelectMetadata
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskSelectMetadata) { }
+        : base(extensionItemAITasksTaskSelectMetadata) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public ExtensionItemAITasksTaskSelectMetadata(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -1836,16 +1762,14 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadat
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    ExtensionItemAITasksTaskSelectMetadata(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskSelectMetadataFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskSelectMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1853,17 +1777,17 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadat
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata>
+class ExtensionItemAITasksTaskSelectMetadataFromRaw
+    : IFromRawJson<ExtensionItemAITasksTaskSelectMetadata>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata FromRawUnchecked(
+    public ExtensionItemAITasksTaskSelectMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskSelectMetadata.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabularyConverter))]
-public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary : ModelBase
+[JsonConverter(typeof(ExtensionItemAITasksTaskSelectMetadataVocabularyConverter))]
+public record class ExtensionItemAITasksTaskSelectMetadataVocabulary : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1880,7 +1804,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary(
+    public ExtensionItemAITasksTaskSelectMetadataVocabulary(
         string value,
         JsonElement? element = null
     )
@@ -1889,7 +1813,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary(
+    public ExtensionItemAITasksTaskSelectMetadataVocabulary(
         double value,
         JsonElement? element = null
     )
@@ -1898,16 +1822,13 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary(
-        bool value,
-        JsonElement? element = null
-    )
+    public ExtensionItemAITasksTaskSelectMetadataVocabulary(bool value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary(JsonElement element)
+    public ExtensionItemAITasksTaskSelectMetadataVocabulary(JsonElement element)
     {
         this._element = element;
     }
@@ -2011,7 +1932,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary"
+                    "Data did not match any variant of ExtensionItemAITasksTaskSelectMetadataVocabulary"
                 );
         }
     }
@@ -2046,22 +1967,21 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
             double value => @double(value),
             bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary"
+                "Data did not match any variant of ExtensionItemAITasksTaskSelectMetadataVocabulary"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary(
+    public static implicit operator ExtensionItemAITasksTaskSelectMetadataVocabulary(
         string value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary(
+    public static implicit operator ExtensionItemAITasksTaskSelectMetadataVocabulary(
         double value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary(
-        bool value
-    ) => new(value);
+    public static implicit operator ExtensionItemAITasksTaskSelectMetadataVocabulary(bool value) =>
+        new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -2078,14 +1998,12 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary"
+                "Data did not match any variant of ExtensionItemAITasksTaskSelectMetadataVocabulary"
             );
         }
     }
 
-    public virtual bool Equals(
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary? other
-    ) =>
+    public virtual bool Equals(ExtensionItemAITasksTaskSelectMetadataVocabulary? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -2113,10 +2031,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabu
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabularyConverter
-    : JsonConverter<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary>
+sealed class ExtensionItemAITasksTaskSelectMetadataVocabularyConverter
+    : JsonConverter<ExtensionItemAITasksTaskSelectMetadataVocabulary>
 {
-    public override UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary? Read(
+    public override ExtensionItemAITasksTaskSelectMetadataVocabulary? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -2159,7 +2077,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabularyCon
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary value,
+        ExtensionItemAITasksTaskSelectMetadataVocabulary value,
         JsonSerializerOptions options
     )
     {
@@ -2168,12 +2086,9 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabularyCon
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNo,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoFromRaw
-    >)
+    typeof(JsonModelConverter<ExtensionItemAITasksTaskYesNo, ExtensionItemAITasksTaskYesNoFromRaw>)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNo : JsonModel
+public sealed record class ExtensionItemAITasksTaskYesNo : JsonModel
 {
     /// <summary>
     /// The yes/no question for the AI to answer about the image.
@@ -2204,14 +2119,12 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNo : JsonM
     /// <summary>
     /// Actions to execute if the AI answers no.
     /// </summary>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo? OnNo
+    public ExtensionItemAITasksTaskYesNoOnNo? OnNo
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo>(
-                "on_no"
-            );
+            return this._rawData.GetNullableClass<ExtensionItemAITasksTaskYesNoOnNo>("on_no");
         }
         init
         {
@@ -2227,12 +2140,12 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNo : JsonM
     /// <summary>
     /// Actions to execute if the AI cannot determine the answer.
     /// </summary>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown? OnUnknown
+    public ExtensionItemAITasksTaskYesNoOnUnknown? OnUnknown
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown>(
+            return this._rawData.GetNullableClass<ExtensionItemAITasksTaskYesNoOnUnknown>(
                 "on_unknown"
             );
         }
@@ -2250,14 +2163,12 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNo : JsonM
     /// <summary>
     /// Actions to execute if the AI answers yes.
     /// </summary>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes? OnYes
+    public ExtensionItemAITasksTaskYesNoOnYes? OnYes
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes>(
-                "on_yes"
-            );
+            return this._rawData.GetNullableClass<ExtensionItemAITasksTaskYesNoOnYes>("on_yes");
         }
         init
         {
@@ -2283,22 +2194,20 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNo : JsonM
         this.OnYes?.Validate();
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+    public ExtensionItemAITasksTaskYesNo()
     {
         this.Type = JsonSerializer.SerializeToElement("yes_no");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNo(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNo unnamedSchemaWithArrayParent0AITasksTaskYesNo
+    public ExtensionItemAITasksTaskYesNo(
+        ExtensionItemAITasksTaskYesNo extensionItemAITasksTaskYesNo
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskYesNo) { }
+        : base(extensionItemAITasksTaskYesNo) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNo(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public ExtensionItemAITasksTaskYesNo(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -2307,14 +2216,14 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNo : JsonM
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskYesNo(FrozenDictionary<string, JsonElement> rawData)
+    ExtensionItemAITasksTaskYesNo(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNoFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskYesNo FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskYesNoFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskYesNo FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2322,20 +2231,19 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNo : JsonM
     }
 
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNo(string instruction)
+    public ExtensionItemAITasksTaskYesNo(string instruction)
         : this()
     {
         this.Instruction = instruction;
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskYesNoFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskYesNo>
+class ExtensionItemAITasksTaskYesNoFromRaw : IFromRawJson<ExtensionItemAITasksTaskYesNo>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNo FromRawUnchecked(
+    public ExtensionItemAITasksTaskYesNo FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasksTaskYesNo.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskYesNo.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -2343,11 +2251,11 @@ class UnnamedSchemaWithArrayParent0AITasksTaskYesNoFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoFromRaw
+        ExtensionItemAITasksTaskYesNoOnNo,
+        ExtensionItemAITasksTaskYesNoOnNoFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo : JsonModel
+public sealed record class ExtensionItemAITasksTaskYesNoOnNo : JsonModel
 {
     /// <summary>
     /// Array of tag strings to add to the asset.
@@ -2400,13 +2308,13 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo : J
     /// <summary>
     /// Array of custom metadata field updates.
     /// </summary>
-    public IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata>? SetMetadata
+    public IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadata>? SetMetadata
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
-                ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata>
+                ImmutableArray<ExtensionItemAITasksTaskYesNoOnNoSetMetadata>
             >("set_metadata");
         }
         init
@@ -2416,7 +2324,7 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo : J
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata>?>(
+            this._rawData.Set<ImmutableArray<ExtensionItemAITasksTaskYesNoOnNoSetMetadata>?>(
                 "set_metadata",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -2426,13 +2334,13 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo : J
     /// <summary>
     /// Array of custom metadata fields to remove.
     /// </summary>
-    public IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata>? UnsetMetadata
+    public IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata>? UnsetMetadata
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
-                ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata>
+                ImmutableArray<ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata>
             >("unset_metadata");
         }
         init
@@ -2442,7 +2350,7 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo : J
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata>?>(
+            this._rawData.Set<ImmutableArray<ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata>?>(
                 "unset_metadata",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -2464,33 +2372,31 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo : J
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo() { }
+    public ExtensionItemAITasksTaskYesNoOnNo() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo unnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo
+    public ExtensionItemAITasksTaskYesNoOnNo(
+        ExtensionItemAITasksTaskYesNoOnNo extensionItemAITasksTaskYesNoOnNo
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo) { }
+        : base(extensionItemAITasksTaskYesNoOnNo) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public ExtensionItemAITasksTaskYesNoOnNo(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo(FrozenDictionary<string, JsonElement> rawData)
+    ExtensionItemAITasksTaskYesNoOnNo(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskYesNoOnNoFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskYesNoOnNo FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2498,22 +2404,21 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo : J
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo>
+class ExtensionItemAITasksTaskYesNoOnNoFromRaw : IFromRawJson<ExtensionItemAITasksTaskYesNoOnNo>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo FromRawUnchecked(
+    public ExtensionItemAITasksTaskYesNoOnNo FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskYesNoOnNo.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataFromRaw
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadata,
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata : JsonModel
+public sealed record class ExtensionItemAITasksTaskYesNoOnNoSetMetadata : JsonModel
 {
     /// <summary>
     /// Name of the custom metadata field to set.
@@ -2532,12 +2437,12 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetM
     /// Value to set for the custom metadata field. The value type should match the
     /// custom metadata field type.
     /// </summary>
-    public required UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue Value
+    public required ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue Value
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue>(
+            return this._rawData.GetNotNullClass<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue>(
                 "value"
             );
         }
@@ -2551,17 +2456,17 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetM
         this.Value.Validate();
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata() { }
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadata() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata unnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadata(
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadata extensionItemAITasksTaskYesNoOnNoSetMetadata
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata) { }
+        : base(extensionItemAITasksTaskYesNoOnNoSetMetadata) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata(
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadata(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2570,16 +2475,14 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetM
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    ExtensionItemAITasksTaskYesNoOnNoSetMetadata(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskYesNoOnNoSetMetadataFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskYesNoOnNoSetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2587,21 +2490,21 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetM
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata>
+class ExtensionItemAITasksTaskYesNoOnNoSetMetadataFromRaw
+    : IFromRawJson<ExtensionItemAITasksTaskYesNoOnNoSetMetadata>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata FromRawUnchecked(
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskYesNoOnNoSetMetadata.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Value to set for the custom metadata field. The value type should match the custom
 /// metadata field type.
 /// </summary>
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueConverter))]
-public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue : ModelBase
+[JsonConverter(typeof(ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueConverter))]
+public record class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -2618,7 +2521,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue(
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue(
         string value,
         JsonElement? element = null
     )
@@ -2627,7 +2530,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue(
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue(
         double value,
         JsonElement? element = null
     )
@@ -2636,7 +2539,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue(
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue(
         bool value,
         JsonElement? element = null
     )
@@ -2645,8 +2548,8 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue(
-        IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem> value,
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue(
+        IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem> value,
         JsonElement? element = null
     )
     {
@@ -2654,7 +2557,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue(JsonElement element)
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue(JsonElement element)
     {
         this._element = element;
     }
@@ -2724,14 +2627,14 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem</c>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem</c>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem&gt;`
+    ///     // `value` is of type `IReadOnlyList&lt;ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -2739,12 +2642,12 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     /// </summary>
     public bool TryPickMixed(
         [NotNullWhen(true)]
-            out IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>? value
+            out IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>? value
     )
     {
         value =
             this.Value
-            as IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>;
+            as IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>;
         return value != null;
     }
 
@@ -2765,7 +2668,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2775,7 +2678,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         Action<double> @double,
         Action<bool> @bool,
         Action<
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>
         > mixed
     )
     {
@@ -2790,12 +2693,12 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
             case bool value:
                 @bool(value);
                 break;
-            case IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem> value:
+            case IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem> value:
                 mixed(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue"
+                    "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue"
                 );
         }
     }
@@ -2818,7 +2721,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2828,7 +2731,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         Func<double, T> @double,
         Func<bool, T> @bool,
         Func<
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>,
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>,
             T
         > mixed
     )
@@ -2838,32 +2741,30 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
             string value => @string(value),
             double value => @double(value),
             bool value => @bool(value),
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem> value =>
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem> value =>
                 mixed(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue(
         string value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue(
         double value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue(
-        bool value
-    ) => new(value);
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue(bool value) =>
+        new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue(
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem> value
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue(
+        List<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem> value
     ) =>
         new(
-            (IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>)
-                value
+            (IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>)value
         );
 
     /// <summary>
@@ -2881,7 +2782,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue"
             );
         }
         this.Switch(
@@ -2898,9 +2799,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         );
     }
 
-    public virtual bool Equals(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue? other
-    ) =>
+    public virtual bool Equals(ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -2923,17 +2822,17 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
             string _ => 0,
             double _ => 1,
             bool _ => 2,
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem> _ =>
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem> _ =>
                 3,
             _ => -1,
         };
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueConverter
-    : JsonConverter<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue>
+sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueConverter
+    : JsonConverter<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue>
 {
-    public override UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue? Read(
+    public override ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -2974,7 +2873,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueCo
         try
         {
             var deserialized = JsonSerializer.Deserialize<
-                List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>
+                List<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>
             >(element, options);
             if (deserialized != null)
             {
@@ -2995,7 +2894,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueCo
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value,
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue value,
         JsonSerializerOptions options
     )
     {
@@ -3003,11 +2902,8 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueCo
     }
 }
 
-[JsonConverter(
-    typeof(UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemConverter)
-)]
-public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem
-    : ModelBase
+[JsonConverter(typeof(ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemConverter))]
+public record class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -3024,7 +2920,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
         string value,
         JsonElement? element = null
     )
@@ -3033,7 +2929,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
         double value,
         JsonElement? element = null
     )
@@ -3042,7 +2938,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
         bool value,
         JsonElement? element = null
     )
@@ -3051,9 +2947,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
-        JsonElement element
-    )
+    public ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(JsonElement element)
     {
         this._element = element;
     }
@@ -3157,7 +3051,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem"
+                    "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem"
                 );
         }
     }
@@ -3192,20 +3086,20 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
             double value => @double(value),
             bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
         string value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
         double value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
         bool value
     ) => new(value);
 
@@ -3224,13 +3118,13 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem"
             );
         }
     }
 
     public virtual bool Equals(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem? other
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem? other
     ) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
@@ -3259,10 +3153,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemConverter
-    : JsonConverter<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>
+sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemConverter
+    : JsonConverter<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>
 {
-    public override UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem? Read(
+    public override ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -3305,7 +3199,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMe
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value,
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value,
         JsonSerializerOptions options
     )
     {
@@ -3315,12 +3209,11 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMe
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadataFromRaw
+        ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata,
+        ExtensionItemAITasksTaskYesNoOnNoUnsetMetadataFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata
-    : JsonModel
+public sealed record class ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata : JsonModel
 {
     /// <summary>
     /// Name of the custom metadata field to remove.
@@ -3341,17 +3234,17 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnse
         _ = this.Field;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata() { }
+    public ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata unnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata
+    public ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata(
+        ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata extensionItemAITasksTaskYesNoOnNoUnsetMetadata
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata) { }
+        : base(extensionItemAITasksTaskYesNoOnNoUnsetMetadata) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata(
+    public ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3360,16 +3253,14 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnse
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadataFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskYesNoOnNoUnsetMetadataFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3377,20 +3268,20 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnse
     }
 
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata(string field)
+    public ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata(string field)
         : this()
     {
         this.Field = field;
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadataFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata>
+class ExtensionItemAITasksTaskYesNoOnNoUnsetMetadataFromRaw
+    : IFromRawJson<ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata FromRawUnchecked(
+    public ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -3398,11 +3289,11 @@ class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadataFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownFromRaw
+        ExtensionItemAITasksTaskYesNoOnUnknown,
+        ExtensionItemAITasksTaskYesNoOnUnknownFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown : JsonModel
+public sealed record class ExtensionItemAITasksTaskYesNoOnUnknown : JsonModel
 {
     /// <summary>
     /// Array of tag strings to add to the asset.
@@ -3455,13 +3346,13 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
     /// <summary>
     /// Array of custom metadata field updates.
     /// </summary>
-    public IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata>? SetMetadata
+    public IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata>? SetMetadata
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
-                ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata>
+                ImmutableArray<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata>
             >("set_metadata");
         }
         init
@@ -3471,7 +3362,7 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata>?>(
+            this._rawData.Set<ImmutableArray<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata>?>(
                 "set_metadata",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -3481,13 +3372,13 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
     /// <summary>
     /// Array of custom metadata fields to remove.
     /// </summary>
-    public IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata>? UnsetMetadata
+    public IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata>? UnsetMetadata
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
-                ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata>
+                ImmutableArray<ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata>
             >("unset_metadata");
         }
         init
@@ -3497,7 +3388,7 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata>?>(
+            this._rawData.Set<ImmutableArray<ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata>?>(
                 "unset_metadata",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -3519,35 +3410,31 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown() { }
+    public ExtensionItemAITasksTaskYesNoOnUnknown() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown unnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown
+    public ExtensionItemAITasksTaskYesNoOnUnknown(
+        ExtensionItemAITasksTaskYesNoOnUnknown extensionItemAITasksTaskYesNoOnUnknown
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown) { }
+        : base(extensionItemAITasksTaskYesNoOnUnknown) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public ExtensionItemAITasksTaskYesNoOnUnknown(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    ExtensionItemAITasksTaskYesNoOnUnknown(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskYesNoOnUnknownFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskYesNoOnUnknown FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3555,23 +3442,22 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown>
+class ExtensionItemAITasksTaskYesNoOnUnknownFromRaw
+    : IFromRawJson<ExtensionItemAITasksTaskYesNoOnUnknown>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown FromRawUnchecked(
+    public ExtensionItemAITasksTaskYesNoOnUnknown FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskYesNoOnUnknown.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataFromRaw
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata,
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata
-    : JsonModel
+public sealed record class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata : JsonModel
 {
     /// <summary>
     /// Name of the custom metadata field to set.
@@ -3590,12 +3476,12 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
     /// Value to set for the custom metadata field. The value type should match the
     /// custom metadata field type.
     /// </summary>
-    public required UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue Value
+    public required ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue Value
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue>(
+            return this._rawData.GetNotNullClass<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue>(
                 "value"
             );
         }
@@ -3609,17 +3495,17 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
         this.Value.Validate();
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata() { }
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata unnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata(
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata extensionItemAITasksTaskYesNoOnUnknownSetMetadata
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata) { }
+        : base(extensionItemAITasksTaskYesNoOnUnknownSetMetadata) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata(
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3628,16 +3514,14 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3645,25 +3529,21 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata>
+class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataFromRaw
+    : IFromRawJson<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata FromRawUnchecked(
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Value to set for the custom metadata field. The value type should match the custom
 /// metadata field type.
 /// </summary>
-[JsonConverter(
-    typeof(UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueConverter)
-)]
-public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue
-    : ModelBase
+[JsonConverter(typeof(ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueConverter))]
+public record class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -3680,7 +3560,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue(
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue(
         string value,
         JsonElement? element = null
     )
@@ -3689,7 +3569,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue(
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue(
         double value,
         JsonElement? element = null
     )
@@ -3698,7 +3578,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue(
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue(
         bool value,
         JsonElement? element = null
     )
@@ -3707,8 +3587,8 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue(
-        IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem> value,
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue(
+        IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem> value,
         JsonElement? element = null
     )
     {
@@ -3716,9 +3596,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue(
-        JsonElement element
-    )
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue(JsonElement element)
     {
         this._element = element;
     }
@@ -3788,14 +3666,14 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem</c>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem</c>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem&gt;`
+    ///     // `value` is of type `IReadOnlyList&lt;ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -3803,12 +3681,12 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     /// </summary>
     public bool TryPickMixed(
         [NotNullWhen(true)]
-            out IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>? value
+            out IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>? value
     )
     {
         value =
             this.Value
-            as IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>;
+            as IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>;
         return value != null;
     }
 
@@ -3829,7 +3707,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3839,7 +3717,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         Action<double> @double,
         Action<bool> @bool,
         Action<
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>
         > mixed
     )
     {
@@ -3854,12 +3732,12 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
             case bool value:
                 @bool(value);
                 break;
-            case IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem> value:
+            case IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem> value:
                 mixed(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue"
+                    "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue"
                 );
         }
     }
@@ -3882,7 +3760,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3892,7 +3770,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         Func<double, T> @double,
         Func<bool, T> @bool,
         Func<
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>,
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>,
             T
         > mixed
     )
@@ -3902,31 +3780,31 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
             string value => @string(value),
             double value => @double(value),
             bool value => @bool(value),
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem> value =>
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem> value =>
                 mixed(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue(
         string value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue(
         double value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue(
         bool value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue(
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem> value
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue(
+        List<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem> value
     ) =>
         new(
-            (IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>)
+            (IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>)
                 value
         );
 
@@ -3945,7 +3823,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue"
             );
         }
         this.Switch(
@@ -3962,9 +3840,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         );
     }
 
-    public virtual bool Equals(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue? other
-    ) =>
+    public virtual bool Equals(ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -3987,17 +3863,17 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
             string _ => 0,
             double _ => 1,
             bool _ => 2,
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem> _ =>
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem> _ =>
                 3,
             _ => -1,
         };
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueConverter
-    : JsonConverter<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue>
+sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueConverter
+    : JsonConverter<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue>
 {
-    public override UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue? Read(
+    public override ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -4038,7 +3914,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
         try
         {
             var deserialized = JsonSerializer.Deserialize<
-                List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>
+                List<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>
             >(element, options);
             if (deserialized != null)
             {
@@ -4059,7 +3935,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value,
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue value,
         JsonSerializerOptions options
     )
     {
@@ -4068,9 +3944,9 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
 }
 
 [JsonConverter(
-    typeof(UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItemConverter)
+    typeof(ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItemConverter)
 )]
-public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem
+public record class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem
     : ModelBase
 {
     public object? Value { get; } = null;
@@ -4088,7 +3964,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
         string value,
         JsonElement? element = null
     )
@@ -4097,7 +3973,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
         double value,
         JsonElement? element = null
     )
@@ -4106,7 +3982,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
         bool value,
         JsonElement? element = null
     )
@@ -4115,7 +3991,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
+    public ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
         JsonElement element
     )
     {
@@ -4221,7 +4097,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem"
+                    "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem"
                 );
         }
     }
@@ -4256,20 +4132,20 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
             double value => @double(value),
             bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
         string value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
         double value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
         bool value
     ) => new(value);
 
@@ -4288,13 +4164,13 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem"
             );
         }
     }
 
     public virtual bool Equals(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem? other
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem? other
     ) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
@@ -4323,10 +4199,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMet
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItemConverter
-    : JsonConverter<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>
+sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItemConverter
+    : JsonConverter<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>
 {
-    public override UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem? Read(
+    public override ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -4369,7 +4245,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value,
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value,
         JsonSerializerOptions options
     )
     {
@@ -4379,12 +4255,11 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadataFromRaw
+        ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata,
+        ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadataFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
-    : JsonModel
+public sealed record class ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata : JsonModel
 {
     /// <summary>
     /// Name of the custom metadata field to remove.
@@ -4405,17 +4280,17 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
         _ = this.Field;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata() { }
+    public ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata unnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
+    public ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata(
+        ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata extensionItemAITasksTaskYesNoOnUnknownUnsetMetadata
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata) { }
+        : base(extensionItemAITasksTaskYesNoOnUnknownUnsetMetadata) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata(
+    public ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4424,7 +4299,7 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata(
+    ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -4432,8 +4307,8 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadataFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadataFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4441,23 +4316,20 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknow
     }
 
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata(string field)
+    public ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata(string field)
         : this()
     {
         this.Field = field;
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadataFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata>
+class ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadataFromRaw
+    : IFromRawJson<ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata FromRawUnchecked(
+    public ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata.FromRawUnchecked(
-            rawData
-        );
+    ) => ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -4465,11 +4337,11 @@ class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadataFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesFromRaw
+        ExtensionItemAITasksTaskYesNoOnYes,
+        ExtensionItemAITasksTaskYesNoOnYesFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes : JsonModel
+public sealed record class ExtensionItemAITasksTaskYesNoOnYes : JsonModel
 {
     /// <summary>
     /// Array of tag strings to add to the asset.
@@ -4522,13 +4394,13 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes : 
     /// <summary>
     /// Array of custom metadata field updates.
     /// </summary>
-    public IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata>? SetMetadata
+    public IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadata>? SetMetadata
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
-                ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata>
+                ImmutableArray<ExtensionItemAITasksTaskYesNoOnYesSetMetadata>
             >("set_metadata");
         }
         init
@@ -4538,7 +4410,7 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes : 
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata>?>(
+            this._rawData.Set<ImmutableArray<ExtensionItemAITasksTaskYesNoOnYesSetMetadata>?>(
                 "set_metadata",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -4548,13 +4420,13 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes : 
     /// <summary>
     /// Array of custom metadata fields to remove.
     /// </summary>
-    public IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata>? UnsetMetadata
+    public IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata>? UnsetMetadata
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableStruct<
-                ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata>
+                ImmutableArray<ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata>
             >("unset_metadata");
         }
         init
@@ -4564,7 +4436,7 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes : 
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata>?>(
+            this._rawData.Set<ImmutableArray<ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata>?>(
                 "unset_metadata",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -4586,35 +4458,31 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes : 
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes() { }
+    public ExtensionItemAITasksTaskYesNoOnYes() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes unnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes
+    public ExtensionItemAITasksTaskYesNoOnYes(
+        ExtensionItemAITasksTaskYesNoOnYes extensionItemAITasksTaskYesNoOnYes
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes) { }
+        : base(extensionItemAITasksTaskYesNoOnYes) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public ExtensionItemAITasksTaskYesNoOnYes(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    ExtensionItemAITasksTaskYesNoOnYes(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskYesNoOnYesFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskYesNoOnYes FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4622,22 +4490,21 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes : 
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes>
+class ExtensionItemAITasksTaskYesNoOnYesFromRaw : IFromRawJson<ExtensionItemAITasksTaskYesNoOnYes>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes FromRawUnchecked(
+    public ExtensionItemAITasksTaskYesNoOnYes FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskYesNoOnYes.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataFromRaw
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadata,
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata : JsonModel
+public sealed record class ExtensionItemAITasksTaskYesNoOnYesSetMetadata : JsonModel
 {
     /// <summary>
     /// Name of the custom metadata field to set.
@@ -4656,12 +4523,12 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSet
     /// Value to set for the custom metadata field. The value type should match the
     /// custom metadata field type.
     /// </summary>
-    public required UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue Value
+    public required ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue Value
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue>(
+            return this._rawData.GetNotNullClass<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue>(
                 "value"
             );
         }
@@ -4675,17 +4542,17 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSet
         this.Value.Validate();
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata() { }
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadata() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata unnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadata(
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadata extensionItemAITasksTaskYesNoOnYesSetMetadata
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata) { }
+        : base(extensionItemAITasksTaskYesNoOnYesSetMetadata) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata(
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadata(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4694,16 +4561,14 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSet
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    ExtensionItemAITasksTaskYesNoOnYesSetMetadata(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskYesNoOnYesSetMetadataFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskYesNoOnYesSetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4711,21 +4576,21 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSet
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata>
+class ExtensionItemAITasksTaskYesNoOnYesSetMetadataFromRaw
+    : IFromRawJson<ExtensionItemAITasksTaskYesNoOnYesSetMetadata>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata FromRawUnchecked(
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskYesNoOnYesSetMetadata.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Value to set for the custom metadata field. The value type should match the custom
 /// metadata field type.
 /// </summary>
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueConverter))]
-public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue : ModelBase
+[JsonConverter(typeof(ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueConverter))]
+public record class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -4742,7 +4607,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue(
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue(
         string value,
         JsonElement? element = null
     )
@@ -4751,7 +4616,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue(
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue(
         double value,
         JsonElement? element = null
     )
@@ -4760,7 +4625,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue(
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue(
         bool value,
         JsonElement? element = null
     )
@@ -4769,8 +4634,8 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue(
-        IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem> value,
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue(
+        IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem> value,
         JsonElement? element = null
     )
     {
@@ -4778,7 +4643,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue(JsonElement element)
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue(JsonElement element)
     {
         this._element = element;
     }
@@ -4848,14 +4713,14 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem</c>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem</c>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem&gt;`
+    ///     // `value` is of type `IReadOnlyList&lt;ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -4863,12 +4728,12 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     /// </summary>
     public bool TryPickMixed(
         [NotNullWhen(true)]
-            out IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>? value
+            out IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>? value
     )
     {
         value =
             this.Value
-            as IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>;
+            as IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>;
         return value != null;
     }
 
@@ -4889,7 +4754,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4899,7 +4764,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         Action<double> @double,
         Action<bool> @bool,
         Action<
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>
         > mixed
     )
     {
@@ -4914,12 +4779,12 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
             case bool value:
                 @bool(value);
                 break;
-            case IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem> value:
+            case IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem> value:
                 mixed(value);
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue"
+                    "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue"
                 );
         }
     }
@@ -4942,7 +4807,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4952,7 +4817,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         Func<double, T> @double,
         Func<bool, T> @bool,
         Func<
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>,
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>,
             T
         > mixed
     )
@@ -4962,31 +4827,31 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
             string value => @string(value),
             double value => @double(value),
             bool value => @bool(value),
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem> value =>
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem> value =>
                 mixed(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue(
         string value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue(
         double value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue(
         bool value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue(
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem> value
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue(
+        List<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem> value
     ) =>
         new(
-            (IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>)
+            (IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>)
                 value
         );
 
@@ -5005,7 +4870,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue"
             );
         }
         this.Switch(
@@ -5022,9 +4887,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         );
     }
 
-    public virtual bool Equals(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue? other
-    ) =>
+    public virtual bool Equals(ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -5047,17 +4910,17 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
             string _ => 0,
             double _ => 1,
             bool _ => 2,
-            IReadOnlyList<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem> _ =>
+            IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem> _ =>
                 3,
             _ => -1,
         };
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueConverter
-    : JsonConverter<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue>
+sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueConverter
+    : JsonConverter<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue>
 {
-    public override UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue? Read(
+    public override ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -5098,7 +4961,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueC
         try
         {
             var deserialized = JsonSerializer.Deserialize<
-                List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>
+                List<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>
             >(element, options);
             if (deserialized != null)
             {
@@ -5119,7 +4982,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueC
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value,
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue value,
         JsonSerializerOptions options
     )
     {
@@ -5128,10 +4991,9 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueC
 }
 
 [JsonConverter(
-    typeof(UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItemConverter)
+    typeof(ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItemConverter)
 )]
-public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem
-    : ModelBase
+public record class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -5148,7 +5010,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         }
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
         string value,
         JsonElement? element = null
     )
@@ -5157,7 +5019,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
         double value,
         JsonElement? element = null
     )
@@ -5166,7 +5028,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
         bool value,
         JsonElement? element = null
     )
@@ -5175,9 +5037,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
-        JsonElement element
-    )
+    public ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(JsonElement element)
     {
         this._element = element;
     }
@@ -5281,7 +5141,7 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem"
+                    "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem"
                 );
         }
     }
@@ -5316,20 +5176,20 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
             double value => @double(value),
             bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
         string value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
         double value
     ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
+    public static implicit operator ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
         bool value
     ) => new(value);
 
@@ -5348,13 +5208,13 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem"
+                "Data did not match any variant of ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem"
             );
         }
     }
 
     public virtual bool Equals(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem? other
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem? other
     ) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
@@ -5383,10 +5243,10 @@ public record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadat
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItemConverter
-    : JsonConverter<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>
+sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItemConverter
+    : JsonConverter<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>
 {
-    public override UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem? Read(
+    public override ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem? Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -5429,7 +5289,7 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueM
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value,
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value,
         JsonSerializerOptions options
     )
     {
@@ -5439,12 +5299,11 @@ sealed class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueM
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata,
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadataFromRaw
+        ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata,
+        ExtensionItemAITasksTaskYesNoOnYesUnsetMetadataFromRaw
     >)
 )]
-public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata
-    : JsonModel
+public sealed record class ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata : JsonModel
 {
     /// <summary>
     /// Name of the custom metadata field to remove.
@@ -5465,17 +5324,17 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUns
         _ = this.Field;
     }
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata() { }
+    public ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata(
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata unnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata
+    public ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata(
+        ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata extensionItemAITasksTaskYesNoOnYesUnsetMetadata
     )
-        : base(unnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata) { }
+        : base(extensionItemAITasksTaskYesNoOnYesUnsetMetadata) { }
 #pragma warning restore CS8618
 
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata(
+    public ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5484,16 +5343,14 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUns
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata(
-        FrozenDictionary<string, JsonElement> rawData
-    )
+    ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadataFromRaw.FromRawUnchecked"/>
-    public static UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata FromRawUnchecked(
+    /// <inheritdoc cref="ExtensionItemAITasksTaskYesNoOnYesUnsetMetadataFromRaw.FromRawUnchecked"/>
+    public static ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5501,20 +5358,20 @@ public sealed record class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUns
     }
 
     [SetsRequiredMembers]
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata(string field)
+    public ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata(string field)
         : this()
     {
         this.Field = field;
     }
 }
 
-class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadataFromRaw
-    : IFromRawJson<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata>
+class ExtensionItemAITasksTaskYesNoOnYesUnsetMetadataFromRaw
+    : IFromRawJson<ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata>
 {
     /// <inheritdoc/>
-    public UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata FromRawUnchecked(
+    public ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata.FromRawUnchecked(rawData);
+    ) => ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<SavedExtension, SavedExtensionFromRaw>))]

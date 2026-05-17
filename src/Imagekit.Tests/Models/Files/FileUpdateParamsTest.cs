@@ -25,7 +25,7 @@ public class FileUpdateParamsTest : TestBase
                 Description = "description",
                 Extensions =
                 [
-                    new UnnamedSchemaWithArrayParent0RemoveBg()
+                    new ExtensionItemRemoveBg()
                     {
                         Options = new()
                         {
@@ -35,23 +35,22 @@ public class FileUpdateParamsTest : TestBase
                             Semitransparency = true,
                         },
                     },
-                    new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                    new ExtensionItemAutoTaggingExtension()
                     {
                         MaxTags = 10,
                         MinConfidence = 80,
-                        Name =
-                            UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                        Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                     },
-                    new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                    new ExtensionItemAutoTaggingExtension()
                     {
                         MaxTags = 10,
                         MinConfidence = 80,
-                        Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.AwsAutoTagging,
+                        Name = ExtensionItemAutoTaggingExtensionName.AwsAutoTagging,
                     },
-                    new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                    new UnnamedSchemaWithArrayParent0AITasks(
+                    new ExtensionItemAIAutoDescription(),
+                    new ExtensionItemAITasks(
                         [
-                            new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                            new ExtensionItemAITasksTaskSelectTags()
                             {
                                 Instruction = "What types of clothing items are visible?",
                                 MaxSelections = 1,
@@ -80,7 +79,7 @@ public class FileUpdateParamsTest : TestBase
             Description = "description",
             Extensions =
             [
-                new UnnamedSchemaWithArrayParent0RemoveBg()
+                new ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -90,22 +89,22 @@ public class FileUpdateParamsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 10,
                     MinConfidence = 80,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 10,
                     MinConfidence = 80,
-                    Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.AwsAutoTagging,
+                    Name = ExtensionItemAutoTaggingExtensionName.AwsAutoTagging,
                 },
-                new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new UnnamedSchemaWithArrayParent0AITasks(
+                new ExtensionItemAIAutoDescription(),
+                new ExtensionItemAITasks(
                     [
-                        new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible?",
                             MaxSelections = 1,
@@ -142,7 +141,7 @@ public class FileUpdateParamsTest : TestBase
                 Description = "description",
                 Extensions =
                 [
-                    new UnnamedSchemaWithArrayParent0RemoveBg()
+                    new ExtensionItemRemoveBg()
                     {
                         Options = new()
                         {
@@ -152,23 +151,22 @@ public class FileUpdateParamsTest : TestBase
                             Semitransparency = true,
                         },
                     },
-                    new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                    new ExtensionItemAutoTaggingExtension()
                     {
                         MaxTags = 10,
                         MinConfidence = 80,
-                        Name =
-                            UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                        Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                     },
-                    new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                    new ExtensionItemAutoTaggingExtension()
                     {
                         MaxTags = 10,
                         MinConfidence = 80,
-                        Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.AwsAutoTagging,
+                        Name = ExtensionItemAutoTaggingExtensionName.AwsAutoTagging,
                     },
-                    new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                    new UnnamedSchemaWithArrayParent0AITasks(
+                    new ExtensionItemAIAutoDescription(),
+                    new ExtensionItemAITasks(
                         [
-                            new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                            new ExtensionItemAITasksTaskSelectTags()
                             {
                                 Instruction = "What types of clothing items are visible?",
                                 MaxSelections = 1,
@@ -209,7 +207,7 @@ public class FileUpdateParamsTest : TestBase
                 Description = "description",
                 Extensions =
                 [
-                    new UnnamedSchemaWithArrayParent0RemoveBg()
+                    new ExtensionItemRemoveBg()
                     {
                         Options = new()
                         {
@@ -219,23 +217,22 @@ public class FileUpdateParamsTest : TestBase
                             Semitransparency = true,
                         },
                     },
-                    new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                    new ExtensionItemAutoTaggingExtension()
                     {
                         MaxTags = 10,
                         MinConfidence = 80,
-                        Name =
-                            UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                        Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                     },
-                    new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                    new ExtensionItemAutoTaggingExtension()
                     {
                         MaxTags = 10,
                         MinConfidence = 80,
-                        Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.AwsAutoTagging,
+                        Name = ExtensionItemAutoTaggingExtensionName.AwsAutoTagging,
                     },
-                    new UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                    new UnnamedSchemaWithArrayParent0AITasks(
+                    new ExtensionItemAIAutoDescription(),
+                    new ExtensionItemAITasks(
                         [
-                            new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                            new ExtensionItemAITasksTaskSelectTags()
                             {
                                 Instruction = "What types of clothing items are visible?",
                                 MaxSelections = 1,

@@ -31,7 +31,7 @@ public class FileUploadParamsTest : TestBase
             Description = "Running shoes",
             Extensions =
             [
-                new Models::UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -41,24 +41,23 @@ public class FileUploadParamsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name =
-                        Models::UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new Models::UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new Models::UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()
@@ -125,9 +124,9 @@ public class FileUploadParamsTest : TestBase
             { "color", JsonSerializer.SerializeToElement("bar") },
         };
         string expectedDescription = "Running shoes";
-        List<Models::UnnamedSchemaWithArrayParent0> expectedExtensions =
+        List<Models::ExtensionItem> expectedExtensions =
         [
-            new Models::UnnamedSchemaWithArrayParent0RemoveBg()
+            new Models::ExtensionItemRemoveBg()
             {
                 Options = new()
                 {
@@ -137,24 +136,23 @@ public class FileUploadParamsTest : TestBase
                     Semitransparency = true,
                 },
             },
-            new Models::UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+            new Models::ExtensionItemAutoTaggingExtension()
             {
                 MaxTags = 5,
                 MinConfidence = 95,
-                Name =
-                    Models::UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
             },
-            new Models::UnnamedSchemaWithArrayParent0AIAutoDescription(),
-            new Models::UnnamedSchemaWithArrayParent0AITasks(
+            new Models::ExtensionItemAIAutoDescription(),
+            new Models::ExtensionItemAITasks(
                 [
-                    new Models::UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                    new Models::ExtensionItemAITasksTaskSelectTags()
                     {
                         Instruction = "What types of clothing items are visible in this image?",
                         MaxSelections = 1,
                         MinSelections = 0,
                         Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                     },
-                    new Models::UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                    new Models::ExtensionItemAITasksTaskYesNo()
                     {
                         Instruction = "Is this a luxury or high-end fashion item?",
                         OnNo = new()
@@ -401,7 +399,7 @@ public class FileUploadParamsTest : TestBase
             Description = "Running shoes",
             Extensions =
             [
-                new Models::UnnamedSchemaWithArrayParent0RemoveBg()
+                new Models::ExtensionItemRemoveBg()
                 {
                     Options = new()
                     {
@@ -411,24 +409,23 @@ public class FileUploadParamsTest : TestBase
                         Semitransparency = true,
                     },
                 },
-                new Models::UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                new Models::ExtensionItemAutoTaggingExtension()
                 {
                     MaxTags = 5,
                     MinConfidence = 95,
-                    Name =
-                        Models::UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                    Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                 },
-                new Models::UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                new Models::UnnamedSchemaWithArrayParent0AITasks(
+                new Models::ExtensionItemAIAutoDescription(),
+                new Models::ExtensionItemAITasks(
                     [
-                        new Models::UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                        new Models::ExtensionItemAITasksTaskSelectTags()
                         {
                             Instruction = "What types of clothing items are visible in this image?",
                             MaxSelections = 1,
                             MinSelections = 0,
                             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
                         },
-                        new Models::UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+                        new Models::ExtensionItemAITasksTaskYesNo()
                         {
                             Instruction = "Is this a luxury or high-end fashion item?",
                             OnNo = new()

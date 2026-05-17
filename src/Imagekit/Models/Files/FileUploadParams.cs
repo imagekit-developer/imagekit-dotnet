@@ -239,14 +239,12 @@ public record class FileUploadParams : ParamsBase
     /// Array of extensions to be applied to the asset. Each extension can be configured
     /// with specific parameters based on the extension type.
     /// </summary>
-    public IReadOnlyList<UnnamedSchemaWithArrayParent0>? Extensions
+    public IReadOnlyList<ExtensionItem>? Extensions
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<
-                ImmutableArray<UnnamedSchemaWithArrayParent0>
-            >("extensions");
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<ExtensionItem>>("extensions");
         }
         init
         {
@@ -255,7 +253,7 @@ public record class FileUploadParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData.Set<ImmutableArray<UnnamedSchemaWithArrayParent0>?>(
+            this._rawBodyData.Set<ImmutableArray<ExtensionItem>?>(
                 "extensions",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );

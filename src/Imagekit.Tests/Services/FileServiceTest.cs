@@ -27,7 +27,7 @@ public class FileServiceTest : TestBase
                     Description = "description",
                     Extensions =
                     [
-                        new Models::UnnamedSchemaWithArrayParent0RemoveBg()
+                        new Models::ExtensionItemRemoveBg()
                         {
                             Options = new()
                             {
@@ -37,24 +37,22 @@ public class FileServiceTest : TestBase
                                 Semitransparency = true,
                             },
                         },
-                        new Models::UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                        new Models::ExtensionItemAutoTaggingExtension()
                         {
                             MaxTags = 10,
                             MinConfidence = 80,
-                            Name =
-                                Models::UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+                            Name = Models::ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
                         },
-                        new Models::UnnamedSchemaWithArrayParent0AutoTaggingExtension()
+                        new Models::ExtensionItemAutoTaggingExtension()
                         {
                             MaxTags = 10,
                             MinConfidence = 80,
-                            Name =
-                                Models::UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.AwsAutoTagging,
+                            Name = Models::ExtensionItemAutoTaggingExtensionName.AwsAutoTagging,
                         },
-                        new Models::UnnamedSchemaWithArrayParent0AIAutoDescription(),
-                        new Models::UnnamedSchemaWithArrayParent0AITasks(
+                        new Models::ExtensionItemAIAutoDescription(),
+                        new Models::ExtensionItemAITasks(
                             [
-                                new Models::UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                                new Models::ExtensionItemAITasksTaskSelectTags()
                                 {
                                     Instruction = "What types of clothing items are visible?",
                                     MaxSelections = 1,

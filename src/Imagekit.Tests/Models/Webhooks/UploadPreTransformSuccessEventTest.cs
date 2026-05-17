@@ -147,9 +147,9 @@ public class UploadPreTransformSuccessEventTest : TestBase
                             Type = SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new UnnamedSchemaWithArrayParent4(true),
-                                    new UnnamedSchemaWithArrayParent4(10),
-                                    new UnnamedSchemaWithArrayParent4("Hello"),
+                                    new UnnamedSchemaWithArrayParent3(true),
+                                    new UnnamedSchemaWithArrayParent3(10),
+                                    new UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -306,9 +306,9 @@ public class UploadPreTransformSuccessEventTest : TestBase
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -480,9 +480,9 @@ public class UploadPreTransformSuccessEventTest : TestBase
                             Type = SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new UnnamedSchemaWithArrayParent4(true),
-                                    new UnnamedSchemaWithArrayParent4(10),
-                                    new UnnamedSchemaWithArrayParent4("Hello"),
+                                    new UnnamedSchemaWithArrayParent3(true),
+                                    new UnnamedSchemaWithArrayParent3(10),
+                                    new UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -653,9 +653,9 @@ public class UploadPreTransformSuccessEventTest : TestBase
                             Type = SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new UnnamedSchemaWithArrayParent4(true),
-                                    new UnnamedSchemaWithArrayParent4(10),
-                                    new UnnamedSchemaWithArrayParent4("Hello"),
+                                    new UnnamedSchemaWithArrayParent3(true),
+                                    new UnnamedSchemaWithArrayParent3(10),
+                                    new UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -819,9 +819,9 @@ public class UploadPreTransformSuccessEventTest : TestBase
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -993,9 +993,9 @@ public class UploadPreTransformSuccessEventTest : TestBase
                             Type = SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new UnnamedSchemaWithArrayParent4(true),
-                                    new UnnamedSchemaWithArrayParent4(10),
-                                    new UnnamedSchemaWithArrayParent4("Hello"),
+                                    new UnnamedSchemaWithArrayParent3(true),
+                                    new UnnamedSchemaWithArrayParent3(10),
+                                    new UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1160,9 +1160,9 @@ public class UploadPreTransformSuccessEventTest : TestBase
                             Type = SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new UnnamedSchemaWithArrayParent4(true),
-                                    new UnnamedSchemaWithArrayParent4(10),
-                                    new UnnamedSchemaWithArrayParent4("Hello"),
+                                    new UnnamedSchemaWithArrayParent3(true),
+                                    new UnnamedSchemaWithArrayParent3(10),
+                                    new UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1330,9 +1330,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                             Type = SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new UnnamedSchemaWithArrayParent4(true),
-                                    new UnnamedSchemaWithArrayParent4(10),
-                                    new UnnamedSchemaWithArrayParent4("Hello"),
+                                    new UnnamedSchemaWithArrayParent3(true),
+                                    new UnnamedSchemaWithArrayParent3(10),
+                                    new UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1487,9 +1487,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1661,9 +1661,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                             Type = SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new UnnamedSchemaWithArrayParent4(true),
-                                    new UnnamedSchemaWithArrayParent4(10),
-                                    new UnnamedSchemaWithArrayParent4("Hello"),
+                                    new UnnamedSchemaWithArrayParent3(true),
+                                    new UnnamedSchemaWithArrayParent3(10),
+                                    new UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1833,9 +1833,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                             Type = SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new UnnamedSchemaWithArrayParent4(true),
-                                    new UnnamedSchemaWithArrayParent4(10),
-                                    new UnnamedSchemaWithArrayParent4("Hello"),
+                                    new UnnamedSchemaWithArrayParent3(true),
+                                    new UnnamedSchemaWithArrayParent3(10),
+                                    new UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1998,9 +1998,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -2172,9 +2172,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                             Type = SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new UnnamedSchemaWithArrayParent4(true),
-                                    new UnnamedSchemaWithArrayParent4(10),
-                                    new UnnamedSchemaWithArrayParent4("Hello"),
+                                    new UnnamedSchemaWithArrayParent3(true),
+                                    new UnnamedSchemaWithArrayParent3(10),
+                                    new UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -2337,9 +2337,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
                             Type = SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new UnnamedSchemaWithArrayParent4(true),
-                                    new UnnamedSchemaWithArrayParent4(10),
-                                    new UnnamedSchemaWithArrayParent4("Hello"),
+                                    new UnnamedSchemaWithArrayParent3(true),
+                                    new UnnamedSchemaWithArrayParent3(10),
+                                    new UnnamedSchemaWithArrayParent3("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -2504,9 +2504,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -2656,9 +2656,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     Type = SelectedFieldsSchemaItemType.Text,
                     DefaultValue = new(
                         [
-                            new UnnamedSchemaWithArrayParent4(true),
-                            new UnnamedSchemaWithArrayParent4(10),
-                            new UnnamedSchemaWithArrayParent4("Hello"),
+                            new UnnamedSchemaWithArrayParent3(true),
+                            new UnnamedSchemaWithArrayParent3(10),
+                            new UnnamedSchemaWithArrayParent3("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -2870,9 +2870,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -3037,9 +3037,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -3197,9 +3197,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                     Type = SelectedFieldsSchemaItemType.Text,
                     DefaultValue = new(
                         [
-                            new UnnamedSchemaWithArrayParent4(true),
-                            new UnnamedSchemaWithArrayParent4(10),
-                            new UnnamedSchemaWithArrayParent4("Hello"),
+                            new UnnamedSchemaWithArrayParent3(true),
+                            new UnnamedSchemaWithArrayParent3(10),
+                            new UnnamedSchemaWithArrayParent3("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -3411,9 +3411,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -3779,9 +3779,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -3933,9 +3933,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -4082,9 +4082,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -4240,9 +4240,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -4403,9 +4403,9 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
                         Type = SelectedFieldsSchemaItemType.Text,
                         DefaultValue = new(
                             [
-                                new UnnamedSchemaWithArrayParent4(true),
-                                new UnnamedSchemaWithArrayParent4(10),
-                                new UnnamedSchemaWithArrayParent4("Hello"),
+                                new UnnamedSchemaWithArrayParent3(true),
+                                new UnnamedSchemaWithArrayParent3(10),
+                                new UnnamedSchemaWithArrayParent3("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -5066,9 +5066,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             Type = SelectedFieldsSchemaItemType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent4(true),
-                    new UnnamedSchemaWithArrayParent4(10),
-                    new UnnamedSchemaWithArrayParent4("Hello"),
+                    new UnnamedSchemaWithArrayParent3(true),
+                    new UnnamedSchemaWithArrayParent3(10),
+                    new UnnamedSchemaWithArrayParent3("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -5085,9 +5085,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             SelectedFieldsSchemaItemType.Text;
         DefaultValue expectedDefaultValue = new(
             [
-                new UnnamedSchemaWithArrayParent4(true),
-                new UnnamedSchemaWithArrayParent4(10),
-                new UnnamedSchemaWithArrayParent4("Hello"),
+                new UnnamedSchemaWithArrayParent3(true),
+                new UnnamedSchemaWithArrayParent3(10),
+                new UnnamedSchemaWithArrayParent3("Hello"),
             ]
         );
         bool expectedIsValueRequired = true;
@@ -5124,9 +5124,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             Type = SelectedFieldsSchemaItemType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent4(true),
-                    new UnnamedSchemaWithArrayParent4(10),
-                    new UnnamedSchemaWithArrayParent4("Hello"),
+                    new UnnamedSchemaWithArrayParent3(true),
+                    new UnnamedSchemaWithArrayParent3(10),
+                    new UnnamedSchemaWithArrayParent3("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -5156,9 +5156,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             Type = SelectedFieldsSchemaItemType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent4(true),
-                    new UnnamedSchemaWithArrayParent4(10),
-                    new UnnamedSchemaWithArrayParent4("Hello"),
+                    new UnnamedSchemaWithArrayParent3(true),
+                    new UnnamedSchemaWithArrayParent3(10),
+                    new UnnamedSchemaWithArrayParent3("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -5182,9 +5182,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             SelectedFieldsSchemaItemType.Text;
         DefaultValue expectedDefaultValue = new(
             [
-                new UnnamedSchemaWithArrayParent4(true),
-                new UnnamedSchemaWithArrayParent4(10),
-                new UnnamedSchemaWithArrayParent4("Hello"),
+                new UnnamedSchemaWithArrayParent3(true),
+                new UnnamedSchemaWithArrayParent3(10),
+                new UnnamedSchemaWithArrayParent3("Hello"),
             ]
         );
         bool expectedIsValueRequired = true;
@@ -5221,9 +5221,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             Type = SelectedFieldsSchemaItemType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent4(true),
-                    new UnnamedSchemaWithArrayParent4(10),
-                    new UnnamedSchemaWithArrayParent4("Hello"),
+                    new UnnamedSchemaWithArrayParent3(true),
+                    new UnnamedSchemaWithArrayParent3(10),
+                    new UnnamedSchemaWithArrayParent3("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -5341,9 +5341,9 @@ public class SelectedFieldsSchemaItemTest : TestBase
             Type = SelectedFieldsSchemaItemType.Text,
             DefaultValue = new(
                 [
-                    new UnnamedSchemaWithArrayParent4(true),
-                    new UnnamedSchemaWithArrayParent4(10),
-                    new UnnamedSchemaWithArrayParent4("Hello"),
+                    new UnnamedSchemaWithArrayParent3(true),
+                    new UnnamedSchemaWithArrayParent3(10),
+                    new UnnamedSchemaWithArrayParent3("Hello"),
                 ]
             ),
             IsValueRequired = true,
@@ -5456,9 +5456,9 @@ public class DefaultValueTest : TestBase
     {
         DefaultValue value = new(
             [
-                new UnnamedSchemaWithArrayParent4(true),
-                new UnnamedSchemaWithArrayParent4(10),
-                new UnnamedSchemaWithArrayParent4("Hello"),
+                new UnnamedSchemaWithArrayParent3(true),
+                new UnnamedSchemaWithArrayParent3(10),
+                new UnnamedSchemaWithArrayParent3("Hello"),
             ]
         );
         value.Validate();
@@ -5508,9 +5508,9 @@ public class DefaultValueTest : TestBase
     {
         DefaultValue value = new(
             [
-                new UnnamedSchemaWithArrayParent4(true),
-                new UnnamedSchemaWithArrayParent4(10),
-                new UnnamedSchemaWithArrayParent4("Hello"),
+                new UnnamedSchemaWithArrayParent3(true),
+                new UnnamedSchemaWithArrayParent3(10),
+                new UnnamedSchemaWithArrayParent3("Hello"),
             ]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
@@ -5523,35 +5523,35 @@ public class DefaultValueTest : TestBase
     }
 }
 
-public class UnnamedSchemaWithArrayParent4Test : TestBase
+public class UnnamedSchemaWithArrayParent3Test : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent4 value = "string";
+        UnnamedSchemaWithArrayParent3 value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent4 value = 0;
+        UnnamedSchemaWithArrayParent3 value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent4 value = true;
+        UnnamedSchemaWithArrayParent3 value = true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent4 value = "string";
+        UnnamedSchemaWithArrayParent3 value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent4>(
+        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent3>(
             element,
             ModelBase.SerializerOptions
         );
@@ -5562,9 +5562,9 @@ public class UnnamedSchemaWithArrayParent4Test : TestBase
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent4 value = 0;
+        UnnamedSchemaWithArrayParent3 value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent4>(
+        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent3>(
             element,
             ModelBase.SerializerOptions
         );
@@ -5575,9 +5575,9 @@ public class UnnamedSchemaWithArrayParent4Test : TestBase
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent4 value = true;
+        UnnamedSchemaWithArrayParent3 value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent4>(
+        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent3>(
             element,
             ModelBase.SerializerOptions
         );

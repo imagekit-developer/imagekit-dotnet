@@ -6,12 +6,12 @@ using Imagekit.Models;
 
 namespace Imagekit.Tests.Models;
 
-public class UnnamedSchemaWithArrayParent0Test : TestBase
+public class ExtensionItemTest : TestBase
 {
     [Fact]
     public void RemoveBgValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0 value = new UnnamedSchemaWithArrayParent0RemoveBg()
+        ExtensionItem value = new ExtensionItemRemoveBg()
         {
             Options = new()
             {
@@ -27,29 +27,28 @@ public class UnnamedSchemaWithArrayParent0Test : TestBase
     [Fact]
     public void AutoTaggingExtensionValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0 value =
-            new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
-            {
-                MaxTags = 0,
-                MinConfidence = 0,
-                Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
-            };
+        ExtensionItem value = new ExtensionItemAutoTaggingExtension()
+        {
+            MaxTags = 0,
+            MinConfidence = 0,
+            Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+        };
         value.Validate();
     }
 
     [Fact]
     public void AIAutoDescriptionValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0 value = new UnnamedSchemaWithArrayParent0AIAutoDescription();
+        ExtensionItem value = new ExtensionItemAIAutoDescription();
         value.Validate();
     }
 
     [Fact]
     public void AITasksValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0 value = new UnnamedSchemaWithArrayParent0AITasks(
+        ExtensionItem value = new ExtensionItemAITasks(
             [
-                new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                new ExtensionItemAITasksTaskSelectTags()
                 {
                     Instruction = "What types of clothing items are visible in this image?",
                     MaxSelections = 1,
@@ -64,14 +63,14 @@ public class UnnamedSchemaWithArrayParent0Test : TestBase
     [Fact]
     public void SavedExtensionValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0 value = new SavedExtension("ext_abc123");
+        ExtensionItem value = new SavedExtension("ext_abc123");
         value.Validate();
     }
 
     [Fact]
     public void RemoveBgSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0 value = new UnnamedSchemaWithArrayParent0RemoveBg()
+        ExtensionItem value = new ExtensionItemRemoveBg()
         {
             Options = new()
             {
@@ -82,7 +81,7 @@ public class UnnamedSchemaWithArrayParent0Test : TestBase
             },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItem>(
             element,
             ModelBase.SerializerOptions
         );
@@ -93,15 +92,14 @@ public class UnnamedSchemaWithArrayParent0Test : TestBase
     [Fact]
     public void AutoTaggingExtensionSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0 value =
-            new UnnamedSchemaWithArrayParent0AutoTaggingExtension()
-            {
-                MaxTags = 0,
-                MinConfidence = 0,
-                Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
-            };
+        ExtensionItem value = new ExtensionItemAutoTaggingExtension()
+        {
+            MaxTags = 0,
+            MinConfidence = 0,
+            Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
+        };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItem>(
             element,
             ModelBase.SerializerOptions
         );
@@ -112,9 +110,9 @@ public class UnnamedSchemaWithArrayParent0Test : TestBase
     [Fact]
     public void AIAutoDescriptionSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0 value = new UnnamedSchemaWithArrayParent0AIAutoDescription();
+        ExtensionItem value = new ExtensionItemAIAutoDescription();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItem>(
             element,
             ModelBase.SerializerOptions
         );
@@ -125,9 +123,9 @@ public class UnnamedSchemaWithArrayParent0Test : TestBase
     [Fact]
     public void AITasksSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0 value = new UnnamedSchemaWithArrayParent0AITasks(
+        ExtensionItem value = new ExtensionItemAITasks(
             [
-                new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                new ExtensionItemAITasksTaskSelectTags()
                 {
                     Instruction = "What types of clothing items are visible in this image?",
                     MaxSelections = 1,
@@ -137,7 +135,7 @@ public class UnnamedSchemaWithArrayParent0Test : TestBase
             ]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItem>(
             element,
             ModelBase.SerializerOptions
         );
@@ -148,9 +146,9 @@ public class UnnamedSchemaWithArrayParent0Test : TestBase
     [Fact]
     public void SavedExtensionSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0 value = new SavedExtension("ext_abc123");
+        ExtensionItem value = new SavedExtension("ext_abc123");
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItem>(
             element,
             ModelBase.SerializerOptions
         );
@@ -159,12 +157,12 @@ public class UnnamedSchemaWithArrayParent0Test : TestBase
     }
 }
 
-public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
+public class ExtensionItemRemoveBgTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBg
+        var model = new ExtensionItemRemoveBg
         {
             Options = new()
             {
@@ -176,7 +174,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
         };
 
         JsonElement expectedName = JsonSerializer.SerializeToElement("remove-bg");
-        UnnamedSchemaWithArrayParent0RemoveBgOptions expectedOptions = new()
+        ExtensionItemRemoveBgOptions expectedOptions = new()
         {
             AddShadow = true,
             BgColor = "bg_color",
@@ -191,7 +189,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBg
+        var model = new ExtensionItemRemoveBg
         {
             Options = new()
             {
@@ -203,7 +201,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0RemoveBg>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemRemoveBg>(
             json,
             ModelBase.SerializerOptions
         );
@@ -214,7 +212,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBg
+        var model = new ExtensionItemRemoveBg
         {
             Options = new()
             {
@@ -226,14 +224,14 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0RemoveBg>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemRemoveBg>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
         JsonElement expectedName = JsonSerializer.SerializeToElement("remove-bg");
-        UnnamedSchemaWithArrayParent0RemoveBgOptions expectedOptions = new()
+        ExtensionItemRemoveBgOptions expectedOptions = new()
         {
             AddShadow = true,
             BgColor = "bg_color",
@@ -248,7 +246,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBg
+        var model = new ExtensionItemRemoveBg
         {
             Options = new()
             {
@@ -265,7 +263,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBg { };
+        var model = new ExtensionItemRemoveBg { };
 
         Assert.Null(model.Options);
         Assert.False(model.RawData.ContainsKey("options"));
@@ -274,7 +272,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBg { };
+        var model = new ExtensionItemRemoveBg { };
 
         model.Validate();
     }
@@ -282,7 +280,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBg
+        var model = new ExtensionItemRemoveBg
         {
             // Null should be interpreted as omitted for these properties
             Options = null,
@@ -295,7 +293,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBg
+        var model = new ExtensionItemRemoveBg
         {
             // Null should be interpreted as omitted for these properties
             Options = null,
@@ -307,7 +305,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBg
+        var model = new ExtensionItemRemoveBg
         {
             Options = new()
             {
@@ -318,18 +316,18 @@ public class UnnamedSchemaWithArrayParent0RemoveBgTest : TestBase
             },
         };
 
-        UnnamedSchemaWithArrayParent0RemoveBg copied = new(model);
+        ExtensionItemRemoveBg copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
+public class ExtensionItemRemoveBgOptionsTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBgOptions
+        var model = new ExtensionItemRemoveBgOptions
         {
             AddShadow = true,
             BgColor = "bg_color",
@@ -351,7 +349,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBgOptions
+        var model = new ExtensionItemRemoveBgOptions
         {
             AddShadow = true,
             BgColor = "bg_color",
@@ -360,7 +358,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0RemoveBgOptions>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemRemoveBgOptions>(
             json,
             ModelBase.SerializerOptions
         );
@@ -371,7 +369,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBgOptions
+        var model = new ExtensionItemRemoveBgOptions
         {
             AddShadow = true,
             BgColor = "bg_color",
@@ -380,7 +378,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0RemoveBgOptions>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemRemoveBgOptions>(
             element,
             ModelBase.SerializerOptions
         );
@@ -400,7 +398,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBgOptions
+        var model = new ExtensionItemRemoveBgOptions
         {
             AddShadow = true,
             BgColor = "bg_color",
@@ -414,7 +412,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBgOptions { };
+        var model = new ExtensionItemRemoveBgOptions { };
 
         Assert.Null(model.AddShadow);
         Assert.False(model.RawData.ContainsKey("add_shadow"));
@@ -429,7 +427,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBgOptions { };
+        var model = new ExtensionItemRemoveBgOptions { };
 
         model.Validate();
     }
@@ -437,7 +435,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBgOptions
+        var model = new ExtensionItemRemoveBgOptions
         {
             // Null should be interpreted as omitted for these properties
             AddShadow = null,
@@ -459,7 +457,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBgOptions
+        var model = new ExtensionItemRemoveBgOptions
         {
             // Null should be interpreted as omitted for these properties
             AddShadow = null,
@@ -474,7 +472,7 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0RemoveBgOptions
+        var model = new ExtensionItemRemoveBgOptions
         {
             AddShadow = true,
             BgColor = "bg_color",
@@ -482,28 +480,28 @@ public class UnnamedSchemaWithArrayParent0RemoveBgOptionsTest : TestBase
             Semitransparency = true,
         };
 
-        UnnamedSchemaWithArrayParent0RemoveBgOptions copied = new(model);
+        ExtensionItemRemoveBgOptions copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AutoTaggingExtensionTest : TestBase
+public class ExtensionItemAutoTaggingExtensionTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AutoTaggingExtension
+        var model = new ExtensionItemAutoTaggingExtension
         {
             MaxTags = 0,
             MinConfidence = 0,
-            Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+            Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
         };
 
         long expectedMaxTags = 0;
         long expectedMinConfidence = 0;
-        ApiEnum<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName> expectedName =
-            UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging;
+        ApiEnum<string, ExtensionItemAutoTaggingExtensionName> expectedName =
+            ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging;
 
         Assert.Equal(expectedMaxTags, model.MaxTags);
         Assert.Equal(expectedMinConfidence, model.MinConfidence);
@@ -513,19 +511,18 @@ public class UnnamedSchemaWithArrayParent0AutoTaggingExtensionTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AutoTaggingExtension
+        var model = new ExtensionItemAutoTaggingExtension
         {
             MaxTags = 0,
             MinConfidence = 0,
-            Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+            Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AutoTaggingExtension>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAutoTaggingExtension>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -533,25 +530,24 @@ public class UnnamedSchemaWithArrayParent0AutoTaggingExtensionTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AutoTaggingExtension
+        var model = new ExtensionItemAutoTaggingExtension
         {
             MaxTags = 0,
             MinConfidence = 0,
-            Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+            Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AutoTaggingExtension>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAutoTaggingExtension>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         long expectedMaxTags = 0;
         long expectedMinConfidence = 0;
-        ApiEnum<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName> expectedName =
-            UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging;
+        ApiEnum<string, ExtensionItemAutoTaggingExtensionName> expectedName =
+            ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging;
 
         Assert.Equal(expectedMaxTags, deserialized.MaxTags);
         Assert.Equal(expectedMinConfidence, deserialized.MinConfidence);
@@ -561,11 +557,11 @@ public class UnnamedSchemaWithArrayParent0AutoTaggingExtensionTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AutoTaggingExtension
+        var model = new ExtensionItemAutoTaggingExtension
         {
             MaxTags = 0,
             MinConfidence = 0,
-            Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+            Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
         };
 
         model.Validate();
@@ -574,28 +570,28 @@ public class UnnamedSchemaWithArrayParent0AutoTaggingExtensionTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AutoTaggingExtension
+        var model = new ExtensionItemAutoTaggingExtension
         {
             MaxTags = 0,
             MinConfidence = 0,
-            Name = UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging,
+            Name = ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging,
         };
 
-        UnnamedSchemaWithArrayParent0AutoTaggingExtension copied = new(model);
+        ExtensionItemAutoTaggingExtension copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AutoTaggingExtensionNameTest : TestBase
+public class ExtensionItemAutoTaggingExtensionNameTest : TestBase
 {
     [Theory]
-    [InlineData(UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging)]
-    [InlineData(UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.AwsAutoTagging)]
-    public void Validation_Works(UnnamedSchemaWithArrayParent0AutoTaggingExtensionName rawValue)
+    [InlineData(ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging)]
+    [InlineData(ExtensionItemAutoTaggingExtensionName.AwsAutoTagging)]
+    public void Validation_Works(ExtensionItemAutoTaggingExtensionName rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName> value = rawValue;
+        ApiEnum<string, ExtensionItemAutoTaggingExtensionName> value = rawValue;
         value.Validate();
     }
 
@@ -603,7 +599,7 @@ public class UnnamedSchemaWithArrayParent0AutoTaggingExtensionNameTest : TestBas
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName>
+            ApiEnum<string, ExtensionItemAutoTaggingExtensionName>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
@@ -611,18 +607,16 @@ public class UnnamedSchemaWithArrayParent0AutoTaggingExtensionNameTest : TestBas
     }
 
     [Theory]
-    [InlineData(UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.GoogleAutoTagging)]
-    [InlineData(UnnamedSchemaWithArrayParent0AutoTaggingExtensionName.AwsAutoTagging)]
-    public void SerializationRoundtrip_Works(
-        UnnamedSchemaWithArrayParent0AutoTaggingExtensionName rawValue
-    )
+    [InlineData(ExtensionItemAutoTaggingExtensionName.GoogleAutoTagging)]
+    [InlineData(ExtensionItemAutoTaggingExtensionName.AwsAutoTagging)]
+    public void SerializationRoundtrip_Works(ExtensionItemAutoTaggingExtensionName rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName> value = rawValue;
+        ApiEnum<string, ExtensionItemAutoTaggingExtensionName> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName>
+            ApiEnum<string, ExtensionItemAutoTaggingExtensionName>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -632,30 +626,30 @@ public class UnnamedSchemaWithArrayParent0AutoTaggingExtensionNameTest : TestBas
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName>
+            ApiEnum<string, ExtensionItemAutoTaggingExtensionName>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, UnnamedSchemaWithArrayParent0AutoTaggingExtensionName>
+            ApiEnum<string, ExtensionItemAutoTaggingExtensionName>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AIAutoDescriptionTest : TestBase
+public class ExtensionItemAIAutoDescriptionTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new UnnamedSchemaWithArrayParent0AIAutoDescription();
+        var constant = new ExtensionItemAIAutoDescription();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AIAutoDescription>(
+        var constant = JsonSerializer.Deserialize<ExtensionItemAIAutoDescription>(
             JsonSerializer.Deserialize<JsonElement>(
                 """
                 {
@@ -673,7 +667,7 @@ public class UnnamedSchemaWithArrayParent0AIAutoDescriptionTest : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AIAutoDescription>(
+        var constant = JsonSerializer.Deserialize<ExtensionItemAIAutoDescription>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -685,13 +679,12 @@ public class UnnamedSchemaWithArrayParent0AIAutoDescriptionTest : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new UnnamedSchemaWithArrayParent0AIAutoDescription();
+        var constant = new ExtensionItemAIAutoDescription();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AIAutoDescription>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAIAutoDescription>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(constant, deserialized);
     }
@@ -699,7 +692,7 @@ public class UnnamedSchemaWithArrayParent0AIAutoDescriptionTest : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AIAutoDescription>(
+        var constant = JsonSerializer.Deserialize<ExtensionItemAIAutoDescription>(
             JsonSerializer.Deserialize<JsonElement>(
                 """
                 {
@@ -710,11 +703,10 @@ public class UnnamedSchemaWithArrayParent0AIAutoDescriptionTest : TestBase
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AIAutoDescription>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAIAutoDescription>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(constant, deserialized);
     }
@@ -722,31 +714,30 @@ public class UnnamedSchemaWithArrayParent0AIAutoDescriptionTest : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AIAutoDescription>(
+        var constant = JsonSerializer.Deserialize<ExtensionItemAIAutoDescription>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AIAutoDescription>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAIAutoDescription>(
+            element,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(constant, deserialized);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTest : TestBase
+public class ExtensionItemAITasksTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasks
+        var model = new ExtensionItemAITasks
         {
             Tasks =
             [
-                new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                new ExtensionItemAITasksTaskSelectTags()
                 {
                     Instruction = "What types of clothing items are visible in this image?",
                     MaxSelections = 1,
@@ -757,9 +748,9 @@ public class UnnamedSchemaWithArrayParent0AITasksTest : TestBase
         };
 
         JsonElement expectedName = JsonSerializer.SerializeToElement("ai-tasks");
-        List<UnnamedSchemaWithArrayParent0AITasksTask> expectedTasks =
+        List<ExtensionItemAITasksTask> expectedTasks =
         [
-            new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+            new ExtensionItemAITasksTaskSelectTags()
             {
                 Instruction = "What types of clothing items are visible in this image?",
                 MaxSelections = 1,
@@ -779,11 +770,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasks
+        var model = new ExtensionItemAITasks
         {
             Tasks =
             [
-                new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                new ExtensionItemAITasksTaskSelectTags()
                 {
                     Instruction = "What types of clothing items are visible in this image?",
                     MaxSelections = 1,
@@ -794,7 +785,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasks>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasks>(
             json,
             ModelBase.SerializerOptions
         );
@@ -805,11 +796,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasks
+        var model = new ExtensionItemAITasks
         {
             Tasks =
             [
-                new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                new ExtensionItemAITasksTaskSelectTags()
                 {
                     Instruction = "What types of clothing items are visible in this image?",
                     MaxSelections = 1,
@@ -820,16 +811,16 @@ public class UnnamedSchemaWithArrayParent0AITasksTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasks>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasks>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
         JsonElement expectedName = JsonSerializer.SerializeToElement("ai-tasks");
-        List<UnnamedSchemaWithArrayParent0AITasksTask> expectedTasks =
+        List<ExtensionItemAITasksTask> expectedTasks =
         [
-            new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+            new ExtensionItemAITasksTaskSelectTags()
             {
                 Instruction = "What types of clothing items are visible in this image?",
                 MaxSelections = 1,
@@ -849,11 +840,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasks
+        var model = new ExtensionItemAITasks
         {
             Tasks =
             [
-                new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                new ExtensionItemAITasksTaskSelectTags()
                 {
                     Instruction = "What types of clothing items are visible in this image?",
                     MaxSelections = 1,
@@ -869,11 +860,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasks
+        var model = new ExtensionItemAITasks
         {
             Tasks =
             [
-                new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
+                new ExtensionItemAITasksTaskSelectTags()
                 {
                     Instruction = "What types of clothing items are visible in this image?",
                     MaxSelections = 1,
@@ -883,88 +874,84 @@ public class UnnamedSchemaWithArrayParent0AITasksTest : TestBase
             ],
         };
 
-        UnnamedSchemaWithArrayParent0AITasks copied = new(model);
+        ExtensionItemAITasks copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskTest : TestBase
+public class ExtensionItemAITasksTaskTest : TestBase
 {
     [Fact]
     public void SelectTagsValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTask value =
-            new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
-            {
-                Instruction = "What types of clothing items are visible in this image?",
-                MaxSelections = 1,
-                MinSelections = 0,
-                Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
-            };
+        ExtensionItemAITasksTask value = new ExtensionItemAITasksTaskSelectTags()
+        {
+            Instruction = "What types of clothing items are visible in this image?",
+            MaxSelections = 1,
+            MinSelections = 0,
+            Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
+        };
         value.Validate();
     }
 
     [Fact]
     public void SelectMetadataValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTask value =
-            new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata()
-            {
-                Field = "primary_color",
-                Instruction = "What is the primary color of the clothing?",
-                MaxSelections = 1,
-                MinSelections = 0,
-                Vocabulary = ["red", "blue", "green", "black", "white"],
-            };
+        ExtensionItemAITasksTask value = new ExtensionItemAITasksTaskSelectMetadata()
+        {
+            Field = "primary_color",
+            Instruction = "What is the primary color of the clothing?",
+            MaxSelections = 1,
+            MinSelections = 0,
+            Vocabulary = ["red", "blue", "green", "black", "white"],
+        };
         value.Validate();
     }
 
     [Fact]
     public void YesNoValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTask value =
-            new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+        ExtensionItemAITasksTask value = new ExtensionItemAITasksTaskYesNo()
+        {
+            Instruction = "Is this a luxury or high-end fashion item?",
+            OnNo = new()
             {
-                Instruction = "Is this a luxury or high-end fashion item?",
-                OnNo = new()
-                {
-                    AddTags = ["luxury", "premium"],
-                    RemoveTags = ["budget", "affordable"],
-                    SetMetadata = [new() { Field = "price_range", Value = "premium" }],
-                    UnsetMetadata = [new("price_range")],
-                },
-                OnUnknown = new()
-                {
-                    AddTags = ["luxury", "premium"],
-                    RemoveTags = ["budget", "affordable"],
-                    SetMetadata = [new() { Field = "price_range", Value = "premium" }],
-                    UnsetMetadata = [new("price_range")],
-                },
-                OnYes = new()
-                {
-                    AddTags = ["luxury", "premium"],
-                    RemoveTags = ["budget", "affordable"],
-                    SetMetadata = [new() { Field = "price_range", Value = "premium" }],
-                    UnsetMetadata = [new("price_range")],
-                },
-            };
+                AddTags = ["luxury", "premium"],
+                RemoveTags = ["budget", "affordable"],
+                SetMetadata = [new() { Field = "price_range", Value = "premium" }],
+                UnsetMetadata = [new("price_range")],
+            },
+            OnUnknown = new()
+            {
+                AddTags = ["luxury", "premium"],
+                RemoveTags = ["budget", "affordable"],
+                SetMetadata = [new() { Field = "price_range", Value = "premium" }],
+                UnsetMetadata = [new("price_range")],
+            },
+            OnYes = new()
+            {
+                AddTags = ["luxury", "premium"],
+                RemoveTags = ["budget", "affordable"],
+                SetMetadata = [new() { Field = "price_range", Value = "premium" }],
+                UnsetMetadata = [new("price_range")],
+            },
+        };
         value.Validate();
     }
 
     [Fact]
     public void SelectTagsSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTask value =
-            new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags()
-            {
-                Instruction = "What types of clothing items are visible in this image?",
-                MaxSelections = 1,
-                MinSelections = 0,
-                Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
-            };
+        ExtensionItemAITasksTask value = new ExtensionItemAITasksTaskSelectTags()
+        {
+            Instruction = "What types of clothing items are visible in this image?",
+            MaxSelections = 1,
+            MinSelections = 0,
+            Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
+        };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTask>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTask>(
             element,
             ModelBase.SerializerOptions
         );
@@ -975,17 +962,16 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskTest : TestBase
     [Fact]
     public void SelectMetadataSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTask value =
-            new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata()
-            {
-                Field = "primary_color",
-                Instruction = "What is the primary color of the clothing?",
-                MaxSelections = 1,
-                MinSelections = 0,
-                Vocabulary = ["red", "blue", "green", "black", "white"],
-            };
+        ExtensionItemAITasksTask value = new ExtensionItemAITasksTaskSelectMetadata()
+        {
+            Field = "primary_color",
+            Instruction = "What is the primary color of the clothing?",
+            MaxSelections = 1,
+            MinSelections = 0,
+            Vocabulary = ["red", "blue", "green", "black", "white"],
+        };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTask>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTask>(
             element,
             ModelBase.SerializerOptions
         );
@@ -996,34 +982,33 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskTest : TestBase
     [Fact]
     public void YesNoSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTask value =
-            new UnnamedSchemaWithArrayParent0AITasksTaskYesNo()
+        ExtensionItemAITasksTask value = new ExtensionItemAITasksTaskYesNo()
+        {
+            Instruction = "Is this a luxury or high-end fashion item?",
+            OnNo = new()
             {
-                Instruction = "Is this a luxury or high-end fashion item?",
-                OnNo = new()
-                {
-                    AddTags = ["luxury", "premium"],
-                    RemoveTags = ["budget", "affordable"],
-                    SetMetadata = [new() { Field = "price_range", Value = "premium" }],
-                    UnsetMetadata = [new("price_range")],
-                },
-                OnUnknown = new()
-                {
-                    AddTags = ["luxury", "premium"],
-                    RemoveTags = ["budget", "affordable"],
-                    SetMetadata = [new() { Field = "price_range", Value = "premium" }],
-                    UnsetMetadata = [new("price_range")],
-                },
-                OnYes = new()
-                {
-                    AddTags = ["luxury", "premium"],
-                    RemoveTags = ["budget", "affordable"],
-                    SetMetadata = [new() { Field = "price_range", Value = "premium" }],
-                    UnsetMetadata = [new("price_range")],
-                },
-            };
+                AddTags = ["luxury", "premium"],
+                RemoveTags = ["budget", "affordable"],
+                SetMetadata = [new() { Field = "price_range", Value = "premium" }],
+                UnsetMetadata = [new("price_range")],
+            },
+            OnUnknown = new()
+            {
+                AddTags = ["luxury", "premium"],
+                RemoveTags = ["budget", "affordable"],
+                SetMetadata = [new() { Field = "price_range", Value = "premium" }],
+                UnsetMetadata = [new("price_range")],
+            },
+            OnYes = new()
+            {
+                AddTags = ["luxury", "premium"],
+                RemoveTags = ["budget", "affordable"],
+                SetMetadata = [new() { Field = "price_range", Value = "premium" }],
+                UnsetMetadata = [new("price_range")],
+            },
+        };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTask>(
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTask>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1032,12 +1017,12 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskTest : TestBase
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
+public class ExtensionItemAITasksTaskSelectTagsTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags
+        var model = new ExtensionItemAITasksTaskSelectTags
         {
             Instruction = "What types of clothing items are visible in this image?",
             MaxSelections = 1,
@@ -1066,7 +1051,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags
+        var model = new ExtensionItemAITasksTaskSelectTags
         {
             Instruction = "What types of clothing items are visible in this image?",
             MaxSelections = 1,
@@ -1075,11 +1060,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskSelectTags>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskSelectTags>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1087,7 +1071,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags
+        var model = new ExtensionItemAITasksTaskSelectTags
         {
             Instruction = "What types of clothing items are visible in this image?",
             MaxSelections = 1,
@@ -1096,11 +1080,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskSelectTags>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskSelectTags>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedInstruction = "What types of clothing items are visible in this image?";
@@ -1124,7 +1107,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags
+        var model = new ExtensionItemAITasksTaskSelectTags
         {
             Instruction = "What types of clothing items are visible in this image?",
             MaxSelections = 1,
@@ -1138,7 +1121,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags
+        var model = new ExtensionItemAITasksTaskSelectTags
         {
             Instruction = "What types of clothing items are visible in this image?",
         };
@@ -1154,7 +1137,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags
+        var model = new ExtensionItemAITasksTaskSelectTags
         {
             Instruction = "What types of clothing items are visible in this image?",
         };
@@ -1165,7 +1148,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags
+        var model = new ExtensionItemAITasksTaskSelectTags
         {
             Instruction = "What types of clothing items are visible in this image?",
 
@@ -1186,7 +1169,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags
+        var model = new ExtensionItemAITasksTaskSelectTags
         {
             Instruction = "What types of clothing items are visible in this image?",
 
@@ -1202,7 +1185,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectTags
+        var model = new ExtensionItemAITasksTaskSelectTags
         {
             Instruction = "What types of clothing items are visible in this image?",
             MaxSelections = 1,
@@ -1210,18 +1193,18 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectTagsTest : TestBase
             Vocabulary = ["shirt", "tshirt", "dress", "trousers", "jacket"],
         };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectTags copied = new(model);
+        ExtensionItemAITasksTaskSelectTags copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBase
+public class ExtensionItemAITasksTaskSelectMetadataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata
+        var model = new ExtensionItemAITasksTaskSelectMetadata
         {
             Field = "primary_color",
             Instruction = "What is the primary color of the clothing?",
@@ -1235,7 +1218,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
         JsonElement expectedType = JsonSerializer.SerializeToElement("select_metadata");
         long expectedMaxSelections = 1;
         long expectedMinSelections = 0;
-        List<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary> expectedVocabulary =
+        List<ExtensionItemAITasksTaskSelectMetadataVocabulary> expectedVocabulary =
         [
             "red",
             "blue",
@@ -1260,7 +1243,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata
+        var model = new ExtensionItemAITasksTaskSelectMetadata
         {
             Field = "primary_color",
             Instruction = "What is the primary color of the clothing?",
@@ -1270,11 +1253,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskSelectMetadata>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1282,7 +1264,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata
+        var model = new ExtensionItemAITasksTaskSelectMetadata
         {
             Field = "primary_color",
             Instruction = "What is the primary color of the clothing?",
@@ -1292,11 +1274,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskSelectMetadata>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedField = "primary_color";
@@ -1304,7 +1285,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
         JsonElement expectedType = JsonSerializer.SerializeToElement("select_metadata");
         long expectedMaxSelections = 1;
         long expectedMinSelections = 0;
-        List<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary> expectedVocabulary =
+        List<ExtensionItemAITasksTaskSelectMetadataVocabulary> expectedVocabulary =
         [
             "red",
             "blue",
@@ -1329,7 +1310,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata
+        var model = new ExtensionItemAITasksTaskSelectMetadata
         {
             Field = "primary_color",
             Instruction = "What is the primary color of the clothing?",
@@ -1344,7 +1325,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata
+        var model = new ExtensionItemAITasksTaskSelectMetadata
         {
             Field = "primary_color",
             Instruction = "What is the primary color of the clothing?",
@@ -1361,7 +1342,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata
+        var model = new ExtensionItemAITasksTaskSelectMetadata
         {
             Field = "primary_color",
             Instruction = "What is the primary color of the clothing?",
@@ -1373,7 +1354,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata
+        var model = new ExtensionItemAITasksTaskSelectMetadata
         {
             Field = "primary_color",
             Instruction = "What is the primary color of the clothing?",
@@ -1395,7 +1376,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata
+        var model = new ExtensionItemAITasksTaskSelectMetadata
         {
             Field = "primary_color",
             Instruction = "What is the primary color of the clothing?",
@@ -1412,7 +1393,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata
+        var model = new ExtensionItemAITasksTaskSelectMetadata
         {
             Field = "primary_color",
             Instruction = "What is the primary color of the clothing?",
@@ -1421,42 +1402,42 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataTest : TestBa
             Vocabulary = ["red", "blue", "green", "black", "white"],
         };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadata copied = new(model);
+        ExtensionItemAITasksTaskSelectMetadata copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabularyTest : TestBase
+public class ExtensionItemAITasksTaskSelectMetadataVocabularyTest : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary value = "string";
+        ExtensionItemAITasksTaskSelectMetadataVocabulary value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary value = 0;
+        ExtensionItemAITasksTaskSelectMetadataVocabulary value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary value = true;
+        ExtensionItemAITasksTaskSelectMetadataVocabulary value = true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary value = "string";
+        ExtensionItemAITasksTaskSelectMetadataVocabulary value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskSelectMetadataVocabulary>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1467,10 +1448,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabularyTes
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary value = 0;
+        ExtensionItemAITasksTaskSelectMetadataVocabulary value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskSelectMetadataVocabulary>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1481,10 +1462,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabularyTes
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary value = true;
+        ExtensionItemAITasksTaskSelectMetadataVocabulary value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabulary>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskSelectMetadataVocabulary>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1493,12 +1474,12 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskSelectMetadataVocabularyTes
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
+public class ExtensionItemAITasksTaskYesNoTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNo
+        var model = new ExtensionItemAITasksTaskYesNo
         {
             Instruction = "Is this a luxury or high-end fashion item?",
             OnNo = new()
@@ -1526,21 +1507,21 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
 
         string expectedInstruction = "Is this a luxury or high-end fashion item?";
         JsonElement expectedType = JsonSerializer.SerializeToElement("yes_no");
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo expectedOnNo = new()
+        ExtensionItemAITasksTaskYesNoOnNo expectedOnNo = new()
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
             SetMetadata = [new() { Field = "price_range", Value = "premium" }],
             UnsetMetadata = [new("price_range")],
         };
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown expectedOnUnknown = new()
+        ExtensionItemAITasksTaskYesNoOnUnknown expectedOnUnknown = new()
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
             SetMetadata = [new() { Field = "price_range", Value = "premium" }],
             UnsetMetadata = [new("price_range")],
         };
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes expectedOnYes = new()
+        ExtensionItemAITasksTaskYesNoOnYes expectedOnYes = new()
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -1558,7 +1539,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNo
+        var model = new ExtensionItemAITasksTaskYesNo
         {
             Instruction = "Is this a luxury or high-end fashion item?",
             OnNo = new()
@@ -1585,11 +1566,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNo>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNo>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1597,7 +1577,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNo
+        var model = new ExtensionItemAITasksTaskYesNo
         {
             Instruction = "Is this a luxury or high-end fashion item?",
             OnNo = new()
@@ -1624,30 +1604,29 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNo>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNo>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedInstruction = "Is this a luxury or high-end fashion item?";
         JsonElement expectedType = JsonSerializer.SerializeToElement("yes_no");
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo expectedOnNo = new()
+        ExtensionItemAITasksTaskYesNoOnNo expectedOnNo = new()
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
             SetMetadata = [new() { Field = "price_range", Value = "premium" }],
             UnsetMetadata = [new("price_range")],
         };
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown expectedOnUnknown = new()
+        ExtensionItemAITasksTaskYesNoOnUnknown expectedOnUnknown = new()
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
             SetMetadata = [new() { Field = "price_range", Value = "premium" }],
             UnsetMetadata = [new("price_range")],
         };
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes expectedOnYes = new()
+        ExtensionItemAITasksTaskYesNoOnYes expectedOnYes = new()
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -1665,7 +1644,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNo
+        var model = new ExtensionItemAITasksTaskYesNo
         {
             Instruction = "Is this a luxury or high-end fashion item?",
             OnNo = new()
@@ -1697,7 +1676,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNo
+        var model = new ExtensionItemAITasksTaskYesNo
         {
             Instruction = "Is this a luxury or high-end fashion item?",
         };
@@ -1713,7 +1692,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNo
+        var model = new ExtensionItemAITasksTaskYesNo
         {
             Instruction = "Is this a luxury or high-end fashion item?",
         };
@@ -1724,7 +1703,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNo
+        var model = new ExtensionItemAITasksTaskYesNo
         {
             Instruction = "Is this a luxury or high-end fashion item?",
 
@@ -1745,7 +1724,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNo
+        var model = new ExtensionItemAITasksTaskYesNo
         {
             Instruction = "Is this a luxury or high-end fashion item?",
 
@@ -1761,7 +1740,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNo
+        var model = new ExtensionItemAITasksTaskYesNo
         {
             Instruction = "Is this a luxury or high-end fashion item?",
             OnNo = new()
@@ -1787,18 +1766,18 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoTest : TestBase
             },
         };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNo copied = new(model);
+        ExtensionItemAITasksTaskYesNo copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnNoTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo
+        var model = new ExtensionItemAITasksTaskYesNoOnNo
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -1808,11 +1787,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
 
         List<string> expectedAddTags = ["luxury", "premium"];
         List<string> expectedRemoveTags = ["budget", "affordable"];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata> expectedSetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnNoSetMetadata> expectedSetMetadata =
         [
             new() { Field = "price_range", Value = "premium" },
         ];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata> expectedUnsetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata> expectedUnsetMetadata =
         [
             new("price_range"),
         ];
@@ -1846,7 +1825,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo
+        var model = new ExtensionItemAITasksTaskYesNoOnNo
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -1855,11 +1834,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNo>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -1867,7 +1845,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo
+        var model = new ExtensionItemAITasksTaskYesNoOnNo
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -1876,20 +1854,19 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNo>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<string> expectedAddTags = ["luxury", "premium"];
         List<string> expectedRemoveTags = ["budget", "affordable"];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata> expectedSetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnNoSetMetadata> expectedSetMetadata =
         [
             new() { Field = "price_range", Value = "premium" },
         ];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata> expectedUnsetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata> expectedUnsetMetadata =
         [
             new("price_range"),
         ];
@@ -1923,7 +1900,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo
+        var model = new ExtensionItemAITasksTaskYesNoOnNo
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -1937,7 +1914,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo { };
+        var model = new ExtensionItemAITasksTaskYesNoOnNo { };
 
         Assert.Null(model.AddTags);
         Assert.False(model.RawData.ContainsKey("add_tags"));
@@ -1952,7 +1929,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo { };
+        var model = new ExtensionItemAITasksTaskYesNoOnNo { };
 
         model.Validate();
     }
@@ -1960,7 +1937,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo
+        var model = new ExtensionItemAITasksTaskYesNoOnNo
         {
             // Null should be interpreted as omitted for these properties
             AddTags = null,
@@ -1982,7 +1959,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo
+        var model = new ExtensionItemAITasksTaskYesNoOnNo
         {
             // Null should be interpreted as omitted for these properties
             AddTags = null,
@@ -1997,7 +1974,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo
+        var model = new ExtensionItemAITasksTaskYesNoOnNo
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -2005,25 +1982,25 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoTest : TestBase
             UnsetMetadata = [new("price_range")],
         };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNo copied = new(model);
+        ExtensionItemAITasksTaskYesNoOnNo copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnNoSetMetadataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnNoSetMetadata
         {
             Field = "field",
             Value = "string",
         };
 
         string expectedField = "field";
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue expectedValue = "string";
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue expectedValue = "string";
 
         Assert.Equal(expectedField, model.Field);
         Assert.Equal(expectedValue, model.Value);
@@ -2032,18 +2009,17 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataTest : 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnNoSetMetadata
         {
             Field = "field",
             Value = "string",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoSetMetadata>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -2051,22 +2027,21 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataTest : 
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnNoSetMetadata
         {
             Field = "field",
             Value = "string",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoSetMetadata>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedField = "field";
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue expectedValue = "string";
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue expectedValue = "string";
 
         Assert.Equal(expectedField, deserialized.Field);
         Assert.Equal(expectedValue, deserialized.Value);
@@ -2075,7 +2050,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataTest : 
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnNoSetMetadata
         {
             Field = "field",
             Value = "string",
@@ -2087,50 +2062,46 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataTest : 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnNoSetMetadata
         {
             Field = "field",
             Value = "string",
         };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadata copied = new(model);
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadata copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueTest : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value = "string";
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value = 0;
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value = true;
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue value = true;
         value.Validate();
     }
 
     [Fact]
     public void MixedValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value = new(
-            [
-                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
-                    "string"
-                ),
-            ]
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue value = new(
+            [new ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem("string")]
         );
         value.Validate();
     }
@@ -2138,10 +2109,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueTe
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value = "string";
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2152,10 +2123,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueTe
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value = 0;
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2166,10 +2137,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueTe
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value = true;
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2180,16 +2151,12 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueTe
     [Fact]
     public void MixedSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue value = new(
-            [
-                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem(
-                    "string"
-                ),
-            ]
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue value = new(
+            [new ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem("string")]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2198,41 +2165,36 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueTe
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemTest
-    : TestBase
+public class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemTest : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
-            "string";
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
-            0;
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
-            true;
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value = true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
-            "string";
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2243,11 +2205,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMe
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
-            0;
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2258,11 +2219,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMe
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value =
-            true;
+        ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2271,15 +2231,12 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoSetMetadataValueMe
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadataTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnNoUnsetMetadataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata { Field = "field" };
 
         string expectedField = "field";
 
@@ -2289,14 +2246,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadataTest 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata { Field = "field" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -2307,14 +2261,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadataTest 
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata { Field = "field" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2328,10 +2279,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadataTest 
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata { Field = "field" };
 
         model.Validate();
     }
@@ -2339,23 +2287,20 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadataTest 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata { Field = "field" };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnNoUnsetMetadata copied = new(model);
+        ExtensionItemAITasksTaskYesNoOnNoUnsetMetadata copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnUnknownTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknown
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -2365,11 +2310,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
 
         List<string> expectedAddTags = ["luxury", "premium"];
         List<string> expectedRemoveTags = ["budget", "affordable"];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata> expectedSetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata> expectedSetMetadata =
         [
             new() { Field = "price_range", Value = "premium" },
         ];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata> expectedUnsetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata> expectedUnsetMetadata =
         [
             new("price_range"),
         ];
@@ -2403,7 +2348,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknown
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -2412,11 +2357,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknown>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -2424,7 +2368,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknown
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -2433,20 +2377,19 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknown>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<string> expectedAddTags = ["luxury", "premium"];
         List<string> expectedRemoveTags = ["budget", "affordable"];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata> expectedSetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata> expectedSetMetadata =
         [
             new() { Field = "price_range", Value = "premium" },
         ];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata> expectedUnsetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata> expectedUnsetMetadata =
         [
             new("price_range"),
         ];
@@ -2480,7 +2423,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknown
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -2494,7 +2437,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown { };
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknown { };
 
         Assert.Null(model.AddTags);
         Assert.False(model.RawData.ContainsKey("add_tags"));
@@ -2509,7 +2452,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown { };
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknown { };
 
         model.Validate();
     }
@@ -2517,7 +2460,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknown
         {
             // Null should be interpreted as omitted for these properties
             AddTags = null,
@@ -2539,7 +2482,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknown
         {
             // Null should be interpreted as omitted for these properties
             AddTags = null,
@@ -2554,7 +2497,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknown
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -2562,26 +2505,25 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownTest : TestBa
             UnsetMetadata = [new("price_range")],
         };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknown copied = new(model);
+        ExtensionItemAITasksTaskYesNoOnUnknown copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata
         {
             Field = "field",
             Value = "string",
         };
 
         string expectedField = "field";
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue expectedValue =
-            "string";
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue expectedValue = "string";
 
         Assert.Equal(expectedField, model.Field);
         Assert.Equal(expectedValue, model.Value);
@@ -2590,7 +2532,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataTe
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata
         {
             Field = "field",
             Value = "string",
@@ -2598,7 +2540,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataTe
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -2609,7 +2551,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataTe
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata
         {
             Field = "field",
             Value = "string",
@@ -2617,15 +2559,14 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataTe
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
         string expectedField = "field";
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue expectedValue =
-            "string";
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue expectedValue = "string";
 
         Assert.Equal(expectedField, deserialized.Field);
         Assert.Equal(expectedValue, deserialized.Value);
@@ -2634,7 +2575,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataTe
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata
         {
             Field = "field",
             Value = "string",
@@ -2646,50 +2587,46 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataTe
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata
         {
             Field = "field",
             Value = "string",
         };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadata copied = new(model);
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadata copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueTest : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value = "string";
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value = 0;
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value = true;
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue value = true;
         value.Validate();
     }
 
     [Fact]
     public void MixedValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value = new(
-            [
-                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
-                    "string"
-                ),
-            ]
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue value = new(
+            [new ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem("string")]
         );
         value.Validate();
     }
@@ -2697,10 +2634,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value = "string";
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2711,10 +2648,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value = 0;
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2725,10 +2662,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value = true;
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2739,16 +2676,12 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     [Fact]
     public void MixedSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue value = new(
-            [
-                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem(
-                    "string"
-                ),
-            ]
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue value = new(
+            [new ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem("string")]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2757,41 +2690,36 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItemTest
-    : TestBase
+public class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItemTest : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
-            "string";
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
-            0;
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
-            true;
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value = true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
-            "string";
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2802,11 +2730,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
-            0;
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2817,11 +2744,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value =
-            true;
+        ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2830,15 +2756,12 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownSetMetadataVa
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadataTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata { Field = "field" };
 
         string expectedField = "field";
 
@@ -2848,14 +2771,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata { Field = "field" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -2866,14 +2786,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata { Field = "field" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2887,10 +2804,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata { Field = "field" };
 
         model.Validate();
     }
@@ -2898,23 +2812,20 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata { Field = "field" };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnUnknownUnsetMetadata copied = new(model);
+        ExtensionItemAITasksTaskYesNoOnUnknownUnsetMetadata copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnYesTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes
+        var model = new ExtensionItemAITasksTaskYesNoOnYes
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -2924,11 +2835,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
 
         List<string> expectedAddTags = ["luxury", "premium"];
         List<string> expectedRemoveTags = ["budget", "affordable"];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata> expectedSetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnYesSetMetadata> expectedSetMetadata =
         [
             new() { Field = "price_range", Value = "premium" },
         ];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata> expectedUnsetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata> expectedUnsetMetadata =
         [
             new("price_range"),
         ];
@@ -2962,7 +2873,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes
+        var model = new ExtensionItemAITasksTaskYesNoOnYes
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -2971,11 +2882,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYes>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -2983,7 +2893,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes
+        var model = new ExtensionItemAITasksTaskYesNoOnYes
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -2992,20 +2902,19 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYes>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         List<string> expectedAddTags = ["luxury", "premium"];
         List<string> expectedRemoveTags = ["budget", "affordable"];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata> expectedSetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnYesSetMetadata> expectedSetMetadata =
         [
             new() { Field = "price_range", Value = "premium" },
         ];
-        List<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata> expectedUnsetMetadata =
+        List<ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata> expectedUnsetMetadata =
         [
             new("price_range"),
         ];
@@ -3039,7 +2948,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes
+        var model = new ExtensionItemAITasksTaskYesNoOnYes
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -3053,7 +2962,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes { };
+        var model = new ExtensionItemAITasksTaskYesNoOnYes { };
 
         Assert.Null(model.AddTags);
         Assert.False(model.RawData.ContainsKey("add_tags"));
@@ -3068,7 +2977,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes { };
+        var model = new ExtensionItemAITasksTaskYesNoOnYes { };
 
         model.Validate();
     }
@@ -3076,7 +2985,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes
+        var model = new ExtensionItemAITasksTaskYesNoOnYes
         {
             // Null should be interpreted as omitted for these properties
             AddTags = null,
@@ -3098,7 +3007,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes
+        var model = new ExtensionItemAITasksTaskYesNoOnYes
         {
             // Null should be interpreted as omitted for these properties
             AddTags = null,
@@ -3113,7 +3022,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes
+        var model = new ExtensionItemAITasksTaskYesNoOnYes
         {
             AddTags = ["luxury", "premium"],
             RemoveTags = ["budget", "affordable"],
@@ -3121,25 +3030,25 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesTest : TestBase
             UnsetMetadata = [new("price_range")],
         };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYes copied = new(model);
+        ExtensionItemAITasksTaskYesNoOnYes copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnYesSetMetadataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnYesSetMetadata
         {
             Field = "field",
             Value = "string",
         };
 
         string expectedField = "field";
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue expectedValue = "string";
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue expectedValue = "string";
 
         Assert.Equal(expectedField, model.Field);
         Assert.Equal(expectedValue, model.Value);
@@ -3148,7 +3057,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataTest :
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnYesSetMetadata
         {
             Field = "field",
             Value = "string",
@@ -3156,7 +3065,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataTest :
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesSetMetadata>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -3167,7 +3076,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataTest :
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnYesSetMetadata
         {
             Field = "field",
             Value = "string",
@@ -3175,14 +3084,14 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataTest :
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesSetMetadata>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
         string expectedField = "field";
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue expectedValue = "string";
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue expectedValue = "string";
 
         Assert.Equal(expectedField, deserialized.Field);
         Assert.Equal(expectedValue, deserialized.Value);
@@ -3191,7 +3100,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataTest :
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnYesSetMetadata
         {
             Field = "field",
             Value = "string",
@@ -3203,50 +3112,46 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataTest :
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata
+        var model = new ExtensionItemAITasksTaskYesNoOnYesSetMetadata
         {
             Field = "field",
             Value = "string",
         };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadata copied = new(model);
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadata copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueTest : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value = "string";
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value = 0;
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value = true;
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue value = true;
         value.Validate();
     }
 
     [Fact]
     public void MixedValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value = new(
-            [
-                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
-                    "string"
-                ),
-            ]
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue value = new(
+            [new ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem("string")]
         );
         value.Validate();
     }
@@ -3254,10 +3159,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueT
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value = "string";
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3268,10 +3173,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueT
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value = 0;
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3282,10 +3187,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueT
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value = true;
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3296,16 +3201,12 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueT
     [Fact]
     public void MixedSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue value = new(
-            [
-                new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem(
-                    "string"
-                ),
-            ]
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue value = new(
+            [new ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem("string")]
         );
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValue>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3314,41 +3215,36 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueT
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItemTest
-    : TestBase
+public class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItemTest : TestBase
 {
     [Fact]
     public void StringValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
-            "string";
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value = "string";
         value.Validate();
     }
 
     [Fact]
     public void DoubleValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
-            0;
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value = 0;
         value.Validate();
     }
 
     [Fact]
     public void BoolValidationWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
-            true;
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value = true;
         value.Validate();
     }
 
     [Fact]
     public void StringSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
-            "string";
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value = "string";
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3359,11 +3255,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueM
     [Fact]
     public void DoubleSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
-            0;
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value = 0;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3374,11 +3269,10 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueM
     [Fact]
     public void BoolSerializationRoundtripWorks()
     {
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value =
-            true;
+        ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem value = true;
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3387,15 +3281,12 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesSetMetadataValueM
     }
 }
 
-public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadataTest : TestBase
+public class ExtensionItemAITasksTaskYesNoOnYesUnsetMetadataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata { Field = "field" };
 
         string expectedField = "field";
 
@@ -3405,14 +3296,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadataTest
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata { Field = "field" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -3423,14 +3311,11 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadataTest
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata { Field = "field" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata>(
+            JsonSerializer.Deserialize<ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3444,10 +3329,7 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadataTest
     [Fact]
     public void Validation_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata { Field = "field" };
 
         model.Validate();
     }
@@ -3455,12 +3337,9 @@ public class UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadataTest
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata
-        {
-            Field = "field",
-        };
+        var model = new ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata { Field = "field" };
 
-        UnnamedSchemaWithArrayParent0AITasksTaskYesNoOnYesUnsetMetadata copied = new(model);
+        ExtensionItemAITasksTaskYesNoOnYesUnsetMetadata copied = new(model);
 
         Assert.Equal(model, copied);
     }
