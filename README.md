@@ -7,8 +7,8 @@ The REST API documentation can be found on [imagekit.io](https://imagekit.io/doc
 ## Installation
 
 ```bash
-git clone git@github.com:stainless-sdks/imagekit-diversion-csharp.git
-dotnet add reference imagekit-diversion-csharp/src/Imagekit
+git clone git@github.com:imagekit-developer/imagekit-dotnet.git
+dotnet add reference imagekit-dotnet/src/Imagekit
 ```
 
 ## Requirements
@@ -399,4 +399,4 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/imagekit-diversion-csharp/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/imagekit-developer/imagekit-dotnet/issues) with questions, bugs, or suggestions.
