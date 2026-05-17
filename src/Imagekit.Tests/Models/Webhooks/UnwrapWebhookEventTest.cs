@@ -60,20 +60,20 @@ public class UnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -278,9 +278,9 @@ public class UnwrapWebhookEventTest : TestBase
                             Type = Webhooks::SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new Webhooks::UnnamedSchemaWithArrayParent3(true),
-                                    new Webhooks::UnnamedSchemaWithArrayParent3(10),
-                                    new Webhooks::UnnamedSchemaWithArrayParent3("Hello"),
+                                    new Webhooks::DefaultValueArrayItem(true),
+                                    new Webhooks::DefaultValueArrayItem(10),
+                                    new Webhooks::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -441,9 +441,9 @@ public class UnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent0(true),
-                                    new Files::UnnamedSchemaWithArrayParent0(10),
-                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                    new Files::DefaultValueArrayItem(true),
+                                    new Files::DefaultValueArrayItem(10),
+                                    new Files::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -522,9 +522,9 @@ public class UnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent0(true),
-                                    new Files::UnnamedSchemaWithArrayParent0(10),
-                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                    new Files::DefaultValueArrayItem(true),
+                                    new Files::DefaultValueArrayItem(10),
+                                    new Files::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -616,9 +616,9 @@ public class UnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent0(true),
-                                    new Files::UnnamedSchemaWithArrayParent0(10),
-                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                    new Files::DefaultValueArrayItem(true),
+                                    new Files::DefaultValueArrayItem(10),
+                                    new Files::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -716,20 +716,20 @@ public class UnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -946,9 +946,9 @@ public class UnwrapWebhookEventTest : TestBase
                             Type = Webhooks::SelectedFieldsSchemaItemType.Text,
                             DefaultValue = new(
                                 [
-                                    new Webhooks::UnnamedSchemaWithArrayParent3(true),
-                                    new Webhooks::UnnamedSchemaWithArrayParent3(10),
-                                    new Webhooks::UnnamedSchemaWithArrayParent3("Hello"),
+                                    new Webhooks::DefaultValueArrayItem(true),
+                                    new Webhooks::DefaultValueArrayItem(10),
+                                    new Webhooks::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1133,9 +1133,9 @@ public class UnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent0(true),
-                                    new Files::UnnamedSchemaWithArrayParent0(10),
-                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                    new Files::DefaultValueArrayItem(true),
+                                    new Files::DefaultValueArrayItem(10),
+                                    new Files::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1220,9 +1220,9 @@ public class UnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent0(true),
-                                    new Files::UnnamedSchemaWithArrayParent0(10),
-                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                    new Files::DefaultValueArrayItem(true),
+                                    new Files::DefaultValueArrayItem(10),
+                                    new Files::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1326,9 +1326,9 @@ public class UnwrapWebhookEventTest : TestBase
                             Type = Files::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::UnnamedSchemaWithArrayParent0(true),
-                                    new Files::UnnamedSchemaWithArrayParent0(10),
-                                    new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                    new Files::DefaultValueArrayItem(true),
+                                    new Files::DefaultValueArrayItem(10),
+                                    new Files::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,

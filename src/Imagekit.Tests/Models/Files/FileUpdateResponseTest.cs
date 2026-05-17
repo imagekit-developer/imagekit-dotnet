@@ -55,9 +55,9 @@ public class FileUpdateResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -131,9 +131,9 @@ public class FileUpdateResponseTest : TestBase
                     Type = Files::Type.Text,
                     DefaultValue = new(
                         [
-                            new Files::UnnamedSchemaWithArrayParent0(true),
-                            new Files::UnnamedSchemaWithArrayParent0(10),
-                            new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                            new Files::DefaultValueArrayItem(true),
+                            new Files::DefaultValueArrayItem(10),
+                            new Files::DefaultValueArrayItem("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -273,9 +273,9 @@ public class FileUpdateResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -363,9 +363,9 @@ public class FileUpdateResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -446,9 +446,9 @@ public class FileUpdateResponseTest : TestBase
                     Type = Files::Type.Text,
                     DefaultValue = new(
                         [
-                            new Files::UnnamedSchemaWithArrayParent0(true),
-                            new Files::UnnamedSchemaWithArrayParent0(10),
-                            new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                            new Files::DefaultValueArrayItem(true),
+                            new Files::DefaultValueArrayItem(10),
+                            new Files::DefaultValueArrayItem("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -588,9 +588,9 @@ public class FileUpdateResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -904,9 +904,9 @@ public class FileUpdateResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -982,9 +982,9 @@ public class FileUpdateResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1055,9 +1055,9 @@ public class FileUpdateResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1137,9 +1137,9 @@ public class FileUpdateResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1224,9 +1224,9 @@ public class FileUpdateResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1265,12 +1265,12 @@ public class FileUpdateResponseTest : TestBase
     }
 }
 
-public class IntersectionMember1Test : TestBase
+public class FileUpdateResponseFileUpdateResponseTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Files::IntersectionMember1
+        var model = new Files::FileUpdateResponseFileUpdateResponse
         {
             ExtensionStatus = new()
             {
@@ -1297,7 +1297,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Files::IntersectionMember1
+        var model = new Files::FileUpdateResponseFileUpdateResponse
         {
             ExtensionStatus = new()
             {
@@ -1310,7 +1310,7 @@ public class IntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::IntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<Files::FileUpdateResponseFileUpdateResponse>(
             json,
             ModelBase.SerializerOptions
         );
@@ -1321,7 +1321,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Files::IntersectionMember1
+        var model = new Files::FileUpdateResponseFileUpdateResponse
         {
             ExtensionStatus = new()
             {
@@ -1334,7 +1334,7 @@ public class IntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::IntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<Files::FileUpdateResponseFileUpdateResponse>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1355,7 +1355,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Files::IntersectionMember1
+        var model = new Files::FileUpdateResponseFileUpdateResponse
         {
             ExtensionStatus = new()
             {
@@ -1373,7 +1373,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Files::IntersectionMember1 { };
+        var model = new Files::FileUpdateResponseFileUpdateResponse { };
 
         Assert.Null(model.ExtensionStatus);
         Assert.False(model.RawData.ContainsKey("extensionStatus"));
@@ -1382,7 +1382,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Files::IntersectionMember1 { };
+        var model = new Files::FileUpdateResponseFileUpdateResponse { };
 
         model.Validate();
     }
@@ -1390,7 +1390,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Files::IntersectionMember1
+        var model = new Files::FileUpdateResponseFileUpdateResponse
         {
             // Null should be interpreted as omitted for these properties
             ExtensionStatus = null,
@@ -1403,7 +1403,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Files::IntersectionMember1
+        var model = new Files::FileUpdateResponseFileUpdateResponse
         {
             // Null should be interpreted as omitted for these properties
             ExtensionStatus = null,
@@ -1415,7 +1415,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Files::IntersectionMember1
+        var model = new Files::FileUpdateResponseFileUpdateResponse
         {
             ExtensionStatus = new()
             {
@@ -1427,7 +1427,7 @@ public class IntersectionMember1Test : TestBase
             },
         };
 
-        Files::IntersectionMember1 copied = new(model);
+        Files::FileUpdateResponseFileUpdateResponse copied = new(model);
 
         Assert.Equal(model, copied);
     }

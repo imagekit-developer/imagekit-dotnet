@@ -23,20 +23,20 @@ public class VideoTransformationReadyEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -63,26 +63,26 @@ public class VideoTransformationReadyEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        VideoTransformationReadyEventChangedData expectedData = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventData expectedData = new()
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
                 Output = new()
                 {
@@ -97,7 +97,7 @@ public class VideoTransformationReadyEventTest : TestBase
                 },
             },
         };
-        VideoTransformationReadyEventChangedRequest expectedRequest = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventRequest expectedRequest = new()
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -127,20 +127,20 @@ public class VideoTransformationReadyEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -187,20 +187,20 @@ public class VideoTransformationReadyEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -234,26 +234,26 @@ public class VideoTransformationReadyEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        VideoTransformationReadyEventChangedData expectedData = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventData expectedData = new()
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
                 Output = new()
                 {
@@ -268,7 +268,7 @@ public class VideoTransformationReadyEventTest : TestBase
                 },
             },
         };
-        VideoTransformationReadyEventChangedRequest expectedRequest = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventRequest expectedRequest = new()
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -298,20 +298,20 @@ public class VideoTransformationReadyEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -352,20 +352,20 @@ public class VideoTransformationReadyEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -406,20 +406,20 @@ public class VideoTransformationReadyEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -459,20 +459,20 @@ public class VideoTransformationReadyEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -516,20 +516,20 @@ public class VideoTransformationReadyEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -572,20 +572,20 @@ public class VideoTransformationReadyEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -615,12 +615,12 @@ public class VideoTransformationReadyEventTest : TestBase
     }
 }
 
-public class VideoTransformationReadyEventChangedTest : TestBase
+public class VideoTransformationReadyEventVideoTransformationReadyEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChanged
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -629,20 +629,20 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -667,26 +667,26 @@ public class VideoTransformationReadyEventChangedTest : TestBase
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        VideoTransformationReadyEventChangedData expectedData = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventData expectedData = new()
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
                 Output = new()
                 {
@@ -701,7 +701,7 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 },
             },
         };
-        VideoTransformationReadyEventChangedRequest expectedRequest = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventRequest expectedRequest = new()
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -720,7 +720,7 @@ public class VideoTransformationReadyEventChangedTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChanged
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -729,20 +729,20 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -767,10 +767,11 @@ public class VideoTransformationReadyEventChangedTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<VideoTransformationReadyEventChanged>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEvent>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -778,7 +779,7 @@ public class VideoTransformationReadyEventChangedTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationReadyEventChanged
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -787,20 +788,20 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -825,33 +826,34 @@ public class VideoTransformationReadyEventChangedTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<VideoTransformationReadyEventChanged>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEvent>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        VideoTransformationReadyEventChangedData expectedData = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventData expectedData = new()
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
                 Output = new()
                 {
@@ -866,7 +868,7 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 },
             },
         };
-        VideoTransformationReadyEventChangedRequest expectedRequest = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventRequest expectedRequest = new()
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -885,7 +887,7 @@ public class VideoTransformationReadyEventChangedTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationReadyEventChanged
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -894,20 +896,20 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -937,7 +939,7 @@ public class VideoTransformationReadyEventChangedTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new VideoTransformationReadyEventChanged
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -946,20 +948,20 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -989,7 +991,7 @@ public class VideoTransformationReadyEventChangedTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new VideoTransformationReadyEventChanged
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -998,20 +1000,20 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -1040,7 +1042,7 @@ public class VideoTransformationReadyEventChangedTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new VideoTransformationReadyEventChanged
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1049,20 +1051,20 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -1095,7 +1097,7 @@ public class VideoTransformationReadyEventChangedTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new VideoTransformationReadyEventChanged
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1104,20 +1106,20 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -1149,7 +1151,7 @@ public class VideoTransformationReadyEventChangedTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationReadyEventChanged
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1158,20 +1160,20 @@ public class VideoTransformationReadyEventChangedTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -1195,37 +1197,37 @@ public class VideoTransformationReadyEventChangedTest : TestBase
             Timings = new() { DownloadDuration = 0, EncodingDuration = 0 },
         };
 
-        VideoTransformationReadyEventChanged copied = new(model);
+        VideoTransformationReadyEventVideoTransformationReadyEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoTransformationReadyEventChangedDataTest : TestBase
+public class VideoTransformationReadyEventVideoTransformationReadyEventDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChangedData
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventData
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
                 Output = new()
                 {
@@ -1241,35 +1243,40 @@ public class VideoTransformationReadyEventChangedDataTest : TestBase
             },
         };
 
-        VideoTransformationReadyEventChangedDataAsset expectedAsset = new("https://example.com");
-        VideoTransformationReadyEventChangedDataTransformation expectedTransformation = new()
-        {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
-            Options = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventDataAsset expectedAsset = new(
+            "https://example.com"
+        );
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation expectedTransformation =
+            new()
             {
-                AudioCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
-                AutoRotate = true,
-                Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
-                Quality = 0,
-                StreamProtocol =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
-                Variants = ["string"],
-                VideoCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
-            },
-            Output = new()
-            {
-                Url = "https://example.com",
-                VideoMetadata = new()
+                Type =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
+                Options = new()
                 {
-                    Bitrate = 0,
-                    Duration = 0,
-                    Height = 0,
-                    Width = 0,
+                    AudioCodec =
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                    AutoRotate = true,
+                    Format =
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                    Quality = 0,
+                    StreamProtocol =
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                    Variants = ["string"],
+                    VideoCodec =
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
-            },
-        };
+                Output = new()
+                {
+                    Url = "https://example.com",
+                    VideoMetadata = new()
+                    {
+                        Bitrate = 0,
+                        Duration = 0,
+                        Height = 0,
+                        Width = 0,
+                    },
+                },
+            };
 
         Assert.Equal(expectedAsset, model.Asset);
         Assert.Equal(expectedTransformation, model.Transformation);
@@ -1278,26 +1285,26 @@ public class VideoTransformationReadyEventChangedDataTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChangedData
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventData
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
                 Output = new()
                 {
@@ -1314,10 +1321,11 @@ public class VideoTransformationReadyEventChangedDataTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<VideoTransformationReadyEventChangedData>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventData>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1325,26 +1333,26 @@ public class VideoTransformationReadyEventChangedDataTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationReadyEventChangedData
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventData
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
                 Output = new()
                 {
@@ -1361,41 +1369,47 @@ public class VideoTransformationReadyEventChangedDataTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<VideoTransformationReadyEventChangedData>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventData>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
-        VideoTransformationReadyEventChangedDataAsset expectedAsset = new("https://example.com");
-        VideoTransformationReadyEventChangedDataTransformation expectedTransformation = new()
-        {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
-            Options = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventDataAsset expectedAsset = new(
+            "https://example.com"
+        );
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation expectedTransformation =
+            new()
             {
-                AudioCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
-                AutoRotate = true,
-                Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
-                Quality = 0,
-                StreamProtocol =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
-                Variants = ["string"],
-                VideoCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
-            },
-            Output = new()
-            {
-                Url = "https://example.com",
-                VideoMetadata = new()
+                Type =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
+                Options = new()
                 {
-                    Bitrate = 0,
-                    Duration = 0,
-                    Height = 0,
-                    Width = 0,
+                    AudioCodec =
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                    AutoRotate = true,
+                    Format =
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                    Quality = 0,
+                    StreamProtocol =
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                    Variants = ["string"],
+                    VideoCodec =
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
-            },
-        };
+                Output = new()
+                {
+                    Url = "https://example.com",
+                    VideoMetadata = new()
+                    {
+                        Bitrate = 0,
+                        Duration = 0,
+                        Height = 0,
+                        Width = 0,
+                    },
+                },
+            };
 
         Assert.Equal(expectedAsset, deserialized.Asset);
         Assert.Equal(expectedTransformation, deserialized.Transformation);
@@ -1404,26 +1418,26 @@ public class VideoTransformationReadyEventChangedDataTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedData
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventData
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
                 Output = new()
                 {
@@ -1445,26 +1459,26 @@ public class VideoTransformationReadyEventChangedDataTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationReadyEventChangedData
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventData
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                 },
                 Output = new()
                 {
@@ -1480,18 +1494,18 @@ public class VideoTransformationReadyEventChangedDataTest : TestBase
             },
         };
 
-        VideoTransformationReadyEventChangedData copied = new(model);
+        VideoTransformationReadyEventVideoTransformationReadyEventData copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoTransformationReadyEventChangedDataAssetTest : TestBase
+public class VideoTransformationReadyEventVideoTransformationReadyEventDataAssetTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataAsset
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataAsset
         {
             Url = "https://example.com",
         };
@@ -1504,14 +1518,14 @@ public class VideoTransformationReadyEventChangedDataAssetTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataAsset
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataAsset
         {
             Url = "https://example.com",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationReadyEventChangedDataAsset>(
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventDataAsset>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -1522,14 +1536,14 @@ public class VideoTransformationReadyEventChangedDataAssetTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataAsset
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataAsset
         {
             Url = "https://example.com",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationReadyEventChangedDataAsset>(
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventDataAsset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1543,7 +1557,7 @@ public class VideoTransformationReadyEventChangedDataAssetTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataAsset
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataAsset
         {
             Url = "https://example.com",
         };
@@ -1554,37 +1568,40 @@ public class VideoTransformationReadyEventChangedDataAssetTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataAsset
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataAsset
         {
             Url = "https://example.com",
         };
 
-        VideoTransformationReadyEventChangedDataAsset copied = new(model);
+        VideoTransformationReadyEventVideoTransformationReadyEventDataAsset copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoTransformationReadyEventChangedDataTransformationTest : TestBase
+public class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformation
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
         {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+            Type =
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
             Options = new()
             {
                 AudioCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
-                Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
             },
             Output = new()
             {
@@ -1599,21 +1616,26 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
             },
         };
 
-        ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType> expectedType =
-            VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation;
-        VideoTransformationReadyEventChangedDataTransformationOptions expectedOptions = new()
-        {
-            AudioCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
-        };
+        ApiEnum<
+            string,
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
+        > expectedType =
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation;
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions expectedOptions =
+            new()
+            {
+                AudioCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+            };
         Output expectedOutput = new()
         {
             Url = "https://example.com",
@@ -1634,21 +1656,23 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformation
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
         {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+            Type =
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
             Options = new()
             {
                 AudioCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
-                Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
             },
             Output = new()
             {
@@ -1665,7 +1689,7 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationReadyEventChangedDataTransformation>(
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -1676,21 +1700,23 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformation
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
         {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+            Type =
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
             Options = new()
             {
                 AudioCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
-                Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
             },
             Output = new()
             {
@@ -1707,27 +1733,32 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationReadyEventChangedDataTransformation>(
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType> expectedType =
-            VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation;
-        VideoTransformationReadyEventChangedDataTransformationOptions expectedOptions = new()
-        {
-            AudioCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
-        };
+        ApiEnum<
+            string,
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
+        > expectedType =
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation;
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions expectedOptions =
+            new()
+            {
+                AudioCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+            };
         Output expectedOutput = new()
         {
             Url = "https://example.com",
@@ -1748,21 +1779,23 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformation
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
         {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+            Type =
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
             Options = new()
             {
                 AudioCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
-                Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
             },
             Output = new()
             {
@@ -1783,9 +1816,10 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformation
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
         {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+            Type =
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
         };
 
         Assert.Null(model.Options);
@@ -1797,9 +1831,10 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformation
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
         {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+            Type =
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
         };
 
         model.Validate();
@@ -1808,9 +1843,10 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformation
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
         {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+            Type =
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
 
             // Null should be interpreted as omitted for these properties
             Options = null,
@@ -1826,9 +1862,10 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformation
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
         {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+            Type =
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
 
             // Null should be interpreted as omitted for these properties
             Options = null,
@@ -1841,21 +1878,23 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformation
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
         {
-            Type = VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation,
+            Type =
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
             Options = new()
             {
                 AudioCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
-                Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
             },
             Output = new()
             {
@@ -1870,25 +1909,36 @@ public class VideoTransformationReadyEventChangedDataTransformationTest : TestBa
             },
         };
 
-        VideoTransformationReadyEventChangedDataTransformation copied = new(model);
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation copied = new(
+            model
+        );
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoTransformationReadyEventChangedDataTransformationTypeTest : TestBase
+public class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationTypeTest
+    : TestBase
 {
     [Theory]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationType.GifToVideo)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationType.VideoThumbnail)]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.GifToVideo
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoThumbnail
+    )]
     public void Validation_Works(
-        VideoTransformationReadyEventChangedDataTransformationType rawValue
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType> value =
-            rawValue;
+        ApiEnum<
+            string,
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
+        > value = rawValue;
         value.Validate();
     }
 
@@ -1896,7 +1946,10 @@ public class VideoTransformationReadyEventChangedDataTransformationTypeTest : Te
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType>
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
+            >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
@@ -1904,20 +1957,31 @@ public class VideoTransformationReadyEventChangedDataTransformationTypeTest : Te
     }
 
     [Theory]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationType.VideoTransformation)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationType.GifToVideo)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationType.VideoThumbnail)]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.GifToVideo
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoThumbnail
+    )]
     public void SerializationRoundtrip_Works(
-        VideoTransformationReadyEventChangedDataTransformationType rawValue
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType> value =
-            rawValue;
+        ApiEnum<
+            string,
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
+        > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType>
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
+            >
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -1927,58 +1991,68 @@ public class VideoTransformationReadyEventChangedDataTransformationTypeTest : Te
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType>
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
+            >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationType>
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
+            >
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
 }
 
-public class VideoTransformationReadyEventChangedDataTransformationOptionsTest : TestBase
+public class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformationOptions
-        {
-            AudioCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
+            {
+                AudioCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+            };
 
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
         > expectedAudioCodec =
-            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac;
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac;
         bool expectedAutoRotate = true;
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsFormat
-        > expectedFormat = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4;
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
+        > expectedFormat =
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4;
         long expectedQuality = 0;
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
         > expectedStreamProtocol =
-            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls;
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls;
         List<string> expectedVariants = ["string"];
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
         > expectedVideoCodec =
-            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264;
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264;
 
         Assert.Equal(expectedAudioCodec, model.AudioCodec);
         Assert.Equal(expectedAutoRotate, model.AutoRotate);
@@ -1997,23 +2071,25 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsTest :
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformationOptions
-        {
-            AudioCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
+            {
+                AudioCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+            };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationReadyEventChangedDataTransformationOptions>(
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -2024,23 +2100,25 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsTest :
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformationOptions
-        {
-            AudioCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
+            {
+                AudioCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+            };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationReadyEventChangedDataTransformationOptions>(
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2048,26 +2126,27 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsTest :
 
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
         > expectedAudioCodec =
-            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac;
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac;
         bool expectedAutoRotate = true;
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsFormat
-        > expectedFormat = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4;
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
+        > expectedFormat =
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4;
         long expectedQuality = 0;
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
         > expectedStreamProtocol =
-            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls;
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls;
         List<string> expectedVariants = ["string"];
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
         > expectedVideoCodec =
-            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264;
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264;
 
         Assert.Equal(expectedAudioCodec, deserialized.AudioCodec);
         Assert.Equal(expectedAutoRotate, deserialized.AutoRotate);
@@ -2086,19 +2165,21 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsTest :
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformationOptions
-        {
-            AudioCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
+            {
+                AudioCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+            };
 
         model.Validate();
     }
@@ -2106,7 +2187,9 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsTest :
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformationOptions { };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
+            { };
 
         Assert.Null(model.AudioCodec);
         Assert.False(model.RawData.ContainsKey("audio_codec"));
@@ -2127,7 +2210,9 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsTest :
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformationOptions { };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
+            { };
 
         model.Validate();
     }
@@ -2135,17 +2220,18 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsTest :
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformationOptions
-        {
-            // Null should be interpreted as omitted for these properties
-            AudioCodec = null,
-            AutoRotate = null,
-            Format = null,
-            Quality = null,
-            StreamProtocol = null,
-            Variants = null,
-            VideoCodec = null,
-        };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
+            {
+                // Null should be interpreted as omitted for these properties
+                AudioCodec = null,
+                AutoRotate = null,
+                Format = null,
+                Quality = null,
+                StreamProtocol = null,
+                Variants = null,
+                VideoCodec = null,
+            };
 
         Assert.Null(model.AudioCodec);
         Assert.False(model.RawData.ContainsKey("audio_codec"));
@@ -2166,17 +2252,18 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsTest :
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformationOptions
-        {
-            // Null should be interpreted as omitted for these properties
-            AudioCodec = null,
-            AutoRotate = null,
-            Format = null,
-            Quality = null,
-            StreamProtocol = null,
-            Variants = null,
-            VideoCodec = null,
-        };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
+            {
+                // Null should be interpreted as omitted for these properties
+                AudioCodec = null,
+                AutoRotate = null,
+                Format = null,
+                Quality = null,
+                StreamProtocol = null,
+                Variants = null,
+                VideoCodec = null,
+            };
 
         model.Validate();
     }
@@ -2184,170 +2271,47 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsTest :
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationReadyEventChangedDataTransformationOptions
-        {
-            AudioCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format = VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
+            {
+                AudioCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+            };
 
-        VideoTransformationReadyEventChangedDataTransformationOptions copied = new(model);
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions copied =
+            new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodecTest : TestBase
-{
-    [Theory]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Opus)]
-    public void Validation_Works(
-        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec rawValue
-    )
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<
-            string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec
-        > value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-
-        Assert.NotNull(value);
-        Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Aac)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec.Opus)]
-    public void SerializationRoundtrip_Works(
-        VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec rawValue
-    )
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<
-            string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec
-        > value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class VideoTransformationReadyEventChangedDataTransformationOptionsFormatTest : TestBase
-{
-    [Theory]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Webm)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Jpg)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Png)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Webp)]
-    public void Validation_Works(
-        VideoTransformationReadyEventChangedDataTransformationOptionsFormat rawValue
-    )
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsFormat> value =
-            rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsFormat>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-
-        Assert.NotNull(value);
-        Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Mp4)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Webm)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Jpg)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Png)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsFormat.Webp)]
-    public void SerializationRoundtrip_Works(
-        VideoTransformationReadyEventChangedDataTransformationOptionsFormat rawValue
-    )
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsFormat> value =
-            rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsFormat>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsFormat>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsFormat>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocolTest
+public class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodecTest
     : TestBase
 {
     [Theory]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Dash)]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Opus
+    )]
     public void Validation_Works(
-        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol rawValue
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
         > value = rawValue;
         value.Validate();
     }
@@ -2358,7 +2322,7 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsStream
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
@@ -2367,23 +2331,27 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsStream
     }
 
     [Theory]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Hls)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol.Dash)]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Opus
+    )]
     public void SerializationRoundtrip_Works(
-        VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol rawValue
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
         > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -2396,14 +2364,14 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsStream
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -2411,20 +2379,33 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsStream
     }
 }
 
-public class VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodecTest : TestBase
+public class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormatTest
+    : TestBase
 {
     [Theory]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.Vp9)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.Av1)]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webm
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Jpg
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Png
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webp
+    )]
     public void Validation_Works(
-        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec rawValue
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
         > value = rawValue;
         value.Validate();
     }
@@ -2433,7 +2414,10 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsVideoC
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec>
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
+            >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
@@ -2441,22 +2425,37 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsVideoC
     }
 
     [Theory]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.H264)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.Vp9)]
-    [InlineData(VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec.Av1)]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webm
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Jpg
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Png
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webp
+    )]
     public void SerializationRoundtrip_Works(
-        VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec rawValue
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
         > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec>
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
+            >
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -2466,11 +2465,193 @@ public class VideoTransformationReadyEventChangedDataTransformationOptionsVideoC
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec>
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
+            >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec>
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocolTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Dash
+    )]
+    public void Validation_Works(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Dash
+    )]
+    public void SerializationRoundtrip_Works(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodecTest
+    : TestBase
+{
+    [Theory]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Vp9
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Av1
+    )]
+    public void Validation_Works(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
+        > value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Vp9
+    )]
+    [InlineData(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Av1
+    )]
+    public void SerializationRoundtrip_Works(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<
+            string,
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
+        > value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
+            >
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
+            >
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -2749,12 +2930,12 @@ public class VideoMetadataTest : TestBase
     }
 }
 
-public class VideoTransformationReadyEventChangedRequestTest : TestBase
+public class VideoTransformationReadyEventVideoTransformationReadyEventRequestTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChangedRequest
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2773,7 +2954,7 @@ public class VideoTransformationReadyEventChangedRequestTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationReadyEventChangedRequest
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2781,10 +2962,11 @@ public class VideoTransformationReadyEventChangedRequestTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<VideoTransformationReadyEventChangedRequest>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventRequest>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -2792,7 +2974,7 @@ public class VideoTransformationReadyEventChangedRequestTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationReadyEventChangedRequest
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2800,10 +2982,11 @@ public class VideoTransformationReadyEventChangedRequestTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<VideoTransformationReadyEventChangedRequest>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventRequest>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedUrl = "https://example.com";
@@ -2818,7 +3001,7 @@ public class VideoTransformationReadyEventChangedRequestTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedRequest
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2831,7 +3014,7 @@ public class VideoTransformationReadyEventChangedRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new VideoTransformationReadyEventChangedRequest
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2844,7 +3027,7 @@ public class VideoTransformationReadyEventChangedRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedRequest
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2856,7 +3039,7 @@ public class VideoTransformationReadyEventChangedRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new VideoTransformationReadyEventChangedRequest
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2872,7 +3055,7 @@ public class VideoTransformationReadyEventChangedRequestTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new VideoTransformationReadyEventChangedRequest
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2887,14 +3070,14 @@ public class VideoTransformationReadyEventChangedRequestTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationReadyEventChangedRequest
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
             UserAgent = "user_agent",
         };
 
-        VideoTransformationReadyEventChangedRequest copied = new(model);
+        VideoTransformationReadyEventVideoTransformationReadyEventRequest copied = new(model);
 
         Assert.Equal(model, copied);
     }

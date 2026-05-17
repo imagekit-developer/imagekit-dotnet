@@ -1599,7 +1599,7 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
     }
 
     public FileUploadResponseSelectedFieldsSchemaItemDefaultValue(
-        IReadOnlyList<UnnamedSchemaWithArrayParent1> value,
+        IReadOnlyList<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem> value,
         JsonElement? element = null
     )
     {
@@ -1677,24 +1677,27 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="List{T}"/> where <c>T</c> is a <c>UnnamedSchemaWithArrayParent1</c>.
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem</c>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMixed(out var value)) {
-    ///     // `value` is of type `IReadOnlyList&lt;UnnamedSchemaWithArrayParent1&gt;`
+    ///     // `value` is of type `IReadOnlyList&lt;FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
     public bool TryPickMixed(
-        [NotNullWhen(true)] out IReadOnlyList<UnnamedSchemaWithArrayParent1>? value
+        [NotNullWhen(true)]
+            out IReadOnlyList<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem>? value
     )
     {
-        value = this.Value as IReadOnlyList<UnnamedSchemaWithArrayParent1>;
+        value =
+            this.Value
+            as IReadOnlyList<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem>;
         return value != null;
     }
 
@@ -1715,7 +1718,7 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent1&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1724,7 +1727,9 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
         System::Action<string> @string,
         System::Action<double> @double,
         System::Action<bool> @bool,
-        System::Action<IReadOnlyList<UnnamedSchemaWithArrayParent1>> mixed
+        System::Action<
+            IReadOnlyList<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem>
+        > mixed
     )
     {
         switch (this.Value)
@@ -1738,7 +1743,7 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
             case bool value:
                 @bool(value);
                 break;
-            case IReadOnlyList<UnnamedSchemaWithArrayParent1> value:
+            case IReadOnlyList<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem> value:
                 mixed(value);
                 break;
             default:
@@ -1766,7 +1771,7 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
     ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
     ///     (bool value) =&gt; {...},
-    ///     (IReadOnlyList&lt;UnnamedSchemaWithArrayParent1&gt; value) =&gt; {...}
+    ///     (IReadOnlyList&lt;FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1775,7 +1780,10 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
         System::Func<string, T> @string,
         System::Func<double, T> @double,
         System::Func<bool, T> @bool,
-        System::Func<IReadOnlyList<UnnamedSchemaWithArrayParent1>, T> mixed
+        System::Func<
+            IReadOnlyList<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem>,
+            T
+        > mixed
     )
     {
         return this.Value switch
@@ -1783,7 +1791,8 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
             string value => @string(value),
             double value => @double(value),
             bool value => @bool(value),
-            IReadOnlyList<UnnamedSchemaWithArrayParent1> value => mixed(value),
+            IReadOnlyList<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem> value =>
+                mixed(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of FileUploadResponseSelectedFieldsSchemaItemDefaultValue"
             ),
@@ -1803,8 +1812,12 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
     ) => new(value);
 
     public static implicit operator FileUploadResponseSelectedFieldsSchemaItemDefaultValue(
-        List<UnnamedSchemaWithArrayParent1> value
-    ) => new((IReadOnlyList<UnnamedSchemaWithArrayParent1>)value);
+        List<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem> value
+    ) =>
+        new(
+            (IReadOnlyList<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem>)
+                value
+        );
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -1861,7 +1874,8 @@ public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValue : Mod
             string _ => 0,
             double _ => 1,
             bool _ => 2,
-            IReadOnlyList<UnnamedSchemaWithArrayParent1> _ => 3,
+            IReadOnlyList<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem> _ =>
+                3,
             _ => -1,
         };
     }
@@ -1910,10 +1924,9 @@ sealed class FileUploadResponseSelectedFieldsSchemaItemDefaultValueConverter
 
         try
         {
-            var deserialized = JsonSerializer.Deserialize<List<UnnamedSchemaWithArrayParent1>>(
-                element,
-                options
-            );
+            var deserialized = JsonSerializer.Deserialize<
+                List<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem>
+            >(element, options);
             if (deserialized != null)
             {
                 foreach (var item in deserialized)
@@ -1941,8 +1954,11 @@ sealed class FileUploadResponseSelectedFieldsSchemaItemDefaultValueConverter
     }
 }
 
-[JsonConverter(typeof(UnnamedSchemaWithArrayParent1Converter))]
-public record class UnnamedSchemaWithArrayParent1 : ModelBase
+[JsonConverter(
+    typeof(FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItemConverter)
+)]
+public record class FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem
+    : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1959,25 +1975,36 @@ public record class UnnamedSchemaWithArrayParent1 : ModelBase
         }
     }
 
-    public UnnamedSchemaWithArrayParent1(string value, JsonElement? element = null)
+    public FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
+        string value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent1(double value, JsonElement? element = null)
+    public FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
+        double value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent1(bool value, JsonElement? element = null)
+    public FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
+        bool value,
+        JsonElement? element = null
+    )
     {
         this.Value = value;
         this._element = element;
     }
 
-    public UnnamedSchemaWithArrayParent1(JsonElement element)
+    public FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
+        JsonElement element
+    )
     {
         this._element = element;
     }
@@ -2085,7 +2112,7 @@ public record class UnnamedSchemaWithArrayParent1 : ModelBase
                 break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of UnnamedSchemaWithArrayParent1"
+                    "Data did not match any variant of FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem"
                 );
         }
     }
@@ -2124,16 +2151,22 @@ public record class UnnamedSchemaWithArrayParent1 : ModelBase
             double value => @double(value),
             bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent1"
+                "Data did not match any variant of FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem"
             ),
         };
     }
 
-    public static implicit operator UnnamedSchemaWithArrayParent1(string value) => new(value);
+    public static implicit operator FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
+        string value
+    ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent1(double value) => new(value);
+    public static implicit operator FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
+        double value
+    ) => new(value);
 
-    public static implicit operator UnnamedSchemaWithArrayParent1(bool value) => new(value);
+    public static implicit operator FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
+        bool value
+    ) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -2150,12 +2183,14 @@ public record class UnnamedSchemaWithArrayParent1 : ModelBase
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of UnnamedSchemaWithArrayParent1"
+                "Data did not match any variant of FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem"
             );
         }
     }
 
-    public virtual bool Equals(UnnamedSchemaWithArrayParent1? other) =>
+    public virtual bool Equals(
+        FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem? other
+    ) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -2183,9 +2218,10 @@ public record class UnnamedSchemaWithArrayParent1 : ModelBase
     }
 }
 
-sealed class UnnamedSchemaWithArrayParent1Converter : JsonConverter<UnnamedSchemaWithArrayParent1>
+sealed class FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItemConverter
+    : JsonConverter<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem>
 {
-    public override UnnamedSchemaWithArrayParent1? Read(
+    public override FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2228,7 +2264,7 @@ sealed class UnnamedSchemaWithArrayParent1Converter : JsonConverter<UnnamedSchem
 
     public override void Write(
         Utf8JsonWriter writer,
-        UnnamedSchemaWithArrayParent1 value,
+        FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem value,
         JsonSerializerOptions options
     )
     {

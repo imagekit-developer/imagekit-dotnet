@@ -55,9 +55,9 @@ public class AssetListResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -149,9 +149,9 @@ public class AssetListResponseTest : TestBase
                         Type = Files::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::UnnamedSchemaWithArrayParent0(true),
-                                new Files::UnnamedSchemaWithArrayParent0(10),
-                                new Files::UnnamedSchemaWithArrayParent0("Hello"),
+                                new Files::DefaultValueArrayItem(true),
+                                new Files::DefaultValueArrayItem(10),
+                                new Files::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,

@@ -754,8 +754,13 @@ class FileUpdateResponseFromRaw : IFromRawJson<FileUpdateResponse>
         FileUpdateResponse.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<IntersectionMember1, IntersectionMember1FromRaw>))]
-public sealed record class IntersectionMember1 : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        FileUpdateResponseFileUpdateResponse,
+        FileUpdateResponseFileUpdateResponseFromRaw
+    >)
+)]
+public sealed record class FileUpdateResponseFileUpdateResponse : JsonModel
 {
     public ExtensionStatus? ExtensionStatus
     {
@@ -781,29 +786,31 @@ public sealed record class IntersectionMember1 : JsonModel
         this.ExtensionStatus?.Validate();
     }
 
-    public IntersectionMember1() { }
+    public FileUpdateResponseFileUpdateResponse() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public IntersectionMember1(IntersectionMember1 intersectionMember1)
-        : base(intersectionMember1) { }
+    public FileUpdateResponseFileUpdateResponse(
+        FileUpdateResponseFileUpdateResponse fileUpdateResponseFileUpdateResponse
+    )
+        : base(fileUpdateResponseFileUpdateResponse) { }
 #pragma warning restore CS8618
 
-    public IntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FileUpdateResponseFileUpdateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    IntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    FileUpdateResponseFileUpdateResponse(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static IntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="FileUpdateResponseFileUpdateResponseFromRaw.FromRawUnchecked"/>
+    public static FileUpdateResponseFileUpdateResponse FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -811,11 +818,13 @@ public sealed record class IntersectionMember1 : JsonModel
     }
 }
 
-class IntersectionMember1FromRaw : IFromRawJson<IntersectionMember1>
+class FileUpdateResponseFileUpdateResponseFromRaw
+    : IFromRawJson<FileUpdateResponseFileUpdateResponse>
 {
     /// <inheritdoc/>
-    public IntersectionMember1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        IntersectionMember1.FromRawUnchecked(rawData);
+    public FileUpdateResponseFileUpdateResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => FileUpdateResponseFileUpdateResponse.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<ExtensionStatus, ExtensionStatusFromRaw>))]

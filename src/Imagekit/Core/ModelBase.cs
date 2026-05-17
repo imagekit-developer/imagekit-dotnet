@@ -140,23 +140,23 @@ public abstract record class ModelBase
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationReadyEventChangedDataTransformationType
+                Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsAudioCodec
+                Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsFormat
+                Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsStreamProtocol
+                Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationReadyEventChangedDataTransformationOptionsVideoCodec
+                Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
             >(),
         },
     };
