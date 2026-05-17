@@ -1,16 +1,14 @@
-# Imagekit Diversion C# API Library
+# Image Kit C# API Library
 
-The Imagekit Diversion C# SDK provides convenient access to the [Imagekit Diversion REST API](https://imagekit.io) from applications written in C#.
+The Image Kit C# SDK provides convenient access to the [Image Kit REST API](https://imagekit.io/docs/api-reference) from applications written in C#.
 
-It is generated with [Stainless](https://www.stainless.com/).
-
-The REST API documentation can be found on [imagekit.io](https://imagekit.io).
+The REST API documentation can be found on [imagekit.io](https://imagekit.io/docs/api-reference).
 
 ## Installation
 
 ```bash
 git clone git@github.com:stainless-sdks/imagekit-diversion-csharp.git
-dotnet add reference imagekit-diversion-csharp/src/ImagekitDiversion
+dotnet add reference imagekit-diversion-csharp/src/Imagekit
 ```
 
 ## Requirements
@@ -22,14 +20,22 @@ This library requires .NET Standard 2.0 or later.
 See the [`examples`](examples) directory for complete and runnable examples.
 
 ```csharp
-using ImagekitDiversion;
-using ImagekitDiversion.Models.Dummy;
+using System;
+using System.Text;
+using Imagekit;
+using Imagekit.Models.Files;
 
-ImagekitDiversionClient client = new();
+ImageKitClient client = new();
 
-DummyTestParams parameters = new();
+FileUploadParams parameters = new()
+{
+    File = Encoding.UTF8.GetBytes("https://www.example.com/public-url.jpg"),
+    FileName = "file-name.jpg",
+};
 
-await client.Dummy.Test(parameters);
+var response = await client.Files.Upload(parameters);
+
+Console.WriteLine(response);
 ```
 
 ## Client configuration
@@ -37,20 +43,20 @@ await client.Dummy.Test(parameters);
 Configure the client using environment variables:
 
 ```csharp
-using ImagekitDiversion;
+using Imagekit;
 
-// Configured using the IMAGEKIT_DIVERSION_USERNAME, IMAGEKIT_DIVERSION_PASSWORD and IMAGEKIT_DIVERSION_BASE_URL environment variables
-ImagekitDiversionClient client = new();
+// Configured using the IMAGEKIT_PRIVATE_KEY, OPTIONAL_IMAGEKIT_IGNORES_THIS, IMAGEKIT_WEBHOOK_SECRET and IMAGE_KIT_BASE_URL environment variables
+ImageKitClient client = new();
 ```
 
 Or manually:
 
 ```csharp
-using ImagekitDiversion;
+using Imagekit;
 
-ImagekitDiversionClient client = new()
+ImageKitClient client = new()
 {
-    Username = "My Username",
+    PrivateKey = "My Private Key",
     Password = "My Password",
 };
 ```
@@ -59,11 +65,12 @@ Or using a combination of the two approaches.
 
 See this table for the available options:
 
-| Property   | Environment variable          | Required | Default value               |
-| ---------- | ----------------------------- | -------- | --------------------------- |
-| `Username` | `IMAGEKIT_DIVERSION_USERNAME` | true     | -                           |
-| `Password` | `IMAGEKIT_DIVERSION_PASSWORD` | true     | -                           |
-| `BaseUrl`  | `IMAGEKIT_DIVERSION_BASE_URL` | true     | `"https://api.imagekit.io"` |
+| Property        | Environment variable             | Required | Default value               |
+| --------------- | -------------------------------- | -------- | --------------------------- |
+| `PrivateKey`    | `IMAGEKIT_PRIVATE_KEY`           | true     | -                           |
+| `Password`      | `OPTIONAL_IMAGEKIT_IGNORES_THIS` | false    | `"do_not_set"`              |
+| `WebhookSecret` | `IMAGEKIT_WEBHOOK_SECRET`        | false    | -                           |
+| `BaseUrl`       | `IMAGE_KIT_BASE_URL`             | true     | `"https://api.imagekit.io"` |
 
 ### Modifying configuration
 
@@ -72,7 +79,7 @@ To temporarily use a modified client configuration, while reusing the same conne
 ```csharp
 using System;
 
-await client
+var response = await client
     .WithOptions(options =>
         options with
         {
@@ -80,7 +87,9 @@ await client
             Timeout = TimeSpan.FromSeconds(42),
         }
     )
-    .Dummy.Test(parameters);
+    .Files.Upload(parameters);
+
+Console.WriteLine(response);
 ```
 
 Using a [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) makes it easy to construct the modified options.
@@ -89,9 +98,9 @@ The `WithOptions` method does not affect the original client or service.
 
 ## Requests and responses
 
-To send a request to the Imagekit Diversion API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a C# class.
+To send a request to the Image Kit API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a C# class.
 
-For example, `client.Api.V1.Files.Upload` should be called with an instance of `FileUploadParams`, and it will return an instance of `Task<Upload>`.
+For example, `client.Files.Upload` should be called with an instance of `FileUploadParams`, and it will return an instance of `Task<FileUploadResponse>`.
 
 ## Raw responses
 
@@ -100,7 +109,7 @@ The SDK defines methods that deserialize responses into instances of C# classes.
 To access this data, prefix any HTTP method call on a client or service with `WithRawResponse`:
 
 ```csharp
-var response = await client.WithRawResponse.Dummy.Test();
+var response = await client.WithRawResponse.Files.Upload(parameters);
 var statusCode = response.StatusCode;
 var headers = response.Headers;
 ```
@@ -111,10 +120,10 @@ For non-streaming responses, you can deserialize the response into an instance o
 
 ```csharp
 using System;
-using ImagekitDiversion.Models.Api.V1.Files;
+using Imagekit.Models.Files;
 
-var response = await client.WithRawResponse.Api.V1.Files.Upload(parameters);
-Upload deserialized = await response.Deserialize();
+var response = await client.WithRawResponse.Files.Upload(parameters);
+FileUploadResponse deserialized = await response.Deserialize();
 Console.WriteLine(deserialized);
 ```
 
@@ -122,26 +131,26 @@ Console.WriteLine(deserialized);
 
 The SDK throws custom unchecked exception types:
 
-- `ImagekitDiversionApiException`: Base class for API errors. See this table for which exception subclass is thrown for each HTTP status code:
+- `ImageKitApiException`: Base class for API errors. See this table for which exception subclass is thrown for each HTTP status code:
 
-| Status | Exception                                        |
-| ------ | ------------------------------------------------ |
-| 400    | `ImagekitDiversionBadRequestException`           |
-| 401    | `ImagekitDiversionUnauthorizedException`         |
-| 403    | `ImagekitDiversionForbiddenException`            |
-| 404    | `ImagekitDiversionNotFoundException`             |
-| 422    | `ImagekitDiversionUnprocessableEntityException`  |
-| 429    | `ImagekitDiversionRateLimitException`            |
-| 5xx    | `ImagekitDiversion5xxException`                  |
-| others | `ImagekitDiversionUnexpectedStatusCodeException` |
+| Status | Exception                               |
+| ------ | --------------------------------------- |
+| 400    | `ImageKitBadRequestException`           |
+| 401    | `ImageKitUnauthorizedException`         |
+| 403    | `ImageKitForbiddenException`            |
+| 404    | `ImageKitNotFoundException`             |
+| 422    | `ImageKitUnprocessableEntityException`  |
+| 429    | `ImageKitRateLimitException`            |
+| 5xx    | `ImageKit5xxException`                  |
+| others | `ImageKitUnexpectedStatusCodeException` |
 
-Additionally, all 4xx errors inherit from `ImagekitDiversion4xxException`.
+Additionally, all 4xx errors inherit from `ImageKit4xxException`.
 
-- `ImagekitDiversionIOException`: I/O networking errors.
+- `ImageKitIOException`: I/O networking errors.
 
-- `ImagekitDiversionInvalidDataException`: Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
+- `ImageKitInvalidDataException`: Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
 
-- `ImagekitDiversionException`: Base class for all exceptions.
+- `ImageKitException`: Base class for all exceptions.
 
 ## Network options
 
@@ -162,19 +171,23 @@ The API may also explicitly instruct the SDK to retry or not retry a request.
 To set a custom number of retries, configure the client using the `MaxRetries` method:
 
 ```csharp
-using ImagekitDiversion;
+using Imagekit;
 
-ImagekitDiversionClient client = new() { MaxRetries = 3 };
+ImageKitClient client = new() { MaxRetries = 3 };
 ```
 
 Or configure a single method call using [`WithOptions`](#modifying-configuration):
 
 ```csharp
-await client
+using System;
+
+var response = await client
     .WithOptions(options =>
         options with { MaxRetries = 3 }
     )
-    .Dummy.Test(parameters);
+    .Files.Upload(parameters);
+
+Console.WriteLine(response);
 ```
 
 ### Timeouts
@@ -185,9 +198,9 @@ To set a custom timeout, configure the client using the `Timeout` option:
 
 ```csharp
 using System;
-using ImagekitDiversion;
+using Imagekit;
 
-ImagekitDiversionClient client = new() { Timeout = TimeSpan.FromSeconds(42) };
+ImageKitClient client = new() { Timeout = TimeSpan.FromSeconds(42) };
 ```
 
 Or configure a single method call using [`WithOptions`](#modifying-configuration):
@@ -195,11 +208,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-await client
+var response = await client
     .WithOptions(options =>
         options with { Timeout = TimeSpan.FromSeconds(42) }
     )
-    .Dummy.Test(parameters);
+    .Files.Upload(parameters);
+
+Console.WriteLine(response);
 ```
 
 ### Proxies
@@ -209,7 +224,7 @@ To route requests through a proxy, configure your client with a custom [`HttpCli
 ```csharp
 using System.Net;
 using System.Net.Http;
-using ImagekitDiversion;
+using Imagekit;
 
 var httpClient = new HttpClient
 (
@@ -219,7 +234,7 @@ var httpClient = new HttpClient
     }
 );
 
-ImagekitDiversionClient client = new() { HttpClient = httpClient };
+ImageKitClient client = new() { HttpClient = httpClient };
 ```
 
 ## Undocumented API functionality
@@ -233,9 +248,10 @@ To set undocumented parameters, a constructor exists that accepts dictionaries f
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using ImagekitDiversion.Models.Dummy;
+using Imagekit.Core;
+using Imagekit.Models.Files;
 
-DummyTestParams parameters = new
+FileUploadParams parameters = new
 (
     rawHeaderData: new Dictionary<string, JsonElement>()
     {
@@ -247,7 +263,7 @@ DummyTestParams parameters = new
         { "custom_query_param", JsonSerializer.SerializeToElement(42) }
     },
 
-    rawBodyData: new Dictionary<string, JsonElement>()
+    rawBodyData: new Dictionary<string, MultipartJsonElement>()
     {
         { "custom_body_param", JsonSerializer.SerializeToElement(42) }
     }
@@ -255,25 +271,7 @@ DummyTestParams parameters = new
 {
     // Documented properties can still be added here.
     // In case of conflict, these parameters take precedence over the custom parameters.
-    BaseOverlay = new()
-    {
-        LayerMode = LayerMode.Multiply,
-        Position = new()
-        {
-            AnchorPoint = AnchorPoint.Top,
-            Focus = Focus.Center,
-            X = 0,
-            XCenter = 0,
-            Y = 0,
-            YCenter = 0,
-        },
-        Timing = new()
-        {
-            Duration = 0,
-            End = 0,
-            Start = 0,
-        },
-    },
+    Expire = 0
 };
 ```
 
@@ -284,7 +282,7 @@ This can also be used to set a documented parameter to an undocumented or not ye
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using ImagekitDiversion.Models.Api.V1.Files;
+using Imagekit.Models.Files;
 
 var parameters = FileUploadParams.FromRawUnchecked
 (
@@ -308,11 +306,11 @@ Undocumented properties, or undocumented values of documented properties, on nes
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using ImagekitDiversion.Models.Dummy;
+using Imagekit.Models.Files;
 
-DummyTestParams parameters = new()
+FileUploadParams parameters = new()
 {
-    BaseOverlay = new
+    Transformation = new
     (
         new Dictionary<string, JsonElement>
         {
@@ -327,11 +325,11 @@ Required properties on the nested parameter can also be changed or omitted using
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using ImagekitDiversion.Models.Dummy;
+using Imagekit.Models.Files;
 
-DummyTestParams parameters = new()
+FileUploadParams parameters = new()
 {
-    BaseOverlay = BaseOverlay.FromRawUnchecked
+    Transformation = Transformation.FromRawUnchecked
     (
         new Dictionary<string, JsonElement>
         {
@@ -348,7 +346,7 @@ To access undocumented response properties, the `RawData` property can be used:
 ```csharp
 using System.Text.Json;
 
-var response = client.Dummy.Test()
+var response = client.Files.Upload(parameters)
 if (response.RawData.TryGetValue("my_custom_key", out JsonElement value))
 {
     // Do something with `value`
@@ -361,21 +359,21 @@ if (response.RawData.TryGetValue("my_custom_key", out JsonElement value))
 
 In rare cases, the API may return a response that doesn't match the expected type. For example, the SDK may expect a property to contain a `string`, but the API could return something else.
 
-By default, the SDK will not throw an exception in this case. It will throw `ImagekitDiversionInvalidDataException` only if you directly access the property.
+By default, the SDK will not throw an exception in this case. It will throw `ImageKitInvalidDataException` only if you directly access the property.
 
 If you would prefer to check that the response is completely well-typed upfront, then either call `Validate`:
 
 ```csharp
-var upload = client.Api.V1.Files.Upload(parameters);
-upload.Validate();
+var response = client.Files.Upload(parameters);
+response.Validate();
 ```
 
 Or configure the client using the `ResponseValidation` option:
 
 ```csharp
-using ImagekitDiversion;
+using Imagekit;
 
-ImagekitDiversionClient client = new() { ResponseValidation = true };
+ImageKitClient client = new() { ResponseValidation = true };
 ```
 
 Or configure a single method call using [`WithOptions`](#modifying-configuration):
@@ -383,13 +381,13 @@ Or configure a single method call using [`WithOptions`](#modifying-configuration
 ```csharp
 using System;
 
-var upload = await client
+var response = await client
     .WithOptions(options =>
         options with { ResponseValidation = true }
     )
-    .Api.V1.Files.Upload(parameters);
+    .Files.Upload(parameters);
 
-Console.WriteLine(upload);
+Console.WriteLine(response);
 ```
 
 ## Semantic versioning

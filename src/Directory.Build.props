@@ -1,11 +1,11 @@
 <Project>
   <PropertyGroup>
-    <Authors>Imagekit Diversion</Authors>
-    <Company>Imagekit Diversion</Company>
+    <Authors>Image Kit</Authors>
+    <Company>Image Kit</Company>
     <PackageTags>sdk;api;http;library</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <Copyright>Copyright 2026 Imagekit Diversion</Copyright>
-    <PackageProjectUrl>https://imagekit.io</PackageProjectUrl>
+    <Copyright>Copyright 2026 Image Kit</Copyright>
+    <PackageProjectUrl>https://imagekit.io/docs/api-reference</PackageProjectUrl>
     <RepositoryUrl>https://www.github.com/stainless-sdks/imagekit-diversion-csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
