@@ -1,0 +1,34 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Imagekit Diversion</Authors>
+    <Company>Imagekit Diversion</Company>
+    <PackageTags>sdk;api;http;library</PackageTags>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Copyright>Copyright 2026 Imagekit Diversion</Copyright>
+    <PackageProjectUrl>https://imagekit.io</PackageProjectUrl>
+    <RepositoryUrl>https://www.github.com/stainless-sdks/imagekit-diversion-csharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <!-- Documentation-->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Disable missing XML documentation warnings. -->
+    <NoWarn>$(NoWarn),1573,1591</NoWarn>
+
+    <!-- Source link -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <DebugType>embedded</DebugType>
+
+    <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+    <LangVersion>12</LangVersion>
+    <Configurations>Debug;Release</Configurations>
+    <BuildPackage>true</BuildPackage>
+    <Deterministic>true</Deterministic>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <!-- Disable deprecation warnings since we may reference our own deprecated symbols. -->
+    <NoWarn>$(NoWarn),0618</NoWarn>
+  </PropertyGroup>
+</Project>
