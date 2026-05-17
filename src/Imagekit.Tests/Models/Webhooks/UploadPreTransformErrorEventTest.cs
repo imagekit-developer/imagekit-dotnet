@@ -20,7 +20,7 @@ public class UploadPreTransformErrorEventTest : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -31,17 +31,17 @@ public class UploadPreTransformErrorEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPreTransformErrorEventIntersectionMember1Data expectedData = new()
+        UploadPreTransformErrorEventUploadPreTransformErrorEventData expectedData = new()
         {
             Name = "name",
             Path = "path",
             Transformation = new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             ),
         };
-        UploadPreTransformErrorEventIntersectionMember1Request expectedRequest = new()
+        UploadPreTransformErrorEventUploadPreTransformErrorEventRequest expectedRequest = new()
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -67,7 +67,7 @@ public class UploadPreTransformErrorEventTest : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -97,7 +97,7 @@ public class UploadPreTransformErrorEventTest : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -115,17 +115,17 @@ public class UploadPreTransformErrorEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPreTransformErrorEventIntersectionMember1Data expectedData = new()
+        UploadPreTransformErrorEventUploadPreTransformErrorEventData expectedData = new()
         {
             Name = "name",
             Path = "path",
             Transformation = new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             ),
         };
-        UploadPreTransformErrorEventIntersectionMember1Request expectedRequest = new()
+        UploadPreTransformErrorEventUploadPreTransformErrorEventRequest expectedRequest = new()
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -151,7 +151,7 @@ public class UploadPreTransformErrorEventTest : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -175,7 +175,7 @@ public class UploadPreTransformErrorEventTest : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -189,12 +189,12 @@ public class UploadPreTransformErrorEventTest : TestBase
     }
 }
 
-public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
+public class UploadPreTransformErrorEventUploadPreTransformErrorEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -202,7 +202,7 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -211,17 +211,17 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPreTransformErrorEventIntersectionMember1Data expectedData = new()
+        UploadPreTransformErrorEventUploadPreTransformErrorEventData expectedData = new()
         {
             Name = "name",
             Path = "path",
             Transformation = new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             ),
         };
-        UploadPreTransformErrorEventIntersectionMember1Request expectedRequest = new()
+        UploadPreTransformErrorEventUploadPreTransformErrorEventRequest expectedRequest = new()
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -237,7 +237,7 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -245,7 +245,7 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -255,7 +255,7 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformErrorEventIntersectionMember1>(
+            JsonSerializer.Deserialize<UploadPreTransformErrorEventUploadPreTransformErrorEvent>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -266,7 +266,7 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -274,7 +274,7 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -284,24 +284,24 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformErrorEventIntersectionMember1>(
+            JsonSerializer.Deserialize<UploadPreTransformErrorEventUploadPreTransformErrorEvent>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPreTransformErrorEventIntersectionMember1Data expectedData = new()
+        UploadPreTransformErrorEventUploadPreTransformErrorEventData expectedData = new()
         {
             Name = "name",
             Path = "path",
             Transformation = new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             ),
         };
-        UploadPreTransformErrorEventIntersectionMember1Request expectedRequest = new()
+        UploadPreTransformErrorEventUploadPreTransformErrorEventRequest expectedRequest = new()
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -317,7 +317,7 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -325,7 +325,7 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -339,7 +339,7 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -347,7 +347,7 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -355,23 +355,23 @@ public class UploadPreTransformErrorEventIntersectionMember1Test : TestBase
             Request = new() { Transformation = "transformation", XRequestID = "x_request_id" },
         };
 
-        UploadPreTransformErrorEventIntersectionMember1 copied = new(model);
+        UploadPreTransformErrorEventUploadPreTransformErrorEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UploadPreTransformErrorEventIntersectionMember1DataTest : TestBase
+public class UploadPreTransformErrorEventUploadPreTransformErrorEventDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1Data
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventData
         {
             Name = "name",
             Path = "path",
             Transformation = new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             ),
@@ -379,9 +379,9 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTest : TestBase
 
         string expectedName = "name";
         string expectedPath = "path";
-        UploadPreTransformErrorEventIntersectionMember1DataTransformation expectedTransformation =
+        UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformation expectedTransformation =
             new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             );
@@ -394,12 +394,12 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1Data
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventData
         {
             Name = "name",
             Path = "path",
             Transformation = new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             ),
@@ -407,7 +407,7 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTest : TestBase
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformErrorEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<UploadPreTransformErrorEventUploadPreTransformErrorEventData>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -418,12 +418,12 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1Data
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventData
         {
             Name = "name",
             Path = "path",
             Transformation = new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             ),
@@ -431,7 +431,7 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTest : TestBase
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformErrorEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<UploadPreTransformErrorEventUploadPreTransformErrorEventData>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -439,9 +439,9 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTest : TestBase
 
         string expectedName = "name";
         string expectedPath = "path";
-        UploadPreTransformErrorEventIntersectionMember1DataTransformation expectedTransformation =
+        UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformation expectedTransformation =
             new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             );
@@ -454,12 +454,12 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1Data
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventData
         {
             Name = "name",
             Path = "path",
             Transformation = new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             ),
@@ -471,36 +471,36 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1Data
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventData
         {
             Name = "name",
             Path = "path",
             Transformation = new(
-                new UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                     "encoding_failed"
                 )
             ),
         };
 
-        UploadPreTransformErrorEventIntersectionMember1Data copied = new(model);
+        UploadPreTransformErrorEventUploadPreTransformErrorEventData copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UploadPreTransformErrorEventIntersectionMember1DataTransformationTest : TestBase
+public class UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1DataTransformation
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformation
         {
             Error = new("encoding_failed"),
         };
 
-        UploadPreTransformErrorEventIntersectionMember1DataTransformationError expectedError = new(
-            "encoding_failed"
-        );
+        UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError expectedError =
+            new("encoding_failed");
 
         Assert.Equal(expectedError, model.Error);
     }
@@ -508,14 +508,14 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTransformationTe
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1DataTransformation
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformation
         {
             Error = new("encoding_failed"),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformErrorEventIntersectionMember1DataTransformation>(
+            JsonSerializer.Deserialize<UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformation>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -526,22 +526,21 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTransformationTe
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1DataTransformation
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformation
         {
             Error = new("encoding_failed"),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformErrorEventIntersectionMember1DataTransformation>(
+            JsonSerializer.Deserialize<UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformation>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
-        UploadPreTransformErrorEventIntersectionMember1DataTransformationError expectedError = new(
-            "encoding_failed"
-        );
+        UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError expectedError =
+            new("encoding_failed");
 
         Assert.Equal(expectedError, deserialized.Error);
     }
@@ -549,7 +548,7 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTransformationTe
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1DataTransformation
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformation
         {
             Error = new("encoding_failed"),
         };
@@ -560,26 +559,30 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTransformationTe
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1DataTransformation
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformation
         {
             Error = new("encoding_failed"),
         };
 
-        UploadPreTransformErrorEventIntersectionMember1DataTransformation copied = new(model);
+        UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformation copied = new(
+            model
+        );
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UploadPreTransformErrorEventIntersectionMember1DataTransformationErrorTest : TestBase
+public class UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationErrorTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1DataTransformationError
-        {
-            Reason = "encoding_failed",
-        };
+        var model =
+            new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError
+            {
+                Reason = "encoding_failed",
+            };
 
         string expectedReason = "encoding_failed";
 
@@ -589,14 +592,15 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTransformationEr
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1DataTransformationError
-        {
-            Reason = "encoding_failed",
-        };
+        var model =
+            new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError
+            {
+                Reason = "encoding_failed",
+            };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformErrorEventIntersectionMember1DataTransformationError>(
+            JsonSerializer.Deserialize<UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -607,14 +611,15 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTransformationEr
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1DataTransformationError
-        {
-            Reason = "encoding_failed",
-        };
+        var model =
+            new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError
+            {
+                Reason = "encoding_failed",
+            };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformErrorEventIntersectionMember1DataTransformationError>(
+            JsonSerializer.Deserialize<UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -628,10 +633,11 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTransformationEr
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1DataTransformationError
-        {
-            Reason = "encoding_failed",
-        };
+        var model =
+            new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError
+            {
+                Reason = "encoding_failed",
+            };
 
         model.Validate();
     }
@@ -639,23 +645,25 @@ public class UploadPreTransformErrorEventIntersectionMember1DataTransformationEr
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1DataTransformationError
-        {
-            Reason = "encoding_failed",
-        };
+        var model =
+            new UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError
+            {
+                Reason = "encoding_failed",
+            };
 
-        UploadPreTransformErrorEventIntersectionMember1DataTransformationError copied = new(model);
+        UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError copied =
+            new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UploadPreTransformErrorEventIntersectionMember1RequestTest : TestBase
+public class UploadPreTransformErrorEventUploadPreTransformErrorEventRequestTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1Request
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventRequest
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -671,7 +679,7 @@ public class UploadPreTransformErrorEventIntersectionMember1RequestTest : TestBa
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1Request
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventRequest
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -679,7 +687,7 @@ public class UploadPreTransformErrorEventIntersectionMember1RequestTest : TestBa
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformErrorEventIntersectionMember1Request>(
+            JsonSerializer.Deserialize<UploadPreTransformErrorEventUploadPreTransformErrorEventRequest>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -690,7 +698,7 @@ public class UploadPreTransformErrorEventIntersectionMember1RequestTest : TestBa
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1Request
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventRequest
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -698,7 +706,7 @@ public class UploadPreTransformErrorEventIntersectionMember1RequestTest : TestBa
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformErrorEventIntersectionMember1Request>(
+            JsonSerializer.Deserialize<UploadPreTransformErrorEventUploadPreTransformErrorEventRequest>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -714,7 +722,7 @@ public class UploadPreTransformErrorEventIntersectionMember1RequestTest : TestBa
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1Request
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventRequest
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -726,13 +734,13 @@ public class UploadPreTransformErrorEventIntersectionMember1RequestTest : TestBa
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPreTransformErrorEventIntersectionMember1Request
+        var model = new UploadPreTransformErrorEventUploadPreTransformErrorEventRequest
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
         };
 
-        UploadPreTransformErrorEventIntersectionMember1Request copied = new(model);
+        UploadPreTransformErrorEventUploadPreTransformErrorEventRequest copied = new(model);
 
         Assert.Equal(model, copied);
     }

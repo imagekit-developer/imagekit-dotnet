@@ -54,12 +54,12 @@ public sealed record class FileVersionDeleteEvent : JsonModel
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required FileVersionDeleteEventIntersectionMember1Data Data
+    public required FileVersionDeleteEventFileVersionDeleteEventData Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<FileVersionDeleteEventIntersectionMember1Data>(
+            return this._rawData.GetNotNullClass<FileVersionDeleteEventFileVersionDeleteEventData>(
                 "data"
             );
         }
@@ -122,11 +122,11 @@ class FileVersionDeleteEventFromRaw : IFromRawJson<FileVersionDeleteEvent>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        FileVersionDeleteEventIntersectionMember1,
-        FileVersionDeleteEventIntersectionMember1FromRaw
+        FileVersionDeleteEventFileVersionDeleteEvent,
+        FileVersionDeleteEventFileVersionDeleteEventFromRaw
     >)
 )]
-public sealed record class FileVersionDeleteEventIntersectionMember1 : JsonModel
+public sealed record class FileVersionDeleteEventFileVersionDeleteEvent : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -141,12 +141,12 @@ public sealed record class FileVersionDeleteEventIntersectionMember1 : JsonModel
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required FileVersionDeleteEventIntersectionMember1Data Data
+    public required FileVersionDeleteEventFileVersionDeleteEventData Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<FileVersionDeleteEventIntersectionMember1Data>(
+            return this._rawData.GetNotNullClass<FileVersionDeleteEventFileVersionDeleteEventData>(
                 "data"
             );
         }
@@ -182,20 +182,20 @@ public sealed record class FileVersionDeleteEventIntersectionMember1 : JsonModel
         }
     }
 
-    public FileVersionDeleteEventIntersectionMember1()
+    public FileVersionDeleteEventFileVersionDeleteEvent()
     {
         this.Type = JsonSerializer.SerializeToElement("file-version.deleted");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FileVersionDeleteEventIntersectionMember1(
-        FileVersionDeleteEventIntersectionMember1 fileVersionDeleteEventIntersectionMember1
+    public FileVersionDeleteEventFileVersionDeleteEvent(
+        FileVersionDeleteEventFileVersionDeleteEvent fileVersionDeleteEventFileVersionDeleteEvent
     )
-        : base(fileVersionDeleteEventIntersectionMember1) { }
+        : base(fileVersionDeleteEventFileVersionDeleteEvent) { }
 #pragma warning restore CS8618
 
-    public FileVersionDeleteEventIntersectionMember1(
+    public FileVersionDeleteEventFileVersionDeleteEvent(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -206,14 +206,14 @@ public sealed record class FileVersionDeleteEventIntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FileVersionDeleteEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    FileVersionDeleteEventFileVersionDeleteEvent(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FileVersionDeleteEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static FileVersionDeleteEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="FileVersionDeleteEventFileVersionDeleteEventFromRaw.FromRawUnchecked"/>
+    public static FileVersionDeleteEventFileVersionDeleteEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -221,22 +221,22 @@ public sealed record class FileVersionDeleteEventIntersectionMember1 : JsonModel
     }
 }
 
-class FileVersionDeleteEventIntersectionMember1FromRaw
-    : IFromRawJson<FileVersionDeleteEventIntersectionMember1>
+class FileVersionDeleteEventFileVersionDeleteEventFromRaw
+    : IFromRawJson<FileVersionDeleteEventFileVersionDeleteEvent>
 {
     /// <inheritdoc/>
-    public FileVersionDeleteEventIntersectionMember1 FromRawUnchecked(
+    public FileVersionDeleteEventFileVersionDeleteEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FileVersionDeleteEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => FileVersionDeleteEventFileVersionDeleteEvent.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        FileVersionDeleteEventIntersectionMember1Data,
-        FileVersionDeleteEventIntersectionMember1DataFromRaw
+        FileVersionDeleteEventFileVersionDeleteEventData,
+        FileVersionDeleteEventFileVersionDeleteEventDataFromRaw
     >)
 )]
-public sealed record class FileVersionDeleteEventIntersectionMember1Data : JsonModel
+public sealed record class FileVersionDeleteEventFileVersionDeleteEventData : JsonModel
 {
     /// <summary>
     /// The unique `fileId` of the deleted file.
@@ -271,17 +271,17 @@ public sealed record class FileVersionDeleteEventIntersectionMember1Data : JsonM
         _ = this.VersionID;
     }
 
-    public FileVersionDeleteEventIntersectionMember1Data() { }
+    public FileVersionDeleteEventFileVersionDeleteEventData() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FileVersionDeleteEventIntersectionMember1Data(
-        FileVersionDeleteEventIntersectionMember1Data fileVersionDeleteEventIntersectionMember1Data
+    public FileVersionDeleteEventFileVersionDeleteEventData(
+        FileVersionDeleteEventFileVersionDeleteEventData fileVersionDeleteEventFileVersionDeleteEventData
     )
-        : base(fileVersionDeleteEventIntersectionMember1Data) { }
+        : base(fileVersionDeleteEventFileVersionDeleteEventData) { }
 #pragma warning restore CS8618
 
-    public FileVersionDeleteEventIntersectionMember1Data(
+    public FileVersionDeleteEventFileVersionDeleteEventData(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -290,14 +290,14 @@ public sealed record class FileVersionDeleteEventIntersectionMember1Data : JsonM
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FileVersionDeleteEventIntersectionMember1Data(FrozenDictionary<string, JsonElement> rawData)
+    FileVersionDeleteEventFileVersionDeleteEventData(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FileVersionDeleteEventIntersectionMember1DataFromRaw.FromRawUnchecked"/>
-    public static FileVersionDeleteEventIntersectionMember1Data FromRawUnchecked(
+    /// <inheritdoc cref="FileVersionDeleteEventFileVersionDeleteEventDataFromRaw.FromRawUnchecked"/>
+    public static FileVersionDeleteEventFileVersionDeleteEventData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -305,11 +305,11 @@ public sealed record class FileVersionDeleteEventIntersectionMember1Data : JsonM
     }
 }
 
-class FileVersionDeleteEventIntersectionMember1DataFromRaw
-    : IFromRawJson<FileVersionDeleteEventIntersectionMember1Data>
+class FileVersionDeleteEventFileVersionDeleteEventDataFromRaw
+    : IFromRawJson<FileVersionDeleteEventFileVersionDeleteEventData>
 {
     /// <inheritdoc/>
-    public FileVersionDeleteEventIntersectionMember1Data FromRawUnchecked(
+    public FileVersionDeleteEventFileVersionDeleteEventData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FileVersionDeleteEventIntersectionMember1Data.FromRawUnchecked(rawData);
+    ) => FileVersionDeleteEventFileVersionDeleteEventData.FromRawUnchecked(rawData);
 }

@@ -587,12 +587,12 @@ public class FileCreateEventTest : TestBase
     }
 }
 
-public class IntersectionMember1Test : TestBase
+public class FileCreateEventFileCreateEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new IntersectionMember1
+        var model = new FileCreateEventFileCreateEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -746,7 +746,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new IntersectionMember1
+        var model = new FileCreateEventFileCreateEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -821,7 +821,7 @@ public class IntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<IntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FileCreateEventFileCreateEvent>(
             json,
             ModelBase.SerializerOptions
         );
@@ -832,7 +832,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new IntersectionMember1
+        var model = new FileCreateEventFileCreateEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -907,7 +907,7 @@ public class IntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<IntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FileCreateEventFileCreateEvent>(
             element,
             ModelBase.SerializerOptions
         );
@@ -993,7 +993,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new IntersectionMember1
+        var model = new FileCreateEventFileCreateEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1073,7 +1073,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new IntersectionMember1
+        var model = new FileCreateEventFileCreateEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1147,7 +1147,7 @@ public class IntersectionMember1Test : TestBase
             },
         };
 
-        IntersectionMember1 copied = new(model);
+        FileCreateEventFileCreateEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }

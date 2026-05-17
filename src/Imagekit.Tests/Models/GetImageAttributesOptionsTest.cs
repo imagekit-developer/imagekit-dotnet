@@ -75,7 +75,7 @@ public class GetImageAttributesOptionsTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -187,7 +187,7 @@ public class GetImageAttributesOptionsTest : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -339,7 +339,7 @@ public class GetImageAttributesOptionsTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -465,7 +465,7 @@ public class GetImageAttributesOptionsTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -584,7 +584,7 @@ public class GetImageAttributesOptionsTest : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -736,7 +736,7 @@ public class GetImageAttributesOptionsTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -960,7 +960,7 @@ public class GetImageAttributesOptionsTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1015,12 +1015,12 @@ public class GetImageAttributesOptionsTest : TestBase
     }
 }
 
-public class IntersectionMember1Test : TestBase
+public class GetImageAttributesOptionsGetImageAttributesOptionsTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new IntersectionMember1
+        var model = new GetImageAttributesOptionsGetImageAttributesOptions
         {
             DeviceBreakpoints = [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
             ImageBreakpoints = [16, 32, 48, 64, 96, 128, 256, 384],
@@ -1052,7 +1052,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new IntersectionMember1
+        var model = new GetImageAttributesOptionsGetImageAttributesOptions
         {
             DeviceBreakpoints = [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
             ImageBreakpoints = [16, 32, 48, 64, 96, 128, 256, 384],
@@ -1061,10 +1061,11 @@ public class IntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<IntersectionMember1>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<GetImageAttributesOptionsGetImageAttributesOptions>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1072,7 +1073,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new IntersectionMember1
+        var model = new GetImageAttributesOptionsGetImageAttributesOptions
         {
             DeviceBreakpoints = [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
             ImageBreakpoints = [16, 32, 48, 64, 96, 128, 256, 384],
@@ -1081,10 +1082,11 @@ public class IntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<IntersectionMember1>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<GetImageAttributesOptionsGetImageAttributesOptions>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         List<double> expectedDeviceBreakpoints = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
@@ -1111,7 +1113,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new IntersectionMember1
+        var model = new GetImageAttributesOptionsGetImageAttributesOptions
         {
             DeviceBreakpoints = [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
             ImageBreakpoints = [16, 32, 48, 64, 96, 128, 256, 384],
@@ -1125,7 +1127,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new IntersectionMember1 { };
+        var model = new GetImageAttributesOptionsGetImageAttributesOptions { };
 
         Assert.Null(model.DeviceBreakpoints);
         Assert.False(model.RawData.ContainsKey("deviceBreakpoints"));
@@ -1140,7 +1142,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new IntersectionMember1 { };
+        var model = new GetImageAttributesOptionsGetImageAttributesOptions { };
 
         model.Validate();
     }
@@ -1148,7 +1150,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new IntersectionMember1
+        var model = new GetImageAttributesOptionsGetImageAttributesOptions
         {
             // Null should be interpreted as omitted for these properties
             DeviceBreakpoints = null,
@@ -1170,7 +1172,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new IntersectionMember1
+        var model = new GetImageAttributesOptionsGetImageAttributesOptions
         {
             // Null should be interpreted as omitted for these properties
             DeviceBreakpoints = null,
@@ -1185,7 +1187,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new IntersectionMember1
+        var model = new GetImageAttributesOptionsGetImageAttributesOptions
         {
             DeviceBreakpoints = [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
             ImageBreakpoints = [16, 32, 48, 64, 96, 128, 256, 384],
@@ -1193,7 +1195,7 @@ public class IntersectionMember1Test : TestBase
             Width = 400,
         };
 
-        IntersectionMember1 copied = new(model);
+        GetImageAttributesOptionsGetImageAttributesOptions copied = new(model);
 
         Assert.Equal(model, copied);
     }

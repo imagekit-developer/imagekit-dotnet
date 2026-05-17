@@ -587,12 +587,12 @@ public class FileUpdateEventTest : TestBase
     }
 }
 
-public class FileUpdateEventIntersectionMember1Test : TestBase
+public class FileUpdateEventFileUpdateEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FileUpdateEventIntersectionMember1
+        var model = new FileUpdateEventFileUpdateEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -746,7 +746,7 @@ public class FileUpdateEventIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FileUpdateEventIntersectionMember1
+        var model = new FileUpdateEventFileUpdateEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -821,7 +821,7 @@ public class FileUpdateEventIntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUpdateEventIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FileUpdateEventFileUpdateEvent>(
             json,
             ModelBase.SerializerOptions
         );
@@ -832,7 +832,7 @@ public class FileUpdateEventIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FileUpdateEventIntersectionMember1
+        var model = new FileUpdateEventFileUpdateEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -907,7 +907,7 @@ public class FileUpdateEventIntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUpdateEventIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FileUpdateEventFileUpdateEvent>(
             element,
             ModelBase.SerializerOptions
         );
@@ -993,7 +993,7 @@ public class FileUpdateEventIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FileUpdateEventIntersectionMember1
+        var model = new FileUpdateEventFileUpdateEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1073,7 +1073,7 @@ public class FileUpdateEventIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FileUpdateEventIntersectionMember1
+        var model = new FileUpdateEventFileUpdateEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1147,7 +1147,7 @@ public class FileUpdateEventIntersectionMember1Test : TestBase
             },
         };
 
-        FileUpdateEventIntersectionMember1 copied = new(model);
+        FileUpdateEventFileUpdateEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }

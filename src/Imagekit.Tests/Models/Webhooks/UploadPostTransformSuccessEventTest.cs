@@ -27,9 +27,9 @@ public class UploadPostTransformSuccessEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -39,24 +39,25 @@ public class UploadPostTransformSuccessEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPostTransformSuccessEventIntersectionMember1Data expectedData = new()
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventData expectedData = new()
         {
             FileID = "fileId",
             Name = "name",
             Url = "https://example.com",
         };
-        UploadPostTransformSuccessEventIntersectionMember1Request expectedRequest = new()
-        {
-            Transformation = new()
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest expectedRequest =
+            new()
             {
-                Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-                Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
-                Value = "value",
-            },
-            XRequestID = "x_request_id",
-        };
+                Transformation = new()
+                {
+                    Type =
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                    Protocol =
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                    Value = "value",
+                },
+                XRequestID = "x_request_id",
+            };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedType, model.Type);
@@ -84,9 +85,9 @@ public class UploadPostTransformSuccessEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -121,9 +122,9 @@ public class UploadPostTransformSuccessEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -140,24 +141,25 @@ public class UploadPostTransformSuccessEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPostTransformSuccessEventIntersectionMember1Data expectedData = new()
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventData expectedData = new()
         {
             FileID = "fileId",
             Name = "name",
             Url = "https://example.com",
         };
-        UploadPostTransformSuccessEventIntersectionMember1Request expectedRequest = new()
-        {
-            Transformation = new()
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest expectedRequest =
+            new()
             {
-                Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-                Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
-                Value = "value",
-            },
-            XRequestID = "x_request_id",
-        };
+                Transformation = new()
+                {
+                    Type =
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                    Protocol =
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                    Value = "value",
+                },
+                XRequestID = "x_request_id",
+            };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedType, deserialized.Type);
@@ -185,9 +187,9 @@ public class UploadPostTransformSuccessEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -216,9 +218,9 @@ public class UploadPostTransformSuccessEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -231,12 +233,12 @@ public class UploadPostTransformSuccessEventTest : TestBase
     }
 }
 
-public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
+public class UploadPostTransformSuccessEventUploadPostTransformSuccessEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -250,9 +252,9 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
                 Transformation = new()
                 {
                     Type =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -260,24 +262,25 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPostTransformSuccessEventIntersectionMember1Data expectedData = new()
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventData expectedData = new()
         {
             FileID = "fileId",
             Name = "name",
             Url = "https://example.com",
         };
-        UploadPostTransformSuccessEventIntersectionMember1Request expectedRequest = new()
-        {
-            Transformation = new()
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest expectedRequest =
+            new()
             {
-                Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-                Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
-                Value = "value",
-            },
-            XRequestID = "x_request_id",
-        };
+                Transformation = new()
+                {
+                    Type =
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                    Protocol =
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                    Value = "value",
+                },
+                XRequestID = "x_request_id",
+            };
         JsonElement expectedType = JsonSerializer.SerializeToElement(
             "upload.post-transform.success"
         );
@@ -291,7 +294,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -305,9 +308,9 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
                 Transformation = new()
                 {
                     Type =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -316,7 +319,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPostTransformSuccessEventIntersectionMember1>(
+            JsonSerializer.Deserialize<UploadPostTransformSuccessEventUploadPostTransformSuccessEvent>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -327,7 +330,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -341,9 +344,9 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
                 Transformation = new()
                 {
                     Type =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -352,31 +355,32 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPostTransformSuccessEventIntersectionMember1>(
+            JsonSerializer.Deserialize<UploadPostTransformSuccessEventUploadPostTransformSuccessEvent>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPostTransformSuccessEventIntersectionMember1Data expectedData = new()
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventData expectedData = new()
         {
             FileID = "fileId",
             Name = "name",
             Url = "https://example.com",
         };
-        UploadPostTransformSuccessEventIntersectionMember1Request expectedRequest = new()
-        {
-            Transformation = new()
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest expectedRequest =
+            new()
             {
-                Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-                Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
-                Value = "value",
-            },
-            XRequestID = "x_request_id",
-        };
+                Transformation = new()
+                {
+                    Type =
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                    Protocol =
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                    Value = "value",
+                },
+                XRequestID = "x_request_id",
+            };
         JsonElement expectedType = JsonSerializer.SerializeToElement(
             "upload.post-transform.success"
         );
@@ -390,7 +394,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -404,9 +408,9 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
                 Transformation = new()
                 {
                     Type =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -419,7 +423,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -433,27 +437,27 @@ public class UploadPostTransformSuccessEventIntersectionMember1Test : TestBase
                 Transformation = new()
                 {
                     Type =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
             },
         };
 
-        UploadPostTransformSuccessEventIntersectionMember1 copied = new(model);
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UploadPostTransformSuccessEventIntersectionMember1DataTest : TestBase
+public class UploadPostTransformSuccessEventUploadPostTransformSuccessEventDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEventData
         {
             FileID = "fileId",
             Name = "name",
@@ -472,7 +476,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1DataTest : TestBa
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEventData
         {
             FileID = "fileId",
             Name = "name",
@@ -481,7 +485,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1DataTest : TestBa
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPostTransformSuccessEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<UploadPostTransformSuccessEventUploadPostTransformSuccessEventData>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -492,7 +496,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1DataTest : TestBa
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEventData
         {
             FileID = "fileId",
             Name = "name",
@@ -501,7 +505,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1DataTest : TestBa
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPostTransformSuccessEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<UploadPostTransformSuccessEventUploadPostTransformSuccessEventData>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -519,7 +523,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1DataTest : TestBa
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEventData
         {
             FileID = "fileId",
             Name = "name",
@@ -532,44 +536,44 @@ public class UploadPostTransformSuccessEventIntersectionMember1DataTest : TestBa
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEventData
         {
             FileID = "fileId",
             Name = "name",
             Url = "https://example.com",
         };
 
-        UploadPostTransformSuccessEventIntersectionMember1Data copied = new(model);
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventData copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UploadPostTransformSuccessEventIntersectionMember1RequestTest : TestBase
+public class UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1Request
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest
         {
             Transformation = new()
             {
                 Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                 Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
         };
 
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformation expectedTransformation =
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation expectedTransformation =
             new()
             {
                 Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                 Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                 Value = "value",
             };
         string expectedXRequestID = "x_request_id";
@@ -581,14 +585,14 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTest : Tes
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1Request
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest
         {
             Transformation = new()
             {
                 Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                 Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
@@ -596,7 +600,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTest : Tes
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPostTransformSuccessEventIntersectionMember1Request>(
+            JsonSerializer.Deserialize<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -607,14 +611,14 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTest : Tes
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1Request
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest
         {
             Transformation = new()
             {
                 Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                 Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
@@ -622,19 +626,19 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTest : Tes
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPostTransformSuccessEventIntersectionMember1Request>(
+            JsonSerializer.Deserialize<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformation expectedTransformation =
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation expectedTransformation =
             new()
             {
                 Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                 Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                 Value = "value",
             };
         string expectedXRequestID = "x_request_id";
@@ -646,14 +650,14 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTest : Tes
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1Request
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest
         {
             Transformation = new()
             {
                 Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                 Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
@@ -665,49 +669,51 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTest : Tes
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1Request
+        var model = new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest
         {
             Transformation = new()
             {
                 Type =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                 Protocol =
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
         };
 
-        UploadPostTransformSuccessEventIntersectionMember1Request copied = new(model);
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UploadPostTransformSuccessEventIntersectionMember1RequestTransformationTest : TestBase
+public class UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1RequestTransformation
-        {
-            Type =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-            Protocol =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
-            Value = "value",
-        };
+        var model =
+            new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                Protocol =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                Value = "value",
+            };
 
         ApiEnum<
             string,
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
         > expectedType =
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation;
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation;
         ApiEnum<
             string,
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
         > expectedProtocol =
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls;
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls;
         string expectedValue = "value";
 
         Assert.Equal(expectedType, model.Type);
@@ -718,18 +724,19 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1RequestTransformation
-        {
-            Type =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-            Protocol =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
-            Value = "value",
-        };
+        var model =
+            new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                Protocol =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                Value = "value",
+            };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPostTransformSuccessEventIntersectionMember1RequestTransformation>(
+            JsonSerializer.Deserialize<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -740,18 +747,19 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1RequestTransformation
-        {
-            Type =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-            Protocol =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
-            Value = "value",
-        };
+        var model =
+            new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                Protocol =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                Value = "value",
+            };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPostTransformSuccessEventIntersectionMember1RequestTransformation>(
+            JsonSerializer.Deserialize<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -759,14 +767,14 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
 
         ApiEnum<
             string,
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
         > expectedType =
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation;
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation;
         ApiEnum<
             string,
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
         > expectedProtocol =
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls;
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls;
         string expectedValue = "value";
 
         Assert.Equal(expectedType, deserialized.Type);
@@ -777,14 +785,15 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1RequestTransformation
-        {
-            Type =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-            Protocol =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
-            Value = "value",
-        };
+        var model =
+            new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                Protocol =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                Value = "value",
+            };
 
         model.Validate();
     }
@@ -792,11 +801,12 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1RequestTransformation
-        {
-            Type =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-        };
+        var model =
+            new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+            };
 
         Assert.Null(model.Protocol);
         Assert.False(model.RawData.ContainsKey("protocol"));
@@ -807,11 +817,12 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1RequestTransformation
-        {
-            Type =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-        };
+        var model =
+            new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+            };
 
         model.Validate();
     }
@@ -819,15 +830,16 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1RequestTransformation
-        {
-            Type =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+        var model =
+            new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
 
-            // Null should be interpreted as omitted for these properties
-            Protocol = null,
-            Value = null,
-        };
+                // Null should be interpreted as omitted for these properties
+                Protocol = null,
+                Value = null,
+            };
 
         Assert.Null(model.Protocol);
         Assert.False(model.RawData.ContainsKey("protocol"));
@@ -838,15 +850,16 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1RequestTransformation
-        {
-            Type =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+        var model =
+            new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
 
-            // Null should be interpreted as omitted for these properties
-            Protocol = null,
-            Value = null,
-        };
+                // Null should be interpreted as omitted for these properties
+                Protocol = null,
+                Value = null,
+            };
 
         model.Validate();
     }
@@ -854,43 +867,47 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPostTransformSuccessEventIntersectionMember1RequestTransformation
-        {
-            Type =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
-            Protocol =
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
-            Value = "value",
-        };
+        var model =
+            new UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                Protocol =
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                Value = "value",
+            };
 
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformation copied = new(model);
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation copied =
+            new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UploadPostTransformSuccessEventIntersectionMember1RequestTransformationTypeTest
+public class UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationTypeTest
     : TestBase
 {
     [Theory]
     [InlineData(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation
-    )]
-    [InlineData(UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Abs)]
-    [InlineData(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.GifToVideo
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation
     )]
     [InlineData(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Thumbnail
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Abs
+    )]
+    [InlineData(
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.GifToVideo
+    )]
+    [InlineData(
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Thumbnail
     )]
     public void Validation_Works(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType rawValue
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
         > value = rawValue;
         value.Validate();
     }
@@ -901,7 +918,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
@@ -911,30 +928,32 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
 
     [Theory]
     [InlineData(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation
-    )]
-    [InlineData(UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Abs)]
-    [InlineData(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.GifToVideo
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation
     )]
     [InlineData(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Thumbnail
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Abs
+    )]
+    [InlineData(
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.GifToVideo
+    )]
+    [InlineData(
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Thumbnail
     )]
     public void SerializationRoundtrip_Works(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType rawValue
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
         > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -947,14 +966,14 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -962,24 +981,24 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
     }
 }
 
-public class UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocolTest
+public class UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocolTest
     : TestBase
 {
     [Theory]
     [InlineData(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls
     )]
     [InlineData(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Dash
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Dash
     )]
     public void Validation_Works(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol rawValue
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
         > value = rawValue;
         value.Validate();
     }
@@ -990,7 +1009,7 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
@@ -1000,26 +1019,26 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
 
     [Theory]
     [InlineData(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls
     )]
     [InlineData(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Dash
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Dash
     )]
     public void SerializationRoundtrip_Works(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol rawValue
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
         > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -1032,14 +1051,14 @@ public class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
             >
         >(json, ModelBase.SerializerOptions);
 

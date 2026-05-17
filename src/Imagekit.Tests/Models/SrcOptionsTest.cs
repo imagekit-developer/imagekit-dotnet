@@ -75,7 +75,7 @@ public class SrcOptionsTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -183,7 +183,7 @@ public class SrcOptionsTest : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -317,7 +317,7 @@ public class SrcOptionsTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -439,7 +439,7 @@ public class SrcOptionsTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -554,7 +554,7 @@ public class SrcOptionsTest : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -688,7 +688,7 @@ public class SrcOptionsTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -884,7 +884,7 @@ public class SrcOptionsTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()

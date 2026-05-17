@@ -214,11 +214,11 @@ class SolidColorOverlayFromRaw : IFromRawJson<SolidColorOverlay>
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        SolidColorOverlayIntersectionMember1,
-        SolidColorOverlayIntersectionMember1FromRaw
+        SolidColorOverlaySolidColorOverlay,
+        SolidColorOverlaySolidColorOverlayFromRaw
     >)
 )]
-public sealed record class SolidColorOverlayIntersectionMember1 : JsonModel
+public sealed record class SolidColorOverlaySolidColorOverlay : JsonModel
 {
     /// <summary>
     /// Specifies the color of the block using an RGB hex code (e.g., `FF0000`), an
@@ -288,20 +288,20 @@ public sealed record class SolidColorOverlayIntersectionMember1 : JsonModel
         }
     }
 
-    public SolidColorOverlayIntersectionMember1()
+    public SolidColorOverlaySolidColorOverlay()
     {
         this.Type = JsonSerializer.SerializeToElement("solidColor");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public SolidColorOverlayIntersectionMember1(
-        SolidColorOverlayIntersectionMember1 solidColorOverlayIntersectionMember1
+    public SolidColorOverlaySolidColorOverlay(
+        SolidColorOverlaySolidColorOverlay solidColorOverlaySolidColorOverlay
     )
-        : base(solidColorOverlayIntersectionMember1) { }
+        : base(solidColorOverlaySolidColorOverlay) { }
 #pragma warning restore CS8618
 
-    public SolidColorOverlayIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public SolidColorOverlaySolidColorOverlay(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -310,14 +310,14 @@ public sealed record class SolidColorOverlayIntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SolidColorOverlayIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    SolidColorOverlaySolidColorOverlay(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="SolidColorOverlayIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static SolidColorOverlayIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="SolidColorOverlaySolidColorOverlayFromRaw.FromRawUnchecked"/>
+    public static SolidColorOverlaySolidColorOverlay FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -325,18 +325,17 @@ public sealed record class SolidColorOverlayIntersectionMember1 : JsonModel
     }
 
     [SetsRequiredMembers]
-    public SolidColorOverlayIntersectionMember1(string color)
+    public SolidColorOverlaySolidColorOverlay(string color)
         : this()
     {
         this.Color = color;
     }
 }
 
-class SolidColorOverlayIntersectionMember1FromRaw
-    : IFromRawJson<SolidColorOverlayIntersectionMember1>
+class SolidColorOverlaySolidColorOverlayFromRaw : IFromRawJson<SolidColorOverlaySolidColorOverlay>
 {
     /// <inheritdoc/>
-    public SolidColorOverlayIntersectionMember1 FromRawUnchecked(
+    public SolidColorOverlaySolidColorOverlay FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => SolidColorOverlayIntersectionMember1.FromRawUnchecked(rawData);
+    ) => SolidColorOverlaySolidColorOverlay.FromRawUnchecked(rawData);
 }

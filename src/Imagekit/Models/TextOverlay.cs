@@ -118,14 +118,14 @@ public sealed record class TextOverlay : JsonModel
     /// <para>Regardless of the encoding method, the input text is always percent-encoded
     /// to ensure it is URL-safe. </para>
     /// </summary>
-    public ApiEnum<string, TextOverlayIntersectionMember1Encoding>? Encoding
+    public ApiEnum<string, TextOverlayTextOverlayEncoding>? Encoding
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<
-                ApiEnum<string, TextOverlayIntersectionMember1Encoding>
-            >("encoding");
+            return this._rawData.GetNullableClass<ApiEnum<string, TextOverlayTextOverlayEncoding>>(
+                "encoding"
+            );
         }
         init
         {
@@ -237,13 +237,8 @@ class TextOverlayFromRaw : IFromRawJson<TextOverlay>
         TextOverlay.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        TextOverlayIntersectionMember1,
-        TextOverlayIntersectionMember1FromRaw
-    >)
-)]
-public sealed record class TextOverlayIntersectionMember1 : JsonModel
+[JsonConverter(typeof(JsonModelConverter<TextOverlayTextOverlay, TextOverlayTextOverlayFromRaw>))]
+public sealed record class TextOverlayTextOverlay : JsonModel
 {
     /// <summary>
     /// Specifies the text to be displayed in the overlay. The SDK automatically
@@ -278,14 +273,14 @@ public sealed record class TextOverlayIntersectionMember1 : JsonModel
     /// <para>Regardless of the encoding method, the input text is always percent-encoded
     /// to ensure it is URL-safe. </para>
     /// </summary>
-    public ApiEnum<string, TextOverlayIntersectionMember1Encoding>? Encoding
+    public ApiEnum<string, TextOverlayTextOverlayEncoding>? Encoding
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<
-                ApiEnum<string, TextOverlayIntersectionMember1Encoding>
-            >("encoding");
+            return this._rawData.GetNullableClass<ApiEnum<string, TextOverlayTextOverlayEncoding>>(
+                "encoding"
+            );
         }
         init
         {
@@ -339,20 +334,18 @@ public sealed record class TextOverlayIntersectionMember1 : JsonModel
         }
     }
 
-    public TextOverlayIntersectionMember1()
+    public TextOverlayTextOverlay()
     {
         this.Type = JsonSerializer.SerializeToElement("text");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TextOverlayIntersectionMember1(
-        TextOverlayIntersectionMember1 textOverlayIntersectionMember1
-    )
-        : base(textOverlayIntersectionMember1) { }
+    public TextOverlayTextOverlay(TextOverlayTextOverlay textOverlayTextOverlay)
+        : base(textOverlayTextOverlay) { }
 #pragma warning restore CS8618
 
-    public TextOverlayIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TextOverlayTextOverlay(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -361,14 +354,14 @@ public sealed record class TextOverlayIntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TextOverlayIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    TextOverlayTextOverlay(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TextOverlayIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static TextOverlayIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="TextOverlayTextOverlayFromRaw.FromRawUnchecked"/>
+    public static TextOverlayTextOverlay FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -376,19 +369,19 @@ public sealed record class TextOverlayIntersectionMember1 : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TextOverlayIntersectionMember1(string text)
+    public TextOverlayTextOverlay(string text)
         : this()
     {
         this.Text = text;
     }
 }
 
-class TextOverlayIntersectionMember1FromRaw : IFromRawJson<TextOverlayIntersectionMember1>
+class TextOverlayTextOverlayFromRaw : IFromRawJson<TextOverlayTextOverlay>
 {
     /// <inheritdoc/>
-    public TextOverlayIntersectionMember1 FromRawUnchecked(
+    public TextOverlayTextOverlay FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TextOverlayIntersectionMember1.FromRawUnchecked(rawData);
+    ) => TextOverlayTextOverlay.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -400,18 +393,17 @@ class TextOverlayIntersectionMember1FromRaw : IFromRawJson<TextOverlayIntersecti
 /// <para>Regardless of the encoding method, the input text is always percent-encoded
 /// to ensure it is URL-safe. </para>
 /// </summary>
-[JsonConverter(typeof(TextOverlayIntersectionMember1EncodingConverter))]
-public enum TextOverlayIntersectionMember1Encoding
+[JsonConverter(typeof(TextOverlayTextOverlayEncodingConverter))]
+public enum TextOverlayTextOverlayEncoding
 {
     Auto,
     Plain,
     Base64,
 }
 
-sealed class TextOverlayIntersectionMember1EncodingConverter
-    : JsonConverter<TextOverlayIntersectionMember1Encoding>
+sealed class TextOverlayTextOverlayEncodingConverter : JsonConverter<TextOverlayTextOverlayEncoding>
 {
-    public override TextOverlayIntersectionMember1Encoding Read(
+    public override TextOverlayTextOverlayEncoding Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -419,16 +411,16 @@ sealed class TextOverlayIntersectionMember1EncodingConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "auto" => TextOverlayIntersectionMember1Encoding.Auto,
-            "plain" => TextOverlayIntersectionMember1Encoding.Plain,
-            "base64" => TextOverlayIntersectionMember1Encoding.Base64,
-            _ => (TextOverlayIntersectionMember1Encoding)(-1),
+            "auto" => TextOverlayTextOverlayEncoding.Auto,
+            "plain" => TextOverlayTextOverlayEncoding.Plain,
+            "base64" => TextOverlayTextOverlayEncoding.Base64,
+            _ => (TextOverlayTextOverlayEncoding)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        TextOverlayIntersectionMember1Encoding value,
+        TextOverlayTextOverlayEncoding value,
         JsonSerializerOptions options
     )
     {
@@ -436,9 +428,9 @@ sealed class TextOverlayIntersectionMember1EncodingConverter
             writer,
             value switch
             {
-                TextOverlayIntersectionMember1Encoding.Auto => "auto",
-                TextOverlayIntersectionMember1Encoding.Plain => "plain",
-                TextOverlayIntersectionMember1Encoding.Base64 => "base64",
+                TextOverlayTextOverlayEncoding.Auto => "auto",
+                TextOverlayTextOverlayEncoding.Plain => "plain",
+                TextOverlayTextOverlayEncoding.Base64 => "base64",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -35,9 +35,9 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, AnchorPoint>(),
             new ApiEnumConverter<string, Focus>(),
             new ApiEnumConverter<string, StreamingResolution>(),
-            new ApiEnumConverter<string, SubtitleOverlayIntersectionMember1Encoding>(),
+            new ApiEnumConverter<string, SubtitleOverlaySubtitleOverlayEncoding>(),
             new ApiEnumConverter<string, Typography>(),
-            new ApiEnumConverter<string, TextOverlayIntersectionMember1Encoding>(),
+            new ApiEnumConverter<string, TextOverlayTextOverlayEncoding>(),
             new ApiEnumConverter<string, Flip>(),
             new ApiEnumConverter<string, InnerAlignment>(),
             new ApiEnumConverter<bool, AIRemoveBackground>(),
@@ -54,7 +54,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<bool, Grayscale>(),
             new ApiEnumConverter<string, VideoCodec>(),
             new ApiEnumConverter<string, TransformationPosition>(),
-            new ApiEnumConverter<string, VideoOverlayIntersectionMember1Encoding>(),
+            new ApiEnumConverter<string, VideoOverlayVideoOverlayEncoding>(),
             new ApiEnumConverter<string, CustomMetadataFieldSchemaType>(),
             new ApiEnumConverter<string, Type>(),
             new ApiEnumConverter<string, Files::Type>(),
@@ -97,11 +97,11 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Webhooks::Protocol>(),
             new ApiEnumConverter<
                 string,
-                Webhooks::UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+                Webhooks::UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+                Webhooks::UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
             >(),
             new ApiEnumConverter<string, Webhooks::AIAutoDescription>(),
             new ApiEnumConverter<string, Webhooks::AITasks>(),
@@ -111,7 +111,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Webhooks::SelectedFieldsSchemaItemType>(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationAcceptedEventIntersectionMember1DataTransformationType
+                Webhooks::VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationType
             >(),
             new ApiEnumConverter<string, Webhooks::AudioCodec>(),
             new ApiEnumConverter<string, Webhooks::Format>(),
@@ -119,44 +119,44 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Webhooks::VideoCodec>(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationType
+                Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType
             >(),
             new ApiEnumConverter<string, Webhooks::Reason>(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec
+                Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat
+                Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol
+                Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec
+                Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationType
+                Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec
+                Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat
+                Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol
+                Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
             >(),
             new ApiEnumConverter<
                 string,
-                Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec
+                Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
             >(),
         },
     };

@@ -39,14 +39,15 @@ public class UploadPostTransformErrorEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::UploadPostTransformErrorEventIntersectionMember1Data expectedData = new()
-        {
-            FileID = "fileId",
-            Name = "name",
-            Path = "path",
-            Transformation = new(new Webhooks::Error("encoding_failed")),
-            Url = "https://example.com",
-        };
+        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData =
+            new()
+            {
+                FileID = "fileId",
+                Name = "name",
+                Path = "path",
+                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Url = "https://example.com",
+            };
         Webhooks::Request expectedRequest = new()
         {
             Transformation = new()
@@ -140,14 +141,15 @@ public class UploadPostTransformErrorEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::UploadPostTransformErrorEventIntersectionMember1Data expectedData = new()
-        {
-            FileID = "fileId",
-            Name = "name",
-            Path = "path",
-            Transformation = new(new Webhooks::Error("encoding_failed")),
-            Url = "https://example.com",
-        };
+        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData =
+            new()
+            {
+                FileID = "fileId",
+                Name = "name",
+                Path = "path",
+                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Url = "https://example.com",
+            };
         Webhooks::Request expectedRequest = new()
         {
             Transformation = new()
@@ -231,12 +233,12 @@ public class UploadPostTransformErrorEventTest : TestBase
     }
 }
 
-public class UploadPostTransformErrorEventIntersectionMember1Test : TestBase
+public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1
+        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -260,14 +262,15 @@ public class UploadPostTransformErrorEventIntersectionMember1Test : TestBase
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::UploadPostTransformErrorEventIntersectionMember1Data expectedData = new()
-        {
-            FileID = "fileId",
-            Name = "name",
-            Path = "path",
-            Transformation = new(new Webhooks::Error("encoding_failed")),
-            Url = "https://example.com",
-        };
+        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData =
+            new()
+            {
+                FileID = "fileId",
+                Name = "name",
+                Path = "path",
+                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Url = "https://example.com",
+            };
         Webhooks::Request expectedRequest = new()
         {
             Transformation = new()
@@ -289,7 +292,7 @@ public class UploadPostTransformErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1
+        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -314,7 +317,7 @@ public class UploadPostTransformErrorEventIntersectionMember1Test : TestBase
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventIntersectionMember1>(
+            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -325,7 +328,7 @@ public class UploadPostTransformErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1
+        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -350,21 +353,22 @@ public class UploadPostTransformErrorEventIntersectionMember1Test : TestBase
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventIntersectionMember1>(
+            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::UploadPostTransformErrorEventIntersectionMember1Data expectedData = new()
-        {
-            FileID = "fileId",
-            Name = "name",
-            Path = "path",
-            Transformation = new(new Webhooks::Error("encoding_failed")),
-            Url = "https://example.com",
-        };
+        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData =
+            new()
+            {
+                FileID = "fileId",
+                Name = "name",
+                Path = "path",
+                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Url = "https://example.com",
+            };
         Webhooks::Request expectedRequest = new()
         {
             Transformation = new()
@@ -386,7 +390,7 @@ public class UploadPostTransformErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1
+        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -415,7 +419,7 @@ public class UploadPostTransformErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1
+        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -438,18 +442,18 @@ public class UploadPostTransformErrorEventIntersectionMember1Test : TestBase
             },
         };
 
-        Webhooks::UploadPostTransformErrorEventIntersectionMember1 copied = new(model);
+        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UploadPostTransformErrorEventIntersectionMember1DataTest : TestBase
+public class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1Data
+        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData
         {
             FileID = "fileId",
             Name = "name",
@@ -476,7 +480,7 @@ public class UploadPostTransformErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1Data
+        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData
         {
             FileID = "fileId",
             Name = "name",
@@ -487,7 +491,7 @@ public class UploadPostTransformErrorEventIntersectionMember1DataTest : TestBase
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -498,7 +502,7 @@ public class UploadPostTransformErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1Data
+        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData
         {
             FileID = "fileId",
             Name = "name",
@@ -509,7 +513,7 @@ public class UploadPostTransformErrorEventIntersectionMember1DataTest : TestBase
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -533,7 +537,7 @@ public class UploadPostTransformErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1Data
+        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData
         {
             FileID = "fileId",
             Name = "name",
@@ -548,7 +552,7 @@ public class UploadPostTransformErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventIntersectionMember1Data
+        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData
         {
             FileID = "fileId",
             Name = "name",
@@ -557,7 +561,9 @@ public class UploadPostTransformErrorEventIntersectionMember1DataTest : TestBase
             Url = "https://example.com",
         };
 
-        Webhooks::UploadPostTransformErrorEventIntersectionMember1Data copied = new(model);
+        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData copied = new(
+            model
+        );
 
         Assert.Equal(model, copied);
     }

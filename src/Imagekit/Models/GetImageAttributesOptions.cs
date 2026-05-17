@@ -366,8 +366,13 @@ class GetImageAttributesOptionsFromRaw : IFromRawJson<GetImageAttributesOptions>
     ) => GetImageAttributesOptions.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<IntersectionMember1, IntersectionMember1FromRaw>))]
-public sealed record class IntersectionMember1 : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        GetImageAttributesOptionsGetImageAttributesOptions,
+        GetImageAttributesOptionsGetImageAttributesOptionsFromRaw
+    >)
+)]
+public sealed record class GetImageAttributesOptionsGetImageAttributesOptions : JsonModel
 {
     /// <summary>
     /// Custom list of **device-width breakpoints** in pixels. These define common
@@ -489,29 +494,35 @@ public sealed record class IntersectionMember1 : JsonModel
         _ = this.Width;
     }
 
-    public IntersectionMember1() { }
+    public GetImageAttributesOptionsGetImageAttributesOptions() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public IntersectionMember1(IntersectionMember1 intersectionMember1)
-        : base(intersectionMember1) { }
+    public GetImageAttributesOptionsGetImageAttributesOptions(
+        GetImageAttributesOptionsGetImageAttributesOptions getImageAttributesOptionsGetImageAttributesOptions
+    )
+        : base(getImageAttributesOptionsGetImageAttributesOptions) { }
 #pragma warning restore CS8618
 
-    public IntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public GetImageAttributesOptionsGetImageAttributesOptions(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    IntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    GetImageAttributesOptionsGetImageAttributesOptions(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static IntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="GetImageAttributesOptionsGetImageAttributesOptionsFromRaw.FromRawUnchecked"/>
+    public static GetImageAttributesOptionsGetImageAttributesOptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -519,9 +530,11 @@ public sealed record class IntersectionMember1 : JsonModel
     }
 }
 
-class IntersectionMember1FromRaw : IFromRawJson<IntersectionMember1>
+class GetImageAttributesOptionsGetImageAttributesOptionsFromRaw
+    : IFromRawJson<GetImageAttributesOptionsGetImageAttributesOptions>
 {
     /// <inheritdoc/>
-    public IntersectionMember1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        IntersectionMember1.FromRawUnchecked(rawData);
+    public GetImageAttributesOptionsGetImageAttributesOptions FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => GetImageAttributesOptionsGetImageAttributesOptions.FromRawUnchecked(rawData);
 }

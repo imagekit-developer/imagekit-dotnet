@@ -30,7 +30,7 @@ public class VideoOverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -89,7 +89,7 @@ public class VideoOverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -151,8 +151,8 @@ public class VideoOverlayTest : TestBase
         };
         string expectedInput = "input";
         JsonElement expectedType = JsonSerializer.SerializeToElement("video");
-        ApiEnum<string, VideoOverlayIntersectionMember1Encoding> expectedEncoding =
-            VideoOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, VideoOverlayVideoOverlayEncoding> expectedEncoding =
+            VideoOverlayVideoOverlayEncoding.Auto;
         List<Transformation> expectedTransformation =
         [
             new()
@@ -211,7 +211,7 @@ public class VideoOverlayTest : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -290,7 +290,7 @@ public class VideoOverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -349,7 +349,7 @@ public class VideoOverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -424,7 +424,7 @@ public class VideoOverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -483,7 +483,7 @@ public class VideoOverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -552,8 +552,8 @@ public class VideoOverlayTest : TestBase
         };
         string expectedInput = "input";
         JsonElement expectedType = JsonSerializer.SerializeToElement("video");
-        ApiEnum<string, VideoOverlayIntersectionMember1Encoding> expectedEncoding =
-            VideoOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, VideoOverlayVideoOverlayEncoding> expectedEncoding =
+            VideoOverlayVideoOverlayEncoding.Auto;
         List<Transformation> expectedTransformation =
         [
             new()
@@ -612,7 +612,7 @@ public class VideoOverlayTest : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -691,7 +691,7 @@ public class VideoOverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -750,7 +750,7 @@ public class VideoOverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -889,7 +889,7 @@ public class VideoOverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -948,7 +948,7 @@ public class VideoOverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -998,15 +998,15 @@ public class VideoOverlayTest : TestBase
     }
 }
 
-public class VideoOverlayIntersectionMember1Test : TestBase
+public class VideoOverlayVideoOverlayTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoOverlayIntersectionMember1
+        var model = new VideoOverlayVideoOverlay
         {
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -1065,7 +1065,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1111,8 +1111,8 @@ public class VideoOverlayIntersectionMember1Test : TestBase
 
         string expectedInput = "input";
         JsonElement expectedType = JsonSerializer.SerializeToElement("video");
-        ApiEnum<string, VideoOverlayIntersectionMember1Encoding> expectedEncoding =
-            VideoOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, VideoOverlayVideoOverlayEncoding> expectedEncoding =
+            VideoOverlayVideoOverlayEncoding.Auto;
         List<Transformation> expectedTransformation =
         [
             new()
@@ -1171,7 +1171,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -1228,10 +1228,10 @@ public class VideoOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoOverlayIntersectionMember1
+        var model = new VideoOverlayVideoOverlay
         {
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -1290,7 +1290,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1335,7 +1335,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<VideoOverlayIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<VideoOverlayVideoOverlay>(
             json,
             ModelBase.SerializerOptions
         );
@@ -1346,10 +1346,10 @@ public class VideoOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoOverlayIntersectionMember1
+        var model = new VideoOverlayVideoOverlay
         {
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -1408,7 +1408,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1453,7 +1453,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<VideoOverlayIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<VideoOverlayVideoOverlay>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1461,8 +1461,8 @@ public class VideoOverlayIntersectionMember1Test : TestBase
 
         string expectedInput = "input";
         JsonElement expectedType = JsonSerializer.SerializeToElement("video");
-        ApiEnum<string, VideoOverlayIntersectionMember1Encoding> expectedEncoding =
-            VideoOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, VideoOverlayVideoOverlayEncoding> expectedEncoding =
+            VideoOverlayVideoOverlayEncoding.Auto;
         List<Transformation> expectedTransformation =
         [
             new()
@@ -1521,7 +1521,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -1578,10 +1578,10 @@ public class VideoOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoOverlayIntersectionMember1
+        var model = new VideoOverlayVideoOverlay
         {
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -1640,7 +1640,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1690,7 +1690,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new VideoOverlayIntersectionMember1 { Input = "input" };
+        var model = new VideoOverlayVideoOverlay { Input = "input" };
 
         Assert.Null(model.Encoding);
         Assert.False(model.RawData.ContainsKey("encoding"));
@@ -1701,7 +1701,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new VideoOverlayIntersectionMember1 { Input = "input" };
+        var model = new VideoOverlayVideoOverlay { Input = "input" };
 
         model.Validate();
     }
@@ -1709,7 +1709,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new VideoOverlayIntersectionMember1
+        var model = new VideoOverlayVideoOverlay
         {
             Input = "input",
 
@@ -1727,7 +1727,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new VideoOverlayIntersectionMember1
+        var model = new VideoOverlayVideoOverlay
         {
             Input = "input",
 
@@ -1742,10 +1742,10 @@ public class VideoOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoOverlayIntersectionMember1
+        var model = new VideoOverlayVideoOverlay
         {
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -1804,7 +1804,7 @@ public class VideoOverlayIntersectionMember1Test : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1848,48 +1848,49 @@ public class VideoOverlayIntersectionMember1Test : TestBase
             ],
         };
 
-        VideoOverlayIntersectionMember1 copied = new(model);
+        VideoOverlayVideoOverlay copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoOverlayIntersectionMember1EncodingTest : TestBase
+public class VideoOverlayVideoOverlayEncodingTest : TestBase
 {
     [Theory]
-    [InlineData(VideoOverlayIntersectionMember1Encoding.Auto)]
-    [InlineData(VideoOverlayIntersectionMember1Encoding.Plain)]
-    [InlineData(VideoOverlayIntersectionMember1Encoding.Base64)]
-    public void Validation_Works(VideoOverlayIntersectionMember1Encoding rawValue)
+    [InlineData(VideoOverlayVideoOverlayEncoding.Auto)]
+    [InlineData(VideoOverlayVideoOverlayEncoding.Plain)]
+    [InlineData(VideoOverlayVideoOverlayEncoding.Base64)]
+    public void Validation_Works(VideoOverlayVideoOverlayEncoding rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, VideoOverlayIntersectionMember1Encoding> value = rawValue;
+        ApiEnum<string, VideoOverlayVideoOverlayEncoding> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoOverlayIntersectionMember1Encoding>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        var value = JsonSerializer.Deserialize<ApiEnum<string, VideoOverlayVideoOverlayEncoding>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
 
         Assert.NotNull(value);
         Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
     }
 
     [Theory]
-    [InlineData(VideoOverlayIntersectionMember1Encoding.Auto)]
-    [InlineData(VideoOverlayIntersectionMember1Encoding.Plain)]
-    [InlineData(VideoOverlayIntersectionMember1Encoding.Base64)]
-    public void SerializationRoundtrip_Works(VideoOverlayIntersectionMember1Encoding rawValue)
+    [InlineData(VideoOverlayVideoOverlayEncoding.Auto)]
+    [InlineData(VideoOverlayVideoOverlayEncoding.Plain)]
+    [InlineData(VideoOverlayVideoOverlayEncoding.Base64)]
+    public void SerializationRoundtrip_Works(VideoOverlayVideoOverlayEncoding rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, VideoOverlayIntersectionMember1Encoding> value = rawValue;
+        ApiEnum<string, VideoOverlayVideoOverlayEncoding> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoOverlayIntersectionMember1Encoding>
+            ApiEnum<string, VideoOverlayVideoOverlayEncoding>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -1898,12 +1899,13 @@ public class VideoOverlayIntersectionMember1EncodingTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoOverlayIntersectionMember1Encoding>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        var value = JsonSerializer.Deserialize<ApiEnum<string, VideoOverlayVideoOverlayEncoding>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoOverlayIntersectionMember1Encoding>
+            ApiEnum<string, VideoOverlayVideoOverlayEncoding>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);

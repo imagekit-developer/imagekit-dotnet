@@ -118,13 +118,13 @@ public sealed record class SubtitleOverlay : JsonModel
     /// removed. - Remaining slashes within the path are replaced with `@@` when using
     /// plain text. </para>
     /// </summary>
-    public ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding>? Encoding
+    public ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding>? Encoding
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableClass<
-                ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding>
+                ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding>
             >("encoding");
         }
         init
@@ -239,11 +239,11 @@ class SubtitleOverlayFromRaw : IFromRawJson<SubtitleOverlay>
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        SubtitleOverlayIntersectionMember1,
-        SubtitleOverlayIntersectionMember1FromRaw
+        SubtitleOverlaySubtitleOverlay,
+        SubtitleOverlaySubtitleOverlayFromRaw
     >)
 )]
-public sealed record class SubtitleOverlayIntersectionMember1 : JsonModel
+public sealed record class SubtitleOverlaySubtitleOverlay : JsonModel
 {
     /// <summary>
     /// Specifies the relative path to the subtitle file used as an overlay.
@@ -278,13 +278,13 @@ public sealed record class SubtitleOverlayIntersectionMember1 : JsonModel
     /// removed. - Remaining slashes within the path are replaced with `@@` when using
     /// plain text. </para>
     /// </summary>
-    public ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding>? Encoding
+    public ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding>? Encoding
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableClass<
-                ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding>
+                ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding>
             >("encoding");
         }
         init
@@ -339,20 +339,20 @@ public sealed record class SubtitleOverlayIntersectionMember1 : JsonModel
         }
     }
 
-    public SubtitleOverlayIntersectionMember1()
+    public SubtitleOverlaySubtitleOverlay()
     {
         this.Type = JsonSerializer.SerializeToElement("subtitle");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public SubtitleOverlayIntersectionMember1(
-        SubtitleOverlayIntersectionMember1 subtitleOverlayIntersectionMember1
+    public SubtitleOverlaySubtitleOverlay(
+        SubtitleOverlaySubtitleOverlay subtitleOverlaySubtitleOverlay
     )
-        : base(subtitleOverlayIntersectionMember1) { }
+        : base(subtitleOverlaySubtitleOverlay) { }
 #pragma warning restore CS8618
 
-    public SubtitleOverlayIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public SubtitleOverlaySubtitleOverlay(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -361,14 +361,14 @@ public sealed record class SubtitleOverlayIntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    SubtitleOverlayIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    SubtitleOverlaySubtitleOverlay(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="SubtitleOverlayIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static SubtitleOverlayIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="SubtitleOverlaySubtitleOverlayFromRaw.FromRawUnchecked"/>
+    public static SubtitleOverlaySubtitleOverlay FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -376,19 +376,19 @@ public sealed record class SubtitleOverlayIntersectionMember1 : JsonModel
     }
 
     [SetsRequiredMembers]
-    public SubtitleOverlayIntersectionMember1(string input)
+    public SubtitleOverlaySubtitleOverlay(string input)
         : this()
     {
         this.Input = input;
     }
 }
 
-class SubtitleOverlayIntersectionMember1FromRaw : IFromRawJson<SubtitleOverlayIntersectionMember1>
+class SubtitleOverlaySubtitleOverlayFromRaw : IFromRawJson<SubtitleOverlaySubtitleOverlay>
 {
     /// <inheritdoc/>
-    public SubtitleOverlayIntersectionMember1 FromRawUnchecked(
+    public SubtitleOverlaySubtitleOverlay FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => SubtitleOverlayIntersectionMember1.FromRawUnchecked(rawData);
+    ) => SubtitleOverlaySubtitleOverlay.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -400,18 +400,18 @@ class SubtitleOverlayIntersectionMember1FromRaw : IFromRawJson<SubtitleOverlayIn
 /// <para>Regardless of the encoding method: - Leading and trailing slashes are removed.
 /// - Remaining slashes within the path are replaced with `@@` when using plain text. </para>
 /// </summary>
-[JsonConverter(typeof(SubtitleOverlayIntersectionMember1EncodingConverter))]
-public enum SubtitleOverlayIntersectionMember1Encoding
+[JsonConverter(typeof(SubtitleOverlaySubtitleOverlayEncodingConverter))]
+public enum SubtitleOverlaySubtitleOverlayEncoding
 {
     Auto,
     Plain,
     Base64,
 }
 
-sealed class SubtitleOverlayIntersectionMember1EncodingConverter
-    : JsonConverter<SubtitleOverlayIntersectionMember1Encoding>
+sealed class SubtitleOverlaySubtitleOverlayEncodingConverter
+    : JsonConverter<SubtitleOverlaySubtitleOverlayEncoding>
 {
-    public override SubtitleOverlayIntersectionMember1Encoding Read(
+    public override SubtitleOverlaySubtitleOverlayEncoding Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -419,16 +419,16 @@ sealed class SubtitleOverlayIntersectionMember1EncodingConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "auto" => SubtitleOverlayIntersectionMember1Encoding.Auto,
-            "plain" => SubtitleOverlayIntersectionMember1Encoding.Plain,
-            "base64" => SubtitleOverlayIntersectionMember1Encoding.Base64,
-            _ => (SubtitleOverlayIntersectionMember1Encoding)(-1),
+            "auto" => SubtitleOverlaySubtitleOverlayEncoding.Auto,
+            "plain" => SubtitleOverlaySubtitleOverlayEncoding.Plain,
+            "base64" => SubtitleOverlaySubtitleOverlayEncoding.Base64,
+            _ => (SubtitleOverlaySubtitleOverlayEncoding)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        SubtitleOverlayIntersectionMember1Encoding value,
+        SubtitleOverlaySubtitleOverlayEncoding value,
         JsonSerializerOptions options
     )
     {
@@ -436,9 +436,9 @@ sealed class SubtitleOverlayIntersectionMember1EncodingConverter
             writer,
             value switch
             {
-                SubtitleOverlayIntersectionMember1Encoding.Auto => "auto",
-                SubtitleOverlayIntersectionMember1Encoding.Plain => "plain",
-                SubtitleOverlayIntersectionMember1Encoding.Base64 => "base64",
+                SubtitleOverlaySubtitleOverlayEncoding.Auto => "auto",
+                SubtitleOverlaySubtitleOverlayEncoding.Plain => "plain",
+                SubtitleOverlaySubtitleOverlayEncoding.Base64 => "base64",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

@@ -61,24 +61,24 @@ public sealed record class UploadPostTransformSuccessEvent : JsonModel
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required UploadPostTransformSuccessEventIntersectionMember1Data Data
+    public required UploadPostTransformSuccessEventUploadPostTransformSuccessEventData Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPostTransformSuccessEventIntersectionMember1Data>(
+            return this._rawData.GetNotNullClass<UploadPostTransformSuccessEventUploadPostTransformSuccessEventData>(
                 "data"
             );
         }
         init { this._rawData.Set("data", value); }
     }
 
-    public required UploadPostTransformSuccessEventIntersectionMember1Request Request
+    public required UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest Request
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPostTransformSuccessEventIntersectionMember1Request>(
+            return this._rawData.GetNotNullClass<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest>(
                 "request"
             );
         }
@@ -151,11 +151,12 @@ class UploadPostTransformSuccessEventFromRaw : IFromRawJson<UploadPostTransformS
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        UploadPostTransformSuccessEventIntersectionMember1,
-        UploadPostTransformSuccessEventIntersectionMember1FromRaw
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEvent,
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventFromRaw
     >)
 )]
-public sealed record class UploadPostTransformSuccessEventIntersectionMember1 : JsonModel
+public sealed record class UploadPostTransformSuccessEventUploadPostTransformSuccessEvent
+    : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -170,24 +171,24 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1 : 
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required UploadPostTransformSuccessEventIntersectionMember1Data Data
+    public required UploadPostTransformSuccessEventUploadPostTransformSuccessEventData Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPostTransformSuccessEventIntersectionMember1Data>(
+            return this._rawData.GetNotNullClass<UploadPostTransformSuccessEventUploadPostTransformSuccessEventData>(
                 "data"
             );
         }
         init { this._rawData.Set("data", value); }
     }
 
-    public required UploadPostTransformSuccessEventIntersectionMember1Request Request
+    public required UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest Request
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPostTransformSuccessEventIntersectionMember1Request>(
+            return this._rawData.GetNotNullClass<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest>(
                 "request"
             );
         }
@@ -221,20 +222,20 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1 : 
         }
     }
 
-    public UploadPostTransformSuccessEventIntersectionMember1()
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEvent()
     {
         this.Type = JsonSerializer.SerializeToElement("upload.post-transform.success");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UploadPostTransformSuccessEventIntersectionMember1(
-        UploadPostTransformSuccessEventIntersectionMember1 uploadPostTransformSuccessEventIntersectionMember1
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEvent(
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEvent uploadPostTransformSuccessEventUploadPostTransformSuccessEvent
     )
-        : base(uploadPostTransformSuccessEventIntersectionMember1) { }
+        : base(uploadPostTransformSuccessEventUploadPostTransformSuccessEvent) { }
 #pragma warning restore CS8618
 
-    public UploadPostTransformSuccessEventIntersectionMember1(
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEvent(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -245,7 +246,7 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1 : 
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UploadPostTransformSuccessEventIntersectionMember1(
+    UploadPostTransformSuccessEventUploadPostTransformSuccessEvent(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -253,8 +254,8 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1 : 
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UploadPostTransformSuccessEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static UploadPostTransformSuccessEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="UploadPostTransformSuccessEventUploadPostTransformSuccessEventFromRaw.FromRawUnchecked"/>
+    public static UploadPostTransformSuccessEventUploadPostTransformSuccessEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -262,22 +263,23 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1 : 
     }
 }
 
-class UploadPostTransformSuccessEventIntersectionMember1FromRaw
-    : IFromRawJson<UploadPostTransformSuccessEventIntersectionMember1>
+class UploadPostTransformSuccessEventUploadPostTransformSuccessEventFromRaw
+    : IFromRawJson<UploadPostTransformSuccessEventUploadPostTransformSuccessEvent>
 {
     /// <inheritdoc/>
-    public UploadPostTransformSuccessEventIntersectionMember1 FromRawUnchecked(
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UploadPostTransformSuccessEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => UploadPostTransformSuccessEventUploadPostTransformSuccessEvent.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UploadPostTransformSuccessEventIntersectionMember1Data,
-        UploadPostTransformSuccessEventIntersectionMember1DataFromRaw
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventData,
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventDataFromRaw
     >)
 )]
-public sealed record class UploadPostTransformSuccessEventIntersectionMember1Data : JsonModel
+public sealed record class UploadPostTransformSuccessEventUploadPostTransformSuccessEventData
+    : JsonModel
 {
     /// <summary>
     /// Unique identifier of the originally uploaded file.
@@ -326,17 +328,17 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Dat
         _ = this.Url;
     }
 
-    public UploadPostTransformSuccessEventIntersectionMember1Data() { }
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventData() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UploadPostTransformSuccessEventIntersectionMember1Data(
-        UploadPostTransformSuccessEventIntersectionMember1Data uploadPostTransformSuccessEventIntersectionMember1Data
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventData(
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventData uploadPostTransformSuccessEventUploadPostTransformSuccessEventData
     )
-        : base(uploadPostTransformSuccessEventIntersectionMember1Data) { }
+        : base(uploadPostTransformSuccessEventUploadPostTransformSuccessEventData) { }
 #pragma warning restore CS8618
 
-    public UploadPostTransformSuccessEventIntersectionMember1Data(
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventData(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -345,7 +347,7 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Dat
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UploadPostTransformSuccessEventIntersectionMember1Data(
+    UploadPostTransformSuccessEventUploadPostTransformSuccessEventData(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -353,8 +355,8 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Dat
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UploadPostTransformSuccessEventIntersectionMember1DataFromRaw.FromRawUnchecked"/>
-    public static UploadPostTransformSuccessEventIntersectionMember1Data FromRawUnchecked(
+    /// <inheritdoc cref="UploadPostTransformSuccessEventUploadPostTransformSuccessEventDataFromRaw.FromRawUnchecked"/>
+    public static UploadPostTransformSuccessEventUploadPostTransformSuccessEventData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -362,29 +364,33 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Dat
     }
 }
 
-class UploadPostTransformSuccessEventIntersectionMember1DataFromRaw
-    : IFromRawJson<UploadPostTransformSuccessEventIntersectionMember1Data>
+class UploadPostTransformSuccessEventUploadPostTransformSuccessEventDataFromRaw
+    : IFromRawJson<UploadPostTransformSuccessEventUploadPostTransformSuccessEventData>
 {
     /// <inheritdoc/>
-    public UploadPostTransformSuccessEventIntersectionMember1Data FromRawUnchecked(
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UploadPostTransformSuccessEventIntersectionMember1Data.FromRawUnchecked(rawData);
+    ) =>
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventData.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UploadPostTransformSuccessEventIntersectionMember1Request,
-        UploadPostTransformSuccessEventIntersectionMember1RequestFromRaw
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest,
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestFromRaw
     >)
 )]
-public sealed record class UploadPostTransformSuccessEventIntersectionMember1Request : JsonModel
+public sealed record class UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest
+    : JsonModel
 {
-    public required UploadPostTransformSuccessEventIntersectionMember1RequestTransformation Transformation
+    public required UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation Transformation
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPostTransformSuccessEventIntersectionMember1RequestTransformation>(
+            return this._rawData.GetNotNullClass<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation>(
                 "transformation"
             );
         }
@@ -411,17 +417,17 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
         _ = this.XRequestID;
     }
 
-    public UploadPostTransformSuccessEventIntersectionMember1Request() { }
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UploadPostTransformSuccessEventIntersectionMember1Request(
-        UploadPostTransformSuccessEventIntersectionMember1Request uploadPostTransformSuccessEventIntersectionMember1Request
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest(
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest uploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest
     )
-        : base(uploadPostTransformSuccessEventIntersectionMember1Request) { }
+        : base(uploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest) { }
 #pragma warning restore CS8618
 
-    public UploadPostTransformSuccessEventIntersectionMember1Request(
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -430,7 +436,7 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UploadPostTransformSuccessEventIntersectionMember1Request(
+    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -438,8 +444,8 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UploadPostTransformSuccessEventIntersectionMember1RequestFromRaw.FromRawUnchecked"/>
-    public static UploadPostTransformSuccessEventIntersectionMember1Request FromRawUnchecked(
+    /// <inheritdoc cref="UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestFromRaw.FromRawUnchecked"/>
+    public static UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -447,22 +453,25 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
     }
 }
 
-class UploadPostTransformSuccessEventIntersectionMember1RequestFromRaw
-    : IFromRawJson<UploadPostTransformSuccessEventIntersectionMember1Request>
+class UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestFromRaw
+    : IFromRawJson<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest>
 {
     /// <inheritdoc/>
-    public UploadPostTransformSuccessEventIntersectionMember1Request FromRawUnchecked(
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UploadPostTransformSuccessEventIntersectionMember1Request.FromRawUnchecked(rawData);
+    ) =>
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequest.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformation,
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationFromRaw
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation,
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationFromRaw
     >)
 )]
-public sealed record class UploadPostTransformSuccessEventIntersectionMember1RequestTransformation
+public sealed record class UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
     : JsonModel
 {
     /// <summary>
@@ -470,7 +479,7 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
     /// </summary>
     public required ApiEnum<
         string,
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
     > Type
     {
         get
@@ -479,7 +488,7 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
             return this._rawData.GetNotNullClass<
                 ApiEnum<
                     string,
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
                 >
             >("type");
         }
@@ -491,7 +500,7 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
     /// </summary>
     public ApiEnum<
         string,
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
     >? Protocol
     {
         get
@@ -500,7 +509,7 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
             return this._rawData.GetNullableClass<
                 ApiEnum<
                     string,
-                    UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+                    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
                 >
             >("protocol");
         }
@@ -544,17 +553,18 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
         _ = this.Value;
     }
 
-    public UploadPostTransformSuccessEventIntersectionMember1RequestTransformation() { }
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UploadPostTransformSuccessEventIntersectionMember1RequestTransformation(
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformation uploadPostTransformSuccessEventIntersectionMember1RequestTransformation
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation(
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation uploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation
     )
-        : base(uploadPostTransformSuccessEventIntersectionMember1RequestTransformation) { }
+        : base(uploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation)
+    { }
 #pragma warning restore CS8618
 
-    public UploadPostTransformSuccessEventIntersectionMember1RequestTransformation(
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -563,7 +573,7 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UploadPostTransformSuccessEventIntersectionMember1RequestTransformation(
+    UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -571,8 +581,8 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UploadPostTransformSuccessEventIntersectionMember1RequestTransformationFromRaw.FromRawUnchecked"/>
-    public static UploadPostTransformSuccessEventIntersectionMember1RequestTransformation FromRawUnchecked(
+    /// <inheritdoc cref="UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationFromRaw.FromRawUnchecked"/>
+    public static UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -580,10 +590,10 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
     }
 
     [SetsRequiredMembers]
-    public UploadPostTransformSuccessEventIntersectionMember1RequestTransformation(
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation(
         ApiEnum<
             string,
-            UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+            UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
         > type
     )
         : this()
@@ -592,14 +602,14 @@ public sealed record class UploadPostTransformSuccessEventIntersectionMember1Req
     }
 }
 
-class UploadPostTransformSuccessEventIntersectionMember1RequestTransformationFromRaw
-    : IFromRawJson<UploadPostTransformSuccessEventIntersectionMember1RequestTransformation>
+class UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationFromRaw
+    : IFromRawJson<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation>
 {
     /// <inheritdoc/>
-    public UploadPostTransformSuccessEventIntersectionMember1RequestTransformation FromRawUnchecked(
+    public UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformation.FromRawUnchecked(
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformation.FromRawUnchecked(
             rawData
         );
 }
@@ -608,9 +618,9 @@ class UploadPostTransformSuccessEventIntersectionMember1RequestTransformationFro
 /// Type of the requested post-transformation.
 /// </summary>
 [JsonConverter(
-    typeof(UploadPostTransformSuccessEventIntersectionMember1RequestTransformationTypeConverter)
+    typeof(UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationTypeConverter)
 )]
-public enum UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType
+public enum UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType
 {
     Transformation,
     Abs,
@@ -618,10 +628,10 @@ public enum UploadPostTransformSuccessEventIntersectionMember1RequestTransformat
     Thumbnail,
 }
 
-sealed class UploadPostTransformSuccessEventIntersectionMember1RequestTransformationTypeConverter
-    : JsonConverter<UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType>
+sealed class UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationTypeConverter
+    : JsonConverter<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType>
 {
-    public override UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType Read(
+    public override UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -630,20 +640,23 @@ sealed class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "transformation" =>
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
             "abs" =>
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Abs,
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Abs,
             "gif-to-video" =>
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.GifToVideo,
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.GifToVideo,
             "thumbnail" =>
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Thumbnail,
-            _ => (UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType)(-1),
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Thumbnail,
+            _ =>
+                (UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType)(
+                    -1
+                ),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType value,
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType value,
         JsonSerializerOptions options
     )
     {
@@ -651,13 +664,13 @@ sealed class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
             writer,
             value switch
             {
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation =>
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation =>
                     "transformation",
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Abs =>
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Abs =>
                     "abs",
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.GifToVideo =>
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.GifToVideo =>
                     "gif-to-video",
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Thumbnail =>
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Thumbnail =>
                     "thumbnail",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -672,18 +685,18 @@ sealed class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
 /// Only applicable if transformation type is 'abs'. Streaming protocol used.
 /// </summary>
 [JsonConverter(
-    typeof(UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocolConverter)
+    typeof(UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocolConverter)
 )]
-public enum UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol
+public enum UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol
 {
     Hls,
     Dash,
 }
 
-sealed class UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocolConverter
-    : JsonConverter<UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol>
+sealed class UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocolConverter
+    : JsonConverter<UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol>
 {
-    public override UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol Read(
+    public override UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -692,18 +705,19 @@ sealed class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "hls" =>
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
             "dash" =>
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Dash,
-            _ => (UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol)(
-                -1
-            ),
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Dash,
+            _ =>
+                (UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol)(
+                    -1
+                ),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol value,
+        UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol value,
         JsonSerializerOptions options
     )
     {
@@ -711,9 +725,9 @@ sealed class UploadPostTransformSuccessEventIntersectionMember1RequestTransforma
             writer,
             value switch
             {
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls =>
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls =>
                     "hls",
-                UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Dash =>
+                UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Dash =>
                     "dash",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))

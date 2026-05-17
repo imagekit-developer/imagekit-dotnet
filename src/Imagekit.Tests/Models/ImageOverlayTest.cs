@@ -89,7 +89,7 @@ public class ImageOverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -210,7 +210,7 @@ public class ImageOverlayTest : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -348,7 +348,7 @@ public class ImageOverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -482,7 +482,7 @@ public class ImageOverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -610,7 +610,7 @@ public class ImageOverlayTest : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -748,7 +748,7 @@ public class ImageOverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -946,7 +946,7 @@ public class ImageOverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -996,12 +996,12 @@ public class ImageOverlayTest : TestBase
     }
 }
 
-public class ImageOverlayIntersectionMember1Test : TestBase
+public class ImageOverlayImageOverlayTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ImageOverlayIntersectionMember1
+        var model = new ImageOverlayImageOverlay
         {
             Input = "input",
             Encoding = Encoding.Auto,
@@ -1063,7 +1063,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1168,7 +1168,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -1225,7 +1225,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ImageOverlayIntersectionMember1
+        var model = new ImageOverlayImageOverlay
         {
             Input = "input",
             Encoding = Encoding.Auto,
@@ -1287,7 +1287,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1332,7 +1332,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ImageOverlayIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<ImageOverlayImageOverlay>(
             json,
             ModelBase.SerializerOptions
         );
@@ -1343,7 +1343,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ImageOverlayIntersectionMember1
+        var model = new ImageOverlayImageOverlay
         {
             Input = "input",
             Encoding = Encoding.Auto,
@@ -1405,7 +1405,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1450,7 +1450,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ImageOverlayIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<ImageOverlayImageOverlay>(
             element,
             ModelBase.SerializerOptions
         );
@@ -1517,7 +1517,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
                         Start = 0,
                     },
                     Text = "text",
-                    Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                    Encoding = TextOverlayTextOverlayEncoding.Auto,
                     Transformation =
                     [
                         new()
@@ -1574,7 +1574,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ImageOverlayIntersectionMember1
+        var model = new ImageOverlayImageOverlay
         {
             Input = "input",
             Encoding = Encoding.Auto,
@@ -1636,7 +1636,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1686,7 +1686,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new ImageOverlayIntersectionMember1 { Input = "input" };
+        var model = new ImageOverlayImageOverlay { Input = "input" };
 
         Assert.Null(model.Encoding);
         Assert.False(model.RawData.ContainsKey("encoding"));
@@ -1697,7 +1697,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new ImageOverlayIntersectionMember1 { Input = "input" };
+        var model = new ImageOverlayImageOverlay { Input = "input" };
 
         model.Validate();
     }
@@ -1705,7 +1705,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new ImageOverlayIntersectionMember1
+        var model = new ImageOverlayImageOverlay
         {
             Input = "input",
 
@@ -1723,7 +1723,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new ImageOverlayIntersectionMember1
+        var model = new ImageOverlayImageOverlay
         {
             Input = "input",
 
@@ -1738,7 +1738,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new ImageOverlayIntersectionMember1
+        var model = new ImageOverlayImageOverlay
         {
             Input = "input",
             Encoding = Encoding.Auto,
@@ -1800,7 +1800,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -1844,7 +1844,7 @@ public class ImageOverlayIntersectionMember1Test : TestBase
             ],
         };
 
-        ImageOverlayIntersectionMember1 copied = new(model);
+        ImageOverlayImageOverlay copied = new(model);
 
         Assert.Equal(model, copied);
     }

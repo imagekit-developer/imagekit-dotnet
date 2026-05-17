@@ -23,7 +23,7 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::VideoTransformationAcceptedEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        Webhooks::VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec = Webhooks::AudioCodec.Aac,
@@ -60,20 +60,20 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -113,21 +113,21 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Webhooks::Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -320,7 +320,7 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new Webhooks::UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new Webhooks::UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -349,9 +349,9 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        Webhooks::UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        Webhooks::UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        Webhooks::UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -673,7 +673,7 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::VideoTransformationAcceptedEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        Webhooks::VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec = Webhooks::AudioCodec.Aac,
@@ -716,20 +716,20 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
                     Options = new()
                     {
                         AudioCodec =
-                            Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            Webhooks::VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
                     },
                     Output = new()
                     {
@@ -775,21 +775,21 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Webhooks::Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            Webhooks::VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -994,7 +994,7 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Name = "name",
                 Path = "path",
                 Transformation = new(
-                    new Webhooks::UploadPreTransformErrorEventIntersectionMember1DataTransformationError(
+                    new Webhooks::UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
                         "encoding_failed"
                     )
                 ),
@@ -1029,9 +1029,9 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        Webhooks::UploadPostTransformSuccessEventIntersectionMember1RequestTransformationType.Transformation,
+                        Webhooks::UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
                     Protocol =
-                        Webhooks::UploadPostTransformSuccessEventIntersectionMember1RequestTransformationProtocol.Hls,
+                        Webhooks::UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",

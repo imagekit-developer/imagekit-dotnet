@@ -66,24 +66,24 @@ public sealed record class UploadPreTransformSuccessEvent : JsonModel
     /// <summary>
     /// Object containing details of a successful upload.
     /// </summary>
-    public required UploadPreTransformSuccessEventIntersectionMember1Data Data
+    public required UploadPreTransformSuccessEventUploadPreTransformSuccessEventData Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPreTransformSuccessEventIntersectionMember1Data>(
+            return this._rawData.GetNotNullClass<UploadPreTransformSuccessEventUploadPreTransformSuccessEventData>(
                 "data"
             );
         }
         init { this._rawData.Set("data", value); }
     }
 
-    public required UploadPreTransformSuccessEventIntersectionMember1Request Request
+    public required UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest Request
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPreTransformSuccessEventIntersectionMember1Request>(
+            return this._rawData.GetNotNullClass<UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest>(
                 "request"
             );
         }
@@ -156,11 +156,11 @@ class UploadPreTransformSuccessEventFromRaw : IFromRawJson<UploadPreTransformSuc
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        UploadPreTransformSuccessEventIntersectionMember1,
-        UploadPreTransformSuccessEventIntersectionMember1FromRaw
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEvent,
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventFromRaw
     >)
 )]
-public sealed record class UploadPreTransformSuccessEventIntersectionMember1 : JsonModel
+public sealed record class UploadPreTransformSuccessEventUploadPreTransformSuccessEvent : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -178,24 +178,24 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1 : J
     /// <summary>
     /// Object containing details of a successful upload.
     /// </summary>
-    public required UploadPreTransformSuccessEventIntersectionMember1Data Data
+    public required UploadPreTransformSuccessEventUploadPreTransformSuccessEventData Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPreTransformSuccessEventIntersectionMember1Data>(
+            return this._rawData.GetNotNullClass<UploadPreTransformSuccessEventUploadPreTransformSuccessEventData>(
                 "data"
             );
         }
         init { this._rawData.Set("data", value); }
     }
 
-    public required UploadPreTransformSuccessEventIntersectionMember1Request Request
+    public required UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest Request
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<UploadPreTransformSuccessEventIntersectionMember1Request>(
+            return this._rawData.GetNotNullClass<UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest>(
                 "request"
             );
         }
@@ -229,20 +229,20 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1 : J
         }
     }
 
-    public UploadPreTransformSuccessEventIntersectionMember1()
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEvent()
     {
         this.Type = JsonSerializer.SerializeToElement("upload.pre-transform.success");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UploadPreTransformSuccessEventIntersectionMember1(
-        UploadPreTransformSuccessEventIntersectionMember1 uploadPreTransformSuccessEventIntersectionMember1
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEvent(
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEvent uploadPreTransformSuccessEventUploadPreTransformSuccessEvent
     )
-        : base(uploadPreTransformSuccessEventIntersectionMember1) { }
+        : base(uploadPreTransformSuccessEventUploadPreTransformSuccessEvent) { }
 #pragma warning restore CS8618
 
-    public UploadPreTransformSuccessEventIntersectionMember1(
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEvent(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -253,14 +253,16 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1 : J
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UploadPreTransformSuccessEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    UploadPreTransformSuccessEventUploadPreTransformSuccessEvent(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UploadPreTransformSuccessEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static UploadPreTransformSuccessEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="UploadPreTransformSuccessEventUploadPreTransformSuccessEventFromRaw.FromRawUnchecked"/>
+    public static UploadPreTransformSuccessEventUploadPreTransformSuccessEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -268,13 +270,13 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1 : J
     }
 }
 
-class UploadPreTransformSuccessEventIntersectionMember1FromRaw
-    : IFromRawJson<UploadPreTransformSuccessEventIntersectionMember1>
+class UploadPreTransformSuccessEventUploadPreTransformSuccessEventFromRaw
+    : IFromRawJson<UploadPreTransformSuccessEventUploadPreTransformSuccessEvent>
 {
     /// <inheritdoc/>
-    public UploadPreTransformSuccessEventIntersectionMember1 FromRawUnchecked(
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UploadPreTransformSuccessEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => UploadPreTransformSuccessEventUploadPreTransformSuccessEvent.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -282,11 +284,12 @@ class UploadPreTransformSuccessEventIntersectionMember1FromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        UploadPreTransformSuccessEventIntersectionMember1Data,
-        UploadPreTransformSuccessEventIntersectionMember1DataFromRaw
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventData,
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventDataFromRaw
     >)
 )]
-public sealed record class UploadPreTransformSuccessEventIntersectionMember1Data : JsonModel
+public sealed record class UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
+    : JsonModel
 {
     /// <summary>
     /// An array of tags assigned to the uploaded file by auto tagging.
@@ -885,17 +888,17 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1Data
         _ = this.Width;
     }
 
-    public UploadPreTransformSuccessEventIntersectionMember1Data() { }
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEventData() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UploadPreTransformSuccessEventIntersectionMember1Data(
-        UploadPreTransformSuccessEventIntersectionMember1Data uploadPreTransformSuccessEventIntersectionMember1Data
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEventData(
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventData uploadPreTransformSuccessEventUploadPreTransformSuccessEventData
     )
-        : base(uploadPreTransformSuccessEventIntersectionMember1Data) { }
+        : base(uploadPreTransformSuccessEventUploadPreTransformSuccessEventData) { }
 #pragma warning restore CS8618
 
-    public UploadPreTransformSuccessEventIntersectionMember1Data(
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEventData(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -904,7 +907,7 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1Data
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UploadPreTransformSuccessEventIntersectionMember1Data(
+    UploadPreTransformSuccessEventUploadPreTransformSuccessEventData(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -912,8 +915,8 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1Data
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UploadPreTransformSuccessEventIntersectionMember1DataFromRaw.FromRawUnchecked"/>
-    public static UploadPreTransformSuccessEventIntersectionMember1Data FromRawUnchecked(
+    /// <inheritdoc cref="UploadPreTransformSuccessEventUploadPreTransformSuccessEventDataFromRaw.FromRawUnchecked"/>
+    public static UploadPreTransformSuccessEventUploadPreTransformSuccessEventData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -921,13 +924,13 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1Data
     }
 }
 
-class UploadPreTransformSuccessEventIntersectionMember1DataFromRaw
-    : IFromRawJson<UploadPreTransformSuccessEventIntersectionMember1Data>
+class UploadPreTransformSuccessEventUploadPreTransformSuccessEventDataFromRaw
+    : IFromRawJson<UploadPreTransformSuccessEventUploadPreTransformSuccessEventData>
 {
     /// <inheritdoc/>
-    public UploadPreTransformSuccessEventIntersectionMember1Data FromRawUnchecked(
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEventData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UploadPreTransformSuccessEventIntersectionMember1Data.FromRawUnchecked(rawData);
+    ) => UploadPreTransformSuccessEventUploadPreTransformSuccessEventData.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -3309,11 +3312,12 @@ class VersionInfoFromRaw : IFromRawJson<VersionInfo>
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        UploadPreTransformSuccessEventIntersectionMember1Request,
-        UploadPreTransformSuccessEventIntersectionMember1RequestFromRaw
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest,
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequestFromRaw
     >)
 )]
-public sealed record class UploadPreTransformSuccessEventIntersectionMember1Request : JsonModel
+public sealed record class UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest
+    : JsonModel
 {
     /// <summary>
     /// The requested pre-transformation string.
@@ -3348,17 +3352,17 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1Requ
         _ = this.XRequestID;
     }
 
-    public UploadPreTransformSuccessEventIntersectionMember1Request() { }
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UploadPreTransformSuccessEventIntersectionMember1Request(
-        UploadPreTransformSuccessEventIntersectionMember1Request uploadPreTransformSuccessEventIntersectionMember1Request
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest(
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest uploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest
     )
-        : base(uploadPreTransformSuccessEventIntersectionMember1Request) { }
+        : base(uploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest) { }
 #pragma warning restore CS8618
 
-    public UploadPreTransformSuccessEventIntersectionMember1Request(
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3367,7 +3371,7 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1Requ
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UploadPreTransformSuccessEventIntersectionMember1Request(
+    UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -3375,8 +3379,8 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1Requ
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UploadPreTransformSuccessEventIntersectionMember1RequestFromRaw.FromRawUnchecked"/>
-    public static UploadPreTransformSuccessEventIntersectionMember1Request FromRawUnchecked(
+    /// <inheritdoc cref="UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequestFromRaw.FromRawUnchecked"/>
+    public static UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3384,11 +3388,14 @@ public sealed record class UploadPreTransformSuccessEventIntersectionMember1Requ
     }
 }
 
-class UploadPreTransformSuccessEventIntersectionMember1RequestFromRaw
-    : IFromRawJson<UploadPreTransformSuccessEventIntersectionMember1Request>
+class UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequestFromRaw
+    : IFromRawJson<UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest>
 {
     /// <inheritdoc/>
-    public UploadPreTransformSuccessEventIntersectionMember1Request FromRawUnchecked(
+    public UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UploadPreTransformSuccessEventIntersectionMember1Request.FromRawUnchecked(rawData);
+    ) =>
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest.FromRawUnchecked(
+            rawData
+        );
 }

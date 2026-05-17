@@ -120,11 +120,11 @@ class FileUpdateEventFromRaw : IFromRawJson<FileUpdateEvent>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        FileUpdateEventIntersectionMember1,
-        FileUpdateEventIntersectionMember1FromRaw
+        FileUpdateEventFileUpdateEvent,
+        FileUpdateEventFileUpdateEventFromRaw
     >)
 )]
-public sealed record class FileUpdateEventIntersectionMember1 : JsonModel
+public sealed record class FileUpdateEventFileUpdateEvent : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -176,20 +176,20 @@ public sealed record class FileUpdateEventIntersectionMember1 : JsonModel
         }
     }
 
-    public FileUpdateEventIntersectionMember1()
+    public FileUpdateEventFileUpdateEvent()
     {
         this.Type = JsonSerializer.SerializeToElement("file.updated");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FileUpdateEventIntersectionMember1(
-        FileUpdateEventIntersectionMember1 fileUpdateEventIntersectionMember1
+    public FileUpdateEventFileUpdateEvent(
+        FileUpdateEventFileUpdateEvent fileUpdateEventFileUpdateEvent
     )
-        : base(fileUpdateEventIntersectionMember1) { }
+        : base(fileUpdateEventFileUpdateEvent) { }
 #pragma warning restore CS8618
 
-    public FileUpdateEventIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FileUpdateEventFileUpdateEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -198,14 +198,14 @@ public sealed record class FileUpdateEventIntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FileUpdateEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    FileUpdateEventFileUpdateEvent(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FileUpdateEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static FileUpdateEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="FileUpdateEventFileUpdateEventFromRaw.FromRawUnchecked"/>
+    public static FileUpdateEventFileUpdateEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -213,10 +213,10 @@ public sealed record class FileUpdateEventIntersectionMember1 : JsonModel
     }
 }
 
-class FileUpdateEventIntersectionMember1FromRaw : IFromRawJson<FileUpdateEventIntersectionMember1>
+class FileUpdateEventFileUpdateEventFromRaw : IFromRawJson<FileUpdateEventFileUpdateEvent>
 {
     /// <inheritdoc/>
-    public FileUpdateEventIntersectionMember1 FromRawUnchecked(
+    public FileUpdateEventFileUpdateEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FileUpdateEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => FileUpdateEventFileUpdateEvent.FromRawUnchecked(rawData);
 }

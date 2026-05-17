@@ -364,12 +364,12 @@ public class SolidColorOverlayTest : TestBase
     }
 }
 
-public class SolidColorOverlayIntersectionMember1Test : TestBase
+public class SolidColorOverlaySolidColorOverlayTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new SolidColorOverlayIntersectionMember1
+        var model = new SolidColorOverlaySolidColorOverlay
         {
             Color = "color",
             Transformation =
@@ -414,7 +414,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new SolidColorOverlayIntersectionMember1
+        var model = new SolidColorOverlaySolidColorOverlay
         {
             Color = "color",
             Transformation =
@@ -432,7 +432,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SolidColorOverlayIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<SolidColorOverlaySolidColorOverlay>(
             json,
             ModelBase.SerializerOptions
         );
@@ -443,7 +443,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new SolidColorOverlayIntersectionMember1
+        var model = new SolidColorOverlaySolidColorOverlay
         {
             Color = "color",
             Transformation =
@@ -461,7 +461,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SolidColorOverlayIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<SolidColorOverlaySolidColorOverlay>(
             element,
             ModelBase.SerializerOptions
         );
@@ -495,7 +495,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new SolidColorOverlayIntersectionMember1
+        var model = new SolidColorOverlaySolidColorOverlay
         {
             Color = "color",
             Transformation =
@@ -518,7 +518,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new SolidColorOverlayIntersectionMember1 { Color = "color" };
+        var model = new SolidColorOverlaySolidColorOverlay { Color = "color" };
 
         Assert.Null(model.Transformation);
         Assert.False(model.RawData.ContainsKey("transformation"));
@@ -527,7 +527,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new SolidColorOverlayIntersectionMember1 { Color = "color" };
+        var model = new SolidColorOverlaySolidColorOverlay { Color = "color" };
 
         model.Validate();
     }
@@ -535,7 +535,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new SolidColorOverlayIntersectionMember1
+        var model = new SolidColorOverlaySolidColorOverlay
         {
             Color = "color",
 
@@ -550,7 +550,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new SolidColorOverlayIntersectionMember1
+        var model = new SolidColorOverlaySolidColorOverlay
         {
             Color = "color",
 
@@ -564,7 +564,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new SolidColorOverlayIntersectionMember1
+        var model = new SolidColorOverlaySolidColorOverlay
         {
             Color = "color",
             Transformation =
@@ -581,7 +581,7 @@ public class SolidColorOverlayIntersectionMember1Test : TestBase
             ],
         };
 
-        SolidColorOverlayIntersectionMember1 copied = new(model);
+        SolidColorOverlaySolidColorOverlay copied = new(model);
 
         Assert.Equal(model, copied);
     }

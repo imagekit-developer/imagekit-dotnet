@@ -116,11 +116,11 @@ class FileDeleteEventFromRaw : IFromRawJson<FileDeleteEvent>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        FileDeleteEventIntersectionMember1,
-        FileDeleteEventIntersectionMember1FromRaw
+        FileDeleteEventFileDeleteEvent,
+        FileDeleteEventFileDeleteEventFromRaw
     >)
 )]
-public sealed record class FileDeleteEventIntersectionMember1 : JsonModel
+public sealed record class FileDeleteEventFileDeleteEvent : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -169,20 +169,20 @@ public sealed record class FileDeleteEventIntersectionMember1 : JsonModel
         }
     }
 
-    public FileDeleteEventIntersectionMember1()
+    public FileDeleteEventFileDeleteEvent()
     {
         this.Type = JsonSerializer.SerializeToElement("file.deleted");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FileDeleteEventIntersectionMember1(
-        FileDeleteEventIntersectionMember1 fileDeleteEventIntersectionMember1
+    public FileDeleteEventFileDeleteEvent(
+        FileDeleteEventFileDeleteEvent fileDeleteEventFileDeleteEvent
     )
-        : base(fileDeleteEventIntersectionMember1) { }
+        : base(fileDeleteEventFileDeleteEvent) { }
 #pragma warning restore CS8618
 
-    public FileDeleteEventIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FileDeleteEventFileDeleteEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -191,14 +191,14 @@ public sealed record class FileDeleteEventIntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FileDeleteEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    FileDeleteEventFileDeleteEvent(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FileDeleteEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static FileDeleteEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="FileDeleteEventFileDeleteEventFromRaw.FromRawUnchecked"/>
+    public static FileDeleteEventFileDeleteEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -206,12 +206,12 @@ public sealed record class FileDeleteEventIntersectionMember1 : JsonModel
     }
 }
 
-class FileDeleteEventIntersectionMember1FromRaw : IFromRawJson<FileDeleteEventIntersectionMember1>
+class FileDeleteEventFileDeleteEventFromRaw : IFromRawJson<FileDeleteEventFileDeleteEvent>
 {
     /// <inheritdoc/>
-    public FileDeleteEventIntersectionMember1 FromRawUnchecked(
+    public FileDeleteEventFileDeleteEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FileDeleteEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => FileDeleteEventFileDeleteEvent.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<Data, DataFromRaw>))]

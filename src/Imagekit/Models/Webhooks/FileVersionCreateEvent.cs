@@ -124,11 +124,11 @@ class FileVersionCreateEventFromRaw : IFromRawJson<FileVersionCreateEvent>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        FileVersionCreateEventIntersectionMember1,
-        FileVersionCreateEventIntersectionMember1FromRaw
+        FileVersionCreateEventFileVersionCreateEvent,
+        FileVersionCreateEventFileVersionCreateEventFromRaw
     >)
 )]
-public sealed record class FileVersionCreateEventIntersectionMember1 : JsonModel
+public sealed record class FileVersionCreateEventFileVersionCreateEvent : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -185,20 +185,20 @@ public sealed record class FileVersionCreateEventIntersectionMember1 : JsonModel
         }
     }
 
-    public FileVersionCreateEventIntersectionMember1()
+    public FileVersionCreateEventFileVersionCreateEvent()
     {
         this.Type = JsonSerializer.SerializeToElement("file-version.created");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FileVersionCreateEventIntersectionMember1(
-        FileVersionCreateEventIntersectionMember1 fileVersionCreateEventIntersectionMember1
+    public FileVersionCreateEventFileVersionCreateEvent(
+        FileVersionCreateEventFileVersionCreateEvent fileVersionCreateEventFileVersionCreateEvent
     )
-        : base(fileVersionCreateEventIntersectionMember1) { }
+        : base(fileVersionCreateEventFileVersionCreateEvent) { }
 #pragma warning restore CS8618
 
-    public FileVersionCreateEventIntersectionMember1(
+    public FileVersionCreateEventFileVersionCreateEvent(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -209,14 +209,14 @@ public sealed record class FileVersionCreateEventIntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FileVersionCreateEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    FileVersionCreateEventFileVersionCreateEvent(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FileVersionCreateEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static FileVersionCreateEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="FileVersionCreateEventFileVersionCreateEventFromRaw.FromRawUnchecked"/>
+    public static FileVersionCreateEventFileVersionCreateEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -224,11 +224,11 @@ public sealed record class FileVersionCreateEventIntersectionMember1 : JsonModel
     }
 }
 
-class FileVersionCreateEventIntersectionMember1FromRaw
-    : IFromRawJson<FileVersionCreateEventIntersectionMember1>
+class FileVersionCreateEventFileVersionCreateEventFromRaw
+    : IFromRawJson<FileVersionCreateEventFileVersionCreateEvent>
 {
     /// <inheritdoc/>
-    public FileVersionCreateEventIntersectionMember1 FromRawUnchecked(
+    public FileVersionCreateEventFileVersionCreateEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FileVersionCreateEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => FileVersionCreateEventFileVersionCreateEvent.FromRawUnchecked(rawData);
 }

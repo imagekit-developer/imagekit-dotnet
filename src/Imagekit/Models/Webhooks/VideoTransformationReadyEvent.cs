@@ -60,12 +60,12 @@ public sealed record class VideoTransformationReadyEvent : JsonModel
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required VideoTransformationReadyEventIntersectionMember1Data Data
+    public required VideoTransformationReadyEventVideoTransformationReadyEventData Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventIntersectionMember1Data>(
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventData>(
                 "data"
             );
         }
@@ -75,12 +75,12 @@ public sealed record class VideoTransformationReadyEvent : JsonModel
     /// <summary>
     /// Information about the original request that triggered the video transformation.
     /// </summary>
-    public required VideoTransformationReadyEventIntersectionMember1Request Request
+    public required VideoTransformationReadyEventVideoTransformationReadyEventRequest Request
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventIntersectionMember1Request>(
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventRequest>(
                 "request"
             );
         }
@@ -171,11 +171,11 @@ class VideoTransformationReadyEventFromRaw : IFromRawJson<VideoTransformationRea
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventIntersectionMember1,
-        VideoTransformationReadyEventIntersectionMember1FromRaw
+        VideoTransformationReadyEventVideoTransformationReadyEvent,
+        VideoTransformationReadyEventVideoTransformationReadyEventFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventIntersectionMember1 : JsonModel
+public sealed record class VideoTransformationReadyEventVideoTransformationReadyEvent : JsonModel
 {
     /// <summary>
     /// Timestamp when the event was created in ISO8601 format.
@@ -190,12 +190,12 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1 : Js
         init { this._rawData.Set("created_at", value); }
     }
 
-    public required VideoTransformationReadyEventIntersectionMember1Data Data
+    public required VideoTransformationReadyEventVideoTransformationReadyEventData Data
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventIntersectionMember1Data>(
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventData>(
                 "data"
             );
         }
@@ -205,12 +205,12 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1 : Js
     /// <summary>
     /// Information about the original request that triggered the video transformation.
     /// </summary>
-    public required VideoTransformationReadyEventIntersectionMember1Request Request
+    public required VideoTransformationReadyEventVideoTransformationReadyEventRequest Request
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventIntersectionMember1Request>(
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventRequest>(
                 "request"
             );
         }
@@ -266,20 +266,20 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1 : Js
         this.Timings?.Validate();
     }
 
-    public VideoTransformationReadyEventIntersectionMember1()
+    public VideoTransformationReadyEventVideoTransformationReadyEvent()
     {
         this.Type = JsonSerializer.SerializeToElement("video.transformation.ready");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventIntersectionMember1(
-        VideoTransformationReadyEventIntersectionMember1 videoTransformationReadyEventIntersectionMember1
+    public VideoTransformationReadyEventVideoTransformationReadyEvent(
+        VideoTransformationReadyEventVideoTransformationReadyEvent videoTransformationReadyEventVideoTransformationReadyEvent
     )
-        : base(videoTransformationReadyEventIntersectionMember1) { }
+        : base(videoTransformationReadyEventVideoTransformationReadyEvent) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventIntersectionMember1(
+    public VideoTransformationReadyEventVideoTransformationReadyEvent(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -290,14 +290,16 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1 : Js
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    VideoTransformationReadyEventVideoTransformationReadyEvent(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventVideoTransformationReadyEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -305,44 +307,45 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1 : Js
     }
 }
 
-class VideoTransformationReadyEventIntersectionMember1FromRaw
-    : IFromRawJson<VideoTransformationReadyEventIntersectionMember1>
+class VideoTransformationReadyEventVideoTransformationReadyEventFromRaw
+    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEvent>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventIntersectionMember1 FromRawUnchecked(
+    public VideoTransformationReadyEventVideoTransformationReadyEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => VideoTransformationReadyEventIntersectionMember1.FromRawUnchecked(rawData);
+    ) => VideoTransformationReadyEventVideoTransformationReadyEvent.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventIntersectionMember1Data,
-        VideoTransformationReadyEventIntersectionMember1DataFromRaw
+        VideoTransformationReadyEventVideoTransformationReadyEventData,
+        VideoTransformationReadyEventVideoTransformationReadyEventDataFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventIntersectionMember1Data : JsonModel
+public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventData
+    : JsonModel
 {
     /// <summary>
     /// Information about the source video asset being transformed.
     /// </summary>
-    public required VideoTransformationReadyEventIntersectionMember1DataAsset Asset
+    public required VideoTransformationReadyEventVideoTransformationReadyEventDataAsset Asset
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventIntersectionMember1DataAsset>(
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventDataAsset>(
                 "asset"
             );
         }
         init { this._rawData.Set("asset", value); }
     }
 
-    public required VideoTransformationReadyEventIntersectionMember1DataTransformation Transformation
+    public required VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation Transformation
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<VideoTransformationReadyEventIntersectionMember1DataTransformation>(
+            return this._rawData.GetNotNullClass<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation>(
                 "transformation"
             );
         }
@@ -356,17 +359,17 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1Data 
         this.Transformation.Validate();
     }
 
-    public VideoTransformationReadyEventIntersectionMember1Data() { }
+    public VideoTransformationReadyEventVideoTransformationReadyEventData() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventIntersectionMember1Data(
-        VideoTransformationReadyEventIntersectionMember1Data videoTransformationReadyEventIntersectionMember1Data
+    public VideoTransformationReadyEventVideoTransformationReadyEventData(
+        VideoTransformationReadyEventVideoTransformationReadyEventData videoTransformationReadyEventVideoTransformationReadyEventData
     )
-        : base(videoTransformationReadyEventIntersectionMember1Data) { }
+        : base(videoTransformationReadyEventVideoTransformationReadyEventData) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventIntersectionMember1Data(
+    public VideoTransformationReadyEventVideoTransformationReadyEventData(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -375,7 +378,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1Data 
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventIntersectionMember1Data(
+    VideoTransformationReadyEventVideoTransformationReadyEventData(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -383,8 +386,8 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1Data 
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventIntersectionMember1DataFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventIntersectionMember1Data FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventDataFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventVideoTransformationReadyEventData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -392,13 +395,13 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1Data 
     }
 }
 
-class VideoTransformationReadyEventIntersectionMember1DataFromRaw
-    : IFromRawJson<VideoTransformationReadyEventIntersectionMember1Data>
+class VideoTransformationReadyEventVideoTransformationReadyEventDataFromRaw
+    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventData>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventIntersectionMember1Data FromRawUnchecked(
+    public VideoTransformationReadyEventVideoTransformationReadyEventData FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => VideoTransformationReadyEventIntersectionMember1Data.FromRawUnchecked(rawData);
+    ) => VideoTransformationReadyEventVideoTransformationReadyEventData.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -406,11 +409,12 @@ class VideoTransformationReadyEventIntersectionMember1DataFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventIntersectionMember1DataAsset,
-        VideoTransformationReadyEventIntersectionMember1DataAssetFromRaw
+        VideoTransformationReadyEventVideoTransformationReadyEventDataAsset,
+        VideoTransformationReadyEventVideoTransformationReadyEventDataAssetFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventIntersectionMember1DataAsset : JsonModel
+public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventDataAsset
+    : JsonModel
 {
     /// <summary>
     /// URL to download or access the source video file.
@@ -431,17 +435,17 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataA
         _ = this.Url;
     }
 
-    public VideoTransformationReadyEventIntersectionMember1DataAsset() { }
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataAsset() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventIntersectionMember1DataAsset(
-        VideoTransformationReadyEventIntersectionMember1DataAsset videoTransformationReadyEventIntersectionMember1DataAsset
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataAsset(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataAsset videoTransformationReadyEventVideoTransformationReadyEventDataAsset
     )
-        : base(videoTransformationReadyEventIntersectionMember1DataAsset) { }
+        : base(videoTransformationReadyEventVideoTransformationReadyEventDataAsset) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventIntersectionMember1DataAsset(
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataAsset(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -450,7 +454,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataA
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventIntersectionMember1DataAsset(
+    VideoTransformationReadyEventVideoTransformationReadyEventDataAsset(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -458,8 +462,8 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataA
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventIntersectionMember1DataAssetFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventIntersectionMember1DataAsset FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventDataAssetFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventVideoTransformationReadyEventDataAsset FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -467,29 +471,32 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataA
     }
 
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventIntersectionMember1DataAsset(string url)
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataAsset(string url)
         : this()
     {
         this.Url = url;
     }
 }
 
-class VideoTransformationReadyEventIntersectionMember1DataAssetFromRaw
-    : IFromRawJson<VideoTransformationReadyEventIntersectionMember1DataAsset>
+class VideoTransformationReadyEventVideoTransformationReadyEventDataAssetFromRaw
+    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventDataAsset>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventIntersectionMember1DataAsset FromRawUnchecked(
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataAsset FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => VideoTransformationReadyEventIntersectionMember1DataAsset.FromRawUnchecked(rawData);
+    ) =>
+        VideoTransformationReadyEventVideoTransformationReadyEventDataAsset.FromRawUnchecked(
+            rawData
+        );
 }
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventIntersectionMember1DataTransformation,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationFromRaw
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation,
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventIntersectionMember1DataTransformation
+public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation
     : JsonModel
 {
     /// <summary>
@@ -499,7 +506,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     /// </summary>
     public required ApiEnum<
         string,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationType
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
     > Type
     {
         get
@@ -508,7 +515,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
             return this._rawData.GetNotNullClass<
                 ApiEnum<
                     string,
-                    VideoTransformationReadyEventIntersectionMember1DataTransformationType
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
                 >
             >("type");
         }
@@ -518,12 +525,12 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     /// <summary>
     /// Configuration options for video transformations.
     /// </summary>
-    public VideoTransformationReadyEventIntersectionMember1DataTransformationOptions? Options
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions? Options
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<VideoTransformationReadyEventIntersectionMember1DataTransformationOptions>(
+            return this._rawData.GetNullableClass<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions>(
                 "options"
             );
         }
@@ -567,17 +574,17 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
         this.Output?.Validate();
     }
 
-    public VideoTransformationReadyEventIntersectionMember1DataTransformation() { }
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventIntersectionMember1DataTransformation(
-        VideoTransformationReadyEventIntersectionMember1DataTransformation videoTransformationReadyEventIntersectionMember1DataTransformation
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation videoTransformationReadyEventVideoTransformationReadyEventDataTransformation
     )
-        : base(videoTransformationReadyEventIntersectionMember1DataTransformation) { }
+        : base(videoTransformationReadyEventVideoTransformationReadyEventDataTransformation) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventIntersectionMember1DataTransformation(
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -586,7 +593,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventIntersectionMember1DataTransformation(
+    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -594,8 +601,8 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventIntersectionMember1DataTransformationFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventIntersectionMember1DataTransformation FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -603,8 +610,11 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     }
 
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventIntersectionMember1DataTransformation(
-        ApiEnum<string, VideoTransformationReadyEventIntersectionMember1DataTransformationType> type
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation(
+        ApiEnum<
+            string,
+            VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
+        > type
     )
         : this()
     {
@@ -612,14 +622,14 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     }
 }
 
-class VideoTransformationReadyEventIntersectionMember1DataTransformationFromRaw
-    : IFromRawJson<VideoTransformationReadyEventIntersectionMember1DataTransformation>
+class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationFromRaw
+    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventIntersectionMember1DataTransformation FromRawUnchecked(
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
-        VideoTransformationReadyEventIntersectionMember1DataTransformation.FromRawUnchecked(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformation.FromRawUnchecked(
             rawData
         );
 }
@@ -630,19 +640,19 @@ class VideoTransformationReadyEventIntersectionMember1DataTransformationFromRaw
 /// format - `video-thumbnail`: Generate thumbnail image from video
 /// </summary>
 [JsonConverter(
-    typeof(VideoTransformationReadyEventIntersectionMember1DataTransformationTypeConverter)
+    typeof(VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationTypeConverter)
 )]
-public enum VideoTransformationReadyEventIntersectionMember1DataTransformationType
+public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType
 {
     VideoTransformation,
     GifToVideo,
     VideoThumbnail,
 }
 
-sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationTypeConverter
-    : JsonConverter<VideoTransformationReadyEventIntersectionMember1DataTransformationType>
+sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationTypeConverter
+    : JsonConverter<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType>
 {
-    public override VideoTransformationReadyEventIntersectionMember1DataTransformationType Read(
+    public override VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -651,18 +661,20 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationT
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "video-transformation" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationType.VideoTransformation,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
             "gif-to-video" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationType.GifToVideo,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.GifToVideo,
             "video-thumbnail" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationType.VideoThumbnail,
-            _ => (VideoTransformationReadyEventIntersectionMember1DataTransformationType)(-1),
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoThumbnail,
+            _ => (VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType)(
+                -1
+            ),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationType value,
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType value,
         JsonSerializerOptions options
     )
     {
@@ -670,11 +682,11 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationT
             writer,
             value switch
             {
-                VideoTransformationReadyEventIntersectionMember1DataTransformationType.VideoTransformation =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation =>
                     "video-transformation",
-                VideoTransformationReadyEventIntersectionMember1DataTransformationType.GifToVideo =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.GifToVideo =>
                     "gif-to-video",
-                VideoTransformationReadyEventIntersectionMember1DataTransformationType.VideoThumbnail =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoThumbnail =>
                     "video-thumbnail",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -690,11 +702,11 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationT
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptions,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFromRaw
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions,
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventIntersectionMember1DataTransformationOptions
+public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
     : JsonModel
 {
     /// <summary>
@@ -702,7 +714,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     /// </summary>
     public ApiEnum<
         string,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
     >? AudioCodec
     {
         get
@@ -711,7 +723,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
             return this._rawData.GetNullableClass<
                 ApiEnum<
                     string,
-                    VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
                 >
             >("audio_codec");
         }
@@ -752,7 +764,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     /// </summary>
     public ApiEnum<
         string,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
     >? Format
     {
         get
@@ -761,7 +773,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
             return this._rawData.GetNullableClass<
                 ApiEnum<
                     string,
-                    VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
                 >
             >("format");
         }
@@ -802,7 +814,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     /// </summary>
     public ApiEnum<
         string,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
     >? StreamProtocol
     {
         get
@@ -811,7 +823,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
             return this._rawData.GetNullableClass<
                 ApiEnum<
                     string,
-                    VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
                 >
             >("stream_protocol");
         }
@@ -855,7 +867,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     /// </summary>
     public ApiEnum<
         string,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
     >? VideoCodec
     {
         get
@@ -864,7 +876,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
             return this._rawData.GetNullableClass<
                 ApiEnum<
                     string,
-                    VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec
+                    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
                 >
             >("video_codec");
         }
@@ -891,17 +903,18 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
         this.VideoCodec?.Validate();
     }
 
-    public VideoTransformationReadyEventIntersectionMember1DataTransformationOptions() { }
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventIntersectionMember1DataTransformationOptions(
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptions videoTransformationReadyEventIntersectionMember1DataTransformationOptions
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions videoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions
     )
-        : base(videoTransformationReadyEventIntersectionMember1DataTransformationOptions) { }
+        : base(videoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions)
+    { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventIntersectionMember1DataTransformationOptions(
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -910,7 +923,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventIntersectionMember1DataTransformationOptions(
+    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -918,8 +931,8 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventIntersectionMember1DataTransformationOptions FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -927,14 +940,14 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1DataT
     }
 }
 
-class VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFromRaw
-    : IFromRawJson<VideoTransformationReadyEventIntersectionMember1DataTransformationOptions>
+class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFromRaw
+    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventIntersectionMember1DataTransformationOptions FromRawUnchecked(
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) =>
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptions.FromRawUnchecked(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptions.FromRawUnchecked(
             rawData
         );
 }
@@ -943,18 +956,18 @@ class VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsF
 /// Audio codec used for encoding (aac or opus).
 /// </summary>
 [JsonConverter(
-    typeof(VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodecConverter)
+    typeof(VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodecConverter)
 )]
-public enum VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec
+public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec
 {
     Aac,
     Opus,
 }
 
-sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodecConverter
-    : JsonConverter<VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec>
+sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodecConverter
+    : JsonConverter<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec>
 {
-    public override VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec Read(
+    public override VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -963,11 +976,11 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "aac" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
             "opus" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec.Opus,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Opus,
             _ =>
-                (VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec)(
+                (VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec)(
                     -1
                 ),
         };
@@ -975,7 +988,7 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec value,
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec value,
         JsonSerializerOptions options
     )
     {
@@ -983,9 +996,9 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
             writer,
             value switch
             {
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac =>
                     "aac",
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsAudioCodec.Opus =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Opus =>
                     "opus",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -1000,9 +1013,9 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
 /// Output format for the transformed video or thumbnail.
 /// </summary>
 [JsonConverter(
-    typeof(VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormatConverter)
+    typeof(VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormatConverter)
 )]
-public enum VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat
+public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat
 {
     Mp4,
     Webm,
@@ -1011,10 +1024,10 @@ public enum VideoTransformationReadyEventIntersectionMember1DataTransformationOp
     Webp,
 }
 
-sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormatConverter
-    : JsonConverter<VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat>
+sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormatConverter
+    : JsonConverter<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat>
 {
-    public override VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat Read(
+    public override VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1023,24 +1036,25 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "mp4" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
             "webm" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Webm,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webm,
             "jpg" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Jpg,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Jpg,
             "png" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Png,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Png,
             "webp" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Webp,
-            _ => (VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat)(
-                -1
-            ),
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webp,
+            _ =>
+                (VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat)(
+                    -1
+                ),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat value,
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat value,
         JsonSerializerOptions options
     )
     {
@@ -1048,15 +1062,15 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
             writer,
             value switch
             {
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Mp4 =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4 =>
                     "mp4",
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Webm =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webm =>
                     "webm",
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Jpg =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Jpg =>
                     "jpg",
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Png =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Png =>
                     "png",
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsFormat.Webp =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Webp =>
                     "webp",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -1071,18 +1085,18 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
 /// Streaming protocol for adaptive bitrate streaming.
 /// </summary>
 [JsonConverter(
-    typeof(VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocolConverter)
+    typeof(VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocolConverter)
 )]
-public enum VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol
+public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol
 {
     Hls,
     Dash,
 }
 
-sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocolConverter
-    : JsonConverter<VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol>
+sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocolConverter
+    : JsonConverter<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol>
 {
-    public override VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol Read(
+    public override VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1091,11 +1105,11 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "HLS" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
             "DASH" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol.Dash,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Dash,
             _ =>
-                (VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol)(
+                (VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol)(
                     -1
                 ),
         };
@@ -1103,7 +1117,7 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol value,
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol value,
         JsonSerializerOptions options
     )
     {
@@ -1111,9 +1125,9 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
             writer,
             value switch
             {
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls =>
                     "HLS",
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsStreamProtocol.Dash =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Dash =>
                     "DASH",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -1128,19 +1142,19 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
 /// Video codec used for encoding (h264, vp9, or av1).
 /// </summary>
 [JsonConverter(
-    typeof(VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodecConverter)
+    typeof(VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodecConverter)
 )]
-public enum VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec
+public enum VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec
 {
     H264,
     Vp9,
     Av1,
 }
 
-sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodecConverter
-    : JsonConverter<VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec>
+sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodecConverter
+    : JsonConverter<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec>
 {
-    public override VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec Read(
+    public override VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1149,13 +1163,13 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "h264" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
             "vp9" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec.Vp9,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Vp9,
             "av1" =>
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec.Av1,
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Av1,
             _ =>
-                (VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec)(
+                (VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec)(
                     -1
                 ),
         };
@@ -1163,7 +1177,7 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec value,
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec value,
         JsonSerializerOptions options
     )
     {
@@ -1171,11 +1185,11 @@ sealed class VideoTransformationReadyEventIntersectionMember1DataTransformationO
             writer,
             value switch
             {
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec.H264 =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264 =>
                     "h264",
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec.Vp9 =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Vp9 =>
                     "vp9",
-                VideoTransformationReadyEventIntersectionMember1DataTransformationOptionsVideoCodec.Av1 =>
+                VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.Av1 =>
                     "av1",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
@@ -1382,11 +1396,12 @@ class VideoMetadataFromRaw : IFromRawJson<VideoMetadata>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        VideoTransformationReadyEventIntersectionMember1Request,
-        VideoTransformationReadyEventIntersectionMember1RequestFromRaw
+        VideoTransformationReadyEventVideoTransformationReadyEventRequest,
+        VideoTransformationReadyEventVideoTransformationReadyEventRequestFromRaw
     >)
 )]
-public sealed record class VideoTransformationReadyEventIntersectionMember1Request : JsonModel
+public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventRequest
+    : JsonModel
 {
     /// <summary>
     /// Full URL of the transformation request that was submitted.
@@ -1443,17 +1458,17 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1Reque
         _ = this.UserAgent;
     }
 
-    public VideoTransformationReadyEventIntersectionMember1Request() { }
+    public VideoTransformationReadyEventVideoTransformationReadyEventRequest() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoTransformationReadyEventIntersectionMember1Request(
-        VideoTransformationReadyEventIntersectionMember1Request videoTransformationReadyEventIntersectionMember1Request
+    public VideoTransformationReadyEventVideoTransformationReadyEventRequest(
+        VideoTransformationReadyEventVideoTransformationReadyEventRequest videoTransformationReadyEventVideoTransformationReadyEventRequest
     )
-        : base(videoTransformationReadyEventIntersectionMember1Request) { }
+        : base(videoTransformationReadyEventVideoTransformationReadyEventRequest) { }
 #pragma warning restore CS8618
 
-    public VideoTransformationReadyEventIntersectionMember1Request(
+    public VideoTransformationReadyEventVideoTransformationReadyEventRequest(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1462,7 +1477,7 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1Reque
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoTransformationReadyEventIntersectionMember1Request(
+    VideoTransformationReadyEventVideoTransformationReadyEventRequest(
         FrozenDictionary<string, JsonElement> rawData
     )
     {
@@ -1470,8 +1485,8 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1Reque
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoTransformationReadyEventIntersectionMember1RequestFromRaw.FromRawUnchecked"/>
-    public static VideoTransformationReadyEventIntersectionMember1Request FromRawUnchecked(
+    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventRequestFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventVideoTransformationReadyEventRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1479,13 +1494,14 @@ public sealed record class VideoTransformationReadyEventIntersectionMember1Reque
     }
 }
 
-class VideoTransformationReadyEventIntersectionMember1RequestFromRaw
-    : IFromRawJson<VideoTransformationReadyEventIntersectionMember1Request>
+class VideoTransformationReadyEventVideoTransformationReadyEventRequestFromRaw
+    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventRequest>
 {
     /// <inheritdoc/>
-    public VideoTransformationReadyEventIntersectionMember1Request FromRawUnchecked(
+    public VideoTransformationReadyEventVideoTransformationReadyEventRequest FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => VideoTransformationReadyEventIntersectionMember1Request.FromRawUnchecked(rawData);
+    ) =>
+        VideoTransformationReadyEventVideoTransformationReadyEventRequest.FromRawUnchecked(rawData);
 }
 
 /// <summary>

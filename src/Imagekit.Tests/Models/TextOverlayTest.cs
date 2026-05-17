@@ -30,7 +30,7 @@ public class TextOverlayTest : TestBase
                 Start = 0,
             },
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -70,8 +70,8 @@ public class TextOverlayTest : TestBase
         };
         string expectedText = "text";
         JsonElement expectedType = JsonSerializer.SerializeToElement("text");
-        ApiEnum<string, TextOverlayIntersectionMember1Encoding> expectedEncoding =
-            TextOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, TextOverlayTextOverlayEncoding> expectedEncoding =
+            TextOverlayTextOverlayEncoding.Auto;
         List<TextOverlayTransformation> expectedTransformation =
         [
             new()
@@ -128,7 +128,7 @@ public class TextOverlayTest : TestBase
                 Start = 0,
             },
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -181,7 +181,7 @@ public class TextOverlayTest : TestBase
                 Start = 0,
             },
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -228,8 +228,8 @@ public class TextOverlayTest : TestBase
         };
         string expectedText = "text";
         JsonElement expectedType = JsonSerializer.SerializeToElement("text");
-        ApiEnum<string, TextOverlayIntersectionMember1Encoding> expectedEncoding =
-            TextOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, TextOverlayTextOverlayEncoding> expectedEncoding =
+            TextOverlayTextOverlayEncoding.Auto;
         List<TextOverlayTransformation> expectedTransformation =
         [
             new()
@@ -286,7 +286,7 @@ public class TextOverlayTest : TestBase
                 Start = 0,
             },
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -403,7 +403,7 @@ public class TextOverlayTest : TestBase
                 Start = 0,
             },
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -431,15 +431,15 @@ public class TextOverlayTest : TestBase
     }
 }
 
-public class TextOverlayIntersectionMember1Test : TestBase
+public class TextOverlayTextOverlayTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TextOverlayIntersectionMember1
+        var model = new TextOverlayTextOverlay
         {
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -463,8 +463,8 @@ public class TextOverlayIntersectionMember1Test : TestBase
 
         string expectedText = "text";
         JsonElement expectedType = JsonSerializer.SerializeToElement("text");
-        ApiEnum<string, TextOverlayIntersectionMember1Encoding> expectedEncoding =
-            TextOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, TextOverlayTextOverlayEncoding> expectedEncoding =
+            TextOverlayTextOverlayEncoding.Auto;
         List<TextOverlayTransformation> expectedTransformation =
         [
             new()
@@ -499,10 +499,10 @@ public class TextOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TextOverlayIntersectionMember1
+        var model = new TextOverlayTextOverlay
         {
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -525,7 +525,7 @@ public class TextOverlayIntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TextOverlayIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TextOverlayTextOverlay>(
             json,
             ModelBase.SerializerOptions
         );
@@ -536,10 +536,10 @@ public class TextOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TextOverlayIntersectionMember1
+        var model = new TextOverlayTextOverlay
         {
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -562,7 +562,7 @@ public class TextOverlayIntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TextOverlayIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TextOverlayTextOverlay>(
             element,
             ModelBase.SerializerOptions
         );
@@ -570,8 +570,8 @@ public class TextOverlayIntersectionMember1Test : TestBase
 
         string expectedText = "text";
         JsonElement expectedType = JsonSerializer.SerializeToElement("text");
-        ApiEnum<string, TextOverlayIntersectionMember1Encoding> expectedEncoding =
-            TextOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, TextOverlayTextOverlayEncoding> expectedEncoding =
+            TextOverlayTextOverlayEncoding.Auto;
         List<TextOverlayTransformation> expectedTransformation =
         [
             new()
@@ -606,10 +606,10 @@ public class TextOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TextOverlayIntersectionMember1
+        var model = new TextOverlayTextOverlay
         {
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -637,7 +637,7 @@ public class TextOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new TextOverlayIntersectionMember1 { Text = "text" };
+        var model = new TextOverlayTextOverlay { Text = "text" };
 
         Assert.Null(model.Encoding);
         Assert.False(model.RawData.ContainsKey("encoding"));
@@ -648,7 +648,7 @@ public class TextOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new TextOverlayIntersectionMember1 { Text = "text" };
+        var model = new TextOverlayTextOverlay { Text = "text" };
 
         model.Validate();
     }
@@ -656,7 +656,7 @@ public class TextOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new TextOverlayIntersectionMember1
+        var model = new TextOverlayTextOverlay
         {
             Text = "text",
 
@@ -674,7 +674,7 @@ public class TextOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new TextOverlayIntersectionMember1
+        var model = new TextOverlayTextOverlay
         {
             Text = "text",
 
@@ -689,10 +689,10 @@ public class TextOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TextOverlayIntersectionMember1
+        var model = new TextOverlayTextOverlay
         {
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -714,48 +714,49 @@ public class TextOverlayIntersectionMember1Test : TestBase
             ],
         };
 
-        TextOverlayIntersectionMember1 copied = new(model);
+        TextOverlayTextOverlay copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class TextOverlayIntersectionMember1EncodingTest : TestBase
+public class TextOverlayTextOverlayEncodingTest : TestBase
 {
     [Theory]
-    [InlineData(TextOverlayIntersectionMember1Encoding.Auto)]
-    [InlineData(TextOverlayIntersectionMember1Encoding.Plain)]
-    [InlineData(TextOverlayIntersectionMember1Encoding.Base64)]
-    public void Validation_Works(TextOverlayIntersectionMember1Encoding rawValue)
+    [InlineData(TextOverlayTextOverlayEncoding.Auto)]
+    [InlineData(TextOverlayTextOverlayEncoding.Plain)]
+    [InlineData(TextOverlayTextOverlayEncoding.Base64)]
+    public void Validation_Works(TextOverlayTextOverlayEncoding rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, TextOverlayIntersectionMember1Encoding> value = rawValue;
+        ApiEnum<string, TextOverlayTextOverlayEncoding> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, TextOverlayIntersectionMember1Encoding>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        var value = JsonSerializer.Deserialize<ApiEnum<string, TextOverlayTextOverlayEncoding>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
 
         Assert.NotNull(value);
         Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
     }
 
     [Theory]
-    [InlineData(TextOverlayIntersectionMember1Encoding.Auto)]
-    [InlineData(TextOverlayIntersectionMember1Encoding.Plain)]
-    [InlineData(TextOverlayIntersectionMember1Encoding.Base64)]
-    public void SerializationRoundtrip_Works(TextOverlayIntersectionMember1Encoding rawValue)
+    [InlineData(TextOverlayTextOverlayEncoding.Auto)]
+    [InlineData(TextOverlayTextOverlayEncoding.Plain)]
+    [InlineData(TextOverlayTextOverlayEncoding.Base64)]
+    public void SerializationRoundtrip_Works(TextOverlayTextOverlayEncoding rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, TextOverlayIntersectionMember1Encoding> value = rawValue;
+        ApiEnum<string, TextOverlayTextOverlayEncoding> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, TextOverlayIntersectionMember1Encoding>
+            ApiEnum<string, TextOverlayTextOverlayEncoding>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -764,12 +765,13 @@ public class TextOverlayIntersectionMember1EncodingTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, TextOverlayIntersectionMember1Encoding>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        var value = JsonSerializer.Deserialize<ApiEnum<string, TextOverlayTextOverlayEncoding>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, TextOverlayIntersectionMember1Encoding>
+            ApiEnum<string, TextOverlayTextOverlayEncoding>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);

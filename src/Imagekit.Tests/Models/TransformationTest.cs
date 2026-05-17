@@ -67,7 +67,7 @@ public class TransformationTest : TestBase
                     Start = 0,
                 },
                 Text = "text",
-                Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                Encoding = TextOverlayTextOverlayEncoding.Auto,
                 Transformation =
                 [
                     new()
@@ -164,7 +164,7 @@ public class TransformationTest : TestBase
                 Start = 0,
             },
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -329,7 +329,7 @@ public class TransformationTest : TestBase
                     Start = 0,
                 },
                 Text = "text",
-                Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                Encoding = TextOverlayTextOverlayEncoding.Auto,
                 Transformation =
                 [
                     new()
@@ -439,7 +439,7 @@ public class TransformationTest : TestBase
                     Start = 0,
                 },
                 Text = "text",
-                Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                Encoding = TextOverlayTextOverlayEncoding.Auto,
                 Transformation =
                 [
                     new()
@@ -543,7 +543,7 @@ public class TransformationTest : TestBase
                 Start = 0,
             },
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -708,7 +708,7 @@ public class TransformationTest : TestBase
                     Start = 0,
                 },
                 Text = "text",
-                Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                Encoding = TextOverlayTextOverlayEncoding.Auto,
                 Transformation =
                 [
                     new()
@@ -1178,7 +1178,7 @@ public class TransformationTest : TestBase
                     Start = 0,
                 },
                 Text = "text",
-                Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                Encoding = TextOverlayTextOverlayEncoding.Auto,
                 Transformation =
                 [
                     new()

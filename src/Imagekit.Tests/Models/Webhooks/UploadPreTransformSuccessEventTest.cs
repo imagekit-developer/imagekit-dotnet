@@ -177,7 +177,7 @@ public class UploadPreTransformSuccessEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPreTransformSuccessEventIntersectionMember1Data expectedData = new()
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventData expectedData = new()
         {
             AITags =
             [
@@ -330,7 +330,7 @@ public class UploadPreTransformSuccessEventTest : TestBase
             VideoCodec = "videoCodec",
             Width = 0,
         };
-        UploadPreTransformSuccessEventIntersectionMember1Request expectedRequest = new()
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest expectedRequest = new()
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -690,7 +690,7 @@ public class UploadPreTransformSuccessEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPreTransformSuccessEventIntersectionMember1Data expectedData = new()
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventData expectedData = new()
         {
             AITags =
             [
@@ -843,7 +843,7 @@ public class UploadPreTransformSuccessEventTest : TestBase
             VideoCodec = "videoCodec",
             Width = 0,
         };
-        UploadPreTransformSuccessEventIntersectionMember1Request expectedRequest = new()
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest expectedRequest = new()
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -1193,12 +1193,12 @@ public class UploadPreTransformSuccessEventTest : TestBase
     }
 }
 
-public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
+public class UploadPreTransformSuccessEventUploadPreTransformSuccessEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1358,7 +1358,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPreTransformSuccessEventIntersectionMember1Data expectedData = new()
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventData expectedData = new()
         {
             AITags =
             [
@@ -1511,7 +1511,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
             VideoCodec = "videoCodec",
             Width = 0,
         };
-        UploadPreTransformSuccessEventIntersectionMember1Request expectedRequest = new()
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest expectedRequest = new()
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -1529,7 +1529,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1690,7 +1690,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformSuccessEventIntersectionMember1>(
+            JsonSerializer.Deserialize<UploadPreTransformSuccessEventUploadPreTransformSuccessEvent>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -1701,7 +1701,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -1862,14 +1862,14 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformSuccessEventIntersectionMember1>(
+            JsonSerializer.Deserialize<UploadPreTransformSuccessEventUploadPreTransformSuccessEvent>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        UploadPreTransformSuccessEventIntersectionMember1Data expectedData = new()
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventData expectedData = new()
         {
             AITags =
             [
@@ -2022,7 +2022,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
             VideoCodec = "videoCodec",
             Width = 0,
         };
-        UploadPreTransformSuccessEventIntersectionMember1Request expectedRequest = new()
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest expectedRequest = new()
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -2040,7 +2040,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -2205,7 +2205,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -2364,18 +2364,18 @@ public class UploadPreTransformSuccessEventIntersectionMember1Test : TestBase
             Request = new() { Transformation = "transformation", XRequestID = "x_request_id" },
         };
 
-        UploadPreTransformSuccessEventIntersectionMember1 copied = new(model);
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBase
+public class UploadPreTransformSuccessEventUploadPreTransformSuccessEventDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AITags =
             [
@@ -2741,7 +2741,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AITags =
             [
@@ -2897,7 +2897,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformSuccessEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<UploadPreTransformSuccessEventUploadPreTransformSuccessEventData>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -2908,7 +2908,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AITags =
             [
@@ -3064,7 +3064,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformSuccessEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<UploadPreTransformSuccessEventUploadPreTransformSuccessEventData>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -3282,7 +3282,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AITags =
             [
@@ -3442,7 +3442,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AITags =
             [
@@ -3506,7 +3506,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AITags =
             [
@@ -3527,7 +3527,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AITags =
             [
@@ -3615,7 +3615,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AITags =
             [
@@ -3660,7 +3660,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -3814,7 +3814,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -3963,7 +3963,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -4121,7 +4121,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -4274,7 +4274,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Data
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventData
         {
             AITags =
             [
@@ -4428,7 +4428,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1DataTest : TestBas
             Width = 0,
         };
 
-        UploadPreTransformSuccessEventIntersectionMember1Data copied = new(model);
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventData copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -5849,12 +5849,12 @@ public class VersionInfoTest : TestBase
     }
 }
 
-public class UploadPreTransformSuccessEventIntersectionMember1RequestTest : TestBase
+public class UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequestTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Request
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -5870,7 +5870,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1RequestTest : Test
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Request
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -5878,7 +5878,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1RequestTest : Test
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformSuccessEventIntersectionMember1Request>(
+            JsonSerializer.Deserialize<UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -5889,7 +5889,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1RequestTest : Test
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Request
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -5897,7 +5897,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1RequestTest : Test
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<UploadPreTransformSuccessEventIntersectionMember1Request>(
+            JsonSerializer.Deserialize<UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -5913,7 +5913,7 @@ public class UploadPreTransformSuccessEventIntersectionMember1RequestTest : Test
     [Fact]
     public void Validation_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Request
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
@@ -5925,13 +5925,13 @@ public class UploadPreTransformSuccessEventIntersectionMember1RequestTest : Test
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UploadPreTransformSuccessEventIntersectionMember1Request
+        var model = new UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest
         {
             Transformation = "transformation",
             XRequestID = "x_request_id",
         };
 
-        UploadPreTransformSuccessEventIntersectionMember1Request copied = new(model);
+        UploadPreTransformSuccessEventUploadPreTransformSuccessEventRequest copied = new(model);
 
         Assert.Equal(model, copied);
     }

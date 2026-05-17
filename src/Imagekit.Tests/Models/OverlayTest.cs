@@ -28,7 +28,7 @@ public class OverlayTest : TestBase
                 Start = 0,
             },
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -133,7 +133,7 @@ public class OverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -201,7 +201,7 @@ public class OverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -260,7 +260,7 @@ public class OverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -328,7 +328,7 @@ public class OverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -406,7 +406,7 @@ public class OverlayTest : TestBase
                 Start = 0,
             },
             Text = "text",
-            Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+            Encoding = TextOverlayTextOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -517,7 +517,7 @@ public class OverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -591,7 +591,7 @@ public class OverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = VideoOverlayIntersectionMember1Encoding.Auto,
+            Encoding = VideoOverlayVideoOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -650,7 +650,7 @@ public class OverlayTest : TestBase
                             Start = 0,
                         },
                         Text = "text",
-                        Encoding = TextOverlayIntersectionMember1Encoding.Auto,
+                        Encoding = TextOverlayTextOverlayEncoding.Auto,
                         Transformation =
                         [
                             new()
@@ -724,7 +724,7 @@ public class OverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()

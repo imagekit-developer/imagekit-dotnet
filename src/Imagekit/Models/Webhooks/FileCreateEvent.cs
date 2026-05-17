@@ -120,11 +120,11 @@ class FileCreateEventFromRaw : IFromRawJson<FileCreateEvent>
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Imagekit.Models.Webhooks.IntersectionMember1,
-        global::Imagekit.Models.Webhooks.IntersectionMember1FromRaw
+        FileCreateEventFileCreateEvent,
+        FileCreateEventFileCreateEventFromRaw
     >)
 )]
-public sealed record class IntersectionMember1 : JsonModel
+public sealed record class FileCreateEventFileCreateEvent : JsonModel
 {
     /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
@@ -176,20 +176,20 @@ public sealed record class IntersectionMember1 : JsonModel
         }
     }
 
-    public IntersectionMember1()
+    public FileCreateEventFileCreateEvent()
     {
         this.Type = JsonSerializer.SerializeToElement("file.created");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public IntersectionMember1(
-        global::Imagekit.Models.Webhooks.IntersectionMember1 intersectionMember1
+    public FileCreateEventFileCreateEvent(
+        FileCreateEventFileCreateEvent fileCreateEventFileCreateEvent
     )
-        : base(intersectionMember1) { }
+        : base(fileCreateEventFileCreateEvent) { }
 #pragma warning restore CS8618
 
-    public IntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FileCreateEventFileCreateEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -198,14 +198,14 @@ public sealed record class IntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    IntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    FileCreateEventFileCreateEvent(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Imagekit.Models.Webhooks.IntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static global::Imagekit.Models.Webhooks.IntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="FileCreateEventFileCreateEventFromRaw.FromRawUnchecked"/>
+    public static FileCreateEventFileCreateEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -213,11 +213,10 @@ public sealed record class IntersectionMember1 : JsonModel
     }
 }
 
-class IntersectionMember1FromRaw
-    : IFromRawJson<global::Imagekit.Models.Webhooks.IntersectionMember1>
+class FileCreateEventFileCreateEventFromRaw : IFromRawJson<FileCreateEventFileCreateEvent>
 {
     /// <inheritdoc/>
-    public global::Imagekit.Models.Webhooks.IntersectionMember1 FromRawUnchecked(
+    public FileCreateEventFileCreateEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Imagekit.Models.Webhooks.IntersectionMember1.FromRawUnchecked(rawData);
+    ) => FileCreateEventFileCreateEvent.FromRawUnchecked(rawData);
 }

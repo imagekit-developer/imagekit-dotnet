@@ -238,12 +238,9 @@ class ImageOverlayFromRaw : IFromRawJson<ImageOverlay>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<
-        ImageOverlayIntersectionMember1,
-        ImageOverlayIntersectionMember1FromRaw
-    >)
+    typeof(JsonModelConverter<ImageOverlayImageOverlay, ImageOverlayImageOverlayFromRaw>)
 )]
-public sealed record class ImageOverlayIntersectionMember1 : JsonModel
+public sealed record class ImageOverlayImageOverlay : JsonModel
 {
     /// <summary>
     /// Specifies the relative path to the image used as an overlay.
@@ -339,20 +336,18 @@ public sealed record class ImageOverlayIntersectionMember1 : JsonModel
         }
     }
 
-    public ImageOverlayIntersectionMember1()
+    public ImageOverlayImageOverlay()
     {
         this.Type = JsonSerializer.SerializeToElement("image");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public ImageOverlayIntersectionMember1(
-        ImageOverlayIntersectionMember1 imageOverlayIntersectionMember1
-    )
-        : base(imageOverlayIntersectionMember1) { }
+    public ImageOverlayImageOverlay(ImageOverlayImageOverlay imageOverlayImageOverlay)
+        : base(imageOverlayImageOverlay) { }
 #pragma warning restore CS8618
 
-    public ImageOverlayIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ImageOverlayImageOverlay(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -361,14 +356,14 @@ public sealed record class ImageOverlayIntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    ImageOverlayIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    ImageOverlayImageOverlay(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="ImageOverlayIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static ImageOverlayIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="ImageOverlayImageOverlayFromRaw.FromRawUnchecked"/>
+    public static ImageOverlayImageOverlay FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -376,19 +371,19 @@ public sealed record class ImageOverlayIntersectionMember1 : JsonModel
     }
 
     [SetsRequiredMembers]
-    public ImageOverlayIntersectionMember1(string input)
+    public ImageOverlayImageOverlay(string input)
         : this()
     {
         this.Input = input;
     }
 }
 
-class ImageOverlayIntersectionMember1FromRaw : IFromRawJson<ImageOverlayIntersectionMember1>
+class ImageOverlayImageOverlayFromRaw : IFromRawJson<ImageOverlayImageOverlay>
 {
     /// <inheritdoc/>
-    public ImageOverlayIntersectionMember1 FromRawUnchecked(
+    public ImageOverlayImageOverlay FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => ImageOverlayIntersectionMember1.FromRawUnchecked(rawData);
+    ) => ImageOverlayImageOverlay.FromRawUnchecked(rawData);
 }
 
 /// <summary>

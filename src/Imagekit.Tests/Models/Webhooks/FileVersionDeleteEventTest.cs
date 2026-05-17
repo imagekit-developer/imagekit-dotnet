@@ -21,7 +21,7 @@ public class FileVersionDeleteEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        FileVersionDeleteEventIntersectionMember1Data expectedData = new()
+        FileVersionDeleteEventFileVersionDeleteEventData expectedData = new()
         {
             FileID = "fileId",
             VersionID = "versionId",
@@ -74,7 +74,7 @@ public class FileVersionDeleteEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        FileVersionDeleteEventIntersectionMember1Data expectedData = new()
+        FileVersionDeleteEventFileVersionDeleteEventData expectedData = new()
         {
             FileID = "fileId",
             VersionID = "versionId",
@@ -117,19 +117,19 @@ public class FileVersionDeleteEventTest : TestBase
     }
 }
 
-public class FileVersionDeleteEventIntersectionMember1Test : TestBase
+public class FileVersionDeleteEventFileVersionDeleteEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FileVersionDeleteEventIntersectionMember1
+        var model = new FileVersionDeleteEventFileVersionDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new() { FileID = "fileId", VersionID = "versionId" },
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        FileVersionDeleteEventIntersectionMember1Data expectedData = new()
+        FileVersionDeleteEventFileVersionDeleteEventData expectedData = new()
         {
             FileID = "fileId",
             VersionID = "versionId",
@@ -144,14 +144,14 @@ public class FileVersionDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FileVersionDeleteEventIntersectionMember1
+        var model = new FileVersionDeleteEventFileVersionDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new() { FileID = "fileId", VersionID = "versionId" },
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileVersionDeleteEventIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FileVersionDeleteEventFileVersionDeleteEvent>(
             json,
             ModelBase.SerializerOptions
         );
@@ -162,21 +162,21 @@ public class FileVersionDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FileVersionDeleteEventIntersectionMember1
+        var model = new FileVersionDeleteEventFileVersionDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new() { FileID = "fileId", VersionID = "versionId" },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileVersionDeleteEventIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FileVersionDeleteEventFileVersionDeleteEvent>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        FileVersionDeleteEventIntersectionMember1Data expectedData = new()
+        FileVersionDeleteEventFileVersionDeleteEventData expectedData = new()
         {
             FileID = "fileId",
             VersionID = "versionId",
@@ -191,7 +191,7 @@ public class FileVersionDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FileVersionDeleteEventIntersectionMember1
+        var model = new FileVersionDeleteEventFileVersionDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new() { FileID = "fileId", VersionID = "versionId" },
@@ -203,24 +203,24 @@ public class FileVersionDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FileVersionDeleteEventIntersectionMember1
+        var model = new FileVersionDeleteEventFileVersionDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new() { FileID = "fileId", VersionID = "versionId" },
         };
 
-        FileVersionDeleteEventIntersectionMember1 copied = new(model);
+        FileVersionDeleteEventFileVersionDeleteEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class FileVersionDeleteEventIntersectionMember1DataTest : TestBase
+public class FileVersionDeleteEventFileVersionDeleteEventDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FileVersionDeleteEventIntersectionMember1Data
+        var model = new FileVersionDeleteEventFileVersionDeleteEventData
         {
             FileID = "fileId",
             VersionID = "versionId",
@@ -236,7 +236,7 @@ public class FileVersionDeleteEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FileVersionDeleteEventIntersectionMember1Data
+        var model = new FileVersionDeleteEventFileVersionDeleteEventData
         {
             FileID = "fileId",
             VersionID = "versionId",
@@ -244,7 +244,7 @@ public class FileVersionDeleteEventIntersectionMember1DataTest : TestBase
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<FileVersionDeleteEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<FileVersionDeleteEventFileVersionDeleteEventData>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -255,7 +255,7 @@ public class FileVersionDeleteEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FileVersionDeleteEventIntersectionMember1Data
+        var model = new FileVersionDeleteEventFileVersionDeleteEventData
         {
             FileID = "fileId",
             VersionID = "versionId",
@@ -263,7 +263,7 @@ public class FileVersionDeleteEventIntersectionMember1DataTest : TestBase
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<FileVersionDeleteEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<FileVersionDeleteEventFileVersionDeleteEventData>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -279,7 +279,7 @@ public class FileVersionDeleteEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FileVersionDeleteEventIntersectionMember1Data
+        var model = new FileVersionDeleteEventFileVersionDeleteEventData
         {
             FileID = "fileId",
             VersionID = "versionId",
@@ -291,13 +291,13 @@ public class FileVersionDeleteEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FileVersionDeleteEventIntersectionMember1Data
+        var model = new FileVersionDeleteEventFileVersionDeleteEventData
         {
             FileID = "fileId",
             VersionID = "versionId",
         };
 
-        FileVersionDeleteEventIntersectionMember1Data copied = new(model);
+        FileVersionDeleteEventFileVersionDeleteEventData copied = new(model);
 
         Assert.Equal(model, copied);
     }

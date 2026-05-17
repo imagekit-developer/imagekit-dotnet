@@ -109,12 +109,12 @@ public class FileDeleteEventTest : TestBase
     }
 }
 
-public class FileDeleteEventIntersectionMember1Test : TestBase
+public class FileDeleteEventFileDeleteEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FileDeleteEventIntersectionMember1
+        var model = new FileDeleteEventFileDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new("fileId"),
@@ -132,14 +132,14 @@ public class FileDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FileDeleteEventIntersectionMember1
+        var model = new FileDeleteEventFileDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new("fileId"),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileDeleteEventIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FileDeleteEventFileDeleteEvent>(
             json,
             ModelBase.SerializerOptions
         );
@@ -150,14 +150,14 @@ public class FileDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FileDeleteEventIntersectionMember1
+        var model = new FileDeleteEventFileDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new("fileId"),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileDeleteEventIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FileDeleteEventFileDeleteEvent>(
             element,
             ModelBase.SerializerOptions
         );
@@ -175,7 +175,7 @@ public class FileDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FileDeleteEventIntersectionMember1
+        var model = new FileDeleteEventFileDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new("fileId"),
@@ -187,13 +187,13 @@ public class FileDeleteEventIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FileDeleteEventIntersectionMember1
+        var model = new FileDeleteEventFileDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new("fileId"),
         };
 
-        FileDeleteEventIntersectionMember1 copied = new(model);
+        FileDeleteEventFileDeleteEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }

@@ -30,7 +30,7 @@ public class SubtitleOverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -64,8 +64,8 @@ public class SubtitleOverlayTest : TestBase
         };
         string expectedInput = "input";
         JsonElement expectedType = JsonSerializer.SerializeToElement("subtitle");
-        ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding> expectedEncoding =
-            SubtitleOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding> expectedEncoding =
+            SubtitleOverlaySubtitleOverlayEncoding.Auto;
         List<SubtitleOverlayTransformation> expectedTransformation =
         [
             new()
@@ -116,7 +116,7 @@ public class SubtitleOverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -163,7 +163,7 @@ public class SubtitleOverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -204,8 +204,8 @@ public class SubtitleOverlayTest : TestBase
         };
         string expectedInput = "input";
         JsonElement expectedType = JsonSerializer.SerializeToElement("subtitle");
-        ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding> expectedEncoding =
-            SubtitleOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding> expectedEncoding =
+            SubtitleOverlaySubtitleOverlayEncoding.Auto;
         List<SubtitleOverlayTransformation> expectedTransformation =
         [
             new()
@@ -256,7 +256,7 @@ public class SubtitleOverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -367,7 +367,7 @@ public class SubtitleOverlayTest : TestBase
                 Start = 0,
             },
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -389,15 +389,15 @@ public class SubtitleOverlayTest : TestBase
     }
 }
 
-public class SubtitleOverlayIntersectionMember1Test : TestBase
+public class SubtitleOverlaySubtitleOverlayTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new SubtitleOverlayIntersectionMember1
+        var model = new SubtitleOverlaySubtitleOverlay
         {
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -415,8 +415,8 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
 
         string expectedInput = "input";
         JsonElement expectedType = JsonSerializer.SerializeToElement("subtitle");
-        ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding> expectedEncoding =
-            SubtitleOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding> expectedEncoding =
+            SubtitleOverlaySubtitleOverlayEncoding.Auto;
         List<SubtitleOverlayTransformation> expectedTransformation =
         [
             new()
@@ -445,10 +445,10 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new SubtitleOverlayIntersectionMember1
+        var model = new SubtitleOverlaySubtitleOverlay
         {
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -465,7 +465,7 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SubtitleOverlayIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<SubtitleOverlaySubtitleOverlay>(
             json,
             ModelBase.SerializerOptions
         );
@@ -476,10 +476,10 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new SubtitleOverlayIntersectionMember1
+        var model = new SubtitleOverlaySubtitleOverlay
         {
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -496,7 +496,7 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SubtitleOverlayIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<SubtitleOverlaySubtitleOverlay>(
             element,
             ModelBase.SerializerOptions
         );
@@ -504,8 +504,8 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
 
         string expectedInput = "input";
         JsonElement expectedType = JsonSerializer.SerializeToElement("subtitle");
-        ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding> expectedEncoding =
-            SubtitleOverlayIntersectionMember1Encoding.Auto;
+        ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding> expectedEncoding =
+            SubtitleOverlaySubtitleOverlayEncoding.Auto;
         List<SubtitleOverlayTransformation> expectedTransformation =
         [
             new()
@@ -534,10 +534,10 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new SubtitleOverlayIntersectionMember1
+        var model = new SubtitleOverlaySubtitleOverlay
         {
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -559,7 +559,7 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new SubtitleOverlayIntersectionMember1 { Input = "input" };
+        var model = new SubtitleOverlaySubtitleOverlay { Input = "input" };
 
         Assert.Null(model.Encoding);
         Assert.False(model.RawData.ContainsKey("encoding"));
@@ -570,7 +570,7 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new SubtitleOverlayIntersectionMember1 { Input = "input" };
+        var model = new SubtitleOverlaySubtitleOverlay { Input = "input" };
 
         model.Validate();
     }
@@ -578,7 +578,7 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new SubtitleOverlayIntersectionMember1
+        var model = new SubtitleOverlaySubtitleOverlay
         {
             Input = "input",
 
@@ -596,7 +596,7 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new SubtitleOverlayIntersectionMember1
+        var model = new SubtitleOverlaySubtitleOverlay
         {
             Input = "input",
 
@@ -611,10 +611,10 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new SubtitleOverlayIntersectionMember1
+        var model = new SubtitleOverlaySubtitleOverlay
         {
             Input = "input",
-            Encoding = SubtitleOverlayIntersectionMember1Encoding.Auto,
+            Encoding = SubtitleOverlaySubtitleOverlayEncoding.Auto,
             Transformation =
             [
                 new()
@@ -630,22 +630,22 @@ public class SubtitleOverlayIntersectionMember1Test : TestBase
             ],
         };
 
-        SubtitleOverlayIntersectionMember1 copied = new(model);
+        SubtitleOverlaySubtitleOverlay copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class SubtitleOverlayIntersectionMember1EncodingTest : TestBase
+public class SubtitleOverlaySubtitleOverlayEncodingTest : TestBase
 {
     [Theory]
-    [InlineData(SubtitleOverlayIntersectionMember1Encoding.Auto)]
-    [InlineData(SubtitleOverlayIntersectionMember1Encoding.Plain)]
-    [InlineData(SubtitleOverlayIntersectionMember1Encoding.Base64)]
-    public void Validation_Works(SubtitleOverlayIntersectionMember1Encoding rawValue)
+    [InlineData(SubtitleOverlaySubtitleOverlayEncoding.Auto)]
+    [InlineData(SubtitleOverlaySubtitleOverlayEncoding.Plain)]
+    [InlineData(SubtitleOverlaySubtitleOverlayEncoding.Base64)]
+    public void Validation_Works(SubtitleOverlaySubtitleOverlayEncoding rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding> value = rawValue;
+        ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding> value = rawValue;
         value.Validate();
     }
 
@@ -653,7 +653,7 @@ public class SubtitleOverlayIntersectionMember1EncodingTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding>
+            ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
@@ -661,17 +661,17 @@ public class SubtitleOverlayIntersectionMember1EncodingTest : TestBase
     }
 
     [Theory]
-    [InlineData(SubtitleOverlayIntersectionMember1Encoding.Auto)]
-    [InlineData(SubtitleOverlayIntersectionMember1Encoding.Plain)]
-    [InlineData(SubtitleOverlayIntersectionMember1Encoding.Base64)]
-    public void SerializationRoundtrip_Works(SubtitleOverlayIntersectionMember1Encoding rawValue)
+    [InlineData(SubtitleOverlaySubtitleOverlayEncoding.Auto)]
+    [InlineData(SubtitleOverlaySubtitleOverlayEncoding.Plain)]
+    [InlineData(SubtitleOverlaySubtitleOverlayEncoding.Base64)]
+    public void SerializationRoundtrip_Works(SubtitleOverlaySubtitleOverlayEncoding rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding> value = rawValue;
+        ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding>
+            ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -681,11 +681,11 @@ public class SubtitleOverlayIntersectionMember1EncodingTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding>
+            ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, SubtitleOverlayIntersectionMember1Encoding>
+            ApiEnum<string, SubtitleOverlaySubtitleOverlayEncoding>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);

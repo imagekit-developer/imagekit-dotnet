@@ -118,13 +118,13 @@ public sealed record class VideoOverlay : JsonModel
     /// removed. - Remaining slashes within the path are replaced with `@@` when using
     /// plain text. </para>
     /// </summary>
-    public ApiEnum<string, VideoOverlayIntersectionMember1Encoding>? Encoding
+    public ApiEnum<string, VideoOverlayVideoOverlayEncoding>? Encoding
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableClass<
-                ApiEnum<string, VideoOverlayIntersectionMember1Encoding>
+                ApiEnum<string, VideoOverlayVideoOverlayEncoding>
             >("encoding");
         }
         init
@@ -239,12 +239,9 @@ class VideoOverlayFromRaw : IFromRawJson<VideoOverlay>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<
-        VideoOverlayIntersectionMember1,
-        VideoOverlayIntersectionMember1FromRaw
-    >)
+    typeof(JsonModelConverter<VideoOverlayVideoOverlay, VideoOverlayVideoOverlayFromRaw>)
 )]
-public sealed record class VideoOverlayIntersectionMember1 : JsonModel
+public sealed record class VideoOverlayVideoOverlay : JsonModel
 {
     /// <summary>
     /// Specifies the relative path to the video used as an overlay.
@@ -279,13 +276,13 @@ public sealed record class VideoOverlayIntersectionMember1 : JsonModel
     /// removed. - Remaining slashes within the path are replaced with `@@` when using
     /// plain text. </para>
     /// </summary>
-    public ApiEnum<string, VideoOverlayIntersectionMember1Encoding>? Encoding
+    public ApiEnum<string, VideoOverlayVideoOverlayEncoding>? Encoding
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNullableClass<
-                ApiEnum<string, VideoOverlayIntersectionMember1Encoding>
+                ApiEnum<string, VideoOverlayVideoOverlayEncoding>
             >("encoding");
         }
         init
@@ -341,20 +338,18 @@ public sealed record class VideoOverlayIntersectionMember1 : JsonModel
         }
     }
 
-    public VideoOverlayIntersectionMember1()
+    public VideoOverlayVideoOverlay()
     {
         this.Type = JsonSerializer.SerializeToElement("video");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public VideoOverlayIntersectionMember1(
-        VideoOverlayIntersectionMember1 videoOverlayIntersectionMember1
-    )
-        : base(videoOverlayIntersectionMember1) { }
+    public VideoOverlayVideoOverlay(VideoOverlayVideoOverlay videoOverlayVideoOverlay)
+        : base(videoOverlayVideoOverlay) { }
 #pragma warning restore CS8618
 
-    public VideoOverlayIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
+    public VideoOverlayVideoOverlay(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
 
@@ -363,14 +358,14 @@ public sealed record class VideoOverlayIntersectionMember1 : JsonModel
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    VideoOverlayIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
+    VideoOverlayVideoOverlay(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="VideoOverlayIntersectionMember1FromRaw.FromRawUnchecked"/>
-    public static VideoOverlayIntersectionMember1 FromRawUnchecked(
+    /// <inheritdoc cref="VideoOverlayVideoOverlayFromRaw.FromRawUnchecked"/>
+    public static VideoOverlayVideoOverlay FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -378,19 +373,19 @@ public sealed record class VideoOverlayIntersectionMember1 : JsonModel
     }
 
     [SetsRequiredMembers]
-    public VideoOverlayIntersectionMember1(string input)
+    public VideoOverlayVideoOverlay(string input)
         : this()
     {
         this.Input = input;
     }
 }
 
-class VideoOverlayIntersectionMember1FromRaw : IFromRawJson<VideoOverlayIntersectionMember1>
+class VideoOverlayVideoOverlayFromRaw : IFromRawJson<VideoOverlayVideoOverlay>
 {
     /// <inheritdoc/>
-    public VideoOverlayIntersectionMember1 FromRawUnchecked(
+    public VideoOverlayVideoOverlay FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => VideoOverlayIntersectionMember1.FromRawUnchecked(rawData);
+    ) => VideoOverlayVideoOverlay.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -402,18 +397,18 @@ class VideoOverlayIntersectionMember1FromRaw : IFromRawJson<VideoOverlayIntersec
 /// <para>Regardless of the encoding method: - Leading and trailing slashes are removed.
 /// - Remaining slashes within the path are replaced with `@@` when using plain text. </para>
 /// </summary>
-[JsonConverter(typeof(VideoOverlayIntersectionMember1EncodingConverter))]
-public enum VideoOverlayIntersectionMember1Encoding
+[JsonConverter(typeof(VideoOverlayVideoOverlayEncodingConverter))]
+public enum VideoOverlayVideoOverlayEncoding
 {
     Auto,
     Plain,
     Base64,
 }
 
-sealed class VideoOverlayIntersectionMember1EncodingConverter
-    : JsonConverter<VideoOverlayIntersectionMember1Encoding>
+sealed class VideoOverlayVideoOverlayEncodingConverter
+    : JsonConverter<VideoOverlayVideoOverlayEncoding>
 {
-    public override VideoOverlayIntersectionMember1Encoding Read(
+    public override VideoOverlayVideoOverlayEncoding Read(
         ref Utf8JsonReader reader,
         Type typeToConvert,
         JsonSerializerOptions options
@@ -421,16 +416,16 @@ sealed class VideoOverlayIntersectionMember1EncodingConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "auto" => VideoOverlayIntersectionMember1Encoding.Auto,
-            "plain" => VideoOverlayIntersectionMember1Encoding.Plain,
-            "base64" => VideoOverlayIntersectionMember1Encoding.Base64,
-            _ => (VideoOverlayIntersectionMember1Encoding)(-1),
+            "auto" => VideoOverlayVideoOverlayEncoding.Auto,
+            "plain" => VideoOverlayVideoOverlayEncoding.Plain,
+            "base64" => VideoOverlayVideoOverlayEncoding.Base64,
+            _ => (VideoOverlayVideoOverlayEncoding)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        VideoOverlayIntersectionMember1Encoding value,
+        VideoOverlayVideoOverlayEncoding value,
         JsonSerializerOptions options
     )
     {
@@ -438,9 +433,9 @@ sealed class VideoOverlayIntersectionMember1EncodingConverter
             writer,
             value switch
             {
-                VideoOverlayIntersectionMember1Encoding.Auto => "auto",
-                VideoOverlayIntersectionMember1Encoding.Plain => "plain",
-                VideoOverlayIntersectionMember1Encoding.Base64 => "base64",
+                VideoOverlayVideoOverlayEncoding.Auto => "auto",
+                VideoOverlayVideoOverlayEncoding.Plain => "plain",
+                VideoOverlayVideoOverlayEncoding.Base64 => "base64",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

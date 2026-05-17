@@ -23,21 +23,21 @@ public class VideoTransformationErrorEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -52,31 +52,31 @@ public class VideoTransformationErrorEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        VideoTransformationErrorEventIntersectionMember1Data expectedData = new()
+        VideoTransformationErrorEventVideoTransformationErrorEventData expectedData = new()
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             },
         };
-        VideoTransformationErrorEventIntersectionMember1Request expectedRequest = new()
+        VideoTransformationErrorEventVideoTransformationErrorEventRequest expectedRequest = new()
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -104,21 +104,21 @@ public class VideoTransformationErrorEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -153,21 +153,21 @@ public class VideoTransformationErrorEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -189,31 +189,31 @@ public class VideoTransformationErrorEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        VideoTransformationErrorEventIntersectionMember1Data expectedData = new()
+        VideoTransformationErrorEventVideoTransformationErrorEventData expectedData = new()
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             },
         };
-        VideoTransformationErrorEventIntersectionMember1Request expectedRequest = new()
+        VideoTransformationErrorEventVideoTransformationErrorEventRequest expectedRequest = new()
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -241,21 +241,21 @@ public class VideoTransformationErrorEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -284,21 +284,21 @@ public class VideoTransformationErrorEventTest : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -316,12 +316,12 @@ public class VideoTransformationErrorEventTest : TestBase
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
+public class VideoTransformationErrorEventVideoTransformationErrorEventTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -330,21 +330,21 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -357,31 +357,31 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        VideoTransformationErrorEventIntersectionMember1Data expectedData = new()
+        VideoTransformationErrorEventVideoTransformationErrorEventData expectedData = new()
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             },
         };
-        VideoTransformationErrorEventIntersectionMember1Request expectedRequest = new()
+        VideoTransformationErrorEventVideoTransformationErrorEventRequest expectedRequest = new()
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -398,7 +398,7 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -407,21 +407,21 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -435,7 +435,7 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEvent>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -446,7 +446,7 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -455,21 +455,21 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -483,38 +483,38 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEvent>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        VideoTransformationErrorEventIntersectionMember1Data expectedData = new()
+        VideoTransformationErrorEventVideoTransformationErrorEventData expectedData = new()
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             },
         };
-        VideoTransformationErrorEventIntersectionMember1Request expectedRequest = new()
+        VideoTransformationErrorEventVideoTransformationErrorEventRequest expectedRequest = new()
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -531,7 +531,7 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -540,21 +540,21 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -572,7 +572,7 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -581,21 +581,21 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
                 Transformation = new()
                 {
                     Type =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                     Error = new(Reason.EncodingFailed),
                     Options = new()
                     {
                         AudioCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                         AutoRotate = true,
                         Format =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                         Quality = 0,
                         StreamProtocol =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                         Variants = ["string"],
                         VideoCodec =
-                            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
                 },
             },
@@ -607,64 +607,64 @@ public class VideoTransformationErrorEventIntersectionMember1Test : TestBase
             },
         };
 
-        VideoTransformationErrorEventIntersectionMember1 copied = new(model);
+        VideoTransformationErrorEventVideoTransformationErrorEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1DataTest : TestBase
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Data
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventData
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             },
         };
 
-        VideoTransformationErrorEventIntersectionMember1DataAsset expectedAsset = new(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataAsset expectedAsset = new(
             "https://example.com"
         );
-        VideoTransformationErrorEventIntersectionMember1DataTransformation expectedTransformation =
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation expectedTransformation =
             new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             };
 
@@ -675,34 +675,34 @@ public class VideoTransformationErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Data
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventData
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             },
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventData>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -713,61 +713,61 @@ public class VideoTransformationErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Data
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventData
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1Data>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventData>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
-        VideoTransformationErrorEventIntersectionMember1DataAsset expectedAsset = new(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataAsset expectedAsset = new(
             "https://example.com"
         );
-        VideoTransformationErrorEventIntersectionMember1DataTransformation expectedTransformation =
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation expectedTransformation =
             new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             };
 
@@ -778,27 +778,27 @@ public class VideoTransformationErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Data
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventData
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             },
         };
@@ -809,43 +809,43 @@ public class VideoTransformationErrorEventIntersectionMember1DataTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Data
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventData
         {
             Asset = new("https://example.com"),
             Transformation = new()
             {
                 Type =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
                 Error = new(Reason.EncodingFailed),
                 Options = new()
                 {
                     AudioCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                     AutoRotate = true,
                     Format =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                     Quality = 0,
                     StreamProtocol =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                     Variants = ["string"],
                     VideoCodec =
-                        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                 },
             },
         };
 
-        VideoTransformationErrorEventIntersectionMember1Data copied = new(model);
+        VideoTransformationErrorEventVideoTransformationErrorEventData copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1DataAssetTest : TestBase
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataAssetTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataAsset
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataAsset
         {
             Url = "https://example.com",
         };
@@ -858,14 +858,14 @@ public class VideoTransformationErrorEventIntersectionMember1DataAssetTest : Tes
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataAsset
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataAsset
         {
             Url = "https://example.com",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1DataAsset>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventDataAsset>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -876,14 +876,14 @@ public class VideoTransformationErrorEventIntersectionMember1DataAssetTest : Tes
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataAsset
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataAsset
         {
             Url = "https://example.com",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1DataAsset>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventDataAsset>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -897,7 +897,7 @@ public class VideoTransformationErrorEventIntersectionMember1DataAssetTest : Tes
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataAsset
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataAsset
         {
             Url = "https://example.com",
         };
@@ -908,65 +908,65 @@ public class VideoTransformationErrorEventIntersectionMember1DataAssetTest : Tes
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataAsset
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataAsset
         {
             Url = "https://example.com",
         };
 
-        VideoTransformationErrorEventIntersectionMember1DataAsset copied = new(model);
+        VideoTransformationErrorEventVideoTransformationErrorEventDataAsset copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1DataTransformationTest : TestBase
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformation
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation
         {
             Type =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
             Error = new(Reason.EncodingFailed),
             Options = new()
             {
                 AudioCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
                 Format =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
             },
         };
 
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationType
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType
         > expectedType =
-            VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation;
-        VideoTransformationErrorEventIntersectionMember1DataTransformationError expectedError = new(
-            Reason.EncodingFailed
-        );
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptions expectedOptions =
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation;
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError expectedError =
+            new(Reason.EncodingFailed);
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions expectedOptions =
             new()
             {
                 AudioCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
                 Format =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
             };
 
         Assert.Equal(expectedType, model.Type);
@@ -977,30 +977,30 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformation
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation
         {
             Type =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
             Error = new(Reason.EncodingFailed),
             Options = new()
             {
                 AudioCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
                 Format =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
             },
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1DataTransformation>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -1011,30 +1011,30 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformation
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation
         {
             Type =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
             Error = new(Reason.EncodingFailed),
             Options = new()
             {
                 AudioCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
                 Format =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
             },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1DataTransformation>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1042,26 +1042,25 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
 
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationType
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType
         > expectedType =
-            VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation;
-        VideoTransformationErrorEventIntersectionMember1DataTransformationError expectedError = new(
-            Reason.EncodingFailed
-        );
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptions expectedOptions =
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation;
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError expectedError =
+            new(Reason.EncodingFailed);
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions expectedOptions =
             new()
             {
                 AudioCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
                 Format =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
             };
 
         Assert.Equal(expectedType, deserialized.Type);
@@ -1072,24 +1071,24 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformation
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation
         {
             Type =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
             Error = new(Reason.EncodingFailed),
             Options = new()
             {
                 AudioCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
                 Format =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
             },
         };
 
@@ -1099,10 +1098,10 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformation
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation
         {
             Type =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
         };
 
         Assert.Null(model.Error);
@@ -1114,10 +1113,10 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformation
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation
         {
             Type =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
         };
 
         model.Validate();
@@ -1126,10 +1125,10 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformation
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation
         {
             Type =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
 
             // Null should be interpreted as omitted for these properties
             Error = null,
@@ -1145,10 +1144,10 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformation
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation
         {
             Type =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
 
             // Null should be interpreted as omitted for these properties
             Error = null,
@@ -1161,51 +1160,56 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformation
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation
         {
             Type =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
             Error = new(Reason.EncodingFailed),
             Options = new()
             {
                 AudioCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
                 AutoRotate = true,
                 Format =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
                 Quality = 0,
                 StreamProtocol =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
                 Variants = ["string"],
                 VideoCodec =
-                    VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
             },
         };
 
-        VideoTransformationErrorEventIntersectionMember1DataTransformation copied = new(model);
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformation copied = new(
+            model
+        );
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1DataTransformationTypeTest : TestBase
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationTypeTest
+    : TestBase
 {
     [Theory]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation
     )]
-    [InlineData(VideoTransformationErrorEventIntersectionMember1DataTransformationType.GifToVideo)]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoThumbnail
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.GifToVideo
+    )]
+    [InlineData(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoThumbnail
     )]
     public void Validation_Works(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationType rawValue
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationType
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType
         > value = rawValue;
         value.Validate();
     }
@@ -1214,7 +1218,10 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationErrorEventIntersectionMember1DataTransformationType>
+            ApiEnum<
+                string,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType
+            >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
@@ -1223,25 +1230,30 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
 
     [Theory]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoTransformation
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation
     )]
-    [InlineData(VideoTransformationErrorEventIntersectionMember1DataTransformationType.GifToVideo)]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationType.VideoThumbnail
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.GifToVideo
+    )]
+    [InlineData(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoThumbnail
     )]
     public void SerializationRoundtrip_Works(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationType rawValue
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationType
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType
         > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationErrorEventIntersectionMember1DataTransformationType>
+            ApiEnum<
+                string,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType
+            >
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -1251,26 +1263,34 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationT
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationErrorEventIntersectionMember1DataTransformationType>
+            ApiEnum<
+                string,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType
+            >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, VideoTransformationErrorEventIntersectionMember1DataTransformationType>
+            ApiEnum<
+                string,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType
+            >
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1DataTransformationErrorTest : TestBase
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationError
-        {
-            Reason = Reason.EncodingFailed,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError
+            {
+                Reason = Reason.EncodingFailed,
+            };
 
         ApiEnum<string, Reason> expectedReason = Reason.EncodingFailed;
 
@@ -1280,14 +1300,15 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationE
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationError
-        {
-            Reason = Reason.EncodingFailed,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError
+            {
+                Reason = Reason.EncodingFailed,
+            };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1DataTransformationError>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -1298,14 +1319,15 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationE
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationError
-        {
-            Reason = Reason.EncodingFailed,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError
+            {
+                Reason = Reason.EncodingFailed,
+            };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1DataTransformationError>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1319,10 +1341,11 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationE
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationError
-        {
-            Reason = Reason.EncodingFailed,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError
+            {
+                Reason = Reason.EncodingFailed,
+            };
 
         model.Validate();
     }
@@ -1330,12 +1353,14 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationE
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationError
-        {
-            Reason = Reason.EncodingFailed,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError
+            {
+                Reason = Reason.EncodingFailed,
+            };
 
-        VideoTransformationErrorEventIntersectionMember1DataTransformationError copied = new(model);
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError copied =
+            new(model);
 
         Assert.Equal(model, copied);
     }
@@ -1401,50 +1426,51 @@ public class ReasonTest : TestBase
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsTest
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsTest
     : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationOptions
-        {
-            AudioCodec =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions
+            {
+                AudioCodec =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
+            };
 
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec
         > expectedAudioCodec =
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac;
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac;
         bool expectedAutoRotate = true;
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat
         > expectedFormat =
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4;
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4;
         long expectedQuality = 0;
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol
         > expectedStreamProtocol =
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls;
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls;
         List<string> expectedVariants = ["string"];
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec
         > expectedVideoCodec =
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264;
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264;
 
         Assert.Equal(expectedAudioCodec, model.AudioCodec);
         Assert.Equal(expectedAutoRotate, model.AutoRotate);
@@ -1463,24 +1489,25 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationOptions
-        {
-            AudioCodec =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions
+            {
+                AudioCodec =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
+            };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1DataTransformationOptions>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -1491,24 +1518,25 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationOptions
-        {
-            AudioCodec =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions
+            {
+                AudioCodec =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
+            };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1DataTransformationOptions>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -1516,27 +1544,27 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
 
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec
         > expectedAudioCodec =
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac;
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac;
         bool expectedAutoRotate = true;
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat
         > expectedFormat =
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4;
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4;
         long expectedQuality = 0;
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol
         > expectedStreamProtocol =
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls;
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls;
         List<string> expectedVariants = ["string"];
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec
         > expectedVideoCodec =
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264;
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264;
 
         Assert.Equal(expectedAudioCodec, deserialized.AudioCodec);
         Assert.Equal(expectedAutoRotate, deserialized.AutoRotate);
@@ -1555,20 +1583,21 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationOptions
-        {
-            AudioCodec =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions
+            {
+                AudioCodec =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
+            };
 
         model.Validate();
     }
@@ -1576,8 +1605,9 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationOptions
-        { };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions
+            { };
 
         Assert.Null(model.AudioCodec);
         Assert.False(model.RawData.ContainsKey("audio_codec"));
@@ -1598,8 +1628,9 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationOptions
-        { };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions
+            { };
 
         model.Validate();
     }
@@ -1607,17 +1638,18 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationOptions
-        {
-            // Null should be interpreted as omitted for these properties
-            AudioCodec = null,
-            AutoRotate = null,
-            Format = null,
-            Quality = null,
-            StreamProtocol = null,
-            Variants = null,
-            VideoCodec = null,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions
+            {
+                // Null should be interpreted as omitted for these properties
+                AudioCodec = null,
+                AutoRotate = null,
+                Format = null,
+                Quality = null,
+                StreamProtocol = null,
+                Variants = null,
+                VideoCodec = null,
+            };
 
         Assert.Null(model.AudioCodec);
         Assert.False(model.RawData.ContainsKey("audio_codec"));
@@ -1638,17 +1670,18 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationOptions
-        {
-            // Null should be interpreted as omitted for these properties
-            AudioCodec = null,
-            AutoRotate = null,
-            Format = null,
-            Quality = null,
-            StreamProtocol = null,
-            Variants = null,
-            VideoCodec = null,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions
+            {
+                // Null should be interpreted as omitted for these properties
+                AudioCodec = null,
+                AutoRotate = null,
+                Format = null,
+                Quality = null,
+                StreamProtocol = null,
+                Variants = null,
+                VideoCodec = null,
+            };
 
         model.Validate();
     }
@@ -1656,47 +1689,47 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1DataTransformationOptions
-        {
-            AudioCodec =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac,
-            AutoRotate = true,
-            Format =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4,
-            Quality = 0,
-            StreamProtocol =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec =
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions
+            {
+                AudioCodec =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
+                AutoRotate = true,
+                Format =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
+                Quality = 0,
+                StreamProtocol =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
+            };
 
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptions copied = new(
-            model
-        );
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions copied =
+            new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodecTest
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodecTest
     : TestBase
 {
     [Theory]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Opus
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Opus
     )]
     public void Validation_Works(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec rawValue
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec
         > value = rawValue;
         value.Validate();
     }
@@ -1707,7 +1740,7 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
@@ -1717,26 +1750,26 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
 
     [Theory]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Aac
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec.Opus
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Opus
     )]
     public void SerializationRoundtrip_Works(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec rawValue
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec
         > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -1749,14 +1782,14 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsAudioCodec
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -1764,33 +1797,33 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormatTest
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormatTest
     : TestBase
 {
     [Theory]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Webm
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Webm
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Jpg
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Jpg
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Png
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Png
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Webp
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Webp
     )]
     public void Validation_Works(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat rawValue
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat
         > value = rawValue;
         value.Validate();
     }
@@ -1801,7 +1834,7 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
@@ -1811,35 +1844,35 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
 
     [Theory]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Mp4
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Webm
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Webm
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Jpg
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Jpg
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Png
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Png
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat.Webp
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Webp
     )]
     public void SerializationRoundtrip_Works(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat rawValue
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat
         > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -1852,14 +1885,14 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsFormat
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -1867,24 +1900,24 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocolTest
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocolTest
     : TestBase
 {
     [Theory]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Dash
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Dash
     )]
     public void Validation_Works(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol rawValue
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol
         > value = rawValue;
         value.Validate();
     }
@@ -1895,7 +1928,7 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
@@ -1905,26 +1938,26 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
 
     [Theory]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Hls
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol.Dash
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Dash
     )]
     public void SerializationRoundtrip_Works(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol rawValue
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol
         > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -1937,14 +1970,14 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsStreamProtocol
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -1952,27 +1985,27 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodecTest
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodecTest
     : TestBase
 {
     [Theory]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.Vp9
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.Vp9
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.Av1
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.Av1
     )]
     public void Validation_Works(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec rawValue
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec
         > value = rawValue;
         value.Validate();
     }
@@ -1983,7 +2016,7 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
@@ -1993,29 +2026,29 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
 
     [Theory]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.H264
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.Vp9
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.Vp9
     )]
     [InlineData(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec.Av1
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.Av1
     )]
     public void SerializationRoundtrip_Works(
-        VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec rawValue
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
         ApiEnum<
             string,
-            VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec
         > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -2028,14 +2061,14 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
         var value = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec
             >
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
             ApiEnum<
                 string,
-                VideoTransformationErrorEventIntersectionMember1DataTransformationOptionsVideoCodec
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec
             >
         >(json, ModelBase.SerializerOptions);
 
@@ -2043,12 +2076,12 @@ public class VideoTransformationErrorEventIntersectionMember1DataTransformationO
     }
 }
 
-public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestBase
+public class VideoTransformationErrorEventVideoTransformationErrorEventRequestTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Request
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2067,7 +2100,7 @@ public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestB
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Request
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2076,7 +2109,7 @@ public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestB
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1Request>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventRequest>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -2087,7 +2120,7 @@ public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestB
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Request
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2096,7 +2129,7 @@ public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestB
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<VideoTransformationErrorEventIntersectionMember1Request>(
+            JsonSerializer.Deserialize<VideoTransformationErrorEventVideoTransformationErrorEventRequest>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -2114,7 +2147,7 @@ public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestB
     [Fact]
     public void Validation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Request
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2127,7 +2160,7 @@ public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestB
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Request
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2140,7 +2173,7 @@ public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestB
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Request
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2152,7 +2185,7 @@ public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestB
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Request
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2168,7 +2201,7 @@ public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestB
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Request
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
@@ -2183,14 +2216,14 @@ public class VideoTransformationErrorEventIntersectionMember1RequestTest : TestB
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new VideoTransformationErrorEventIntersectionMember1Request
+        var model = new VideoTransformationErrorEventVideoTransformationErrorEventRequest
         {
             Url = "https://example.com",
             XRequestID = "x_request_id",
             UserAgent = "user_agent",
         };
 
-        VideoTransformationErrorEventIntersectionMember1Request copied = new(model);
+        VideoTransformationErrorEventVideoTransformationErrorEventRequest copied = new(model);
 
         Assert.Equal(model, copied);
     }
