@@ -20,7 +20,7 @@ modify the contents of the `examples/` directory.
 To use a local version of this library from source in another project, add it using a directory reference:
 
 ```sh
-$ dotnet add reference /path/to/sdk/src/ImageKit
+$ dotnet add reference /path/to/sdk/src/Imagekit
 ```
 
 ## Formatting and linting

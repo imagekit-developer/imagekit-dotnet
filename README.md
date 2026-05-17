@@ -8,7 +8,7 @@ The REST API documentation can be found on [imagekit.io](https://imagekit.io/doc
 
 ```bash
 git clone git@github.com:stainless-sdks/imagekit-csharp.git
-dotnet add reference imagekit-csharp/src/ImageKit
+dotnet add reference imagekit-csharp/src/Imagekit
 ```
 
 ## Requirements
@@ -22,8 +22,8 @@ See the [`examples`](examples) directory for complete and runnable examples.
 ```csharp
 using System;
 using System.Text;
-using ImageKit;
-using ImageKit.Models.Files;
+using Imagekit;
+using Imagekit.Models.Files;
 
 ImageKitClient client = new();
 
@@ -43,7 +43,7 @@ Console.WriteLine(response);
 Configure the client using environment variables:
 
 ```csharp
-using ImageKit;
+using Imagekit;
 
 // Configured using the IMAGEKIT_PRIVATE_KEY, OPTIONAL_IMAGEKIT_IGNORES_THIS, IMAGEKIT_WEBHOOK_SECRET and IMAGE_KIT_BASE_URL environment variables
 ImageKitClient client = new();
@@ -52,7 +52,7 @@ ImageKitClient client = new();
 Or manually:
 
 ```csharp
-using ImageKit;
+using Imagekit;
 
 ImageKitClient client = new()
 {
@@ -120,7 +120,7 @@ For non-streaming responses, you can deserialize the response into an instance o
 
 ```csharp
 using System;
-using ImageKit.Models.Files;
+using Imagekit.Models.Files;
 
 var response = await client.WithRawResponse.Files.Upload(parameters);
 FileUploadResponse deserialized = await response.Deserialize();
@@ -171,7 +171,7 @@ The API may also explicitly instruct the SDK to retry or not retry a request.
 To set a custom number of retries, configure the client using the `MaxRetries` method:
 
 ```csharp
-using ImageKit;
+using Imagekit;
 
 ImageKitClient client = new() { MaxRetries = 3 };
 ```
@@ -198,7 +198,7 @@ To set a custom timeout, configure the client using the `Timeout` option:
 
 ```csharp
 using System;
-using ImageKit;
+using Imagekit;
 
 ImageKitClient client = new() { Timeout = TimeSpan.FromSeconds(42) };
 ```
@@ -224,7 +224,7 @@ To route requests through a proxy, configure your client with a custom [`HttpCli
 ```csharp
 using System.Net;
 using System.Net.Http;
-using ImageKit;
+using Imagekit;
 
 var httpClient = new HttpClient
 (
@@ -248,8 +248,8 @@ To set undocumented parameters, a constructor exists that accepts dictionaries f
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using ImageKit.Core;
-using ImageKit.Models.Files;
+using Imagekit.Core;
+using Imagekit.Models.Files;
 
 FileUploadParams parameters = new
 (
@@ -282,7 +282,7 @@ This can also be used to set a documented parameter to an undocumented or not ye
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using ImageKit.Models.Files;
+using Imagekit.Models.Files;
 
 var parameters = FileUploadParams.FromRawUnchecked
 (
@@ -306,7 +306,7 @@ Undocumented properties, or undocumented values of documented properties, on nes
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using ImageKit.Models.Files;
+using Imagekit.Models.Files;
 
 FileUploadParams parameters = new()
 {
@@ -325,7 +325,7 @@ Required properties on the nested parameter can also be changed or omitted using
 ```csharp
 using System.Collections.Generic;
 using System.Text.Json;
-using ImageKit.Models.Files;
+using Imagekit.Models.Files;
 
 FileUploadParams parameters = new()
 {
@@ -371,7 +371,7 @@ response.Validate();
 Or configure the client using the `ResponseValidation` option:
 
 ```csharp
-using ImageKit;
+using Imagekit;
 
 ImageKitClient client = new() { ResponseValidation = true };
 ```
