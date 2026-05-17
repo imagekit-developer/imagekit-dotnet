@@ -77,7 +77,7 @@ public class UpdateFileRequestTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -162,7 +162,7 @@ public class UpdateFileRequestTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -262,7 +262,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -330,7 +330,7 @@ public class UpdateFileDetailsTest : TestBase
             ),
             new SavedExtension("ext_abc123"),
         ];
-        RemoveAITags expectedRemoveAITags = new UnionMember1();
+        RemoveAITags expectedRemoveAITags = new All();
         List<string> expectedTags = ["tag1", "tag2"];
         string expectedWebhookUrl = "https://example.com";
 
@@ -428,7 +428,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -510,7 +510,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -585,7 +585,7 @@ public class UpdateFileDetailsTest : TestBase
             ),
             new SavedExtension("ext_abc123"),
         ];
-        RemoveAITags expectedRemoveAITags = new UnionMember1();
+        RemoveAITags expectedRemoveAITags = new All();
         List<string> expectedTags = ["tag1", "tag2"];
         string expectedWebhookUrl = "https://example.com";
 
@@ -683,7 +683,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -838,7 +838,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             WebhookUrl = "https://example.com",
         };
 
@@ -915,7 +915,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             WebhookUrl = "https://example.com",
         };
 
@@ -989,7 +989,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             WebhookUrl = "https://example.com",
 
             CustomCoordinates = null,
@@ -1069,7 +1069,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             WebhookUrl = "https://example.com",
 
             CustomCoordinates = null,
@@ -1147,7 +1147,7 @@ public class UpdateFileDetailsTest : TestBase
                 ),
                 new SavedExtension("ext_abc123"),
             ],
-            RemoveAITags = new UnionMember1(),
+            RemoveAITags = new All(),
             Tags = ["tag1", "tag2"],
             WebhookUrl = "https://example.com",
         };
@@ -1170,7 +1170,7 @@ public class RemoveAITagsTest : TestBase
     [Fact]
     public void AllValidationWorks()
     {
-        RemoveAITags value = new UnionMember1();
+        RemoveAITags value = new All();
         value.Validate();
     }
 
@@ -1190,7 +1190,7 @@ public class RemoveAITagsTest : TestBase
     [Fact]
     public void AllSerializationRoundtripWorks()
     {
-        RemoveAITags value = new UnionMember1();
+        RemoveAITags value = new All();
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<RemoveAITags>(
             element,
@@ -1201,19 +1201,19 @@ public class RemoveAITagsTest : TestBase
     }
 }
 
-public class UnionMember1Test : TestBase
+public class AllTest : TestBase
 {
     [Fact]
     public void DefaultValidation_Works()
     {
-        var constant = new UnionMember1();
+        var constant = new All();
         constant.Validate();
     }
 
     [Fact]
     public void ValidConstantValidation_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember1>(
+        var constant = JsonSerializer.Deserialize<All>(
             JsonSerializer.SerializeToElement("all"),
             ModelBase.SerializerOptions
         );
@@ -1225,7 +1225,7 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void InvalidConstantValidationThrows_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember1>(
+        var constant = JsonSerializer.Deserialize<All>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -1237,12 +1237,9 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void DefaultRoundtrip_Works()
     {
-        var constant = new UnionMember1();
+        var constant = new All();
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnionMember1>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<All>(element, ModelBase.SerializerOptions);
 
         Assert.Equal(constant, deserialized);
     }
@@ -1250,15 +1247,12 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void ValidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember1>(
+        var constant = JsonSerializer.Deserialize<All>(
             JsonSerializer.SerializeToElement("all"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnionMember1>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<All>(element, ModelBase.SerializerOptions);
 
         Assert.Equal(constant, deserialized);
     }
@@ -1266,15 +1260,12 @@ public class UnionMember1Test : TestBase
     [Fact]
     public void InvalidConstantRoundtrip_Works()
     {
-        var constant = JsonSerializer.Deserialize<UnionMember1>(
+        var constant = JsonSerializer.Deserialize<All>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string element = JsonSerializer.Serialize(constant, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<UnionMember1>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<All>(element, ModelBase.SerializerOptions);
 
         Assert.Equal(constant, deserialized);
     }

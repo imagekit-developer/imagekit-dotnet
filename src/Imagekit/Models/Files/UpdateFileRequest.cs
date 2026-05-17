@@ -524,7 +524,7 @@ public record class RemoveAITags : ModelBase
         this._element = element;
     }
 
-    public RemoveAITags(UnionMember1 value, JsonElement? element = null)
+    public RemoveAITags(All value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -558,22 +558,22 @@ public record class RemoveAITags : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="UnionMember1"/>.
+    /// type <see cref="All"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickAll(out var value)) {
-    ///     // `value` is of type `UnionMember1`
+    ///     // `value` is of type `All`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickAll([NotNullWhen(true)] out UnionMember1? value)
+    public bool TryPickAll([NotNullWhen(true)] out All? value)
     {
-        value = this.Value as UnionMember1;
+        value = this.Value as All;
         return value != null;
     }
 
@@ -592,22 +592,19 @@ public record class RemoveAITags : ModelBase
     /// <code>
     /// instance.Switch(
     ///     (IReadOnlyList&lt;string&gt; value) =&gt; {...},
-    ///     (UnionMember1 value) =&gt; {...}
+    ///     (All value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(
-        System::Action<IReadOnlyList<string>> strings,
-        System::Action<UnionMember1> all
-    )
+    public void Switch(System::Action<IReadOnlyList<string>> strings, System::Action<All> all)
     {
         switch (this.Value)
         {
             case IReadOnlyList<string> value:
                 strings(value);
                 break;
-            case UnionMember1 value:
+            case All value:
                 all(value);
                 break;
             default:
@@ -633,20 +630,17 @@ public record class RemoveAITags : ModelBase
     /// <code>
     /// var result = instance.Match(
     ///     (IReadOnlyList&lt;string&gt; value) =&gt; {...},
-    ///     (UnionMember1 value) =&gt; {...}
+    ///     (All value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(
-        System::Func<IReadOnlyList<string>, T> strings,
-        System::Func<UnionMember1, T> all
-    )
+    public T Match<T>(System::Func<IReadOnlyList<string>, T> strings, System::Func<All, T> all)
     {
         return this.Value switch
         {
             IReadOnlyList<string> value => strings(value),
-            UnionMember1 value => all(value),
+            All value => all(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of RemoveAITags"
             ),
@@ -656,7 +650,7 @@ public record class RemoveAITags : ModelBase
     public static implicit operator RemoveAITags(List<string> value) =>
         new((IReadOnlyList<string>)value);
 
-    public static implicit operator RemoveAITags(UnionMember1 value) => new(value);
+    public static implicit operator RemoveAITags(All value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -700,7 +694,7 @@ public record class RemoveAITags : ModelBase
         return this.Value switch
         {
             IReadOnlyList<string> _ => 0,
-            UnionMember1 _ => 1,
+            All _ => 1,
             _ => -1,
         };
     }
@@ -717,7 +711,7 @@ sealed class RemoveAITagsConverter : JsonConverter<RemoveAITags>
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<UnionMember1>(element, options);
+            var deserialized = JsonSerializer.Deserialize<All>(element, options);
             if (deserialized != null)
             {
                 deserialized.Validate();
@@ -755,17 +749,17 @@ sealed class RemoveAITagsConverter : JsonConverter<RemoveAITags>
     }
 }
 
-[JsonConverter(typeof(UnionMember1Converter))]
-public record class UnionMember1
+[JsonConverter(typeof(AllConverter))]
+public record class All
 {
     public JsonElement Element { get; private init; }
 
-    public UnionMember1()
+    public All()
     {
         Element = JsonSerializer.SerializeToElement("all");
     }
 
-    internal UnionMember1(JsonElement element)
+    internal All(JsonElement element)
     {
         Element = element;
     }
@@ -781,9 +775,9 @@ public record class UnionMember1
     /// </summary>
     public void Validate()
     {
-        if (this != new UnionMember1())
+        if (this != new All())
         {
-            throw new ImageKitInvalidDataException("Invalid value given for 'UnionMember1'");
+            throw new ImageKitInvalidDataException("Invalid value given for 'All'");
         }
     }
 
@@ -792,7 +786,7 @@ public record class UnionMember1
         return 0;
     }
 
-    public virtual bool Equals(UnionMember1? other)
+    public virtual bool Equals(All? other)
     {
         if (other == null)
         {
@@ -803,9 +797,9 @@ public record class UnionMember1
     }
 }
 
-class UnionMember1Converter : JsonConverter<UnionMember1>
+class AllConverter : JsonConverter<All>
 {
-    public override UnionMember1? Read(
+    public override All? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -814,11 +808,7 @@ class UnionMember1Converter : JsonConverter<UnionMember1>
         return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        UnionMember1 value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, All value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value.Element, options);
     }
