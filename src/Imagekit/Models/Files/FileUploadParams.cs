@@ -692,17 +692,14 @@ public record class FileUploadParams : ParamsBase
     public override System::Uri Url(ClientOptions options)
     {
         return new System::UriBuilder(
-            options.BaseUrl.ToString().TrimEnd('/') + "/api/v1/files/upload"
+            UploadHelpers.GetUploadBaseUrl(options.BaseUrl).TrimEnd('/') + "/api/v1/files/upload"
         )
         {
             Query = this.QueryString(options),
         }.Uri;
     }
 
-    internal override HttpContent? BodyContent()
-    {
-        return MultipartJsonSerializer.Serialize(RawBodyData);
-    }
+    internal override HttpContent? BodyContent() => UploadHelpers.SerializeUploadBody(RawBodyData);
 
     internal override void AddHeadersToRequest(HttpRequestMessage request, ClientOptions options)
     {
