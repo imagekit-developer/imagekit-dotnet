@@ -3,7 +3,7 @@
     <!-- Metadata -->
     <AssemblyTitle>Image Kit C#</AssemblyTitle>
     <AssemblyName>Imagekit</AssemblyName>
-    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionPrefix>6.0.0</VersionPrefix>
     <Description>The official .NET library for the Image Kit API.</Description>
     <OutputType>Library</OutputType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
