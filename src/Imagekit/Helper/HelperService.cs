@@ -257,7 +257,7 @@ public sealed class HelperService : IHelperService
             }
 
             // Raw (always last)
-            if (!string.IsNullOrEmpty(t.Raw)) parts.Add(t.Raw);
+            if (!string.IsNullOrEmpty(t.Raw)) parts.Add(t.Raw!);
 
             if (parts.Count > 0)
                 steps.Add(string.Join(",", parts));
@@ -523,7 +523,7 @@ public sealed class HelperService : IHelperService
                 else if (t.FontSize.TryPickString(out var s)) parts.Add("fs-" + s);
             }
             if (!string.IsNullOrEmpty(t.FontFamily))
-                parts.Add("ff-" + t.FontFamily.Trim('/').Replace("/", "@@"));
+                parts.Add("ff-" + t.FontFamily!.Trim('/').Replace("/", "@@"));
             if (!string.IsNullOrEmpty(t.FontColor)) parts.Add("co-" + t.FontColor);
             if (t.InnerAlignment != null) parts.Add("ia-" + t.InnerAlignment.Raw());
             if (t.Padding != null)
