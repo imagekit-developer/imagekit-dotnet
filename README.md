@@ -1,34 +1,8 @@
-# ImageKit.io C# SDK
+# Image Kit C# API Library
 
-The ImageKit C# SDK is a comprehensive library designed to simplify the integration of ImageKit into your server-side applications. It provides powerful tools for working with the [ImageKit REST API](https://imagekit.io/docs/api-reference), including building and transforming URLs, generating signed URLs for secure content delivery, and handling file uploads.
+The Image Kit C# SDK provides convenient access to the [Image Kit REST API](https://imagekit.io/docs/api-reference) from applications written in C#.
 
-For additional details, refer to the [ImageKit REST API documentation](https://imagekit.io/docs/api-reference).
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Requirements](#requirements)
-- [Usage](#usage)
-- [Client configuration](#client-configuration)
-- [Requests and responses](#requests-and-responses)
-- [Raw responses](#raw-responses)
-- [URL generation](#url-generation)
-  - [Basic URL generation](#basic-url-generation)
-  - [URL generation with transformations](#url-generation-with-transformations)
-  - [URL generation with image overlay](#url-generation-with-image-overlay)
-  - [URL generation with text overlay](#url-generation-with-text-overlay)
-  - [URL generation with multiple overlays](#url-generation-with-multiple-overlays)
-  - [Signed URLs for secure delivery](#signed-urls-for-secure-delivery)
-  - [Using Raw transformations for undocumented features](#using-raw-transformations-for-undocumented-features)
-- [Authentication parameters for client-side uploads](#authentication-parameters-for-client-side-uploads)
-- [Webhook verification](#webhook-verification)
-- [Error handling](#error-handling)
-- [Network options](#network-options)
-  - [Retries](#retries)
-  - [Timeouts](#timeouts)
-  - [Proxies](#proxies)
-- [Undocumented API functionality](#undocumented-api-functionality)
-- [Semantic versioning](#semantic-versioning)
+The REST API documentation can be found on [imagekit.io](https://imagekit.io/docs/api-reference).
 
 ## Installation
 
@@ -44,20 +18,20 @@ This library requires .NET Standard 2.0 or later.
 
 ## Usage
 
+See the [`examples`](examples) directory for complete and runnable examples.
+
 ```csharp
 using System;
+using System.Text;
 using Imagekit;
 using Imagekit.Models.Files;
 
-ImageKitClient client = new()
-{
-    PrivateKey = "private_key_xxx",
-};
+ImageKitClient client = new();
 
 FileUploadParams parameters = new()
 {
-    File = new System.IO.FileStream("/path/to/your/image.jpg", System.IO.FileMode.Open),
-    FileName = "uploaded-image.jpg",
+    File = Encoding.UTF8.GetBytes("https://www.example.com/public-url.jpg"),
+    FileName = "file-name.jpg",
 };
 
 var response = await client.Files.Upload(parameters);
@@ -72,7 +46,7 @@ Configure the client using environment variables:
 ```csharp
 using Imagekit;
 
-// Configured using the IMAGEKIT_PRIVATE_KEY, IMAGEKIT_WEBHOOK_SECRET and IMAGE_KIT_BASE_URL environment variables
+// Configured using the IMAGEKIT_PRIVATE_KEY, OPTIONAL_IMAGEKIT_IGNORES_THIS, IMAGEKIT_WEBHOOK_SECRET and IMAGE_KIT_BASE_URL environment variables
 ImageKitClient client = new();
 ```
 
@@ -84,6 +58,7 @@ using Imagekit;
 ImageKitClient client = new()
 {
     PrivateKey = "My Private Key",
+    Password = "My Password",
 };
 ```
 
@@ -94,6 +69,7 @@ See this table for the available options:
 | Property        | Environment variable             | Required | Default value               |
 | --------------- | -------------------------------- | -------- | --------------------------- |
 | `PrivateKey`    | `IMAGEKIT_PRIVATE_KEY`           | true     | -                           |
+| `Password`      | `OPTIONAL_IMAGEKIT_IGNORES_THIS` | false    | `"do_not_set"`              |
 | `WebhookSecret` | `IMAGEKIT_WEBHOOK_SECRET`        | false    | -                           |
 | `BaseUrl`       | `IMAGE_KIT_BASE_URL`             | true     | `"https://api.imagekit.io"` |
 
@@ -151,253 +127,6 @@ var response = await client.WithRawResponse.Files.Upload(parameters);
 FileUploadResponse deserialized = await response.Deserialize();
 Console.WriteLine(deserialized);
 ```
-
-## URL generation
-
-The ImageKit SDK provides a powerful `Helper.BuildUrl()` method for generating optimized image and video URLs with transformations. Here are examples ranging from simple URLs to complex transformations with overlays and signed URLs.
-
-### Basic URL generation
-
-Generate a simple URL without any transformations:
-
-```csharp
-using Imagekit;
-using Imagekit.Models;
-
-ImageKitClient client = new()
-{
-    PrivateKey = "private_key_xxx",
-};
-
-string url = client.Helper.BuildUrl(new SrcOptions
-{
-    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
-    Src = "/path/to/image.jpg",
-});
-Console.WriteLine(url);
-// Result: https://ik.imagekit.io/your_imagekit_id/path/to/image.jpg
-```
-
-### URL generation with transformations
-
-Apply common transformations like resizing, cropping, and format conversion:
-
-```csharp
-using Imagekit;
-using Imagekit.Models;
-
-string url = client.Helper.BuildUrl(new SrcOptions
-{
-    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
-    Src = "/path/to/image.jpg",
-    Transformation =
-    [
-        new Transformation
-        {
-            Width = 400,
-            Height = 300,
-            Crop = Crop.MaintainRatio,
-            Quality = 80,
-            Format = Format.Webp,
-        },
-    ],
-});
-Console.WriteLine(url);
-// Result: https://ik.imagekit.io/your_imagekit_id/path/to/image.jpg?tr=w-400,h-300,q-80,c-maintain_ratio,f-webp
-```
-
-### URL generation with image overlay
-
-Add image overlays to your base image:
-
-```csharp
-using Imagekit;
-using Imagekit.Models;
-
-string url = client.Helper.BuildUrl(new SrcOptions
-{
-    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
-    Src = "/path/to/base-image.jpg",
-    Transformation =
-    [
-        new Transformation
-        {
-            Width = 500,
-            Height = 400,
-            Overlay = new ImageOverlay("/path/to/overlay-logo.png")
-            {
-                Position = new OverlayPosition { X = "10", Y = "10" },
-                Transformation = [new Transformation { Width = 100, Height = 50 }],
-            },
-        },
-    ],
-});
-Console.WriteLine(url);
-// Result: URL with image overlay positioned at x:10, y:10
-```
-
-### URL generation with text overlay
-
-Add customized text overlays:
-
-```csharp
-using Imagekit;
-using Imagekit.Models;
-
-string url = client.Helper.BuildUrl(new SrcOptions
-{
-    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
-    Src = "/path/to/base-image.jpg",
-    Transformation =
-    [
-        new Transformation
-        {
-            Width = 600,
-            Height = 400,
-            Overlay = new TextOverlay("Sample Text Overlay")
-            {
-                Position = new OverlayPosition { X = "50", Y = "50", Focus = Focus.Center },
-                Transformation =
-                [
-                    new TextOverlayTransformation
-                    {
-                        FontSize = 40,
-                        FontFamily = "Arial",
-                        FontColor = "FFFFFF",
-                        Typography = "b", // bold
-                    },
-                ],
-            },
-        },
-    ],
-});
-Console.WriteLine(url);
-// Result: URL with bold white Arial text overlay at center position
-```
-
-### URL generation with multiple overlays
-
-Combine multiple overlays for complex compositions:
-
-```csharp
-using Imagekit;
-using Imagekit.Models;
-
-string url = client.Helper.BuildUrl(new SrcOptions
-{
-    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
-    Src = "/path/to/base-image.jpg",
-    Transformation =
-    [
-        new Transformation
-        {
-            Width = 800,
-            Height = 600,
-            Overlay = new TextOverlay("Header Text")
-            {
-                Position = new OverlayPosition { X = "20", Y = "20" },
-                Transformation =
-                [
-                    new TextOverlayTransformation { FontSize = 30, FontColor = "000000" },
-                ],
-            },
-        },
-        new Transformation
-        {
-            Overlay = new ImageOverlay("/watermark.png")
-            {
-                Position = new OverlayPosition { Focus = Focus.BottomRight },
-                Transformation = [new Transformation { Width = 100, Opacity = 70 }],
-            },
-        },
-    ],
-});
-Console.WriteLine(url);
-// Result: URL with text overlay at top-left and semi-transparent watermark at bottom-right
-```
-
-### Signed URLs for secure delivery
-
-Generate signed URLs that expire after a specified time for secure content delivery:
-
-```csharp
-using Imagekit;
-using Imagekit.Models;
-
-// Generate a signed URL that expires in 1 hour (3600 seconds)
-string url = client.Helper.BuildUrl(new SrcOptions
-{
-    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
-    Src = "/private/secure-image.jpg",
-    Transformation = [new Transformation { Width = 400, Height = 300, Quality = 90 }],
-    Signed = true,
-    ExpiresIn = 3600, // URL expires in 1 hour
-});
-Console.WriteLine(url);
-// Result: URL with signature parameters (?ik-t=timestamp&ik-s=signature)
-
-// Generate a signed URL that doesn't expire
-string permanentSignedUrl = client.Helper.BuildUrl(new SrcOptions
-{
-    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
-    Src = "/private/secure-image.jpg",
-    Signed = true,
-    // No ExpiresIn means the URL won't expire
-});
-Console.WriteLine(permanentSignedUrl);
-// Result: URL with signature parameter (?ik-s=signature)
-```
-
-### Using Raw transformations for undocumented features
-
-ImageKit frequently adds new transformation parameters that might not yet be documented in the SDK. You can use the `Raw` parameter to access these features or create custom transformation strings:
-
-```csharp
-using Imagekit;
-using Imagekit.Models;
-
-string url = client.Helper.BuildUrl(new SrcOptions
-{
-    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
-    Src = "/path/to/image.jpg",
-    Transformation =
-    [
-        new Transformation { Width = 400, Height = 300 },
-        new Transformation { Raw = "something-new" },
-    ],
-});
-Console.WriteLine(url);
-// Result: https://ik.imagekit.io/your_imagekit_id/path/to/image.jpg?tr=w-400,h-300:something-new
-```
-
-## Authentication parameters for client-side uploads
-
-Generate authentication parameters for secure client-side file uploads:
-
-```csharp
-using Imagekit;
-
-ImageKitClient client = new()
-{
-    PrivateKey = "private_key_xxx",
-};
-
-// Generate authentication parameters for client-side uploads
-var authParams = client.Helper.GetAuthenticationParameters();
-Console.WriteLine(authParams);
-// Result: AuthenticationParameters { Token = "<uuid-token>", Expire = <timestamp>, Signature = "<hmac-signature>" }
-
-// Generate with custom token and expiry (seconds from now)
-var customAuthParams = client.Helper.GetAuthenticationParameters("my-custom-token", 1800);
-Console.WriteLine(customAuthParams);
-// Result: AuthenticationParameters { Token = "my-custom-token", Expire = 1800, Signature = "<hmac-signature>" }
-```
-
-These authentication parameters can be used in client-side upload forms to securely upload files without exposing your private API key.
-
-## Webhook verification
-
-For detailed information about webhook setup, signature verification, and handling different webhook events, refer to the [ImageKit webhook documentation](https://imagekit.io/docs/webhooks).
 
 ## Error handling
 
@@ -618,7 +347,7 @@ To access undocumented response properties, the `RawData` property can be used:
 ```csharp
 using System.Text.Json;
 
-var response = await client.Files.Upload(parameters);
+var response = client.Files.Upload(parameters)
 if (response.RawData.TryGetValue("my_custom_key", out JsonElement value))
 {
     // Do something with `value`
@@ -636,7 +365,7 @@ By default, the SDK will not throw an exception in this case. It will throw `Ima
 If you would prefer to check that the response is completely well-typed upfront, then either call `Validate`:
 
 ```csharp
-var response = await client.Files.Upload(parameters);
+var response = client.Files.Upload(parameters);
 response.Validate();
 ```
 

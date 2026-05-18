@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-cd -- "$(dirname -- "$0")/.."
-
-echo "==> Running Helper tests"
-dotnet test src/Imagekit.Tests/Imagekit.Tests.csproj -f net8.0 --filter "FullyQualifiedName~Imagekit.Tests.Helper"

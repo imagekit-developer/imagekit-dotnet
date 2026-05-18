@@ -146,12 +146,6 @@ public sealed class ImageKitClient : IImageKitClient
         get { return _webhooks.Value; }
     }
 
-    readonly Lazy<IHelperService> _helper;
-    public IHelperService Helper
-    {
-        get { return _helper.Value; }
-    }
-
     public void Dispose() => this.HttpClient.Dispose();
 
     public ImageKitClient()
@@ -169,7 +163,6 @@ public sealed class ImageKitClient : IImageKitClient
         _accounts = new(() => new AccountService(this));
         _beta = new(() => new BetaService(this));
         _webhooks = new(() => new WebhookService(this));
-        _helper = new(() => new HelperService(this));
     }
 
     public ImageKitClient(ClientOptions options)

@@ -87,8 +87,6 @@ public interface IImageKitClient : IDisposable
     IBetaService Beta { get; }
 
     IWebhookService Webhooks { get; }
-
-    IHelperService Helper { get; }
 }
 
 /// <summary>
