@@ -33,3 +33,4 @@ dotnet_diagnostic.IDE0057.severity = none # Caused by use of `.Substring(...)`
 dotnet_diagnostic.CA1866.severity = none # Caused by use of `.StartsWith(...)` with single character string
 dotnet_diagnostic.CA1847.severity = none # Caused by use of `.Contains(...)` with single character string
 dotnet_diagnostic.CA2263.severity = none # Caused by use of non-generic `Enum.IsDefined(...)`
+dotnet_diagnostic.SYSLIB1045.severity = none # GeneratedRegex not available in netstandard2.0

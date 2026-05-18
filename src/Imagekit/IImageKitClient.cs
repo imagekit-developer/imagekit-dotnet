@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Imagekit.Core;
+using Imagekit.Helper;
 using Imagekit.Services;
 
 namespace Imagekit;
@@ -87,6 +88,8 @@ public interface IImageKitClient : IDisposable
     IBetaService Beta { get; }
 
     IWebhookService Webhooks { get; }
+
+    IHelperService Helper { get; }
 }
 
 /// <summary>
