@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -10,179 +11,35 @@ using System = System;
 namespace Imagekit.Models;
 
 [JsonConverter(
-    typeof(JsonModelConverter<TextOverlayTransformation, TextOverlayTransformationFromRaw>)
+    typeof(JsonModelConverter<SelectedFieldsSchemaItem, SelectedFieldsSchemaItemFromRaw>)
 )]
-public sealed record class TextOverlayTransformation : JsonModel
+public sealed record class SelectedFieldsSchemaItem : JsonModel
 {
     /// <summary>
-    /// Specifies the transparency level of the text overlay. Accepts integers from
-    /// `1` to `9`.
+    /// Type of the custom metadata field.
     /// </summary>
-    public double? Alpha
+    public required ApiEnum<string, global::Imagekit.Models.Type> Type
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<double>("alpha");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("alpha", value);
-        }
-    }
-
-    /// <summary>
-    /// Specifies the background color of the text overlay. Accepts an RGB hex code,
-    /// an RGBA code, or a color name.
-    /// </summary>
-    public string? Background
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("background");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("background", value);
-        }
-    }
-
-    /// <summary>
-    /// Flip/mirror the text horizontally, vertically, or in both directions. Acceptable
-    /// values: `h` (horizontal), `v` (vertical), `h_v` (horizontal and vertical),
-    /// or `v_h`.
-    /// </summary>
-    public ApiEnum<string, Flip>? Flip
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<ApiEnum<string, Flip>>("flip");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("flip", value);
-        }
-    }
-
-    /// <summary>
-    /// Specifies the font color of the overlaid text. Accepts an RGB hex code (e.g.,
-    /// `FF0000`), an RGBA code (e.g., `FFAABB50`), or a color name.
-    /// </summary>
-    public string? FontColor
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("fontColor");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("fontColor", value);
-        }
-    }
-
-    /// <summary>
-    /// Specifies the font family of the overlaid text. Choose from the supported
-    /// fonts list or use a custom font. See [Supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list)
-    /// and [Custom font](https://imagekit.io/docs/add-overlays-on-images#change-font-family-in-text-overlay).
-    /// </summary>
-    public string? FontFamily
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("fontFamily");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("fontFamily", value);
-        }
-    }
-
-    /// <summary>
-    /// Specifies the font size of the overlaid text. Accepts a numeric value or an
-    /// arithmetic expression.
-    /// </summary>
-    public FontSize? FontSize
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<FontSize>("fontSize");
-        }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("fontSize", value);
-        }
-    }
-
-    /// <summary>
-    /// Specifies the inner alignment of the text when width is more than the text
-    /// length.
-    /// </summary>
-    public ApiEnum<string, InnerAlignment>? InnerAlignment
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNullableClass<ApiEnum<string, InnerAlignment>>(
-                "innerAlignment"
+            return this._rawData.GetNotNullClass<ApiEnum<string, global::Imagekit.Models.Type>>(
+                "type"
             );
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("innerAlignment", value);
-        }
+        init { this._rawData.Set("type", value); }
     }
 
     /// <summary>
-    /// Specifies the line height for multi-line text overlays. It will come into
-    /// effect only if the text wraps over multiple lines. Accepts either an integer
-    /// value or an arithmetic expression.
+    /// The default value for this custom metadata field. The value should match
+    /// the `type` of custom metadata field.
     /// </summary>
-    public LineHeight? LineHeight
+    public DefaultValue? DefaultValue
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<LineHeight>("lineHeight");
+            return this._rawData.GetNullableClass<DefaultValue>("defaultValue");
         }
         init
         {
@@ -191,21 +48,19 @@ public sealed record class TextOverlayTransformation : JsonModel
                 return;
             }
 
-            this._rawData.Set("lineHeight", value);
+            this._rawData.Set("defaultValue", value);
         }
     }
 
     /// <summary>
-    /// Specifies the padding around the overlaid text. Can be provided as a single
-    /// positive integer or multiple values separated by underscores (following CSS
-    /// shorthand order). Arithmetic expressions are also accepted.
+    /// Specifies if the custom metadata field is required or not.
     /// </summary>
-    public Padding? Padding
+    public bool? IsValueRequired
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Padding>("padding");
+            return this._rawData.GetNullableStruct<bool>("isValueRequired");
         }
         init
         {
@@ -214,23 +69,19 @@ public sealed record class TextOverlayTransformation : JsonModel
                 return;
             }
 
-            this._rawData.Set("padding", value);
+            this._rawData.Set("isValueRequired", value);
         }
     }
 
     /// <summary>
-    /// Specifies the corner radius: - Single value (positive integer): Applied to
-    /// all corners (e.g., `20`). - `max`: Creates a circular or oval shape. - Per-corner
-    /// array: Provide four underscore-separated values representing top-left, top-right,
-    /// bottom-right, and bottom-left corners respectively (e.g., `10_20_30_40`).
-    /// See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+    /// Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
     /// </summary>
-    public TextOverlayTransformationRadius? Radius
+    public double? MaxLength
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<TextOverlayTransformationRadius>("radius");
+            return this._rawData.GetNullableStruct<double>("maxLength");
         }
         init
         {
@@ -239,21 +90,21 @@ public sealed record class TextOverlayTransformation : JsonModel
                 return;
             }
 
-            this._rawData.Set("radius", value);
+            this._rawData.Set("maxLength", value);
         }
     }
 
     /// <summary>
-    /// Specifies the rotation angle of the text overlay. Accepts a numeric value
-    /// for clockwise rotation or a string prefixed with "N" for counter-clockwise
-    /// rotation.
+    /// Maximum value of the field. Only set if field type is `Date` or `Number`.
+    /// For `Date` type field, the value will be in ISO8601 string format. For `Number`
+    /// type field, it will be a numeric value.
     /// </summary>
-    public Rotation? Rotation
+    public MaxValue? MaxValue
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Rotation>("rotation");
+            return this._rawData.GetNullableClass<MaxValue>("maxValue");
         }
         init
         {
@@ -262,21 +113,19 @@ public sealed record class TextOverlayTransformation : JsonModel
                 return;
             }
 
-            this._rawData.Set("rotation", value);
+            this._rawData.Set("maxValue", value);
         }
     }
 
     /// <summary>
-    /// Specifies the typography style of the text. Supported values:    - Single
-    /// styles: `b` (bold), `i` (italic), `strikethrough`.   - Combinations: Any
-    /// combination separated by underscores, e.g., `b_i`, `b_i_strikethrough`.
+    /// Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
     /// </summary>
-    public string? Typography
+    public double? MinLength
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("typography");
+            return this._rawData.GetNullableStruct<double>("minLength");
         }
         init
         {
@@ -285,22 +134,21 @@ public sealed record class TextOverlayTransformation : JsonModel
                 return;
             }
 
-            this._rawData.Set("typography", value);
+            this._rawData.Set("minLength", value);
         }
     }
 
     /// <summary>
-    /// Specifies the maximum width (in pixels) of the overlaid text. The text wraps
-    /// automatically, and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`)
-    /// are supported. Useful when used in conjunction with the `background`. Learn
-    /// about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+    /// Minimum value of the field. Only set if field type is `Date` or `Number`.
+    /// For `Date` type field, the value will be in ISO8601 string format. For `Number`
+    /// type field, it will be a numeric value.
     /// </summary>
-    public TextOverlayTransformationWidth? Width
+    public MinValue? MinValue
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<TextOverlayTransformationWidth>("width");
+            return this._rawData.GetNullableClass<MinValue>("minValue");
         }
         init
         {
@@ -309,83 +157,160 @@ public sealed record class TextOverlayTransformation : JsonModel
                 return;
             }
 
-            this._rawData.Set("width", value);
+            this._rawData.Set("minValue", value);
+        }
+    }
+
+    /// <summary>
+    /// Indicates whether the custom metadata field is read only. A read only field
+    /// cannot be modified after being set. This field is configurable only via the
+    /// **Path policy** feature.
+    /// </summary>
+    public bool? ReadOnly
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("readOnly");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("readOnly", value);
+        }
+    }
+
+    /// <summary>
+    /// An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
+    /// </summary>
+    public IReadOnlyList<SelectOption>? SelectOptions
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<SelectOption>>("selectOptions");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<SelectOption>?>(
+                "selectOptions",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Specifies if the selectOptions array is truncated. It is truncated when number
+    /// of options are &gt; 100.
+    /// </summary>
+    public bool? SelectOptionsTruncated
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("selectOptionsTruncated");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("selectOptionsTruncated", value);
         }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.Alpha;
-        _ = this.Background;
-        this.Flip?.Validate();
-        _ = this.FontColor;
-        _ = this.FontFamily;
-        this.FontSize?.Validate();
-        this.InnerAlignment?.Validate();
-        this.LineHeight?.Validate();
-        this.Padding?.Validate();
-        this.Radius?.Validate();
-        this.Rotation?.Validate();
-        _ = this.Typography;
-        this.Width?.Validate();
+        this.Type.Validate();
+        this.DefaultValue?.Validate();
+        _ = this.IsValueRequired;
+        _ = this.MaxLength;
+        this.MaxValue?.Validate();
+        _ = this.MinLength;
+        this.MinValue?.Validate();
+        _ = this.ReadOnly;
+        foreach (var item in this.SelectOptions ?? [])
+        {
+            item.Validate();
+        }
+        _ = this.SelectOptionsTruncated;
     }
 
-    public TextOverlayTransformation() { }
+    public SelectedFieldsSchemaItem() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TextOverlayTransformation(TextOverlayTransformation textOverlayTransformation)
-        : base(textOverlayTransformation) { }
+    public SelectedFieldsSchemaItem(SelectedFieldsSchemaItem selectedFieldsSchemaItem)
+        : base(selectedFieldsSchemaItem) { }
 #pragma warning restore CS8618
 
-    public TextOverlayTransformation(IReadOnlyDictionary<string, JsonElement> rawData)
+    public SelectedFieldsSchemaItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TextOverlayTransformation(FrozenDictionary<string, JsonElement> rawData)
+    SelectedFieldsSchemaItem(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TextOverlayTransformationFromRaw.FromRawUnchecked"/>
-    public static TextOverlayTransformation FromRawUnchecked(
+    /// <inheritdoc cref="SelectedFieldsSchemaItemFromRaw.FromRawUnchecked"/>
+    public static SelectedFieldsSchemaItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+
+    [SetsRequiredMembers]
+    public SelectedFieldsSchemaItem(ApiEnum<string, global::Imagekit.Models.Type> type)
+        : this()
+    {
+        this.Type = type;
+    }
 }
 
-class TextOverlayTransformationFromRaw : IFromRawJson<TextOverlayTransformation>
+class SelectedFieldsSchemaItemFromRaw : IFromRawJson<SelectedFieldsSchemaItem>
 {
     /// <inheritdoc/>
-    public TextOverlayTransformation FromRawUnchecked(
+    public SelectedFieldsSchemaItem FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TextOverlayTransformation.FromRawUnchecked(rawData);
+    ) => SelectedFieldsSchemaItem.FromRawUnchecked(rawData);
 }
 
 /// <summary>
-/// Flip/mirror the text horizontally, vertically, or in both directions. Acceptable
-/// values: `h` (horizontal), `v` (vertical), `h_v` (horizontal and vertical), or
-/// `v_h`.
+/// Type of the custom metadata field.
 /// </summary>
-[JsonConverter(typeof(FlipConverter))]
-public enum Flip
+[JsonConverter(typeof(TypeConverter))]
+public enum Type
 {
-    H,
-    V,
-    HV,
-    VH,
+    Text,
+    Textarea,
+    Number,
+    Date,
+    Boolean,
+    SingleSelect,
+    MultiSelect,
 }
 
-sealed class FlipConverter : JsonConverter<Flip>
+sealed class TypeConverter : JsonConverter<global::Imagekit.Models.Type>
 {
-    public override Flip Read(
+    public override global::Imagekit.Models.Type Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -393,24 +318,34 @@ sealed class FlipConverter : JsonConverter<Flip>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "h" => Flip.H,
-            "v" => Flip.V,
-            "h_v" => Flip.HV,
-            "v_h" => Flip.VH,
-            _ => (Flip)(-1),
+            "Text" => global::Imagekit.Models.Type.Text,
+            "Textarea" => global::Imagekit.Models.Type.Textarea,
+            "Number" => global::Imagekit.Models.Type.Number,
+            "Date" => global::Imagekit.Models.Type.Date,
+            "Boolean" => global::Imagekit.Models.Type.Boolean,
+            "SingleSelect" => global::Imagekit.Models.Type.SingleSelect,
+            "MultiSelect" => global::Imagekit.Models.Type.MultiSelect,
+            _ => (global::Imagekit.Models.Type)(-1),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Flip value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        global::Imagekit.Models.Type value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Flip.H => "h",
-                Flip.V => "v",
-                Flip.HV => "h_v",
-                Flip.VH => "v_h",
+                global::Imagekit.Models.Type.Text => "Text",
+                global::Imagekit.Models.Type.Textarea => "Textarea",
+                global::Imagekit.Models.Type.Number => "Number",
+                global::Imagekit.Models.Type.Date => "Date",
+                global::Imagekit.Models.Type.Boolean => "Boolean",
+                global::Imagekit.Models.Type.SingleSelect => "SingleSelect",
+                global::Imagekit.Models.Type.MultiSelect => "MultiSelect",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -421,10 +356,11 @@ sealed class FlipConverter : JsonConverter<Flip>
 }
 
 /// <summary>
-/// Specifies the font size of the overlaid text. Accepts a numeric value or an arithmetic expression.
+/// The default value for this custom metadata field. The value should match the `type`
+/// of custom metadata field.
 /// </summary>
-[JsonConverter(typeof(FontSizeConverter))]
-public record class FontSize : ModelBase
+[JsonConverter(typeof(DefaultValueConverter))]
+public record class DefaultValue : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -441,21 +377,54 @@ public record class FontSize : ModelBase
         }
     }
 
-    public FontSize(double value, JsonElement? element = null)
+    public DefaultValue(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public FontSize(string value, JsonElement? element = null)
+    public DefaultValue(double value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public FontSize(JsonElement element)
+    public DefaultValue(bool value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public DefaultValue(IReadOnlyList<DefaultValueArrayItem> value, JsonElement? element = null)
+    {
+        this.Value = ImmutableArray.ToImmutableArray(value);
+        this._element = element;
+    }
+
+    public DefaultValue(JsonElement element)
     {
         this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="string"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickString(out var value)) {
+    ///     // `value` is of type `string`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickString([NotNullWhen(true)] out string? value)
+    {
+        value = this.Value as string;
+        return value != null;
     }
 
     /// <summary>
@@ -481,22 +450,43 @@ public record class FontSize : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="string"/>.
+    /// type <see cref="bool"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickString(out var value)) {
-    ///     // `value` is of type `string`
+    /// if (instance.TryPickBool(out var value)) {
+    ///     // `value` is of type `bool`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickString([NotNullWhen(true)] out string? value)
+    public bool TryPickBool([NotNullWhen(true)] out bool? value)
     {
-        value = this.Value as string;
+        value = this.Value as bool?;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="List{T}"/> where <c>T</c> is a <c>DefaultValueArrayItem</c>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMixed(out var value)) {
+    ///     // `value` is of type `IReadOnlyList&lt;DefaultValueArrayItem&gt;`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMixed([NotNullWhen(true)] out IReadOnlyList<DefaultValueArrayItem>? value)
+    {
+        value = this.Value as IReadOnlyList<DefaultValueArrayItem>;
         return value != null;
     }
 
@@ -514,840 +504,38 @@ public record class FontSize : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
+    ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
-    ///     (string value) =&gt; {...}
-    /// );
-    /// </code>
-    /// </example>
-    /// </summary>
-    public void Switch(System::Action<double> @double, System::Action<string> @string)
-    {
-        switch (this.Value)
-        {
-            case double value:
-                @double(value);
-                break;
-            case string value:
-                @string(value);
-                break;
-            default:
-                throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of FontSize"
-                );
-        }
-    }
-
-    /// <summary>
-    /// Calls the function parameter corresponding to the variant the instance was constructed with and
-    /// returns its result.
-    ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
-    /// if you don't need your function parameters to return a value.</para>
-    ///
-    /// <exception cref="ImageKitInvalidDataException">
-    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
-    /// that doesn't match any variant's expected shape).
-    /// </exception>
-    ///
-    /// <example>
-    /// <code>
-    /// var result = instance.Match(
-    ///     (double value) =&gt; {...},
-    ///     (string value) =&gt; {...}
-    /// );
-    /// </code>
-    /// </example>
-    /// </summary>
-    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
-    {
-        return this.Value switch
-        {
-            double value => @double(value),
-            string value => @string(value),
-            _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of FontSize"
-            ),
-        };
-    }
-
-    public static implicit operator FontSize(double value) => new(value);
-
-    public static implicit operator FontSize(string value) => new(value);
-
-    /// <summary>
-    /// Validates that the instance was constructed with a known variant and that this variant is valid
-    /// (based on its own <c>Validate</c> method).
-    ///
-    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
-    ///
-    /// <exception cref="ImageKitInvalidDataException">
-    /// Thrown when the instance does not pass validation.
-    /// </exception>
-    /// </summary>
-    public override void Validate()
-    {
-        if (this.Value == null)
-        {
-            throw new ImageKitInvalidDataException("Data did not match any variant of FontSize");
-        }
-    }
-
-    public virtual bool Equals(FontSize? other) =>
-        other != null
-        && this.VariantIndex() == other.VariantIndex()
-        && JsonElement.DeepEquals(this.Json, other.Json);
-
-    public override int GetHashCode()
-    {
-        return 0;
-    }
-
-    public override string ToString() =>
-        JsonSerializer.Serialize(
-            FriendlyJsonPrinter.PrintValue(this.Json),
-            ModelBase.ToStringSerializerOptions
-        );
-
-    int VariantIndex()
-    {
-        return this.Value switch
-        {
-            double _ => 0,
-            string _ => 1,
-            _ => -1,
-        };
-    }
-}
-
-sealed class FontSizeConverter : JsonConverter<FontSize>
-{
-    public override FontSize? Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
-        try
-        {
-            return new(JsonSerializer.Deserialize<double>(element, options), element);
-        }
-        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
-        {
-            // ignore
-        }
-
-        try
-        {
-            var deserialized = JsonSerializer.Deserialize<string>(element, options);
-            if (deserialized != null)
-            {
-                return new(deserialized, element);
-            }
-        }
-        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
-        {
-            // ignore
-        }
-
-        return new(element);
-    }
-
-    public override void Write(Utf8JsonWriter writer, FontSize value, JsonSerializerOptions options)
-    {
-        JsonSerializer.Serialize(writer, value.Json, options);
-    }
-}
-
-/// <summary>
-/// Specifies the inner alignment of the text when width is more than the text length.
-/// </summary>
-[JsonConverter(typeof(InnerAlignmentConverter))]
-public enum InnerAlignment
-{
-    Left,
-    Right,
-    Center,
-}
-
-sealed class InnerAlignmentConverter : JsonConverter<InnerAlignment>
-{
-    public override InnerAlignment Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "left" => InnerAlignment.Left,
-            "right" => InnerAlignment.Right,
-            "center" => InnerAlignment.Center,
-            _ => (InnerAlignment)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        InnerAlignment value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                InnerAlignment.Left => "left",
-                InnerAlignment.Right => "right",
-                InnerAlignment.Center => "center",
-                _ => throw new ImageKitInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-/// <summary>
-/// Specifies the line height for multi-line text overlays. It will come into effect
-/// only if the text wraps over multiple lines. Accepts either an integer value or
-/// an arithmetic expression.
-/// </summary>
-[JsonConverter(typeof(LineHeightConverter))]
-public record class LineHeight : ModelBase
-{
-    public object? Value { get; } = null;
-
-    JsonElement? _element = null;
-
-    public JsonElement Json
-    {
-        get
-        {
-            return this._element ??= JsonSerializer.SerializeToElement(
-                this.Value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    public LineHeight(double value, JsonElement? element = null)
-    {
-        this.Value = value;
-        this._element = element;
-    }
-
-    public LineHeight(string value, JsonElement? element = null)
-    {
-        this.Value = value;
-        this._element = element;
-    }
-
-    public LineHeight(JsonElement element)
-    {
-        this._element = element;
-    }
-
-    /// <summary>
-    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="double"/>.
-    ///
-    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
-    ///
-    /// <example>
-    /// <code>
-    /// if (instance.TryPickDouble(out var value)) {
-    ///     // `value` is of type `double`
-    ///     Console.WriteLine(value);
-    /// }
-    /// </code>
-    /// </example>
-    /// </summary>
-    public bool TryPickDouble([NotNullWhen(true)] out double? value)
-    {
-        value = this.Value as double?;
-        return value != null;
-    }
-
-    /// <summary>
-    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="string"/>.
-    ///
-    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
-    ///
-    /// <example>
-    /// <code>
-    /// if (instance.TryPickString(out var value)) {
-    ///     // `value` is of type `string`
-    ///     Console.WriteLine(value);
-    /// }
-    /// </code>
-    /// </example>
-    /// </summary>
-    public bool TryPickString([NotNullWhen(true)] out string? value)
-    {
-        value = this.Value as string;
-        return value != null;
-    }
-
-    /// <summary>
-    /// Calls the function parameter corresponding to the variant the instance was constructed with.
-    ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
-    /// if you need your function parameters to return something.</para>
-    ///
-    /// <exception cref="ImageKitInvalidDataException">
-    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
-    /// that doesn't match any variant's expected shape).
-    /// </exception>
-    ///
-    /// <example>
-    /// <code>
-    /// instance.Switch(
-    ///     (double value) =&gt; {...},
-    ///     (string value) =&gt; {...}
-    /// );
-    /// </code>
-    /// </example>
-    /// </summary>
-    public void Switch(System::Action<double> @double, System::Action<string> @string)
-    {
-        switch (this.Value)
-        {
-            case double value:
-                @double(value);
-                break;
-            case string value:
-                @string(value);
-                break;
-            default:
-                throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of LineHeight"
-                );
-        }
-    }
-
-    /// <summary>
-    /// Calls the function parameter corresponding to the variant the instance was constructed with and
-    /// returns its result.
-    ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
-    /// if you don't need your function parameters to return a value.</para>
-    ///
-    /// <exception cref="ImageKitInvalidDataException">
-    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
-    /// that doesn't match any variant's expected shape).
-    /// </exception>
-    ///
-    /// <example>
-    /// <code>
-    /// var result = instance.Match(
-    ///     (double value) =&gt; {...},
-    ///     (string value) =&gt; {...}
-    /// );
-    /// </code>
-    /// </example>
-    /// </summary>
-    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
-    {
-        return this.Value switch
-        {
-            double value => @double(value),
-            string value => @string(value),
-            _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of LineHeight"
-            ),
-        };
-    }
-
-    public static implicit operator LineHeight(double value) => new(value);
-
-    public static implicit operator LineHeight(string value) => new(value);
-
-    /// <summary>
-    /// Validates that the instance was constructed with a known variant and that this variant is valid
-    /// (based on its own <c>Validate</c> method).
-    ///
-    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
-    ///
-    /// <exception cref="ImageKitInvalidDataException">
-    /// Thrown when the instance does not pass validation.
-    /// </exception>
-    /// </summary>
-    public override void Validate()
-    {
-        if (this.Value == null)
-        {
-            throw new ImageKitInvalidDataException("Data did not match any variant of LineHeight");
-        }
-    }
-
-    public virtual bool Equals(LineHeight? other) =>
-        other != null
-        && this.VariantIndex() == other.VariantIndex()
-        && JsonElement.DeepEquals(this.Json, other.Json);
-
-    public override int GetHashCode()
-    {
-        return 0;
-    }
-
-    public override string ToString() =>
-        JsonSerializer.Serialize(
-            FriendlyJsonPrinter.PrintValue(this.Json),
-            ModelBase.ToStringSerializerOptions
-        );
-
-    int VariantIndex()
-    {
-        return this.Value switch
-        {
-            double _ => 0,
-            string _ => 1,
-            _ => -1,
-        };
-    }
-}
-
-sealed class LineHeightConverter : JsonConverter<LineHeight>
-{
-    public override LineHeight? Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
-        try
-        {
-            return new(JsonSerializer.Deserialize<double>(element, options), element);
-        }
-        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
-        {
-            // ignore
-        }
-
-        try
-        {
-            var deserialized = JsonSerializer.Deserialize<string>(element, options);
-            if (deserialized != null)
-            {
-                return new(deserialized, element);
-            }
-        }
-        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
-        {
-            // ignore
-        }
-
-        return new(element);
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        LineHeight value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(writer, value.Json, options);
-    }
-}
-
-/// <summary>
-/// Specifies the padding around the overlaid text. Can be provided as a single positive
-/// integer or multiple values separated by underscores (following CSS shorthand
-/// order). Arithmetic expressions are also accepted.
-/// </summary>
-[JsonConverter(typeof(PaddingConverter))]
-public record class Padding : ModelBase
-{
-    public object? Value { get; } = null;
-
-    JsonElement? _element = null;
-
-    public JsonElement Json
-    {
-        get
-        {
-            return this._element ??= JsonSerializer.SerializeToElement(
-                this.Value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    public Padding(double value, JsonElement? element = null)
-    {
-        this.Value = value;
-        this._element = element;
-    }
-
-    public Padding(string value, JsonElement? element = null)
-    {
-        this.Value = value;
-        this._element = element;
-    }
-
-    public Padding(JsonElement element)
-    {
-        this._element = element;
-    }
-
-    /// <summary>
-    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="double"/>.
-    ///
-    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
-    ///
-    /// <example>
-    /// <code>
-    /// if (instance.TryPickDouble(out var value)) {
-    ///     // `value` is of type `double`
-    ///     Console.WriteLine(value);
-    /// }
-    /// </code>
-    /// </example>
-    /// </summary>
-    public bool TryPickDouble([NotNullWhen(true)] out double? value)
-    {
-        value = this.Value as double?;
-        return value != null;
-    }
-
-    /// <summary>
-    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="string"/>.
-    ///
-    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
-    ///
-    /// <example>
-    /// <code>
-    /// if (instance.TryPickString(out var value)) {
-    ///     // `value` is of type `string`
-    ///     Console.WriteLine(value);
-    /// }
-    /// </code>
-    /// </example>
-    /// </summary>
-    public bool TryPickString([NotNullWhen(true)] out string? value)
-    {
-        value = this.Value as string;
-        return value != null;
-    }
-
-    /// <summary>
-    /// Calls the function parameter corresponding to the variant the instance was constructed with.
-    ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
-    /// if you need your function parameters to return something.</para>
-    ///
-    /// <exception cref="ImageKitInvalidDataException">
-    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
-    /// that doesn't match any variant's expected shape).
-    /// </exception>
-    ///
-    /// <example>
-    /// <code>
-    /// instance.Switch(
-    ///     (double value) =&gt; {...},
-    ///     (string value) =&gt; {...}
-    /// );
-    /// </code>
-    /// </example>
-    /// </summary>
-    public void Switch(System::Action<double> @double, System::Action<string> @string)
-    {
-        switch (this.Value)
-        {
-            case double value:
-                @double(value);
-                break;
-            case string value:
-                @string(value);
-                break;
-            default:
-                throw new ImageKitInvalidDataException("Data did not match any variant of Padding");
-        }
-    }
-
-    /// <summary>
-    /// Calls the function parameter corresponding to the variant the instance was constructed with and
-    /// returns its result.
-    ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
-    /// if you don't need your function parameters to return a value.</para>
-    ///
-    /// <exception cref="ImageKitInvalidDataException">
-    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
-    /// that doesn't match any variant's expected shape).
-    /// </exception>
-    ///
-    /// <example>
-    /// <code>
-    /// var result = instance.Match(
-    ///     (double value) =&gt; {...},
-    ///     (string value) =&gt; {...}
-    /// );
-    /// </code>
-    /// </example>
-    /// </summary>
-    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
-    {
-        return this.Value switch
-        {
-            double value => @double(value),
-            string value => @string(value),
-            _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of Padding"
-            ),
-        };
-    }
-
-    public static implicit operator Padding(double value) => new(value);
-
-    public static implicit operator Padding(string value) => new(value);
-
-    /// <summary>
-    /// Validates that the instance was constructed with a known variant and that this variant is valid
-    /// (based on its own <c>Validate</c> method).
-    ///
-    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
-    ///
-    /// <exception cref="ImageKitInvalidDataException">
-    /// Thrown when the instance does not pass validation.
-    /// </exception>
-    /// </summary>
-    public override void Validate()
-    {
-        if (this.Value == null)
-        {
-            throw new ImageKitInvalidDataException("Data did not match any variant of Padding");
-        }
-    }
-
-    public virtual bool Equals(Padding? other) =>
-        other != null
-        && this.VariantIndex() == other.VariantIndex()
-        && JsonElement.DeepEquals(this.Json, other.Json);
-
-    public override int GetHashCode()
-    {
-        return 0;
-    }
-
-    public override string ToString() =>
-        JsonSerializer.Serialize(
-            FriendlyJsonPrinter.PrintValue(this.Json),
-            ModelBase.ToStringSerializerOptions
-        );
-
-    int VariantIndex()
-    {
-        return this.Value switch
-        {
-            double _ => 0,
-            string _ => 1,
-            _ => -1,
-        };
-    }
-}
-
-sealed class PaddingConverter : JsonConverter<Padding>
-{
-    public override Padding? Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
-        try
-        {
-            return new(JsonSerializer.Deserialize<double>(element, options), element);
-        }
-        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
-        {
-            // ignore
-        }
-
-        try
-        {
-            var deserialized = JsonSerializer.Deserialize<string>(element, options);
-            if (deserialized != null)
-            {
-                return new(deserialized, element);
-            }
-        }
-        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
-        {
-            // ignore
-        }
-
-        return new(element);
-    }
-
-    public override void Write(Utf8JsonWriter writer, Padding value, JsonSerializerOptions options)
-    {
-        JsonSerializer.Serialize(writer, value.Json, options);
-    }
-}
-
-/// <summary>
-/// Specifies the corner radius: - Single value (positive integer): Applied to all
-/// corners (e.g., `20`). - `max`: Creates a circular or oval shape. - Per-corner
-/// array: Provide four underscore-separated values representing top-left, top-right,
-/// bottom-right, and bottom-left corners respectively (e.g., `10_20_30_40`). See
-/// [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
-/// </summary>
-[JsonConverter(typeof(TextOverlayTransformationRadiusConverter))]
-public record class TextOverlayTransformationRadius : ModelBase
-{
-    public object? Value { get; } = null;
-
-    JsonElement? _element = null;
-
-    public JsonElement Json
-    {
-        get
-        {
-            return this._element ??= JsonSerializer.SerializeToElement(
-                this.Value,
-                ModelBase.SerializerOptions
-            );
-        }
-    }
-
-    public TextOverlayTransformationRadius(double value, JsonElement? element = null)
-    {
-        this.Value = value;
-        this._element = element;
-    }
-
-    public TextOverlayTransformationRadius(
-        TextOverlayTransformationRadiusMax value,
-        JsonElement? element = null
-    )
-    {
-        this.Value = value;
-        this._element = element;
-    }
-
-    public TextOverlayTransformationRadius(string value, JsonElement? element = null)
-    {
-        this.Value = value;
-        this._element = element;
-    }
-
-    public TextOverlayTransformationRadius(JsonElement element)
-    {
-        this._element = element;
-    }
-
-    /// <summary>
-    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="double"/>.
-    ///
-    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
-    ///
-    /// <example>
-    /// <code>
-    /// if (instance.TryPickDouble(out var value)) {
-    ///     // `value` is of type `double`
-    ///     Console.WriteLine(value);
-    /// }
-    /// </code>
-    /// </example>
-    /// </summary>
-    public bool TryPickDouble([NotNullWhen(true)] out double? value)
-    {
-        value = this.Value as double?;
-        return value != null;
-    }
-
-    /// <summary>
-    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="TextOverlayTransformationRadiusMax"/>.
-    ///
-    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
-    ///
-    /// <example>
-    /// <code>
-    /// if (instance.TryPickMax(out var value)) {
-    ///     // `value` is of type `TextOverlayTransformationRadiusMax`
-    ///     Console.WriteLine(value);
-    /// }
-    /// </code>
-    /// </example>
-    /// </summary>
-    public bool TryPickMax([NotNullWhen(true)] out TextOverlayTransformationRadiusMax? value)
-    {
-        value = this.Value as TextOverlayTransformationRadiusMax;
-        return value != null;
-    }
-
-    /// <summary>
-    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="string"/>.
-    ///
-    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
-    ///
-    /// <example>
-    /// <code>
-    /// if (instance.TryPickString(out var value)) {
-    ///     // `value` is of type `string`
-    ///     Console.WriteLine(value);
-    /// }
-    /// </code>
-    /// </example>
-    /// </summary>
-    public bool TryPickString([NotNullWhen(true)] out string? value)
-    {
-        value = this.Value as string;
-        return value != null;
-    }
-
-    /// <summary>
-    /// Calls the function parameter corresponding to the variant the instance was constructed with.
-    ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
-    /// if you need your function parameters to return something.</para>
-    ///
-    /// <exception cref="ImageKitInvalidDataException">
-    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
-    /// that doesn't match any variant's expected shape).
-    /// </exception>
-    ///
-    /// <example>
-    /// <code>
-    /// instance.Switch(
-    ///     (double value) =&gt; {...},
-    ///     (TextOverlayTransformationRadiusMax value) =&gt; {...},
-    ///     (string value) =&gt; {...}
+    ///     (bool value) =&gt; {...},
+    ///     (IReadOnlyList&lt;DefaultValueArrayItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
     public void Switch(
+        System::Action<string> @string,
         System::Action<double> @double,
-        System::Action<TextOverlayTransformationRadiusMax> max,
-        System::Action<string> @string
+        System::Action<bool> @bool,
+        System::Action<IReadOnlyList<DefaultValueArrayItem>> mixed
     )
     {
         switch (this.Value)
         {
-            case double value:
-                @double(value);
-                break;
-            case TextOverlayTransformationRadiusMax value:
-                max(value);
-                break;
             case string value:
                 @string(value);
                 break;
+            case double value:
+                @double(value);
+                break;
+            case bool value:
+                @bool(value);
+                break;
+            case IReadOnlyList<DefaultValueArrayItem> value:
+                mixed(value);
+                break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of TextOverlayTransformationRadius"
+                    "Data did not match any variant of DefaultValue"
                 );
         }
     }
@@ -1367,37 +555,41 @@ public record class TextOverlayTransformationRadius : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
+    ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
-    ///     (TextOverlayTransformationRadiusMax value) =&gt; {...},
-    ///     (string value) =&gt; {...}
+    ///     (bool value) =&gt; {...},
+    ///     (IReadOnlyList&lt;DefaultValueArrayItem&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
     public T Match<T>(
+        System::Func<string, T> @string,
         System::Func<double, T> @double,
-        System::Func<TextOverlayTransformationRadiusMax, T> max,
-        System::Func<string, T> @string
+        System::Func<bool, T> @bool,
+        System::Func<IReadOnlyList<DefaultValueArrayItem>, T> mixed
     )
     {
         return this.Value switch
         {
-            double value => @double(value),
-            TextOverlayTransformationRadiusMax value => max(value),
             string value => @string(value),
+            double value => @double(value),
+            bool value => @bool(value),
+            IReadOnlyList<DefaultValueArrayItem> value => mixed(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of TextOverlayTransformationRadius"
+                "Data did not match any variant of DefaultValue"
             ),
         };
     }
 
-    public static implicit operator TextOverlayTransformationRadius(double value) => new(value);
+    public static implicit operator DefaultValue(string value) => new(value);
 
-    public static implicit operator TextOverlayTransformationRadius(
-        TextOverlayTransformationRadiusMax value
-    ) => new(value);
+    public static implicit operator DefaultValue(double value) => new(value);
 
-    public static implicit operator TextOverlayTransformationRadius(string value) => new(value);
+    public static implicit operator DefaultValue(bool value) => new(value);
+
+    public static implicit operator DefaultValue(List<DefaultValueArrayItem> value) =>
+        new((IReadOnlyList<DefaultValueArrayItem>)value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -1414,13 +606,24 @@ public record class TextOverlayTransformationRadius : ModelBase
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of TextOverlayTransformationRadius"
+                "Data did not match any variant of DefaultValue"
             );
         }
-        this.Switch((_) => { }, (max) => max.Validate(), (_) => { });
+        this.Switch(
+            (_) => { },
+            (_) => { },
+            (_) => { },
+            (mixed) =>
+            {
+                foreach (var item in mixed)
+                {
+                    item.Validate();
+                }
+            }
+        );
     }
 
-    public virtual bool Equals(TextOverlayTransformationRadius? other) =>
+    public virtual bool Equals(DefaultValue? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -1440,18 +643,18 @@ public record class TextOverlayTransformationRadius : ModelBase
     {
         return this.Value switch
         {
-            double _ => 0,
-            TextOverlayTransformationRadiusMax _ => 1,
-            string _ => 2,
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            IReadOnlyList<DefaultValueArrayItem> _ => 3,
             _ => -1,
         };
     }
 }
 
-sealed class TextOverlayTransformationRadiusConverter
-    : JsonConverter<TextOverlayTransformationRadius>
+sealed class DefaultValueConverter : JsonConverter<DefaultValue>
 {
-    public override TextOverlayTransformationRadius? Read(
+    public override DefaultValue? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1460,35 +663,47 @@ sealed class TextOverlayTransformationRadiusConverter
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
         try
         {
-            var deserialized = JsonSerializer.Deserialize<TextOverlayTransformationRadiusMax>(
+            var deserialized = JsonSerializer.Deserialize<string>(element, options);
+            if (deserialized != null)
+            {
+                return new(deserialized, element);
+            }
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
+        try
+        {
+            return new(JsonSerializer.Deserialize<double>(element, options), element);
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
+        try
+        {
+            return new(JsonSerializer.Deserialize<bool>(element, options), element);
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
+        try
+        {
+            var deserialized = JsonSerializer.Deserialize<List<DefaultValueArrayItem>>(
                 element,
                 options
             );
             if (deserialized != null)
             {
-                deserialized.Validate();
-                return new(deserialized, element);
-            }
-        }
-        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
-        {
-            // ignore
-        }
-
-        try
-        {
-            return new(JsonSerializer.Deserialize<double>(element, options), element);
-        }
-        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
-        {
-            // ignore
-        }
-
-        try
-        {
-            var deserialized = JsonSerializer.Deserialize<string>(element, options);
-            if (deserialized != null)
-            {
+                foreach (var item in deserialized)
+                {
+                    item.Validate();
+                }
                 return new(deserialized, element);
             }
         }
@@ -1502,7 +717,7 @@ sealed class TextOverlayTransformationRadiusConverter
 
     public override void Write(
         Utf8JsonWriter writer,
-        TextOverlayTransformationRadius value,
+        DefaultValue value,
         JsonSerializerOptions options
     )
     {
@@ -1510,84 +725,8 @@ sealed class TextOverlayTransformationRadiusConverter
     }
 }
 
-[JsonConverter(typeof(TextOverlayTransformationRadiusMaxConverter))]
-public record class TextOverlayTransformationRadiusMax
-{
-    public JsonElement Element { get; private init; }
-
-    public TextOverlayTransformationRadiusMax()
-    {
-        Element = JsonSerializer.SerializeToElement("max");
-    }
-
-    internal TextOverlayTransformationRadiusMax(JsonElement element)
-    {
-        Element = element;
-    }
-
-    /// <summary>
-    /// Validates that the instance's underlying value is the expected constant.
-    ///
-    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
-    ///
-    /// <exception cref="ImageKitInvalidDataException">
-    /// Thrown when the instance does not pass validation.
-    /// </exception>
-    /// </summary>
-    public void Validate()
-    {
-        if (this != new TextOverlayTransformationRadiusMax())
-        {
-            throw new ImageKitInvalidDataException(
-                "Invalid value given for 'TextOverlayTransformationRadiusMax'"
-            );
-        }
-    }
-
-    public override int GetHashCode()
-    {
-        return 0;
-    }
-
-    public virtual bool Equals(TextOverlayTransformationRadiusMax? other)
-    {
-        if (other == null)
-        {
-            return false;
-        }
-
-        return JsonElement.DeepEquals(this.Element, other.Element);
-    }
-}
-
-class TextOverlayTransformationRadiusMaxConverter
-    : JsonConverter<TextOverlayTransformationRadiusMax>
-{
-    public override TextOverlayTransformationRadiusMax? Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return new(JsonSerializer.Deserialize<JsonElement>(ref reader, options));
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        TextOverlayTransformationRadiusMax value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(writer, value.Element, options);
-    }
-}
-
-/// <summary>
-/// Specifies the rotation angle of the text overlay. Accepts a numeric value for
-/// clockwise rotation or a string prefixed with "N" for counter-clockwise rotation.
-/// </summary>
-[JsonConverter(typeof(RotationConverter))]
-public record class Rotation : ModelBase
+[JsonConverter(typeof(DefaultValueArrayItemConverter))]
+public record class DefaultValueArrayItem : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1604,21 +743,48 @@ public record class Rotation : ModelBase
         }
     }
 
-    public Rotation(double value, JsonElement? element = null)
+    public DefaultValueArrayItem(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public Rotation(string value, JsonElement? element = null)
+    public DefaultValueArrayItem(double value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public Rotation(JsonElement element)
+    public DefaultValueArrayItem(bool value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public DefaultValueArrayItem(JsonElement element)
     {
         this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="string"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickString(out var value)) {
+    ///     // `value` is of type `string`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickString([NotNullWhen(true)] out string? value)
+    {
+        value = this.Value as string;
+        return value != null;
     }
 
     /// <summary>
@@ -1644,6 +810,258 @@ public record class Rotation : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="bool"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickBool(out var value)) {
+    ///     // `value` is of type `bool`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickBool([NotNullWhen(true)] out bool? value)
+    {
+        value = this.Value as bool?;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="ImageKitInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
+    )
+    {
+        switch (this.Value)
+        {
+            case string value:
+                @string(value);
+                break;
+            case double value:
+                @double(value);
+                break;
+            case bool value:
+                @bool(value);
+                break;
+            default:
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of DefaultValueArrayItem"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="ImageKitInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
+    )
+    {
+        return this.Value switch
+        {
+            string value => @string(value),
+            double value => @double(value),
+            bool value => @bool(value),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of DefaultValueArrayItem"
+            ),
+        };
+    }
+
+    public static implicit operator DefaultValueArrayItem(string value) => new(value);
+
+    public static implicit operator DefaultValueArrayItem(double value) => new(value);
+
+    public static implicit operator DefaultValueArrayItem(bool value) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="ImageKitInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new ImageKitInvalidDataException(
+                "Data did not match any variant of DefaultValueArrayItem"
+            );
+        }
+    }
+
+    public virtual bool Equals(DefaultValueArrayItem? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
+}
+
+sealed class DefaultValueArrayItemConverter : JsonConverter<DefaultValueArrayItem>
+{
+    public override DefaultValueArrayItem? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        try
+        {
+            var deserialized = JsonSerializer.Deserialize<string>(element, options);
+            if (deserialized != null)
+            {
+                return new(deserialized, element);
+            }
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
+        try
+        {
+            return new(JsonSerializer.Deserialize<double>(element, options), element);
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
+        try
+        {
+            return new(JsonSerializer.Deserialize<bool>(element, options), element);
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
+        return new(element);
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        DefaultValueArrayItem value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+/// <summary>
+/// Maximum value of the field. Only set if field type is `Date` or `Number`. For
+/// `Date` type field, the value will be in ISO8601 string format. For `Number` type
+/// field, it will be a numeric value.
+/// </summary>
+[JsonConverter(typeof(MaxValueConverter))]
+public record class MaxValue : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public MaxValue(string value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public MaxValue(double value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public MaxValue(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
@@ -1664,6 +1082,27 @@ public record class Rotation : ModelBase
     }
 
     /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="double"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDouble(out var value)) {
+    ///     // `value` is of type `double`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickDouble([NotNullWhen(true)] out double? value)
+    {
+        value = this.Value as double?;
+        return value != null;
+    }
+
+    /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
     /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
@@ -1677,25 +1116,25 @@ public record class Rotation : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (double value) =&gt; {...},
-    ///     (string value) =&gt; {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(System::Action<double> @double, System::Action<string> @string)
+    public void Switch(System::Action<string> @string, System::Action<double> @double)
     {
         switch (this.Value)
         {
-            case double value:
-                @double(value);
-                break;
             case string value:
                 @string(value);
                 break;
+            case double value:
+                @double(value);
+                break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of Rotation"
+                    "Data did not match any variant of MaxValue"
                 );
         }
     }
@@ -1715,27 +1154,27 @@ public record class Rotation : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (double value) =&gt; {...},
-    ///     (string value) =&gt; {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
+    public T Match<T>(System::Func<string, T> @string, System::Func<double, T> @double)
     {
         return this.Value switch
         {
-            double value => @double(value),
             string value => @string(value),
+            double value => @double(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of Rotation"
+                "Data did not match any variant of MaxValue"
             ),
         };
     }
 
-    public static implicit operator Rotation(double value) => new(value);
+    public static implicit operator MaxValue(string value) => new(value);
 
-    public static implicit operator Rotation(string value) => new(value);
+    public static implicit operator MaxValue(double value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -1751,11 +1190,11 @@ public record class Rotation : ModelBase
     {
         if (this.Value == null)
         {
-            throw new ImageKitInvalidDataException("Data did not match any variant of Rotation");
+            throw new ImageKitInvalidDataException("Data did not match any variant of MaxValue");
         }
     }
 
-    public virtual bool Equals(Rotation? other) =>
+    public virtual bool Equals(MaxValue? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -1775,31 +1214,22 @@ public record class Rotation : ModelBase
     {
         return this.Value switch
         {
-            double _ => 0,
-            string _ => 1,
+            string _ => 0,
+            double _ => 1,
             _ => -1,
         };
     }
 }
 
-sealed class RotationConverter : JsonConverter<Rotation>
+sealed class MaxValueConverter : JsonConverter<MaxValue>
 {
-    public override Rotation? Read(
+    public override MaxValue? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
-        try
-        {
-            return new(JsonSerializer.Deserialize<double>(element, options), element);
-        }
-        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
-        {
-            // ignore
-        }
-
         try
         {
             var deserialized = JsonSerializer.Deserialize<string>(element, options);
@@ -1813,22 +1243,31 @@ sealed class RotationConverter : JsonConverter<Rotation>
             // ignore
         }
 
+        try
+        {
+            return new(JsonSerializer.Deserialize<double>(element, options), element);
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
         return new(element);
     }
 
-    public override void Write(Utf8JsonWriter writer, Rotation value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, MaxValue value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value.Json, options);
     }
 }
 
 /// <summary>
-/// Specifies the maximum width (in pixels) of the overlaid text. The text wraps automatically,
-/// and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`) are supported. Useful
-/// when used in conjunction with the `background`. Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+/// Minimum value of the field. Only set if field type is `Date` or `Number`. For
+/// `Date` type field, the value will be in ISO8601 string format. For `Number` type
+/// field, it will be a numeric value.
 /// </summary>
-[JsonConverter(typeof(TextOverlayTransformationWidthConverter))]
-public record class TextOverlayTransformationWidth : ModelBase
+[JsonConverter(typeof(MinValueConverter))]
+public record class MinValue : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -1845,21 +1284,284 @@ public record class TextOverlayTransformationWidth : ModelBase
         }
     }
 
-    public TextOverlayTransformationWidth(double value, JsonElement? element = null)
+    public MinValue(string value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public TextOverlayTransformationWidth(string value, JsonElement? element = null)
+    public MinValue(double value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
     }
 
-    public TextOverlayTransformationWidth(JsonElement element)
+    public MinValue(JsonElement element)
     {
         this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="string"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickString(out var value)) {
+    ///     // `value` is of type `string`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickString([NotNullWhen(true)] out string? value)
+    {
+        value = this.Value as string;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="double"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickDouble(out var value)) {
+    ///     // `value` is of type `double`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickDouble([NotNullWhen(true)] out double? value)
+    {
+        value = this.Value as double?;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="ImageKitInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(System::Action<string> @string, System::Action<double> @double)
+    {
+        switch (this.Value)
+        {
+            case string value:
+                @string(value);
+                break;
+            case double value:
+                @double(value);
+                break;
+            default:
+                throw new ImageKitInvalidDataException(
+                    "Data did not match any variant of MinValue"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="ImageKitInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(System::Func<string, T> @string, System::Func<double, T> @double)
+    {
+        return this.Value switch
+        {
+            string value => @string(value),
+            double value => @double(value),
+            _ => throw new ImageKitInvalidDataException(
+                "Data did not match any variant of MinValue"
+            ),
+        };
+    }
+
+    public static implicit operator MinValue(string value) => new(value);
+
+    public static implicit operator MinValue(double value) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="ImageKitInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new ImageKitInvalidDataException("Data did not match any variant of MinValue");
+        }
+    }
+
+    public virtual bool Equals(MinValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class MinValueConverter : JsonConverter<MinValue>
+{
+    public override MinValue? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        try
+        {
+            var deserialized = JsonSerializer.Deserialize<string>(element, options);
+            if (deserialized != null)
+            {
+                return new(deserialized, element);
+            }
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
+        try
+        {
+            return new(JsonSerializer.Deserialize<double>(element, options), element);
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
+        return new(element);
+    }
+
+    public override void Write(Utf8JsonWriter writer, MinValue value, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(typeof(SelectOptionConverter))]
+public record class SelectOption : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public SelectOption(string value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SelectOption(double value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SelectOption(bool value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public SelectOption(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="string"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickString(out var value)) {
+    ///     // `value` is of type `string`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickString([NotNullWhen(true)] out string? value)
+    {
+        value = this.Value as string;
+        return value != null;
     }
 
     /// <summary>
@@ -1885,22 +1587,22 @@ public record class TextOverlayTransformationWidth : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="string"/>.
+    /// type <see cref="bool"/>.
     ///
     /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickString(out var value)) {
-    ///     // `value` is of type `string`
+    /// if (instance.TryPickBool(out var value)) {
+    ///     // `value` is of type `bool`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickString([NotNullWhen(true)] out string? value)
+    public bool TryPickBool([NotNullWhen(true)] out bool? value)
     {
-        value = this.Value as string;
+        value = this.Value as bool?;
         return value != null;
     }
 
@@ -1918,25 +1620,33 @@ public record class TextOverlayTransformationWidth : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
+    ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
-    ///     (string value) =&gt; {...}
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(System::Action<double> @double, System::Action<string> @string)
+    public void Switch(
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
+    )
     {
         switch (this.Value)
         {
-            case double value:
-                @double(value);
-                break;
             case string value:
                 @string(value);
                 break;
+            case double value:
+                @double(value);
+                break;
+            case bool value:
+                @bool(value);
+                break;
             default:
                 throw new ImageKitInvalidDataException(
-                    "Data did not match any variant of TextOverlayTransformationWidth"
+                    "Data did not match any variant of SelectOption"
                 );
         }
     }
@@ -1956,27 +1666,35 @@ public record class TextOverlayTransformationWidth : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
+    ///     (string value) =&gt; {...},
     ///     (double value) =&gt; {...},
-    ///     (string value) =&gt; {...}
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
+    public T Match<T>(
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
+    )
     {
         return this.Value switch
         {
-            double value => @double(value),
             string value => @string(value),
+            double value => @double(value),
+            bool value => @bool(value),
             _ => throw new ImageKitInvalidDataException(
-                "Data did not match any variant of TextOverlayTransformationWidth"
+                "Data did not match any variant of SelectOption"
             ),
         };
     }
 
-    public static implicit operator TextOverlayTransformationWidth(double value) => new(value);
+    public static implicit operator SelectOption(string value) => new(value);
 
-    public static implicit operator TextOverlayTransformationWidth(string value) => new(value);
+    public static implicit operator SelectOption(double value) => new(value);
+
+    public static implicit operator SelectOption(bool value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -1993,12 +1711,12 @@ public record class TextOverlayTransformationWidth : ModelBase
         if (this.Value == null)
         {
             throw new ImageKitInvalidDataException(
-                "Data did not match any variant of TextOverlayTransformationWidth"
+                "Data did not match any variant of SelectOption"
             );
         }
     }
 
-    public virtual bool Equals(TextOverlayTransformationWidth? other) =>
+    public virtual bool Equals(SelectOption? other) =>
         other != null
         && this.VariantIndex() == other.VariantIndex()
         && JsonElement.DeepEquals(this.Json, other.Json);
@@ -2018,31 +1736,23 @@ public record class TextOverlayTransformationWidth : ModelBase
     {
         return this.Value switch
         {
-            double _ => 0,
-            string _ => 1,
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
             _ => -1,
         };
     }
 }
 
-sealed class TextOverlayTransformationWidthConverter : JsonConverter<TextOverlayTransformationWidth>
+sealed class SelectOptionConverter : JsonConverter<SelectOption>
 {
-    public override TextOverlayTransformationWidth? Read(
+    public override SelectOption? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
         var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
-        try
-        {
-            return new(JsonSerializer.Deserialize<double>(element, options), element);
-        }
-        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
-        {
-            // ignore
-        }
-
         try
         {
             var deserialized = JsonSerializer.Deserialize<string>(element, options);
@@ -2056,12 +1766,30 @@ sealed class TextOverlayTransformationWidthConverter : JsonConverter<TextOverlay
             // ignore
         }
 
+        try
+        {
+            return new(JsonSerializer.Deserialize<double>(element, options), element);
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
+        try
+        {
+            return new(JsonSerializer.Deserialize<bool>(element, options), element);
+        }
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        {
+            // ignore
+        }
+
         return new(element);
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        TextOverlayTransformationWidth value,
+        SelectOption value,
         JsonSerializerOptions options
     )
     {

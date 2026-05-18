@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using System = System;
 
 namespace Imagekit.Models;
 
@@ -223,7 +223,7 @@ sealed class AnchorPointConverter : JsonConverter<AnchorPoint>
 {
     public override AnchorPoint Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -293,7 +293,7 @@ sealed class FocusConverter : JsonConverter<Focus>
 {
     public override Focus Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -439,7 +439,7 @@ public record class X : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<double> @double, Action<string> @string)
+    public void Switch(System::Action<double> @double, System::Action<string> @string)
     {
         switch (this.Value)
         {
@@ -475,7 +475,7 @@ public record class X : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
+    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
     {
         return this.Value switch
         {
@@ -538,7 +538,7 @@ sealed class XConverter : JsonConverter<X>
 {
     public override X? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -547,7 +547,7 @@ sealed class XConverter : JsonConverter<X>
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -560,7 +560,7 @@ sealed class XConverter : JsonConverter<X>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -677,7 +677,7 @@ public record class XCenter : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<double> @double, Action<string> @string)
+    public void Switch(System::Action<double> @double, System::Action<string> @string)
     {
         switch (this.Value)
         {
@@ -713,7 +713,7 @@ public record class XCenter : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
+    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
     {
         return this.Value switch
         {
@@ -778,7 +778,7 @@ sealed class XCenterConverter : JsonConverter<XCenter>
 {
     public override XCenter? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -787,7 +787,7 @@ sealed class XCenterConverter : JsonConverter<XCenter>
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -800,7 +800,7 @@ sealed class XCenterConverter : JsonConverter<XCenter>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -917,7 +917,7 @@ public record class Y : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<double> @double, Action<string> @string)
+    public void Switch(System::Action<double> @double, System::Action<string> @string)
     {
         switch (this.Value)
         {
@@ -953,7 +953,7 @@ public record class Y : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
+    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
     {
         return this.Value switch
         {
@@ -1016,7 +1016,7 @@ sealed class YConverter : JsonConverter<Y>
 {
     public override Y? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1025,7 +1025,7 @@ sealed class YConverter : JsonConverter<Y>
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -1038,7 +1038,7 @@ sealed class YConverter : JsonConverter<Y>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -1155,7 +1155,7 @@ public record class YCenter : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<double> @double, Action<string> @string)
+    public void Switch(System::Action<double> @double, System::Action<string> @string)
     {
         switch (this.Value)
         {
@@ -1191,7 +1191,7 @@ public record class YCenter : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
+    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
     {
         return this.Value switch
         {
@@ -1256,7 +1256,7 @@ sealed class YCenterConverter : JsonConverter<YCenter>
 {
     public override YCenter? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1265,7 +1265,7 @@ sealed class YCenterConverter : JsonConverter<YCenter>
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -1278,7 +1278,7 @@ sealed class YCenterConverter : JsonConverter<YCenter>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }

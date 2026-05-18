@@ -2,8 +2,8 @@ using System.Text.Json;
 using Imagekit.Exceptions;
 using Imagekit.Models;
 using Imagekit.Models.Cache.Invalidation;
-using Imagekit.Models.CustomMetadataFields;
 using Assets = Imagekit.Models.Assets;
+using CustomMetadataFields = Imagekit.Models.CustomMetadataFields;
 using Files = Imagekit.Models.Files;
 using Job = Imagekit.Models.Folders.Job;
 using V2Files = Imagekit.Models.Beta.V2.Files;
@@ -34,6 +34,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Encoding>(),
             new ApiEnumConverter<string, AnchorPoint>(),
             new ApiEnumConverter<string, Focus>(),
+            new ApiEnumConverter<string, Type>(),
             new ApiEnumConverter<string, StreamingResolution>(),
             new ApiEnumConverter<string, SubtitleOverlaySubtitleOverlayEncoding>(),
             new ApiEnumConverter<string, Typography>(),
@@ -55,10 +56,9 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, VideoCodec>(),
             new ApiEnumConverter<string, TransformationPosition>(),
             new ApiEnumConverter<string, VideoOverlayVideoOverlayEncoding>(),
-            new ApiEnumConverter<string, CustomMetadataFieldSchemaType>(),
-            new ApiEnumConverter<string, Type>(),
+            new ApiEnumConverter<string, CustomMetadataFields::CustomMetadataFieldSchemaType>(),
+            new ApiEnumConverter<string, CustomMetadataFields::Type>(),
             new ApiEnumConverter<string, Files::Type>(),
-            new ApiEnumConverter<string, Files::FileType>(),
             new ApiEnumConverter<string, Files::FolderType>(),
             new ApiEnumConverter<string, Files::AIAutoDescription>(),
             new ApiEnumConverter<string, Files::AITasks>(),
@@ -76,7 +76,6 @@ public abstract record class ModelBase
                 Files::FileUploadResponseExtensionStatusGoogleAutoTagging
             >(),
             new ApiEnumConverter<string, Files::FileUploadResponseExtensionStatusRemoveBg>(),
-            new ApiEnumConverter<string, Files::FileUploadResponseSelectedFieldsSchemaItemType>(),
             new ApiEnumConverter<string, Files::ResponseField>(),
             new ApiEnumConverter<string, Files::Protocol>(),
             new ApiEnumConverter<string, Assets::FileType>(),
@@ -90,7 +89,6 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, V2Files::AwsAutoTagging>(),
             new ApiEnumConverter<string, V2Files::GoogleAutoTagging>(),
             new ApiEnumConverter<string, V2Files::RemoveBg>(),
-            new ApiEnumConverter<string, V2Files::Type>(),
             new ApiEnumConverter<string, V2Files::ResponseField>(),
             new ApiEnumConverter<string, V2Files::Protocol>(),
             new ApiEnumConverter<string, Webhooks::Type>(),
@@ -108,7 +106,6 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Webhooks::AwsAutoTagging>(),
             new ApiEnumConverter<string, Webhooks::GoogleAutoTagging>(),
             new ApiEnumConverter<string, Webhooks::RemoveBg>(),
-            new ApiEnumConverter<string, Webhooks::SelectedFieldsSchemaItemType>(),
             new ApiEnumConverter<
                 string,
                 Webhooks::VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationType

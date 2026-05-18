@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -7,6 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using System = System;
 
 namespace Imagekit.Models;
 
@@ -167,10 +167,10 @@ public record class ExtensionConfig : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<RemoveBg> removeBg,
-        Action<AutoTaggingExtension> autoTaggingExtension,
-        Action<AIAutoDescription> aiAutoDescription,
-        Action<AITasks> aiTasks
+        System::Action<RemoveBg> removeBg,
+        System::Action<AutoTaggingExtension> autoTaggingExtension,
+        System::Action<AIAutoDescription> aiAutoDescription,
+        System::Action<AITasks> aiTasks
     )
     {
         switch (this.Value)
@@ -218,10 +218,10 @@ public record class ExtensionConfig : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<RemoveBg, T> removeBg,
-        Func<AutoTaggingExtension, T> autoTaggingExtension,
-        Func<AIAutoDescription, T> aiAutoDescription,
-        Func<AITasks, T> aiTasks
+        System::Func<RemoveBg, T> removeBg,
+        System::Func<AutoTaggingExtension, T> autoTaggingExtension,
+        System::Func<AIAutoDescription, T> aiAutoDescription,
+        System::Func<AITasks, T> aiTasks
     )
     {
         return this.Value switch
@@ -303,7 +303,7 @@ sealed class ExtensionConfigConverter : JsonConverter<ExtensionConfig>
 {
     public override ExtensionConfig? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -729,7 +729,7 @@ sealed class NameConverter : JsonConverter<Name>
 {
     public override Name Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -816,7 +816,7 @@ class AIAutoDescriptionConverter : JsonConverter<AIAutoDescription>
 {
     public override AIAutoDescription? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1102,9 +1102,9 @@ public record class Task : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<SelectTags> selectTags,
-        Action<SelectMetadata> selectMetadata,
-        Action<YesNo> yesNo
+        System::Action<SelectTags> selectTags,
+        System::Action<SelectMetadata> selectMetadata,
+        System::Action<YesNo> yesNo
     )
     {
         switch (this.Value)
@@ -1146,9 +1146,9 @@ public record class Task : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<SelectTags, T> selectTags,
-        Func<SelectMetadata, T> selectMetadata,
-        Func<YesNo, T> yesNo
+        System::Func<SelectTags, T> selectTags,
+        System::Func<SelectMetadata, T> selectMetadata,
+        System::Func<YesNo, T> yesNo
     )
     {
         return this.Value switch
@@ -1221,7 +1221,7 @@ sealed class TaskConverter : JsonConverter<Task>
 {
     public override Task? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1756,7 +1756,11 @@ public record class Vocabulary : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<string> @string, Action<double> @double, Action<bool> @bool)
+    public void Switch(
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
+    )
     {
         switch (this.Value)
         {
@@ -1798,7 +1802,11 @@ public record class Vocabulary : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<string, T> @string, Func<double, T> @double, Func<bool, T> @bool)
+    public T Match<T>(
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
+    )
     {
         return this.Value switch
         {
@@ -1867,7 +1875,7 @@ sealed class VocabularyConverter : JsonConverter<Vocabulary>
 {
     public override Vocabulary? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1880,7 +1888,7 @@ sealed class VocabularyConverter : JsonConverter<Vocabulary>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -1889,7 +1897,7 @@ sealed class VocabularyConverter : JsonConverter<Vocabulary>
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -1898,7 +1906,7 @@ sealed class VocabularyConverter : JsonConverter<Vocabulary>
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2450,10 +2458,10 @@ public record class SetMetadataValue : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<string> @string,
-        Action<double> @double,
-        Action<bool> @bool,
-        Action<IReadOnlyList<MetadataValueItem>> mixed
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool,
+        System::Action<IReadOnlyList<MetadataValueItem>> mixed
     )
     {
         switch (this.Value)
@@ -2501,10 +2509,10 @@ public record class SetMetadataValue : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<string, T> @string,
-        Func<double, T> @double,
-        Func<bool, T> @bool,
-        Func<IReadOnlyList<MetadataValueItem>, T> mixed
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool,
+        System::Func<IReadOnlyList<MetadataValueItem>, T> mixed
     )
     {
         return this.Value switch
@@ -2593,7 +2601,7 @@ sealed class SetMetadataValueConverter : JsonConverter<SetMetadataValue>
 {
     public override SetMetadataValue? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -2606,7 +2614,7 @@ sealed class SetMetadataValueConverter : JsonConverter<SetMetadataValue>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2615,7 +2623,7 @@ sealed class SetMetadataValueConverter : JsonConverter<SetMetadataValue>
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2624,7 +2632,7 @@ sealed class SetMetadataValueConverter : JsonConverter<SetMetadataValue>
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2644,7 +2652,7 @@ sealed class SetMetadataValueConverter : JsonConverter<SetMetadataValue>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2787,7 +2795,11 @@ public record class MetadataValueItem : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<string> @string, Action<double> @double, Action<bool> @bool)
+    public void Switch(
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
+    )
     {
         switch (this.Value)
         {
@@ -2829,7 +2841,11 @@ public record class MetadataValueItem : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<string, T> @string, Func<double, T> @double, Func<bool, T> @bool)
+    public T Match<T>(
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
+    )
     {
         return this.Value switch
         {
@@ -2900,7 +2916,7 @@ sealed class MetadataValueItemConverter : JsonConverter<MetadataValueItem>
 {
     public override MetadataValueItem? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -2913,7 +2929,7 @@ sealed class MetadataValueItemConverter : JsonConverter<MetadataValueItem>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2922,7 +2938,7 @@ sealed class MetadataValueItemConverter : JsonConverter<MetadataValueItem>
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2931,7 +2947,7 @@ sealed class MetadataValueItemConverter : JsonConverter<MetadataValueItem>
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3407,10 +3423,10 @@ public record class OnUnknownSetMetadataValue : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<string> @string,
-        Action<double> @double,
-        Action<bool> @bool,
-        Action<IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem>> mixed
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool,
+        System::Action<IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem>> mixed
     )
     {
         switch (this.Value)
@@ -3458,10 +3474,10 @@ public record class OnUnknownSetMetadataValue : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<string, T> @string,
-        Func<double, T> @double,
-        Func<bool, T> @bool,
-        Func<IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem>, T> mixed
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool,
+        System::Func<IReadOnlyList<OnUnknownSetMetadataValueMetadataValueItem>, T> mixed
     )
     {
         return this.Value switch
@@ -3551,7 +3567,7 @@ sealed class OnUnknownSetMetadataValueConverter : JsonConverter<OnUnknownSetMeta
 {
     public override OnUnknownSetMetadataValue? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -3564,7 +3580,7 @@ sealed class OnUnknownSetMetadataValueConverter : JsonConverter<OnUnknownSetMeta
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3573,7 +3589,7 @@ sealed class OnUnknownSetMetadataValueConverter : JsonConverter<OnUnknownSetMeta
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3582,7 +3598,7 @@ sealed class OnUnknownSetMetadataValueConverter : JsonConverter<OnUnknownSetMeta
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3601,7 +3617,7 @@ sealed class OnUnknownSetMetadataValueConverter : JsonConverter<OnUnknownSetMeta
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3744,7 +3760,11 @@ public record class OnUnknownSetMetadataValueMetadataValueItem : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<string> @string, Action<double> @double, Action<bool> @bool)
+    public void Switch(
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
+    )
     {
         switch (this.Value)
         {
@@ -3786,7 +3806,11 @@ public record class OnUnknownSetMetadataValueMetadataValueItem : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<string, T> @string, Func<double, T> @double, Func<bool, T> @bool)
+    public T Match<T>(
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
+    )
     {
         return this.Value switch
         {
@@ -3861,7 +3885,7 @@ sealed class OnUnknownSetMetadataValueMetadataValueItemConverter
 {
     public override OnUnknownSetMetadataValueMetadataValueItem? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -3874,7 +3898,7 @@ sealed class OnUnknownSetMetadataValueMetadataValueItemConverter
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3883,7 +3907,7 @@ sealed class OnUnknownSetMetadataValueMetadataValueItemConverter
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3892,7 +3916,7 @@ sealed class OnUnknownSetMetadataValueMetadataValueItemConverter
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4370,10 +4394,10 @@ public record class OnYesSetMetadataValue : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<string> @string,
-        Action<double> @double,
-        Action<bool> @bool,
-        Action<IReadOnlyList<OnYesSetMetadataValueMetadataValueItem>> mixed
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool,
+        System::Action<IReadOnlyList<OnYesSetMetadataValueMetadataValueItem>> mixed
     )
     {
         switch (this.Value)
@@ -4421,10 +4445,10 @@ public record class OnYesSetMetadataValue : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<string, T> @string,
-        Func<double, T> @double,
-        Func<bool, T> @bool,
-        Func<IReadOnlyList<OnYesSetMetadataValueMetadataValueItem>, T> mixed
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool,
+        System::Func<IReadOnlyList<OnYesSetMetadataValueMetadataValueItem>, T> mixed
     )
     {
         return this.Value switch
@@ -4514,7 +4538,7 @@ sealed class OnYesSetMetadataValueConverter : JsonConverter<OnYesSetMetadataValu
 {
     public override OnYesSetMetadataValue? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -4527,7 +4551,7 @@ sealed class OnYesSetMetadataValueConverter : JsonConverter<OnYesSetMetadataValu
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4536,7 +4560,7 @@ sealed class OnYesSetMetadataValueConverter : JsonConverter<OnYesSetMetadataValu
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4545,7 +4569,7 @@ sealed class OnYesSetMetadataValueConverter : JsonConverter<OnYesSetMetadataValu
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4564,7 +4588,7 @@ sealed class OnYesSetMetadataValueConverter : JsonConverter<OnYesSetMetadataValu
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4707,7 +4731,11 @@ public record class OnYesSetMetadataValueMetadataValueItem : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<string> @string, Action<double> @double, Action<bool> @bool)
+    public void Switch(
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
+    )
     {
         switch (this.Value)
         {
@@ -4749,7 +4777,11 @@ public record class OnYesSetMetadataValueMetadataValueItem : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<string, T> @string, Func<double, T> @double, Func<bool, T> @bool)
+    public T Match<T>(
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
+    )
     {
         return this.Value switch
         {
@@ -4824,7 +4856,7 @@ sealed class OnYesSetMetadataValueMetadataValueItemConverter
 {
     public override OnYesSetMetadataValueMetadataValueItem? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -4837,7 +4869,7 @@ sealed class OnYesSetMetadataValueMetadataValueItemConverter
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4846,7 +4878,7 @@ sealed class OnYesSetMetadataValueMetadataValueItemConverter
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4855,7 +4887,7 @@ sealed class OnYesSetMetadataValueMetadataValueItemConverter
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }

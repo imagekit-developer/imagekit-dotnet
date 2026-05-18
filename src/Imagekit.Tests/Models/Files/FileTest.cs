@@ -4,6 +4,7 @@ using System.Text.Json;
 using Imagekit.Core;
 using Imagekit.Exceptions;
 using Files = Imagekit.Models.Files;
+using Models = Imagekit.Models;
 
 namespace Imagekit.Tests.Models.Files;
 
@@ -46,18 +47,18 @@ public class FileTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -74,7 +75,7 @@ public class FileTest : TestBase
             Size = 0,
             Tags = ["string"],
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -82,7 +83,7 @@ public class FileTest : TestBase
             Width = 0,
         };
 
-        List<Files::AITag> expectedAITags =
+        List<Models::AITag> expectedAITags =
         [
             new()
             {
@@ -114,18 +115,18 @@ public class FileTest : TestBase
         bool expectedIsPublished = true;
         string expectedMime = "mime";
         string expectedName = "name";
-        Dictionary<string, Files::SelectedFieldsSchemaItem> expectedSelectedFieldsSchema = new()
+        Dictionary<string, Models::SelectedFieldsSchemaItem> expectedSelectedFieldsSchema = new()
         {
             {
                 "foo",
                 new()
                 {
-                    Type = Files::Type.Text,
+                    Type = Models::Type.Text,
                     DefaultValue = new(
                         [
-                            new Files::DefaultValueArrayItem(true),
-                            new Files::DefaultValueArrayItem(10),
-                            new Files::DefaultValueArrayItem("Hello"),
+                            new Models::DefaultValueArrayItem(true),
+                            new Models::DefaultValueArrayItem(10),
+                            new Models::DefaultValueArrayItem("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -142,10 +143,10 @@ public class FileTest : TestBase
         double expectedSize = 0;
         List<string> expectedTags = ["string"];
         string expectedThumbnail = "https://example.com";
-        ApiEnum<string, Files::FileType> expectedType = Files::FileType.File;
+        ApiEnum<string, Files::Type> expectedType = Files::Type.File;
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedUrl = "https://example.com";
-        Files::VersionInfo expectedVersionInfo = new() { ID = "id", Name = "name" };
+        Models::VersionInfo expectedVersionInfo = new() { ID = "id", Name = "name" };
         string expectedVideoCodec = "videoCodec";
         double expectedWidth = 0;
 
@@ -247,18 +248,18 @@ public class FileTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -275,7 +276,7 @@ public class FileTest : TestBase
             Size = 0,
             Tags = ["string"],
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -329,18 +330,18 @@ public class FileTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -357,7 +358,7 @@ public class FileTest : TestBase
             Size = 0,
             Tags = ["string"],
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -372,7 +373,7 @@ public class FileTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        List<Files::AITag> expectedAITags =
+        List<Models::AITag> expectedAITags =
         [
             new()
             {
@@ -404,18 +405,18 @@ public class FileTest : TestBase
         bool expectedIsPublished = true;
         string expectedMime = "mime";
         string expectedName = "name";
-        Dictionary<string, Files::SelectedFieldsSchemaItem> expectedSelectedFieldsSchema = new()
+        Dictionary<string, Models::SelectedFieldsSchemaItem> expectedSelectedFieldsSchema = new()
         {
             {
                 "foo",
                 new()
                 {
-                    Type = Files::Type.Text,
+                    Type = Models::Type.Text,
                     DefaultValue = new(
                         [
-                            new Files::DefaultValueArrayItem(true),
-                            new Files::DefaultValueArrayItem(10),
-                            new Files::DefaultValueArrayItem("Hello"),
+                            new Models::DefaultValueArrayItem(true),
+                            new Models::DefaultValueArrayItem(10),
+                            new Models::DefaultValueArrayItem("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -432,10 +433,10 @@ public class FileTest : TestBase
         double expectedSize = 0;
         List<string> expectedTags = ["string"];
         string expectedThumbnail = "https://example.com";
-        ApiEnum<string, Files::FileType> expectedType = Files::FileType.File;
+        ApiEnum<string, Files::Type> expectedType = Files::Type.File;
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedUrl = "https://example.com";
-        Files::VersionInfo expectedVersionInfo = new() { ID = "id", Name = "name" };
+        Models::VersionInfo expectedVersionInfo = new() { ID = "id", Name = "name" };
         string expectedVideoCodec = "videoCodec";
         double expectedWidth = 0;
 
@@ -537,18 +538,18 @@ public class FileTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -565,7 +566,7 @@ public class FileTest : TestBase
             Size = 0,
             Tags = ["string"],
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -839,18 +840,18 @@ public class FileTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -866,7 +867,7 @@ public class FileTest : TestBase
             },
             Size = 0,
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -909,18 +910,18 @@ public class FileTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -936,7 +937,7 @@ public class FileTest : TestBase
             },
             Size = 0,
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -974,18 +975,18 @@ public class FileTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1001,7 +1002,7 @@ public class FileTest : TestBase
             },
             Size = 0,
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -1048,18 +1049,18 @@ public class FileTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1075,7 +1076,7 @@ public class FileTest : TestBase
             },
             Size = 0,
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -1127,18 +1128,18 @@ public class FileTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1155,7 +1156,7 @@ public class FileTest : TestBase
             Size = 0,
             Tags = ["string"],
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -1169,485 +1170,11 @@ public class FileTest : TestBase
     }
 }
 
-public class AITagTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Files::AITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        double expectedConfidence = 0;
-        string expectedName = "name";
-        string expectedSource = "source";
-
-        Assert.Equal(expectedConfidence, model.Confidence);
-        Assert.Equal(expectedName, model.Name);
-        Assert.Equal(expectedSource, model.Source);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Files::AITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::AITag>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Files::AITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::AITag>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        double expectedConfidence = 0;
-        string expectedName = "name";
-        string expectedSource = "source";
-
-        Assert.Equal(expectedConfidence, deserialized.Confidence);
-        Assert.Equal(expectedName, deserialized.Name);
-        Assert.Equal(expectedSource, deserialized.Source);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Files::AITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Files::AITag { };
-
-        Assert.Null(model.Confidence);
-        Assert.False(model.RawData.ContainsKey("confidence"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-        Assert.Null(model.Source);
-        Assert.False(model.RawData.ContainsKey("source"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Files::AITag { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Files::AITag
-        {
-            // Null should be interpreted as omitted for these properties
-            Confidence = null,
-            Name = null,
-            Source = null,
-        };
-
-        Assert.Null(model.Confidence);
-        Assert.False(model.RawData.ContainsKey("confidence"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-        Assert.Null(model.Source);
-        Assert.False(model.RawData.ContainsKey("source"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Files::AITag
-        {
-            // Null should be interpreted as omitted for these properties
-            Confidence = null,
-            Name = null,
-            Source = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new Files::AITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        Files::AITag copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class SelectedFieldsSchemaItemTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Files::SelectedFieldsSchemaItem
-        {
-            Type = Files::Type.Text,
-            DefaultValue = new(
-                [
-                    new Files::DefaultValueArrayItem(true),
-                    new Files::DefaultValueArrayItem(10),
-                    new Files::DefaultValueArrayItem("Hello"),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        ApiEnum<string, Files::Type> expectedType = Files::Type.Text;
-        Files::DefaultValue expectedDefaultValue = new(
-            [
-                new Files::DefaultValueArrayItem(true),
-                new Files::DefaultValueArrayItem(10),
-                new Files::DefaultValueArrayItem("Hello"),
-            ]
-        );
-        bool expectedIsValueRequired = true;
-        double expectedMaxLength = 0;
-        Files::MaxValue expectedMaxValue = "string";
-        double expectedMinLength = 0;
-        Files::MinValue expectedMinValue = "string";
-        bool expectedReadOnly = true;
-        List<Files::SelectOption> expectedSelectOptions =
-        [
-            "small",
-            "medium",
-            "large",
-            30,
-            40,
-            true,
-        ];
-        bool expectedSelectOptionsTruncated = true;
-
-        Assert.Equal(expectedType, model.Type);
-        Assert.Equal(expectedDefaultValue, model.DefaultValue);
-        Assert.Equal(expectedIsValueRequired, model.IsValueRequired);
-        Assert.Equal(expectedMaxLength, model.MaxLength);
-        Assert.Equal(expectedMaxValue, model.MaxValue);
-        Assert.Equal(expectedMinLength, model.MinLength);
-        Assert.Equal(expectedMinValue, model.MinValue);
-        Assert.Equal(expectedReadOnly, model.ReadOnly);
-        Assert.NotNull(model.SelectOptions);
-        Assert.Equal(expectedSelectOptions.Count, model.SelectOptions.Count);
-        for (int i = 0; i < expectedSelectOptions.Count; i++)
-        {
-            Assert.Equal(expectedSelectOptions[i], model.SelectOptions[i]);
-        }
-        Assert.Equal(expectedSelectOptionsTruncated, model.SelectOptionsTruncated);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Files::SelectedFieldsSchemaItem
-        {
-            Type = Files::Type.Text,
-            DefaultValue = new(
-                [
-                    new Files::DefaultValueArrayItem(true),
-                    new Files::DefaultValueArrayItem(10),
-                    new Files::DefaultValueArrayItem("Hello"),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::SelectedFieldsSchemaItem>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Files::SelectedFieldsSchemaItem
-        {
-            Type = Files::Type.Text,
-            DefaultValue = new(
-                [
-                    new Files::DefaultValueArrayItem(true),
-                    new Files::DefaultValueArrayItem(10),
-                    new Files::DefaultValueArrayItem("Hello"),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::SelectedFieldsSchemaItem>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        ApiEnum<string, Files::Type> expectedType = Files::Type.Text;
-        Files::DefaultValue expectedDefaultValue = new(
-            [
-                new Files::DefaultValueArrayItem(true),
-                new Files::DefaultValueArrayItem(10),
-                new Files::DefaultValueArrayItem("Hello"),
-            ]
-        );
-        bool expectedIsValueRequired = true;
-        double expectedMaxLength = 0;
-        Files::MaxValue expectedMaxValue = "string";
-        double expectedMinLength = 0;
-        Files::MinValue expectedMinValue = "string";
-        bool expectedReadOnly = true;
-        List<Files::SelectOption> expectedSelectOptions =
-        [
-            "small",
-            "medium",
-            "large",
-            30,
-            40,
-            true,
-        ];
-        bool expectedSelectOptionsTruncated = true;
-
-        Assert.Equal(expectedType, deserialized.Type);
-        Assert.Equal(expectedDefaultValue, deserialized.DefaultValue);
-        Assert.Equal(expectedIsValueRequired, deserialized.IsValueRequired);
-        Assert.Equal(expectedMaxLength, deserialized.MaxLength);
-        Assert.Equal(expectedMaxValue, deserialized.MaxValue);
-        Assert.Equal(expectedMinLength, deserialized.MinLength);
-        Assert.Equal(expectedMinValue, deserialized.MinValue);
-        Assert.Equal(expectedReadOnly, deserialized.ReadOnly);
-        Assert.NotNull(deserialized.SelectOptions);
-        Assert.Equal(expectedSelectOptions.Count, deserialized.SelectOptions.Count);
-        for (int i = 0; i < expectedSelectOptions.Count; i++)
-        {
-            Assert.Equal(expectedSelectOptions[i], deserialized.SelectOptions[i]);
-        }
-        Assert.Equal(expectedSelectOptionsTruncated, deserialized.SelectOptionsTruncated);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Files::SelectedFieldsSchemaItem
-        {
-            Type = Files::Type.Text,
-            DefaultValue = new(
-                [
-                    new Files::DefaultValueArrayItem(true),
-                    new Files::DefaultValueArrayItem(10),
-                    new Files::DefaultValueArrayItem("Hello"),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Files::SelectedFieldsSchemaItem { Type = Files::Type.Text };
-
-        Assert.Null(model.DefaultValue);
-        Assert.False(model.RawData.ContainsKey("defaultValue"));
-        Assert.Null(model.IsValueRequired);
-        Assert.False(model.RawData.ContainsKey("isValueRequired"));
-        Assert.Null(model.MaxLength);
-        Assert.False(model.RawData.ContainsKey("maxLength"));
-        Assert.Null(model.MaxValue);
-        Assert.False(model.RawData.ContainsKey("maxValue"));
-        Assert.Null(model.MinLength);
-        Assert.False(model.RawData.ContainsKey("minLength"));
-        Assert.Null(model.MinValue);
-        Assert.False(model.RawData.ContainsKey("minValue"));
-        Assert.Null(model.ReadOnly);
-        Assert.False(model.RawData.ContainsKey("readOnly"));
-        Assert.Null(model.SelectOptions);
-        Assert.False(model.RawData.ContainsKey("selectOptions"));
-        Assert.Null(model.SelectOptionsTruncated);
-        Assert.False(model.RawData.ContainsKey("selectOptionsTruncated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Files::SelectedFieldsSchemaItem { Type = Files::Type.Text };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Files::SelectedFieldsSchemaItem
-        {
-            Type = Files::Type.Text,
-
-            // Null should be interpreted as omitted for these properties
-            DefaultValue = null,
-            IsValueRequired = null,
-            MaxLength = null,
-            MaxValue = null,
-            MinLength = null,
-            MinValue = null,
-            ReadOnly = null,
-            SelectOptions = null,
-            SelectOptionsTruncated = null,
-        };
-
-        Assert.Null(model.DefaultValue);
-        Assert.False(model.RawData.ContainsKey("defaultValue"));
-        Assert.Null(model.IsValueRequired);
-        Assert.False(model.RawData.ContainsKey("isValueRequired"));
-        Assert.Null(model.MaxLength);
-        Assert.False(model.RawData.ContainsKey("maxLength"));
-        Assert.Null(model.MaxValue);
-        Assert.False(model.RawData.ContainsKey("maxValue"));
-        Assert.Null(model.MinLength);
-        Assert.False(model.RawData.ContainsKey("minLength"));
-        Assert.Null(model.MinValue);
-        Assert.False(model.RawData.ContainsKey("minValue"));
-        Assert.Null(model.ReadOnly);
-        Assert.False(model.RawData.ContainsKey("readOnly"));
-        Assert.Null(model.SelectOptions);
-        Assert.False(model.RawData.ContainsKey("selectOptions"));
-        Assert.Null(model.SelectOptionsTruncated);
-        Assert.False(model.RawData.ContainsKey("selectOptionsTruncated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Files::SelectedFieldsSchemaItem
-        {
-            Type = Files::Type.Text,
-
-            // Null should be interpreted as omitted for these properties
-            DefaultValue = null,
-            IsValueRequired = null,
-            MaxLength = null,
-            MaxValue = null,
-            MinLength = null,
-            MinValue = null,
-            ReadOnly = null,
-            SelectOptions = null,
-            SelectOptionsTruncated = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new Files::SelectedFieldsSchemaItem
-        {
-            Type = Files::Type.Text,
-            DefaultValue = new(
-                [
-                    new Files::DefaultValueArrayItem(true),
-                    new Files::DefaultValueArrayItem(10),
-                    new Files::DefaultValueArrayItem("Hello"),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        Files::SelectedFieldsSchemaItem copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
 public class TypeTest : TestBase
 {
     [Theory]
-    [InlineData(Files::Type.Text)]
-    [InlineData(Files::Type.Textarea)]
-    [InlineData(Files::Type.Number)]
-    [InlineData(Files::Type.Date)]
-    [InlineData(Files::Type.Boolean)]
-    [InlineData(Files::Type.SingleSelect)]
-    [InlineData(Files::Type.MultiSelect)]
+    [InlineData(Files::Type.File)]
+    [InlineData(Files::Type.FileVersion)]
     public void Validation_Works(Files::Type rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -1668,13 +1195,8 @@ public class TypeTest : TestBase
     }
 
     [Theory]
-    [InlineData(Files::Type.Text)]
-    [InlineData(Files::Type.Textarea)]
-    [InlineData(Files::Type.Number)]
-    [InlineData(Files::Type.Date)]
-    [InlineData(Files::Type.Boolean)]
-    [InlineData(Files::Type.SingleSelect)]
-    [InlineData(Files::Type.MultiSelect)]
+    [InlineData(Files::Type.File)]
+    [InlineData(Files::Type.FileVersion)]
     public void SerializationRoundtrip_Works(Files::Type rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -1703,484 +1225,5 @@ public class TypeTest : TestBase
         );
 
         Assert.Equal(value, deserialized);
-    }
-}
-
-public class DefaultValueTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        Files::DefaultValue value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        Files::DefaultValue value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void BoolValidationWorks()
-    {
-        Files::DefaultValue value = true;
-        value.Validate();
-    }
-
-    [Fact]
-    public void MixedValidationWorks()
-    {
-        Files::DefaultValue value = new(
-            [
-                new Files::DefaultValueArrayItem(true),
-                new Files::DefaultValueArrayItem(10),
-                new Files::DefaultValueArrayItem("Hello"),
-            ]
-        );
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        Files::DefaultValue value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::DefaultValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        Files::DefaultValue value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::DefaultValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void BoolSerializationRoundtripWorks()
-    {
-        Files::DefaultValue value = true;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::DefaultValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void MixedSerializationRoundtripWorks()
-    {
-        Files::DefaultValue value = new(
-            [
-                new Files::DefaultValueArrayItem(true),
-                new Files::DefaultValueArrayItem(10),
-                new Files::DefaultValueArrayItem("Hello"),
-            ]
-        );
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::DefaultValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class DefaultValueArrayItemTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        Files::DefaultValueArrayItem value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        Files::DefaultValueArrayItem value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void BoolValidationWorks()
-    {
-        Files::DefaultValueArrayItem value = true;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        Files::DefaultValueArrayItem value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::DefaultValueArrayItem>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        Files::DefaultValueArrayItem value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::DefaultValueArrayItem>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void BoolSerializationRoundtripWorks()
-    {
-        Files::DefaultValueArrayItem value = true;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::DefaultValueArrayItem>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class MaxValueTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        Files::MaxValue value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        Files::MaxValue value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        Files::MaxValue value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::MaxValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        Files::MaxValue value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::MaxValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class MinValueTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        Files::MinValue value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        Files::MinValue value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        Files::MinValue value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::MinValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        Files::MinValue value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::MinValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class SelectOptionTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        Files::SelectOption value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        Files::SelectOption value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void BoolValidationWorks()
-    {
-        Files::SelectOption value = true;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        Files::SelectOption value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::SelectOption>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        Files::SelectOption value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::SelectOption>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void BoolSerializationRoundtripWorks()
-    {
-        Files::SelectOption value = true;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::SelectOption>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class FileTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(Files::FileType.File)]
-    [InlineData(Files::FileType.FileVersion)]
-    public void Validation_Works(Files::FileType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Files::FileType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::FileType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(Files::FileType.File)]
-    [InlineData(Files::FileType.FileVersion)]
-    public void SerializationRoundtrip_Works(Files::FileType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Files::FileType> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::FileType>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::FileType>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::FileType>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class VersionInfoTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new Files::VersionInfo { ID = "id", Name = "name" };
-
-        string expectedID = "id";
-        string expectedName = "name";
-
-        Assert.Equal(expectedID, model.ID);
-        Assert.Equal(expectedName, model.Name);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new Files::VersionInfo { ID = "id", Name = "name" };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::VersionInfo>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new Files::VersionInfo { ID = "id", Name = "name" };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Files::VersionInfo>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        string expectedID = "id";
-        string expectedName = "name";
-
-        Assert.Equal(expectedID, deserialized.ID);
-        Assert.Equal(expectedName, deserialized.Name);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new Files::VersionInfo { ID = "id", Name = "name" };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Files::VersionInfo { };
-
-        Assert.Null(model.ID);
-        Assert.False(model.RawData.ContainsKey("id"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Files::VersionInfo { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Files::VersionInfo
-        {
-            // Null should be interpreted as omitted for these properties
-            ID = null,
-            Name = null,
-        };
-
-        Assert.Null(model.ID);
-        Assert.False(model.RawData.ContainsKey("id"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Files::VersionInfo
-        {
-            // Null should be interpreted as omitted for these properties
-            ID = null,
-            Name = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new Files::VersionInfo { ID = "id", Name = "name" };
-
-        Files::VersionInfo copied = new(model);
-
-        Assert.Equal(model, copied);
     }
 }

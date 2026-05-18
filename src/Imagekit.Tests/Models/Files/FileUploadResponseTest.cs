@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Imagekit.Core;
 using Imagekit.Exceptions;
-using Imagekit.Models.Files;
+using Imagekit.Models;
+using Files = Imagekit.Models.Files;
 
 namespace Imagekit.Tests.Models.Files;
 
@@ -11,7 +12,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -37,11 +38,13 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-                AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-                AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-                GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-                RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+                AIAutoDescription =
+                    Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+                AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+                AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+                GoogleAutoTagging =
+                    Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+                RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -131,27 +134,18 @@ public class FileUploadResponseTest : TestBase
                 Width = 0,
             },
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<
-                string,
-                FileUploadResponseSelectedFieldsSchemaItem
-            >()
+            SelectedFieldsSchema = new Dictionary<string, SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                        Type = Type.Text,
                         DefaultValue = new(
                             [
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    true
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    10
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    "Hello"
-                                ),
+                                new DefaultValueArrayItem(true),
+                                new DefaultValueArrayItem(10),
+                                new DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -174,7 +168,7 @@ public class FileUploadResponseTest : TestBase
             Width = 0,
         };
 
-        List<FileUploadResponseAITag> expectedAITags =
+        List<AITag> expectedAITags =
         [
             new()
             {
@@ -196,13 +190,13 @@ public class FileUploadResponseTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
-        FileUploadResponseExtensionStatus expectedExtensionStatus = new()
+        Files::FileUploadResponseExtensionStatus expectedExtensionStatus = new()
         {
-            AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-            AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-            AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-            GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-            RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+            AIAutoDescription = Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+            AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+            AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+            GoogleAutoTagging = Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+            RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
         };
         string expectedFileID = "fileId";
         string expectedFilePath = "filePath";
@@ -210,7 +204,7 @@ public class FileUploadResponseTest : TestBase
         double expectedHeight = 0;
         bool expectedIsPrivateFile = true;
         bool expectedIsPublished = true;
-        FileMetadata expectedMetadata = new()
+        Files::FileMetadata expectedMetadata = new()
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -292,27 +286,18 @@ public class FileUploadResponseTest : TestBase
             Width = 0,
         };
         string expectedName = "name";
-        Dictionary<
-            string,
-            FileUploadResponseSelectedFieldsSchemaItem
-        > expectedSelectedFieldsSchema = new()
+        Dictionary<string, SelectedFieldsSchemaItem> expectedSelectedFieldsSchema = new()
         {
             {
                 "foo",
                 new()
                 {
-                    Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                    Type = Type.Text,
                     DefaultValue = new(
                         [
-                            new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                true
-                            ),
-                            new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                10
-                            ),
-                            new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                "Hello"
-                            ),
+                            new DefaultValueArrayItem(true),
+                            new DefaultValueArrayItem(10),
+                            new DefaultValueArrayItem("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -330,7 +315,7 @@ public class FileUploadResponseTest : TestBase
         List<string> expectedTags = ["string"];
         string expectedThumbnailUrl = "thumbnailUrl";
         string expectedUrl = "url";
-        FileUploadResponseVersionInfo expectedVersionInfo = new() { ID = "id", Name = "name" };
+        VersionInfo expectedVersionInfo = new() { ID = "id", Name = "name" };
         string expectedVideoCodec = "videoCodec";
         double expectedWidth = 0;
 
@@ -395,7 +380,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -421,11 +406,13 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-                AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-                AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-                GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-                RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+                AIAutoDescription =
+                    Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+                AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+                AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+                GoogleAutoTagging =
+                    Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+                RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -515,27 +502,18 @@ public class FileUploadResponseTest : TestBase
                 Width = 0,
             },
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<
-                string,
-                FileUploadResponseSelectedFieldsSchemaItem
-            >()
+            SelectedFieldsSchema = new Dictionary<string, SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                        Type = Type.Text,
                         DefaultValue = new(
                             [
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    true
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    10
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    "Hello"
-                                ),
+                                new DefaultValueArrayItem(true),
+                                new DefaultValueArrayItem(10),
+                                new DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -559,7 +537,7 @@ public class FileUploadResponseTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponse>(
+        var deserialized = JsonSerializer.Deserialize<Files::FileUploadResponse>(
             json,
             ModelBase.SerializerOptions
         );
@@ -570,7 +548,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -596,11 +574,13 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-                AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-                AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-                GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-                RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+                AIAutoDescription =
+                    Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+                AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+                AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+                GoogleAutoTagging =
+                    Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+                RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -690,27 +670,18 @@ public class FileUploadResponseTest : TestBase
                 Width = 0,
             },
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<
-                string,
-                FileUploadResponseSelectedFieldsSchemaItem
-            >()
+            SelectedFieldsSchema = new Dictionary<string, SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                        Type = Type.Text,
                         DefaultValue = new(
                             [
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    true
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    10
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    "Hello"
-                                ),
+                                new DefaultValueArrayItem(true),
+                                new DefaultValueArrayItem(10),
+                                new DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -734,13 +705,13 @@ public class FileUploadResponseTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponse>(
+        var deserialized = JsonSerializer.Deserialize<Files::FileUploadResponse>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
-        List<FileUploadResponseAITag> expectedAITags =
+        List<AITag> expectedAITags =
         [
             new()
             {
@@ -762,13 +733,13 @@ public class FileUploadResponseTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
-        FileUploadResponseExtensionStatus expectedExtensionStatus = new()
+        Files::FileUploadResponseExtensionStatus expectedExtensionStatus = new()
         {
-            AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-            AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-            AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-            GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-            RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+            AIAutoDescription = Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+            AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+            AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+            GoogleAutoTagging = Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+            RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
         };
         string expectedFileID = "fileId";
         string expectedFilePath = "filePath";
@@ -776,7 +747,7 @@ public class FileUploadResponseTest : TestBase
         double expectedHeight = 0;
         bool expectedIsPrivateFile = true;
         bool expectedIsPublished = true;
-        FileMetadata expectedMetadata = new()
+        Files::FileMetadata expectedMetadata = new()
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -858,27 +829,18 @@ public class FileUploadResponseTest : TestBase
             Width = 0,
         };
         string expectedName = "name";
-        Dictionary<
-            string,
-            FileUploadResponseSelectedFieldsSchemaItem
-        > expectedSelectedFieldsSchema = new()
+        Dictionary<string, SelectedFieldsSchemaItem> expectedSelectedFieldsSchema = new()
         {
             {
                 "foo",
                 new()
                 {
-                    Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                    Type = Type.Text,
                     DefaultValue = new(
                         [
-                            new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                true
-                            ),
-                            new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                10
-                            ),
-                            new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                "Hello"
-                            ),
+                            new DefaultValueArrayItem(true),
+                            new DefaultValueArrayItem(10),
+                            new DefaultValueArrayItem("Hello"),
                         ]
                     ),
                     IsValueRequired = true,
@@ -896,7 +858,7 @@ public class FileUploadResponseTest : TestBase
         List<string> expectedTags = ["string"];
         string expectedThumbnailUrl = "thumbnailUrl";
         string expectedUrl = "url";
-        FileUploadResponseVersionInfo expectedVersionInfo = new() { ID = "id", Name = "name" };
+        VersionInfo expectedVersionInfo = new() { ID = "id", Name = "name" };
         string expectedVideoCodec = "videoCodec";
         double expectedWidth = 0;
 
@@ -961,7 +923,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -987,11 +949,13 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-                AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-                AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-                GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-                RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+                AIAutoDescription =
+                    Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+                AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+                AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+                GoogleAutoTagging =
+                    Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+                RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -1081,27 +1045,18 @@ public class FileUploadResponseTest : TestBase
                 Width = 0,
             },
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<
-                string,
-                FileUploadResponseSelectedFieldsSchemaItem
-            >()
+            SelectedFieldsSchema = new Dictionary<string, SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                        Type = Type.Text,
                         DefaultValue = new(
                             [
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    true
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    10
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    "Hello"
-                                ),
+                                new DefaultValueArrayItem(true),
+                                new DefaultValueArrayItem(10),
+                                new DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1130,7 +1085,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -1194,7 +1149,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -1215,7 +1170,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -1303,7 +1258,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -1348,7 +1303,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -1364,11 +1319,13 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-                AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-                AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-                GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-                RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+                AIAutoDescription =
+                    Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+                AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+                AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+                GoogleAutoTagging =
+                    Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+                RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -1458,27 +1415,18 @@ public class FileUploadResponseTest : TestBase
                 Width = 0,
             },
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<
-                string,
-                FileUploadResponseSelectedFieldsSchemaItem
-            >()
+            SelectedFieldsSchema = new Dictionary<string, SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                        Type = Type.Text,
                         DefaultValue = new(
                             [
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    true
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    10
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    "Hello"
-                                ),
+                                new DefaultValueArrayItem(true),
+                                new DefaultValueArrayItem(10),
+                                new DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1511,7 +1459,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -1527,11 +1475,13 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-                AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-                AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-                GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-                RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+                AIAutoDescription =
+                    Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+                AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+                AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+                GoogleAutoTagging =
+                    Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+                RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -1621,27 +1571,18 @@ public class FileUploadResponseTest : TestBase
                 Width = 0,
             },
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<
-                string,
-                FileUploadResponseSelectedFieldsSchemaItem
-            >()
+            SelectedFieldsSchema = new Dictionary<string, SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                        Type = Type.Text,
                         DefaultValue = new(
                             [
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    true
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    10
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    "Hello"
-                                ),
+                                new DefaultValueArrayItem(true),
+                                new DefaultValueArrayItem(10),
+                                new DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1669,7 +1610,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -1685,11 +1626,13 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-                AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-                AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-                GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-                RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+                AIAutoDescription =
+                    Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+                AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+                AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+                GoogleAutoTagging =
+                    Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+                RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -1779,27 +1722,18 @@ public class FileUploadResponseTest : TestBase
                 Width = 0,
             },
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<
-                string,
-                FileUploadResponseSelectedFieldsSchemaItem
-            >()
+            SelectedFieldsSchema = new Dictionary<string, SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                        Type = Type.Text,
                         DefaultValue = new(
                             [
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    true
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    10
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    "Hello"
-                                ),
+                                new DefaultValueArrayItem(true),
+                                new DefaultValueArrayItem(10),
+                                new DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1836,7 +1770,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -1852,11 +1786,13 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-                AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-                AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-                GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-                RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+                AIAutoDescription =
+                    Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+                AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+                AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+                GoogleAutoTagging =
+                    Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+                RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -1946,27 +1882,18 @@ public class FileUploadResponseTest : TestBase
                 Width = 0,
             },
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<
-                string,
-                FileUploadResponseSelectedFieldsSchemaItem
-            >()
+            SelectedFieldsSchema = new Dictionary<string, SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                        Type = Type.Text,
                         DefaultValue = new(
                             [
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    true
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    10
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    "Hello"
-                                ),
+                                new DefaultValueArrayItem(true),
+                                new DefaultValueArrayItem(10),
+                                new DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -1998,7 +1925,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -2024,11 +1951,13 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-                AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-                AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-                GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-                RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+                AIAutoDescription =
+                    Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+                AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+                AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+                GoogleAutoTagging =
+                    Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+                RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -2118,27 +2047,18 @@ public class FileUploadResponseTest : TestBase
                 Width = 0,
             },
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<
-                string,
-                FileUploadResponseSelectedFieldsSchemaItem
-            >()
+            SelectedFieldsSchema = new Dictionary<string, SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
+                        Type = Type.Text,
                         DefaultValue = new(
                             [
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    true
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    10
-                                ),
-                                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                                    "Hello"
-                                ),
+                                new DefaultValueArrayItem(true),
+                                new DefaultValueArrayItem(10),
+                                new DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -2161,156 +2081,7 @@ public class FileUploadResponseTest : TestBase
             Width = 0,
         };
 
-        FileUploadResponse copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class FileUploadResponseAITagTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new FileUploadResponseAITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        double expectedConfidence = 0;
-        string expectedName = "name";
-        string expectedSource = "source";
-
-        Assert.Equal(expectedConfidence, model.Confidence);
-        Assert.Equal(expectedName, model.Name);
-        Assert.Equal(expectedSource, model.Source);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new FileUploadResponseAITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponseAITag>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new FileUploadResponseAITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponseAITag>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        double expectedConfidence = 0;
-        string expectedName = "name";
-        string expectedSource = "source";
-
-        Assert.Equal(expectedConfidence, deserialized.Confidence);
-        Assert.Equal(expectedName, deserialized.Name);
-        Assert.Equal(expectedSource, deserialized.Source);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new FileUploadResponseAITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new FileUploadResponseAITag { };
-
-        Assert.Null(model.Confidence);
-        Assert.False(model.RawData.ContainsKey("confidence"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-        Assert.Null(model.Source);
-        Assert.False(model.RawData.ContainsKey("source"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new FileUploadResponseAITag { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new FileUploadResponseAITag
-        {
-            // Null should be interpreted as omitted for these properties
-            Confidence = null,
-            Name = null,
-            Source = null,
-        };
-
-        Assert.Null(model.Confidence);
-        Assert.False(model.RawData.ContainsKey("confidence"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-        Assert.Null(model.Source);
-        Assert.False(model.RawData.ContainsKey("source"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new FileUploadResponseAITag
-        {
-            // Null should be interpreted as omitted for these properties
-            Confidence = null,
-            Name = null,
-            Source = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new FileUploadResponseAITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        FileUploadResponseAITag copied = new(model);
+        Files::FileUploadResponse copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -2321,29 +2092,33 @@ public class FileUploadResponseExtensionStatusTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FileUploadResponseExtensionStatus
+        var model = new Files::FileUploadResponseExtensionStatus
         {
-            AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-            AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-            AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-            GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-            RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+            AIAutoDescription = Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+            AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+            AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+            GoogleAutoTagging = Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+            RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
         };
 
         ApiEnum<
             string,
-            FileUploadResponseExtensionStatusAIAutoDescription
-        > expectedAIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success;
-        ApiEnum<string, FileUploadResponseExtensionStatusAITasks> expectedAITasks =
-            FileUploadResponseExtensionStatusAITasks.Success;
-        ApiEnum<string, FileUploadResponseExtensionStatusAwsAutoTagging> expectedAwsAutoTagging =
-            FileUploadResponseExtensionStatusAwsAutoTagging.Success;
+            Files::FileUploadResponseExtensionStatusAIAutoDescription
+        > expectedAIAutoDescription =
+            Files::FileUploadResponseExtensionStatusAIAutoDescription.Success;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusAITasks> expectedAITasks =
+            Files::FileUploadResponseExtensionStatusAITasks.Success;
         ApiEnum<
             string,
-            FileUploadResponseExtensionStatusGoogleAutoTagging
-        > expectedGoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success;
-        ApiEnum<string, FileUploadResponseExtensionStatusRemoveBg> expectedRemoveBg =
-            FileUploadResponseExtensionStatusRemoveBg.Success;
+            Files::FileUploadResponseExtensionStatusAwsAutoTagging
+        > expectedAwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success;
+        ApiEnum<
+            string,
+            Files::FileUploadResponseExtensionStatusGoogleAutoTagging
+        > expectedGoogleAutoTagging =
+            Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusRemoveBg> expectedRemoveBg =
+            Files::FileUploadResponseExtensionStatusRemoveBg.Success;
 
         Assert.Equal(expectedAIAutoDescription, model.AIAutoDescription);
         Assert.Equal(expectedAITasks, model.AITasks);
@@ -2355,17 +2130,17 @@ public class FileUploadResponseExtensionStatusTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FileUploadResponseExtensionStatus
+        var model = new Files::FileUploadResponseExtensionStatus
         {
-            AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-            AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-            AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-            GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-            RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+            AIAutoDescription = Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+            AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+            AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+            GoogleAutoTagging = Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+            RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponseExtensionStatus>(
+        var deserialized = JsonSerializer.Deserialize<Files::FileUploadResponseExtensionStatus>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2376,17 +2151,17 @@ public class FileUploadResponseExtensionStatusTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FileUploadResponseExtensionStatus
+        var model = new Files::FileUploadResponseExtensionStatus
         {
-            AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-            AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-            AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-            GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-            RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+            AIAutoDescription = Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+            AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+            AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+            GoogleAutoTagging = Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+            RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponseExtensionStatus>(
+        var deserialized = JsonSerializer.Deserialize<Files::FileUploadResponseExtensionStatus>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2394,18 +2169,22 @@ public class FileUploadResponseExtensionStatusTest : TestBase
 
         ApiEnum<
             string,
-            FileUploadResponseExtensionStatusAIAutoDescription
-        > expectedAIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success;
-        ApiEnum<string, FileUploadResponseExtensionStatusAITasks> expectedAITasks =
-            FileUploadResponseExtensionStatusAITasks.Success;
-        ApiEnum<string, FileUploadResponseExtensionStatusAwsAutoTagging> expectedAwsAutoTagging =
-            FileUploadResponseExtensionStatusAwsAutoTagging.Success;
+            Files::FileUploadResponseExtensionStatusAIAutoDescription
+        > expectedAIAutoDescription =
+            Files::FileUploadResponseExtensionStatusAIAutoDescription.Success;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusAITasks> expectedAITasks =
+            Files::FileUploadResponseExtensionStatusAITasks.Success;
         ApiEnum<
             string,
-            FileUploadResponseExtensionStatusGoogleAutoTagging
-        > expectedGoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success;
-        ApiEnum<string, FileUploadResponseExtensionStatusRemoveBg> expectedRemoveBg =
-            FileUploadResponseExtensionStatusRemoveBg.Success;
+            Files::FileUploadResponseExtensionStatusAwsAutoTagging
+        > expectedAwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success;
+        ApiEnum<
+            string,
+            Files::FileUploadResponseExtensionStatusGoogleAutoTagging
+        > expectedGoogleAutoTagging =
+            Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusRemoveBg> expectedRemoveBg =
+            Files::FileUploadResponseExtensionStatusRemoveBg.Success;
 
         Assert.Equal(expectedAIAutoDescription, deserialized.AIAutoDescription);
         Assert.Equal(expectedAITasks, deserialized.AITasks);
@@ -2417,13 +2196,13 @@ public class FileUploadResponseExtensionStatusTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FileUploadResponseExtensionStatus
+        var model = new Files::FileUploadResponseExtensionStatus
         {
-            AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-            AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-            AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-            GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-            RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+            AIAutoDescription = Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+            AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+            AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+            GoogleAutoTagging = Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+            RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
         };
 
         model.Validate();
@@ -2432,7 +2211,7 @@ public class FileUploadResponseExtensionStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new FileUploadResponseExtensionStatus { };
+        var model = new Files::FileUploadResponseExtensionStatus { };
 
         Assert.Null(model.AIAutoDescription);
         Assert.False(model.RawData.ContainsKey("ai-auto-description"));
@@ -2449,7 +2228,7 @@ public class FileUploadResponseExtensionStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new FileUploadResponseExtensionStatus { };
+        var model = new Files::FileUploadResponseExtensionStatus { };
 
         model.Validate();
     }
@@ -2457,7 +2236,7 @@ public class FileUploadResponseExtensionStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new FileUploadResponseExtensionStatus
+        var model = new Files::FileUploadResponseExtensionStatus
         {
             // Null should be interpreted as omitted for these properties
             AIAutoDescription = null,
@@ -2482,7 +2261,7 @@ public class FileUploadResponseExtensionStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new FileUploadResponseExtensionStatus
+        var model = new Files::FileUploadResponseExtensionStatus
         {
             // Null should be interpreted as omitted for these properties
             AIAutoDescription = null,
@@ -2498,16 +2277,16 @@ public class FileUploadResponseExtensionStatusTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FileUploadResponseExtensionStatus
+        var model = new Files::FileUploadResponseExtensionStatus
         {
-            AIAutoDescription = FileUploadResponseExtensionStatusAIAutoDescription.Success,
-            AITasks = FileUploadResponseExtensionStatusAITasks.Success,
-            AwsAutoTagging = FileUploadResponseExtensionStatusAwsAutoTagging.Success,
-            GoogleAutoTagging = FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
-            RemoveBg = FileUploadResponseExtensionStatusRemoveBg.Success,
+            AIAutoDescription = Files::FileUploadResponseExtensionStatusAIAutoDescription.Success,
+            AITasks = Files::FileUploadResponseExtensionStatusAITasks.Success,
+            AwsAutoTagging = Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success,
+            GoogleAutoTagging = Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success,
+            RemoveBg = Files::FileUploadResponseExtensionStatusRemoveBg.Success,
         };
 
-        FileUploadResponseExtensionStatus copied = new(model);
+        Files::FileUploadResponseExtensionStatus copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -2516,13 +2295,13 @@ public class FileUploadResponseExtensionStatusTest : TestBase
 public class FileUploadResponseExtensionStatusAIAutoDescriptionTest : TestBase
 {
     [Theory]
-    [InlineData(FileUploadResponseExtensionStatusAIAutoDescription.Success)]
-    [InlineData(FileUploadResponseExtensionStatusAIAutoDescription.Pending)]
-    [InlineData(FileUploadResponseExtensionStatusAIAutoDescription.Failed)]
-    public void Validation_Works(FileUploadResponseExtensionStatusAIAutoDescription rawValue)
+    [InlineData(Files::FileUploadResponseExtensionStatusAIAutoDescription.Success)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAIAutoDescription.Pending)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAIAutoDescription.Failed)]
+    public void Validation_Works(Files::FileUploadResponseExtensionStatusAIAutoDescription rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseExtensionStatusAIAutoDescription> value = rawValue;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusAIAutoDescription> value = rawValue;
         value.Validate();
     }
 
@@ -2530,7 +2309,7 @@ public class FileUploadResponseExtensionStatusAIAutoDescriptionTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAIAutoDescription>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAIAutoDescription>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
@@ -2538,19 +2317,19 @@ public class FileUploadResponseExtensionStatusAIAutoDescriptionTest : TestBase
     }
 
     [Theory]
-    [InlineData(FileUploadResponseExtensionStatusAIAutoDescription.Success)]
-    [InlineData(FileUploadResponseExtensionStatusAIAutoDescription.Pending)]
-    [InlineData(FileUploadResponseExtensionStatusAIAutoDescription.Failed)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAIAutoDescription.Success)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAIAutoDescription.Pending)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAIAutoDescription.Failed)]
     public void SerializationRoundtrip_Works(
-        FileUploadResponseExtensionStatusAIAutoDescription rawValue
+        Files::FileUploadResponseExtensionStatusAIAutoDescription rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseExtensionStatusAIAutoDescription> value = rawValue;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusAIAutoDescription> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAIAutoDescription>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAIAutoDescription>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -2560,11 +2339,11 @@ public class FileUploadResponseExtensionStatusAIAutoDescriptionTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAIAutoDescription>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAIAutoDescription>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAIAutoDescription>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAIAutoDescription>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -2574,13 +2353,13 @@ public class FileUploadResponseExtensionStatusAIAutoDescriptionTest : TestBase
 public class FileUploadResponseExtensionStatusAITasksTest : TestBase
 {
     [Theory]
-    [InlineData(FileUploadResponseExtensionStatusAITasks.Success)]
-    [InlineData(FileUploadResponseExtensionStatusAITasks.Pending)]
-    [InlineData(FileUploadResponseExtensionStatusAITasks.Failed)]
-    public void Validation_Works(FileUploadResponseExtensionStatusAITasks rawValue)
+    [InlineData(Files::FileUploadResponseExtensionStatusAITasks.Success)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAITasks.Pending)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAITasks.Failed)]
+    public void Validation_Works(Files::FileUploadResponseExtensionStatusAITasks rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseExtensionStatusAITasks> value = rawValue;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusAITasks> value = rawValue;
         value.Validate();
     }
 
@@ -2588,7 +2367,7 @@ public class FileUploadResponseExtensionStatusAITasksTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAITasks>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAITasks>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
@@ -2596,17 +2375,19 @@ public class FileUploadResponseExtensionStatusAITasksTest : TestBase
     }
 
     [Theory]
-    [InlineData(FileUploadResponseExtensionStatusAITasks.Success)]
-    [InlineData(FileUploadResponseExtensionStatusAITasks.Pending)]
-    [InlineData(FileUploadResponseExtensionStatusAITasks.Failed)]
-    public void SerializationRoundtrip_Works(FileUploadResponseExtensionStatusAITasks rawValue)
+    [InlineData(Files::FileUploadResponseExtensionStatusAITasks.Success)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAITasks.Pending)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAITasks.Failed)]
+    public void SerializationRoundtrip_Works(
+        Files::FileUploadResponseExtensionStatusAITasks rawValue
+    )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseExtensionStatusAITasks> value = rawValue;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusAITasks> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAITasks>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAITasks>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -2616,11 +2397,11 @@ public class FileUploadResponseExtensionStatusAITasksTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAITasks>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAITasks>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAITasks>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAITasks>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -2630,13 +2411,13 @@ public class FileUploadResponseExtensionStatusAITasksTest : TestBase
 public class FileUploadResponseExtensionStatusAwsAutoTaggingTest : TestBase
 {
     [Theory]
-    [InlineData(FileUploadResponseExtensionStatusAwsAutoTagging.Success)]
-    [InlineData(FileUploadResponseExtensionStatusAwsAutoTagging.Pending)]
-    [InlineData(FileUploadResponseExtensionStatusAwsAutoTagging.Failed)]
-    public void Validation_Works(FileUploadResponseExtensionStatusAwsAutoTagging rawValue)
+    [InlineData(Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAwsAutoTagging.Pending)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAwsAutoTagging.Failed)]
+    public void Validation_Works(Files::FileUploadResponseExtensionStatusAwsAutoTagging rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseExtensionStatusAwsAutoTagging> value = rawValue;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusAwsAutoTagging> value = rawValue;
         value.Validate();
     }
 
@@ -2644,7 +2425,7 @@ public class FileUploadResponseExtensionStatusAwsAutoTaggingTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAwsAutoTagging>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAwsAutoTagging>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
@@ -2652,19 +2433,19 @@ public class FileUploadResponseExtensionStatusAwsAutoTaggingTest : TestBase
     }
 
     [Theory]
-    [InlineData(FileUploadResponseExtensionStatusAwsAutoTagging.Success)]
-    [InlineData(FileUploadResponseExtensionStatusAwsAutoTagging.Pending)]
-    [InlineData(FileUploadResponseExtensionStatusAwsAutoTagging.Failed)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAwsAutoTagging.Success)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAwsAutoTagging.Pending)]
+    [InlineData(Files::FileUploadResponseExtensionStatusAwsAutoTagging.Failed)]
     public void SerializationRoundtrip_Works(
-        FileUploadResponseExtensionStatusAwsAutoTagging rawValue
+        Files::FileUploadResponseExtensionStatusAwsAutoTagging rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseExtensionStatusAwsAutoTagging> value = rawValue;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusAwsAutoTagging> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAwsAutoTagging>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAwsAutoTagging>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -2674,11 +2455,11 @@ public class FileUploadResponseExtensionStatusAwsAutoTaggingTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAwsAutoTagging>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAwsAutoTagging>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusAwsAutoTagging>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusAwsAutoTagging>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -2688,13 +2469,13 @@ public class FileUploadResponseExtensionStatusAwsAutoTaggingTest : TestBase
 public class FileUploadResponseExtensionStatusGoogleAutoTaggingTest : TestBase
 {
     [Theory]
-    [InlineData(FileUploadResponseExtensionStatusGoogleAutoTagging.Success)]
-    [InlineData(FileUploadResponseExtensionStatusGoogleAutoTagging.Pending)]
-    [InlineData(FileUploadResponseExtensionStatusGoogleAutoTagging.Failed)]
-    public void Validation_Works(FileUploadResponseExtensionStatusGoogleAutoTagging rawValue)
+    [InlineData(Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success)]
+    [InlineData(Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Pending)]
+    [InlineData(Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Failed)]
+    public void Validation_Works(Files::FileUploadResponseExtensionStatusGoogleAutoTagging rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseExtensionStatusGoogleAutoTagging> value = rawValue;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusGoogleAutoTagging> value = rawValue;
         value.Validate();
     }
 
@@ -2702,7 +2483,7 @@ public class FileUploadResponseExtensionStatusGoogleAutoTaggingTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusGoogleAutoTagging>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusGoogleAutoTagging>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
@@ -2710,19 +2491,19 @@ public class FileUploadResponseExtensionStatusGoogleAutoTaggingTest : TestBase
     }
 
     [Theory]
-    [InlineData(FileUploadResponseExtensionStatusGoogleAutoTagging.Success)]
-    [InlineData(FileUploadResponseExtensionStatusGoogleAutoTagging.Pending)]
-    [InlineData(FileUploadResponseExtensionStatusGoogleAutoTagging.Failed)]
+    [InlineData(Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Success)]
+    [InlineData(Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Pending)]
+    [InlineData(Files::FileUploadResponseExtensionStatusGoogleAutoTagging.Failed)]
     public void SerializationRoundtrip_Works(
-        FileUploadResponseExtensionStatusGoogleAutoTagging rawValue
+        Files::FileUploadResponseExtensionStatusGoogleAutoTagging rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseExtensionStatusGoogleAutoTagging> value = rawValue;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusGoogleAutoTagging> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusGoogleAutoTagging>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusGoogleAutoTagging>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -2732,11 +2513,11 @@ public class FileUploadResponseExtensionStatusGoogleAutoTaggingTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusGoogleAutoTagging>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusGoogleAutoTagging>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusGoogleAutoTagging>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusGoogleAutoTagging>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -2746,13 +2527,13 @@ public class FileUploadResponseExtensionStatusGoogleAutoTaggingTest : TestBase
 public class FileUploadResponseExtensionStatusRemoveBgTest : TestBase
 {
     [Theory]
-    [InlineData(FileUploadResponseExtensionStatusRemoveBg.Success)]
-    [InlineData(FileUploadResponseExtensionStatusRemoveBg.Pending)]
-    [InlineData(FileUploadResponseExtensionStatusRemoveBg.Failed)]
-    public void Validation_Works(FileUploadResponseExtensionStatusRemoveBg rawValue)
+    [InlineData(Files::FileUploadResponseExtensionStatusRemoveBg.Success)]
+    [InlineData(Files::FileUploadResponseExtensionStatusRemoveBg.Pending)]
+    [InlineData(Files::FileUploadResponseExtensionStatusRemoveBg.Failed)]
+    public void Validation_Works(Files::FileUploadResponseExtensionStatusRemoveBg rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseExtensionStatusRemoveBg> value = rawValue;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusRemoveBg> value = rawValue;
         value.Validate();
     }
 
@@ -2760,7 +2541,7 @@ public class FileUploadResponseExtensionStatusRemoveBgTest : TestBase
     public void InvalidEnumValidationThrows_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusRemoveBg>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusRemoveBg>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
@@ -2768,449 +2549,19 @@ public class FileUploadResponseExtensionStatusRemoveBgTest : TestBase
     }
 
     [Theory]
-    [InlineData(FileUploadResponseExtensionStatusRemoveBg.Success)]
-    [InlineData(FileUploadResponseExtensionStatusRemoveBg.Pending)]
-    [InlineData(FileUploadResponseExtensionStatusRemoveBg.Failed)]
-    public void SerializationRoundtrip_Works(FileUploadResponseExtensionStatusRemoveBg rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseExtensionStatusRemoveBg> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusRemoveBg>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusRemoveBg>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseExtensionStatusRemoveBg>
-        >(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class FileUploadResponseSelectedFieldsSchemaItemTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new FileUploadResponseSelectedFieldsSchemaItem
-        {
-            Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-            DefaultValue = new(
-                [
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        true
-                    ),
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        10
-                    ),
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        "Hello"
-                    ),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        ApiEnum<string, FileUploadResponseSelectedFieldsSchemaItemType> expectedType =
-            FileUploadResponseSelectedFieldsSchemaItemType.Text;
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue expectedDefaultValue = new(
-            [
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                    true
-                ),
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(10),
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                    "Hello"
-                ),
-            ]
-        );
-        bool expectedIsValueRequired = true;
-        double expectedMaxLength = 0;
-        FileUploadResponseSelectedFieldsSchemaItemMaxValue expectedMaxValue = "string";
-        double expectedMinLength = 0;
-        FileUploadResponseSelectedFieldsSchemaItemMinValue expectedMinValue = "string";
-        bool expectedReadOnly = true;
-        List<FileUploadResponseSelectedFieldsSchemaItemSelectOption> expectedSelectOptions =
-        [
-            "small",
-            "medium",
-            "large",
-            30,
-            40,
-            true,
-        ];
-        bool expectedSelectOptionsTruncated = true;
-
-        Assert.Equal(expectedType, model.Type);
-        Assert.Equal(expectedDefaultValue, model.DefaultValue);
-        Assert.Equal(expectedIsValueRequired, model.IsValueRequired);
-        Assert.Equal(expectedMaxLength, model.MaxLength);
-        Assert.Equal(expectedMaxValue, model.MaxValue);
-        Assert.Equal(expectedMinLength, model.MinLength);
-        Assert.Equal(expectedMinValue, model.MinValue);
-        Assert.Equal(expectedReadOnly, model.ReadOnly);
-        Assert.NotNull(model.SelectOptions);
-        Assert.Equal(expectedSelectOptions.Count, model.SelectOptions.Count);
-        for (int i = 0; i < expectedSelectOptions.Count; i++)
-        {
-            Assert.Equal(expectedSelectOptions[i], model.SelectOptions[i]);
-        }
-        Assert.Equal(expectedSelectOptionsTruncated, model.SelectOptionsTruncated);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new FileUploadResponseSelectedFieldsSchemaItem
-        {
-            Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-            DefaultValue = new(
-                [
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        true
-                    ),
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        10
-                    ),
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        "Hello"
-                    ),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItem>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new FileUploadResponseSelectedFieldsSchemaItem
-        {
-            Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-            DefaultValue = new(
-                [
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        true
-                    ),
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        10
-                    ),
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        "Hello"
-                    ),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItem>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        ApiEnum<string, FileUploadResponseSelectedFieldsSchemaItemType> expectedType =
-            FileUploadResponseSelectedFieldsSchemaItemType.Text;
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue expectedDefaultValue = new(
-            [
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                    true
-                ),
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(10),
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                    "Hello"
-                ),
-            ]
-        );
-        bool expectedIsValueRequired = true;
-        double expectedMaxLength = 0;
-        FileUploadResponseSelectedFieldsSchemaItemMaxValue expectedMaxValue = "string";
-        double expectedMinLength = 0;
-        FileUploadResponseSelectedFieldsSchemaItemMinValue expectedMinValue = "string";
-        bool expectedReadOnly = true;
-        List<FileUploadResponseSelectedFieldsSchemaItemSelectOption> expectedSelectOptions =
-        [
-            "small",
-            "medium",
-            "large",
-            30,
-            40,
-            true,
-        ];
-        bool expectedSelectOptionsTruncated = true;
-
-        Assert.Equal(expectedType, deserialized.Type);
-        Assert.Equal(expectedDefaultValue, deserialized.DefaultValue);
-        Assert.Equal(expectedIsValueRequired, deserialized.IsValueRequired);
-        Assert.Equal(expectedMaxLength, deserialized.MaxLength);
-        Assert.Equal(expectedMaxValue, deserialized.MaxValue);
-        Assert.Equal(expectedMinLength, deserialized.MinLength);
-        Assert.Equal(expectedMinValue, deserialized.MinValue);
-        Assert.Equal(expectedReadOnly, deserialized.ReadOnly);
-        Assert.NotNull(deserialized.SelectOptions);
-        Assert.Equal(expectedSelectOptions.Count, deserialized.SelectOptions.Count);
-        for (int i = 0; i < expectedSelectOptions.Count; i++)
-        {
-            Assert.Equal(expectedSelectOptions[i], deserialized.SelectOptions[i]);
-        }
-        Assert.Equal(expectedSelectOptionsTruncated, deserialized.SelectOptionsTruncated);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new FileUploadResponseSelectedFieldsSchemaItem
-        {
-            Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-            DefaultValue = new(
-                [
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        true
-                    ),
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        10
-                    ),
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        "Hello"
-                    ),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new FileUploadResponseSelectedFieldsSchemaItem
-        {
-            Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-        };
-
-        Assert.Null(model.DefaultValue);
-        Assert.False(model.RawData.ContainsKey("defaultValue"));
-        Assert.Null(model.IsValueRequired);
-        Assert.False(model.RawData.ContainsKey("isValueRequired"));
-        Assert.Null(model.MaxLength);
-        Assert.False(model.RawData.ContainsKey("maxLength"));
-        Assert.Null(model.MaxValue);
-        Assert.False(model.RawData.ContainsKey("maxValue"));
-        Assert.Null(model.MinLength);
-        Assert.False(model.RawData.ContainsKey("minLength"));
-        Assert.Null(model.MinValue);
-        Assert.False(model.RawData.ContainsKey("minValue"));
-        Assert.Null(model.ReadOnly);
-        Assert.False(model.RawData.ContainsKey("readOnly"));
-        Assert.Null(model.SelectOptions);
-        Assert.False(model.RawData.ContainsKey("selectOptions"));
-        Assert.Null(model.SelectOptionsTruncated);
-        Assert.False(model.RawData.ContainsKey("selectOptionsTruncated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new FileUploadResponseSelectedFieldsSchemaItem
-        {
-            Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new FileUploadResponseSelectedFieldsSchemaItem
-        {
-            Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-
-            // Null should be interpreted as omitted for these properties
-            DefaultValue = null,
-            IsValueRequired = null,
-            MaxLength = null,
-            MaxValue = null,
-            MinLength = null,
-            MinValue = null,
-            ReadOnly = null,
-            SelectOptions = null,
-            SelectOptionsTruncated = null,
-        };
-
-        Assert.Null(model.DefaultValue);
-        Assert.False(model.RawData.ContainsKey("defaultValue"));
-        Assert.Null(model.IsValueRequired);
-        Assert.False(model.RawData.ContainsKey("isValueRequired"));
-        Assert.Null(model.MaxLength);
-        Assert.False(model.RawData.ContainsKey("maxLength"));
-        Assert.Null(model.MaxValue);
-        Assert.False(model.RawData.ContainsKey("maxValue"));
-        Assert.Null(model.MinLength);
-        Assert.False(model.RawData.ContainsKey("minLength"));
-        Assert.Null(model.MinValue);
-        Assert.False(model.RawData.ContainsKey("minValue"));
-        Assert.Null(model.ReadOnly);
-        Assert.False(model.RawData.ContainsKey("readOnly"));
-        Assert.Null(model.SelectOptions);
-        Assert.False(model.RawData.ContainsKey("selectOptions"));
-        Assert.Null(model.SelectOptionsTruncated);
-        Assert.False(model.RawData.ContainsKey("selectOptionsTruncated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new FileUploadResponseSelectedFieldsSchemaItem
-        {
-            Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-
-            // Null should be interpreted as omitted for these properties
-            DefaultValue = null,
-            IsValueRequired = null,
-            MaxLength = null,
-            MaxValue = null,
-            MinLength = null,
-            MinValue = null,
-            ReadOnly = null,
-            SelectOptions = null,
-            SelectOptionsTruncated = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new FileUploadResponseSelectedFieldsSchemaItem
-        {
-            Type = FileUploadResponseSelectedFieldsSchemaItemType.Text,
-            DefaultValue = new(
-                [
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        true
-                    ),
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        10
-                    ),
-                    new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                        "Hello"
-                    ),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        FileUploadResponseSelectedFieldsSchemaItem copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class FileUploadResponseSelectedFieldsSchemaItemTypeTest : TestBase
-{
-    [Theory]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.Text)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.Textarea)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.Number)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.Date)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.Boolean)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.SingleSelect)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.MultiSelect)]
-    public void Validation_Works(FileUploadResponseSelectedFieldsSchemaItemType rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseSelectedFieldsSchemaItemType> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseSelectedFieldsSchemaItemType>
-        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
-
-        Assert.NotNull(value);
-        Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.Text)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.Textarea)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.Number)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.Date)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.Boolean)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.SingleSelect)]
-    [InlineData(FileUploadResponseSelectedFieldsSchemaItemType.MultiSelect)]
+    [InlineData(Files::FileUploadResponseExtensionStatusRemoveBg.Success)]
+    [InlineData(Files::FileUploadResponseExtensionStatusRemoveBg.Pending)]
+    [InlineData(Files::FileUploadResponseExtensionStatusRemoveBg.Failed)]
     public void SerializationRoundtrip_Works(
-        FileUploadResponseSelectedFieldsSchemaItemType rawValue
+        Files::FileUploadResponseExtensionStatusRemoveBg rawValue
     )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, FileUploadResponseSelectedFieldsSchemaItemType> value = rawValue;
+        ApiEnum<string, Files::FileUploadResponseExtensionStatusRemoveBg> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseSelectedFieldsSchemaItemType>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusRemoveBg>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
@@ -3220,459 +2571,13 @@ public class FileUploadResponseSelectedFieldsSchemaItemTypeTest : TestBase
     public void InvalidEnumSerializationRoundtrip_Works()
     {
         var value = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseSelectedFieldsSchemaItemType>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusRemoveBg>
         >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<
-            ApiEnum<string, FileUploadResponseSelectedFieldsSchemaItemType>
+            ApiEnum<string, Files::FileUploadResponseExtensionStatusRemoveBg>
         >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
-    }
-}
-
-public class FileUploadResponseSelectedFieldsSchemaItemDefaultValueTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void BoolValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue value = true;
-        value.Validate();
-    }
-
-    [Fact]
-    public void MixedValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue value = new(
-            [
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                    true
-                ),
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(10),
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                    "Hello"
-                ),
-            ]
-        );
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemDefaultValue>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemDefaultValue>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void BoolSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue value = true;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemDefaultValue>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void MixedSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValue value = new(
-            [
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                    true
-                ),
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(10),
-                new FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem(
-                    "Hello"
-                ),
-            ]
-        );
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemDefaultValue>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItemTest
-    : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem value =
-            "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void BoolValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem value = true;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem value =
-            "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void BoolSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem value = true;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemDefaultValueDefaultValueArrayItem>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class FileUploadResponseSelectedFieldsSchemaItemMaxValueTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemMaxValue value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemMaxValue value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemMaxValue value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemMaxValue>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemMaxValue value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemMaxValue>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class FileUploadResponseSelectedFieldsSchemaItemMinValueTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemMinValue value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemMinValue value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemMinValue value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemMinValue>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemMinValue value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemMinValue>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class FileUploadResponseSelectedFieldsSchemaItemSelectOptionTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemSelectOption value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemSelectOption value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void BoolValidationWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemSelectOption value = true;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemSelectOption value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemSelectOption>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemSelectOption value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemSelectOption>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void BoolSerializationRoundtripWorks()
-    {
-        FileUploadResponseSelectedFieldsSchemaItemSelectOption value = true;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<FileUploadResponseSelectedFieldsSchemaItemSelectOption>(
-                element,
-                ModelBase.SerializerOptions
-            );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class FileUploadResponseVersionInfoTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new FileUploadResponseVersionInfo { ID = "id", Name = "name" };
-
-        string expectedID = "id";
-        string expectedName = "name";
-
-        Assert.Equal(expectedID, model.ID);
-        Assert.Equal(expectedName, model.Name);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new FileUploadResponseVersionInfo { ID = "id", Name = "name" };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponseVersionInfo>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new FileUploadResponseVersionInfo { ID = "id", Name = "name" };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponseVersionInfo>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        string expectedID = "id";
-        string expectedName = "name";
-
-        Assert.Equal(expectedID, deserialized.ID);
-        Assert.Equal(expectedName, deserialized.Name);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new FileUploadResponseVersionInfo { ID = "id", Name = "name" };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new FileUploadResponseVersionInfo { };
-
-        Assert.Null(model.ID);
-        Assert.False(model.RawData.ContainsKey("id"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new FileUploadResponseVersionInfo { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new FileUploadResponseVersionInfo
-        {
-            // Null should be interpreted as omitted for these properties
-            ID = null,
-            Name = null,
-        };
-
-        Assert.Null(model.ID);
-        Assert.False(model.RawData.ContainsKey("id"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new FileUploadResponseVersionInfo
-        {
-            // Null should be interpreted as omitted for these properties
-            ID = null,
-            Name = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new FileUploadResponseVersionInfo { ID = "id", Name = "name" };
-
-        FileUploadResponseVersionInfo copied = new(model);
-
-        Assert.Equal(model, copied);
     }
 }

@@ -1,7 +1,7 @@
-using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Exceptions;
+using System = System;
 
 namespace Imagekit.Models;
 
@@ -24,7 +24,7 @@ sealed class StreamingResolutionConverter : JsonConverter<StreamingResolution>
 {
     public override StreamingResolution Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using System = System;
 
 namespace Imagekit.Models;
 
@@ -307,7 +307,7 @@ public record class Gradient : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<Default> default_, Action<string> @string)
+    public void Switch(System::Action<Default> default_, System::Action<string> @string)
     {
         switch (this.Value)
         {
@@ -345,7 +345,7 @@ public record class Gradient : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<Default, T> default_, Func<string, T> @string)
+    public T Match<T>(System::Func<Default, T> default_, System::Func<string, T> @string)
     {
         return this.Value switch
         {
@@ -411,7 +411,7 @@ sealed class GradientConverter : JsonConverter<Gradient>
 {
     public override Gradient? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -425,7 +425,7 @@ sealed class GradientConverter : JsonConverter<Gradient>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -438,7 +438,7 @@ sealed class GradientConverter : JsonConverter<Gradient>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -504,7 +504,7 @@ class DefaultConverter : JsonConverter<Default>
 {
     public override Default? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -618,7 +618,7 @@ public record class Height : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<double> @double, Action<string> @string)
+    public void Switch(System::Action<double> @double, System::Action<string> @string)
     {
         switch (this.Value)
         {
@@ -654,7 +654,7 @@ public record class Height : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
+    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
     {
         return this.Value switch
         {
@@ -717,7 +717,7 @@ sealed class HeightConverter : JsonConverter<Height>
 {
     public override Height? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -726,7 +726,7 @@ sealed class HeightConverter : JsonConverter<Height>
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -739,7 +739,7 @@ sealed class HeightConverter : JsonConverter<Height>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -885,7 +885,11 @@ public record class Radius : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<double> @double, Action<Max> max, Action<string> @string)
+    public void Switch(
+        System::Action<double> @double,
+        System::Action<Max> max,
+        System::Action<string> @string
+    )
     {
         switch (this.Value)
         {
@@ -925,7 +929,11 @@ public record class Radius : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<double, T> @double, Func<Max, T> max, Func<string, T> @string)
+    public T Match<T>(
+        System::Func<double, T> @double,
+        System::Func<Max, T> max,
+        System::Func<string, T> @string
+    )
     {
         return this.Value switch
         {
@@ -993,7 +1001,7 @@ sealed class RadiusConverter : JsonConverter<Radius>
 {
     public override Radius? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1007,7 +1015,7 @@ sealed class RadiusConverter : JsonConverter<Radius>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -1016,7 +1024,7 @@ sealed class RadiusConverter : JsonConverter<Radius>
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -1029,7 +1037,7 @@ sealed class RadiusConverter : JsonConverter<Radius>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -1095,7 +1103,7 @@ class MaxConverter : JsonConverter<Max>
 {
     public override Max? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1210,7 +1218,7 @@ public record class Width : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<double> @double, Action<string> @string)
+    public void Switch(System::Action<double> @double, System::Action<string> @string)
     {
         switch (this.Value)
         {
@@ -1246,7 +1254,7 @@ public record class Width : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<double, T> @double, Func<string, T> @string)
+    public T Match<T>(System::Func<double, T> @double, System::Func<string, T> @string)
     {
         return this.Value switch
         {
@@ -1309,7 +1317,7 @@ sealed class WidthConverter : JsonConverter<Width>
 {
     public override Width? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1318,7 +1326,7 @@ sealed class WidthConverter : JsonConverter<Width>
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -1331,7 +1339,7 @@ sealed class WidthConverter : JsonConverter<Width>
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
