@@ -1,0 +1,34 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Image Kit</Authors>
+    <Company>Image Kit</Company>
+    <PackageTags>sdk;api;http;library</PackageTags>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Copyright>Copyright 2026 Image Kit</Copyright>
+    <PackageProjectUrl>https://imagekit.io/docs/api-reference</PackageProjectUrl>
+    <RepositoryUrl>https://www.github.com/imagekit-developer/imagekit-dotnet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <!-- Documentation-->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Disable missing XML documentation warnings. -->
+    <NoWarn>$(NoWarn),1573,1591</NoWarn>
+
+    <!-- Source link -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <DebugType>embedded</DebugType>
+
+    <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+    <LangVersion>12</LangVersion>
+    <Configurations>Debug;Release</Configurations>
+    <BuildPackage>true</BuildPackage>
+    <Deterministic>true</Deterministic>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <!-- Disable deprecation warnings since we may reference our own deprecated symbols. -->
+    <NoWarn>$(NoWarn),0618</NoWarn>
+  </PropertyGroup>
+</Project>

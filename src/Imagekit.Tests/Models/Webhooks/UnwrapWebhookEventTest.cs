@@ -1,0 +1,1384 @@
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+using Imagekit.Core;
+using Files = Imagekit.Models.Files;
+using Models = Imagekit.Models;
+using Webhooks = Imagekit.Models.Webhooks;
+
+namespace Imagekit.Tests.Models.Webhooks;
+
+public class UnwrapWebhookEventTest : TestBase
+{
+    [Fact]
+    public void VideoTransformationAcceptedValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationAcceptedEvent()
+        {
+            ID = "id",
+            Type = "video.transformation.accepted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationType.VideoTransformation,
+                    Options = new()
+                    {
+                        AudioCodec = Webhooks::AudioCodec.Aac,
+                        AutoRotate = true,
+                        Format = Webhooks::Format.Mp4,
+                        Quality = 0,
+                        StreamProtocol = Webhooks::StreamProtocol.Hls,
+                        Variants = ["string"],
+                        VideoCodec = Webhooks::VideoCodec.H264,
+                    },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void VideoTransformationReadyValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationReadyEvent()
+        {
+            ID = "id",
+            Type = "video.transformation.ready",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
+                    Options = new()
+                    {
+                        AudioCodec =
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                        AutoRotate = true,
+                        Format =
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                        Quality = 0,
+                        StreamProtocol =
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                        Variants = ["string"],
+                        VideoCodec =
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+                    },
+                    Output = new()
+                    {
+                        Url = "https://example.com",
+                        VideoMetadata = new()
+                        {
+                            Bitrate = 0,
+                            Duration = 0,
+                            Height = 0,
+                            Width = 0,
+                        },
+                    },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+            Timings = new() { DownloadDuration = 0, EncodingDuration = 0 },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void VideoTransformationErrorValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationErrorEvent()
+        {
+            ID = "id",
+            Type = "video.transformation.error",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
+                    Error = new(Webhooks::Reason.EncodingFailed),
+                    Options = new()
+                    {
+                        AudioCodec =
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
+                        AutoRotate = true,
+                        Format =
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
+                        Quality = 0,
+                        StreamProtocol =
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
+                        Variants = ["string"],
+                        VideoCodec =
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
+                    },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void UploadPreTransformSuccessValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPreTransformSuccessEvent()
+        {
+            ID = "id",
+            Type = "upload.pre-transform.success",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                ExtensionStatus = new()
+                {
+                    AIAutoDescription = Webhooks::AIAutoDescription.Success,
+                    AITasks = Webhooks::AITasks.Success,
+                    AwsAutoTagging = Webhooks::AwsAutoTagging.Success,
+                    GoogleAutoTagging = Webhooks::GoogleAutoTagging.Success,
+                    RemoveBg = Webhooks::RemoveBg.Success,
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Metadata = new()
+                {
+                    AudioCodec = "audioCodec",
+                    BitRate = 0,
+                    Density = 0,
+                    Duration = 0,
+                    Exif = new()
+                    {
+                        ExifValue = new()
+                        {
+                            ApertureValue = 0,
+                            ColorSpace = 0,
+                            CreateDate = "CreateDate",
+                            CustomRendered = 0,
+                            DateTimeOriginal = "DateTimeOriginal",
+                            ExifImageHeight = 0,
+                            ExifImageWidth = 0,
+                            ExifVersion = "ExifVersion",
+                            ExposureCompensation = 0,
+                            ExposureMode = 0,
+                            ExposureProgram = 0,
+                            ExposureTime = 0,
+                            Flash = 0,
+                            FlashpixVersion = "FlashpixVersion",
+                            FNumber = 0,
+                            FocalLength = 0,
+                            FocalPlaneResolutionUnit = 0,
+                            FocalPlaneXResolution = 0,
+                            FocalPlaneYResolution = 0,
+                            InteropOffset = 0,
+                            Iso = 0,
+                            MeteringMode = 0,
+                            SceneCaptureType = 0,
+                            ShutterSpeedValue = 0,
+                            SubSecTime = "SubSecTime",
+                            WhiteBalance = 0,
+                        },
+                        Gps = new() { GpsVersionID = [0] },
+                        Image = new()
+                        {
+                            ExifOffset = 0,
+                            GpsInfo = 0,
+                            Make = "Make",
+                            Model = "Model",
+                            ModifyDate = "ModifyDate",
+                            Orientation = 0,
+                            ResolutionUnit = 0,
+                            Software = "Software",
+                            XResolution = 0,
+                            YCbCrPositioning = 0,
+                            YResolution = 0,
+                        },
+                        Interoperability = new()
+                        {
+                            InteropIndex = "InteropIndex",
+                            InteropVersion = "InteropVersion",
+                        },
+                        Makernote = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Thumbnail = new()
+                        {
+                            Compression = 0,
+                            ResolutionUnit = 0,
+                            ThumbnailLength = 0,
+                            ThumbnailOffset = 0,
+                            XResolution = 0,
+                            YResolution = 0,
+                        },
+                    },
+                    Format = "format",
+                    HasColorProfile = true,
+                    HasTransparency = true,
+                    Height = 0,
+                    PHash = "pHash",
+                    Quality = 0,
+                    Size = 0,
+                    VideoCodec = "videoCodec",
+                    Width = 0,
+                },
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Models::Type.Text,
+                            DefaultValue = new(
+                                [
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
+                                ]
+                            ),
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                ThumbnailUrl = "thumbnailUrl",
+                Url = "url",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+            Request = new() { Transformation = "transformation", XRequestID = "x_request_id" },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void UploadPreTransformErrorValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPreTransformErrorEvent()
+        {
+            ID = "id",
+            Type = "upload.pre-transform.error",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Name = "name",
+                Path = "path",
+                Transformation = new(
+                    new Webhooks::UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
+            },
+            Request = new() { Transformation = "transformation", XRequestID = "x_request_id" },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void UploadPostTransformSuccessValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPostTransformSuccessEvent()
+        {
+            ID = "id",
+            Type = "upload.post-transform.success",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                FileID = "fileId",
+                Name = "name",
+                Url = "https://example.com",
+            },
+            Request = new()
+            {
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                    Protocol =
+                        Webhooks::UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                    Value = "value",
+                },
+                XRequestID = "x_request_id",
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void UploadPostTransformErrorValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPostTransformErrorEvent()
+        {
+            ID = "id",
+            Type = "upload.post-transform.error",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                FileID = "fileId",
+                Name = "name",
+                Path = "path",
+                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Url = "https://example.com",
+            },
+            Request = new()
+            {
+                Transformation = new()
+                {
+                    Type = Webhooks::Type.Transformation,
+                    Protocol = Webhooks::Protocol.Hls,
+                    Value = "value",
+                },
+                XRequestID = "x_request_id",
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void FileCreateValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::FileCreateEvent()
+        {
+            ID = "id",
+            Type = "file.created",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                HasAlpha = true,
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Mime = "mime",
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Models::Type.Text,
+                            DefaultValue = new(
+                                [
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
+                                ]
+                            ),
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                Thumbnail = "https://example.com",
+                Type = Files::Type.File,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Url = "https://example.com",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void FileUpdateValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::FileUpdateEvent()
+        {
+            ID = "id",
+            Type = "file.updated",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                HasAlpha = true,
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Mime = "mime",
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Models::Type.Text,
+                            DefaultValue = new(
+                                [
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
+                                ]
+                            ),
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                Thumbnail = "https://example.com",
+                Type = Files::Type.File,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Url = "https://example.com",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void FileDeleteValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::FileDeleteEvent()
+        {
+            ID = "id",
+            Type = "file.deleted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new("fileId"),
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void FileVersionCreateValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::FileVersionCreateEvent()
+        {
+            ID = "id",
+            Type = "file-version.created",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                HasAlpha = true,
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Mime = "mime",
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Models::Type.Text,
+                            DefaultValue = new(
+                                [
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
+                                ]
+                            ),
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                Thumbnail = "https://example.com",
+                Type = Files::Type.File,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Url = "https://example.com",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void FileVersionDeleteValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::FileVersionDeleteEvent()
+        {
+            ID = "id",
+            Type = "file-version.deleted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new() { FileID = "fileId", VersionID = "versionId" },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void VideoTransformationAcceptedSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationAcceptedEvent()
+        {
+            ID = "id",
+            Type = "video.transformation.accepted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationType.VideoTransformation,
+                    Options = new()
+                    {
+                        AudioCodec = Webhooks::AudioCodec.Aac,
+                        AutoRotate = true,
+                        Format = Webhooks::Format.Mp4,
+                        Quality = 0,
+                        StreamProtocol = Webhooks::StreamProtocol.Hls,
+                        Variants = ["string"],
+                        VideoCodec = Webhooks::VideoCodec.H264,
+                    },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void VideoTransformationReadySerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationReadyEvent()
+        {
+            ID = "id",
+            Type = "video.transformation.ready",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationType.VideoTransformation,
+                    Options = new()
+                    {
+                        AudioCodec =
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsAudioCodec.Aac,
+                        AutoRotate = true,
+                        Format =
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsFormat.Mp4,
+                        Quality = 0,
+                        StreamProtocol =
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsStreamProtocol.Hls,
+                        Variants = ["string"],
+                        VideoCodec =
+                            Webhooks::VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
+                    },
+                    Output = new()
+                    {
+                        Url = "https://example.com",
+                        VideoMetadata = new()
+                        {
+                            Bitrate = 0,
+                            Duration = 0,
+                            Height = 0,
+                            Width = 0,
+                        },
+                    },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+            Timings = new() { DownloadDuration = 0, EncodingDuration = 0 },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void VideoTransformationErrorSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationErrorEvent()
+        {
+            ID = "id",
+            Type = "video.transformation.error",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
+                    Error = new(Webhooks::Reason.EncodingFailed),
+                    Options = new()
+                    {
+                        AudioCodec =
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec.Aac,
+                        AutoRotate = true,
+                        Format =
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsFormat.Mp4,
+                        Quality = 0,
+                        StreamProtocol =
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsStreamProtocol.Hls,
+                        Variants = ["string"],
+                        VideoCodec =
+                            Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
+                    },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void UploadPreTransformSuccessSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPreTransformSuccessEvent()
+        {
+            ID = "id",
+            Type = "upload.pre-transform.success",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                ExtensionStatus = new()
+                {
+                    AIAutoDescription = Webhooks::AIAutoDescription.Success,
+                    AITasks = Webhooks::AITasks.Success,
+                    AwsAutoTagging = Webhooks::AwsAutoTagging.Success,
+                    GoogleAutoTagging = Webhooks::GoogleAutoTagging.Success,
+                    RemoveBg = Webhooks::RemoveBg.Success,
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Metadata = new()
+                {
+                    AudioCodec = "audioCodec",
+                    BitRate = 0,
+                    Density = 0,
+                    Duration = 0,
+                    Exif = new()
+                    {
+                        ExifValue = new()
+                        {
+                            ApertureValue = 0,
+                            ColorSpace = 0,
+                            CreateDate = "CreateDate",
+                            CustomRendered = 0,
+                            DateTimeOriginal = "DateTimeOriginal",
+                            ExifImageHeight = 0,
+                            ExifImageWidth = 0,
+                            ExifVersion = "ExifVersion",
+                            ExposureCompensation = 0,
+                            ExposureMode = 0,
+                            ExposureProgram = 0,
+                            ExposureTime = 0,
+                            Flash = 0,
+                            FlashpixVersion = "FlashpixVersion",
+                            FNumber = 0,
+                            FocalLength = 0,
+                            FocalPlaneResolutionUnit = 0,
+                            FocalPlaneXResolution = 0,
+                            FocalPlaneYResolution = 0,
+                            InteropOffset = 0,
+                            Iso = 0,
+                            MeteringMode = 0,
+                            SceneCaptureType = 0,
+                            ShutterSpeedValue = 0,
+                            SubSecTime = "SubSecTime",
+                            WhiteBalance = 0,
+                        },
+                        Gps = new() { GpsVersionID = [0] },
+                        Image = new()
+                        {
+                            ExifOffset = 0,
+                            GpsInfo = 0,
+                            Make = "Make",
+                            Model = "Model",
+                            ModifyDate = "ModifyDate",
+                            Orientation = 0,
+                            ResolutionUnit = 0,
+                            Software = "Software",
+                            XResolution = 0,
+                            YCbCrPositioning = 0,
+                            YResolution = 0,
+                        },
+                        Interoperability = new()
+                        {
+                            InteropIndex = "InteropIndex",
+                            InteropVersion = "InteropVersion",
+                        },
+                        Makernote = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
+                        Thumbnail = new()
+                        {
+                            Compression = 0,
+                            ResolutionUnit = 0,
+                            ThumbnailLength = 0,
+                            ThumbnailOffset = 0,
+                            XResolution = 0,
+                            YResolution = 0,
+                        },
+                    },
+                    Format = "format",
+                    HasColorProfile = true,
+                    HasTransparency = true,
+                    Height = 0,
+                    PHash = "pHash",
+                    Quality = 0,
+                    Size = 0,
+                    VideoCodec = "videoCodec",
+                    Width = 0,
+                },
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Models::Type.Text,
+                            DefaultValue = new(
+                                [
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
+                                ]
+                            ),
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                ThumbnailUrl = "thumbnailUrl",
+                Url = "url",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+            Request = new() { Transformation = "transformation", XRequestID = "x_request_id" },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void UploadPreTransformErrorSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPreTransformErrorEvent()
+        {
+            ID = "id",
+            Type = "upload.pre-transform.error",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Name = "name",
+                Path = "path",
+                Transformation = new(
+                    new Webhooks::UploadPreTransformErrorEventUploadPreTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
+            },
+            Request = new() { Transformation = "transformation", XRequestID = "x_request_id" },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void UploadPostTransformSuccessSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPostTransformSuccessEvent()
+        {
+            ID = "id",
+            Type = "upload.post-transform.success",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                FileID = "fileId",
+                Name = "name",
+                Url = "https://example.com",
+            },
+            Request = new()
+            {
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationType.Transformation,
+                    Protocol =
+                        Webhooks::UploadPostTransformSuccessEventUploadPostTransformSuccessEventRequestTransformationProtocol.Hls,
+                    Value = "value",
+                },
+                XRequestID = "x_request_id",
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void UploadPostTransformErrorSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPostTransformErrorEvent()
+        {
+            ID = "id",
+            Type = "upload.post-transform.error",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                FileID = "fileId",
+                Name = "name",
+                Path = "path",
+                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Url = "https://example.com",
+            },
+            Request = new()
+            {
+                Transformation = new()
+                {
+                    Type = Webhooks::Type.Transformation,
+                    Protocol = Webhooks::Protocol.Hls,
+                    Value = "value",
+                },
+                XRequestID = "x_request_id",
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void FileCreateSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::FileCreateEvent()
+        {
+            ID = "id",
+            Type = "file.created",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                HasAlpha = true,
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Mime = "mime",
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Models::Type.Text,
+                            DefaultValue = new(
+                                [
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
+                                ]
+                            ),
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                Thumbnail = "https://example.com",
+                Type = Files::Type.File,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Url = "https://example.com",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void FileUpdateSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::FileUpdateEvent()
+        {
+            ID = "id",
+            Type = "file.updated",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                HasAlpha = true,
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Mime = "mime",
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Models::Type.Text,
+                            DefaultValue = new(
+                                [
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
+                                ]
+                            ),
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                Thumbnail = "https://example.com",
+                Type = Files::Type.File,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Url = "https://example.com",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void FileDeleteSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::FileDeleteEvent()
+        {
+            ID = "id",
+            Type = "file.deleted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new("fileId"),
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void FileVersionCreateSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::FileVersionCreateEvent()
+        {
+            ID = "id",
+            Type = "file-version.created",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                AITags =
+                [
+                    new()
+                    {
+                        Confidence = 0,
+                        Name = "name",
+                        Source = "source",
+                    },
+                ],
+                AudioCodec = "audioCodec",
+                BitRate = 0,
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomCoordinates = "customCoordinates",
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                Description = "description",
+                Duration = 0,
+                EmbeddedMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FileID = "fileId",
+                FilePath = "filePath",
+                FileType = "fileType",
+                HasAlpha = true,
+                Height = 0,
+                IsPrivateFile = true,
+                IsPublished = true,
+                Mime = "mime",
+                Name = "name",
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
+                {
+                    {
+                        "foo",
+                        new()
+                        {
+                            Type = Models::Type.Text,
+                            DefaultValue = new(
+                                [
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
+                                ]
+                            ),
+                            IsValueRequired = true,
+                            MaxLength = 0,
+                            MaxValue = "string",
+                            MinLength = 0,
+                            MinValue = "string",
+                            ReadOnly = true,
+                            SelectOptions = ["small", "medium", "large", 30, 40, true],
+                            SelectOptionsTruncated = true,
+                        }
+                    },
+                },
+                Size = 0,
+                Tags = ["string"],
+                Thumbnail = "https://example.com",
+                Type = Files::Type.File,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Url = "https://example.com",
+                VersionInfo = new() { ID = "id", Name = "name" },
+                VideoCodec = "videoCodec",
+                Width = 0,
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void FileVersionDeleteSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::FileVersionDeleteEvent()
+        {
+            ID = "id",
+            Type = "file-version.deleted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new() { FileID = "fileId", VersionID = "versionId" },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}

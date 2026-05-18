@@ -1,74 +1,20 @@
 # Changelog
-All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## 6.0.0 (2026-05-18)
 
-## [5.0.0]
+Full Changelog: [v0.0.1...v6.0.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v0.0.1...v6.0.0)
 
-### Breaking changes
+### Features
 
-**Overlay syntax update**
-* In version 5.0.0, we've removed the old overlay syntax parameters for transformations, such as `oi`, `ot`, `obg`, and [more](https://docs.imagekit.io/features/image-transformations/overlay). These parameters are deprecated and will start returning errors when used in URLs. Please migrate to the new layers syntax that supports overlay nesting, provides better positional control, and allows more transformations at the layer level. You can start with [examples](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#examples) to learn quickly.
-* You can migrate to the new layers syntax using the `raw` transformation parameter.
+* **api:** manual updates ([c95f309](https://github.com/imagekit-developer/imagekit-dotnet/commit/c95f30943f1616f5b101e9ab1616332f386cf0c3))
+* **api:** manual updates ([02d0689](https://github.com/imagekit-developer/imagekit-dotnet/commit/02d0689fb2cd1536dd3f3f6df2d26c2c8eda8fba))
+* **docs:** enhance README with comprehensive usage examples and updated table of contents ([8b7dd50](https://github.com/imagekit-developer/imagekit-dotnet/commit/8b7dd50412c1977904293936409bc97e81965f0a))
+* **helper:** implement authentication parameters and URL building methods ([dcb863e](https://github.com/imagekit-developer/imagekit-dotnet/commit/dcb863edf27db1a4a28547dde8c4409398462b25))
+* **upload:** refactor upload URL handling and body serialization ([be1fe81](https://github.com/imagekit-developer/imagekit-dotnet/commit/be1fe810b62ff7949bdc53b6492f968694934b2f))
 
-### Added
-- Parameters `EffectShadow` and `EffectGradient` for url generation.
-- Upload options 
-    - `transformation` for applying `pre` and `post` transformations.
-    - `checks` to perform server-side validations before file uploads.
-    - `isPublished` determines whether the file should be uploaded as published.
-- Update parameter
-    - `publish` to configure the publication status of a file and its versions.
 
-## [4.0.1]
-### Fixed
-- https://github.com/imagekit-developer/imagekit-dotnet/issues/50
+### Chores
 
-## [4.0.0]
-### Fixed
-- https://github.com/imagekit-developer/imagekit-dotnet/issues/37
-- https://github.com/imagekit-developer/imagekit-dotnet/issues/41
-- https://github.com/imagekit-developer/imagekit-dotnet/issues/40
-- https://github.com/imagekit-developer/imagekit-dotnet/issues/38
-- https://github.com/imagekit-developer/imagekit-dotnet/issues/34
-
-## [3.1.6] - 2021-07-21
-### Fixed
-- Bug Fix
-
-## [3.1.5] - 2021-06-05
-### Changed
-- Sort, searchQuery options added for ListAPI
-- API reponse fields updated
-
-## [3.1.4] - 2021-04-12
-### Fixed
-- Core package install bug fix
-
-## [3.1.3] - 2020-11-05
-### Fixed
-- Delete Api bug fix
-
-## [3.1.2] - 2020-11-04
-### Fixed
-- Upload Api fix
-
-## [3.1.1] - 2020-09-11
-### Changed
-- Fix issue where tags were not set in some cases when uploading a file
-- Allow more ways to set tags when updating file details
-
-## [3.1.0] - 2020-09-03
-### Added
-- Async methods for all asynchronous calls
-- `ClientImagekit` that supports client upload without the private key
-- Support for .NET Standard 2.1
-- `ImagekitResponse.FileId`
-- Some XML documentation
-
-### Changed
-- The `Imagekit.Imagekit` class is deprecated; use `ServerImagekit` instead
-- Fix issue where `isPrivateFile` was not included on upload
-- Fix issue where type of `Gps.GPSLatitude`, `Gps.GPSLongitude`, and `GPSTimeStamp` was incorrect
-- Some of the `ArgumentException`s are now `ArgumentNullException` and set the `ParamName` property of the exception. This is not a binary breaking change as `ArgumentNullException` inherits from `ArgumentException`, but if you are specifically looking for the `ArgumentException` type exactly, you may see a runtime issue, although this is very unlikely.
+* remove custom code ([eb69aea](https://github.com/imagekit-developer/imagekit-dotnet/commit/eb69aeaa509fd4edefc0ef21cfe2e50fff8beb4a))
+* sync repo ([268016f](https://github.com/imagekit-developer/imagekit-dotnet/commit/268016fe2615138ca8814b559093c98a1e1d72de))
+* update SDK settings ([88259fb](https://github.com/imagekit-developer/imagekit-dotnet/commit/88259fbbef296c5e40584294c70fc68db21fad27))

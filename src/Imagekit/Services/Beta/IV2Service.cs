@@ -1,0 +1,44 @@
+using System;
+using Imagekit.Core;
+using V2 = Imagekit.Services.Beta.V2;
+
+namespace Imagekit.Services.Beta;
+
+/// <summary>
+/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
+/// changes in non-major versions. We may add new methods in the future that cause
+/// existing derived classes to break.
+/// </summary>
+public interface IV2Service
+{
+    /// <summary>
+    /// Returns a view of this service that provides access to raw HTTP responses
+    /// for each method.
+    /// </summary>
+    IV2ServiceWithRawResponse WithRawResponse { get; }
+
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IV2Service WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    V2::IFileService Files { get; }
+}
+
+/// <summary>
+/// A view of <see cref="IV2Service"/> that provides access to raw
+/// HTTP responses for each method.
+/// </summary>
+public interface IV2ServiceWithRawResponse
+{
+    /// <summary>
+    /// Returns a view of this service with the given option modifications applied.
+    ///
+    /// <para>The original service is not modified.</para>
+    /// </summary>
+    IV2ServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
+
+    V2::IFileServiceWithRawResponse Files { get; }
+}

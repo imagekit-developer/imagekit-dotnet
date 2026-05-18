@@ -1,962 +1,674 @@
-[<img width="250" alt="ImageKit.io" src="https://raw.githubusercontent.com/imagekit-developer/imagekit-javascript/master/assets/imagekit-light-logo.svg"/>](https://imagekit.io)
+# ImageKit.io C# SDK
 
-## DotNET (NET45/Standard/Core) SDK for ImageKit
+The ImageKit C# SDK is a comprehensive library designed to simplify the integration of ImageKit into your server-side applications. It provides powerful tools for working with the [ImageKit REST API](https://imagekit.io/docs/api-reference), including building and transforming URLs, generating signed URLs for secure content delivery, and handling file uploads.
 
-[![CI Pipeline](https://github.com/imagekit-developer/imagekit-dotnet/workflows/CI%20Pipeline/badge.svg?branch=master)](https://github.com/imagekit-developer/imagekit-dotnet) [![NuGet](https://img.shields.io/nuget/v/imagekit.svg)](https://www.nuget.org/packages/Imagekit) [![codecov](https://codecov.io/gh/imagekit-developer/imagekit-dotnet/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-dotnet) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
+For additional details, refer to the [ImageKit REST API documentation](https://imagekit.io/docs/api-reference).
 
-ImageKit DotNET SDK allows you to use [image resizing](https://docs.imagekit.io/features/image-transformations), [optimization](https://docs.imagekit.io/features/image-optimization), [file uploading](https://docs.imagekit.io/api-reference/upload-file-api) and other [ImageKit APIs](https://docs.imagekit.io/api-reference/api-introduction) from applications written in server-side C#.
+## Table of Contents
 
-##### Table of contents
-
-*   [Installation](#installation)
-*   [Initialization](#initialization)
-*   [URL generation](#url-generation)
-*   [File Upload](#file-upload)
-*   [File Management](#file-management)
-*   [Tags](#tags-management)
-*   [Manage Folder](#folder-management)
-*   [Bulk Job Status](#job-management)
-*   [Purge](#purge)
-*   [Meta Data](#metadata)
-*   [Utility functions](#utility-functions)
-*   [Support](#support)
-*   [Links](#links)
+- [Installation](#installation)
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [Client configuration](#client-configuration)
+- [Requests and responses](#requests-and-responses)
+- [Raw responses](#raw-responses)
+- [URL generation](#url-generation)
+  - [Basic URL generation](#basic-url-generation)
+  - [URL generation with transformations](#url-generation-with-transformations)
+  - [URL generation with image overlay](#url-generation-with-image-overlay)
+  - [URL generation with text overlay](#url-generation-with-text-overlay)
+  - [URL generation with multiple overlays](#url-generation-with-multiple-overlays)
+  - [Signed URLs for secure delivery](#signed-urls-for-secure-delivery)
+  - [Using Raw transformations for undocumented features](#using-raw-transformations-for-undocumented-features)
+- [Authentication parameters for client-side uploads](#authentication-parameters-for-client-side-uploads)
+- [Webhook verification](#webhook-verification)
+- [Error handling](#error-handling)
+- [Network options](#network-options)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Proxies](#proxies)
+- [Undocumented API functionality](#undocumented-api-functionality)
+- [Semantic versioning](#semantic-versioning)
 
 ## Installation
 
-Package Manager
+Install the package from [NuGet](https://www.nuget.org/packages/Imagekit):
 
-```cs
-Install-Package Imagekit
+```bash
+dotnet add package Imagekit
 ```
 
-PackageReference
+## Requirements
 
-```html
-<PackageReference Include="Imagekit" Version="4.0.1">
-</PackageReference>
-```
-
-.Net CLI
-
-```cs
-dotnet add package Imagekit --version 4.0.1
-```
-
-Open up your project, navigate to the Nuget package manager console, and add the Imagekit package.  
-Also, you can search for [Imagekit](https://www.nuget.org/packages/Imagekit) in Nuget GUI.
-
-## Initialization
-
-Add this reference where you want to use imagekit.io services:
-
-```cs
-using Imagekit;
-
-ImageKitClient imagekit = new ImageKitClient(publicKey, privateKey, urlEndPoint);
-```
-
-**Note**: You can get the `apiKey`, `apiSecret`, and ImagekitId from your [Imagekit.io dashboard](https://imagekit.io/dashboard).
-
-## Demo application
-
-The fastest way to get started is by running the demo application in the [ImageKitSample](/ImageKitSample) folder.
+This library requires .NET Standard 2.0 or later.
 
 ## Usage
 
-You can use this DotNET SDK for three different functions: URL generation, file uploads, and file management. The usage of the SDK has been explained below.
+```csharp
+using System;
+using Imagekit;
+using Imagekit.Models.Files;
 
-### URL Generation
-
-**1\. Using image path and image hostname or endpoint**
-
-This method allows you to create a URL using the `path` where the image exists and the URL endpoint (`urlEndpoint`) you want to use to access the image. You can refer to the documentation [here](https://docs.imagekit.io/integration/url-endpoints) to read more about URL endpoints in ImageKit and the section about [image origins](https://docs.imagekit.io/integration/configure-origin) to understand paths with different kinds of origins.
-
-```cs
-string path = "/default_image.jpg";
-Transformation trans = new Transformation()
-.Width(400)
-.Height(300)
-.AspectRatio("4-3")
-.Quality(40)
-.Crop("force")
-.CropMode("extract")
-.Focus("left")
-.Format("jpeg") 
-.Raw("l-text,i-Imagekit,fs-50,l-end");
-
-string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
-```
-
-This results in a URL like
-
-```plaintext
-https://ik.imagekit.io/your_imagekit_id/default_image.jpg?tr=w-400%2Ch-300%2Car-4-3%2Cq-40%2Cc-force%2Ccm-extract%2Cfo-left%2Cf-jpeg%2Cl-text%2Ci-Imagekit%2Cfs-50%2Cl-end
-```
-
-**2\. Using full image URL**
-
-This method allows you to add transformation parameters to an existing, complete URL that is already mapped to ImageKit using the `src` parameter. This method should be used if you have the complete URL mapped to ImageKit stored in your database.
-
-```cs
-string imageURL = imagekit.Url(new Transformation().Width(400).Height(300))
-    .Src("https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg")
-    .Generate();
-```
-
-This results in a URL like
-
-```plaintext
-https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg?tr=h-300,w-400
-```
-
-The `.Url()` method accepts the following parameters.
-
-| Option | Description |
-| --- | --- |
-| urlEndpoint | Optional. The base URL has to be appended before the path of the image. If not specified, the URL Endpoint specified at the time of SDK initialization is used. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/` |
-| path | Conditional. This is the path on which the image exists. For example, `/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
-| src | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation. |
-| transformation | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as the array's different objects. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
-| transformationPosition | Optional. The default value is `path` that places the transformation string as a URL path parameter. It can also be specified as `query`, which adds the transformation string as the URL's query parameter `tr`. If you use the `src` parameter to create the URL, then the transformation string is always added as a query parameter. |
-| queryParameters | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful if you want to add some versioning parameters to your URLs. |
-| signed | Optional. Boolean. Default is `false`. If set to `false`, the SDK generates a signed image URL by adding the image signature to the image URL. This can only be used if you create the URL with the `urlEndpoint` and `path` parameters, not with the `src` parameter. |
-| expireSeconds | Optional. Integer. It is meant to be used along with the `signed` parameter to specify the time in seconds from now when the URL should expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly. |
-
-#### Examples of generating URLs
-
-**1\. Chained Transformations as a query parameter**
-
-```cs
-Transformation transformation = new Transformation()
-    .Width(400).Height(300)
-    .Chain()
-    .Rotation(90);
-    
-string imageURL = imagekit.Url(transformation)
-    .Path("/default_image.jpg")
-    .UrlEndpoint("https://ik.imagekit.io/your_imagekit_id/endpoint")
-    .TransformationPosition("query")
-    .Generate();
-```
-
-```plaintext
-https://ik.imagekit.io/your_imagekit_id/endpoint/default_image.jpg?tr=h-300,w-400:rt-90
-```
-
-**2\. Sharpening, contrast adjustment, shadow and gradient transformations, along with a progressive JPEG format image.**
-
-There are some transforms like [Sharpening](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation) that can be added to the URL with or without any other value.
-
-```cs
-string src = "https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg";
-
-Transformation trans = new Transformation()
-    .Format("jpg")
-    .Progressive(false)
-    .EffectSharpen()
-    .EffectContrast(1)
-    .EffectShadow()
-    .EffectGradient();
-
-string imageURL = imagekit.Url(trans)
-    .Src(src)
-    .Generate();
-```
-
-**Note**: Because `src` parameter was used, the transformation string gets added as a query parameter `tr`.
-
-```plaintext
-https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg%2Cpr-false%2Ce-sharpen%2Ce-contrast-1%2Ce-shadow%2Ce-gradient
-```
-
-**3\. Signed URL that expires in 600 seconds with the default URL endpoint and other query parameters**
-
-```cs
-Transformation trans = new Transformation()
-    .Height(300).Width(400);
-string[] queryParams = { "v = 123" };
-
-string imageURL = imagekit.Url(trans)
-    .Path("/default-image.jpg")
-    .QueryParameters(queryParams)
-    .Signed(false).ExpireSeconds(600)
-    .Generate();
-```
-
-```plaintext
-https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&ik-t=1567358667&ik-s=f2c7cdacbe7707b71a83d49cf1c6110e3d701054
-```
-
-**4. Adding overlays**
-
-ImageKit.io enables you to apply overlays to [images](https://docs.imagekit.io/features/image-transformations/overlay-using-layers) and [videos](https://docs.imagekit.io/features/video-transformation/overlay) using the raw parameter with the concept of [layers](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#layers). The raw parameter facilitates incorporating transformations directly in the URL. A layer is a distinct type of transformation that allows you to define an asset to serve as an overlay, along with its positioning and additional transformations.
-
-**Text as overlays**
-
-You can add any text string over a base video or image using a text layer (l-text).
-
-For example:
-
-```cs
-string path = "/default_image.jpg";
-Transformation trans = new Transformation()
-.Width(400)
-.Height(300) 
-.Raw("l-text,i-Imagekit,fs-50,l-end");
-
-string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
-```
-**Sample Result URL**
-```
-https://ik.imagekit.io/your_imagekit_id/default-image.jpg?tr=h-300,w-400,l-text,i-Imagekit,fs-50,l-end
-```
-
-**Image as overlays**
-
-You can add an image over a base video or image using an image layer (l-image).
-
-For example:
-
-```cs
-string path = "/default_image.jpg";
-Transformation trans = new Transformation()
-.Width(400)
-.Height(300) 
-.Raw("l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end");
-
-string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
-```
-**Sample Result URL**
-```
-https://ik.imagekit.io/your_imagekit_id/default-image.jpg?tr=h-300,w-400,l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end
-```
-
-**Solid color blocks as overlays**
-
-You can add solid color blocks over a base video or image using an image layer (l-image).
-
-For example:
-
-```cs
-string path = "/img/sample-video.mp4";
-Transformation trans = new Transformation()
-.Width(400)
-.Height(300) 
-.Raw("l-image,i-ik_canvas,bg-FF0000,w-300,h-100,l-end");
-
-string imageURL = imagekit.Url(trans).Path(path).TransformationPosition("query").Generate();    
-```
-**Sample Result URL**
-```
-https://ik.imagekit.io/your_imagekit_id/img/sample-video.mp4?tr=h-300,w-400,l-image,i-ik_canvas,bg-FF0000,w-300,h-100,l-end
-```
-
-#### List of supported transformations
-
-The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations). The SDK gives a name to each transformation parameter, making the code simpler and more readable. If a transformation is supported in ImageKit, but a name for it cannot be found in the table below, then use the transformation code from ImageKit docs as the name when using the `url` function.
-
-| Supported Transformation Name | Translates to parameters |
-| --- | --- |
-| Height | h |
-| Width | w |
-| AspectRatio | ar |
-| Quality | q |
-| Crop | c |
-| CropMode | cm |
-| X | x |
-| Y | y |
-| Focus | fo |
-| Format | f |
-| Radius | r |
-| Background | bg |
-| Border | b |
-| Rotation | rt |
-| Blur | bl |
-| Named | n |
-| Progressive | pr |
-| Lossless | lo |
-| Trim | t |
-| Metadata | md |
-| ColorProfile | cp |
-| DefaultImage | di |
-| Dpr | dpr |
-| EffectSharpen | e-sharpen |
-| EffectUSM | e-usm |
-| EffectContrast | e-contrast |
-| EffectGray | e-grayscale |
-| EffectShadow | e-shadow |
-| EffectGradient | e-gradient |
-| Original | orig |
-| Raw | `replaced by the parameter value` |
-
-### File Upload
-
-The SDK provides a simple interface using the `.upload()` method to upload files to the ImageKit Media Library. It accepts all the parameters supported by the [ImageKit Upload API](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload).
-
-The `upload()` method requires at least the `file` and the `fileName` parameter to upload a file. You can pass other parameters supported by the ImageKit upload API using the same parameter name as specified in the upload API documentation. For example, to specify tags for a file at the time of upload, use the `tags` parameter as specified in the [documentation here](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload).
-
-Sample usage
-
-```cs
- // Upload By URI
-FileCreateRequest request = new FileCreateRequest
+ImageKitClient client = new()
 {
-	file = "http://www.google.com/images/logos/ps_logo2.png",
-	fileName = "file_name.jpg",
-};
-Result resp1 = imagekit.Upload(request);
-
-// Upload by bytes
-byte[] bytes = System.IO.File.ReadAllBytes(@"image file path");
-
-FileCreateRequest ob = new FileCreateRequest
-{
-	file = bytes,
-	fileName = Guid.NewGuid().ToString()
-};
-List<string> tags = new List<string>
-{
-	"Software",
-	"Developer",
-	"Engineer"
-};
-ob.tags = tags;
-
-string customCoordinates = "10,10,20,20";
-ob.customCoordinates = customCoordinates;
-List<string> responseFields = new List<string>
-{
-	"isPrivateFile",
-	"tags",
-	"customCoordinates"
-};
-ob.responseFields = responseFields;
-List<Extension> ext = new List<Extension>();
-BackGroundImage bck1 = new BackGroundImage
-{
-	name = "remove-bg",
-	options = new options()
-	{ add_shadow = true, semitransparency = false, bg_image_url = "http://www.google.com/images/logos/ps_logo2.png" }
-};
-AutoTags autoTags = new AutoTags
-{
-	name = "google-auto-tagging",
-	maxTags = 5,
-	minConfidence = 95
-};
-ext.Add(bck1);
-ext.Add(autoTags);
-TransformationObject transformationObject = new TransformationObject
-{
-	value = "w-100"
-};
-List<PostTransformation> postTransformations = new List<PostTransformation>();
-postTransformations.Add(transformationObject);
-UploadTransformation uploadTransformation = new UploadTransformation
-{
-	pre = "l-text,i-Imagekit,fs-50,l-end",
-	post = postTransformations,
-};
-ob.extensions = ext;
-ob.webhookUrl = "https://webhook.site/c78d617f_33bc_40d9_9e61_608999721e2e";
-ob.useUniqueFileName = true;
-ob.folder = "dummy_folder";
-ob.isPrivateFile = false;
-ob.overwriteFile = true;
-ob.overwriteAITags = true;
-ob.overwriteTags = true;
-ob.overwriteCustomMetadata = true;
-ob.checks = "'file.size' < '1mb'" // To run server side checks before uploading files. Notice the quotes around file.size and 1mb.
-ob.isPublished = true;
-Result resp2 = imagekit.Upload(ob);
-
-//Get Base64 
-byte[] imageArray = System.IO.File.ReadAllBytes(@"image file path");
-string base64ImageRepresentation = Convert.ToBase64String(imageArray);
-// Upload by Base64
-FileCreateRequest ob2 = new FileCreateRequest
-{
-	file=base64ImageRepresentation,
-	fileName = Guid.NewGuid().ToString()
-};
-Result resp = imagekit.Upload(ob2);           
-```
-
-### File Management
-
-The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-afile-uploadpi) to manage your files.
-
-**1 . List & Search Files**
-
-Accepts an object specifying the parameters to be used to list and search files. All parameters specified in the [documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
-
-#### Applying Filters
-Filter out the files by specifying the parameters.
-
-```cs
-GetFileListRequest model = new GetFileListRequest
-{
-	Name = "file_name.jpg",
-	Type = "file",
-	Limit = 10,
-	Skip = 0,
-	Sort = "ASC_CREATED",
-	FileType = "image",
-	Tags = new string[] { "tag1", "tag2" }
-};
-ResultList res = await imagekit.GetFileListRequestAsync(model);
-```
-
-#### Advance Search
-In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and providing this generated string as the value of the `SearchQuery`.
-
-```cs
-GetFileListRequest model = new GetFileListRequest
-{
-	SearchQuery = "createdAt >= '2d' OR size < '2mb' OR format='png'",
-};
-ResultList res = await imagekit.GetFileListRequestAsync(model);
-```
-
-Detailed documentation can be found here for [advance search queries](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries).
-
-**2\. Get File Details**
-
-Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).
-
-```cs
-Result resp = await imagekit.GetFileDetail(file_Id);
-```
-
-**3\. File Update**
-
-Accepts an object of class `FileUpdateRequest` specifying the parameters to be used to update file details. All parameters specified in the \[documentation here\] (https://docs.imagekit.io/api-reference/media-api/update-file-details) can be passed via their setter functions to get the results.
-
-```cs
-FileUpdateRequest updateob = new FileUpdateRequest
-{
-	fileId = "fileId",
-};
-List<string> updatetags = new List<string>
-{
-	"Software",
-	"Developer",
-	"Engineer"
-};
-updateob.tags = updatetags;
-string updatecustomCoordinates = "10,10,20,20";
-updateob.customCoordinates = updatecustomCoordinates;
-List<string> updateresponseFields = new List<string>
-{
-	"isPrivateFile",
-	"tags",
-	"customCoordinates"
+    PrivateKey = "private_key_xxx",
 };
 
-List<Extension> extModel = new List<Extension>();
-BackGroundImage bck = new BackGroundImage
+FileUploadParams parameters = new()
 {
-	name = "remove-bg",
-	options = new options() { add_shadow = true, semitransparency = false, bg_color = "green" }
-};
-extModel.Add(bck);
-updateob.extensions = extModel;
-updateob.webhookUrl = "https://webhook.site/c78d617f_33bc_40d9_9e61_608999721e2e";
-Result updateresp = imagekit.UpdateFileDetail(updateob); 
-```
-
-**Update publish status**
-
-If `publish` is included in the update options, no other parameters are allowed.
-
-```cs
-FileUpdateRequest updateob = new FileUpdateRequest
-{
-	fileId = "fileId",
-};
-PublishStatus publishStatus = new PublishStatus
-{
-	isPublished = false
-};
-updateob.publish = publishStatus;
-Result updateresp = imagekit.UpdateFileDetail(updateob); 
-```
-
-**4\. Delete File**
-
-Accept the file ID and delete a file as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file).
-
-```cs
-String fileId = "file_Id";
-ResultDelete result = imageKit.deleteFile(fileId);
-```
-
-**5\. Delete files (bulk)**
-
-Accepts the file IDs to delete files as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/delete-files-bulk).
-
-```cs
-List<string> ob3 = new List<string>();
-ob3.Add("fileId_1");
-ob3.Add("fileId_2");
-ResultFileDelete resultFileDelete = imagekit.BulkDeleteFiles(ob3);
-```
-
-**6\. Copy file**
-
-Accepts an object of class `CopyFileRequest` specifying the parameters to be used to copy a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/copy-file) can be passed via their setter functions to get the results.
-
-```cs
-CopyFileRequest cpyRequest = new CopyFileRequest
-{
-	sourceFilePath = "path_1",
-	destinationPath = "path_2",
-	includeFileVersions = true
-};
-ResultNoContent resultNoContent = imagekit.CopyFile(cpyRequest);
-```
-
-**7\. Move file**
-
-Accepts an object of class `MoveFileRequest` specifying the parameters to be used to move a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/move-file) can be passed via their setter functions to get the results.
-
-```cs
-MoveFileRequest moveFile = new MoveFileRequest
-{
-	sourceFilePath = "path_1",
-	destinationPath = "path_2"
-};
-ResultNoContent resultNoContentMoveFile = imagekit.MoveFile(moveFile);
-```
-
-**8\. Rename file**
-
-Accepts an object of class `RenameFileRequest` specifying the parameters to be used to rename a file. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/rename-file) can be passed via their setter functions to get the results.
-
-```cs
-RenameFileRequest renameFileRequest = new RenameFileRequest
-{
-	filePath = "path_1",
-	newFileName = "file_name",
-	purgeCache = false
-};
-ResultRenameFile resultRenameFile = imagekit.RenameFile(renameFileRequest);
-```
-
-### Tags Management
-
-The SDK provides a simple interface to manage your tags.
-
-**9\. Add tags**
-
-Accepts an object of class `TagsRequest` specifying the parameters to be used to add tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/add-tags-bulk) can be passed via their setter functions to get the results.
-
-```cs
-TagsRequest tagsRequest = new TagsRequest
-{
-	tags = new List<string>
-	{
-		"tag_1",
-		"tag_2"
-	},
-	fileIds = new List<string>
-	{
-		"fileId_1",
-	},
-};
-ResultTags resultTags = imagekit.AddTags(tagsRequest);
-```
-
-**10\. Remove tags**
-
-Accepts an object of class `TagsRequest` specifying the parameters to be used to remove tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/remove-tags-bulk) can be passed via their setter functions to get the results.
-
-```cs
-TagsRequest removeTagsRequest = new TagsRequest
-{
-	tags = new List<string>
-	{
-		"tag_1",
-		"tag_2"
-	},
-	fileIds = new List<string>
-	{
-		"fileId_1",
-	},
-};
-ResultTags removeTags = imagekit.RemoveTags(removeTagsRequest);
-```
-
-**11\. Remove AI tags**
-
-Accepts an object of class `AITagsRequest` specifying the parameters to be used to remove AI tags. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/remove-aitags-bulk) can be passed via their setter functions to get the results.
-
-```cs
-AITagsRequest removeAITagsRequest = new AITagsRequest
-{
-	AITags = new List<string>
-	{
-		"tag_1",
-		"tag_2"
-	},
-	fileIds = new List<string>
-	{
-		"fileId_1",
-	}
-};
-ResultTags removeAITags = imagekit.RemoveAITags(removeAITagsRequest);
-```
-
-**12\. Get File Versions**
-
-Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-versions).
-
-```cs
-String fileId = "file_id_1";
-ResultFileVersions resultFileVersions = imageKit.getFileVersions(fileId);
-```
-
-**13\. Get File Version details**
-
-Accepts the file ID and version ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-version-details).
-
-```cs
-String fileId = "file_Id";
-String versionId = "version_Id";
-ResultFileVersionDetails resultFileVersionDetails = imageKit.getFileVersionDetails(fileId, versionId);
-```
-
-**14\. Delete FileVersion**
-
-Accepts an object of class `DeleteFileVersionRequest` specifying the parameters to be used to delete the file version. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-file-version) can be passed via their setter functions to get the results.
-
-```cs
-DeleteFileVersionRequest delRequest = new DeleteFileVersionRequest
-{
-	fileId = "file_Id",
-	versionId = "version_Id"
-};
-ResultNoContent resultNoContent1 = imagekit.DeleteFileVersion(delRequest);
-```
-
-**15\. Restore file Version**
-
-Accepts the fileId and versionId to restore the file version as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/restore-file-version).
-
-```cs
-Result result = imagekit.RestoreFileVersion("file_Id", "version_Id");
-```
-
-### Folder Management
-
-**16\. Create Folder**
-
-Accepts an object of class `CreateFolderRequest` specifying the parameters to be used to create a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/create-folder) can be passed via their setter functions to get the results.
-
-```cs
-CreateFolderRequest createFolderRequest = new CreateFolderRequest
-{
-	folderName = "folder_name",
-	parentFolderPath = "source/folder/path"
-};
-ResultEmptyBlock resultEmptyBlock = imagekit.CreateFolder(createFolderRequest);
-```
-
-**17\. Copy Folder**
-
-Accepts an object of class `CopyFolderRequest` specifying the parameters to be used to copy a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/copy-folder) can be passed via their setter functions to get the results.
-
-```cs
-CopyFolderRequest cpyFolderRequest = new CopyFolderRequest
-{
-	sourceFolderPath = "path_1",
-	destinationPath = "path_2",
-	includeFileVersions = true
+    File = new System.IO.FileStream("/path/to/your/image.jpg", System.IO.FileMode.Open),
+    FileName = "uploaded-image.jpg",
 };
 
-ResultOfFolderActions resultOfFolderActions = imagekit.CopyFolder(cpyFolderRequest);
+var response = await client.Files.Upload(parameters);
+
+Console.WriteLine(response);
 ```
 
-**18\. Move Folder**
+## Client configuration
 
-Accepts an object of class `MoveFolderRequest` specifying the parameters to be used to move a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/move-folder) can be passed via their setter functions to get the results.
+Configure the client using environment variables:
 
-```cs
-MoveFolderRequest moveFolderRequest = new MoveFolderRequest
+```csharp
+using Imagekit;
+
+// Configured using the IMAGEKIT_PRIVATE_KEY, IMAGEKIT_WEBHOOK_SECRET and IMAGE_KIT_BASE_URL environment variables
+ImageKitClient client = new();
+```
+
+Or manually:
+
+```csharp
+using Imagekit;
+
+ImageKitClient client = new()
 {
-	sourceFolderPath="path_1",
-	destinationPath="path_2"
+    PrivateKey = "My Private Key",
+};
+```
+
+Or using a combination of the two approaches.
+
+See this table for the available options:
+
+| Property        | Environment variable             | Required | Default value               |
+| --------------- | -------------------------------- | -------- | --------------------------- |
+| `PrivateKey`    | `IMAGEKIT_PRIVATE_KEY`           | true     | -                           |
+| `WebhookSecret` | `IMAGEKIT_WEBHOOK_SECRET`        | false    | -                           |
+| `BaseUrl`       | `IMAGE_KIT_BASE_URL`             | true     | `"https://api.imagekit.io"` |
+
+### Modifying configuration
+
+To temporarily use a modified client configuration, while reusing the same connection and thread pools, call `WithOptions` on any client or service:
+
+```csharp
+using System;
+
+var response = await client
+    .WithOptions(options =>
+        options with
+        {
+            BaseUrl = "https://example.com",
+            Timeout = TimeSpan.FromSeconds(42),
+        }
+    )
+    .Files.Upload(parameters);
+
+Console.WriteLine(response);
+```
+
+Using a [`with` expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression) makes it easy to construct the modified options.
+
+The `WithOptions` method does not affect the original client or service.
+
+## Requests and responses
+
+To send a request to the Image Kit API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a C# class.
+
+For example, `client.Files.Upload` should be called with an instance of `FileUploadParams`, and it will return an instance of `Task<FileUploadResponse>`.
+
+## Raw responses
+
+The SDK defines methods that deserialize responses into instances of C# classes. However, these methods don't provide access to the response headers, status code, or the raw response body.
+
+To access this data, prefix any HTTP method call on a client or service with `WithRawResponse`:
+
+```csharp
+var response = await client.WithRawResponse.Files.Upload(parameters);
+var statusCode = response.StatusCode;
+var headers = response.Headers;
+```
+
+The raw `HttpResponseMessage` can also be accessed through the `RawMessage` property.
+
+For non-streaming responses, you can deserialize the response into an instance of a C# class if needed:
+
+```csharp
+using System;
+using Imagekit.Models.Files;
+
+var response = await client.WithRawResponse.Files.Upload(parameters);
+FileUploadResponse deserialized = await response.Deserialize();
+Console.WriteLine(deserialized);
+```
+
+## URL generation
+
+The ImageKit SDK provides a powerful `Helper.BuildUrl()` method for generating optimized image and video URLs with transformations. Here are examples ranging from simple URLs to complex transformations with overlays and signed URLs.
+
+### Basic URL generation
+
+Generate a simple URL without any transformations:
+
+```csharp
+using Imagekit;
+using Imagekit.Models;
+
+ImageKitClient client = new()
+{
+    PrivateKey = "private_key_xxx",
 };
 
-ResultOfFolderActions resultOfFolderActions1 = imagekit.MoveFolder(moveFolderRequest);
+string url = client.Helper.BuildUrl(new SrcOptions
+{
+    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
+    Src = "/path/to/image.jpg",
+});
+Console.WriteLine(url);
+// Result: https://ik.imagekit.io/your_imagekit_id/path/to/image.jpg
 ```
 
-**19\. Delete Folder**
+### URL generation with transformations
 
-Accepts an object of class `DeleteFolderRequest` specifying the parameters to be used to delete a folder. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/media-api/delete-folder) can be passed via their setter functions to get the results.
+Apply common transformations like resizing, cropping, and format conversion:
 
-```cs
-DeleteFolderRequest deleteFolderRequest = new DeleteFolderRequest
+```csharp
+using Imagekit;
+using Imagekit.Models;
+
+string url = client.Helper.BuildUrl(new SrcOptions
 {
-	folderPath="source/folder/path/folder_name",
+    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
+    Src = "/path/to/image.jpg",
+    Transformation =
+    [
+        new Transformation
+        {
+            Width = 400,
+            Height = 300,
+            Crop = Crop.MaintainRatio,
+            Quality = 80,
+            Format = Format.Webp,
+        },
+    ],
+});
+Console.WriteLine(url);
+// Result: https://ik.imagekit.io/your_imagekit_id/path/to/image.jpg?tr=w-400,h-300,q-80,c-maintain_ratio,f-webp
+```
+
+### URL generation with image overlay
+
+Add image overlays to your base image:
+
+```csharp
+using Imagekit;
+using Imagekit.Models;
+
+string url = client.Helper.BuildUrl(new SrcOptions
+{
+    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
+    Src = "/path/to/base-image.jpg",
+    Transformation =
+    [
+        new Transformation
+        {
+            Width = 500,
+            Height = 400,
+            Overlay = new ImageOverlay("/path/to/overlay-logo.png")
+            {
+                Position = new OverlayPosition { X = "10", Y = "10" },
+                Transformation = [new Transformation { Width = 100, Height = 50 }],
+            },
+        },
+    ],
+});
+Console.WriteLine(url);
+// Result: URL with image overlay positioned at x:10, y:10
+```
+
+### URL generation with text overlay
+
+Add customized text overlays:
+
+```csharp
+using Imagekit;
+using Imagekit.Models;
+
+string url = client.Helper.BuildUrl(new SrcOptions
+{
+    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
+    Src = "/path/to/base-image.jpg",
+    Transformation =
+    [
+        new Transformation
+        {
+            Width = 600,
+            Height = 400,
+            Overlay = new TextOverlay("Sample Text Overlay")
+            {
+                Position = new OverlayPosition { X = "50", Y = "50", Focus = Focus.Center },
+                Transformation =
+                [
+                    new TextOverlayTransformation
+                    {
+                        FontSize = 40,
+                        FontFamily = "Arial",
+                        FontColor = "FFFFFF",
+                        Typography = "b", // bold
+                    },
+                ],
+            },
+        },
+    ],
+});
+Console.WriteLine(url);
+// Result: URL with bold white Arial text overlay at center position
+```
+
+### URL generation with multiple overlays
+
+Combine multiple overlays for complex compositions:
+
+```csharp
+using Imagekit;
+using Imagekit.Models;
+
+string url = client.Helper.BuildUrl(new SrcOptions
+{
+    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
+    Src = "/path/to/base-image.jpg",
+    Transformation =
+    [
+        new Transformation
+        {
+            Width = 800,
+            Height = 600,
+            Overlay = new TextOverlay("Header Text")
+            {
+                Position = new OverlayPosition { X = "20", Y = "20" },
+                Transformation =
+                [
+                    new TextOverlayTransformation { FontSize = 30, FontColor = "000000" },
+                ],
+            },
+        },
+        new Transformation
+        {
+            Overlay = new ImageOverlay("/watermark.png")
+            {
+                Position = new OverlayPosition { Focus = Focus.BottomRight },
+                Transformation = [new Transformation { Width = 100, Opacity = 70 }],
+            },
+        },
+    ],
+});
+Console.WriteLine(url);
+// Result: URL with text overlay at top-left and semi-transparent watermark at bottom-right
+```
+
+### Signed URLs for secure delivery
+
+Generate signed URLs that expire after a specified time for secure content delivery:
+
+```csharp
+using Imagekit;
+using Imagekit.Models;
+
+// Generate a signed URL that expires in 1 hour (3600 seconds)
+string url = client.Helper.BuildUrl(new SrcOptions
+{
+    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
+    Src = "/private/secure-image.jpg",
+    Transformation = [new Transformation { Width = 400, Height = 300, Quality = 90 }],
+    Signed = true,
+    ExpiresIn = 3600, // URL expires in 1 hour
+});
+Console.WriteLine(url);
+// Result: URL with signature parameters (?ik-t=timestamp&ik-s=signature)
+
+// Generate a signed URL that doesn't expire
+string permanentSignedUrl = client.Helper.BuildUrl(new SrcOptions
+{
+    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
+    Src = "/private/secure-image.jpg",
+    Signed = true,
+    // No ExpiresIn means the URL won't expire
+});
+Console.WriteLine(permanentSignedUrl);
+// Result: URL with signature parameter (?ik-s=signature)
+```
+
+### Using Raw transformations for undocumented features
+
+ImageKit frequently adds new transformation parameters that might not yet be documented in the SDK. You can use the `Raw` parameter to access these features or create custom transformation strings:
+
+```csharp
+using Imagekit;
+using Imagekit.Models;
+
+string url = client.Helper.BuildUrl(new SrcOptions
+{
+    UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
+    Src = "/path/to/image.jpg",
+    Transformation =
+    [
+        new Transformation { Width = 400, Height = 300 },
+        new Transformation { Raw = "something-new" },
+    ],
+});
+Console.WriteLine(url);
+// Result: https://ik.imagekit.io/your_imagekit_id/path/to/image.jpg?tr=w-400,h-300:something-new
+```
+
+## Authentication parameters for client-side uploads
+
+Generate authentication parameters for secure client-side file uploads:
+
+```csharp
+using Imagekit;
+
+ImageKitClient client = new()
+{
+    PrivateKey = "private_key_xxx",
 };
-ResultNoContent resultNoContent2 = imagekit.DeleteFolder(deleteFolderRequest);
+
+// Generate authentication parameters for client-side uploads
+var authParams = client.Helper.GetAuthenticationParameters();
+Console.WriteLine(authParams);
+// Result: AuthenticationParameters { Token = "<uuid-token>", Expire = <timestamp>, Signature = "<hmac-signature>" }
+
+// Generate with custom token and expiry (seconds from now)
+var customAuthParams = client.Helper.GetAuthenticationParameters("my-custom-token", 1800);
+Console.WriteLine(customAuthParams);
+// Result: AuthenticationParameters { Token = "my-custom-token", Expire = 1800, Signature = "<hmac-signature>" }
 ```
 
-### Job Management
+These authentication parameters can be used in client-side upload forms to securely upload files without exposing your private API key.
 
-**20\. Get Bulk Job Status**
+## Webhook verification
 
-Accepts the jobId to get bulk job status as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/copy-move-folder-status).
+For detailed information about webhook setup, signature verification, and handling different webhook events, refer to the [ImageKit webhook documentation](https://imagekit.io/docs/webhooks).
 
-```cs
-String jobId = "job_Id";
-ResultBulkJobStatus resultBulkJobStatus = imageKit.getBulkJobStatus(jobId);
+## Error handling
+
+The SDK throws custom unchecked exception types:
+
+- `ImageKitApiException`: Base class for API errors. See this table for which exception subclass is thrown for each HTTP status code:
+
+| Status | Exception                               |
+| ------ | --------------------------------------- |
+| 400    | `ImageKitBadRequestException`           |
+| 401    | `ImageKitUnauthorizedException`         |
+| 403    | `ImageKitForbiddenException`            |
+| 404    | `ImageKitNotFoundException`             |
+| 422    | `ImageKitUnprocessableEntityException`  |
+| 429    | `ImageKitRateLimitException`            |
+| 5xx    | `ImageKit5xxException`                  |
+| others | `ImageKitUnexpectedStatusCodeException` |
+
+Additionally, all 4xx errors inherit from `ImageKit4xxException`.
+
+- `ImageKitIOException`: I/O networking errors.
+
+- `ImageKitInvalidDataException`: Failure to interpret successfully parsed data. For example, when accessing a property that's supposed to be required, but the API unexpectedly omitted it from the response.
+
+- `ImageKitException`: Base class for all exceptions.
+
+## Network options
+
+### Retries
+
+The SDK automatically retries 2 times by default, with a short exponential backoff between requests.
+
+Only the following error types are retried:
+
+- Connection errors (for example, due to a network connectivity problem)
+- 408 Request Timeout
+- 409 Conflict
+- 429 Rate Limit
+- 5xx Internal
+
+The API may also explicitly instruct the SDK to retry or not retry a request.
+
+To set a custom number of retries, configure the client using the `MaxRetries` method:
+
+```csharp
+using Imagekit;
+
+ImageKitClient client = new() { MaxRetries = 3 };
 ```
 
-### Purge
+Or configure a single method call using [`WithOptions`](#modifying-configuration):
 
-**21\. Purge Cache**
+```csharp
+using System;
 
-Accepts a full URL of the file for which the cache has to be cleared as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/purge-cache).
+var response = await client
+    .WithOptions(options =>
+        options with { MaxRetries = 3 }
+    )
+    .Files.Upload(parameters);
 
-```cs
-ResultCache result = imageKit.purgeCache("https://ik.imageKit.io/imagekit-id/default-image.jpg");
+Console.WriteLine(response);
 ```
 
-**22\. Purge Cache Status**
+### Timeouts
 
-Accepts a request ID and fetch purge cache status as per the [API documentation here](https://docs.imageKit.io/api-reference/media-api/purge-cache-status)
+Requests time out after 1 minute by default.
 
-```cs
-String requestId = "cache_request_Id";
-ResultCacheStatus result = imageKit.getPurgeCacheStatus(requestId);
+To set a custom timeout, configure the client using the `Timeout` option:
+
+```csharp
+using System;
+using Imagekit;
+
+ImageKitClient client = new() { Timeout = TimeSpan.FromSeconds(42) };
 ```
 
-### Metadata
+Or configure a single method call using [`WithOptions`](#modifying-configuration):
 
-Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imageKit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files)
+```csharp
+using System;
 
-**23\. Get File Metadata**
+var response = await client
+    .WithOptions(options =>
+        options with { Timeout = TimeSpan.FromSeconds(42) }
+    )
+    .Files.Upload(parameters);
 
-```cs
-String fileId = "file_id";
-ResultMetaData result = imageKit.getFileMetadata(fileId);
+Console.WriteLine(response);
 ```
 
-Another way to get metadata from a remote file URL as per the [API documentation here](https://docs.imageKit.io/api-reference/metadata-api/get-image-metadata-from-remote-url). This file should be accessible over the imageKit.io URL-endpoint.
+### Proxies
 
-```cs
-String url = "Remote File URL";
-ResultMetaData result = imageKit.getRemoteFileMetadata(url);
+To route requests through a proxy, configure your client with a custom [`HttpClient`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=net-10.0):
+
+```csharp
+using System.Net;
+using System.Net.Http;
+using Imagekit;
+
+var httpClient = new HttpClient
+(
+    new HttpClientHandler
+    {
+        Proxy = new WebProxy("https://example.com:8080")
+    }
+);
+
+ImageKitClient client = new() { HttpClient = httpClient };
 ```
 
-**24\. Create Custom MetaData Fields**
+## Undocumented API functionality
 
-Accepts an object of class `CustomMetaDataFieldCreateRequest` specifying the parameters to be used to create cusomMetaDataFields. All parameters specified in the [documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field) can be passed as-is with the correct values to get the results.
+The SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.
 
-Check for the [Allowed Values In The Schema](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field#allowed-values-in-the-schema-object).
+### Parameters
 
-#### Examples:
+To set undocumented parameters, a constructor exists that accepts dictionaries for additional header, query, and body values. If the method type doesn't support request bodies (e.g. `GET` requests), the constructor will only accept a header and query dictionary.
 
-```cs
-CustomMetaDataFieldCreateRequest requestModel = new CustomMetaDataFieldCreateRequest
+```csharp
+using System.Collections.Generic;
+using System.Text.Json;
+using Imagekit.Core;
+using Imagekit.Models.Files;
+
+FileUploadParams parameters = new
+(
+    rawHeaderData: new Dictionary<string, JsonElement>()
+    {
+        { "Custom-Header", JsonSerializer.SerializeToElement(42) }
+    },
+
+    rawQueryData: new Dictionary<string, JsonElement>()
+    {
+        { "custom_query_param", JsonSerializer.SerializeToElement(42) }
+    },
+
+    rawBodyData: new Dictionary<string, MultipartJsonElement>()
+    {
+        { "custom_body_param", JsonSerializer.SerializeToElement(42) }
+    }
+)
 {
-    name = "custom-meta-1",
-    label = "Testmeta"
+    // Documented properties can still be added here.
+    // In case of conflict, these parameters take precedence over the custom parameters.
+    Expire = 0
 };
-CustomMetaDataFieldSchemaObject schema = new CustomMetaDataFieldSchemaObject
+```
+
+The raw parameters can also be accessed through the `RawHeaderData`, `RawQueryData`, and `RawBodyData` (if available) properties.
+
+This can also be used to set a documented parameter to an undocumented or not yet supported _value_, as long as the parameter is optional. If the parameter is required, omitting its `init` property will result in a compile-time error. To work around this, the `FromRawUnchecked` method can be used:
+
+```csharp
+using System.Collections.Generic;
+using System.Text.Json;
+using Imagekit.Models.Files;
+
+var parameters = FileUploadParams.FromRawUnchecked
+(
+
+    rawHeaderData: new Dictionary<string, JsonElement>(),
+    rawQueryData: new Dictionary<string, JsonElement>(),
+    rawBodyData: new Dictionary<string, JsonElement>
+    {
+        {
+            "file",
+            JsonSerializer.SerializeToElement("custom value")
+        }
+    }
+);
+```
+
+### Nested Parameters
+
+Undocumented properties, or undocumented values of documented properties, on nested parameters can be set similarly, using a dictionary in the constructor of the nested parameter.
+
+```csharp
+using System.Collections.Generic;
+using System.Text.Json;
+using Imagekit.Models.Files;
+
+FileUploadParams parameters = new()
 {
-    type = "Number",
-    minValue = 2000,
-    maxValue = 3000,
-    isValueRequired = true,
-    defaultValue = "2500"
+    Transformation = new
+    (
+        new Dictionary<string, JsonElement>
+        {
+            { "custom_nested_param", JsonSerializer.SerializeToElement(42) }
+        }
+    )
 };
-
-requestModel.schema = schema;
-ResultCustomMetaDataField resultCustomMetaDataField1 = imagekit.CreateCustomMetaDataFields(requestModel);
 ```
 
-*   Date type Example:
+Required properties on the nested parameter can also be changed or omitted using the `FromRawUnchecked` method:
 
-```cs
-CustomMetaDataFieldCreateRequest requestModelDate = new CustomMetaDataFieldCreateRequest
+```csharp
+using System.Collections.Generic;
+using System.Text.Json;
+using Imagekit.Models.Files;
+
+FileUploadParams parameters = new()
 {
-    name = "custom_meta_Date",
-    label = "TestmetaDate"
+    Transformation = Transformation.FromRawUnchecked
+    (
+        new Dictionary<string, JsonElement>
+        {
+            { "required_property", JsonSerializer.SerializeToElement("custom value") }
+        }
+    )
 };
-CustomMetaDataFieldSchemaObject schemaDate = new CustomMetaDataFieldSchemaObject
+```
+
+### Response properties
+
+To access undocumented response properties, the `RawData` property can be used:
+
+```csharp
+using System.Text.Json;
+
+var response = await client.Files.Upload(parameters);
+if (response.RawData.TryGetValue("my_custom_key", out JsonElement value))
 {
-    type = "Date",
-    minValue = "2022-11-30T10:11:10+00:00",
-    maxValue = "2022-12-30T10:11:10+00:00"
-};
-requestModelDate.schema = schemaDate;
-ResultCustomMetaDataField resultCustomMetaDataFieldDate = imagekit.CreateCustomMetaDataFields(requestModelDate);
-```
-
-**25\. Get CustomMetaDataFields**
-
-Accepts the includeDeleted boolean and fetches the metadata as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field)
-
-```cs
-bool includeDeleted = true;
-ResultCustomMetaDataFieldList resultCustomMetaDataFieldList = imageKit.getCustomMetaDataFields(includeDeleted); 
-```
-
-**26\. Edit Custom MetaData Fields**
-
-Accepts an ID of customMetaDataField and an object of class `CustomMetaDataFieldUpdateRequest` specifying the parameters to be used to edit cusomMetaDataFields as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field).
-
-```cs
-CustomMetaDataFieldUpdateRequest requestUpdateModel = new CustomMetaDataFieldUpdateRequest
-{
-	Id = "field_id",
-};
-CustomMetaDataFieldSchemaObject updateschema = new CustomMetaDataFieldSchemaObject
-{
-	type = "Number",
-	minValue = 8000,
-	maxValue = 3000
-};
-
-requestUpdateModel.schema = updateschema;
-ResultCustomMetaDataField resultCustomMetaDataFieldUpdate = imagekit.UpdateCustomMetaDataFields(requestUpdateModel);
-```
-
-**27\. Delete Custom MetaData Fields**
-
-Accepts the id to delete the customMetaDataFields as per the [API documentation here](https://docs.imageKit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field).
-
-```cs
-ResultNoContent resultNoContent = imageKit.DeleteCustomMetaDataField("field_id");
-```
-
-## Utility functions
-
-We have included the following commonly used utility functions in this library.
-
-### Authentication Parameter Generation
-
-If you are looking to implement client-side file upload, you will need a token, expiry timestamp, and a valid signature for that upload. The SDK provides a simple method that you can use in your code to generate these authentication parameters for you.
-
-_Note: The Private API Key should never be exposed in any client-side code. You must always generate these authentication parameters on the server-side_
-
-```cs
-AuthParamResponse resp = imageKit.GetAuthenticationParameters();
-```
-
-Returns
-
-```javascript
-{
-    "token" : "unique_token",
-    "expire" : "valid_expiry_timestamp",
-    "signature" : "generated_signature"
+    // Do something with `value`
 }
 ```
 
-Both the `token` and `expire` parameters are optional. If not specified, the SDK uses the [uuid](https://www.npmjs.com/package/uuid) package to generate a random token and also generates a valid expiry timestamp internally. The value of the `token` and `expire` used to generate the signature is always returned in the response, no matter if they are provided as an input to this method or not.
+`RawData` is a `IReadonlyDictionary<string, JsonElement>`. It holds the full data received from the API server.
 
-### Distance calculation between two pHash values
+### Response validation
 
-Perceptual hashing allows you to construct a hash value that uniquely identifies an input image based on an image's contents. [imageKit.io metadata API](https://docs.imageKit.io/api-reference/metadata-api) returns the pHash value of an image in the response. You can use this value to [find a duplicate (or similar) image](https://docs.imageKit.io/api-reference/metadata-api#using-phash-to-find-similar-or-duplicate-images) by calculating the distance between the two images' pHash value.
+In rare cases, the API may return a response that doesn't match the expected type. For example, the SDK may expect a property to contain a `string`, but the API could return something else.
 
-This SDK exposes `PHashDistance` function to calculate the distance between two pHash values. It accepts two pHash hexadecimal strings and returns a numeric value indicative of the level of difference between the two images.
+By default, the SDK will not throw an exception in this case. It will throw `ImageKitInvalidDataException` only if you directly access the property.
 
-```cs
-public static int CalculateDistance() {
-    // asynchronously fetch metadata of two uploaded image files
-    // ...
-    // Extract pHash strings from both: say 'firstHash' and 'secondHash'
-    // ...
-    // Calculate the distance between them:
-    int distance = imageKit.PHashDistance(firstHash, secondHash);
-    return distance;
-}
+If you would prefer to check that the response is completely well-typed upfront, then either call `Validate`:
+
+```csharp
+var response = await client.Files.Upload(parameters);
+response.Validate();
 ```
 
-#### Distance calculation examples
+Or configure the client using the `ResponseValidation` option:
 
-```cs
-imageKit.PHashDistance('firstHash', 'secondHash');
-// output: 0 (same image)
+```csharp
+using Imagekit;
 
-imageKit.PHashDistance('firstHash', 'secondHash');
-// output: 17 (similar images)
-
-imageKit.PHashDistance('firstHash', 'secondHash');
-// output: 37 (dissimilar images)
+ImageKitClient client = new() { ResponseValidation = true };
 ```
 
-## Handling errors
+Or configure a single method call using [`WithOptions`](#modifying-configuration):
 
-Catch and respond to invalid data, internal problems, and more.
+```csharp
+using System;
 
-Imagekit .Net SDK raises exceptions for many reasons, such as being not found, invalid parameters, authentication errors, and internal server errors. We recommend writing code that gracefully handles all possible API exceptions.
+var response = await client
+    .WithOptions(options =>
+        options with { ResponseValidation = true }
+    )
+    .Files.Upload(parameters);
 
-#### Example:
-
-```cs
-try
-{
-    // Use ImageKit's SDK to make requests...
-}
-catch (InvalidOperationException ex)
-{
-    Console.Write("Invalid operation. Please try again.");
-}
-catch (FormatException ex)
-{
-    Console.Write("Not a valid format. Please try again.");
-}
-catch (WebServiceException webEx)
-{
-    /*
-    webEx.StatusCode        = 400
-    webEx.StatusDescription = ArgumentNullException
-    webEx.ErrorCode         = ArgumentNullException
-    webEx.ErrorMessage      = Value cannot be null. Parameter name: Name
-    webEx.StackTrace        = (your Server Exception StackTrace - in DebugMode)
-    webEx.ResponseDto       = (your populated Response DTO)
-    webEx.ResponseStatus    = (your populated Response Status DTO)
-    webEx.GetFieldErrors()  = (individual errors for each field if any)
-    */
-}
+Console.WriteLine(response);
 ```
 
-## Access request-id, other response headers and HTTP status code
+## Semantic versioning
 
-You can access success or error object to access the HTTP status code and response headers.
+This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 
-```cs
-// Success
-var response = await imagekit.PurgeStatus(requestId);
-console.Write(response.statusCode); // 200
-// {'content-type': 'application/json', 'x-request-id': 'ee560df4-d44f-455e-a48e-29dfda49aec5'}
-console.Write(response.Raw);
-try 
-{
-    await imagekit.PurgeStatus(requestId);
-} 
-catch (Exception ex) 
-{
-    console.Write(ex.Message); 
- // {'content-type': 'application/json', 'x-request-id': 'ee560df4-d44f-455e-a48e-29dfda49aec5'}
-}
-```
+1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_
+2. Changes that we do not expect to impact the vast majority of users in practice.
 
-## Support
+We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-For any feedback or to report any issues or general implementation support, please reach out to [support@imageKit.io](mailto:support@imageKit.io)
-
-## Links
-
-*   [Documentation](https://docs.imageKit.io)
-*   [Main website](https://imageKit.io)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) File for details
+We are keen for your feedback; please open an [issue](https://www.github.com/imagekit-developer/imagekit-dotnet/issues) with questions, bugs, or suggestions.
