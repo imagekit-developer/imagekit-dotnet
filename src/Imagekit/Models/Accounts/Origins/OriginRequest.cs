@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using System = System;
 
 namespace Imagekit.Models.Accounts.Origins;
 
@@ -431,14 +431,14 @@ public record class OriginRequest : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<S3> s3,
-        Action<S3Compatible> s3Compatible,
-        Action<CloudinaryBackup> cloudinaryBackup,
-        Action<WebFolder> webFolder,
-        Action<WebProxy> webProxy,
-        Action<Gcs> gcs,
-        Action<AzureBlob> azureBlob,
-        Action<AkeneoPim> akeneoPim
+        System::Action<S3> s3,
+        System::Action<S3Compatible> s3Compatible,
+        System::Action<CloudinaryBackup> cloudinaryBackup,
+        System::Action<WebFolder> webFolder,
+        System::Action<WebProxy> webProxy,
+        System::Action<Gcs> gcs,
+        System::Action<AzureBlob> azureBlob,
+        System::Action<AkeneoPim> akeneoPim
     )
     {
         switch (this.Value)
@@ -502,14 +502,14 @@ public record class OriginRequest : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<S3, T> s3,
-        Func<S3Compatible, T> s3Compatible,
-        Func<CloudinaryBackup, T> cloudinaryBackup,
-        Func<WebFolder, T> webFolder,
-        Func<WebProxy, T> webProxy,
-        Func<Gcs, T> gcs,
-        Func<AzureBlob, T> azureBlob,
-        Func<AkeneoPim, T> akeneoPim
+        System::Func<S3, T> s3,
+        System::Func<S3Compatible, T> s3Compatible,
+        System::Func<CloudinaryBackup, T> cloudinaryBackup,
+        System::Func<WebFolder, T> webFolder,
+        System::Func<WebProxy, T> webProxy,
+        System::Func<Gcs, T> gcs,
+        System::Func<AzureBlob, T> azureBlob,
+        System::Func<AkeneoPim, T> akeneoPim
     )
     {
         return this.Value switch
@@ -611,7 +611,7 @@ sealed class OriginRequestConverter : JsonConverter<OriginRequest>
 {
     public override OriginRequest? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

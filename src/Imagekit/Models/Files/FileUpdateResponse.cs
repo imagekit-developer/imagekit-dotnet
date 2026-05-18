@@ -499,12 +499,12 @@ public sealed record class FileUpdateResponse : JsonModel
     /// <summary>
     /// Type of the asset.
     /// </summary>
-    public ApiEnum<string, FileType>? Type
+    public ApiEnum<string, Type>? Type
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<ApiEnum<string, FileType>>("type");
+            return this._rawData.GetNullableClass<ApiEnum<string, Type>>("type");
         }
         init
         {

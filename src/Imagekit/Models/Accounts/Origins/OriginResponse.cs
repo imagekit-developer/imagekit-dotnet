@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using System = System;
 
 namespace Imagekit.Models.Accounts.Origins;
 
@@ -416,14 +416,14 @@ public record class OriginResponse : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<OriginResponseS3> s3,
-        Action<OriginResponseS3Compatible> s3Compatible,
-        Action<OriginResponseCloudinaryBackup> cloudinaryBackup,
-        Action<OriginResponseWebFolder> webFolder,
-        Action<OriginResponseWebProxy> webProxy,
-        Action<OriginResponseGcs> gcs,
-        Action<OriginResponseAzureBlob> azureBlob,
-        Action<OriginResponseAkeneoPim> akeneoPim
+        System::Action<OriginResponseS3> s3,
+        System::Action<OriginResponseS3Compatible> s3Compatible,
+        System::Action<OriginResponseCloudinaryBackup> cloudinaryBackup,
+        System::Action<OriginResponseWebFolder> webFolder,
+        System::Action<OriginResponseWebProxy> webProxy,
+        System::Action<OriginResponseGcs> gcs,
+        System::Action<OriginResponseAzureBlob> azureBlob,
+        System::Action<OriginResponseAkeneoPim> akeneoPim
     )
     {
         switch (this.Value)
@@ -487,14 +487,14 @@ public record class OriginResponse : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<OriginResponseS3, T> s3,
-        Func<OriginResponseS3Compatible, T> s3Compatible,
-        Func<OriginResponseCloudinaryBackup, T> cloudinaryBackup,
-        Func<OriginResponseWebFolder, T> webFolder,
-        Func<OriginResponseWebProxy, T> webProxy,
-        Func<OriginResponseGcs, T> gcs,
-        Func<OriginResponseAzureBlob, T> azureBlob,
-        Func<OriginResponseAkeneoPim, T> akeneoPim
+        System::Func<OriginResponseS3, T> s3,
+        System::Func<OriginResponseS3Compatible, T> s3Compatible,
+        System::Func<OriginResponseCloudinaryBackup, T> cloudinaryBackup,
+        System::Func<OriginResponseWebFolder, T> webFolder,
+        System::Func<OriginResponseWebProxy, T> webProxy,
+        System::Func<OriginResponseGcs, T> gcs,
+        System::Func<OriginResponseAzureBlob, T> azureBlob,
+        System::Func<OriginResponseAkeneoPim, T> akeneoPim
     )
     {
         return this.Value switch
@@ -597,7 +597,7 @@ sealed class OriginResponseConverter : JsonConverter<OriginResponse>
 {
     public override OriginResponse? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

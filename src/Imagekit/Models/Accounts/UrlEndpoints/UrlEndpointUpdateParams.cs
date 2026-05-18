@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -8,6 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using System = System;
 using Text = System.Text;
 
 namespace Imagekit.Models.Accounts.UrlEndpoints;
@@ -200,9 +200,9 @@ public record class UrlEndpointUpdateParams : ParamsBase
             && this._rawBodyData.Equals(other._rawBodyData);
     }
 
-    public override Uri Url(ClientOptions options)
+    public override System::Uri Url(ClientOptions options)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/')
                 + string.Format("/v1/accounts/url-endpoints/{0}", this.ID)
         )
@@ -377,9 +377,9 @@ public record class UrlEndpointUpdateParamsUrlRewriter : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<UrlEndpointUpdateParamsUrlRewriterCloudinary> cloudinary,
-        Action<UrlEndpointUpdateParamsUrlRewriterImgix> imgix,
-        Action<UrlEndpointUpdateParamsUrlRewriterAkamai> akamai
+        System::Action<UrlEndpointUpdateParamsUrlRewriterCloudinary> cloudinary,
+        System::Action<UrlEndpointUpdateParamsUrlRewriterImgix> imgix,
+        System::Action<UrlEndpointUpdateParamsUrlRewriterAkamai> akamai
     )
     {
         switch (this.Value)
@@ -423,9 +423,9 @@ public record class UrlEndpointUpdateParamsUrlRewriter : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<UrlEndpointUpdateParamsUrlRewriterCloudinary, T> cloudinary,
-        Func<UrlEndpointUpdateParamsUrlRewriterImgix, T> imgix,
-        Func<UrlEndpointUpdateParamsUrlRewriterAkamai, T> akamai
+        System::Func<UrlEndpointUpdateParamsUrlRewriterCloudinary, T> cloudinary,
+        System::Func<UrlEndpointUpdateParamsUrlRewriterImgix, T> imgix,
+        System::Func<UrlEndpointUpdateParamsUrlRewriterAkamai, T> akamai
     )
     {
         return this.Value switch
@@ -509,7 +509,7 @@ sealed class UrlEndpointUpdateParamsUrlRewriterConverter
 {
     public override UrlEndpointUpdateParamsUrlRewriter? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -764,7 +764,7 @@ class UrlEndpointUpdateParamsUrlRewriterImgixConverter
 {
     public override UrlEndpointUpdateParamsUrlRewriterImgix? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -842,7 +842,7 @@ class UrlEndpointUpdateParamsUrlRewriterAkamaiConverter
 {
     public override UrlEndpointUpdateParamsUrlRewriterAkamai? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

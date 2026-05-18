@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -7,6 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using System = System;
 
 namespace Imagekit.Models;
 
@@ -196,11 +196,11 @@ public record class ExtensionItem : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<ExtensionItemRemoveBg> removeBg,
-        Action<ExtensionItemAutoTaggingExtension> autoTaggingExtension,
-        Action<ExtensionItemAIAutoDescription> aiAutoDescription,
-        Action<ExtensionItemAITasks> aiTasks,
-        Action<SavedExtension> savedExtension
+        System::Action<ExtensionItemRemoveBg> removeBg,
+        System::Action<ExtensionItemAutoTaggingExtension> autoTaggingExtension,
+        System::Action<ExtensionItemAIAutoDescription> aiAutoDescription,
+        System::Action<ExtensionItemAITasks> aiTasks,
+        System::Action<SavedExtension> savedExtension
     )
     {
         switch (this.Value)
@@ -252,11 +252,11 @@ public record class ExtensionItem : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<ExtensionItemRemoveBg, T> removeBg,
-        Func<ExtensionItemAutoTaggingExtension, T> autoTaggingExtension,
-        Func<ExtensionItemAIAutoDescription, T> aiAutoDescription,
-        Func<ExtensionItemAITasks, T> aiTasks,
-        Func<SavedExtension, T> savedExtension
+        System::Func<ExtensionItemRemoveBg, T> removeBg,
+        System::Func<ExtensionItemAutoTaggingExtension, T> autoTaggingExtension,
+        System::Func<ExtensionItemAIAutoDescription, T> aiAutoDescription,
+        System::Func<ExtensionItemAITasks, T> aiTasks,
+        System::Func<SavedExtension, T> savedExtension
     )
     {
         return this.Value switch
@@ -345,7 +345,7 @@ sealed class ExtensionItemConverter : JsonConverter<ExtensionItem>
 {
     public override ExtensionItem? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -813,7 +813,7 @@ sealed class ExtensionItemAutoTaggingExtensionNameConverter
 {
     public override ExtensionItemAutoTaggingExtensionName Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -906,7 +906,7 @@ class ExtensionItemAIAutoDescriptionConverter : JsonConverter<ExtensionItemAIAut
 {
     public override ExtensionItemAIAutoDescription? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1208,9 +1208,9 @@ public record class ExtensionItemAITasksTask : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<ExtensionItemAITasksTaskSelectTags> selectTags,
-        Action<ExtensionItemAITasksTaskSelectMetadata> selectMetadata,
-        Action<ExtensionItemAITasksTaskYesNo> yesNo
+        System::Action<ExtensionItemAITasksTaskSelectTags> selectTags,
+        System::Action<ExtensionItemAITasksTaskSelectMetadata> selectMetadata,
+        System::Action<ExtensionItemAITasksTaskYesNo> yesNo
     )
     {
         switch (this.Value)
@@ -1254,9 +1254,9 @@ public record class ExtensionItemAITasksTask : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<ExtensionItemAITasksTaskSelectTags, T> selectTags,
-        Func<ExtensionItemAITasksTaskSelectMetadata, T> selectMetadata,
-        Func<ExtensionItemAITasksTaskYesNo, T> yesNo
+        System::Func<ExtensionItemAITasksTaskSelectTags, T> selectTags,
+        System::Func<ExtensionItemAITasksTaskSelectMetadata, T> selectMetadata,
+        System::Func<ExtensionItemAITasksTaskYesNo, T> yesNo
     )
     {
         return this.Value switch
@@ -1338,7 +1338,7 @@ sealed class ExtensionItemAITasksTaskConverter : JsonConverter<ExtensionItemAITa
 {
     public override ExtensionItemAITasksTask? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -1917,7 +1917,11 @@ public record class ExtensionItemAITasksTaskSelectMetadataVocabulary : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<string> @string, Action<double> @double, Action<bool> @bool)
+    public void Switch(
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
+    )
     {
         switch (this.Value)
         {
@@ -1959,7 +1963,11 @@ public record class ExtensionItemAITasksTaskSelectMetadataVocabulary : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<string, T> @string, Func<double, T> @double, Func<bool, T> @bool)
+    public T Match<T>(
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
+    )
     {
         return this.Value switch
         {
@@ -2036,7 +2044,7 @@ sealed class ExtensionItemAITasksTaskSelectMetadataVocabularyConverter
 {
     public override ExtensionItemAITasksTaskSelectMetadataVocabulary? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -2049,7 +2057,7 @@ sealed class ExtensionItemAITasksTaskSelectMetadataVocabularyConverter
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2058,7 +2066,7 @@ sealed class ExtensionItemAITasksTaskSelectMetadataVocabularyConverter
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2067,7 +2075,7 @@ sealed class ExtensionItemAITasksTaskSelectMetadataVocabularyConverter
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2674,10 +2682,10 @@ public record class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue : ModelBas
     /// </example>
     /// </summary>
     public void Switch(
-        Action<string> @string,
-        Action<double> @double,
-        Action<bool> @bool,
-        Action<
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool,
+        System::Action<
             IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>
         > mixed
     )
@@ -2727,10 +2735,10 @@ public record class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue : ModelBas
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<string, T> @string,
-        Func<double, T> @double,
-        Func<bool, T> @bool,
-        Func<
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool,
+        System::Func<
             IReadOnlyList<ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem>,
             T
         > mixed
@@ -2834,7 +2842,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueConverter
 {
     public override ExtensionItemAITasksTaskYesNoOnNoSetMetadataValue? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -2847,7 +2855,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueConverter
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2856,7 +2864,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueConverter
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2865,7 +2873,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueConverter
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -2884,7 +2892,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueConverter
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3036,7 +3044,11 @@ public record class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataVal
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<string> @string, Action<double> @double, Action<bool> @bool)
+    public void Switch(
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
+    )
     {
         switch (this.Value)
         {
@@ -3078,7 +3090,11 @@ public record class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataVal
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<string, T> @string, Func<double, T> @double, Func<bool, T> @bool)
+    public T Match<T>(
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
+    )
     {
         return this.Value switch
         {
@@ -3158,7 +3174,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemC
 {
     public override ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItem? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -3171,7 +3187,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemC
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3180,7 +3196,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemC
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3189,7 +3205,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnNoSetMetadataValueMetadataValueItemC
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3713,10 +3729,10 @@ public record class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue : Mod
     /// </example>
     /// </summary>
     public void Switch(
-        Action<string> @string,
-        Action<double> @double,
-        Action<bool> @bool,
-        Action<
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool,
+        System::Action<
             IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>
         > mixed
     )
@@ -3766,10 +3782,10 @@ public record class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue : Mod
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<string, T> @string,
-        Func<double, T> @double,
-        Func<bool, T> @bool,
-        Func<
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool,
+        System::Func<
             IReadOnlyList<ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem>,
             T
         > mixed
@@ -3875,7 +3891,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueConverter
 {
     public override ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValue? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -3888,7 +3904,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueConverter
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3897,7 +3913,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueConverter
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3906,7 +3922,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueConverter
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -3925,7 +3941,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueConverter
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4082,7 +4098,11 @@ public record class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetada
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<string> @string, Action<double> @double, Action<bool> @bool)
+    public void Switch(
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
+    )
     {
         switch (this.Value)
         {
@@ -4124,7 +4144,11 @@ public record class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetada
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<string, T> @string, Func<double, T> @double, Func<bool, T> @bool)
+    public T Match<T>(
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
+    )
     {
         return this.Value switch
         {
@@ -4204,7 +4228,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValue
 {
     public override ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValueItem? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -4217,7 +4241,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValue
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4226,7 +4250,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValue
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4235,7 +4259,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnUnknownSetMetadataValueMetadataValue
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4760,10 +4784,10 @@ public record class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue : ModelBa
     /// </example>
     /// </summary>
     public void Switch(
-        Action<string> @string,
-        Action<double> @double,
-        Action<bool> @bool,
-        Action<
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool,
+        System::Action<
             IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>
         > mixed
     )
@@ -4813,10 +4837,10 @@ public record class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue : ModelBa
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<string, T> @string,
-        Func<double, T> @double,
-        Func<bool, T> @bool,
-        Func<
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool,
+        System::Func<
             IReadOnlyList<ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem>,
             T
         > mixed
@@ -4922,7 +4946,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueConverter
 {
     public override ExtensionItemAITasksTaskYesNoOnYesSetMetadataValue? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -4935,7 +4959,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueConverter
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4944,7 +4968,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueConverter
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4953,7 +4977,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueConverter
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -4972,7 +4996,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueConverter
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -5126,7 +5150,11 @@ public record class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataVa
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<string> @string, Action<double> @double, Action<bool> @bool)
+    public void Switch(
+        System::Action<string> @string,
+        System::Action<double> @double,
+        System::Action<bool> @bool
+    )
     {
         switch (this.Value)
         {
@@ -5168,7 +5196,11 @@ public record class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataVa
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<string, T> @string, Func<double, T> @double, Func<bool, T> @bool)
+    public T Match<T>(
+        System::Func<string, T> @string,
+        System::Func<double, T> @double,
+        System::Func<bool, T> @bool
+    )
     {
         return this.Value switch
         {
@@ -5248,7 +5280,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem
 {
     public override ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -5261,7 +5293,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem
                 return new(deserialized, element);
             }
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -5270,7 +5302,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem
         {
             return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }
@@ -5279,7 +5311,7 @@ sealed class ExtensionItemAITasksTaskYesNoOnYesSetMetadataValueMetadataValueItem
         {
             return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
-        catch (Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
+        catch (System::Exception e) when (e is JsonException || e is ImageKitInvalidDataException)
         {
             // ignore
         }

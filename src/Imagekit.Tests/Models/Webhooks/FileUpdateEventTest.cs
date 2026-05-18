@@ -4,6 +4,7 @@ using System.Text.Json;
 using Imagekit.Core;
 using Imagekit.Models.Webhooks;
 using Files = Imagekit.Models.Files;
+using Models = Imagekit.Models;
 
 namespace Imagekit.Tests.Models.Webhooks;
 
@@ -51,18 +52,18 @@ public class FileUpdateEventTest : TestBase
                 IsPublished = true,
                 Mime = "mime",
                 Name = "name",
-                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
                 {
                     {
                         "foo",
                         new()
                         {
-                            Type = Files::Type.Text,
+                            Type = Models::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::DefaultValueArrayItem(true),
-                                    new Files::DefaultValueArrayItem(10),
-                                    new Files::DefaultValueArrayItem("Hello"),
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -79,7 +80,7 @@ public class FileUpdateEventTest : TestBase
                 Size = 0,
                 Tags = ["string"],
                 Thumbnail = "https://example.com",
-                Type = Files::FileType.File,
+                Type = Files::Type.File,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Url = "https://example.com",
                 VersionInfo = new() { ID = "id", Name = "name" },
@@ -125,18 +126,18 @@ public class FileUpdateEventTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -153,7 +154,7 @@ public class FileUpdateEventTest : TestBase
             Size = 0,
             Tags = ["string"],
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -209,18 +210,18 @@ public class FileUpdateEventTest : TestBase
                 IsPublished = true,
                 Mime = "mime",
                 Name = "name",
-                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
                 {
                     {
                         "foo",
                         new()
                         {
-                            Type = Files::Type.Text,
+                            Type = Models::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::DefaultValueArrayItem(true),
-                                    new Files::DefaultValueArrayItem(10),
-                                    new Files::DefaultValueArrayItem("Hello"),
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -237,7 +238,7 @@ public class FileUpdateEventTest : TestBase
                 Size = 0,
                 Tags = ["string"],
                 Thumbnail = "https://example.com",
-                Type = Files::FileType.File,
+                Type = Files::Type.File,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Url = "https://example.com",
                 VersionInfo = new() { ID = "id", Name = "name" },
@@ -297,18 +298,18 @@ public class FileUpdateEventTest : TestBase
                 IsPublished = true,
                 Mime = "mime",
                 Name = "name",
-                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
                 {
                     {
                         "foo",
                         new()
                         {
-                            Type = Files::Type.Text,
+                            Type = Models::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::DefaultValueArrayItem(true),
-                                    new Files::DefaultValueArrayItem(10),
-                                    new Files::DefaultValueArrayItem("Hello"),
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -325,7 +326,7 @@ public class FileUpdateEventTest : TestBase
                 Size = 0,
                 Tags = ["string"],
                 Thumbnail = "https://example.com",
-                Type = Files::FileType.File,
+                Type = Files::Type.File,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Url = "https://example.com",
                 VersionInfo = new() { ID = "id", Name = "name" },
@@ -378,18 +379,18 @@ public class FileUpdateEventTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -406,7 +407,7 @@ public class FileUpdateEventTest : TestBase
             Size = 0,
             Tags = ["string"],
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -462,18 +463,18 @@ public class FileUpdateEventTest : TestBase
                 IsPublished = true,
                 Mime = "mime",
                 Name = "name",
-                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
                 {
                     {
                         "foo",
                         new()
                         {
-                            Type = Files::Type.Text,
+                            Type = Models::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::DefaultValueArrayItem(true),
-                                    new Files::DefaultValueArrayItem(10),
-                                    new Files::DefaultValueArrayItem("Hello"),
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -490,7 +491,7 @@ public class FileUpdateEventTest : TestBase
                 Size = 0,
                 Tags = ["string"],
                 Thumbnail = "https://example.com",
-                Type = Files::FileType.File,
+                Type = Files::Type.File,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Url = "https://example.com",
                 VersionInfo = new() { ID = "id", Name = "name" },
@@ -544,18 +545,18 @@ public class FileUpdateEventTest : TestBase
                 IsPublished = true,
                 Mime = "mime",
                 Name = "name",
-                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
                 {
                     {
                         "foo",
                         new()
                         {
-                            Type = Files::Type.Text,
+                            Type = Models::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::DefaultValueArrayItem(true),
-                                    new Files::DefaultValueArrayItem(10),
-                                    new Files::DefaultValueArrayItem("Hello"),
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -572,7 +573,7 @@ public class FileUpdateEventTest : TestBase
                 Size = 0,
                 Tags = ["string"],
                 Thumbnail = "https://example.com",
-                Type = Files::FileType.File,
+                Type = Files::Type.File,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Url = "https://example.com",
                 VersionInfo = new() { ID = "id", Name = "name" },
@@ -629,18 +630,18 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
                 IsPublished = true,
                 Mime = "mime",
                 Name = "name",
-                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
                 {
                     {
                         "foo",
                         new()
                         {
-                            Type = Files::Type.Text,
+                            Type = Models::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::DefaultValueArrayItem(true),
-                                    new Files::DefaultValueArrayItem(10),
-                                    new Files::DefaultValueArrayItem("Hello"),
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -657,7 +658,7 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
                 Size = 0,
                 Tags = ["string"],
                 Thumbnail = "https://example.com",
-                Type = Files::FileType.File,
+                Type = Files::Type.File,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Url = "https://example.com",
                 VersionInfo = new() { ID = "id", Name = "name" },
@@ -701,18 +702,18 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -729,7 +730,7 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
             Size = 0,
             Tags = ["string"],
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -783,18 +784,18 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
                 IsPublished = true,
                 Mime = "mime",
                 Name = "name",
-                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
                 {
                     {
                         "foo",
                         new()
                         {
-                            Type = Files::Type.Text,
+                            Type = Models::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::DefaultValueArrayItem(true),
-                                    new Files::DefaultValueArrayItem(10),
-                                    new Files::DefaultValueArrayItem("Hello"),
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -811,7 +812,7 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
                 Size = 0,
                 Tags = ["string"],
                 Thumbnail = "https://example.com",
-                Type = Files::FileType.File,
+                Type = Files::Type.File,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Url = "https://example.com",
                 VersionInfo = new() { ID = "id", Name = "name" },
@@ -869,18 +870,18 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
                 IsPublished = true,
                 Mime = "mime",
                 Name = "name",
-                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
                 {
                     {
                         "foo",
                         new()
                         {
-                            Type = Files::Type.Text,
+                            Type = Models::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::DefaultValueArrayItem(true),
-                                    new Files::DefaultValueArrayItem(10),
-                                    new Files::DefaultValueArrayItem("Hello"),
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -897,7 +898,7 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
                 Size = 0,
                 Tags = ["string"],
                 Thumbnail = "https://example.com",
-                Type = Files::FileType.File,
+                Type = Files::Type.File,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Url = "https://example.com",
                 VersionInfo = new() { ID = "id", Name = "name" },
@@ -948,18 +949,18 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
             IsPublished = true,
             Mime = "mime",
             Name = "name",
-            SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+            SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
             {
                 {
                     "foo",
                     new()
                     {
-                        Type = Files::Type.Text,
+                        Type = Models::Type.Text,
                         DefaultValue = new(
                             [
-                                new Files::DefaultValueArrayItem(true),
-                                new Files::DefaultValueArrayItem(10),
-                                new Files::DefaultValueArrayItem("Hello"),
+                                new Models::DefaultValueArrayItem(true),
+                                new Models::DefaultValueArrayItem(10),
+                                new Models::DefaultValueArrayItem("Hello"),
                             ]
                         ),
                         IsValueRequired = true,
@@ -976,7 +977,7 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
             Size = 0,
             Tags = ["string"],
             Thumbnail = "https://example.com",
-            Type = Files::FileType.File,
+            Type = Files::Type.File,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Url = "https://example.com",
             VersionInfo = new() { ID = "id", Name = "name" },
@@ -1030,18 +1031,18 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
                 IsPublished = true,
                 Mime = "mime",
                 Name = "name",
-                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
                 {
                     {
                         "foo",
                         new()
                         {
-                            Type = Files::Type.Text,
+                            Type = Models::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::DefaultValueArrayItem(true),
-                                    new Files::DefaultValueArrayItem(10),
-                                    new Files::DefaultValueArrayItem("Hello"),
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1058,7 +1059,7 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
                 Size = 0,
                 Tags = ["string"],
                 Thumbnail = "https://example.com",
-                Type = Files::FileType.File,
+                Type = Files::Type.File,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Url = "https://example.com",
                 VersionInfo = new() { ID = "id", Name = "name" },
@@ -1110,18 +1111,18 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
                 IsPublished = true,
                 Mime = "mime",
                 Name = "name",
-                SelectedFieldsSchema = new Dictionary<string, Files::SelectedFieldsSchemaItem>()
+                SelectedFieldsSchema = new Dictionary<string, Models::SelectedFieldsSchemaItem>()
                 {
                     {
                         "foo",
                         new()
                         {
-                            Type = Files::Type.Text,
+                            Type = Models::Type.Text,
                             DefaultValue = new(
                                 [
-                                    new Files::DefaultValueArrayItem(true),
-                                    new Files::DefaultValueArrayItem(10),
-                                    new Files::DefaultValueArrayItem("Hello"),
+                                    new Models::DefaultValueArrayItem(true),
+                                    new Models::DefaultValueArrayItem(10),
+                                    new Models::DefaultValueArrayItem("Hello"),
                                 ]
                             ),
                             IsValueRequired = true,
@@ -1138,7 +1139,7 @@ public class FileUpdateEventFileUpdateEventTest : TestBase
                 Size = 0,
                 Tags = ["string"],
                 Thumbnail = "https://example.com",
-                Type = Files::FileType.File,
+                Type = Files::Type.File,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Url = "https://example.com",
                 VersionInfo = new() { ID = "id", Name = "name" },

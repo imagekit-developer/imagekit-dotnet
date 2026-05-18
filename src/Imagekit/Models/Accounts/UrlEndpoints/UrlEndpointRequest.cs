@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -7,6 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using System = System;
 
 namespace Imagekit.Models.Accounts.UrlEndpoints;
 
@@ -291,9 +291,9 @@ public record class UrlEndpointRequestUrlRewriter : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<UrlEndpointRequestUrlRewriterCloudinary> cloudinary,
-        Action<UrlEndpointRequestUrlRewriterImgix> imgix,
-        Action<UrlEndpointRequestUrlRewriterAkamai> akamai
+        System::Action<UrlEndpointRequestUrlRewriterCloudinary> cloudinary,
+        System::Action<UrlEndpointRequestUrlRewriterImgix> imgix,
+        System::Action<UrlEndpointRequestUrlRewriterAkamai> akamai
     )
     {
         switch (this.Value)
@@ -337,9 +337,9 @@ public record class UrlEndpointRequestUrlRewriter : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<UrlEndpointRequestUrlRewriterCloudinary, T> cloudinary,
-        Func<UrlEndpointRequestUrlRewriterImgix, T> imgix,
-        Func<UrlEndpointRequestUrlRewriterAkamai, T> akamai
+        System::Func<UrlEndpointRequestUrlRewriterCloudinary, T> cloudinary,
+        System::Func<UrlEndpointRequestUrlRewriterImgix, T> imgix,
+        System::Func<UrlEndpointRequestUrlRewriterAkamai, T> akamai
     )
     {
         return this.Value switch
@@ -422,7 +422,7 @@ sealed class UrlEndpointRequestUrlRewriterConverter : JsonConverter<UrlEndpointR
 {
     public override UrlEndpointRequestUrlRewriter? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -675,7 +675,7 @@ class UrlEndpointRequestUrlRewriterImgixConverter
 {
     public override UrlEndpointRequestUrlRewriterImgix? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -753,7 +753,7 @@ class UrlEndpointRequestUrlRewriterAkamaiConverter
 {
     public override UrlEndpointRequestUrlRewriterAkamai? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

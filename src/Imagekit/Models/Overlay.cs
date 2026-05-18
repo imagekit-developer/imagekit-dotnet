@@ -1,9 +1,9 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using System = System;
 
 namespace Imagekit.Models;
 
@@ -264,11 +264,11 @@ public record class Overlay : ModelBase
     /// </example>
     /// </summary>
     public void Switch(
-        Action<TextOverlay> text,
-        Action<ImageOverlay> image,
-        Action<VideoOverlay> video,
-        Action<SubtitleOverlay> subtitle,
-        Action<SolidColorOverlay> solidColor
+        System::Action<TextOverlay> text,
+        System::Action<ImageOverlay> image,
+        System::Action<VideoOverlay> video,
+        System::Action<SubtitleOverlay> subtitle,
+        System::Action<SolidColorOverlay> solidColor
     )
     {
         switch (this.Value)
@@ -318,11 +318,11 @@ public record class Overlay : ModelBase
     /// </example>
     /// </summary>
     public T Match<T>(
-        Func<TextOverlay, T> text,
-        Func<ImageOverlay, T> image,
-        Func<VideoOverlay, T> video,
-        Func<SubtitleOverlay, T> subtitle,
-        Func<SolidColorOverlay, T> solidColor
+        System::Func<TextOverlay, T> text,
+        System::Func<ImageOverlay, T> image,
+        System::Func<VideoOverlay, T> video,
+        System::Func<SubtitleOverlay, T> subtitle,
+        System::Func<SolidColorOverlay, T> solidColor
     )
     {
         return this.Value switch
@@ -407,7 +407,7 @@ sealed class OverlayConverter : JsonConverter<Overlay>
 {
     public override Overlay? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

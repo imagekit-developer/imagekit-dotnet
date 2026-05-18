@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -8,6 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Imagekit.Core;
 using Imagekit.Exceptions;
+using System = System;
 using Text = System.Text;
 
 namespace Imagekit.Models.Accounts.UrlEndpoints;
@@ -188,9 +188,9 @@ public record class UrlEndpointCreateParams : ParamsBase
             && this._rawBodyData.Equals(other._rawBodyData);
     }
 
-    public override Uri Url(ClientOptions options)
+    public override System::Uri Url(ClientOptions options)
     {
-        return new UriBuilder(
+        return new System::UriBuilder(
             options.BaseUrl.ToString().TrimEnd('/') + "/v1/accounts/url-endpoints"
         )
         {
@@ -350,7 +350,11 @@ public record class UrlRewriter : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public void Switch(Action<Cloudinary> cloudinary, Action<Imgix> imgix, Action<Akamai> akamai)
+    public void Switch(
+        System::Action<Cloudinary> cloudinary,
+        System::Action<Imgix> imgix,
+        System::Action<Akamai> akamai
+    )
     {
         switch (this.Value)
         {
@@ -392,7 +396,11 @@ public record class UrlRewriter : ModelBase
     /// </code>
     /// </example>
     /// </summary>
-    public T Match<T>(Func<Cloudinary, T> cloudinary, Func<Imgix, T> imgix, Func<Akamai, T> akamai)
+    public T Match<T>(
+        System::Func<Cloudinary, T> cloudinary,
+        System::Func<Imgix, T> imgix,
+        System::Func<Akamai, T> akamai
+    )
     {
         return this.Value switch
         {
@@ -466,7 +474,7 @@ sealed class UrlRewriterConverter : JsonConverter<UrlRewriter>
 {
     public override UrlRewriter? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -693,7 +701,7 @@ class ImgixConverter : JsonConverter<Imgix>
 {
     public override Imgix? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {
@@ -764,7 +772,7 @@ class AkamaiConverter : JsonConverter<Akamai>
 {
     public override Akamai? Read(
         ref Utf8JsonReader reader,
-        Type typeToConvert,
+        System::Type typeToConvert,
         JsonSerializerOptions options
     )
     {

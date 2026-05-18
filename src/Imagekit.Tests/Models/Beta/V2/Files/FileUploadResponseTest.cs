@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Imagekit.Core;
 using Imagekit.Exceptions;
-using Imagekit.Models.Beta.V2.Files;
-using Files = Imagekit.Models.Files;
+using Imagekit.Models;
+using Files = Imagekit.Models.Beta.V2.Files;
+using ModelsFiles = Imagekit.Models.Files;
 
 namespace Imagekit.Tests.Models.Beta.V2.Files;
 
@@ -12,7 +13,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -38,11 +39,11 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = AIAutoDescription.Success,
-                AITasks = AITasks.Success,
-                AwsAutoTagging = AwsAutoTagging.Success,
-                GoogleAutoTagging = GoogleAutoTagging.Success,
-                RemoveBg = RemoveBg.Success,
+                AIAutoDescription = Files::AIAutoDescription.Success,
+                AITasks = Files::AITasks.Success,
+                AwsAutoTagging = Files::AwsAutoTagging.Success,
+                GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+                RemoveBg = Files::RemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -188,13 +189,13 @@ public class FileUploadResponseTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
-        ExtensionStatus expectedExtensionStatus = new()
+        Files::ExtensionStatus expectedExtensionStatus = new()
         {
-            AIAutoDescription = AIAutoDescription.Success,
-            AITasks = AITasks.Success,
-            AwsAutoTagging = AwsAutoTagging.Success,
-            GoogleAutoTagging = GoogleAutoTagging.Success,
-            RemoveBg = RemoveBg.Success,
+            AIAutoDescription = Files::AIAutoDescription.Success,
+            AITasks = Files::AITasks.Success,
+            AwsAutoTagging = Files::AwsAutoTagging.Success,
+            GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+            RemoveBg = Files::RemoveBg.Success,
         };
         string expectedFileID = "fileId";
         string expectedFilePath = "filePath";
@@ -202,7 +203,7 @@ public class FileUploadResponseTest : TestBase
         double expectedHeight = 0;
         bool expectedIsPrivateFile = true;
         bool expectedIsPublished = true;
-        Files::FileMetadata expectedMetadata = new()
+        ModelsFiles::FileMetadata expectedMetadata = new()
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -378,7 +379,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -404,11 +405,11 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = AIAutoDescription.Success,
-                AITasks = AITasks.Success,
-                AwsAutoTagging = AwsAutoTagging.Success,
-                GoogleAutoTagging = GoogleAutoTagging.Success,
-                RemoveBg = RemoveBg.Success,
+                AIAutoDescription = Files::AIAutoDescription.Success,
+                AITasks = Files::AITasks.Success,
+                AwsAutoTagging = Files::AwsAutoTagging.Success,
+                GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+                RemoveBg = Files::RemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -533,7 +534,7 @@ public class FileUploadResponseTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponse>(
+        var deserialized = JsonSerializer.Deserialize<Files::FileUploadResponse>(
             json,
             ModelBase.SerializerOptions
         );
@@ -544,7 +545,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -570,11 +571,11 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = AIAutoDescription.Success,
-                AITasks = AITasks.Success,
-                AwsAutoTagging = AwsAutoTagging.Success,
-                GoogleAutoTagging = GoogleAutoTagging.Success,
-                RemoveBg = RemoveBg.Success,
+                AIAutoDescription = Files::AIAutoDescription.Success,
+                AITasks = Files::AITasks.Success,
+                AwsAutoTagging = Files::AwsAutoTagging.Success,
+                GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+                RemoveBg = Files::RemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -699,7 +700,7 @@ public class FileUploadResponseTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FileUploadResponse>(
+        var deserialized = JsonSerializer.Deserialize<Files::FileUploadResponse>(
             element,
             ModelBase.SerializerOptions
         );
@@ -727,13 +728,13 @@ public class FileUploadResponseTest : TestBase
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
         };
-        ExtensionStatus expectedExtensionStatus = new()
+        Files::ExtensionStatus expectedExtensionStatus = new()
         {
-            AIAutoDescription = AIAutoDescription.Success,
-            AITasks = AITasks.Success,
-            AwsAutoTagging = AwsAutoTagging.Success,
-            GoogleAutoTagging = GoogleAutoTagging.Success,
-            RemoveBg = RemoveBg.Success,
+            AIAutoDescription = Files::AIAutoDescription.Success,
+            AITasks = Files::AITasks.Success,
+            AwsAutoTagging = Files::AwsAutoTagging.Success,
+            GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+            RemoveBg = Files::RemoveBg.Success,
         };
         string expectedFileID = "fileId";
         string expectedFilePath = "filePath";
@@ -741,7 +742,7 @@ public class FileUploadResponseTest : TestBase
         double expectedHeight = 0;
         bool expectedIsPrivateFile = true;
         bool expectedIsPublished = true;
-        Files::FileMetadata expectedMetadata = new()
+        ModelsFiles::FileMetadata expectedMetadata = new()
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -917,7 +918,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -943,11 +944,11 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = AIAutoDescription.Success,
-                AITasks = AITasks.Success,
-                AwsAutoTagging = AwsAutoTagging.Success,
-                GoogleAutoTagging = GoogleAutoTagging.Success,
-                RemoveBg = RemoveBg.Success,
+                AIAutoDescription = Files::AIAutoDescription.Success,
+                AITasks = Files::AITasks.Success,
+                AwsAutoTagging = Files::AwsAutoTagging.Success,
+                GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+                RemoveBg = Files::RemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -1077,7 +1078,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -1141,7 +1142,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -1162,7 +1163,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -1250,7 +1251,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -1295,7 +1296,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -1311,11 +1312,11 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = AIAutoDescription.Success,
-                AITasks = AITasks.Success,
-                AwsAutoTagging = AwsAutoTagging.Success,
-                GoogleAutoTagging = GoogleAutoTagging.Success,
-                RemoveBg = RemoveBg.Success,
+                AIAutoDescription = Files::AIAutoDescription.Success,
+                AITasks = Files::AITasks.Success,
+                AwsAutoTagging = Files::AwsAutoTagging.Success,
+                GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+                RemoveBg = Files::RemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -1449,7 +1450,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -1465,11 +1466,11 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = AIAutoDescription.Success,
-                AITasks = AITasks.Success,
-                AwsAutoTagging = AwsAutoTagging.Success,
-                GoogleAutoTagging = GoogleAutoTagging.Success,
-                RemoveBg = RemoveBg.Success,
+                AIAutoDescription = Files::AIAutoDescription.Success,
+                AITasks = Files::AITasks.Success,
+                AwsAutoTagging = Files::AwsAutoTagging.Success,
+                GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+                RemoveBg = Files::RemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -1598,7 +1599,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -1614,11 +1615,11 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = AIAutoDescription.Success,
-                AITasks = AITasks.Success,
-                AwsAutoTagging = AwsAutoTagging.Success,
-                GoogleAutoTagging = GoogleAutoTagging.Success,
-                RemoveBg = RemoveBg.Success,
+                AIAutoDescription = Files::AIAutoDescription.Success,
+                AITasks = Files::AITasks.Success,
+                AwsAutoTagging = Files::AwsAutoTagging.Success,
+                GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+                RemoveBg = Files::RemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -1756,7 +1757,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AudioCodec = "audioCodec",
             BitRate = 0,
@@ -1772,11 +1773,11 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = AIAutoDescription.Success,
-                AITasks = AITasks.Success,
-                AwsAutoTagging = AwsAutoTagging.Success,
-                GoogleAutoTagging = GoogleAutoTagging.Success,
-                RemoveBg = RemoveBg.Success,
+                AIAutoDescription = Files::AIAutoDescription.Success,
+                AITasks = Files::AITasks.Success,
+                AwsAutoTagging = Files::AwsAutoTagging.Success,
+                GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+                RemoveBg = Files::RemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -1909,7 +1910,7 @@ public class FileUploadResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FileUploadResponse
+        var model = new Files::FileUploadResponse
         {
             AITags =
             [
@@ -1935,11 +1936,11 @@ public class FileUploadResponseTest : TestBase
             },
             ExtensionStatus = new()
             {
-                AIAutoDescription = AIAutoDescription.Success,
-                AITasks = AITasks.Success,
-                AwsAutoTagging = AwsAutoTagging.Success,
-                GoogleAutoTagging = GoogleAutoTagging.Success,
-                RemoveBg = RemoveBg.Success,
+                AIAutoDescription = Files::AIAutoDescription.Success,
+                AITasks = Files::AITasks.Success,
+                AwsAutoTagging = Files::AwsAutoTagging.Success,
+                GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+                RemoveBg = Files::RemoveBg.Success,
             },
             FileID = "fileId",
             FilePath = "filePath",
@@ -2063,150 +2064,7 @@ public class FileUploadResponseTest : TestBase
             Width = 0,
         };
 
-        FileUploadResponse copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class AITagTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new AITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        double expectedConfidence = 0;
-        string expectedName = "name";
-        string expectedSource = "source";
-
-        Assert.Equal(expectedConfidence, model.Confidence);
-        Assert.Equal(expectedName, model.Name);
-        Assert.Equal(expectedSource, model.Source);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new AITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<AITag>(json, ModelBase.SerializerOptions);
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new AITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<AITag>(element, ModelBase.SerializerOptions);
-        Assert.NotNull(deserialized);
-
-        double expectedConfidence = 0;
-        string expectedName = "name";
-        string expectedSource = "source";
-
-        Assert.Equal(expectedConfidence, deserialized.Confidence);
-        Assert.Equal(expectedName, deserialized.Name);
-        Assert.Equal(expectedSource, deserialized.Source);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new AITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new AITag { };
-
-        Assert.Null(model.Confidence);
-        Assert.False(model.RawData.ContainsKey("confidence"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-        Assert.Null(model.Source);
-        Assert.False(model.RawData.ContainsKey("source"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new AITag { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new AITag
-        {
-            // Null should be interpreted as omitted for these properties
-            Confidence = null,
-            Name = null,
-            Source = null,
-        };
-
-        Assert.Null(model.Confidence);
-        Assert.False(model.RawData.ContainsKey("confidence"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-        Assert.Null(model.Source);
-        Assert.False(model.RawData.ContainsKey("source"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new AITag
-        {
-            // Null should be interpreted as omitted for these properties
-            Confidence = null,
-            Name = null,
-            Source = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new AITag
-        {
-            Confidence = 0,
-            Name = "name",
-            Source = "source",
-        };
-
-        AITag copied = new(model);
+        Files::FileUploadResponse copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -2217,20 +2075,23 @@ public class ExtensionStatusTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ExtensionStatus
+        var model = new Files::ExtensionStatus
         {
-            AIAutoDescription = AIAutoDescription.Success,
-            AITasks = AITasks.Success,
-            AwsAutoTagging = AwsAutoTagging.Success,
-            GoogleAutoTagging = GoogleAutoTagging.Success,
-            RemoveBg = RemoveBg.Success,
+            AIAutoDescription = Files::AIAutoDescription.Success,
+            AITasks = Files::AITasks.Success,
+            AwsAutoTagging = Files::AwsAutoTagging.Success,
+            GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+            RemoveBg = Files::RemoveBg.Success,
         };
 
-        ApiEnum<string, AIAutoDescription> expectedAIAutoDescription = AIAutoDescription.Success;
-        ApiEnum<string, AITasks> expectedAITasks = AITasks.Success;
-        ApiEnum<string, AwsAutoTagging> expectedAwsAutoTagging = AwsAutoTagging.Success;
-        ApiEnum<string, GoogleAutoTagging> expectedGoogleAutoTagging = GoogleAutoTagging.Success;
-        ApiEnum<string, RemoveBg> expectedRemoveBg = RemoveBg.Success;
+        ApiEnum<string, Files::AIAutoDescription> expectedAIAutoDescription =
+            Files::AIAutoDescription.Success;
+        ApiEnum<string, Files::AITasks> expectedAITasks = Files::AITasks.Success;
+        ApiEnum<string, Files::AwsAutoTagging> expectedAwsAutoTagging =
+            Files::AwsAutoTagging.Success;
+        ApiEnum<string, Files::GoogleAutoTagging> expectedGoogleAutoTagging =
+            Files::GoogleAutoTagging.Success;
+        ApiEnum<string, Files::RemoveBg> expectedRemoveBg = Files::RemoveBg.Success;
 
         Assert.Equal(expectedAIAutoDescription, model.AIAutoDescription);
         Assert.Equal(expectedAITasks, model.AITasks);
@@ -2242,17 +2103,17 @@ public class ExtensionStatusTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ExtensionStatus
+        var model = new Files::ExtensionStatus
         {
-            AIAutoDescription = AIAutoDescription.Success,
-            AITasks = AITasks.Success,
-            AwsAutoTagging = AwsAutoTagging.Success,
-            GoogleAutoTagging = GoogleAutoTagging.Success,
-            RemoveBg = RemoveBg.Success,
+            AIAutoDescription = Files::AIAutoDescription.Success,
+            AITasks = Files::AITasks.Success,
+            AwsAutoTagging = Files::AwsAutoTagging.Success,
+            GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+            RemoveBg = Files::RemoveBg.Success,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ExtensionStatus>(
+        var deserialized = JsonSerializer.Deserialize<Files::ExtensionStatus>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2263,27 +2124,30 @@ public class ExtensionStatusTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ExtensionStatus
+        var model = new Files::ExtensionStatus
         {
-            AIAutoDescription = AIAutoDescription.Success,
-            AITasks = AITasks.Success,
-            AwsAutoTagging = AwsAutoTagging.Success,
-            GoogleAutoTagging = GoogleAutoTagging.Success,
-            RemoveBg = RemoveBg.Success,
+            AIAutoDescription = Files::AIAutoDescription.Success,
+            AITasks = Files::AITasks.Success,
+            AwsAutoTagging = Files::AwsAutoTagging.Success,
+            GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+            RemoveBg = Files::RemoveBg.Success,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ExtensionStatus>(
+        var deserialized = JsonSerializer.Deserialize<Files::ExtensionStatus>(
             element,
             ModelBase.SerializerOptions
         );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, AIAutoDescription> expectedAIAutoDescription = AIAutoDescription.Success;
-        ApiEnum<string, AITasks> expectedAITasks = AITasks.Success;
-        ApiEnum<string, AwsAutoTagging> expectedAwsAutoTagging = AwsAutoTagging.Success;
-        ApiEnum<string, GoogleAutoTagging> expectedGoogleAutoTagging = GoogleAutoTagging.Success;
-        ApiEnum<string, RemoveBg> expectedRemoveBg = RemoveBg.Success;
+        ApiEnum<string, Files::AIAutoDescription> expectedAIAutoDescription =
+            Files::AIAutoDescription.Success;
+        ApiEnum<string, Files::AITasks> expectedAITasks = Files::AITasks.Success;
+        ApiEnum<string, Files::AwsAutoTagging> expectedAwsAutoTagging =
+            Files::AwsAutoTagging.Success;
+        ApiEnum<string, Files::GoogleAutoTagging> expectedGoogleAutoTagging =
+            Files::GoogleAutoTagging.Success;
+        ApiEnum<string, Files::RemoveBg> expectedRemoveBg = Files::RemoveBg.Success;
 
         Assert.Equal(expectedAIAutoDescription, deserialized.AIAutoDescription);
         Assert.Equal(expectedAITasks, deserialized.AITasks);
@@ -2295,13 +2159,13 @@ public class ExtensionStatusTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ExtensionStatus
+        var model = new Files::ExtensionStatus
         {
-            AIAutoDescription = AIAutoDescription.Success,
-            AITasks = AITasks.Success,
-            AwsAutoTagging = AwsAutoTagging.Success,
-            GoogleAutoTagging = GoogleAutoTagging.Success,
-            RemoveBg = RemoveBg.Success,
+            AIAutoDescription = Files::AIAutoDescription.Success,
+            AITasks = Files::AITasks.Success,
+            AwsAutoTagging = Files::AwsAutoTagging.Success,
+            GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+            RemoveBg = Files::RemoveBg.Success,
         };
 
         model.Validate();
@@ -2310,7 +2174,7 @@ public class ExtensionStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new ExtensionStatus { };
+        var model = new Files::ExtensionStatus { };
 
         Assert.Null(model.AIAutoDescription);
         Assert.False(model.RawData.ContainsKey("ai-auto-description"));
@@ -2327,7 +2191,7 @@ public class ExtensionStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new ExtensionStatus { };
+        var model = new Files::ExtensionStatus { };
 
         model.Validate();
     }
@@ -2335,7 +2199,7 @@ public class ExtensionStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new ExtensionStatus
+        var model = new Files::ExtensionStatus
         {
             // Null should be interpreted as omitted for these properties
             AIAutoDescription = null,
@@ -2360,7 +2224,7 @@ public class ExtensionStatusTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new ExtensionStatus
+        var model = new Files::ExtensionStatus
         {
             // Null should be interpreted as omitted for these properties
             AIAutoDescription = null,
@@ -2376,16 +2240,16 @@ public class ExtensionStatusTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new ExtensionStatus
+        var model = new Files::ExtensionStatus
         {
-            AIAutoDescription = AIAutoDescription.Success,
-            AITasks = AITasks.Success,
-            AwsAutoTagging = AwsAutoTagging.Success,
-            GoogleAutoTagging = GoogleAutoTagging.Success,
-            RemoveBg = RemoveBg.Success,
+            AIAutoDescription = Files::AIAutoDescription.Success,
+            AITasks = Files::AITasks.Success,
+            AwsAutoTagging = Files::AwsAutoTagging.Success,
+            GoogleAutoTagging = Files::GoogleAutoTagging.Success,
+            RemoveBg = Files::RemoveBg.Success,
         };
 
-        ExtensionStatus copied = new(model);
+        Files::ExtensionStatus copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -2394,20 +2258,20 @@ public class ExtensionStatusTest : TestBase
 public class AIAutoDescriptionTest : TestBase
 {
     [Theory]
-    [InlineData(AIAutoDescription.Success)]
-    [InlineData(AIAutoDescription.Pending)]
-    [InlineData(AIAutoDescription.Failed)]
-    public void Validation_Works(AIAutoDescription rawValue)
+    [InlineData(Files::AIAutoDescription.Success)]
+    [InlineData(Files::AIAutoDescription.Pending)]
+    [InlineData(Files::AIAutoDescription.Failed)]
+    public void Validation_Works(Files::AIAutoDescription rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, AIAutoDescription> value = rawValue;
+        ApiEnum<string, Files::AIAutoDescription> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, AIAutoDescription>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::AIAutoDescription>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -2417,16 +2281,16 @@ public class AIAutoDescriptionTest : TestBase
     }
 
     [Theory]
-    [InlineData(AIAutoDescription.Success)]
-    [InlineData(AIAutoDescription.Pending)]
-    [InlineData(AIAutoDescription.Failed)]
-    public void SerializationRoundtrip_Works(AIAutoDescription rawValue)
+    [InlineData(Files::AIAutoDescription.Success)]
+    [InlineData(Files::AIAutoDescription.Pending)]
+    [InlineData(Files::AIAutoDescription.Failed)]
+    public void SerializationRoundtrip_Works(Files::AIAutoDescription rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, AIAutoDescription> value = rawValue;
+        ApiEnum<string, Files::AIAutoDescription> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AIAutoDescription>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::AIAutoDescription>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2437,12 +2301,12 @@ public class AIAutoDescriptionTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, AIAutoDescription>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::AIAutoDescription>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AIAutoDescription>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::AIAutoDescription>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2454,20 +2318,20 @@ public class AIAutoDescriptionTest : TestBase
 public class AITasksTest : TestBase
 {
     [Theory]
-    [InlineData(AITasks.Success)]
-    [InlineData(AITasks.Pending)]
-    [InlineData(AITasks.Failed)]
-    public void Validation_Works(AITasks rawValue)
+    [InlineData(Files::AITasks.Success)]
+    [InlineData(Files::AITasks.Pending)]
+    [InlineData(Files::AITasks.Failed)]
+    public void Validation_Works(Files::AITasks rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, AITasks> value = rawValue;
+        ApiEnum<string, Files::AITasks> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, AITasks>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::AITasks>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -2477,16 +2341,16 @@ public class AITasksTest : TestBase
     }
 
     [Theory]
-    [InlineData(AITasks.Success)]
-    [InlineData(AITasks.Pending)]
-    [InlineData(AITasks.Failed)]
-    public void SerializationRoundtrip_Works(AITasks rawValue)
+    [InlineData(Files::AITasks.Success)]
+    [InlineData(Files::AITasks.Pending)]
+    [InlineData(Files::AITasks.Failed)]
+    public void SerializationRoundtrip_Works(Files::AITasks rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, AITasks> value = rawValue;
+        ApiEnum<string, Files::AITasks> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AITasks>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::AITasks>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2497,12 +2361,12 @@ public class AITasksTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, AITasks>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::AITasks>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AITasks>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::AITasks>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2514,20 +2378,20 @@ public class AITasksTest : TestBase
 public class AwsAutoTaggingTest : TestBase
 {
     [Theory]
-    [InlineData(AwsAutoTagging.Success)]
-    [InlineData(AwsAutoTagging.Pending)]
-    [InlineData(AwsAutoTagging.Failed)]
-    public void Validation_Works(AwsAutoTagging rawValue)
+    [InlineData(Files::AwsAutoTagging.Success)]
+    [InlineData(Files::AwsAutoTagging.Pending)]
+    [InlineData(Files::AwsAutoTagging.Failed)]
+    public void Validation_Works(Files::AwsAutoTagging rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, AwsAutoTagging> value = rawValue;
+        ApiEnum<string, Files::AwsAutoTagging> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, AwsAutoTagging>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::AwsAutoTagging>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -2537,16 +2401,16 @@ public class AwsAutoTaggingTest : TestBase
     }
 
     [Theory]
-    [InlineData(AwsAutoTagging.Success)]
-    [InlineData(AwsAutoTagging.Pending)]
-    [InlineData(AwsAutoTagging.Failed)]
-    public void SerializationRoundtrip_Works(AwsAutoTagging rawValue)
+    [InlineData(Files::AwsAutoTagging.Success)]
+    [InlineData(Files::AwsAutoTagging.Pending)]
+    [InlineData(Files::AwsAutoTagging.Failed)]
+    public void SerializationRoundtrip_Works(Files::AwsAutoTagging rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, AwsAutoTagging> value = rawValue;
+        ApiEnum<string, Files::AwsAutoTagging> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AwsAutoTagging>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::AwsAutoTagging>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2557,12 +2421,12 @@ public class AwsAutoTaggingTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, AwsAutoTagging>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::AwsAutoTagging>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AwsAutoTagging>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::AwsAutoTagging>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2574,20 +2438,20 @@ public class AwsAutoTaggingTest : TestBase
 public class GoogleAutoTaggingTest : TestBase
 {
     [Theory]
-    [InlineData(GoogleAutoTagging.Success)]
-    [InlineData(GoogleAutoTagging.Pending)]
-    [InlineData(GoogleAutoTagging.Failed)]
-    public void Validation_Works(GoogleAutoTagging rawValue)
+    [InlineData(Files::GoogleAutoTagging.Success)]
+    [InlineData(Files::GoogleAutoTagging.Pending)]
+    [InlineData(Files::GoogleAutoTagging.Failed)]
+    public void Validation_Works(Files::GoogleAutoTagging rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, GoogleAutoTagging> value = rawValue;
+        ApiEnum<string, Files::GoogleAutoTagging> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, GoogleAutoTagging>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::GoogleAutoTagging>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -2597,16 +2461,16 @@ public class GoogleAutoTaggingTest : TestBase
     }
 
     [Theory]
-    [InlineData(GoogleAutoTagging.Success)]
-    [InlineData(GoogleAutoTagging.Pending)]
-    [InlineData(GoogleAutoTagging.Failed)]
-    public void SerializationRoundtrip_Works(GoogleAutoTagging rawValue)
+    [InlineData(Files::GoogleAutoTagging.Success)]
+    [InlineData(Files::GoogleAutoTagging.Pending)]
+    [InlineData(Files::GoogleAutoTagging.Failed)]
+    public void SerializationRoundtrip_Works(Files::GoogleAutoTagging rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, GoogleAutoTagging> value = rawValue;
+        ApiEnum<string, Files::GoogleAutoTagging> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, GoogleAutoTagging>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::GoogleAutoTagging>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2617,12 +2481,12 @@ public class GoogleAutoTaggingTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, GoogleAutoTagging>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::GoogleAutoTagging>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, GoogleAutoTagging>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::GoogleAutoTagging>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2634,20 +2498,20 @@ public class GoogleAutoTaggingTest : TestBase
 public class RemoveBgTest : TestBase
 {
     [Theory]
-    [InlineData(RemoveBg.Success)]
-    [InlineData(RemoveBg.Pending)]
-    [InlineData(RemoveBg.Failed)]
-    public void Validation_Works(RemoveBg rawValue)
+    [InlineData(Files::RemoveBg.Success)]
+    [InlineData(Files::RemoveBg.Pending)]
+    [InlineData(Files::RemoveBg.Failed)]
+    public void Validation_Works(Files::RemoveBg rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, RemoveBg> value = rawValue;
+        ApiEnum<string, Files::RemoveBg> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, RemoveBg>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::RemoveBg>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -2657,16 +2521,16 @@ public class RemoveBgTest : TestBase
     }
 
     [Theory]
-    [InlineData(RemoveBg.Success)]
-    [InlineData(RemoveBg.Pending)]
-    [InlineData(RemoveBg.Failed)]
-    public void SerializationRoundtrip_Works(RemoveBg rawValue)
+    [InlineData(Files::RemoveBg.Success)]
+    [InlineData(Files::RemoveBg.Pending)]
+    [InlineData(Files::RemoveBg.Failed)]
+    public void SerializationRoundtrip_Works(Files::RemoveBg rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, RemoveBg> value = rawValue;
+        ApiEnum<string, Files::RemoveBg> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, RemoveBg>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::RemoveBg>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2677,809 +2541,16 @@ public class RemoveBgTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, RemoveBg>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Files::RemoveBg>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, RemoveBg>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Files::RemoveBg>>(
             json,
             ModelBase.SerializerOptions
         );
 
         Assert.Equal(value, deserialized);
-    }
-}
-
-public class SelectedFieldsSchemaItemTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new SelectedFieldsSchemaItem
-        {
-            Type = Type.Text,
-            DefaultValue = new(
-                [
-                    new DefaultValueArrayItem(true),
-                    new DefaultValueArrayItem(10),
-                    new DefaultValueArrayItem("Hello"),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        ApiEnum<string, Type> expectedType = Type.Text;
-        DefaultValue expectedDefaultValue = new(
-            [
-                new DefaultValueArrayItem(true),
-                new DefaultValueArrayItem(10),
-                new DefaultValueArrayItem("Hello"),
-            ]
-        );
-        bool expectedIsValueRequired = true;
-        double expectedMaxLength = 0;
-        MaxValue expectedMaxValue = "string";
-        double expectedMinLength = 0;
-        MinValue expectedMinValue = "string";
-        bool expectedReadOnly = true;
-        List<SelectOption> expectedSelectOptions = ["small", "medium", "large", 30, 40, true];
-        bool expectedSelectOptionsTruncated = true;
-
-        Assert.Equal(expectedType, model.Type);
-        Assert.Equal(expectedDefaultValue, model.DefaultValue);
-        Assert.Equal(expectedIsValueRequired, model.IsValueRequired);
-        Assert.Equal(expectedMaxLength, model.MaxLength);
-        Assert.Equal(expectedMaxValue, model.MaxValue);
-        Assert.Equal(expectedMinLength, model.MinLength);
-        Assert.Equal(expectedMinValue, model.MinValue);
-        Assert.Equal(expectedReadOnly, model.ReadOnly);
-        Assert.NotNull(model.SelectOptions);
-        Assert.Equal(expectedSelectOptions.Count, model.SelectOptions.Count);
-        for (int i = 0; i < expectedSelectOptions.Count; i++)
-        {
-            Assert.Equal(expectedSelectOptions[i], model.SelectOptions[i]);
-        }
-        Assert.Equal(expectedSelectOptionsTruncated, model.SelectOptionsTruncated);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new SelectedFieldsSchemaItem
-        {
-            Type = Type.Text,
-            DefaultValue = new(
-                [
-                    new DefaultValueArrayItem(true),
-                    new DefaultValueArrayItem(10),
-                    new DefaultValueArrayItem("Hello"),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SelectedFieldsSchemaItem>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new SelectedFieldsSchemaItem
-        {
-            Type = Type.Text,
-            DefaultValue = new(
-                [
-                    new DefaultValueArrayItem(true),
-                    new DefaultValueArrayItem(10),
-                    new DefaultValueArrayItem("Hello"),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SelectedFieldsSchemaItem>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        ApiEnum<string, Type> expectedType = Type.Text;
-        DefaultValue expectedDefaultValue = new(
-            [
-                new DefaultValueArrayItem(true),
-                new DefaultValueArrayItem(10),
-                new DefaultValueArrayItem("Hello"),
-            ]
-        );
-        bool expectedIsValueRequired = true;
-        double expectedMaxLength = 0;
-        MaxValue expectedMaxValue = "string";
-        double expectedMinLength = 0;
-        MinValue expectedMinValue = "string";
-        bool expectedReadOnly = true;
-        List<SelectOption> expectedSelectOptions = ["small", "medium", "large", 30, 40, true];
-        bool expectedSelectOptionsTruncated = true;
-
-        Assert.Equal(expectedType, deserialized.Type);
-        Assert.Equal(expectedDefaultValue, deserialized.DefaultValue);
-        Assert.Equal(expectedIsValueRequired, deserialized.IsValueRequired);
-        Assert.Equal(expectedMaxLength, deserialized.MaxLength);
-        Assert.Equal(expectedMaxValue, deserialized.MaxValue);
-        Assert.Equal(expectedMinLength, deserialized.MinLength);
-        Assert.Equal(expectedMinValue, deserialized.MinValue);
-        Assert.Equal(expectedReadOnly, deserialized.ReadOnly);
-        Assert.NotNull(deserialized.SelectOptions);
-        Assert.Equal(expectedSelectOptions.Count, deserialized.SelectOptions.Count);
-        for (int i = 0; i < expectedSelectOptions.Count; i++)
-        {
-            Assert.Equal(expectedSelectOptions[i], deserialized.SelectOptions[i]);
-        }
-        Assert.Equal(expectedSelectOptionsTruncated, deserialized.SelectOptionsTruncated);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new SelectedFieldsSchemaItem
-        {
-            Type = Type.Text,
-            DefaultValue = new(
-                [
-                    new DefaultValueArrayItem(true),
-                    new DefaultValueArrayItem(10),
-                    new DefaultValueArrayItem("Hello"),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new SelectedFieldsSchemaItem { Type = Type.Text };
-
-        Assert.Null(model.DefaultValue);
-        Assert.False(model.RawData.ContainsKey("defaultValue"));
-        Assert.Null(model.IsValueRequired);
-        Assert.False(model.RawData.ContainsKey("isValueRequired"));
-        Assert.Null(model.MaxLength);
-        Assert.False(model.RawData.ContainsKey("maxLength"));
-        Assert.Null(model.MaxValue);
-        Assert.False(model.RawData.ContainsKey("maxValue"));
-        Assert.Null(model.MinLength);
-        Assert.False(model.RawData.ContainsKey("minLength"));
-        Assert.Null(model.MinValue);
-        Assert.False(model.RawData.ContainsKey("minValue"));
-        Assert.Null(model.ReadOnly);
-        Assert.False(model.RawData.ContainsKey("readOnly"));
-        Assert.Null(model.SelectOptions);
-        Assert.False(model.RawData.ContainsKey("selectOptions"));
-        Assert.Null(model.SelectOptionsTruncated);
-        Assert.False(model.RawData.ContainsKey("selectOptionsTruncated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new SelectedFieldsSchemaItem { Type = Type.Text };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new SelectedFieldsSchemaItem
-        {
-            Type = Type.Text,
-
-            // Null should be interpreted as omitted for these properties
-            DefaultValue = null,
-            IsValueRequired = null,
-            MaxLength = null,
-            MaxValue = null,
-            MinLength = null,
-            MinValue = null,
-            ReadOnly = null,
-            SelectOptions = null,
-            SelectOptionsTruncated = null,
-        };
-
-        Assert.Null(model.DefaultValue);
-        Assert.False(model.RawData.ContainsKey("defaultValue"));
-        Assert.Null(model.IsValueRequired);
-        Assert.False(model.RawData.ContainsKey("isValueRequired"));
-        Assert.Null(model.MaxLength);
-        Assert.False(model.RawData.ContainsKey("maxLength"));
-        Assert.Null(model.MaxValue);
-        Assert.False(model.RawData.ContainsKey("maxValue"));
-        Assert.Null(model.MinLength);
-        Assert.False(model.RawData.ContainsKey("minLength"));
-        Assert.Null(model.MinValue);
-        Assert.False(model.RawData.ContainsKey("minValue"));
-        Assert.Null(model.ReadOnly);
-        Assert.False(model.RawData.ContainsKey("readOnly"));
-        Assert.Null(model.SelectOptions);
-        Assert.False(model.RawData.ContainsKey("selectOptions"));
-        Assert.Null(model.SelectOptionsTruncated);
-        Assert.False(model.RawData.ContainsKey("selectOptionsTruncated"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new SelectedFieldsSchemaItem
-        {
-            Type = Type.Text,
-
-            // Null should be interpreted as omitted for these properties
-            DefaultValue = null,
-            IsValueRequired = null,
-            MaxLength = null,
-            MaxValue = null,
-            MinLength = null,
-            MinValue = null,
-            ReadOnly = null,
-            SelectOptions = null,
-            SelectOptionsTruncated = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new SelectedFieldsSchemaItem
-        {
-            Type = Type.Text,
-            DefaultValue = new(
-                [
-                    new DefaultValueArrayItem(true),
-                    new DefaultValueArrayItem(10),
-                    new DefaultValueArrayItem("Hello"),
-                ]
-            ),
-            IsValueRequired = true,
-            MaxLength = 0,
-            MaxValue = "string",
-            MinLength = 0,
-            MinValue = "string",
-            ReadOnly = true,
-            SelectOptions = ["small", "medium", "large", 30, 40, true],
-            SelectOptionsTruncated = true,
-        };
-
-        SelectedFieldsSchemaItem copied = new(model);
-
-        Assert.Equal(model, copied);
-    }
-}
-
-public class TypeTest : TestBase
-{
-    [Theory]
-    [InlineData(Type.Text)]
-    [InlineData(Type.Textarea)]
-    [InlineData(Type.Number)]
-    [InlineData(Type.Date)]
-    [InlineData(Type.Boolean)]
-    [InlineData(Type.SingleSelect)]
-    [InlineData(Type.MultiSelect)]
-    public void Validation_Works(Type rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Type> value = rawValue;
-        value.Validate();
-    }
-
-    [Fact]
-    public void InvalidEnumValidationThrows_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-
-        Assert.NotNull(value);
-        Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
-    }
-
-    [Theory]
-    [InlineData(Type.Text)]
-    [InlineData(Type.Textarea)]
-    [InlineData(Type.Number)]
-    [InlineData(Type.Date)]
-    [InlineData(Type.Boolean)]
-    [InlineData(Type.SingleSelect)]
-    [InlineData(Type.MultiSelect)]
-    public void SerializationRoundtrip_Works(Type rawValue)
-    {
-        // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Type> value = rawValue;
-
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void InvalidEnumSerializationRoundtrip_Works()
-    {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
-        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Type>>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class DefaultValueTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        DefaultValue value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        DefaultValue value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void BoolValidationWorks()
-    {
-        DefaultValue value = true;
-        value.Validate();
-    }
-
-    [Fact]
-    public void MixedValidationWorks()
-    {
-        DefaultValue value = new(
-            [
-                new DefaultValueArrayItem(true),
-                new DefaultValueArrayItem(10),
-                new DefaultValueArrayItem("Hello"),
-            ]
-        );
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        DefaultValue value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DefaultValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        DefaultValue value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DefaultValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void BoolSerializationRoundtripWorks()
-    {
-        DefaultValue value = true;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DefaultValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void MixedSerializationRoundtripWorks()
-    {
-        DefaultValue value = new(
-            [
-                new DefaultValueArrayItem(true),
-                new DefaultValueArrayItem(10),
-                new DefaultValueArrayItem("Hello"),
-            ]
-        );
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DefaultValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class DefaultValueArrayItemTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        DefaultValueArrayItem value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        DefaultValueArrayItem value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void BoolValidationWorks()
-    {
-        DefaultValueArrayItem value = true;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        DefaultValueArrayItem value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DefaultValueArrayItem>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        DefaultValueArrayItem value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DefaultValueArrayItem>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void BoolSerializationRoundtripWorks()
-    {
-        DefaultValueArrayItem value = true;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DefaultValueArrayItem>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class MaxValueTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        MaxValue value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        MaxValue value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        MaxValue value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<MaxValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        MaxValue value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<MaxValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class MinValueTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        MinValue value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        MinValue value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        MinValue value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<MinValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        MinValue value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<MinValue>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class SelectOptionTest : TestBase
-{
-    [Fact]
-    public void StringValidationWorks()
-    {
-        SelectOption value = "string";
-        value.Validate();
-    }
-
-    [Fact]
-    public void DoubleValidationWorks()
-    {
-        SelectOption value = 0;
-        value.Validate();
-    }
-
-    [Fact]
-    public void BoolValidationWorks()
-    {
-        SelectOption value = true;
-        value.Validate();
-    }
-
-    [Fact]
-    public void StringSerializationRoundtripWorks()
-    {
-        SelectOption value = "string";
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SelectOption>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void DoubleSerializationRoundtripWorks()
-    {
-        SelectOption value = 0;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SelectOption>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-
-    [Fact]
-    public void BoolSerializationRoundtripWorks()
-    {
-        SelectOption value = true;
-        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<SelectOption>(
-            element,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(value, deserialized);
-    }
-}
-
-public class VersionInfoTest : TestBase
-{
-    [Fact]
-    public void FieldRoundtrip_Works()
-    {
-        var model = new VersionInfo { ID = "id", Name = "name" };
-
-        string expectedID = "id";
-        string expectedName = "name";
-
-        Assert.Equal(expectedID, model.ID);
-        Assert.Equal(expectedName, model.Name);
-    }
-
-    [Fact]
-    public void SerializationRoundtrip_Works()
-    {
-        var model = new VersionInfo { ID = "id", Name = "name" };
-
-        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<VersionInfo>(
-            json,
-            ModelBase.SerializerOptions
-        );
-
-        Assert.Equal(model, deserialized);
-    }
-
-    [Fact]
-    public void FieldRoundtripThroughSerialization_Works()
-    {
-        var model = new VersionInfo { ID = "id", Name = "name" };
-
-        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<VersionInfo>(
-            element,
-            ModelBase.SerializerOptions
-        );
-        Assert.NotNull(deserialized);
-
-        string expectedID = "id";
-        string expectedName = "name";
-
-        Assert.Equal(expectedID, deserialized.ID);
-        Assert.Equal(expectedName, deserialized.Name);
-    }
-
-    [Fact]
-    public void Validation_Works()
-    {
-        var model = new VersionInfo { ID = "id", Name = "name" };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new VersionInfo { };
-
-        Assert.Null(model.ID);
-        Assert.False(model.RawData.ContainsKey("id"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new VersionInfo { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new VersionInfo
-        {
-            // Null should be interpreted as omitted for these properties
-            ID = null,
-            Name = null,
-        };
-
-        Assert.Null(model.ID);
-        Assert.False(model.RawData.ContainsKey("id"));
-        Assert.Null(model.Name);
-        Assert.False(model.RawData.ContainsKey("name"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new VersionInfo
-        {
-            // Null should be interpreted as omitted for these properties
-            ID = null,
-            Name = null,
-        };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void CopyConstructor_Works()
-    {
-        var model = new VersionInfo { ID = "id", Name = "name" };
-
-        VersionInfo copied = new(model);
-
-        Assert.Equal(model, copied);
     }
 }
