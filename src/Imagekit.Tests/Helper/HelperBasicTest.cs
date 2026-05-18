@@ -309,5 +309,31 @@ public class HelperBasicTest
 
         Assert.Equal("https://custom.domain.com/url-pattern/test_path.jpg", url);
     }
+
+    [Fact]
+    public void BuildUrl_WithCropQualityFormat_GeneratesCorrectQueryString()
+    {
+        var url = _client.Helper.BuildUrl(new SrcOptions
+        {
+            UrlEndpoint = "https://ik.imagekit.io/your_imagekit_id",
+            Src = "/path/to/image.jpg",
+            Transformation =
+            [
+                new Transformation
+                {
+                    Width = 400,
+                    Height = 300,
+                    Crop = Crop.MaintainRatio,
+                    Quality = 80,
+                    Format = Format.Webp,
+                },
+            ],
+        });
+
+        Assert.Equal(
+            "https://ik.imagekit.io/your_imagekit_id/path/to/image.jpg?tr=w-400,h-300,q-80,c-maintain_ratio,f-webp",
+            url
+        );
+    }
 }
 
