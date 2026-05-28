@@ -21,6 +21,7 @@ public class FileMetadataTest : TestBase
                 ExifValue = new()
                 {
                     ApertureValue = 0,
+                    BrightnessValue = 0,
                     ColorSpace = 0,
                     CreateDate = "CreateDate",
                     CustomRendered = 0,
@@ -36,22 +37,45 @@ public class FileMetadataTest : TestBase
                     FlashpixVersion = "FlashpixVersion",
                     FNumber = 0,
                     FocalLength = 0,
+                    FocalLengthIn35mmFormat = 0,
                     FocalPlaneResolutionUnit = 0,
                     FocalPlaneXResolution = 0,
                     FocalPlaneYResolution = 0,
                     InteropOffset = 0,
                     Iso = 0,
+                    LensModel = "LensModel",
+                    LightSource = 0,
+                    MaxApertureValue = 0,
                     MeteringMode = 0,
                     SceneCaptureType = 0,
+                    SceneType = "SceneType",
+                    SensingMethod = 0,
                     ShutterSpeedValue = 0,
                     SubSecTime = "SubSecTime",
+                    UserComment = "UserComment",
                     WhiteBalance = 0,
                 },
-                Gps = new() { GpsVersionID = [0] },
+                Gps = new()
+                {
+                    GpsAltitude = 0,
+                    GpsAltitudeRef = 0,
+                    GpsDateStamp = "GPSDateStamp",
+                    GpsImgDirection = 0,
+                    GpsImgDirectionRef = "GPSImgDirectionRef",
+                    GpsLatitude = [0],
+                    GpsLatitudeRef = "GPSLatitudeRef",
+                    GpsLongitude = [0],
+                    GpsLongitudeRef = "GPSLongitudeRef",
+                    GpsTimeStamp = [0],
+                    GpsVersionID = [0],
+                },
                 Image = new()
                 {
+                    Artist = "Artist",
+                    Copyright = "Copyright",
                     ExifOffset = 0,
                     GpsInfo = 0,
+                    ImageDescription = "ImageDescription",
                     Make = "Make",
                     Model = "Model",
                     ModifyDate = "ModifyDate",
@@ -101,6 +125,7 @@ public class FileMetadataTest : TestBase
             ExifValue = new()
             {
                 ApertureValue = 0,
+                BrightnessValue = 0,
                 ColorSpace = 0,
                 CreateDate = "CreateDate",
                 CustomRendered = 0,
@@ -116,22 +141,45 @@ public class FileMetadataTest : TestBase
                 FlashpixVersion = "FlashpixVersion",
                 FNumber = 0,
                 FocalLength = 0,
+                FocalLengthIn35mmFormat = 0,
                 FocalPlaneResolutionUnit = 0,
                 FocalPlaneXResolution = 0,
                 FocalPlaneYResolution = 0,
                 InteropOffset = 0,
                 Iso = 0,
+                LensModel = "LensModel",
+                LightSource = 0,
+                MaxApertureValue = 0,
                 MeteringMode = 0,
                 SceneCaptureType = 0,
+                SceneType = "SceneType",
+                SensingMethod = 0,
                 ShutterSpeedValue = 0,
                 SubSecTime = "SubSecTime",
+                UserComment = "UserComment",
                 WhiteBalance = 0,
             },
-            Gps = new() { GpsVersionID = [0] },
+            Gps = new()
+            {
+                GpsAltitude = 0,
+                GpsAltitudeRef = 0,
+                GpsDateStamp = "GPSDateStamp",
+                GpsImgDirection = 0,
+                GpsImgDirectionRef = "GPSImgDirectionRef",
+                GpsLatitude = [0],
+                GpsLatitudeRef = "GPSLatitudeRef",
+                GpsLongitude = [0],
+                GpsLongitudeRef = "GPSLongitudeRef",
+                GpsTimeStamp = [0],
+                GpsVersionID = [0],
+            },
             Image = new()
             {
+                Artist = "Artist",
+                Copyright = "Copyright",
                 ExifOffset = 0,
                 GpsInfo = 0,
+                ImageDescription = "ImageDescription",
                 Make = "Make",
                 Model = "Model",
                 ModifyDate = "ModifyDate",
@@ -201,6 +249,7 @@ public class FileMetadataTest : TestBase
                 ExifValue = new()
                 {
                     ApertureValue = 0,
+                    BrightnessValue = 0,
                     ColorSpace = 0,
                     CreateDate = "CreateDate",
                     CustomRendered = 0,
@@ -216,22 +265,45 @@ public class FileMetadataTest : TestBase
                     FlashpixVersion = "FlashpixVersion",
                     FNumber = 0,
                     FocalLength = 0,
+                    FocalLengthIn35mmFormat = 0,
                     FocalPlaneResolutionUnit = 0,
                     FocalPlaneXResolution = 0,
                     FocalPlaneYResolution = 0,
                     InteropOffset = 0,
                     Iso = 0,
+                    LensModel = "LensModel",
+                    LightSource = 0,
+                    MaxApertureValue = 0,
                     MeteringMode = 0,
                     SceneCaptureType = 0,
+                    SceneType = "SceneType",
+                    SensingMethod = 0,
                     ShutterSpeedValue = 0,
                     SubSecTime = "SubSecTime",
+                    UserComment = "UserComment",
                     WhiteBalance = 0,
                 },
-                Gps = new() { GpsVersionID = [0] },
+                Gps = new()
+                {
+                    GpsAltitude = 0,
+                    GpsAltitudeRef = 0,
+                    GpsDateStamp = "GPSDateStamp",
+                    GpsImgDirection = 0,
+                    GpsImgDirectionRef = "GPSImgDirectionRef",
+                    GpsLatitude = [0],
+                    GpsLatitudeRef = "GPSLatitudeRef",
+                    GpsLongitude = [0],
+                    GpsLongitudeRef = "GPSLongitudeRef",
+                    GpsTimeStamp = [0],
+                    GpsVersionID = [0],
+                },
                 Image = new()
                 {
+                    Artist = "Artist",
+                    Copyright = "Copyright",
                     ExifOffset = 0,
                     GpsInfo = 0,
+                    ImageDescription = "ImageDescription",
                     Make = "Make",
                     Model = "Model",
                     ModifyDate = "ModifyDate",
@@ -295,6 +367,7 @@ public class FileMetadataTest : TestBase
                 ExifValue = new()
                 {
                     ApertureValue = 0,
+                    BrightnessValue = 0,
                     ColorSpace = 0,
                     CreateDate = "CreateDate",
                     CustomRendered = 0,
@@ -310,22 +383,45 @@ public class FileMetadataTest : TestBase
                     FlashpixVersion = "FlashpixVersion",
                     FNumber = 0,
                     FocalLength = 0,
+                    FocalLengthIn35mmFormat = 0,
                     FocalPlaneResolutionUnit = 0,
                     FocalPlaneXResolution = 0,
                     FocalPlaneYResolution = 0,
                     InteropOffset = 0,
                     Iso = 0,
+                    LensModel = "LensModel",
+                    LightSource = 0,
+                    MaxApertureValue = 0,
                     MeteringMode = 0,
                     SceneCaptureType = 0,
+                    SceneType = "SceneType",
+                    SensingMethod = 0,
                     ShutterSpeedValue = 0,
                     SubSecTime = "SubSecTime",
+                    UserComment = "UserComment",
                     WhiteBalance = 0,
                 },
-                Gps = new() { GpsVersionID = [0] },
+                Gps = new()
+                {
+                    GpsAltitude = 0,
+                    GpsAltitudeRef = 0,
+                    GpsDateStamp = "GPSDateStamp",
+                    GpsImgDirection = 0,
+                    GpsImgDirectionRef = "GPSImgDirectionRef",
+                    GpsLatitude = [0],
+                    GpsLatitudeRef = "GPSLatitudeRef",
+                    GpsLongitude = [0],
+                    GpsLongitudeRef = "GPSLongitudeRef",
+                    GpsTimeStamp = [0],
+                    GpsVersionID = [0],
+                },
                 Image = new()
                 {
+                    Artist = "Artist",
+                    Copyright = "Copyright",
                     ExifOffset = 0,
                     GpsInfo = 0,
+                    ImageDescription = "ImageDescription",
                     Make = "Make",
                     Model = "Model",
                     ModifyDate = "ModifyDate",
@@ -382,6 +478,7 @@ public class FileMetadataTest : TestBase
             ExifValue = new()
             {
                 ApertureValue = 0,
+                BrightnessValue = 0,
                 ColorSpace = 0,
                 CreateDate = "CreateDate",
                 CustomRendered = 0,
@@ -397,22 +494,45 @@ public class FileMetadataTest : TestBase
                 FlashpixVersion = "FlashpixVersion",
                 FNumber = 0,
                 FocalLength = 0,
+                FocalLengthIn35mmFormat = 0,
                 FocalPlaneResolutionUnit = 0,
                 FocalPlaneXResolution = 0,
                 FocalPlaneYResolution = 0,
                 InteropOffset = 0,
                 Iso = 0,
+                LensModel = "LensModel",
+                LightSource = 0,
+                MaxApertureValue = 0,
                 MeteringMode = 0,
                 SceneCaptureType = 0,
+                SceneType = "SceneType",
+                SensingMethod = 0,
                 ShutterSpeedValue = 0,
                 SubSecTime = "SubSecTime",
+                UserComment = "UserComment",
                 WhiteBalance = 0,
             },
-            Gps = new() { GpsVersionID = [0] },
+            Gps = new()
+            {
+                GpsAltitude = 0,
+                GpsAltitudeRef = 0,
+                GpsDateStamp = "GPSDateStamp",
+                GpsImgDirection = 0,
+                GpsImgDirectionRef = "GPSImgDirectionRef",
+                GpsLatitude = [0],
+                GpsLatitudeRef = "GPSLatitudeRef",
+                GpsLongitude = [0],
+                GpsLongitudeRef = "GPSLongitudeRef",
+                GpsTimeStamp = [0],
+                GpsVersionID = [0],
+            },
             Image = new()
             {
+                Artist = "Artist",
+                Copyright = "Copyright",
                 ExifOffset = 0,
                 GpsInfo = 0,
+                ImageDescription = "ImageDescription",
                 Make = "Make",
                 Model = "Model",
                 ModifyDate = "ModifyDate",
@@ -482,6 +602,7 @@ public class FileMetadataTest : TestBase
                 ExifValue = new()
                 {
                     ApertureValue = 0,
+                    BrightnessValue = 0,
                     ColorSpace = 0,
                     CreateDate = "CreateDate",
                     CustomRendered = 0,
@@ -497,22 +618,45 @@ public class FileMetadataTest : TestBase
                     FlashpixVersion = "FlashpixVersion",
                     FNumber = 0,
                     FocalLength = 0,
+                    FocalLengthIn35mmFormat = 0,
                     FocalPlaneResolutionUnit = 0,
                     FocalPlaneXResolution = 0,
                     FocalPlaneYResolution = 0,
                     InteropOffset = 0,
                     Iso = 0,
+                    LensModel = "LensModel",
+                    LightSource = 0,
+                    MaxApertureValue = 0,
                     MeteringMode = 0,
                     SceneCaptureType = 0,
+                    SceneType = "SceneType",
+                    SensingMethod = 0,
                     ShutterSpeedValue = 0,
                     SubSecTime = "SubSecTime",
+                    UserComment = "UserComment",
                     WhiteBalance = 0,
                 },
-                Gps = new() { GpsVersionID = [0] },
+                Gps = new()
+                {
+                    GpsAltitude = 0,
+                    GpsAltitudeRef = 0,
+                    GpsDateStamp = "GPSDateStamp",
+                    GpsImgDirection = 0,
+                    GpsImgDirectionRef = "GPSImgDirectionRef",
+                    GpsLatitude = [0],
+                    GpsLatitudeRef = "GPSLatitudeRef",
+                    GpsLongitude = [0],
+                    GpsLongitudeRef = "GPSLongitudeRef",
+                    GpsTimeStamp = [0],
+                    GpsVersionID = [0],
+                },
                 Image = new()
                 {
+                    Artist = "Artist",
+                    Copyright = "Copyright",
                     ExifOffset = 0,
                     GpsInfo = 0,
+                    ImageDescription = "ImageDescription",
                     Make = "Make",
                     Model = "Model",
                     ModifyDate = "ModifyDate",
@@ -690,6 +834,7 @@ public class FileMetadataTest : TestBase
                 ExifValue = new()
                 {
                     ApertureValue = 0,
+                    BrightnessValue = 0,
                     ColorSpace = 0,
                     CreateDate = "CreateDate",
                     CustomRendered = 0,
@@ -705,22 +850,45 @@ public class FileMetadataTest : TestBase
                     FlashpixVersion = "FlashpixVersion",
                     FNumber = 0,
                     FocalLength = 0,
+                    FocalLengthIn35mmFormat = 0,
                     FocalPlaneResolutionUnit = 0,
                     FocalPlaneXResolution = 0,
                     FocalPlaneYResolution = 0,
                     InteropOffset = 0,
                     Iso = 0,
+                    LensModel = "LensModel",
+                    LightSource = 0,
+                    MaxApertureValue = 0,
                     MeteringMode = 0,
                     SceneCaptureType = 0,
+                    SceneType = "SceneType",
+                    SensingMethod = 0,
                     ShutterSpeedValue = 0,
                     SubSecTime = "SubSecTime",
+                    UserComment = "UserComment",
                     WhiteBalance = 0,
                 },
-                Gps = new() { GpsVersionID = [0] },
+                Gps = new()
+                {
+                    GpsAltitude = 0,
+                    GpsAltitudeRef = 0,
+                    GpsDateStamp = "GPSDateStamp",
+                    GpsImgDirection = 0,
+                    GpsImgDirectionRef = "GPSImgDirectionRef",
+                    GpsLatitude = [0],
+                    GpsLatitudeRef = "GPSLatitudeRef",
+                    GpsLongitude = [0],
+                    GpsLongitudeRef = "GPSLongitudeRef",
+                    GpsTimeStamp = [0],
+                    GpsVersionID = [0],
+                },
                 Image = new()
                 {
+                    Artist = "Artist",
+                    Copyright = "Copyright",
                     ExifOffset = 0,
                     GpsInfo = 0,
+                    ImageDescription = "ImageDescription",
                     Make = "Make",
                     Model = "Model",
                     ModifyDate = "ModifyDate",
@@ -777,6 +945,7 @@ public class ExifTest : TestBase
             ExifValue = new()
             {
                 ApertureValue = 0,
+                BrightnessValue = 0,
                 ColorSpace = 0,
                 CreateDate = "CreateDate",
                 CustomRendered = 0,
@@ -792,22 +961,45 @@ public class ExifTest : TestBase
                 FlashpixVersion = "FlashpixVersion",
                 FNumber = 0,
                 FocalLength = 0,
+                FocalLengthIn35mmFormat = 0,
                 FocalPlaneResolutionUnit = 0,
                 FocalPlaneXResolution = 0,
                 FocalPlaneYResolution = 0,
                 InteropOffset = 0,
                 Iso = 0,
+                LensModel = "LensModel",
+                LightSource = 0,
+                MaxApertureValue = 0,
                 MeteringMode = 0,
                 SceneCaptureType = 0,
+                SceneType = "SceneType",
+                SensingMethod = 0,
                 ShutterSpeedValue = 0,
                 SubSecTime = "SubSecTime",
+                UserComment = "UserComment",
                 WhiteBalance = 0,
             },
-            Gps = new() { GpsVersionID = [0] },
+            Gps = new()
+            {
+                GpsAltitude = 0,
+                GpsAltitudeRef = 0,
+                GpsDateStamp = "GPSDateStamp",
+                GpsImgDirection = 0,
+                GpsImgDirectionRef = "GPSImgDirectionRef",
+                GpsLatitude = [0],
+                GpsLatitudeRef = "GPSLatitudeRef",
+                GpsLongitude = [0],
+                GpsLongitudeRef = "GPSLongitudeRef",
+                GpsTimeStamp = [0],
+                GpsVersionID = [0],
+            },
             Image = new()
             {
+                Artist = "Artist",
+                Copyright = "Copyright",
                 ExifOffset = 0,
                 GpsInfo = 0,
+                ImageDescription = "ImageDescription",
                 Make = "Make",
                 Model = "Model",
                 ModifyDate = "ModifyDate",
@@ -841,6 +1033,7 @@ public class ExifTest : TestBase
         ExifExif expectedExifValue = new()
         {
             ApertureValue = 0,
+            BrightnessValue = 0,
             ColorSpace = 0,
             CreateDate = "CreateDate",
             CustomRendered = 0,
@@ -856,22 +1049,45 @@ public class ExifTest : TestBase
             FlashpixVersion = "FlashpixVersion",
             FNumber = 0,
             FocalLength = 0,
+            FocalLengthIn35mmFormat = 0,
             FocalPlaneResolutionUnit = 0,
             FocalPlaneXResolution = 0,
             FocalPlaneYResolution = 0,
             InteropOffset = 0,
             Iso = 0,
+            LensModel = "LensModel",
+            LightSource = 0,
+            MaxApertureValue = 0,
             MeteringMode = 0,
             SceneCaptureType = 0,
+            SceneType = "SceneType",
+            SensingMethod = 0,
             ShutterSpeedValue = 0,
             SubSecTime = "SubSecTime",
+            UserComment = "UserComment",
             WhiteBalance = 0,
         };
-        Gps expectedGps = new() { GpsVersionID = [0] };
+        Gps expectedGps = new()
+        {
+            GpsAltitude = 0,
+            GpsAltitudeRef = 0,
+            GpsDateStamp = "GPSDateStamp",
+            GpsImgDirection = 0,
+            GpsImgDirectionRef = "GPSImgDirectionRef",
+            GpsLatitude = [0],
+            GpsLatitudeRef = "GPSLatitudeRef",
+            GpsLongitude = [0],
+            GpsLongitudeRef = "GPSLongitudeRef",
+            GpsTimeStamp = [0],
+            GpsVersionID = [0],
+        };
         Image expectedImage = new()
         {
+            Artist = "Artist",
+            Copyright = "Copyright",
             ExifOffset = 0,
             GpsInfo = 0,
+            ImageDescription = "ImageDescription",
             Make = "Make",
             Model = "Model",
             ModifyDate = "ModifyDate",
@@ -924,6 +1140,7 @@ public class ExifTest : TestBase
             ExifValue = new()
             {
                 ApertureValue = 0,
+                BrightnessValue = 0,
                 ColorSpace = 0,
                 CreateDate = "CreateDate",
                 CustomRendered = 0,
@@ -939,22 +1156,45 @@ public class ExifTest : TestBase
                 FlashpixVersion = "FlashpixVersion",
                 FNumber = 0,
                 FocalLength = 0,
+                FocalLengthIn35mmFormat = 0,
                 FocalPlaneResolutionUnit = 0,
                 FocalPlaneXResolution = 0,
                 FocalPlaneYResolution = 0,
                 InteropOffset = 0,
                 Iso = 0,
+                LensModel = "LensModel",
+                LightSource = 0,
+                MaxApertureValue = 0,
                 MeteringMode = 0,
                 SceneCaptureType = 0,
+                SceneType = "SceneType",
+                SensingMethod = 0,
                 ShutterSpeedValue = 0,
                 SubSecTime = "SubSecTime",
+                UserComment = "UserComment",
                 WhiteBalance = 0,
             },
-            Gps = new() { GpsVersionID = [0] },
+            Gps = new()
+            {
+                GpsAltitude = 0,
+                GpsAltitudeRef = 0,
+                GpsDateStamp = "GPSDateStamp",
+                GpsImgDirection = 0,
+                GpsImgDirectionRef = "GPSImgDirectionRef",
+                GpsLatitude = [0],
+                GpsLatitudeRef = "GPSLatitudeRef",
+                GpsLongitude = [0],
+                GpsLongitudeRef = "GPSLongitudeRef",
+                GpsTimeStamp = [0],
+                GpsVersionID = [0],
+            },
             Image = new()
             {
+                Artist = "Artist",
+                Copyright = "Copyright",
                 ExifOffset = 0,
                 GpsInfo = 0,
+                ImageDescription = "ImageDescription",
                 Make = "Make",
                 Model = "Model",
                 ModifyDate = "ModifyDate",
@@ -999,6 +1239,7 @@ public class ExifTest : TestBase
             ExifValue = new()
             {
                 ApertureValue = 0,
+                BrightnessValue = 0,
                 ColorSpace = 0,
                 CreateDate = "CreateDate",
                 CustomRendered = 0,
@@ -1014,22 +1255,45 @@ public class ExifTest : TestBase
                 FlashpixVersion = "FlashpixVersion",
                 FNumber = 0,
                 FocalLength = 0,
+                FocalLengthIn35mmFormat = 0,
                 FocalPlaneResolutionUnit = 0,
                 FocalPlaneXResolution = 0,
                 FocalPlaneYResolution = 0,
                 InteropOffset = 0,
                 Iso = 0,
+                LensModel = "LensModel",
+                LightSource = 0,
+                MaxApertureValue = 0,
                 MeteringMode = 0,
                 SceneCaptureType = 0,
+                SceneType = "SceneType",
+                SensingMethod = 0,
                 ShutterSpeedValue = 0,
                 SubSecTime = "SubSecTime",
+                UserComment = "UserComment",
                 WhiteBalance = 0,
             },
-            Gps = new() { GpsVersionID = [0] },
+            Gps = new()
+            {
+                GpsAltitude = 0,
+                GpsAltitudeRef = 0,
+                GpsDateStamp = "GPSDateStamp",
+                GpsImgDirection = 0,
+                GpsImgDirectionRef = "GPSImgDirectionRef",
+                GpsLatitude = [0],
+                GpsLatitudeRef = "GPSLatitudeRef",
+                GpsLongitude = [0],
+                GpsLongitudeRef = "GPSLongitudeRef",
+                GpsTimeStamp = [0],
+                GpsVersionID = [0],
+            },
             Image = new()
             {
+                Artist = "Artist",
+                Copyright = "Copyright",
                 ExifOffset = 0,
                 GpsInfo = 0,
+                ImageDescription = "ImageDescription",
                 Make = "Make",
                 Model = "Model",
                 ModifyDate = "ModifyDate",
@@ -1067,6 +1331,7 @@ public class ExifTest : TestBase
         ExifExif expectedExifValue = new()
         {
             ApertureValue = 0,
+            BrightnessValue = 0,
             ColorSpace = 0,
             CreateDate = "CreateDate",
             CustomRendered = 0,
@@ -1082,22 +1347,45 @@ public class ExifTest : TestBase
             FlashpixVersion = "FlashpixVersion",
             FNumber = 0,
             FocalLength = 0,
+            FocalLengthIn35mmFormat = 0,
             FocalPlaneResolutionUnit = 0,
             FocalPlaneXResolution = 0,
             FocalPlaneYResolution = 0,
             InteropOffset = 0,
             Iso = 0,
+            LensModel = "LensModel",
+            LightSource = 0,
+            MaxApertureValue = 0,
             MeteringMode = 0,
             SceneCaptureType = 0,
+            SceneType = "SceneType",
+            SensingMethod = 0,
             ShutterSpeedValue = 0,
             SubSecTime = "SubSecTime",
+            UserComment = "UserComment",
             WhiteBalance = 0,
         };
-        Gps expectedGps = new() { GpsVersionID = [0] };
+        Gps expectedGps = new()
+        {
+            GpsAltitude = 0,
+            GpsAltitudeRef = 0,
+            GpsDateStamp = "GPSDateStamp",
+            GpsImgDirection = 0,
+            GpsImgDirectionRef = "GPSImgDirectionRef",
+            GpsLatitude = [0],
+            GpsLatitudeRef = "GPSLatitudeRef",
+            GpsLongitude = [0],
+            GpsLongitudeRef = "GPSLongitudeRef",
+            GpsTimeStamp = [0],
+            GpsVersionID = [0],
+        };
         Image expectedImage = new()
         {
+            Artist = "Artist",
+            Copyright = "Copyright",
             ExifOffset = 0,
             GpsInfo = 0,
+            ImageDescription = "ImageDescription",
             Make = "Make",
             Model = "Model",
             ModifyDate = "ModifyDate",
@@ -1150,6 +1438,7 @@ public class ExifTest : TestBase
             ExifValue = new()
             {
                 ApertureValue = 0,
+                BrightnessValue = 0,
                 ColorSpace = 0,
                 CreateDate = "CreateDate",
                 CustomRendered = 0,
@@ -1165,22 +1454,45 @@ public class ExifTest : TestBase
                 FlashpixVersion = "FlashpixVersion",
                 FNumber = 0,
                 FocalLength = 0,
+                FocalLengthIn35mmFormat = 0,
                 FocalPlaneResolutionUnit = 0,
                 FocalPlaneXResolution = 0,
                 FocalPlaneYResolution = 0,
                 InteropOffset = 0,
                 Iso = 0,
+                LensModel = "LensModel",
+                LightSource = 0,
+                MaxApertureValue = 0,
                 MeteringMode = 0,
                 SceneCaptureType = 0,
+                SceneType = "SceneType",
+                SensingMethod = 0,
                 ShutterSpeedValue = 0,
                 SubSecTime = "SubSecTime",
+                UserComment = "UserComment",
                 WhiteBalance = 0,
             },
-            Gps = new() { GpsVersionID = [0] },
+            Gps = new()
+            {
+                GpsAltitude = 0,
+                GpsAltitudeRef = 0,
+                GpsDateStamp = "GPSDateStamp",
+                GpsImgDirection = 0,
+                GpsImgDirectionRef = "GPSImgDirectionRef",
+                GpsLatitude = [0],
+                GpsLatitudeRef = "GPSLatitudeRef",
+                GpsLongitude = [0],
+                GpsLongitudeRef = "GPSLongitudeRef",
+                GpsTimeStamp = [0],
+                GpsVersionID = [0],
+            },
             Image = new()
             {
+                Artist = "Artist",
+                Copyright = "Copyright",
                 ExifOffset = 0,
                 GpsInfo = 0,
+                ImageDescription = "ImageDescription",
                 Make = "Make",
                 Model = "Model",
                 ModifyDate = "ModifyDate",
@@ -1294,6 +1606,7 @@ public class ExifTest : TestBase
             ExifValue = new()
             {
                 ApertureValue = 0,
+                BrightnessValue = 0,
                 ColorSpace = 0,
                 CreateDate = "CreateDate",
                 CustomRendered = 0,
@@ -1309,22 +1622,45 @@ public class ExifTest : TestBase
                 FlashpixVersion = "FlashpixVersion",
                 FNumber = 0,
                 FocalLength = 0,
+                FocalLengthIn35mmFormat = 0,
                 FocalPlaneResolutionUnit = 0,
                 FocalPlaneXResolution = 0,
                 FocalPlaneYResolution = 0,
                 InteropOffset = 0,
                 Iso = 0,
+                LensModel = "LensModel",
+                LightSource = 0,
+                MaxApertureValue = 0,
                 MeteringMode = 0,
                 SceneCaptureType = 0,
+                SceneType = "SceneType",
+                SensingMethod = 0,
                 ShutterSpeedValue = 0,
                 SubSecTime = "SubSecTime",
+                UserComment = "UserComment",
                 WhiteBalance = 0,
             },
-            Gps = new() { GpsVersionID = [0] },
+            Gps = new()
+            {
+                GpsAltitude = 0,
+                GpsAltitudeRef = 0,
+                GpsDateStamp = "GPSDateStamp",
+                GpsImgDirection = 0,
+                GpsImgDirectionRef = "GPSImgDirectionRef",
+                GpsLatitude = [0],
+                GpsLatitudeRef = "GPSLatitudeRef",
+                GpsLongitude = [0],
+                GpsLongitudeRef = "GPSLongitudeRef",
+                GpsTimeStamp = [0],
+                GpsVersionID = [0],
+            },
             Image = new()
             {
+                Artist = "Artist",
+                Copyright = "Copyright",
                 ExifOffset = 0,
                 GpsInfo = 0,
+                ImageDescription = "ImageDescription",
                 Make = "Make",
                 Model = "Model",
                 ModifyDate = "ModifyDate",
@@ -1369,6 +1705,7 @@ public class ExifExifTest : TestBase
         var model = new ExifExif
         {
             ApertureValue = 0,
+            BrightnessValue = 0,
             ColorSpace = 0,
             CreateDate = "CreateDate",
             CustomRendered = 0,
@@ -1384,19 +1721,27 @@ public class ExifExifTest : TestBase
             FlashpixVersion = "FlashpixVersion",
             FNumber = 0,
             FocalLength = 0,
+            FocalLengthIn35mmFormat = 0,
             FocalPlaneResolutionUnit = 0,
             FocalPlaneXResolution = 0,
             FocalPlaneYResolution = 0,
             InteropOffset = 0,
             Iso = 0,
+            LensModel = "LensModel",
+            LightSource = 0,
+            MaxApertureValue = 0,
             MeteringMode = 0,
             SceneCaptureType = 0,
+            SceneType = "SceneType",
+            SensingMethod = 0,
             ShutterSpeedValue = 0,
             SubSecTime = "SubSecTime",
+            UserComment = "UserComment",
             WhiteBalance = 0,
         };
 
         double expectedApertureValue = 0;
+        double expectedBrightnessValue = 0;
         long expectedColorSpace = 0;
         string expectedCreateDate = "CreateDate";
         long expectedCustomRendered = 0;
@@ -1411,19 +1756,27 @@ public class ExifExifTest : TestBase
         long expectedFlash = 0;
         string expectedFlashpixVersion = "FlashpixVersion";
         double expectedFNumber = 0;
-        long expectedFocalLength = 0;
+        double expectedFocalLength = 0;
+        long expectedFocalLengthIn35mmFormat = 0;
         long expectedFocalPlaneResolutionUnit = 0;
         double expectedFocalPlaneXResolution = 0;
         double expectedFocalPlaneYResolution = 0;
         long expectedInteropOffset = 0;
         long expectedIso = 0;
+        string expectedLensModel = "LensModel";
+        long expectedLightSource = 0;
+        double expectedMaxApertureValue = 0;
         long expectedMeteringMode = 0;
         long expectedSceneCaptureType = 0;
+        string expectedSceneType = "SceneType";
+        long expectedSensingMethod = 0;
         double expectedShutterSpeedValue = 0;
         string expectedSubSecTime = "SubSecTime";
+        string expectedUserComment = "UserComment";
         long expectedWhiteBalance = 0;
 
         Assert.Equal(expectedApertureValue, model.ApertureValue);
+        Assert.Equal(expectedBrightnessValue, model.BrightnessValue);
         Assert.Equal(expectedColorSpace, model.ColorSpace);
         Assert.Equal(expectedCreateDate, model.CreateDate);
         Assert.Equal(expectedCustomRendered, model.CustomRendered);
@@ -1439,15 +1792,22 @@ public class ExifExifTest : TestBase
         Assert.Equal(expectedFlashpixVersion, model.FlashpixVersion);
         Assert.Equal(expectedFNumber, model.FNumber);
         Assert.Equal(expectedFocalLength, model.FocalLength);
+        Assert.Equal(expectedFocalLengthIn35mmFormat, model.FocalLengthIn35mmFormat);
         Assert.Equal(expectedFocalPlaneResolutionUnit, model.FocalPlaneResolutionUnit);
         Assert.Equal(expectedFocalPlaneXResolution, model.FocalPlaneXResolution);
         Assert.Equal(expectedFocalPlaneYResolution, model.FocalPlaneYResolution);
         Assert.Equal(expectedInteropOffset, model.InteropOffset);
         Assert.Equal(expectedIso, model.Iso);
+        Assert.Equal(expectedLensModel, model.LensModel);
+        Assert.Equal(expectedLightSource, model.LightSource);
+        Assert.Equal(expectedMaxApertureValue, model.MaxApertureValue);
         Assert.Equal(expectedMeteringMode, model.MeteringMode);
         Assert.Equal(expectedSceneCaptureType, model.SceneCaptureType);
+        Assert.Equal(expectedSceneType, model.SceneType);
+        Assert.Equal(expectedSensingMethod, model.SensingMethod);
         Assert.Equal(expectedShutterSpeedValue, model.ShutterSpeedValue);
         Assert.Equal(expectedSubSecTime, model.SubSecTime);
+        Assert.Equal(expectedUserComment, model.UserComment);
         Assert.Equal(expectedWhiteBalance, model.WhiteBalance);
     }
 
@@ -1457,6 +1817,7 @@ public class ExifExifTest : TestBase
         var model = new ExifExif
         {
             ApertureValue = 0,
+            BrightnessValue = 0,
             ColorSpace = 0,
             CreateDate = "CreateDate",
             CustomRendered = 0,
@@ -1472,15 +1833,22 @@ public class ExifExifTest : TestBase
             FlashpixVersion = "FlashpixVersion",
             FNumber = 0,
             FocalLength = 0,
+            FocalLengthIn35mmFormat = 0,
             FocalPlaneResolutionUnit = 0,
             FocalPlaneXResolution = 0,
             FocalPlaneYResolution = 0,
             InteropOffset = 0,
             Iso = 0,
+            LensModel = "LensModel",
+            LightSource = 0,
+            MaxApertureValue = 0,
             MeteringMode = 0,
             SceneCaptureType = 0,
+            SceneType = "SceneType",
+            SensingMethod = 0,
             ShutterSpeedValue = 0,
             SubSecTime = "SubSecTime",
+            UserComment = "UserComment",
             WhiteBalance = 0,
         };
 
@@ -1496,6 +1864,7 @@ public class ExifExifTest : TestBase
         var model = new ExifExif
         {
             ApertureValue = 0,
+            BrightnessValue = 0,
             ColorSpace = 0,
             CreateDate = "CreateDate",
             CustomRendered = 0,
@@ -1511,15 +1880,22 @@ public class ExifExifTest : TestBase
             FlashpixVersion = "FlashpixVersion",
             FNumber = 0,
             FocalLength = 0,
+            FocalLengthIn35mmFormat = 0,
             FocalPlaneResolutionUnit = 0,
             FocalPlaneXResolution = 0,
             FocalPlaneYResolution = 0,
             InteropOffset = 0,
             Iso = 0,
+            LensModel = "LensModel",
+            LightSource = 0,
+            MaxApertureValue = 0,
             MeteringMode = 0,
             SceneCaptureType = 0,
+            SceneType = "SceneType",
+            SensingMethod = 0,
             ShutterSpeedValue = 0,
             SubSecTime = "SubSecTime",
+            UserComment = "UserComment",
             WhiteBalance = 0,
         };
 
@@ -1531,6 +1907,7 @@ public class ExifExifTest : TestBase
         Assert.NotNull(deserialized);
 
         double expectedApertureValue = 0;
+        double expectedBrightnessValue = 0;
         long expectedColorSpace = 0;
         string expectedCreateDate = "CreateDate";
         long expectedCustomRendered = 0;
@@ -1545,19 +1922,27 @@ public class ExifExifTest : TestBase
         long expectedFlash = 0;
         string expectedFlashpixVersion = "FlashpixVersion";
         double expectedFNumber = 0;
-        long expectedFocalLength = 0;
+        double expectedFocalLength = 0;
+        long expectedFocalLengthIn35mmFormat = 0;
         long expectedFocalPlaneResolutionUnit = 0;
         double expectedFocalPlaneXResolution = 0;
         double expectedFocalPlaneYResolution = 0;
         long expectedInteropOffset = 0;
         long expectedIso = 0;
+        string expectedLensModel = "LensModel";
+        long expectedLightSource = 0;
+        double expectedMaxApertureValue = 0;
         long expectedMeteringMode = 0;
         long expectedSceneCaptureType = 0;
+        string expectedSceneType = "SceneType";
+        long expectedSensingMethod = 0;
         double expectedShutterSpeedValue = 0;
         string expectedSubSecTime = "SubSecTime";
+        string expectedUserComment = "UserComment";
         long expectedWhiteBalance = 0;
 
         Assert.Equal(expectedApertureValue, deserialized.ApertureValue);
+        Assert.Equal(expectedBrightnessValue, deserialized.BrightnessValue);
         Assert.Equal(expectedColorSpace, deserialized.ColorSpace);
         Assert.Equal(expectedCreateDate, deserialized.CreateDate);
         Assert.Equal(expectedCustomRendered, deserialized.CustomRendered);
@@ -1573,15 +1958,22 @@ public class ExifExifTest : TestBase
         Assert.Equal(expectedFlashpixVersion, deserialized.FlashpixVersion);
         Assert.Equal(expectedFNumber, deserialized.FNumber);
         Assert.Equal(expectedFocalLength, deserialized.FocalLength);
+        Assert.Equal(expectedFocalLengthIn35mmFormat, deserialized.FocalLengthIn35mmFormat);
         Assert.Equal(expectedFocalPlaneResolutionUnit, deserialized.FocalPlaneResolutionUnit);
         Assert.Equal(expectedFocalPlaneXResolution, deserialized.FocalPlaneXResolution);
         Assert.Equal(expectedFocalPlaneYResolution, deserialized.FocalPlaneYResolution);
         Assert.Equal(expectedInteropOffset, deserialized.InteropOffset);
         Assert.Equal(expectedIso, deserialized.Iso);
+        Assert.Equal(expectedLensModel, deserialized.LensModel);
+        Assert.Equal(expectedLightSource, deserialized.LightSource);
+        Assert.Equal(expectedMaxApertureValue, deserialized.MaxApertureValue);
         Assert.Equal(expectedMeteringMode, deserialized.MeteringMode);
         Assert.Equal(expectedSceneCaptureType, deserialized.SceneCaptureType);
+        Assert.Equal(expectedSceneType, deserialized.SceneType);
+        Assert.Equal(expectedSensingMethod, deserialized.SensingMethod);
         Assert.Equal(expectedShutterSpeedValue, deserialized.ShutterSpeedValue);
         Assert.Equal(expectedSubSecTime, deserialized.SubSecTime);
+        Assert.Equal(expectedUserComment, deserialized.UserComment);
         Assert.Equal(expectedWhiteBalance, deserialized.WhiteBalance);
     }
 
@@ -1591,6 +1983,7 @@ public class ExifExifTest : TestBase
         var model = new ExifExif
         {
             ApertureValue = 0,
+            BrightnessValue = 0,
             ColorSpace = 0,
             CreateDate = "CreateDate",
             CustomRendered = 0,
@@ -1606,15 +1999,22 @@ public class ExifExifTest : TestBase
             FlashpixVersion = "FlashpixVersion",
             FNumber = 0,
             FocalLength = 0,
+            FocalLengthIn35mmFormat = 0,
             FocalPlaneResolutionUnit = 0,
             FocalPlaneXResolution = 0,
             FocalPlaneYResolution = 0,
             InteropOffset = 0,
             Iso = 0,
+            LensModel = "LensModel",
+            LightSource = 0,
+            MaxApertureValue = 0,
             MeteringMode = 0,
             SceneCaptureType = 0,
+            SceneType = "SceneType",
+            SensingMethod = 0,
             ShutterSpeedValue = 0,
             SubSecTime = "SubSecTime",
+            UserComment = "UserComment",
             WhiteBalance = 0,
         };
 
@@ -1628,6 +2028,8 @@ public class ExifExifTest : TestBase
 
         Assert.Null(model.ApertureValue);
         Assert.False(model.RawData.ContainsKey("ApertureValue"));
+        Assert.Null(model.BrightnessValue);
+        Assert.False(model.RawData.ContainsKey("BrightnessValue"));
         Assert.Null(model.ColorSpace);
         Assert.False(model.RawData.ContainsKey("ColorSpace"));
         Assert.Null(model.CreateDate);
@@ -1658,6 +2060,8 @@ public class ExifExifTest : TestBase
         Assert.False(model.RawData.ContainsKey("FNumber"));
         Assert.Null(model.FocalLength);
         Assert.False(model.RawData.ContainsKey("FocalLength"));
+        Assert.Null(model.FocalLengthIn35mmFormat);
+        Assert.False(model.RawData.ContainsKey("FocalLengthIn35mmFormat"));
         Assert.Null(model.FocalPlaneResolutionUnit);
         Assert.False(model.RawData.ContainsKey("FocalPlaneResolutionUnit"));
         Assert.Null(model.FocalPlaneXResolution);
@@ -1668,14 +2072,26 @@ public class ExifExifTest : TestBase
         Assert.False(model.RawData.ContainsKey("InteropOffset"));
         Assert.Null(model.Iso);
         Assert.False(model.RawData.ContainsKey("ISO"));
+        Assert.Null(model.LensModel);
+        Assert.False(model.RawData.ContainsKey("LensModel"));
+        Assert.Null(model.LightSource);
+        Assert.False(model.RawData.ContainsKey("LightSource"));
+        Assert.Null(model.MaxApertureValue);
+        Assert.False(model.RawData.ContainsKey("MaxApertureValue"));
         Assert.Null(model.MeteringMode);
         Assert.False(model.RawData.ContainsKey("MeteringMode"));
         Assert.Null(model.SceneCaptureType);
         Assert.False(model.RawData.ContainsKey("SceneCaptureType"));
+        Assert.Null(model.SceneType);
+        Assert.False(model.RawData.ContainsKey("SceneType"));
+        Assert.Null(model.SensingMethod);
+        Assert.False(model.RawData.ContainsKey("SensingMethod"));
         Assert.Null(model.ShutterSpeedValue);
         Assert.False(model.RawData.ContainsKey("ShutterSpeedValue"));
         Assert.Null(model.SubSecTime);
         Assert.False(model.RawData.ContainsKey("SubSecTime"));
+        Assert.Null(model.UserComment);
+        Assert.False(model.RawData.ContainsKey("UserComment"));
         Assert.Null(model.WhiteBalance);
         Assert.False(model.RawData.ContainsKey("WhiteBalance"));
     }
@@ -1695,6 +2111,7 @@ public class ExifExifTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             ApertureValue = null,
+            BrightnessValue = null,
             ColorSpace = null,
             CreateDate = null,
             CustomRendered = null,
@@ -1710,20 +2127,29 @@ public class ExifExifTest : TestBase
             FlashpixVersion = null,
             FNumber = null,
             FocalLength = null,
+            FocalLengthIn35mmFormat = null,
             FocalPlaneResolutionUnit = null,
             FocalPlaneXResolution = null,
             FocalPlaneYResolution = null,
             InteropOffset = null,
             Iso = null,
+            LensModel = null,
+            LightSource = null,
+            MaxApertureValue = null,
             MeteringMode = null,
             SceneCaptureType = null,
+            SceneType = null,
+            SensingMethod = null,
             ShutterSpeedValue = null,
             SubSecTime = null,
+            UserComment = null,
             WhiteBalance = null,
         };
 
         Assert.Null(model.ApertureValue);
         Assert.False(model.RawData.ContainsKey("ApertureValue"));
+        Assert.Null(model.BrightnessValue);
+        Assert.False(model.RawData.ContainsKey("BrightnessValue"));
         Assert.Null(model.ColorSpace);
         Assert.False(model.RawData.ContainsKey("ColorSpace"));
         Assert.Null(model.CreateDate);
@@ -1754,6 +2180,8 @@ public class ExifExifTest : TestBase
         Assert.False(model.RawData.ContainsKey("FNumber"));
         Assert.Null(model.FocalLength);
         Assert.False(model.RawData.ContainsKey("FocalLength"));
+        Assert.Null(model.FocalLengthIn35mmFormat);
+        Assert.False(model.RawData.ContainsKey("FocalLengthIn35mmFormat"));
         Assert.Null(model.FocalPlaneResolutionUnit);
         Assert.False(model.RawData.ContainsKey("FocalPlaneResolutionUnit"));
         Assert.Null(model.FocalPlaneXResolution);
@@ -1764,14 +2192,26 @@ public class ExifExifTest : TestBase
         Assert.False(model.RawData.ContainsKey("InteropOffset"));
         Assert.Null(model.Iso);
         Assert.False(model.RawData.ContainsKey("ISO"));
+        Assert.Null(model.LensModel);
+        Assert.False(model.RawData.ContainsKey("LensModel"));
+        Assert.Null(model.LightSource);
+        Assert.False(model.RawData.ContainsKey("LightSource"));
+        Assert.Null(model.MaxApertureValue);
+        Assert.False(model.RawData.ContainsKey("MaxApertureValue"));
         Assert.Null(model.MeteringMode);
         Assert.False(model.RawData.ContainsKey("MeteringMode"));
         Assert.Null(model.SceneCaptureType);
         Assert.False(model.RawData.ContainsKey("SceneCaptureType"));
+        Assert.Null(model.SceneType);
+        Assert.False(model.RawData.ContainsKey("SceneType"));
+        Assert.Null(model.SensingMethod);
+        Assert.False(model.RawData.ContainsKey("SensingMethod"));
         Assert.Null(model.ShutterSpeedValue);
         Assert.False(model.RawData.ContainsKey("ShutterSpeedValue"));
         Assert.Null(model.SubSecTime);
         Assert.False(model.RawData.ContainsKey("SubSecTime"));
+        Assert.Null(model.UserComment);
+        Assert.False(model.RawData.ContainsKey("UserComment"));
         Assert.Null(model.WhiteBalance);
         Assert.False(model.RawData.ContainsKey("WhiteBalance"));
     }
@@ -1783,6 +2223,7 @@ public class ExifExifTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             ApertureValue = null,
+            BrightnessValue = null,
             ColorSpace = null,
             CreateDate = null,
             CustomRendered = null,
@@ -1798,15 +2239,22 @@ public class ExifExifTest : TestBase
             FlashpixVersion = null,
             FNumber = null,
             FocalLength = null,
+            FocalLengthIn35mmFormat = null,
             FocalPlaneResolutionUnit = null,
             FocalPlaneXResolution = null,
             FocalPlaneYResolution = null,
             InteropOffset = null,
             Iso = null,
+            LensModel = null,
+            LightSource = null,
+            MaxApertureValue = null,
             MeteringMode = null,
             SceneCaptureType = null,
+            SceneType = null,
+            SensingMethod = null,
             ShutterSpeedValue = null,
             SubSecTime = null,
+            UserComment = null,
             WhiteBalance = null,
         };
 
@@ -1819,6 +2267,7 @@ public class ExifExifTest : TestBase
         var model = new ExifExif
         {
             ApertureValue = 0,
+            BrightnessValue = 0,
             ColorSpace = 0,
             CreateDate = "CreateDate",
             CustomRendered = 0,
@@ -1834,15 +2283,22 @@ public class ExifExifTest : TestBase
             FlashpixVersion = "FlashpixVersion",
             FNumber = 0,
             FocalLength = 0,
+            FocalLengthIn35mmFormat = 0,
             FocalPlaneResolutionUnit = 0,
             FocalPlaneXResolution = 0,
             FocalPlaneYResolution = 0,
             InteropOffset = 0,
             Iso = 0,
+            LensModel = "LensModel",
+            LightSource = 0,
+            MaxApertureValue = 0,
             MeteringMode = 0,
             SceneCaptureType = 0,
+            SceneType = "SceneType",
+            SensingMethod = 0,
             ShutterSpeedValue = 0,
             SubSecTime = "SubSecTime",
+            UserComment = "UserComment",
             WhiteBalance = 0,
         };
 
@@ -1857,10 +2313,58 @@ public class GpsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Gps { GpsVersionID = [0] };
+        var model = new Gps
+        {
+            GpsAltitude = 0,
+            GpsAltitudeRef = 0,
+            GpsDateStamp = "GPSDateStamp",
+            GpsImgDirection = 0,
+            GpsImgDirectionRef = "GPSImgDirectionRef",
+            GpsLatitude = [0],
+            GpsLatitudeRef = "GPSLatitudeRef",
+            GpsLongitude = [0],
+            GpsLongitudeRef = "GPSLongitudeRef",
+            GpsTimeStamp = [0],
+            GpsVersionID = [0],
+        };
 
+        double expectedGpsAltitude = 0;
+        long expectedGpsAltitudeRef = 0;
+        string expectedGpsDateStamp = "GPSDateStamp";
+        double expectedGpsImgDirection = 0;
+        string expectedGpsImgDirectionRef = "GPSImgDirectionRef";
+        List<double> expectedGpsLatitude = [0];
+        string expectedGpsLatitudeRef = "GPSLatitudeRef";
+        List<double> expectedGpsLongitude = [0];
+        string expectedGpsLongitudeRef = "GPSLongitudeRef";
+        List<double> expectedGpsTimeStamp = [0];
         List<long> expectedGpsVersionID = [0];
 
+        Assert.Equal(expectedGpsAltitude, model.GpsAltitude);
+        Assert.Equal(expectedGpsAltitudeRef, model.GpsAltitudeRef);
+        Assert.Equal(expectedGpsDateStamp, model.GpsDateStamp);
+        Assert.Equal(expectedGpsImgDirection, model.GpsImgDirection);
+        Assert.Equal(expectedGpsImgDirectionRef, model.GpsImgDirectionRef);
+        Assert.NotNull(model.GpsLatitude);
+        Assert.Equal(expectedGpsLatitude.Count, model.GpsLatitude.Count);
+        for (int i = 0; i < expectedGpsLatitude.Count; i++)
+        {
+            Assert.Equal(expectedGpsLatitude[i], model.GpsLatitude[i]);
+        }
+        Assert.Equal(expectedGpsLatitudeRef, model.GpsLatitudeRef);
+        Assert.NotNull(model.GpsLongitude);
+        Assert.Equal(expectedGpsLongitude.Count, model.GpsLongitude.Count);
+        for (int i = 0; i < expectedGpsLongitude.Count; i++)
+        {
+            Assert.Equal(expectedGpsLongitude[i], model.GpsLongitude[i]);
+        }
+        Assert.Equal(expectedGpsLongitudeRef, model.GpsLongitudeRef);
+        Assert.NotNull(model.GpsTimeStamp);
+        Assert.Equal(expectedGpsTimeStamp.Count, model.GpsTimeStamp.Count);
+        for (int i = 0; i < expectedGpsTimeStamp.Count; i++)
+        {
+            Assert.Equal(expectedGpsTimeStamp[i], model.GpsTimeStamp[i]);
+        }
         Assert.NotNull(model.GpsVersionID);
         Assert.Equal(expectedGpsVersionID.Count, model.GpsVersionID.Count);
         for (int i = 0; i < expectedGpsVersionID.Count; i++)
@@ -1872,7 +2376,20 @@ public class GpsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Gps { GpsVersionID = [0] };
+        var model = new Gps
+        {
+            GpsAltitude = 0,
+            GpsAltitudeRef = 0,
+            GpsDateStamp = "GPSDateStamp",
+            GpsImgDirection = 0,
+            GpsImgDirectionRef = "GPSImgDirectionRef",
+            GpsLatitude = [0],
+            GpsLatitudeRef = "GPSLatitudeRef",
+            GpsLongitude = [0],
+            GpsLongitudeRef = "GPSLongitudeRef",
+            GpsTimeStamp = [0],
+            GpsVersionID = [0],
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Gps>(json, ModelBase.SerializerOptions);
@@ -1883,14 +2400,62 @@ public class GpsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Gps { GpsVersionID = [0] };
+        var model = new Gps
+        {
+            GpsAltitude = 0,
+            GpsAltitudeRef = 0,
+            GpsDateStamp = "GPSDateStamp",
+            GpsImgDirection = 0,
+            GpsImgDirectionRef = "GPSImgDirectionRef",
+            GpsLatitude = [0],
+            GpsLatitudeRef = "GPSLatitudeRef",
+            GpsLongitude = [0],
+            GpsLongitudeRef = "GPSLongitudeRef",
+            GpsTimeStamp = [0],
+            GpsVersionID = [0],
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Gps>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
+        double expectedGpsAltitude = 0;
+        long expectedGpsAltitudeRef = 0;
+        string expectedGpsDateStamp = "GPSDateStamp";
+        double expectedGpsImgDirection = 0;
+        string expectedGpsImgDirectionRef = "GPSImgDirectionRef";
+        List<double> expectedGpsLatitude = [0];
+        string expectedGpsLatitudeRef = "GPSLatitudeRef";
+        List<double> expectedGpsLongitude = [0];
+        string expectedGpsLongitudeRef = "GPSLongitudeRef";
+        List<double> expectedGpsTimeStamp = [0];
         List<long> expectedGpsVersionID = [0];
 
+        Assert.Equal(expectedGpsAltitude, deserialized.GpsAltitude);
+        Assert.Equal(expectedGpsAltitudeRef, deserialized.GpsAltitudeRef);
+        Assert.Equal(expectedGpsDateStamp, deserialized.GpsDateStamp);
+        Assert.Equal(expectedGpsImgDirection, deserialized.GpsImgDirection);
+        Assert.Equal(expectedGpsImgDirectionRef, deserialized.GpsImgDirectionRef);
+        Assert.NotNull(deserialized.GpsLatitude);
+        Assert.Equal(expectedGpsLatitude.Count, deserialized.GpsLatitude.Count);
+        for (int i = 0; i < expectedGpsLatitude.Count; i++)
+        {
+            Assert.Equal(expectedGpsLatitude[i], deserialized.GpsLatitude[i]);
+        }
+        Assert.Equal(expectedGpsLatitudeRef, deserialized.GpsLatitudeRef);
+        Assert.NotNull(deserialized.GpsLongitude);
+        Assert.Equal(expectedGpsLongitude.Count, deserialized.GpsLongitude.Count);
+        for (int i = 0; i < expectedGpsLongitude.Count; i++)
+        {
+            Assert.Equal(expectedGpsLongitude[i], deserialized.GpsLongitude[i]);
+        }
+        Assert.Equal(expectedGpsLongitudeRef, deserialized.GpsLongitudeRef);
+        Assert.NotNull(deserialized.GpsTimeStamp);
+        Assert.Equal(expectedGpsTimeStamp.Count, deserialized.GpsTimeStamp.Count);
+        for (int i = 0; i < expectedGpsTimeStamp.Count; i++)
+        {
+            Assert.Equal(expectedGpsTimeStamp[i], deserialized.GpsTimeStamp[i]);
+        }
         Assert.NotNull(deserialized.GpsVersionID);
         Assert.Equal(expectedGpsVersionID.Count, deserialized.GpsVersionID.Count);
         for (int i = 0; i < expectedGpsVersionID.Count; i++)
@@ -1902,7 +2467,20 @@ public class GpsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Gps { GpsVersionID = [0] };
+        var model = new Gps
+        {
+            GpsAltitude = 0,
+            GpsAltitudeRef = 0,
+            GpsDateStamp = "GPSDateStamp",
+            GpsImgDirection = 0,
+            GpsImgDirectionRef = "GPSImgDirectionRef",
+            GpsLatitude = [0],
+            GpsLatitudeRef = "GPSLatitudeRef",
+            GpsLongitude = [0],
+            GpsLongitudeRef = "GPSLongitudeRef",
+            GpsTimeStamp = [0],
+            GpsVersionID = [0],
+        };
 
         model.Validate();
     }
@@ -1912,6 +2490,26 @@ public class GpsTest : TestBase
     {
         var model = new Gps { };
 
+        Assert.Null(model.GpsAltitude);
+        Assert.False(model.RawData.ContainsKey("GPSAltitude"));
+        Assert.Null(model.GpsAltitudeRef);
+        Assert.False(model.RawData.ContainsKey("GPSAltitudeRef"));
+        Assert.Null(model.GpsDateStamp);
+        Assert.False(model.RawData.ContainsKey("GPSDateStamp"));
+        Assert.Null(model.GpsImgDirection);
+        Assert.False(model.RawData.ContainsKey("GPSImgDirection"));
+        Assert.Null(model.GpsImgDirectionRef);
+        Assert.False(model.RawData.ContainsKey("GPSImgDirectionRef"));
+        Assert.Null(model.GpsLatitude);
+        Assert.False(model.RawData.ContainsKey("GPSLatitude"));
+        Assert.Null(model.GpsLatitudeRef);
+        Assert.False(model.RawData.ContainsKey("GPSLatitudeRef"));
+        Assert.Null(model.GpsLongitude);
+        Assert.False(model.RawData.ContainsKey("GPSLongitude"));
+        Assert.Null(model.GpsLongitudeRef);
+        Assert.False(model.RawData.ContainsKey("GPSLongitudeRef"));
+        Assert.Null(model.GpsTimeStamp);
+        Assert.False(model.RawData.ContainsKey("GPSTimeStamp"));
         Assert.Null(model.GpsVersionID);
         Assert.False(model.RawData.ContainsKey("GPSVersionID"));
     }
@@ -1930,9 +2528,39 @@ public class GpsTest : TestBase
         var model = new Gps
         {
             // Null should be interpreted as omitted for these properties
+            GpsAltitude = null,
+            GpsAltitudeRef = null,
+            GpsDateStamp = null,
+            GpsImgDirection = null,
+            GpsImgDirectionRef = null,
+            GpsLatitude = null,
+            GpsLatitudeRef = null,
+            GpsLongitude = null,
+            GpsLongitudeRef = null,
+            GpsTimeStamp = null,
             GpsVersionID = null,
         };
 
+        Assert.Null(model.GpsAltitude);
+        Assert.False(model.RawData.ContainsKey("GPSAltitude"));
+        Assert.Null(model.GpsAltitudeRef);
+        Assert.False(model.RawData.ContainsKey("GPSAltitudeRef"));
+        Assert.Null(model.GpsDateStamp);
+        Assert.False(model.RawData.ContainsKey("GPSDateStamp"));
+        Assert.Null(model.GpsImgDirection);
+        Assert.False(model.RawData.ContainsKey("GPSImgDirection"));
+        Assert.Null(model.GpsImgDirectionRef);
+        Assert.False(model.RawData.ContainsKey("GPSImgDirectionRef"));
+        Assert.Null(model.GpsLatitude);
+        Assert.False(model.RawData.ContainsKey("GPSLatitude"));
+        Assert.Null(model.GpsLatitudeRef);
+        Assert.False(model.RawData.ContainsKey("GPSLatitudeRef"));
+        Assert.Null(model.GpsLongitude);
+        Assert.False(model.RawData.ContainsKey("GPSLongitude"));
+        Assert.Null(model.GpsLongitudeRef);
+        Assert.False(model.RawData.ContainsKey("GPSLongitudeRef"));
+        Assert.Null(model.GpsTimeStamp);
+        Assert.False(model.RawData.ContainsKey("GPSTimeStamp"));
         Assert.Null(model.GpsVersionID);
         Assert.False(model.RawData.ContainsKey("GPSVersionID"));
     }
@@ -1943,6 +2571,16 @@ public class GpsTest : TestBase
         var model = new Gps
         {
             // Null should be interpreted as omitted for these properties
+            GpsAltitude = null,
+            GpsAltitudeRef = null,
+            GpsDateStamp = null,
+            GpsImgDirection = null,
+            GpsImgDirectionRef = null,
+            GpsLatitude = null,
+            GpsLatitudeRef = null,
+            GpsLongitude = null,
+            GpsLongitudeRef = null,
+            GpsTimeStamp = null,
             GpsVersionID = null,
         };
 
@@ -1952,7 +2590,20 @@ public class GpsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Gps { GpsVersionID = [0] };
+        var model = new Gps
+        {
+            GpsAltitude = 0,
+            GpsAltitudeRef = 0,
+            GpsDateStamp = "GPSDateStamp",
+            GpsImgDirection = 0,
+            GpsImgDirectionRef = "GPSImgDirectionRef",
+            GpsLatitude = [0],
+            GpsLatitudeRef = "GPSLatitudeRef",
+            GpsLongitude = [0],
+            GpsLongitudeRef = "GPSLongitudeRef",
+            GpsTimeStamp = [0],
+            GpsVersionID = [0],
+        };
 
         Gps copied = new(model);
 
@@ -1967,8 +2618,11 @@ public class ImageTest : TestBase
     {
         var model = new Image
         {
+            Artist = "Artist",
+            Copyright = "Copyright",
             ExifOffset = 0,
             GpsInfo = 0,
+            ImageDescription = "ImageDescription",
             Make = "Make",
             Model = "Model",
             ModifyDate = "ModifyDate",
@@ -1980,20 +2634,26 @@ public class ImageTest : TestBase
             YResolution = 0,
         };
 
+        string expectedArtist = "Artist";
+        string expectedCopyright = "Copyright";
         long expectedExifOffset = 0;
         long expectedGpsInfo = 0;
+        string expectedImageDescription = "ImageDescription";
         string expectedMake = "Make";
         string expectedModel = "Model";
         string expectedModifyDate = "ModifyDate";
         long expectedOrientation = 0;
         long expectedResolutionUnit = 0;
         string expectedSoftware = "Software";
-        long expectedXResolution = 0;
+        double expectedXResolution = 0;
         long expectedYCbCrPositioning = 0;
-        long expectedYResolution = 0;
+        double expectedYResolution = 0;
 
+        Assert.Equal(expectedArtist, model.Artist);
+        Assert.Equal(expectedCopyright, model.Copyright);
         Assert.Equal(expectedExifOffset, model.ExifOffset);
         Assert.Equal(expectedGpsInfo, model.GpsInfo);
+        Assert.Equal(expectedImageDescription, model.ImageDescription);
         Assert.Equal(expectedMake, model.Make);
         Assert.Equal(expectedModel, model.Model);
         Assert.Equal(expectedModifyDate, model.ModifyDate);
@@ -2010,8 +2670,11 @@ public class ImageTest : TestBase
     {
         var model = new Image
         {
+            Artist = "Artist",
+            Copyright = "Copyright",
             ExifOffset = 0,
             GpsInfo = 0,
+            ImageDescription = "ImageDescription",
             Make = "Make",
             Model = "Model",
             ModifyDate = "ModifyDate",
@@ -2034,8 +2697,11 @@ public class ImageTest : TestBase
     {
         var model = new Image
         {
+            Artist = "Artist",
+            Copyright = "Copyright",
             ExifOffset = 0,
             GpsInfo = 0,
+            ImageDescription = "ImageDescription",
             Make = "Make",
             Model = "Model",
             ModifyDate = "ModifyDate",
@@ -2051,20 +2717,26 @@ public class ImageTest : TestBase
         var deserialized = JsonSerializer.Deserialize<Image>(element, ModelBase.SerializerOptions);
         Assert.NotNull(deserialized);
 
+        string expectedArtist = "Artist";
+        string expectedCopyright = "Copyright";
         long expectedExifOffset = 0;
         long expectedGpsInfo = 0;
+        string expectedImageDescription = "ImageDescription";
         string expectedMake = "Make";
         string expectedModel = "Model";
         string expectedModifyDate = "ModifyDate";
         long expectedOrientation = 0;
         long expectedResolutionUnit = 0;
         string expectedSoftware = "Software";
-        long expectedXResolution = 0;
+        double expectedXResolution = 0;
         long expectedYCbCrPositioning = 0;
-        long expectedYResolution = 0;
+        double expectedYResolution = 0;
 
+        Assert.Equal(expectedArtist, deserialized.Artist);
+        Assert.Equal(expectedCopyright, deserialized.Copyright);
         Assert.Equal(expectedExifOffset, deserialized.ExifOffset);
         Assert.Equal(expectedGpsInfo, deserialized.GpsInfo);
+        Assert.Equal(expectedImageDescription, deserialized.ImageDescription);
         Assert.Equal(expectedMake, deserialized.Make);
         Assert.Equal(expectedModel, deserialized.Model);
         Assert.Equal(expectedModifyDate, deserialized.ModifyDate);
@@ -2081,8 +2753,11 @@ public class ImageTest : TestBase
     {
         var model = new Image
         {
+            Artist = "Artist",
+            Copyright = "Copyright",
             ExifOffset = 0,
             GpsInfo = 0,
+            ImageDescription = "ImageDescription",
             Make = "Make",
             Model = "Model",
             ModifyDate = "ModifyDate",
@@ -2102,10 +2777,16 @@ public class ImageTest : TestBase
     {
         var model = new Image { };
 
+        Assert.Null(model.Artist);
+        Assert.False(model.RawData.ContainsKey("Artist"));
+        Assert.Null(model.Copyright);
+        Assert.False(model.RawData.ContainsKey("Copyright"));
         Assert.Null(model.ExifOffset);
         Assert.False(model.RawData.ContainsKey("ExifOffset"));
         Assert.Null(model.GpsInfo);
         Assert.False(model.RawData.ContainsKey("GPSInfo"));
+        Assert.Null(model.ImageDescription);
+        Assert.False(model.RawData.ContainsKey("ImageDescription"));
         Assert.Null(model.Make);
         Assert.False(model.RawData.ContainsKey("Make"));
         Assert.Null(model.Model);
@@ -2140,8 +2821,11 @@ public class ImageTest : TestBase
         var model = new Image
         {
             // Null should be interpreted as omitted for these properties
+            Artist = null,
+            Copyright = null,
             ExifOffset = null,
             GpsInfo = null,
+            ImageDescription = null,
             Make = null,
             Model = null,
             ModifyDate = null,
@@ -2153,10 +2837,16 @@ public class ImageTest : TestBase
             YResolution = null,
         };
 
+        Assert.Null(model.Artist);
+        Assert.False(model.RawData.ContainsKey("Artist"));
+        Assert.Null(model.Copyright);
+        Assert.False(model.RawData.ContainsKey("Copyright"));
         Assert.Null(model.ExifOffset);
         Assert.False(model.RawData.ContainsKey("ExifOffset"));
         Assert.Null(model.GpsInfo);
         Assert.False(model.RawData.ContainsKey("GPSInfo"));
+        Assert.Null(model.ImageDescription);
+        Assert.False(model.RawData.ContainsKey("ImageDescription"));
         Assert.Null(model.Make);
         Assert.False(model.RawData.ContainsKey("Make"));
         Assert.Null(model.Model);
@@ -2183,8 +2873,11 @@ public class ImageTest : TestBase
         var model = new Image
         {
             // Null should be interpreted as omitted for these properties
+            Artist = null,
+            Copyright = null,
             ExifOffset = null,
             GpsInfo = null,
+            ImageDescription = null,
             Make = null,
             Model = null,
             ModifyDate = null,
@@ -2204,8 +2897,11 @@ public class ImageTest : TestBase
     {
         var model = new Image
         {
+            Artist = "Artist",
+            Copyright = "Copyright",
             ExifOffset = 0,
             GpsInfo = 0,
+            ImageDescription = "ImageDescription",
             Make = "Make",
             Model = "Model",
             ModifyDate = "ModifyDate",
@@ -2376,8 +3072,8 @@ public class ExifThumbnailTest : TestBase
         long expectedResolutionUnit = 0;
         long expectedThumbnailLength = 0;
         long expectedThumbnailOffset = 0;
-        long expectedXResolution = 0;
-        long expectedYResolution = 0;
+        double expectedXResolution = 0;
+        double expectedYResolution = 0;
 
         Assert.Equal(expectedCompression, model.Compression);
         Assert.Equal(expectedResolutionUnit, model.ResolutionUnit);
@@ -2433,8 +3129,8 @@ public class ExifThumbnailTest : TestBase
         long expectedResolutionUnit = 0;
         long expectedThumbnailLength = 0;
         long expectedThumbnailOffset = 0;
-        long expectedXResolution = 0;
-        long expectedYResolution = 0;
+        double expectedXResolution = 0;
+        double expectedYResolution = 0;
 
         Assert.Equal(expectedCompression, deserialized.Compression);
         Assert.Equal(expectedResolutionUnit, deserialized.ResolutionUnit);
