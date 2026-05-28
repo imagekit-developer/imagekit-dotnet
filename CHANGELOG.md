@@ -1,5 +1,13 @@
 # Changelog
 
+## 6.0.1 (2026-05-28)
+
+Full Changelog: [v6.0.0...v6.0.1](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.0.0...v6.0.1)
+
+### Bug Fixes
+
+* **metadata:** correct EXIF/GPS field types and add missing properties ([ecd9c84](https://github.com/imagekit-developer/imagekit-dotnet/commit/ecd9c84b288b0fae65a3edc186e50b891fb0d325))
+
 ## 6.0.0 (2026-05-18)
 
 Full Changelog: [v0.0.1...v6.0.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v0.0.1...v6.0.0)
