@@ -17,6 +17,7 @@ public class OriginResponseTest : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
         value.Validate();
     }
@@ -49,6 +50,7 @@ public class OriginResponseTest : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
         value.Validate();
     }
@@ -138,6 +140,7 @@ public class OriginResponseTest : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<OriginResponse>(
@@ -182,6 +185,7 @@ public class OriginResponseTest : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<OriginResponse>(
@@ -310,6 +314,7 @@ public class OriginResponseS3Test : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
 
         string expectedID = "id";
@@ -319,6 +324,7 @@ public class OriginResponseS3Test : TestBase
         string expectedPrefix = "raw-assets";
         JsonElement expectedType = JsonSerializer.SerializeToElement("S3");
         string expectedBaseUrlForCanonicalHeader = "https://cdn.example.com";
+        bool expectedUseIamRole = true;
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBucket, model.Bucket);
@@ -327,6 +333,7 @@ public class OriginResponseS3Test : TestBase
         Assert.Equal(expectedPrefix, model.Prefix);
         Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
         Assert.Equal(expectedBaseUrlForCanonicalHeader, model.BaseUrlForCanonicalHeader);
+        Assert.Equal(expectedUseIamRole, model.UseIamRole);
     }
 
     [Fact]
@@ -340,6 +347,7 @@ public class OriginResponseS3Test : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -362,6 +370,7 @@ public class OriginResponseS3Test : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -378,6 +387,7 @@ public class OriginResponseS3Test : TestBase
         string expectedPrefix = "raw-assets";
         JsonElement expectedType = JsonSerializer.SerializeToElement("S3");
         string expectedBaseUrlForCanonicalHeader = "https://cdn.example.com";
+        bool expectedUseIamRole = true;
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBucket, deserialized.Bucket);
@@ -386,6 +396,7 @@ public class OriginResponseS3Test : TestBase
         Assert.Equal(expectedPrefix, deserialized.Prefix);
         Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
         Assert.Equal(expectedBaseUrlForCanonicalHeader, deserialized.BaseUrlForCanonicalHeader);
+        Assert.Equal(expectedUseIamRole, deserialized.UseIamRole);
     }
 
     [Fact]
@@ -399,6 +410,7 @@ public class OriginResponseS3Test : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
 
         model.Validate();
@@ -418,6 +430,8 @@ public class OriginResponseS3Test : TestBase
 
         Assert.Null(model.BaseUrlForCanonicalHeader);
         Assert.False(model.RawData.ContainsKey("baseUrlForCanonicalHeader"));
+        Assert.Null(model.UseIamRole);
+        Assert.False(model.RawData.ContainsKey("useIAMRole"));
     }
 
     [Fact]
@@ -448,10 +462,13 @@ public class OriginResponseS3Test : TestBase
 
             // Null should be interpreted as omitted for these properties
             BaseUrlForCanonicalHeader = null,
+            UseIamRole = null,
         };
 
         Assert.Null(model.BaseUrlForCanonicalHeader);
         Assert.False(model.RawData.ContainsKey("baseUrlForCanonicalHeader"));
+        Assert.Null(model.UseIamRole);
+        Assert.False(model.RawData.ContainsKey("useIAMRole"));
     }
 
     [Fact]
@@ -467,6 +484,7 @@ public class OriginResponseS3Test : TestBase
 
             // Null should be interpreted as omitted for these properties
             BaseUrlForCanonicalHeader = null,
+            UseIamRole = null,
         };
 
         model.Validate();
@@ -483,6 +501,7 @@ public class OriginResponseS3Test : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
 
         OriginResponseS3 copied = new(model);
@@ -724,6 +743,7 @@ public class OriginResponseCloudinaryBackupTest : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
 
         string expectedID = "id";
@@ -733,6 +753,7 @@ public class OriginResponseCloudinaryBackupTest : TestBase
         string expectedPrefix = "raw-assets";
         JsonElement expectedType = JsonSerializer.SerializeToElement("CLOUDINARY_BACKUP");
         string expectedBaseUrlForCanonicalHeader = "https://cdn.example.com";
+        bool expectedUseIamRole = true;
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedBucket, model.Bucket);
@@ -741,6 +762,7 @@ public class OriginResponseCloudinaryBackupTest : TestBase
         Assert.Equal(expectedPrefix, model.Prefix);
         Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
         Assert.Equal(expectedBaseUrlForCanonicalHeader, model.BaseUrlForCanonicalHeader);
+        Assert.Equal(expectedUseIamRole, model.UseIamRole);
     }
 
     [Fact]
@@ -754,6 +776,7 @@ public class OriginResponseCloudinaryBackupTest : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -776,6 +799,7 @@ public class OriginResponseCloudinaryBackupTest : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -792,6 +816,7 @@ public class OriginResponseCloudinaryBackupTest : TestBase
         string expectedPrefix = "raw-assets";
         JsonElement expectedType = JsonSerializer.SerializeToElement("CLOUDINARY_BACKUP");
         string expectedBaseUrlForCanonicalHeader = "https://cdn.example.com";
+        bool expectedUseIamRole = true;
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedBucket, deserialized.Bucket);
@@ -800,6 +825,7 @@ public class OriginResponseCloudinaryBackupTest : TestBase
         Assert.Equal(expectedPrefix, deserialized.Prefix);
         Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
         Assert.Equal(expectedBaseUrlForCanonicalHeader, deserialized.BaseUrlForCanonicalHeader);
+        Assert.Equal(expectedUseIamRole, deserialized.UseIamRole);
     }
 
     [Fact]
@@ -813,6 +839,7 @@ public class OriginResponseCloudinaryBackupTest : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
 
         model.Validate();
@@ -832,6 +859,8 @@ public class OriginResponseCloudinaryBackupTest : TestBase
 
         Assert.Null(model.BaseUrlForCanonicalHeader);
         Assert.False(model.RawData.ContainsKey("baseUrlForCanonicalHeader"));
+        Assert.Null(model.UseIamRole);
+        Assert.False(model.RawData.ContainsKey("useIAMRole"));
     }
 
     [Fact]
@@ -862,10 +891,13 @@ public class OriginResponseCloudinaryBackupTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             BaseUrlForCanonicalHeader = null,
+            UseIamRole = null,
         };
 
         Assert.Null(model.BaseUrlForCanonicalHeader);
         Assert.False(model.RawData.ContainsKey("baseUrlForCanonicalHeader"));
+        Assert.Null(model.UseIamRole);
+        Assert.False(model.RawData.ContainsKey("useIAMRole"));
     }
 
     [Fact]
@@ -881,6 +913,7 @@ public class OriginResponseCloudinaryBackupTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             BaseUrlForCanonicalHeader = null,
+            UseIamRole = null,
         };
 
         model.Validate();
@@ -897,6 +930,7 @@ public class OriginResponseCloudinaryBackupTest : TestBase
             Name = "US S3 Storage",
             Prefix = "raw-assets",
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
+            UseIamRole = true,
         };
 
         OriginResponseCloudinaryBackup copied = new(model);
