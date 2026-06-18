@@ -20,6 +20,7 @@ public class OriginServiceTest : TestBase
                     BaseUrlForCanonicalHeader = "https://cdn.example.com",
                     IncludeCanonicalHeader = false,
                     Prefix = "images",
+                    UseIamRole = true,
                 },
             },
             TestContext.Current.CancellationToken
@@ -43,6 +44,7 @@ public class OriginServiceTest : TestBase
                     BaseUrlForCanonicalHeader = "https://cdn.example.com",
                     IncludeCanonicalHeader = false,
                     Prefix = "images",
+                    UseIamRole = true,
                 },
             },
             TestContext.Current.CancellationToken

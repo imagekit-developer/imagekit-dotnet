@@ -1,5 +1,23 @@
 # Changelog
 
+## 6.1.0 (2026-06-18)
+
+Full Changelog: [v6.0.1...v6.1.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.0.1...v6.1.0)
+
+### Features
+
+* **origins:** add useIAMRole for IAM role authentication ([ae25f9c](https://github.com/imagekit-developer/imagekit-dotnet/commit/ae25f9c2480ea5fec242e5f601bb6fb46d9088cf))
+
+
+### Bug Fixes
+
+* **csharp:** resolve ambiguity in parsing query strings ([7b1f3f3](https://github.com/imagekit-developer/imagekit-dotnet/commit/7b1f3f35117f35101f07ed55f173ed91a427efb9))
+
+
+### Documentation
+
+* colorize default intensity value to 100 ([9dd7498](https://github.com/imagekit-developer/imagekit-dotnet/commit/9dd7498ad981888b5024e0f2f7fd161dab8e01da))
+
 ## 6.0.1 (2026-05-28)
 
 Full Changelog: [v6.0.0...v6.0.1](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.0.0...v6.0.1)

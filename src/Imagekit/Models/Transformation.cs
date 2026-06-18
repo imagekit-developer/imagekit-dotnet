@@ -336,7 +336,7 @@ public sealed record class Transformation : JsonModel
     /// Applies a color tint to the image. Accepts color and intensity as optional
     /// parameters. - `co-color` - Color to apply (e.g., `red`, `blue`, `FF0022`).
     /// Default is gray color. - `in-intensity` - Intensity of the color (0-100).
-    /// Default is 35. See [Colorize](https://imagekit.io/docs/effects-and-enhancements#colorize---e-colorize).
+    /// Default is 100. See [Colorize](https://imagekit.io/docs/effects-and-enhancements#colorize---e-colorize).
     /// </summary>
     public string? Colorize
     {

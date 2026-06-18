@@ -166,6 +166,23 @@ public record class OriginRequest : ModelBase
         }
     }
 
+    public bool? UseIamRole
+    {
+        get
+        {
+            return Match<bool?>(
+                s3: (x) => x.UseIamRole,
+                s3Compatible: (_) => null,
+                cloudinaryBackup: (x) => x.UseIamRole,
+                webFolder: (_) => null,
+                webProxy: (_) => null,
+                gcs: (_) => null,
+                azureBlob: (_) => null,
+                akeneoPim: (_) => null
+            );
+        }
+    }
+
     public string? BaseUrl
     {
         get
@@ -788,7 +805,7 @@ sealed class OriginRequestConverter : JsonConverter<OriginRequest>
 public sealed record class S3 : JsonModel
 {
     /// <summary>
-    /// Access key for the bucket.
+    /// Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
     /// </summary>
     public required string AccessKey
     {
@@ -827,7 +844,7 @@ public sealed record class S3 : JsonModel
     }
 
     /// <summary>
-    /// Secret key for the bucket.
+    /// Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
     /// </summary>
     public required string SecretKey
     {
@@ -912,6 +929,28 @@ public sealed record class S3 : JsonModel
         }
     }
 
+    /// <summary>
+    /// Use IAM role for authentication instead of access/secret keys. When set to
+    /// `true`, send an empty string for both `accessKey` and `secretKey`.
+    /// </summary>
+    public bool? UseIamRole
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("useIAMRole");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("useIAMRole", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -926,6 +965,7 @@ public sealed record class S3 : JsonModel
         _ = this.BaseUrlForCanonicalHeader;
         _ = this.IncludeCanonicalHeader;
         _ = this.Prefix;
+        _ = this.UseIamRole;
     }
 
     public S3()
@@ -1192,7 +1232,7 @@ class S3CompatibleFromRaw : IFromRawJson<S3Compatible>
 public sealed record class CloudinaryBackup : JsonModel
 {
     /// <summary>
-    /// Access key for the bucket.
+    /// Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
     /// </summary>
     public required string AccessKey
     {
@@ -1231,7 +1271,7 @@ public sealed record class CloudinaryBackup : JsonModel
     }
 
     /// <summary>
-    /// Secret key for the bucket.
+    /// Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
     /// </summary>
     public required string SecretKey
     {
@@ -1316,6 +1356,28 @@ public sealed record class CloudinaryBackup : JsonModel
         }
     }
 
+    /// <summary>
+    /// Use IAM role for authentication instead of access/secret keys. When set to
+    /// `true`, send an empty string for both `accessKey` and `secretKey`.
+    /// </summary>
+    public bool? UseIamRole
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("useIAMRole");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("useIAMRole", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -1335,6 +1397,7 @@ public sealed record class CloudinaryBackup : JsonModel
         _ = this.BaseUrlForCanonicalHeader;
         _ = this.IncludeCanonicalHeader;
         _ = this.Prefix;
+        _ = this.UseIamRole;
     }
 
     public CloudinaryBackup()
