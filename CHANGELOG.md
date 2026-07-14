@@ -1,5 +1,20 @@
 # Changelog
 
+## 6.2.0 (2026-07-14)
+
+Full Changelog: [v6.1.0...v6.2.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.1.0...v6.2.0)
+
+### Features
+
+* **api:** add usage analytics breakdown endpoint ([ea2003a](https://github.com/imagekit-developer/imagekit-dotnet/commit/ea2003a14166ed2b5d2828cc28349fa2071d308b))
+
+
+### Chores
+
+* **api:** Add title annotations to inline allOf fragments ([daac9bc](https://github.com/imagekit-developer/imagekit-dotnet/commit/daac9bcf43431f93fec66004bc7496b45f5adf77))
+* **api:** Add title annotations to inline allOf fragments ([c222cf8](https://github.com/imagekit-developer/imagekit-dotnet/commit/c222cf80c0c233e3f053b2f396957dc52a3f9ecf))
+* **api:** remove titles ([75b04c0](https://github.com/imagekit-developer/imagekit-dotnet/commit/75b04c07bd4a5cf326113b0b8bf051a7d384a80f))
+
 ## 6.1.0 (2026-06-18)
 
 Full Changelog: [v6.0.1...v6.1.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.0.1...v6.1.0)
