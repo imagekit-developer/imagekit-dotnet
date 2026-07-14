@@ -2502,12 +2502,12 @@ public class ByBandwidthTest : TestBase
     }
 }
 
-public class IntersectionMember1Test : TestBase
+public class BrowserByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new IntersectionMember1 { Name = "name" };
+        var model = new BrowserByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -2517,10 +2517,10 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new IntersectionMember1 { Name = "name" };
+        var model = new BrowserByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<IntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<BrowserByBandwidthEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2531,10 +2531,10 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new IntersectionMember1 { Name = "name" };
+        var model = new BrowserByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<IntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<BrowserByBandwidthEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2548,7 +2548,7 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new IntersectionMember1 { Name = "name" };
+        var model = new BrowserByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -2556,9 +2556,9 @@ public class IntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new IntersectionMember1 { Name = "name" };
+        var model = new BrowserByBandwidthEntry { Name = "name" };
 
-        IntersectionMember1 copied = new(model);
+        BrowserByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -2656,12 +2656,12 @@ public class ByRequestTest : TestBase
     }
 }
 
-public class ByRequestIntersectionMember1Test : TestBase
+public class BrowserByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new ByRequestIntersectionMember1 { Name = "name" };
+        var model = new BrowserByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -2671,10 +2671,10 @@ public class ByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new ByRequestIntersectionMember1 { Name = "name" };
+        var model = new BrowserByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<BrowserByRequestsEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -2685,10 +2685,10 @@ public class ByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new ByRequestIntersectionMember1 { Name = "name" };
+        var model = new BrowserByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<BrowserByRequestsEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -2702,7 +2702,7 @@ public class ByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new ByRequestIntersectionMember1 { Name = "name" };
+        var model = new BrowserByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -2710,9 +2710,9 @@ public class ByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new ByRequestIntersectionMember1 { Name = "name" };
+        var model = new BrowserByRequestsEntry { Name = "name" };
 
-        ByRequestIntersectionMember1 copied = new(model);
+        BrowserByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -3142,12 +3142,12 @@ public class CountryByBandwidthTest : TestBase
     }
 }
 
-public class CountryByBandwidthIntersectionMember1Test : TestBase
+public class CountryByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CountryByBandwidthIntersectionMember1 { Code = "code", Name = "name" };
+        var model = new CountryByBandwidthEntry { Code = "code", Name = "name" };
 
         string expectedCode = "code";
         string expectedName = "name";
@@ -3159,10 +3159,10 @@ public class CountryByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CountryByBandwidthIntersectionMember1 { Code = "code", Name = "name" };
+        var model = new CountryByBandwidthEntry { Code = "code", Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<CountryByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<CountryByBandwidthEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -3173,10 +3173,10 @@ public class CountryByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CountryByBandwidthIntersectionMember1 { Code = "code", Name = "name" };
+        var model = new CountryByBandwidthEntry { Code = "code", Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<CountryByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<CountryByBandwidthEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3192,7 +3192,7 @@ public class CountryByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CountryByBandwidthIntersectionMember1 { Code = "code", Name = "name" };
+        var model = new CountryByBandwidthEntry { Code = "code", Name = "name" };
 
         model.Validate();
     }
@@ -3200,9 +3200,9 @@ public class CountryByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new CountryByBandwidthIntersectionMember1 { Code = "code", Name = "name" };
+        var model = new CountryByBandwidthEntry { Code = "code", Name = "name" };
 
-        CountryByBandwidthIntersectionMember1 copied = new(model);
+        CountryByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -3312,12 +3312,12 @@ public class CountryByRequestTest : TestBase
     }
 }
 
-public class CountryByRequestIntersectionMember1Test : TestBase
+public class CountryByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new CountryByRequestIntersectionMember1 { Code = "code", Name = "name" };
+        var model = new CountryByRequestsEntry { Code = "code", Name = "name" };
 
         string expectedCode = "code";
         string expectedName = "name";
@@ -3329,10 +3329,10 @@ public class CountryByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new CountryByRequestIntersectionMember1 { Code = "code", Name = "name" };
+        var model = new CountryByRequestsEntry { Code = "code", Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<CountryByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<CountryByRequestsEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -3343,10 +3343,10 @@ public class CountryByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new CountryByRequestIntersectionMember1 { Code = "code", Name = "name" };
+        var model = new CountryByRequestsEntry { Code = "code", Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<CountryByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<CountryByRequestsEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3362,7 +3362,7 @@ public class CountryByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new CountryByRequestIntersectionMember1 { Code = "code", Name = "name" };
+        var model = new CountryByRequestsEntry { Code = "code", Name = "name" };
 
         model.Validate();
     }
@@ -3370,9 +3370,9 @@ public class CountryByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new CountryByRequestIntersectionMember1 { Code = "code", Name = "name" };
+        var model = new CountryByRequestsEntry { Code = "code", Name = "name" };
 
-        CountryByRequestIntersectionMember1 copied = new(model);
+        CountryByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -3681,12 +3681,12 @@ public class DeviceByBandwidthTest : TestBase
     }
 }
 
-public class DeviceByBandwidthIntersectionMember1Test : TestBase
+public class DeviceByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DeviceByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new DeviceByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -3696,10 +3696,10 @@ public class DeviceByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DeviceByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new DeviceByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DeviceByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<DeviceByBandwidthEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -3710,10 +3710,10 @@ public class DeviceByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DeviceByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new DeviceByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DeviceByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<DeviceByBandwidthEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3727,7 +3727,7 @@ public class DeviceByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DeviceByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new DeviceByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -3735,9 +3735,9 @@ public class DeviceByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new DeviceByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new DeviceByBandwidthEntry { Name = "name" };
 
-        DeviceByBandwidthIntersectionMember1 copied = new(model);
+        DeviceByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -3838,12 +3838,12 @@ public class DeviceByRequestTest : TestBase
     }
 }
 
-public class DeviceByRequestIntersectionMember1Test : TestBase
+public class DeviceByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new DeviceByRequestIntersectionMember1 { Name = "name" };
+        var model = new DeviceByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -3853,10 +3853,10 @@ public class DeviceByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new DeviceByRequestIntersectionMember1 { Name = "name" };
+        var model = new DeviceByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DeviceByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<DeviceByRequestsEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -3867,10 +3867,10 @@ public class DeviceByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new DeviceByRequestIntersectionMember1 { Name = "name" };
+        var model = new DeviceByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<DeviceByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<DeviceByRequestsEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -3884,7 +3884,7 @@ public class DeviceByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new DeviceByRequestIntersectionMember1 { Name = "name" };
+        var model = new DeviceByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -3892,9 +3892,9 @@ public class DeviceByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new DeviceByRequestIntersectionMember1 { Name = "name" };
+        var model = new DeviceByRequestsEntry { Name = "name" };
 
-        DeviceByRequestIntersectionMember1 copied = new(model);
+        DeviceByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -4352,12 +4352,12 @@ public class FormatByBandwidthTest : TestBase
     }
 }
 
-public class FormatByBandwidthIntersectionMember1Test : TestBase
+public class FormatByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FormatByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new FormatByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -4367,10 +4367,10 @@ public class FormatByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FormatByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new FormatByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FormatByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FormatByBandwidthEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -4381,10 +4381,10 @@ public class FormatByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FormatByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new FormatByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FormatByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FormatByBandwidthEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -4398,7 +4398,7 @@ public class FormatByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FormatByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new FormatByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -4406,9 +4406,9 @@ public class FormatByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FormatByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new FormatByBandwidthEntry { Name = "name" };
 
-        FormatByBandwidthIntersectionMember1 copied = new(model);
+        FormatByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -4509,12 +4509,12 @@ public class FormatByRequestTest : TestBase
     }
 }
 
-public class FormatByRequestIntersectionMember1Test : TestBase
+public class FormatByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FormatByRequestIntersectionMember1 { Name = "name" };
+        var model = new FormatByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -4524,10 +4524,10 @@ public class FormatByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FormatByRequestIntersectionMember1 { Name = "name" };
+        var model = new FormatByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FormatByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FormatByRequestsEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -4538,10 +4538,10 @@ public class FormatByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FormatByRequestIntersectionMember1 { Name = "name" };
+        var model = new FormatByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<FormatByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<FormatByRequestsEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -4555,7 +4555,7 @@ public class FormatByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new FormatByRequestIntersectionMember1 { Name = "name" };
+        var model = new FormatByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -4563,9 +4563,9 @@ public class FormatByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FormatByRequestIntersectionMember1 { Name = "name" };
+        var model = new FormatByRequestsEntry { Name = "name" };
 
-        FormatByRequestIntersectionMember1 copied = new(model);
+        FormatByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -5029,12 +5029,12 @@ public class TopImagesByBandwidthTest : TestBase
     }
 }
 
-public class TopImagesByBandwidthIntersectionMember1Test : TestBase
+public class TopImagesByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopImagesByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopImagesByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -5044,10 +5044,10 @@ public class TopImagesByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopImagesByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopImagesByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopImagesByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopImagesByBandwidthEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -5058,10 +5058,10 @@ public class TopImagesByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopImagesByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopImagesByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopImagesByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopImagesByBandwidthEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -5075,7 +5075,7 @@ public class TopImagesByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopImagesByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopImagesByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -5083,9 +5083,9 @@ public class TopImagesByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopImagesByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopImagesByBandwidthEntry { Name = "name" };
 
-        TopImagesByBandwidthIntersectionMember1 copied = new(model);
+        TopImagesByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -5186,12 +5186,12 @@ public class TopImagesByRequestTest : TestBase
     }
 }
 
-public class TopImagesByRequestIntersectionMember1Test : TestBase
+public class TopImagesByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopImagesByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopImagesByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -5201,10 +5201,10 @@ public class TopImagesByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopImagesByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopImagesByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopImagesByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopImagesByRequestsEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -5215,10 +5215,10 @@ public class TopImagesByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopImagesByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopImagesByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopImagesByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopImagesByRequestsEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -5232,7 +5232,7 @@ public class TopImagesByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopImagesByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopImagesByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -5240,9 +5240,9 @@ public class TopImagesByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopImagesByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopImagesByRequestsEntry { Name = "name" };
 
-        TopImagesByRequestIntersectionMember1 copied = new(model);
+        TopImagesByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -5557,12 +5557,12 @@ public class TopImageTransformsByBandwidthTest : TestBase
     }
 }
 
-public class TopImageTransformsByBandwidthIntersectionMember1Test : TestBase
+public class TopImageTransformsByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopImageTransformsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopImageTransformsByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -5572,14 +5572,13 @@ public class TopImageTransformsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopImageTransformsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopImageTransformsByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<TopImageTransformsByBandwidthIntersectionMember1>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<TopImageTransformsByBandwidthEntry>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -5587,14 +5586,13 @@ public class TopImageTransformsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopImageTransformsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopImageTransformsByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<TopImageTransformsByBandwidthIntersectionMember1>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<TopImageTransformsByBandwidthEntry>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedName = "name";
@@ -5605,7 +5603,7 @@ public class TopImageTransformsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopImageTransformsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopImageTransformsByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -5613,9 +5611,9 @@ public class TopImageTransformsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopImageTransformsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopImageTransformsByBandwidthEntry { Name = "name" };
 
-        TopImageTransformsByBandwidthIntersectionMember1 copied = new(model);
+        TopImageTransformsByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -5716,12 +5714,12 @@ public class TopImageTransformsByRequestTest : TestBase
     }
 }
 
-public class TopImageTransformsByRequestIntersectionMember1Test : TestBase
+public class TopImageTransformsByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopImageTransformsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopImageTransformsByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -5731,14 +5729,13 @@ public class TopImageTransformsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopImageTransformsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopImageTransformsByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<TopImageTransformsByRequestIntersectionMember1>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<TopImageTransformsByRequestsEntry>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -5746,14 +5743,13 @@ public class TopImageTransformsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopImageTransformsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopImageTransformsByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<TopImageTransformsByRequestIntersectionMember1>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<TopImageTransformsByRequestsEntry>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedName = "name";
@@ -5764,7 +5760,7 @@ public class TopImageTransformsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopImageTransformsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopImageTransformsByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -5772,9 +5768,9 @@ public class TopImageTransformsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopImageTransformsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopImageTransformsByRequestsEntry { Name = "name" };
 
-        TopImageTransformsByRequestIntersectionMember1 copied = new(model);
+        TopImageTransformsByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -6089,12 +6085,12 @@ public class TopOtherAssetsByBandwidthTest : TestBase
     }
 }
 
-public class TopOtherAssetsByBandwidthIntersectionMember1Test : TestBase
+public class TopOtherAssetsByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopOtherAssetsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopOtherAssetsByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -6104,10 +6100,10 @@ public class TopOtherAssetsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopOtherAssetsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopOtherAssetsByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopOtherAssetsByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopOtherAssetsByBandwidthEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -6118,10 +6114,10 @@ public class TopOtherAssetsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopOtherAssetsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopOtherAssetsByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopOtherAssetsByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopOtherAssetsByBandwidthEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -6135,7 +6131,7 @@ public class TopOtherAssetsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopOtherAssetsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopOtherAssetsByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -6143,9 +6139,9 @@ public class TopOtherAssetsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopOtherAssetsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopOtherAssetsByBandwidthEntry { Name = "name" };
 
-        TopOtherAssetsByBandwidthIntersectionMember1 copied = new(model);
+        TopOtherAssetsByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -6246,12 +6242,12 @@ public class TopOtherAssetsByRequestTest : TestBase
     }
 }
 
-public class TopOtherAssetsByRequestIntersectionMember1Test : TestBase
+public class TopOtherAssetsByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopOtherAssetsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopOtherAssetsByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -6261,10 +6257,10 @@ public class TopOtherAssetsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopOtherAssetsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopOtherAssetsByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopOtherAssetsByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopOtherAssetsByRequestsEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -6275,10 +6271,10 @@ public class TopOtherAssetsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopOtherAssetsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopOtherAssetsByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopOtherAssetsByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopOtherAssetsByRequestsEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -6292,7 +6288,7 @@ public class TopOtherAssetsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopOtherAssetsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopOtherAssetsByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -6300,9 +6296,9 @@ public class TopOtherAssetsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopOtherAssetsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopOtherAssetsByRequestsEntry { Name = "name" };
 
-        TopOtherAssetsByRequestIntersectionMember1 copied = new(model);
+        TopOtherAssetsByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -6617,12 +6613,12 @@ public class TopReferrersByBandwidthTest : TestBase
     }
 }
 
-public class TopReferrersByBandwidthIntersectionMember1Test : TestBase
+public class TopReferrersByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopReferrersByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopReferrersByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -6632,10 +6628,10 @@ public class TopReferrersByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopReferrersByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopReferrersByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopReferrersByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopReferrersByBandwidthEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -6646,10 +6642,10 @@ public class TopReferrersByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopReferrersByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopReferrersByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopReferrersByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopReferrersByBandwidthEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -6663,7 +6659,7 @@ public class TopReferrersByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopReferrersByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopReferrersByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -6671,9 +6667,9 @@ public class TopReferrersByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopReferrersByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopReferrersByBandwidthEntry { Name = "name" };
 
-        TopReferrersByBandwidthIntersectionMember1 copied = new(model);
+        TopReferrersByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -6774,12 +6770,12 @@ public class TopReferrersByRequestTest : TestBase
     }
 }
 
-public class TopReferrersByRequestIntersectionMember1Test : TestBase
+public class TopReferrersByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopReferrersByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopReferrersByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -6789,10 +6785,10 @@ public class TopReferrersByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopReferrersByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopReferrersByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopReferrersByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopReferrersByRequestsEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -6803,10 +6799,10 @@ public class TopReferrersByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopReferrersByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopReferrersByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopReferrersByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopReferrersByRequestsEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -6820,7 +6816,7 @@ public class TopReferrersByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopReferrersByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopReferrersByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -6828,9 +6824,9 @@ public class TopReferrersByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopReferrersByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopReferrersByRequestsEntry { Name = "name" };
 
-        TopReferrersByRequestIntersectionMember1 copied = new(model);
+        TopReferrersByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -7145,12 +7141,12 @@ public class TopUserAgentsByBandwidthTest : TestBase
     }
 }
 
-public class TopUserAgentsByBandwidthIntersectionMember1Test : TestBase
+public class TopUserAgentsByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopUserAgentsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopUserAgentsByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -7160,10 +7156,10 @@ public class TopUserAgentsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopUserAgentsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopUserAgentsByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopUserAgentsByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopUserAgentsByBandwidthEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -7174,10 +7170,10 @@ public class TopUserAgentsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopUserAgentsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopUserAgentsByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopUserAgentsByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopUserAgentsByBandwidthEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -7191,7 +7187,7 @@ public class TopUserAgentsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopUserAgentsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopUserAgentsByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -7199,9 +7195,9 @@ public class TopUserAgentsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopUserAgentsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopUserAgentsByBandwidthEntry { Name = "name" };
 
-        TopUserAgentsByBandwidthIntersectionMember1 copied = new(model);
+        TopUserAgentsByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -7302,12 +7298,12 @@ public class TopUserAgentsByRequestTest : TestBase
     }
 }
 
-public class TopUserAgentsByRequestIntersectionMember1Test : TestBase
+public class TopUserAgentsByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopUserAgentsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopUserAgentsByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -7317,10 +7313,10 @@ public class TopUserAgentsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopUserAgentsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopUserAgentsByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopUserAgentsByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopUserAgentsByRequestsEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -7331,10 +7327,10 @@ public class TopUserAgentsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopUserAgentsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopUserAgentsByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopUserAgentsByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopUserAgentsByRequestsEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -7348,7 +7344,7 @@ public class TopUserAgentsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopUserAgentsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopUserAgentsByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -7356,9 +7352,9 @@ public class TopUserAgentsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopUserAgentsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopUserAgentsByRequestsEntry { Name = "name" };
 
-        TopUserAgentsByRequestIntersectionMember1 copied = new(model);
+        TopUserAgentsByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -7670,12 +7666,12 @@ public class TopVideosByBandwidthTest : TestBase
     }
 }
 
-public class TopVideosByBandwidthIntersectionMember1Test : TestBase
+public class TopVideosByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopVideosByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopVideosByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -7685,10 +7681,10 @@ public class TopVideosByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopVideosByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopVideosByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopVideosByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopVideosByBandwidthEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -7699,10 +7695,10 @@ public class TopVideosByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopVideosByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopVideosByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopVideosByBandwidthIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopVideosByBandwidthEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -7716,7 +7712,7 @@ public class TopVideosByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopVideosByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopVideosByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -7724,9 +7720,9 @@ public class TopVideosByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopVideosByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopVideosByBandwidthEntry { Name = "name" };
 
-        TopVideosByBandwidthIntersectionMember1 copied = new(model);
+        TopVideosByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -7827,12 +7823,12 @@ public class TopVideosByRequestTest : TestBase
     }
 }
 
-public class TopVideosByRequestIntersectionMember1Test : TestBase
+public class TopVideosByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopVideosByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopVideosByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -7842,10 +7838,10 @@ public class TopVideosByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopVideosByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopVideosByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopVideosByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopVideosByRequestsEntry>(
             json,
             ModelBase.SerializerOptions
         );
@@ -7856,10 +7852,10 @@ public class TopVideosByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopVideosByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopVideosByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TopVideosByRequestIntersectionMember1>(
+        var deserialized = JsonSerializer.Deserialize<TopVideosByRequestsEntry>(
             element,
             ModelBase.SerializerOptions
         );
@@ -7873,7 +7869,7 @@ public class TopVideosByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopVideosByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopVideosByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -7881,9 +7877,9 @@ public class TopVideosByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopVideosByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopVideosByRequestsEntry { Name = "name" };
 
-        TopVideosByRequestIntersectionMember1 copied = new(model);
+        TopVideosByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -8198,12 +8194,12 @@ public class TopVideoTransformsByBandwidthTest : TestBase
     }
 }
 
-public class TopVideoTransformsByBandwidthIntersectionMember1Test : TestBase
+public class TopVideoTransformsByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopVideoTransformsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopVideoTransformsByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -8213,14 +8209,13 @@ public class TopVideoTransformsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopVideoTransformsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopVideoTransformsByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<TopVideoTransformsByBandwidthIntersectionMember1>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<TopVideoTransformsByBandwidthEntry>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -8228,14 +8223,13 @@ public class TopVideoTransformsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopVideoTransformsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopVideoTransformsByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<TopVideoTransformsByBandwidthIntersectionMember1>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<TopVideoTransformsByBandwidthEntry>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedName = "name";
@@ -8246,7 +8240,7 @@ public class TopVideoTransformsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopVideoTransformsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopVideoTransformsByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -8254,9 +8248,9 @@ public class TopVideoTransformsByBandwidthIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopVideoTransformsByBandwidthIntersectionMember1 { Name = "name" };
+        var model = new TopVideoTransformsByBandwidthEntry { Name = "name" };
 
-        TopVideoTransformsByBandwidthIntersectionMember1 copied = new(model);
+        TopVideoTransformsByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -8357,12 +8351,12 @@ public class TopVideoTransformsByRequestTest : TestBase
     }
 }
 
-public class TopVideoTransformsByRequestIntersectionMember1Test : TestBase
+public class TopVideoTransformsByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TopVideoTransformsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopVideoTransformsByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -8372,14 +8366,13 @@ public class TopVideoTransformsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TopVideoTransformsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopVideoTransformsByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<TopVideoTransformsByRequestIntersectionMember1>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<TopVideoTransformsByRequestsEntry>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -8387,14 +8380,13 @@ public class TopVideoTransformsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TopVideoTransformsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopVideoTransformsByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<TopVideoTransformsByRequestIntersectionMember1>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<TopVideoTransformsByRequestsEntry>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedName = "name";
@@ -8405,7 +8397,7 @@ public class TopVideoTransformsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TopVideoTransformsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopVideoTransformsByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -8413,9 +8405,9 @@ public class TopVideoTransformsByRequestIntersectionMember1Test : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TopVideoTransformsByRequestIntersectionMember1 { Name = "name" };
+        var model = new TopVideoTransformsByRequestsEntry { Name = "name" };
 
-        TopVideoTransformsByRequestIntersectionMember1 copied = new(model);
+        TopVideoTransformsByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -8732,15 +8724,12 @@ public class UsageAnalyticsResponseUrlEndpointsByBandwidthTest : TestBase
     }
 }
 
-public class UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1Test : TestBase
+public class UrlEndpointsByBandwidthEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1
-        {
-            Name = "name",
-        };
+        var model = new UrlEndpointsByBandwidthEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -8750,17 +8739,13 @@ public class UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1Tes
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1
-        {
-            Name = "name",
-        };
+        var model = new UrlEndpointsByBandwidthEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<UrlEndpointsByBandwidthEntry>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -8768,17 +8753,13 @@ public class UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1Tes
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1
-        {
-            Name = "name",
-        };
+        var model = new UrlEndpointsByBandwidthEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<UrlEndpointsByBandwidthEntry>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedName = "name";
@@ -8789,10 +8770,7 @@ public class UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1Tes
     [Fact]
     public void Validation_Works()
     {
-        var model = new UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1
-        {
-            Name = "name",
-        };
+        var model = new UrlEndpointsByBandwidthEntry { Name = "name" };
 
         model.Validate();
     }
@@ -8800,12 +8778,9 @@ public class UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1Tes
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1
-        {
-            Name = "name",
-        };
+        var model = new UrlEndpointsByBandwidthEntry { Name = "name" };
 
-        UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1 copied = new(model);
+        UrlEndpointsByBandwidthEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -8906,15 +8881,12 @@ public class UsageAnalyticsResponseUrlEndpointsByRequestTest : TestBase
     }
 }
 
-public class UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1Test : TestBase
+public class UrlEndpointsByRequestsEntryTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1
-        {
-            Name = "name",
-        };
+        var model = new UrlEndpointsByRequestsEntry { Name = "name" };
 
         string expectedName = "name";
 
@@ -8924,17 +8896,13 @@ public class UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1Test 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1
-        {
-            Name = "name",
-        };
+        var model = new UrlEndpointsByRequestsEntry { Name = "name" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1>(
-                json,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<UrlEndpointsByRequestsEntry>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -8942,17 +8910,13 @@ public class UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1Test 
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1
-        {
-            Name = "name",
-        };
+        var model = new UrlEndpointsByRequestsEntry { Name = "name" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized =
-            JsonSerializer.Deserialize<UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1>(
-                element,
-                ModelBase.SerializerOptions
-            );
+        var deserialized = JsonSerializer.Deserialize<UrlEndpointsByRequestsEntry>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedName = "name";
@@ -8963,10 +8927,7 @@ public class UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1Test 
     [Fact]
     public void Validation_Works()
     {
-        var model = new UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1
-        {
-            Name = "name",
-        };
+        var model = new UrlEndpointsByRequestsEntry { Name = "name" };
 
         model.Validate();
     }
@@ -8974,12 +8935,9 @@ public class UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1Test 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1
-        {
-            Name = "name",
-        };
+        var model = new UrlEndpointsByRequestsEntry { Name = "name" };
 
-        UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1 copied = new(model);
+        UrlEndpointsByRequestsEntry copied = new(model);
 
         Assert.Equal(model, copied);
     }
