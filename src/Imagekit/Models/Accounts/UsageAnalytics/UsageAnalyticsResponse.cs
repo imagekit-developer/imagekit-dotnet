@@ -618,8 +618,8 @@ class ByBandwidthFromRaw : IFromRawJson<ByBandwidth>
         ByBandwidth.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<BrowserByBandwidthEntry, BrowserByBandwidthEntryFromRaw>))]
-public sealed record class BrowserByBandwidthEntry : JsonModel
+[JsonConverter(typeof(JsonModelConverter<IntersectionMember1, IntersectionMember1FromRaw>))]
+public sealed record class IntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Browser name (e.g. `Chrome`).
@@ -640,29 +640,29 @@ public sealed record class BrowserByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public BrowserByBandwidthEntry() { }
+    public IntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public BrowserByBandwidthEntry(BrowserByBandwidthEntry browserByBandwidthEntry)
-        : base(browserByBandwidthEntry) { }
+    public IntersectionMember1(IntersectionMember1 intersectionMember1)
+        : base(intersectionMember1) { }
 #pragma warning restore CS8618
 
-    public BrowserByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public IntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BrowserByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    IntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="BrowserByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static BrowserByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="IntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static IntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -670,19 +670,18 @@ public sealed record class BrowserByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public BrowserByBandwidthEntry(string name)
+    public IntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class BrowserByBandwidthEntryFromRaw : IFromRawJson<BrowserByBandwidthEntry>
+class IntersectionMember1FromRaw : IFromRawJson<IntersectionMember1>
 {
     /// <inheritdoc/>
-    public BrowserByBandwidthEntry FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => BrowserByBandwidthEntry.FromRawUnchecked(rawData);
+    public IntersectionMember1 FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        IntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<ByRequest, ByRequestFromRaw>))]
@@ -773,8 +772,10 @@ class ByRequestFromRaw : IFromRawJson<ByRequest>
         ByRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<BrowserByRequestsEntry, BrowserByRequestsEntryFromRaw>))]
-public sealed record class BrowserByRequestsEntry : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<ByRequestIntersectionMember1, ByRequestIntersectionMember1FromRaw>)
+)]
+public sealed record class ByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Browser name (e.g. `Chrome`).
@@ -795,29 +796,29 @@ public sealed record class BrowserByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public BrowserByRequestsEntry() { }
+    public ByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public BrowserByRequestsEntry(BrowserByRequestsEntry browserByRequestsEntry)
-        : base(browserByRequestsEntry) { }
+    public ByRequestIntersectionMember1(ByRequestIntersectionMember1 byRequestIntersectionMember1)
+        : base(byRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public BrowserByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public ByRequestIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    BrowserByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    ByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="BrowserByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static BrowserByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="ByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static ByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -825,19 +826,19 @@ public sealed record class BrowserByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public BrowserByRequestsEntry(string name)
+    public ByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class BrowserByRequestsEntryFromRaw : IFromRawJson<BrowserByRequestsEntry>
+class ByRequestIntersectionMember1FromRaw : IFromRawJson<ByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public BrowserByRequestsEntry FromRawUnchecked(
+    public ByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => BrowserByRequestsEntry.FromRawUnchecked(rawData);
+    ) => ByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -1136,8 +1137,13 @@ class CountryByBandwidthFromRaw : IFromRawJson<CountryByBandwidth>
         CountryByBandwidth.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<CountryByBandwidthEntry, CountryByBandwidthEntryFromRaw>))]
-public sealed record class CountryByBandwidthEntry : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        CountryByBandwidthIntersectionMember1,
+        CountryByBandwidthIntersectionMember1FromRaw
+    >)
+)]
+public sealed record class CountryByBandwidthIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// ISO country code.
@@ -1172,29 +1178,31 @@ public sealed record class CountryByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public CountryByBandwidthEntry() { }
+    public CountryByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public CountryByBandwidthEntry(CountryByBandwidthEntry countryByBandwidthEntry)
-        : base(countryByBandwidthEntry) { }
+    public CountryByBandwidthIntersectionMember1(
+        CountryByBandwidthIntersectionMember1 countryByBandwidthIntersectionMember1
+    )
+        : base(countryByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public CountryByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CountryByBandwidthIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CountryByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    CountryByBandwidthIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="CountryByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static CountryByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="CountryByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static CountryByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1202,12 +1210,13 @@ public sealed record class CountryByBandwidthEntry : JsonModel
     }
 }
 
-class CountryByBandwidthEntryFromRaw : IFromRawJson<CountryByBandwidthEntry>
+class CountryByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<CountryByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public CountryByBandwidthEntry FromRawUnchecked(
+    public CountryByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CountryByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => CountryByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<CountryByRequest, CountryByRequestFromRaw>))]
@@ -1318,8 +1327,13 @@ class CountryByRequestFromRaw : IFromRawJson<CountryByRequest>
         CountryByRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<CountryByRequestsEntry, CountryByRequestsEntryFromRaw>))]
-public sealed record class CountryByRequestsEntry : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        CountryByRequestIntersectionMember1,
+        CountryByRequestIntersectionMember1FromRaw
+    >)
+)]
+public sealed record class CountryByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// ISO country code.
@@ -1354,29 +1368,31 @@ public sealed record class CountryByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public CountryByRequestsEntry() { }
+    public CountryByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public CountryByRequestsEntry(CountryByRequestsEntry countryByRequestsEntry)
-        : base(countryByRequestsEntry) { }
+    public CountryByRequestIntersectionMember1(
+        CountryByRequestIntersectionMember1 countryByRequestIntersectionMember1
+    )
+        : base(countryByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public CountryByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public CountryByRequestIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    CountryByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    CountryByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="CountryByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static CountryByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="CountryByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static CountryByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1384,12 +1400,12 @@ public sealed record class CountryByRequestsEntry : JsonModel
     }
 }
 
-class CountryByRequestsEntryFromRaw : IFromRawJson<CountryByRequestsEntry>
+class CountryByRequestIntersectionMember1FromRaw : IFromRawJson<CountryByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public CountryByRequestsEntry FromRawUnchecked(
+    public CountryByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => CountryByRequestsEntry.FromRawUnchecked(rawData);
+    ) => CountryByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -1580,8 +1596,13 @@ class DeviceByBandwidthFromRaw : IFromRawJson<DeviceByBandwidth>
         DeviceByBandwidth.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<DeviceByBandwidthEntry, DeviceByBandwidthEntryFromRaw>))]
-public sealed record class DeviceByBandwidthEntry : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        DeviceByBandwidthIntersectionMember1,
+        DeviceByBandwidthIntersectionMember1FromRaw
+    >)
+)]
+public sealed record class DeviceByBandwidthIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Device category combined with operating system or vendor (e.g. `Desktop -
@@ -1603,29 +1624,31 @@ public sealed record class DeviceByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public DeviceByBandwidthEntry() { }
+    public DeviceByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public DeviceByBandwidthEntry(DeviceByBandwidthEntry deviceByBandwidthEntry)
-        : base(deviceByBandwidthEntry) { }
+    public DeviceByBandwidthIntersectionMember1(
+        DeviceByBandwidthIntersectionMember1 deviceByBandwidthIntersectionMember1
+    )
+        : base(deviceByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public DeviceByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public DeviceByBandwidthIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DeviceByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    DeviceByBandwidthIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="DeviceByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static DeviceByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="DeviceByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static DeviceByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1633,19 +1656,20 @@ public sealed record class DeviceByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public DeviceByBandwidthEntry(string name)
+    public DeviceByBandwidthIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class DeviceByBandwidthEntryFromRaw : IFromRawJson<DeviceByBandwidthEntry>
+class DeviceByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<DeviceByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public DeviceByBandwidthEntry FromRawUnchecked(
+    public DeviceByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => DeviceByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => DeviceByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<DeviceByRequest, DeviceByRequestFromRaw>))]
@@ -1741,8 +1765,13 @@ class DeviceByRequestFromRaw : IFromRawJson<DeviceByRequest>
         DeviceByRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<DeviceByRequestsEntry, DeviceByRequestsEntryFromRaw>))]
-public sealed record class DeviceByRequestsEntry : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        DeviceByRequestIntersectionMember1,
+        DeviceByRequestIntersectionMember1FromRaw
+    >)
+)]
+public sealed record class DeviceByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Device category combined with operating system or vendor (e.g. `Desktop -
@@ -1764,29 +1793,31 @@ public sealed record class DeviceByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public DeviceByRequestsEntry() { }
+    public DeviceByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public DeviceByRequestsEntry(DeviceByRequestsEntry deviceByRequestsEntry)
-        : base(deviceByRequestsEntry) { }
+    public DeviceByRequestIntersectionMember1(
+        DeviceByRequestIntersectionMember1 deviceByRequestIntersectionMember1
+    )
+        : base(deviceByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public DeviceByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public DeviceByRequestIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    DeviceByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    DeviceByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="DeviceByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static DeviceByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="DeviceByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static DeviceByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -1794,19 +1825,19 @@ public sealed record class DeviceByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public DeviceByRequestsEntry(string name)
+    public DeviceByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class DeviceByRequestsEntryFromRaw : IFromRawJson<DeviceByRequestsEntry>
+class DeviceByRequestIntersectionMember1FromRaw : IFromRawJson<DeviceByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public DeviceByRequestsEntry FromRawUnchecked(
+    public DeviceByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => DeviceByRequestsEntry.FromRawUnchecked(rawData);
+    ) => DeviceByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<ErrorReason, ErrorReasonFromRaw>))]
@@ -2137,8 +2168,13 @@ class FormatByBandwidthFromRaw : IFromRawJson<FormatByBandwidth>
         FormatByBandwidth.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<FormatByBandwidthEntry, FormatByBandwidthEntryFromRaw>))]
-public sealed record class FormatByBandwidthEntry : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        FormatByBandwidthIntersectionMember1,
+        FormatByBandwidthIntersectionMember1FromRaw
+    >)
+)]
+public sealed record class FormatByBandwidthIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// MIME type (e.g. `image/webp`).
@@ -2159,29 +2195,31 @@ public sealed record class FormatByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public FormatByBandwidthEntry() { }
+    public FormatByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FormatByBandwidthEntry(FormatByBandwidthEntry formatByBandwidthEntry)
-        : base(formatByBandwidthEntry) { }
+    public FormatByBandwidthIntersectionMember1(
+        FormatByBandwidthIntersectionMember1 formatByBandwidthIntersectionMember1
+    )
+        : base(formatByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public FormatByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FormatByBandwidthIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FormatByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    FormatByBandwidthIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FormatByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static FormatByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="FormatByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static FormatByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2189,19 +2227,20 @@ public sealed record class FormatByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public FormatByBandwidthEntry(string name)
+    public FormatByBandwidthIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class FormatByBandwidthEntryFromRaw : IFromRawJson<FormatByBandwidthEntry>
+class FormatByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<FormatByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public FormatByBandwidthEntry FromRawUnchecked(
+    public FormatByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FormatByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => FormatByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<FormatByRequest, FormatByRequestFromRaw>))]
@@ -2296,8 +2335,13 @@ class FormatByRequestFromRaw : IFromRawJson<FormatByRequest>
         FormatByRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<FormatByRequestsEntry, FormatByRequestsEntryFromRaw>))]
-public sealed record class FormatByRequestsEntry : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        FormatByRequestIntersectionMember1,
+        FormatByRequestIntersectionMember1FromRaw
+    >)
+)]
+public sealed record class FormatByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// MIME type (e.g. `image/webp`).
@@ -2318,29 +2362,31 @@ public sealed record class FormatByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public FormatByRequestsEntry() { }
+    public FormatByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public FormatByRequestsEntry(FormatByRequestsEntry formatByRequestsEntry)
-        : base(formatByRequestsEntry) { }
+    public FormatByRequestIntersectionMember1(
+        FormatByRequestIntersectionMember1 formatByRequestIntersectionMember1
+    )
+        : base(formatByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public FormatByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public FormatByRequestIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    FormatByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    FormatByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="FormatByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static FormatByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="FormatByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static FormatByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2348,19 +2394,19 @@ public sealed record class FormatByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public FormatByRequestsEntry(string name)
+    public FormatByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class FormatByRequestsEntryFromRaw : IFromRawJson<FormatByRequestsEntry>
+class FormatByRequestIntersectionMember1FromRaw : IFromRawJson<FormatByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public FormatByRequestsEntry FromRawUnchecked(
+    public FormatByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => FormatByRequestsEntry.FromRawUnchecked(rawData);
+    ) => FormatByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<StatusCode, StatusCodeFromRaw>))]
@@ -2697,9 +2743,12 @@ class TopImagesByBandwidthFromRaw : IFromRawJson<TopImagesByBandwidth>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<TopImagesByBandwidthEntry, TopImagesByBandwidthEntryFromRaw>)
+    typeof(JsonModelConverter<
+        TopImagesByBandwidthIntersectionMember1,
+        TopImagesByBandwidthIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class TopImagesByBandwidthEntry : JsonModel
+public sealed record class TopImagesByBandwidthIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// URL of the image asset.
@@ -2720,29 +2769,31 @@ public sealed record class TopImagesByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopImagesByBandwidthEntry() { }
+    public TopImagesByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopImagesByBandwidthEntry(TopImagesByBandwidthEntry topImagesByBandwidthEntry)
-        : base(topImagesByBandwidthEntry) { }
+    public TopImagesByBandwidthIntersectionMember1(
+        TopImagesByBandwidthIntersectionMember1 topImagesByBandwidthIntersectionMember1
+    )
+        : base(topImagesByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopImagesByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopImagesByBandwidthIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopImagesByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopImagesByBandwidthIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopImagesByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static TopImagesByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopImagesByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopImagesByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2750,19 +2801,20 @@ public sealed record class TopImagesByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopImagesByBandwidthEntry(string name)
+    public TopImagesByBandwidthIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopImagesByBandwidthEntryFromRaw : IFromRawJson<TopImagesByBandwidthEntry>
+class TopImagesByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<TopImagesByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopImagesByBandwidthEntry FromRawUnchecked(
+    public TopImagesByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopImagesByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => TopImagesByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<TopImagesByRequest, TopImagesByRequestFromRaw>))]
@@ -2860,9 +2912,12 @@ class TopImagesByRequestFromRaw : IFromRawJson<TopImagesByRequest>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<TopImagesByRequestsEntry, TopImagesByRequestsEntryFromRaw>)
+    typeof(JsonModelConverter<
+        TopImagesByRequestIntersectionMember1,
+        TopImagesByRequestIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class TopImagesByRequestsEntry : JsonModel
+public sealed record class TopImagesByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// URL of the image asset.
@@ -2883,29 +2938,31 @@ public sealed record class TopImagesByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopImagesByRequestsEntry() { }
+    public TopImagesByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopImagesByRequestsEntry(TopImagesByRequestsEntry topImagesByRequestsEntry)
-        : base(topImagesByRequestsEntry) { }
+    public TopImagesByRequestIntersectionMember1(
+        TopImagesByRequestIntersectionMember1 topImagesByRequestIntersectionMember1
+    )
+        : base(topImagesByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopImagesByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopImagesByRequestIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopImagesByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopImagesByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopImagesByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static TopImagesByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopImagesByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopImagesByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -2913,19 +2970,20 @@ public sealed record class TopImagesByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopImagesByRequestsEntry(string name)
+    public TopImagesByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopImagesByRequestsEntryFromRaw : IFromRawJson<TopImagesByRequestsEntry>
+class TopImagesByRequestIntersectionMember1FromRaw
+    : IFromRawJson<TopImagesByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopImagesByRequestsEntry FromRawUnchecked(
+    public TopImagesByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopImagesByRequestsEntry.FromRawUnchecked(rawData);
+    ) => TopImagesByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -3129,11 +3187,11 @@ class TopImageTransformsByBandwidthFromRaw : IFromRawJson<TopImageTransformsByBa
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        TopImageTransformsByBandwidthEntry,
-        TopImageTransformsByBandwidthEntryFromRaw
+        TopImageTransformsByBandwidthIntersectionMember1,
+        TopImageTransformsByBandwidthIntersectionMember1FromRaw
     >)
 )]
-public sealed record class TopImageTransformsByBandwidthEntry : JsonModel
+public sealed record class TopImageTransformsByBandwidthIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Image transformation string (e.g. `tr:w-400,h-400`).
@@ -3154,31 +3212,33 @@ public sealed record class TopImageTransformsByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopImageTransformsByBandwidthEntry() { }
+    public TopImageTransformsByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopImageTransformsByBandwidthEntry(
-        TopImageTransformsByBandwidthEntry topImageTransformsByBandwidthEntry
+    public TopImageTransformsByBandwidthIntersectionMember1(
+        TopImageTransformsByBandwidthIntersectionMember1 topImageTransformsByBandwidthIntersectionMember1
     )
-        : base(topImageTransformsByBandwidthEntry) { }
+        : base(topImageTransformsByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopImageTransformsByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopImageTransformsByBandwidthIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopImageTransformsByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopImageTransformsByBandwidthIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopImageTransformsByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static TopImageTransformsByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopImageTransformsByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopImageTransformsByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3186,19 +3246,20 @@ public sealed record class TopImageTransformsByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopImageTransformsByBandwidthEntry(string name)
+    public TopImageTransformsByBandwidthIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopImageTransformsByBandwidthEntryFromRaw : IFromRawJson<TopImageTransformsByBandwidthEntry>
+class TopImageTransformsByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<TopImageTransformsByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopImageTransformsByBandwidthEntry FromRawUnchecked(
+    public TopImageTransformsByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopImageTransformsByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => TopImageTransformsByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
@@ -3302,11 +3363,11 @@ class TopImageTransformsByRequestFromRaw : IFromRawJson<TopImageTransformsByRequ
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        TopImageTransformsByRequestsEntry,
-        TopImageTransformsByRequestsEntryFromRaw
+        TopImageTransformsByRequestIntersectionMember1,
+        TopImageTransformsByRequestIntersectionMember1FromRaw
     >)
 )]
-public sealed record class TopImageTransformsByRequestsEntry : JsonModel
+public sealed record class TopImageTransformsByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Image transformation string (e.g. `tr:w-400,h-400`).
@@ -3327,31 +3388,33 @@ public sealed record class TopImageTransformsByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopImageTransformsByRequestsEntry() { }
+    public TopImageTransformsByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopImageTransformsByRequestsEntry(
-        TopImageTransformsByRequestsEntry topImageTransformsByRequestsEntry
+    public TopImageTransformsByRequestIntersectionMember1(
+        TopImageTransformsByRequestIntersectionMember1 topImageTransformsByRequestIntersectionMember1
     )
-        : base(topImageTransformsByRequestsEntry) { }
+        : base(topImageTransformsByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopImageTransformsByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopImageTransformsByRequestIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopImageTransformsByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopImageTransformsByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopImageTransformsByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static TopImageTransformsByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopImageTransformsByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopImageTransformsByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3359,19 +3422,20 @@ public sealed record class TopImageTransformsByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopImageTransformsByRequestsEntry(string name)
+    public TopImageTransformsByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopImageTransformsByRequestsEntryFromRaw : IFromRawJson<TopImageTransformsByRequestsEntry>
+class TopImageTransformsByRequestIntersectionMember1FromRaw
+    : IFromRawJson<TopImageTransformsByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopImageTransformsByRequestsEntry FromRawUnchecked(
+    public TopImageTransformsByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopImageTransformsByRequestsEntry.FromRawUnchecked(rawData);
+    ) => TopImageTransformsByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -3571,11 +3635,11 @@ class TopOtherAssetsByBandwidthFromRaw : IFromRawJson<TopOtherAssetsByBandwidth>
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        TopOtherAssetsByBandwidthEntry,
-        TopOtherAssetsByBandwidthEntryFromRaw
+        TopOtherAssetsByBandwidthIntersectionMember1,
+        TopOtherAssetsByBandwidthIntersectionMember1FromRaw
     >)
 )]
-public sealed record class TopOtherAssetsByBandwidthEntry : JsonModel
+public sealed record class TopOtherAssetsByBandwidthIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// URL of the non-image, non-video asset.
@@ -3596,31 +3660,33 @@ public sealed record class TopOtherAssetsByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopOtherAssetsByBandwidthEntry() { }
+    public TopOtherAssetsByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopOtherAssetsByBandwidthEntry(
-        TopOtherAssetsByBandwidthEntry topOtherAssetsByBandwidthEntry
+    public TopOtherAssetsByBandwidthIntersectionMember1(
+        TopOtherAssetsByBandwidthIntersectionMember1 topOtherAssetsByBandwidthIntersectionMember1
     )
-        : base(topOtherAssetsByBandwidthEntry) { }
+        : base(topOtherAssetsByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopOtherAssetsByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopOtherAssetsByBandwidthIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopOtherAssetsByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopOtherAssetsByBandwidthIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopOtherAssetsByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static TopOtherAssetsByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopOtherAssetsByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopOtherAssetsByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3628,19 +3694,20 @@ public sealed record class TopOtherAssetsByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopOtherAssetsByBandwidthEntry(string name)
+    public TopOtherAssetsByBandwidthIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopOtherAssetsByBandwidthEntryFromRaw : IFromRawJson<TopOtherAssetsByBandwidthEntry>
+class TopOtherAssetsByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<TopOtherAssetsByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopOtherAssetsByBandwidthEntry FromRawUnchecked(
+    public TopOtherAssetsByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopOtherAssetsByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => TopOtherAssetsByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<TopOtherAssetsByRequest, TopOtherAssetsByRequestFromRaw>))]
@@ -3741,9 +3808,12 @@ class TopOtherAssetsByRequestFromRaw : IFromRawJson<TopOtherAssetsByRequest>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<TopOtherAssetsByRequestsEntry, TopOtherAssetsByRequestsEntryFromRaw>)
+    typeof(JsonModelConverter<
+        TopOtherAssetsByRequestIntersectionMember1,
+        TopOtherAssetsByRequestIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class TopOtherAssetsByRequestsEntry : JsonModel
+public sealed record class TopOtherAssetsByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// URL of the non-image, non-video asset.
@@ -3764,31 +3834,33 @@ public sealed record class TopOtherAssetsByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopOtherAssetsByRequestsEntry() { }
+    public TopOtherAssetsByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopOtherAssetsByRequestsEntry(
-        TopOtherAssetsByRequestsEntry topOtherAssetsByRequestsEntry
+    public TopOtherAssetsByRequestIntersectionMember1(
+        TopOtherAssetsByRequestIntersectionMember1 topOtherAssetsByRequestIntersectionMember1
     )
-        : base(topOtherAssetsByRequestsEntry) { }
+        : base(topOtherAssetsByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopOtherAssetsByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopOtherAssetsByRequestIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopOtherAssetsByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopOtherAssetsByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopOtherAssetsByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static TopOtherAssetsByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopOtherAssetsByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopOtherAssetsByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -3796,19 +3868,20 @@ public sealed record class TopOtherAssetsByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopOtherAssetsByRequestsEntry(string name)
+    public TopOtherAssetsByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopOtherAssetsByRequestsEntryFromRaw : IFromRawJson<TopOtherAssetsByRequestsEntry>
+class TopOtherAssetsByRequestIntersectionMember1FromRaw
+    : IFromRawJson<TopOtherAssetsByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopOtherAssetsByRequestsEntry FromRawUnchecked(
+    public TopOtherAssetsByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopOtherAssetsByRequestsEntry.FromRawUnchecked(rawData);
+    ) => TopOtherAssetsByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -4005,9 +4078,12 @@ class TopReferrersByBandwidthFromRaw : IFromRawJson<TopReferrersByBandwidth>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<TopReferrersByBandwidthEntry, TopReferrersByBandwidthEntryFromRaw>)
+    typeof(JsonModelConverter<
+        TopReferrersByBandwidthIntersectionMember1,
+        TopReferrersByBandwidthIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class TopReferrersByBandwidthEntry : JsonModel
+public sealed record class TopReferrersByBandwidthIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Referrer URL.
@@ -4028,29 +4104,33 @@ public sealed record class TopReferrersByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopReferrersByBandwidthEntry() { }
+    public TopReferrersByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopReferrersByBandwidthEntry(TopReferrersByBandwidthEntry topReferrersByBandwidthEntry)
-        : base(topReferrersByBandwidthEntry) { }
+    public TopReferrersByBandwidthIntersectionMember1(
+        TopReferrersByBandwidthIntersectionMember1 topReferrersByBandwidthIntersectionMember1
+    )
+        : base(topReferrersByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopReferrersByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopReferrersByBandwidthIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopReferrersByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopReferrersByBandwidthIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopReferrersByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static TopReferrersByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopReferrersByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopReferrersByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4058,19 +4138,20 @@ public sealed record class TopReferrersByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopReferrersByBandwidthEntry(string name)
+    public TopReferrersByBandwidthIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopReferrersByBandwidthEntryFromRaw : IFromRawJson<TopReferrersByBandwidthEntry>
+class TopReferrersByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<TopReferrersByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopReferrersByBandwidthEntry FromRawUnchecked(
+    public TopReferrersByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopReferrersByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => TopReferrersByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<TopReferrersByRequest, TopReferrersByRequestFromRaw>))]
@@ -4171,9 +4252,12 @@ class TopReferrersByRequestFromRaw : IFromRawJson<TopReferrersByRequest>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<TopReferrersByRequestsEntry, TopReferrersByRequestsEntryFromRaw>)
+    typeof(JsonModelConverter<
+        TopReferrersByRequestIntersectionMember1,
+        TopReferrersByRequestIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class TopReferrersByRequestsEntry : JsonModel
+public sealed record class TopReferrersByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Referrer URL.
@@ -4194,29 +4278,33 @@ public sealed record class TopReferrersByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopReferrersByRequestsEntry() { }
+    public TopReferrersByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopReferrersByRequestsEntry(TopReferrersByRequestsEntry topReferrersByRequestsEntry)
-        : base(topReferrersByRequestsEntry) { }
+    public TopReferrersByRequestIntersectionMember1(
+        TopReferrersByRequestIntersectionMember1 topReferrersByRequestIntersectionMember1
+    )
+        : base(topReferrersByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopReferrersByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopReferrersByRequestIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopReferrersByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopReferrersByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopReferrersByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static TopReferrersByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopReferrersByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopReferrersByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4224,19 +4312,20 @@ public sealed record class TopReferrersByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopReferrersByRequestsEntry(string name)
+    public TopReferrersByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopReferrersByRequestsEntryFromRaw : IFromRawJson<TopReferrersByRequestsEntry>
+class TopReferrersByRequestIntersectionMember1FromRaw
+    : IFromRawJson<TopReferrersByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopReferrersByRequestsEntry FromRawUnchecked(
+    public TopReferrersByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopReferrersByRequestsEntry.FromRawUnchecked(rawData);
+    ) => TopReferrersByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -4435,9 +4524,12 @@ class TopUserAgentsByBandwidthFromRaw : IFromRawJson<TopUserAgentsByBandwidth>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<TopUserAgentsByBandwidthEntry, TopUserAgentsByBandwidthEntryFromRaw>)
+    typeof(JsonModelConverter<
+        TopUserAgentsByBandwidthIntersectionMember1,
+        TopUserAgentsByBandwidthIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class TopUserAgentsByBandwidthEntry : JsonModel
+public sealed record class TopUserAgentsByBandwidthIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// User agent string.
@@ -4458,31 +4550,33 @@ public sealed record class TopUserAgentsByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopUserAgentsByBandwidthEntry() { }
+    public TopUserAgentsByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopUserAgentsByBandwidthEntry(
-        TopUserAgentsByBandwidthEntry topUserAgentsByBandwidthEntry
+    public TopUserAgentsByBandwidthIntersectionMember1(
+        TopUserAgentsByBandwidthIntersectionMember1 topUserAgentsByBandwidthIntersectionMember1
     )
-        : base(topUserAgentsByBandwidthEntry) { }
+        : base(topUserAgentsByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopUserAgentsByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopUserAgentsByBandwidthIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopUserAgentsByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopUserAgentsByBandwidthIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopUserAgentsByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static TopUserAgentsByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopUserAgentsByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopUserAgentsByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4490,19 +4584,20 @@ public sealed record class TopUserAgentsByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopUserAgentsByBandwidthEntry(string name)
+    public TopUserAgentsByBandwidthIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopUserAgentsByBandwidthEntryFromRaw : IFromRawJson<TopUserAgentsByBandwidthEntry>
+class TopUserAgentsByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<TopUserAgentsByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopUserAgentsByBandwidthEntry FromRawUnchecked(
+    public TopUserAgentsByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopUserAgentsByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => TopUserAgentsByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<TopUserAgentsByRequest, TopUserAgentsByRequestFromRaw>))]
@@ -4603,9 +4698,12 @@ class TopUserAgentsByRequestFromRaw : IFromRawJson<TopUserAgentsByRequest>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<TopUserAgentsByRequestsEntry, TopUserAgentsByRequestsEntryFromRaw>)
+    typeof(JsonModelConverter<
+        TopUserAgentsByRequestIntersectionMember1,
+        TopUserAgentsByRequestIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class TopUserAgentsByRequestsEntry : JsonModel
+public sealed record class TopUserAgentsByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// User agent string.
@@ -4626,29 +4724,33 @@ public sealed record class TopUserAgentsByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopUserAgentsByRequestsEntry() { }
+    public TopUserAgentsByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopUserAgentsByRequestsEntry(TopUserAgentsByRequestsEntry topUserAgentsByRequestsEntry)
-        : base(topUserAgentsByRequestsEntry) { }
+    public TopUserAgentsByRequestIntersectionMember1(
+        TopUserAgentsByRequestIntersectionMember1 topUserAgentsByRequestIntersectionMember1
+    )
+        : base(topUserAgentsByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopUserAgentsByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopUserAgentsByRequestIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopUserAgentsByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopUserAgentsByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopUserAgentsByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static TopUserAgentsByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopUserAgentsByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopUserAgentsByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4656,19 +4758,20 @@ public sealed record class TopUserAgentsByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopUserAgentsByRequestsEntry(string name)
+    public TopUserAgentsByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopUserAgentsByRequestsEntryFromRaw : IFromRawJson<TopUserAgentsByRequestsEntry>
+class TopUserAgentsByRequestIntersectionMember1FromRaw
+    : IFromRawJson<TopUserAgentsByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopUserAgentsByRequestsEntry FromRawUnchecked(
+    public TopUserAgentsByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopUserAgentsByRequestsEntry.FromRawUnchecked(rawData);
+    ) => TopUserAgentsByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -4863,9 +4966,12 @@ class TopVideosByBandwidthFromRaw : IFromRawJson<TopVideosByBandwidth>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<TopVideosByBandwidthEntry, TopVideosByBandwidthEntryFromRaw>)
+    typeof(JsonModelConverter<
+        TopVideosByBandwidthIntersectionMember1,
+        TopVideosByBandwidthIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class TopVideosByBandwidthEntry : JsonModel
+public sealed record class TopVideosByBandwidthIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// URL of the video asset.
@@ -4886,29 +4992,31 @@ public sealed record class TopVideosByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopVideosByBandwidthEntry() { }
+    public TopVideosByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopVideosByBandwidthEntry(TopVideosByBandwidthEntry topVideosByBandwidthEntry)
-        : base(topVideosByBandwidthEntry) { }
+    public TopVideosByBandwidthIntersectionMember1(
+        TopVideosByBandwidthIntersectionMember1 topVideosByBandwidthIntersectionMember1
+    )
+        : base(topVideosByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopVideosByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopVideosByBandwidthIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopVideosByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopVideosByBandwidthIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopVideosByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static TopVideosByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopVideosByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopVideosByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -4916,19 +5024,20 @@ public sealed record class TopVideosByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopVideosByBandwidthEntry(string name)
+    public TopVideosByBandwidthIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopVideosByBandwidthEntryFromRaw : IFromRawJson<TopVideosByBandwidthEntry>
+class TopVideosByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<TopVideosByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopVideosByBandwidthEntry FromRawUnchecked(
+    public TopVideosByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopVideosByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => TopVideosByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<TopVideosByRequest, TopVideosByRequestFromRaw>))]
@@ -5026,9 +5135,12 @@ class TopVideosByRequestFromRaw : IFromRawJson<TopVideosByRequest>
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<TopVideosByRequestsEntry, TopVideosByRequestsEntryFromRaw>)
+    typeof(JsonModelConverter<
+        TopVideosByRequestIntersectionMember1,
+        TopVideosByRequestIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class TopVideosByRequestsEntry : JsonModel
+public sealed record class TopVideosByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Full URL of the video asset (e.g. `https://ik.imagekit.io/demo/clip.mp4`).
@@ -5049,29 +5161,31 @@ public sealed record class TopVideosByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopVideosByRequestsEntry() { }
+    public TopVideosByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopVideosByRequestsEntry(TopVideosByRequestsEntry topVideosByRequestsEntry)
-        : base(topVideosByRequestsEntry) { }
+    public TopVideosByRequestIntersectionMember1(
+        TopVideosByRequestIntersectionMember1 topVideosByRequestIntersectionMember1
+    )
+        : base(topVideosByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopVideosByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopVideosByRequestIntersectionMember1(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopVideosByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopVideosByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopVideosByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static TopVideosByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopVideosByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopVideosByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5079,19 +5193,20 @@ public sealed record class TopVideosByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopVideosByRequestsEntry(string name)
+    public TopVideosByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopVideosByRequestsEntryFromRaw : IFromRawJson<TopVideosByRequestsEntry>
+class TopVideosByRequestIntersectionMember1FromRaw
+    : IFromRawJson<TopVideosByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopVideosByRequestsEntry FromRawUnchecked(
+    public TopVideosByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopVideosByRequestsEntry.FromRawUnchecked(rawData);
+    ) => TopVideosByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -5295,11 +5410,11 @@ class TopVideoTransformsByBandwidthFromRaw : IFromRawJson<TopVideoTransformsByBa
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        TopVideoTransformsByBandwidthEntry,
-        TopVideoTransformsByBandwidthEntryFromRaw
+        TopVideoTransformsByBandwidthIntersectionMember1,
+        TopVideoTransformsByBandwidthIntersectionMember1FromRaw
     >)
 )]
-public sealed record class TopVideoTransformsByBandwidthEntry : JsonModel
+public sealed record class TopVideoTransformsByBandwidthIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Video transformation string (e.g. `tr:h-720,f-mp4`).
@@ -5320,31 +5435,33 @@ public sealed record class TopVideoTransformsByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopVideoTransformsByBandwidthEntry() { }
+    public TopVideoTransformsByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopVideoTransformsByBandwidthEntry(
-        TopVideoTransformsByBandwidthEntry topVideoTransformsByBandwidthEntry
+    public TopVideoTransformsByBandwidthIntersectionMember1(
+        TopVideoTransformsByBandwidthIntersectionMember1 topVideoTransformsByBandwidthIntersectionMember1
     )
-        : base(topVideoTransformsByBandwidthEntry) { }
+        : base(topVideoTransformsByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopVideoTransformsByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopVideoTransformsByBandwidthIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopVideoTransformsByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopVideoTransformsByBandwidthIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopVideoTransformsByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static TopVideoTransformsByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopVideoTransformsByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopVideoTransformsByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5352,19 +5469,20 @@ public sealed record class TopVideoTransformsByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopVideoTransformsByBandwidthEntry(string name)
+    public TopVideoTransformsByBandwidthIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopVideoTransformsByBandwidthEntryFromRaw : IFromRawJson<TopVideoTransformsByBandwidthEntry>
+class TopVideoTransformsByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<TopVideoTransformsByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopVideoTransformsByBandwidthEntry FromRawUnchecked(
+    public TopVideoTransformsByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopVideoTransformsByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => TopVideoTransformsByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
@@ -5468,11 +5586,11 @@ class TopVideoTransformsByRequestFromRaw : IFromRawJson<TopVideoTransformsByRequ
 
 [JsonConverter(
     typeof(JsonModelConverter<
-        TopVideoTransformsByRequestsEntry,
-        TopVideoTransformsByRequestsEntryFromRaw
+        TopVideoTransformsByRequestIntersectionMember1,
+        TopVideoTransformsByRequestIntersectionMember1FromRaw
     >)
 )]
-public sealed record class TopVideoTransformsByRequestsEntry : JsonModel
+public sealed record class TopVideoTransformsByRequestIntersectionMember1 : JsonModel
 {
     /// <summary>
     /// Video transformation string (e.g. `tr:h-720,f-mp4`).
@@ -5493,31 +5611,33 @@ public sealed record class TopVideoTransformsByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public TopVideoTransformsByRequestsEntry() { }
+    public TopVideoTransformsByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TopVideoTransformsByRequestsEntry(
-        TopVideoTransformsByRequestsEntry topVideoTransformsByRequestsEntry
+    public TopVideoTransformsByRequestIntersectionMember1(
+        TopVideoTransformsByRequestIntersectionMember1 topVideoTransformsByRequestIntersectionMember1
     )
-        : base(topVideoTransformsByRequestsEntry) { }
+        : base(topVideoTransformsByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public TopVideoTransformsByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TopVideoTransformsByRequestIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TopVideoTransformsByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    TopVideoTransformsByRequestIntersectionMember1(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TopVideoTransformsByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static TopVideoTransformsByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="TopVideoTransformsByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static TopVideoTransformsByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5525,19 +5645,20 @@ public sealed record class TopVideoTransformsByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public TopVideoTransformsByRequestsEntry(string name)
+    public TopVideoTransformsByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class TopVideoTransformsByRequestsEntryFromRaw : IFromRawJson<TopVideoTransformsByRequestsEntry>
+class TopVideoTransformsByRequestIntersectionMember1FromRaw
+    : IFromRawJson<TopVideoTransformsByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public TopVideoTransformsByRequestsEntry FromRawUnchecked(
+    public TopVideoTransformsByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => TopVideoTransformsByRequestsEntry.FromRawUnchecked(rawData);
+    ) => TopVideoTransformsByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -5755,9 +5876,13 @@ class UsageAnalyticsResponseUrlEndpointsByBandwidthFromRaw
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<UrlEndpointsByBandwidthEntry, UrlEndpointsByBandwidthEntryFromRaw>)
+    typeof(JsonModelConverter<
+        UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1,
+        UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class UrlEndpointsByBandwidthEntry : JsonModel
+public sealed record class UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1
+    : JsonModel
 {
     /// <summary>
     /// URL endpoint name, or `Default` for traffic that does not match a named endpoint.
@@ -5778,29 +5903,35 @@ public sealed record class UrlEndpointsByBandwidthEntry : JsonModel
         _ = this.Name;
     }
 
-    public UrlEndpointsByBandwidthEntry() { }
+    public UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UrlEndpointsByBandwidthEntry(UrlEndpointsByBandwidthEntry urlEndpointsByBandwidthEntry)
-        : base(urlEndpointsByBandwidthEntry) { }
+    public UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1(
+        UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1 usageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1
+    )
+        : base(usageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public UrlEndpointsByBandwidthEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UrlEndpointsByBandwidthEntry(FrozenDictionary<string, JsonElement> rawData)
+    UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UrlEndpointsByBandwidthEntryFromRaw.FromRawUnchecked"/>
-    public static UrlEndpointsByBandwidthEntry FromRawUnchecked(
+    /// <inheritdoc cref="UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5808,19 +5939,20 @@ public sealed record class UrlEndpointsByBandwidthEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public UrlEndpointsByBandwidthEntry(string name)
+    public UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class UrlEndpointsByBandwidthEntryFromRaw : IFromRawJson<UrlEndpointsByBandwidthEntry>
+class UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1FromRaw
+    : IFromRawJson<UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1>
 {
     /// <inheritdoc/>
-    public UrlEndpointsByBandwidthEntry FromRawUnchecked(
+    public UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UrlEndpointsByBandwidthEntry.FromRawUnchecked(rawData);
+    ) => UsageAnalyticsResponseUrlEndpointsByBandwidthIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
@@ -5931,9 +6063,13 @@ class UsageAnalyticsResponseUrlEndpointsByRequestFromRaw
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<UrlEndpointsByRequestsEntry, UrlEndpointsByRequestsEntryFromRaw>)
+    typeof(JsonModelConverter<
+        UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1,
+        UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1FromRaw
+    >)
 )]
-public sealed record class UrlEndpointsByRequestsEntry : JsonModel
+public sealed record class UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1
+    : JsonModel
 {
     /// <summary>
     /// URL endpoint name, or `Default` for traffic that does not match a named endpoint.
@@ -5954,29 +6090,35 @@ public sealed record class UrlEndpointsByRequestsEntry : JsonModel
         _ = this.Name;
     }
 
-    public UrlEndpointsByRequestsEntry() { }
+    public UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UrlEndpointsByRequestsEntry(UrlEndpointsByRequestsEntry urlEndpointsByRequestsEntry)
-        : base(urlEndpointsByRequestsEntry) { }
+    public UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1(
+        UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1 usageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1
+    )
+        : base(usageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1) { }
 #pragma warning restore CS8618
 
-    public UrlEndpointsByRequestsEntry(IReadOnlyDictionary<string, JsonElement> rawData)
+    public UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UrlEndpointsByRequestsEntry(FrozenDictionary<string, JsonElement> rawData)
+    UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="UrlEndpointsByRequestsEntryFromRaw.FromRawUnchecked"/>
-    public static UrlEndpointsByRequestsEntry FromRawUnchecked(
+    /// <inheritdoc cref="UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1FromRaw.FromRawUnchecked"/>
+    public static UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5984,19 +6126,20 @@ public sealed record class UrlEndpointsByRequestsEntry : JsonModel
     }
 
     [SetsRequiredMembers]
-    public UrlEndpointsByRequestsEntry(string name)
+    public UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1(string name)
         : this()
     {
         this.Name = name;
     }
 }
 
-class UrlEndpointsByRequestsEntryFromRaw : IFromRawJson<UrlEndpointsByRequestsEntry>
+class UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1FromRaw
+    : IFromRawJson<UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1>
 {
     /// <inheritdoc/>
-    public UrlEndpointsByRequestsEntry FromRawUnchecked(
+    public UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1 FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => UrlEndpointsByRequestsEntry.FromRawUnchecked(rawData);
+    ) => UsageAnalyticsResponseUrlEndpointsByRequestIntersectionMember1.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(JsonModelConverter<VideoProcessing, VideoProcessingFromRaw>))]
