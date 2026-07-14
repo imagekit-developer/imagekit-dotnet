@@ -6,28 +6,31 @@ using System.Net.Http;
 using System.Text.Json;
 using Imagekit.Core;
 
-namespace Imagekit.Models.Accounts.Usage;
+namespace Imagekit.Models.Accounts.UsageAnalytics;
 
 /// <summary>
-/// Get the account usage information between two dates. Note that the API response
-/// includes data from the start date while excluding data from the end date. In other
-/// words, the data covers the period starting from the specified start date up to,
-/// but not including, the end date.
+/// **Note:** This API is currently in beta.
 ///
-/// <para>For an agency account, the returned usage is aggregated across the agency
-/// and all of its child accounts that are billed to it.</para>
+/// <para>Get the account analytics data between two dates. The response covers the
+/// period from the start date to the end date, both dates inclusive. Both dates
+/// are interpreted as UTC calendar days.</para>
 ///
-/// <para>The response is cached for 6 hours per account, date range and requested metrics.</para>
+/// <para>The returned data is scoped to the requesting account only. Unlike `/v1/accounts/usage`,
+/// an agency account's analytics are not aggregated across its child accounts.</para>
+///
+/// <para>The response is cached for 5 minutes per account and date range. Use `generatedAt`
+/// to check how fresh the returned data is.</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
 /// cause existing derived classes to break.</para>
 /// </summary>
-public record class UsageGetParams : ParamsBase
+public record class UsageAnalyticsGetParams : ParamsBase
 {
     /// <summary>
-    /// Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`.
-    /// The difference between `startDate` and `endDate` should be less than 90 days.
+    /// Specify an `endDate` in `YYYY-MM-DD` format, interpreted as a UTC calendar
+    /// day. It should be after the `startDate`. The difference between `startDate`
+    /// and `endDate` should be less than 90 days.
     /// </summary>
     public required string EndDate
     {
@@ -40,8 +43,9 @@ public record class UsageGetParams : ParamsBase
     }
 
     /// <summary>
-    /// Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`.
-    /// The difference between `startDate` and `endDate` should be less than 90 days.
+    /// Specify a `startDate` in `YYYY-MM-DD` format, interpreted as a UTC calendar
+    /// day. It should be before the `endDate`. The difference between `startDate`
+    /// and `endDate` should be less than 90 days.
     /// </summary>
     public required string StartDate
     {
@@ -53,15 +57,15 @@ public record class UsageGetParams : ParamsBase
         init { this._rawQueryData.Set("startDate", value); }
     }
 
-    public UsageGetParams() { }
+    public UsageAnalyticsGetParams() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public UsageGetParams(UsageGetParams usageGetParams)
-        : base(usageGetParams) { }
+    public UsageAnalyticsGetParams(UsageAnalyticsGetParams usageAnalyticsGetParams)
+        : base(usageAnalyticsGetParams) { }
 #pragma warning restore CS8618
 
-    public UsageGetParams(
+    public UsageAnalyticsGetParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
@@ -72,7 +76,7 @@ public record class UsageGetParams : ParamsBase
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    UsageGetParams(
+    UsageAnalyticsGetParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData
     )
@@ -83,7 +87,7 @@ public record class UsageGetParams : ParamsBase
 #pragma warning restore CS8618
 
     /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
-    public static UsageGetParams FromRawUnchecked(
+    public static UsageAnalyticsGetParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
     )
@@ -110,7 +114,7 @@ public record class UsageGetParams : ParamsBase
             ModelBase.ToStringSerializerOptions
         );
 
-    public virtual bool Equals(UsageGetParams? other)
+    public virtual bool Equals(UsageAnalyticsGetParams? other)
     {
         if (other == null)
         {
@@ -122,7 +126,9 @@ public record class UsageGetParams : ParamsBase
 
     public override Uri Url(ClientOptions options)
     {
-        return new UriBuilder(options.BaseUrl.ToString().TrimEnd('/') + "/v1/accounts/usage")
+        return new UriBuilder(
+            options.BaseUrl.ToString().TrimEnd('/') + "/v1/accounts/usage-analytics"
+        )
         {
             Query = this.QueryString(options),
         }.Uri;

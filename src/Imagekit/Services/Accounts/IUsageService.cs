@@ -31,6 +31,12 @@ public interface IUsageService
     /// includes data from the start date while excluding data from the end date. In
     /// other words, the data covers the period starting from the specified start date
     /// up to, but not including, the end date.
+    ///
+    /// <para>For an agency account, the returned usage is aggregated across the agency
+    /// and all of its child accounts that are billed to it.</para>
+    ///
+    /// <para>The response is cached for 6 hours per account, date range and requested
+    /// metrics. </para>
     /// </summary>
     Task<UsageGetResponse> Get(
         UsageGetParams parameters,
