@@ -26,6 +26,8 @@ public interface IAccountService
 
     IUsageService Usage { get; }
 
+    IUsageAnalyticsService UsageAnalytics { get; }
+
     IOriginService Origins { get; }
 
     IUrlEndpointService UrlEndpoints { get; }
@@ -45,6 +47,8 @@ public interface IAccountServiceWithRawResponse
     IAccountServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     IUsageServiceWithRawResponse Usage { get; }
+
+    IUsageAnalyticsServiceWithRawResponse UsageAnalytics { get; }
 
     IOriginServiceWithRawResponse Origins { get; }
 
