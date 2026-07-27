@@ -560,6 +560,24 @@ public sealed record class ExifExif : JsonModel
         }
     }
 
+    public double? BrightnessValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("BrightnessValue");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("BrightnessValue", value);
+        }
+    }
+
     public long? ColorSpace
     {
         get
@@ -812,12 +830,12 @@ public sealed record class ExifExif : JsonModel
         }
     }
 
-    public long? FocalLength
+    public double? FocalLength
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<long>("FocalLength");
+            return this._rawData.GetNullableStruct<double>("FocalLength");
         }
         init
         {
@@ -827,6 +845,24 @@ public sealed record class ExifExif : JsonModel
             }
 
             this._rawData.Set("FocalLength", value);
+        }
+    }
+
+    public long? FocalLengthIn35mmFormat
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("FocalLengthIn35mmFormat");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("FocalLengthIn35mmFormat", value);
         }
     }
 
@@ -920,6 +956,60 @@ public sealed record class ExifExif : JsonModel
         }
     }
 
+    public string? LensModel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("LensModel");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("LensModel", value);
+        }
+    }
+
+    public long? LightSource
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("LightSource");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("LightSource", value);
+        }
+    }
+
+    public double? MaxApertureValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("MaxApertureValue");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("MaxApertureValue", value);
+        }
+    }
+
     public long? MeteringMode
     {
         get
@@ -953,6 +1043,42 @@ public sealed record class ExifExif : JsonModel
             }
 
             this._rawData.Set("SceneCaptureType", value);
+        }
+    }
+
+    public string? SceneType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("SceneType");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("SceneType", value);
+        }
+    }
+
+    public long? SensingMethod
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("SensingMethod");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("SensingMethod", value);
         }
     }
 
@@ -992,6 +1118,24 @@ public sealed record class ExifExif : JsonModel
         }
     }
 
+    public string? UserComment
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("UserComment");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("UserComment", value);
+        }
+    }
+
     public long? WhiteBalance
     {
         get
@@ -1014,6 +1158,7 @@ public sealed record class ExifExif : JsonModel
     public override void Validate()
     {
         _ = this.ApertureValue;
+        _ = this.BrightnessValue;
         _ = this.ColorSpace;
         _ = this.CreateDate;
         _ = this.CustomRendered;
@@ -1029,15 +1174,22 @@ public sealed record class ExifExif : JsonModel
         _ = this.FlashpixVersion;
         _ = this.FNumber;
         _ = this.FocalLength;
+        _ = this.FocalLengthIn35mmFormat;
         _ = this.FocalPlaneResolutionUnit;
         _ = this.FocalPlaneXResolution;
         _ = this.FocalPlaneYResolution;
         _ = this.InteropOffset;
         _ = this.Iso;
+        _ = this.LensModel;
+        _ = this.LightSource;
+        _ = this.MaxApertureValue;
         _ = this.MeteringMode;
         _ = this.SceneCaptureType;
+        _ = this.SceneType;
+        _ = this.SensingMethod;
         _ = this.ShutterSpeedValue;
         _ = this.SubSecTime;
+        _ = this.UserComment;
         _ = this.WhiteBalance;
     }
 
@@ -1082,6 +1234,195 @@ class ExifExifFromRaw : IFromRawJson<ExifExif>
 [JsonConverter(typeof(JsonModelConverter<Gps, GpsFromRaw>))]
 public sealed record class Gps : JsonModel
 {
+    public double? GpsAltitude
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("GPSAltitude");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("GPSAltitude", value);
+        }
+    }
+
+    public long? GpsAltitudeRef
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("GPSAltitudeRef");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("GPSAltitudeRef", value);
+        }
+    }
+
+    public string? GpsDateStamp
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("GPSDateStamp");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("GPSDateStamp", value);
+        }
+    }
+
+    public double? GpsImgDirection
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("GPSImgDirection");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("GPSImgDirection", value);
+        }
+    }
+
+    public string? GpsImgDirectionRef
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("GPSImgDirectionRef");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("GPSImgDirectionRef", value);
+        }
+    }
+
+    public IReadOnlyList<double>? GpsLatitude
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<double>>("GPSLatitude");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<double>?>(
+                "GPSLatitude",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public string? GpsLatitudeRef
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("GPSLatitudeRef");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("GPSLatitudeRef", value);
+        }
+    }
+
+    public IReadOnlyList<double>? GpsLongitude
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<double>>("GPSLongitude");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<double>?>(
+                "GPSLongitude",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    public string? GpsLongitudeRef
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("GPSLongitudeRef");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("GPSLongitudeRef", value);
+        }
+    }
+
+    public IReadOnlyList<double>? GpsTimeStamp
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<ImmutableArray<double>>("GPSTimeStamp");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<double>?>(
+                "GPSTimeStamp",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     public IReadOnlyList<long>? GpsVersionID
     {
         get
@@ -1106,6 +1447,16 @@ public sealed record class Gps : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
+        _ = this.GpsAltitude;
+        _ = this.GpsAltitudeRef;
+        _ = this.GpsDateStamp;
+        _ = this.GpsImgDirection;
+        _ = this.GpsImgDirectionRef;
+        _ = this.GpsLatitude;
+        _ = this.GpsLatitudeRef;
+        _ = this.GpsLongitude;
+        _ = this.GpsLongitudeRef;
+        _ = this.GpsTimeStamp;
         _ = this.GpsVersionID;
     }
 
@@ -1150,6 +1501,42 @@ class GpsFromRaw : IFromRawJson<Gps>
 [JsonConverter(typeof(JsonModelConverter<Image, ImageFromRaw>))]
 public sealed record class Image : JsonModel
 {
+    public string? Artist
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("Artist");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("Artist", value);
+        }
+    }
+
+    public string? Copyright
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("Copyright");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("Copyright", value);
+        }
+    }
+
     public long? ExifOffset
     {
         get
@@ -1183,6 +1570,24 @@ public sealed record class Image : JsonModel
             }
 
             this._rawData.Set("GPSInfo", value);
+        }
+    }
+
+    public string? ImageDescription
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("ImageDescription");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("ImageDescription", value);
         }
     }
 
@@ -1294,12 +1699,12 @@ public sealed record class Image : JsonModel
         }
     }
 
-    public long? XResolution
+    public double? XResolution
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<long>("XResolution");
+            return this._rawData.GetNullableStruct<double>("XResolution");
         }
         init
         {
@@ -1330,12 +1735,12 @@ public sealed record class Image : JsonModel
         }
     }
 
-    public long? YResolution
+    public double? YResolution
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<long>("YResolution");
+            return this._rawData.GetNullableStruct<double>("YResolution");
         }
         init
         {
@@ -1351,8 +1756,11 @@ public sealed record class Image : JsonModel
     /// <inheritdoc/>
     public override void Validate()
     {
+        _ = this.Artist;
+        _ = this.Copyright;
         _ = this.ExifOffset;
         _ = this.GpsInfo;
+        _ = this.ImageDescription;
         _ = this.Make;
         _ = this.Model;
         _ = this.ModifyDate;
@@ -1563,12 +1971,12 @@ public sealed record class ExifThumbnail : JsonModel
         }
     }
 
-    public long? XResolution
+    public double? XResolution
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<long>("XResolution");
+            return this._rawData.GetNullableStruct<double>("XResolution");
         }
         init
         {
@@ -1581,12 +1989,12 @@ public sealed record class ExifThumbnail : JsonModel
         }
     }
 
-    public long? YResolution
+    public double? YResolution
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<long>("YResolution");
+            return this._rawData.GetNullableStruct<double>("YResolution");
         }
         init
         {

@@ -149,6 +149,23 @@ public record class OriginResponse : ModelBase
         }
     }
 
+    public bool? UseIamRole
+    {
+        get
+        {
+            return Match<bool?>(
+                s3: (x) => x.UseIamRole,
+                s3Compatible: (_) => null,
+                cloudinaryBackup: (x) => x.UseIamRole,
+                webFolder: (_) => null,
+                webProxy: (_) => null,
+                gcs: (_) => null,
+                azureBlob: (_) => null,
+                akeneoPim: (_) => null
+            );
+        }
+    }
+
     public string? BaseUrl
     {
         get
@@ -891,6 +908,28 @@ public sealed record class OriginResponseS3 : JsonModel
         }
     }
 
+    /// <summary>
+    /// Whether the origin authenticates using an IAM role instead of access/secret
+    /// keys.
+    /// </summary>
+    public bool? UseIamRole
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("useIAMRole");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("useIAMRole", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -904,6 +943,7 @@ public sealed record class OriginResponseS3 : JsonModel
             throw new ImageKitInvalidDataException("Invalid value given for constant");
         }
         _ = this.BaseUrlForCanonicalHeader;
+        _ = this.UseIamRole;
     }
 
     public OriginResponseS3()
@@ -1241,6 +1281,28 @@ public sealed record class OriginResponseCloudinaryBackup : JsonModel
         }
     }
 
+    /// <summary>
+    /// Whether the origin authenticates using an IAM role instead of access/secret
+    /// keys.
+    /// </summary>
+    public bool? UseIamRole
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("useIAMRole");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("useIAMRole", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -1259,6 +1321,7 @@ public sealed record class OriginResponseCloudinaryBackup : JsonModel
             throw new ImageKitInvalidDataException("Invalid value given for constant");
         }
         _ = this.BaseUrlForCanonicalHeader;
+        _ = this.UseIamRole;
     }
 
     public OriginResponseCloudinaryBackup()

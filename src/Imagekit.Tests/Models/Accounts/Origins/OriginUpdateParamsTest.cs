@@ -20,6 +20,7 @@ public class OriginUpdateParamsTest : TestBase
                 BaseUrlForCanonicalHeader = "https://cdn.example.com",
                 IncludeCanonicalHeader = false,
                 Prefix = "images",
+                UseIamRole = true,
             },
         };
 
@@ -33,6 +34,7 @@ public class OriginUpdateParamsTest : TestBase
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
             IncludeCanonicalHeader = false,
             Prefix = "images",
+            UseIamRole = true,
         };
 
         Assert.Equal(expectedID, parameters.ID);
@@ -54,6 +56,7 @@ public class OriginUpdateParamsTest : TestBase
                 BaseUrlForCanonicalHeader = "https://cdn.example.com",
                 IncludeCanonicalHeader = false,
                 Prefix = "images",
+                UseIamRole = true,
             },
         };
 
@@ -79,6 +82,7 @@ public class OriginUpdateParamsTest : TestBase
                 BaseUrlForCanonicalHeader = "https://cdn.example.com",
                 IncludeCanonicalHeader = false,
                 Prefix = "images",
+                UseIamRole = true,
             },
         };
 

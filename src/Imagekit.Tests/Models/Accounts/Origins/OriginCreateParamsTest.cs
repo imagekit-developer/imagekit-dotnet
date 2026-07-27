@@ -19,6 +19,7 @@ public class OriginCreateParamsTest : TestBase
                 BaseUrlForCanonicalHeader = "https://cdn.example.com",
                 IncludeCanonicalHeader = false,
                 Prefix = "images",
+                UseIamRole = true,
             },
         };
 
@@ -31,6 +32,7 @@ public class OriginCreateParamsTest : TestBase
             BaseUrlForCanonicalHeader = "https://cdn.example.com",
             IncludeCanonicalHeader = false,
             Prefix = "images",
+            UseIamRole = true,
         };
 
         Assert.Equal(expectedOriginRequest, parameters.OriginRequest);
@@ -50,6 +52,7 @@ public class OriginCreateParamsTest : TestBase
                 BaseUrlForCanonicalHeader = "https://cdn.example.com",
                 IncludeCanonicalHeader = false,
                 Prefix = "images",
+                UseIamRole = true,
             },
         };
 
@@ -74,6 +77,7 @@ public class OriginCreateParamsTest : TestBase
                 BaseUrlForCanonicalHeader = "https://cdn.example.com",
                 IncludeCanonicalHeader = false,
                 Prefix = "images",
+                UseIamRole = true,
             },
         };
 
