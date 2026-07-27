@@ -29,7 +29,6 @@ public sealed class AccountService : IAccountService
 
         _withRawResponse = new(() => new AccountServiceWithRawResponse(client.WithRawResponse));
         _usage = new(() => new UsageService(client));
-        _usageAnalytics = new(() => new UsageAnalyticsService(client));
         _origins = new(() => new OriginService(client));
         _urlEndpoints = new(() => new UrlEndpointService(client));
     }
@@ -38,12 +37,6 @@ public sealed class AccountService : IAccountService
     public IUsageService Usage
     {
         get { return _usage.Value; }
-    }
-
-    readonly Lazy<IUsageAnalyticsService> _usageAnalytics;
-    public IUsageAnalyticsService UsageAnalytics
-    {
-        get { return _usageAnalytics.Value; }
     }
 
     readonly Lazy<IOriginService> _origins;
@@ -75,7 +68,6 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
         _client = client;
 
         _usage = new(() => new UsageServiceWithRawResponse(client));
-        _usageAnalytics = new(() => new UsageAnalyticsServiceWithRawResponse(client));
         _origins = new(() => new OriginServiceWithRawResponse(client));
         _urlEndpoints = new(() => new UrlEndpointServiceWithRawResponse(client));
     }
@@ -84,12 +76,6 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
     public IUsageServiceWithRawResponse Usage
     {
         get { return _usage.Value; }
-    }
-
-    readonly Lazy<IUsageAnalyticsServiceWithRawResponse> _usageAnalytics;
-    public IUsageAnalyticsServiceWithRawResponse UsageAnalytics
-    {
-        get { return _usageAnalytics.Value; }
     }
 
     readonly Lazy<IOriginServiceWithRawResponse> _origins;
