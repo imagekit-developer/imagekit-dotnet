@@ -1,5 +1,18 @@
 # Changelog
 
+## 6.3.0 (2026-07-24)
+
+Full Changelog: [v6.2.0...v6.3.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.2.0...v6.3.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([e827186](https://github.com/imagekit-developer/imagekit-dotnet/commit/e82718678fd3289b5cf213b87434418bbc983195))
+
+
+### Bug Fixes
+
+* **client:** tolerate JSON null in required untyped fields and prefer more specific union variants ([2bec549](https://github.com/imagekit-developer/imagekit-dotnet/commit/2bec549e4d11458a351838320952b6fd96a2742d))
+
 ## 6.2.0 (2026-07-14)
 
 Full Changelog: [v6.1.0...v6.2.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.1.0...v6.2.0)

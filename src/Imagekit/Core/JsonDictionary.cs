@@ -149,6 +149,22 @@ sealed class JsonDictionary
         return deserialized;
     }
 
+    /// <summary>
+    /// Gets the raw JSON element for a key that must be present, without rejecting JSON null.
+    ///
+    /// <para>Used for values of unknown type, which can be any JSON value including null. A JSON
+    /// null is returned as a <see cref="JsonElement"/> whose <c>ValueKind</c> is
+    /// <c>Null</c>.</para>
+    /// </summary>
+    public JsonElement GetNotAbsentElement(string key)
+    {
+        if (!_rawData.TryGetValue(key, out JsonElement element))
+        {
+            throw new ImageKitInvalidDataException($"'{key}' cannot be absent");
+        }
+        return element;
+    }
+
     public override string ToString() =>
         JsonSerializer.Serialize(
             FriendlyJsonPrinter.PrintValue(this._rawData),
