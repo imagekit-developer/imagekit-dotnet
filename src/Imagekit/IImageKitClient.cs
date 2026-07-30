@@ -77,6 +77,8 @@ public interface IImageKitClient : IDisposable
 
     ISavedExtensionService SavedExtensions { get; }
 
+    INamedTransformationService NamedTransformations { get; }
+
     IAssetService Assets { get; }
 
     ICacheService Cache { get; }
@@ -145,6 +147,8 @@ public interface IImageKitClientWithRawResponse : IDisposable
     IFileServiceWithRawResponse Files { get; }
 
     ISavedExtensionServiceWithRawResponse SavedExtensions { get; }
+
+    INamedTransformationServiceWithRawResponse NamedTransformations { get; }
 
     IAssetServiceWithRawResponse Assets { get; }
 
