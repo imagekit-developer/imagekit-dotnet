@@ -16,10 +16,10 @@ namespace Imagekit.Models.NamedTransformations;
 ///
 /// <para>- If another named transformation, or your account's upload pre-transformation/post-transformation
 /// settings, reference this named transformation (via the `n-&lt;name&gt;` token),
-/// the request fails with a `409` error and the response body includes a `references`
-/// array describing where it is used. Remove those references first, then retry the
-/// deletion. This is a best-effort check and cannot detect references baked into
-/// your own application code or previously generated URLs.</para>
+/// the request fails with a `409` error whose `message` describes what it is referenced
+/// by. Remove those references first, then retry the deletion. This is a best-effort
+/// check and cannot detect references baked into your own application code or previously
+/// generated URLs.</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
