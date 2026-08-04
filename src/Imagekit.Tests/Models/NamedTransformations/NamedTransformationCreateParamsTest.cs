@@ -1,0 +1,86 @@
+using System;
+using Imagekit.Models.NamedTransformations;
+
+namespace Imagekit.Tests.Models.NamedTransformations;
+
+public class NamedTransformationCreateParamsTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var parameters = new NamedTransformationCreateParams
+        {
+            Name = "small_thumbnail",
+            Transformation = "tr:w-150,h-150,fo-center,cm-resize",
+            Disabled = false,
+        };
+
+        string expectedName = "small_thumbnail";
+        string expectedTransformation = "tr:w-150,h-150,fo-center,cm-resize";
+        bool expectedDisabled = false;
+
+        Assert.Equal(expectedName, parameters.Name);
+        Assert.Equal(expectedTransformation, parameters.Transformation);
+        Assert.Equal(expectedDisabled, parameters.Disabled);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new NamedTransformationCreateParams
+        {
+            Name = "small_thumbnail",
+            Transformation = "tr:w-150,h-150,fo-center,cm-resize",
+        };
+
+        Assert.Null(parameters.Disabled);
+        Assert.False(parameters.RawBodyData.ContainsKey("disabled"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new NamedTransformationCreateParams
+        {
+            Name = "small_thumbnail",
+            Transformation = "tr:w-150,h-150,fo-center,cm-resize",
+
+            // Null should be interpreted as omitted for these properties
+            Disabled = null,
+        };
+
+        Assert.Null(parameters.Disabled);
+        Assert.False(parameters.RawBodyData.ContainsKey("disabled"));
+    }
+
+    [Fact]
+    public void Url_Works()
+    {
+        NamedTransformationCreateParams parameters = new()
+        {
+            Name = "small_thumbnail",
+            Transformation = "tr:w-150,h-150,fo-center,cm-resize",
+        };
+
+        var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
+
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.imagekit.io/v1/named-transformations"), url)
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new NamedTransformationCreateParams
+        {
+            Name = "small_thumbnail",
+            Transformation = "tr:w-150,h-150,fo-center,cm-resize",
+            Disabled = false,
+        };
+
+        NamedTransformationCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
+    }
+}
