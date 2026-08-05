@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.3.1](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.3.0...v6.3.1) (2026-08-05)
+
+
+### Chores
+
+* add release config ([62aa40d](https://github.com/imagekit-developer/imagekit-dotnet/commit/62aa40dd68fd2a8a7c294e053f3e302ce939fd3f))
+* migrate to stlc ([fca2eec](https://github.com/imagekit-developer/imagekit-dotnet/commit/fca2eec9ab1d0f77a5728610e32496d238ae3b54))
+* remove usage analytics api testing codegen ([f7c4e2a](https://github.com/imagekit-developer/imagekit-dotnet/commit/f7c4e2a9cbd18e63fe8e74369e21c5b1b7ec9db6))
+* restore usage analytics api testing codegen ([0c0bc22](https://github.com/imagekit-developer/imagekit-dotnet/commit/0c0bc221948bc2ce893049e832e8920d41734591))
+* update spec ([d13a062](https://github.com/imagekit-developer/imagekit-dotnet/commit/d13a062f22fba21a914d2acf4d400b89f10ab00f))
+
 ## 6.3.0 (2026-07-24)
 
 Full Changelog: [v6.2.0...v6.3.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.2.0...v6.3.0)
