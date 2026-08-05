@@ -69,6 +69,29 @@ public record class CustomMetadataFieldCreateParams : ParamsBase
         init { this._rawBodyData.Set("schema", value); }
     }
 
+    /// <summary>
+    /// Optional description for the custom metadata field. Can be up to 500 characters.
+    /// This is shown as a hint to the users while setting the field's value on an
+    /// asset in the media library UI.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("description", value);
+        }
+    }
+
     public CustomMetadataFieldCreateParams() { }
 
 #pragma warning disable CS8618
