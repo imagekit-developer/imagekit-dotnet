@@ -33,6 +33,7 @@ public class CustomMetadataFieldTest : TestBase
                 MinValue = "string",
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
+            Description = "description",
         };
 
         string expectedID = "id";
@@ -55,11 +56,13 @@ public class CustomMetadataFieldTest : TestBase
             MinValue = "string",
             SelectOptions = ["small", "medium", "large", 30, 40, true],
         };
+        string expectedDescription = "description";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedLabel, model.Label);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedSchema, model.Schema);
+        Assert.Equal(expectedDescription, model.Description);
     }
 
     [Fact]
@@ -87,6 +90,7 @@ public class CustomMetadataFieldTest : TestBase
                 MinValue = "string",
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
+            Description = "description",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -123,6 +127,7 @@ public class CustomMetadataFieldTest : TestBase
                 MinValue = "string",
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
+            Description = "description",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -152,11 +157,13 @@ public class CustomMetadataFieldTest : TestBase
             MinValue = "string",
             SelectOptions = ["small", "medium", "large", 30, 40, true],
         };
+        string expectedDescription = "description";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedLabel, deserialized.Label);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedSchema, deserialized.Schema);
+        Assert.Equal(expectedDescription, deserialized.Description);
     }
 
     [Fact]
@@ -184,6 +191,135 @@ public class CustomMetadataFieldTest : TestBase
                 MinValue = "string",
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
+            Description = "description",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new CustomMetadataField
+        {
+            ID = "id",
+            Label = "label",
+            Name = "name",
+            Schema = new()
+            {
+                Type = CustomMetadataFieldSchemaType.Text,
+                DefaultValue = new(
+                    [
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
+                    ]
+                ),
+                IsValueRequired = true,
+                MaxLength = 0,
+                MaxValue = "string",
+                MinLength = 0,
+                MinValue = "string",
+                SelectOptions = ["small", "medium", "large", 30, 40, true],
+            },
+        };
+
+        Assert.Null(model.Description);
+        Assert.False(model.RawData.ContainsKey("description"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new CustomMetadataField
+        {
+            ID = "id",
+            Label = "label",
+            Name = "name",
+            Schema = new()
+            {
+                Type = CustomMetadataFieldSchemaType.Text,
+                DefaultValue = new(
+                    [
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
+                    ]
+                ),
+                IsValueRequired = true,
+                MaxLength = 0,
+                MaxValue = "string",
+                MinLength = 0,
+                MinValue = "string",
+                SelectOptions = ["small", "medium", "large", 30, 40, true],
+            },
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new CustomMetadataField
+        {
+            ID = "id",
+            Label = "label",
+            Name = "name",
+            Schema = new()
+            {
+                Type = CustomMetadataFieldSchemaType.Text,
+                DefaultValue = new(
+                    [
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
+                    ]
+                ),
+                IsValueRequired = true,
+                MaxLength = 0,
+                MaxValue = "string",
+                MinLength = 0,
+                MinValue = "string",
+                SelectOptions = ["small", "medium", "large", 30, 40, true],
+            },
+
+            // Null should be interpreted as omitted for these properties
+            Description = null,
+        };
+
+        Assert.Null(model.Description);
+        Assert.False(model.RawData.ContainsKey("description"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new CustomMetadataField
+        {
+            ID = "id",
+            Label = "label",
+            Name = "name",
+            Schema = new()
+            {
+                Type = CustomMetadataFieldSchemaType.Text,
+                DefaultValue = new(
+                    [
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(true),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem(10),
+                        new CustomMetadataFieldSchemaDefaultValueDefaultValueItem("Hello"),
+                    ]
+                ),
+                IsValueRequired = true,
+                MaxLength = 0,
+                MaxValue = "string",
+                MinLength = 0,
+                MinValue = "string",
+                SelectOptions = ["small", "medium", "large", 30, 40, true],
+            },
+
+            // Null should be interpreted as omitted for these properties
+            Description = null,
         };
 
         model.Validate();
@@ -214,6 +350,7 @@ public class CustomMetadataFieldTest : TestBase
                 MinValue = "string",
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
+            Description = "description",
         };
 
         CustomMetadataField copied = new(model);

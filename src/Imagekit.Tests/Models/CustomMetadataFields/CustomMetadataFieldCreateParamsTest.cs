@@ -33,6 +33,7 @@ public class CustomMetadataFieldCreateParamsTest : TestBase
                 MinValue = 1000,
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
+            Description = "description",
         };
 
         string expectedLabel = "price";
@@ -54,10 +55,75 @@ public class CustomMetadataFieldCreateParamsTest : TestBase
             MinValue = 1000,
             SelectOptions = ["small", "medium", "large", 30, 40, true],
         };
+        string expectedDescription = "description";
 
         Assert.Equal(expectedLabel, parameters.Label);
         Assert.Equal(expectedName, parameters.Name);
         Assert.Equal(expectedSchema, parameters.Schema);
+        Assert.Equal(expectedDescription, parameters.Description);
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsUnsetAreNotSet_Works()
+    {
+        var parameters = new CustomMetadataFields::CustomMetadataFieldCreateParams
+        {
+            Label = "price",
+            Name = "price",
+            Schema = new()
+            {
+                Type = CustomMetadataFields::Type.Number,
+                DefaultValue = new(
+                    [
+                        new CustomMetadataFields::DefaultValueItem(true),
+                        new CustomMetadataFields::DefaultValueItem(10),
+                        new CustomMetadataFields::DefaultValueItem("Hello"),
+                    ]
+                ),
+                IsValueRequired = true,
+                MaxLength = 0,
+                MaxValue = 3000,
+                MinLength = 0,
+                MinValue = 1000,
+                SelectOptions = ["small", "medium", "large", 30, 40, true],
+            },
+        };
+
+        Assert.Null(parameters.Description);
+        Assert.False(parameters.RawBodyData.ContainsKey("description"));
+    }
+
+    [Fact]
+    public void OptionalNonNullableParamsSetToNullAreNotSet_Works()
+    {
+        var parameters = new CustomMetadataFields::CustomMetadataFieldCreateParams
+        {
+            Label = "price",
+            Name = "price",
+            Schema = new()
+            {
+                Type = CustomMetadataFields::Type.Number,
+                DefaultValue = new(
+                    [
+                        new CustomMetadataFields::DefaultValueItem(true),
+                        new CustomMetadataFields::DefaultValueItem(10),
+                        new CustomMetadataFields::DefaultValueItem("Hello"),
+                    ]
+                ),
+                IsValueRequired = true,
+                MaxLength = 0,
+                MaxValue = 3000,
+                MinLength = 0,
+                MinValue = 1000,
+                SelectOptions = ["small", "medium", "large", 30, 40, true],
+            },
+
+            // Null should be interpreted as omitted for these properties
+            Description = null,
+        };
+
+        Assert.Null(parameters.Description);
+        Assert.False(parameters.RawBodyData.ContainsKey("description"));
     }
 
     [Fact]
@@ -117,6 +183,7 @@ public class CustomMetadataFieldCreateParamsTest : TestBase
                 MinValue = 1000,
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
+            Description = "description",
         };
 
         CustomMetadataFields::CustomMetadataFieldCreateParams copied = new(parameters);
