@@ -11,18 +11,18 @@ public class NamedTransformationUpdateParamsTest : TestBase
         var parameters = new NamedTransformationUpdateParams
         {
             ID = "id",
-            Disabled = true,
+            Enabled = true,
             Name = "small_thumbnail_v2",
-            Transformation = "tr:w-200,h-200,fo-center,cm-resize",
+            Transformation = "w-200,h-200,fo-center,cm-resize",
         };
 
         string expectedID = "id";
-        bool expectedDisabled = true;
+        bool expectedEnabled = true;
         string expectedName = "small_thumbnail_v2";
-        string expectedTransformation = "tr:w-200,h-200,fo-center,cm-resize";
+        string expectedTransformation = "w-200,h-200,fo-center,cm-resize";
 
         Assert.Equal(expectedID, parameters.ID);
-        Assert.Equal(expectedDisabled, parameters.Disabled);
+        Assert.Equal(expectedEnabled, parameters.Enabled);
         Assert.Equal(expectedName, parameters.Name);
         Assert.Equal(expectedTransformation, parameters.Transformation);
     }
@@ -32,8 +32,8 @@ public class NamedTransformationUpdateParamsTest : TestBase
     {
         var parameters = new NamedTransformationUpdateParams { ID = "id" };
 
-        Assert.Null(parameters.Disabled);
-        Assert.False(parameters.RawBodyData.ContainsKey("disabled"));
+        Assert.Null(parameters.Enabled);
+        Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
         Assert.Null(parameters.Name);
         Assert.False(parameters.RawBodyData.ContainsKey("name"));
         Assert.Null(parameters.Transformation);
@@ -48,13 +48,13 @@ public class NamedTransformationUpdateParamsTest : TestBase
             ID = "id",
 
             // Null should be interpreted as omitted for these properties
-            Disabled = null,
+            Enabled = null,
             Name = null,
             Transformation = null,
         };
 
-        Assert.Null(parameters.Disabled);
-        Assert.False(parameters.RawBodyData.ContainsKey("disabled"));
+        Assert.Null(parameters.Enabled);
+        Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
         Assert.Null(parameters.Name);
         Assert.False(parameters.RawBodyData.ContainsKey("name"));
         Assert.Null(parameters.Transformation);
@@ -79,9 +79,9 @@ public class NamedTransformationUpdateParamsTest : TestBase
         var parameters = new NamedTransformationUpdateParams
         {
             ID = "id",
-            Disabled = true,
+            Enabled = true,
             Name = "small_thumbnail_v2",
-            Transformation = "tr:w-200,h-200,fo-center,cm-resize",
+            Transformation = "w-200,h-200,fo-center,cm-resize",
         };
 
         NamedTransformationUpdateParams copied = new(parameters);

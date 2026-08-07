@@ -11,17 +11,17 @@ public class NamedTransformationCreateParamsTest : TestBase
         var parameters = new NamedTransformationCreateParams
         {
             Name = "small_thumbnail",
-            Transformation = "tr:w-150,h-150,fo-center,cm-resize",
-            Disabled = false,
+            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Enabled = true,
         };
 
         string expectedName = "small_thumbnail";
-        string expectedTransformation = "tr:w-150,h-150,fo-center,cm-resize";
-        bool expectedDisabled = false;
+        string expectedTransformation = "w-150,h-150,fo-center,cm-resize";
+        bool expectedEnabled = true;
 
         Assert.Equal(expectedName, parameters.Name);
         Assert.Equal(expectedTransformation, parameters.Transformation);
-        Assert.Equal(expectedDisabled, parameters.Disabled);
+        Assert.Equal(expectedEnabled, parameters.Enabled);
     }
 
     [Fact]
@@ -30,11 +30,11 @@ public class NamedTransformationCreateParamsTest : TestBase
         var parameters = new NamedTransformationCreateParams
         {
             Name = "small_thumbnail",
-            Transformation = "tr:w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-resize",
         };
 
-        Assert.Null(parameters.Disabled);
-        Assert.False(parameters.RawBodyData.ContainsKey("disabled"));
+        Assert.Null(parameters.Enabled);
+        Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
     }
 
     [Fact]
@@ -43,14 +43,14 @@ public class NamedTransformationCreateParamsTest : TestBase
         var parameters = new NamedTransformationCreateParams
         {
             Name = "small_thumbnail",
-            Transformation = "tr:w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-resize",
 
             // Null should be interpreted as omitted for these properties
-            Disabled = null,
+            Enabled = null,
         };
 
-        Assert.Null(parameters.Disabled);
-        Assert.False(parameters.RawBodyData.ContainsKey("disabled"));
+        Assert.Null(parameters.Enabled);
+        Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
     }
 
     [Fact]
@@ -59,7 +59,7 @@ public class NamedTransformationCreateParamsTest : TestBase
         NamedTransformationCreateParams parameters = new()
         {
             Name = "small_thumbnail",
-            Transformation = "tr:w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-resize",
         };
 
         var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
@@ -75,8 +75,8 @@ public class NamedTransformationCreateParamsTest : TestBase
         var parameters = new NamedTransformationCreateParams
         {
             Name = "small_thumbnail",
-            Transformation = "tr:w-150,h-150,fo-center,cm-resize",
-            Disabled = false,
+            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Enabled = true,
         };
 
         NamedTransformationCreateParams copied = new(parameters);

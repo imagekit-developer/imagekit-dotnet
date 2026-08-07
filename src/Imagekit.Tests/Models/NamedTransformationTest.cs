@@ -14,20 +14,20 @@ public class NamedTransformationTest : TestBase
         {
             ID = "6bZ9x2ZUx",
             CreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z"),
-            Disabled = false,
+            Enabled = true,
             Name = "small_thumbnail",
             Transformation = "tr:w-150,h-150,fo-center,cm-resize",
         };
 
         string expectedID = "6bZ9x2ZUx";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z");
-        bool expectedDisabled = false;
+        bool expectedEnabled = true;
         string expectedName = "small_thumbnail";
         string expectedTransformation = "tr:w-150,h-150,fo-center,cm-resize";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
-        Assert.Equal(expectedDisabled, model.Disabled);
+        Assert.Equal(expectedEnabled, model.Enabled);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedTransformation, model.Transformation);
     }
@@ -39,7 +39,7 @@ public class NamedTransformationTest : TestBase
         {
             ID = "6bZ9x2ZUx",
             CreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z"),
-            Disabled = false,
+            Enabled = true,
             Name = "small_thumbnail",
             Transformation = "tr:w-150,h-150,fo-center,cm-resize",
         };
@@ -60,7 +60,7 @@ public class NamedTransformationTest : TestBase
         {
             ID = "6bZ9x2ZUx",
             CreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z"),
-            Disabled = false,
+            Enabled = true,
             Name = "small_thumbnail",
             Transformation = "tr:w-150,h-150,fo-center,cm-resize",
         };
@@ -74,13 +74,13 @@ public class NamedTransformationTest : TestBase
 
         string expectedID = "6bZ9x2ZUx";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z");
-        bool expectedDisabled = false;
+        bool expectedEnabled = true;
         string expectedName = "small_thumbnail";
         string expectedTransformation = "tr:w-150,h-150,fo-center,cm-resize";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
-        Assert.Equal(expectedDisabled, deserialized.Disabled);
+        Assert.Equal(expectedEnabled, deserialized.Enabled);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedTransformation, deserialized.Transformation);
     }
@@ -92,7 +92,7 @@ public class NamedTransformationTest : TestBase
         {
             ID = "6bZ9x2ZUx",
             CreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z"),
-            Disabled = false,
+            Enabled = true,
             Name = "small_thumbnail",
             Transformation = "tr:w-150,h-150,fo-center,cm-resize",
         };
@@ -109,8 +109,8 @@ public class NamedTransformationTest : TestBase
         Assert.False(model.RawData.ContainsKey("id"));
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
-        Assert.Null(model.Disabled);
-        Assert.False(model.RawData.ContainsKey("disabled"));
+        Assert.Null(model.Enabled);
+        Assert.False(model.RawData.ContainsKey("enabled"));
         Assert.Null(model.Name);
         Assert.False(model.RawData.ContainsKey("name"));
         Assert.Null(model.Transformation);
@@ -133,7 +133,7 @@ public class NamedTransformationTest : TestBase
             // Null should be interpreted as omitted for these properties
             ID = null,
             CreatedAt = null,
-            Disabled = null,
+            Enabled = null,
             Name = null,
             Transformation = null,
         };
@@ -142,8 +142,8 @@ public class NamedTransformationTest : TestBase
         Assert.False(model.RawData.ContainsKey("id"));
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
-        Assert.Null(model.Disabled);
-        Assert.False(model.RawData.ContainsKey("disabled"));
+        Assert.Null(model.Enabled);
+        Assert.False(model.RawData.ContainsKey("enabled"));
         Assert.Null(model.Name);
         Assert.False(model.RawData.ContainsKey("name"));
         Assert.Null(model.Transformation);
@@ -158,7 +158,7 @@ public class NamedTransformationTest : TestBase
             // Null should be interpreted as omitted for these properties
             ID = null,
             CreatedAt = null,
-            Disabled = null,
+            Enabled = null,
             Name = null,
             Transformation = null,
         };
@@ -173,7 +173,7 @@ public class NamedTransformationTest : TestBase
         {
             ID = "6bZ9x2ZUx",
             CreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z"),
-            Disabled = false,
+            Enabled = true,
             Name = "small_thumbnail",
             Transformation = "tr:w-150,h-150,fo-center,cm-resize",
         };

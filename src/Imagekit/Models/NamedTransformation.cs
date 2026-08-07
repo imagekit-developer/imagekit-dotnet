@@ -39,7 +39,7 @@ public sealed record class NamedTransformation : JsonModel
     }
 
     /// <summary>
-    /// Timestamp when the named transformation was created.
+    /// Timestamp (ISO string) when the named transformation was created.
     /// </summary>
     public DateTimeOffset? CreatedAt
     {
@@ -60,14 +60,14 @@ public sealed record class NamedTransformation : JsonModel
     }
 
     /// <summary>
-    /// Whether this named transformation is currently disabled.
+    /// Whether this named transformation is currently enabled.
     /// </summary>
-    public bool? Disabled
+    public bool? Enabled
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("disabled");
+            return this._rawData.GetNullableStruct<bool>("enabled");
         }
         init
         {
@@ -76,7 +76,7 @@ public sealed record class NamedTransformation : JsonModel
                 return;
             }
 
-            this._rawData.Set("disabled", value);
+            this._rawData.Set("enabled", value);
         }
     }
 
@@ -103,7 +103,9 @@ public sealed record class NamedTransformation : JsonModel
     }
 
     /// <summary>
-    /// The transformation string this name refers to.
+    /// The transformation this name refers to. Always returned with the `tr:` prefix
+    /// included, regardless of whether you supplied it when creating or updating
+    /// the named transformation.
     /// </summary>
     public string? Transformation
     {
@@ -128,7 +130,7 @@ public sealed record class NamedTransformation : JsonModel
     {
         _ = this.ID;
         _ = this.CreatedAt;
-        _ = this.Disabled;
+        _ = this.Enabled;
         _ = this.Name;
         _ = this.Transformation;
     }

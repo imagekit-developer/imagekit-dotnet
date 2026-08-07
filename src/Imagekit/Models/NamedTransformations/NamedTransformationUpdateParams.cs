@@ -13,6 +13,17 @@ namespace Imagekit.Models.NamedTransformations;
 /// Updates the named transformation identified by `id` and returns the updated object.
 /// Only the fields present in the request body are updated; omitted fields are left unchanged.
 ///
+/// <para>**Note:**</para>
+///
+/// <para>- If you rename this named transformation, or set `enabled` to `false`,
+/// and another *enabled* named transformation, or your account's upload pre-transformation/post-transformation
+/// settings, reference it (via the `n-&lt;name&gt;` token), the request fails with
+/// a `409` error whose `message` describes what it is referenced by. A reference
+/// from a named transformation that is itself disabled does not block this request.
+/// Remove or disable those references first, then retry. This is a best-effort check
+/// and cannot detect references baked into your own application code or previously
+/// generated URLs.</para>
+///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
 /// cause existing derived classes to break.</para>
@@ -28,14 +39,15 @@ public record class NamedTransformationUpdateParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Whether this named transformation is disabled.
+    /// Whether this named transformation is enabled. If omitted, the existing value
+    /// is left unchanged.
     /// </summary>
-    public bool? Disabled
+    public bool? Enabled
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<bool>("disabled");
+            return this._rawBodyData.GetNullableStruct<bool>("enabled");
         }
         init
         {
@@ -44,13 +56,14 @@ public record class NamedTransformationUpdateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData.Set("disabled", value);
+            this._rawBodyData.Set("enabled", value);
         }
     }
 
     /// <summary>
-    /// Updated name of the named transformation. Can only contain alphanumeric characters,
-    /// `_` and `-`, and must be unique for your account (case-insensitive).
+    /// Updated name of the named transformation. Can only contain alphanumeric characters
+    /// and `_`, and must be unique for your account. Name matching is case-sensitive,
+    /// so `Small_Thumbnail` and `small_thumbnail` are treated as different names.
     /// </summary>
     public string? Name
     {
@@ -71,8 +84,10 @@ public record class NamedTransformationUpdateParams : ParamsBase
     }
 
     /// <summary>
-    /// Updated transformation string. It must start with `tr:` followed by one or
-    /// more transformation parameters.
+    /// Updated transformation, expressed as one or more comma-separated transformation
+    /// parameters. You do not need to prefix this with `tr:` — it is added automatically.
+    /// If you do include it, it must appear in lowercase at the start of the string,
+    /// or the request is rejected.
     /// </summary>
     public string? Transformation
     {

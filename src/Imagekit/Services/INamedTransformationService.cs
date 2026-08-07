@@ -36,8 +36,10 @@ public interface INamedTransformationService
     /// `tr:n-&lt;name&gt;` and later updated without changing any existing URLs.</para>
     ///
     /// <para>Learn more about [named
-    /// transformations](https://imagekit.io/docs/transformations#named-transformations).
-    /// </para>
+    /// transformations](https://imagekit.io/docs/transformations#named-transformations).</para>
+    ///
+    /// <para>**Note:** You can create up to 250 named transformations per account. Once
+    /// this limit is reached, the request fails with a `400` error. </para>
     /// </summary>
     Task<Models::NamedTransformation> Create(
         NamedTransformationCreateParams parameters,
@@ -48,6 +50,17 @@ public interface INamedTransformationService
     /// Updates the named transformation identified by `id` and returns the updated
     /// object. Only the fields present in the request body are updated; omitted fields
     /// are left unchanged.
+    ///
+    /// <para>**Note:**</para>
+    ///
+    /// <para>- If you rename this named transformation, or set `enabled` to `false`,
+    /// and another *enabled* named transformation, or your account's upload
+    /// pre-transformation/post-transformation settings, reference it (via the
+    /// `n-&lt;name&gt;` token), the request fails with a `409` error whose `message`
+    /// describes what it is referenced by. A reference from a named transformation that
+    /// is itself disabled does not block this request. Remove or disable those
+    /// references first, then retry. This is a best-effort check and cannot detect
+    /// references baked into your own application code or previously generated URLs. </para>
     /// </summary>
     Task<Models::NamedTransformation> Update(
         NamedTransformationUpdateParams parameters,
@@ -75,13 +88,14 @@ public interface INamedTransformationService
     ///
     /// <para>**Note:**</para>
     ///
-    /// <para>- If another named transformation, or your account's upload
+    /// <para>- If another *enabled* named transformation, or your account's upload
     /// pre-transformation/post-transformation settings, reference this named
     /// transformation (via the `n-&lt;name&gt;` token), the request fails with a `409`
-    /// error whose `message` describes what it is referenced by. Remove those
-    /// references first, then retry the deletion. This is a best-effort check and
-    /// cannot detect references baked into your own application code or previously
-    /// generated URLs. </para>
+    /// error whose `message` describes what it is referenced by. A reference from a
+    /// named transformation that is itself disabled does not block this request. Remove
+    /// or disable those references first, then retry the deletion. This is a
+    /// best-effort check and cannot detect references baked into your own application
+    /// code or previously generated URLs. </para>
     /// </summary>
     Task<Models::NamedTransformation> Delete(
         NamedTransformationDeleteParams parameters,
