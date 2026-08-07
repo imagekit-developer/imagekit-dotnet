@@ -110,6 +110,12 @@ public sealed class ImageKitClient : IImageKitClient
         get { return _savedExtensions.Value; }
     }
 
+    readonly Lazy<INamedTransformationService> _namedTransformations;
+    public INamedTransformationService NamedTransformations
+    {
+        get { return _namedTransformations.Value; }
+    }
+
     readonly Lazy<IAssetService> _assets;
     public IAssetService Assets
     {
@@ -157,6 +163,7 @@ public sealed class ImageKitClient : IImageKitClient
         _customMetadataFields = new(() => new CustomMetadataFieldService(this));
         _files = new(() => new FileService(this));
         _savedExtensions = new(() => new SavedExtensionService(this));
+        _namedTransformations = new(() => new NamedTransformationService(this));
         _assets = new(() => new AssetService(this));
         _cache = new(() => new CacheService(this));
         _folders = new(() => new FolderService(this));
@@ -274,6 +281,12 @@ public sealed class ImageKitClientWithRawResponse : IImageKitClientWithRawRespon
     public ISavedExtensionServiceWithRawResponse SavedExtensions
     {
         get { return _savedExtensions.Value; }
+    }
+
+    readonly Lazy<INamedTransformationServiceWithRawResponse> _namedTransformations;
+    public INamedTransformationServiceWithRawResponse NamedTransformations
+    {
+        get { return _namedTransformations.Value; }
     }
 
     readonly Lazy<IAssetServiceWithRawResponse> _assets;
@@ -514,6 +527,7 @@ public sealed class ImageKitClientWithRawResponse : IImageKitClientWithRawRespon
         _customMetadataFields = new(() => new CustomMetadataFieldServiceWithRawResponse(this));
         _files = new(() => new FileServiceWithRawResponse(this));
         _savedExtensions = new(() => new SavedExtensionServiceWithRawResponse(this));
+        _namedTransformations = new(() => new NamedTransformationServiceWithRawResponse(this));
         _assets = new(() => new AssetServiceWithRawResponse(this));
         _cache = new(() => new CacheServiceWithRawResponse(this));
         _folders = new(() => new FolderServiceWithRawResponse(this));
