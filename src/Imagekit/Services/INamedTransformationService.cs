@@ -31,15 +31,13 @@ public interface INamedTransformationService
     /// <summary>
     /// Creates a new named transformation and returns the created object.
     ///
-    /// <para>Named transformations let you assign a short, reusable name to a complex
-    /// transformation string, so it can be applied in image and video URLs as
-    /// `tr:n-&lt;name&gt;` and later updated without changing any existing URLs.</para>
-    ///
-    /// <para>Learn more about [named
+    /// <para>A named transformation is a short, reusable name for a transformation
+    /// string. Use it in image and video URLs as `tr:n-&lt;name&gt;`, and update the
+    /// underlying transformation later without changing existing URLs. Learn more about
+    /// [named
     /// transformations](https://imagekit.io/docs/transformations#named-transformations).</para>
     ///
-    /// <para>**Note:** You can create up to 250 named transformations per account. Once
-    /// this limit is reached, the request fails with a `400` error. </para>
+    /// <para>You can create up to 250 named transformations per account. </para>
     /// </summary>
     Task<Models::NamedTransformation> Create(
         NamedTransformationCreateParams parameters,
@@ -48,19 +46,15 @@ public interface INamedTransformationService
 
     /// <summary>
     /// Updates the named transformation identified by `id` and returns the updated
-    /// object. Only the fields present in the request body are updated; omitted fields
-    /// are left unchanged.
+    /// object. Only the fields present in the request body are updated; other fields
+    /// stay unchanged.
     ///
-    /// <para>**Note:**</para>
-    ///
-    /// <para>- If you rename this named transformation, or set `enabled` to `false`,
-    /// and another *enabled* named transformation, or your account's upload
-    /// pre-transformation/post-transformation settings, reference it (via the
-    /// `n-&lt;name&gt;` token), the request fails with a `409` error whose `message`
-    /// describes what it is referenced by. A reference from a named transformation that
-    /// is itself disabled does not block this request. Remove or disable those
-    /// references first, then retry. This is a best-effort check and cannot detect
-    /// references baked into your own application code or previously generated URLs. </para>
+    /// <para>Renaming or disabling a named transformation fails with a `409` error if
+    /// it is still referenced (via the `n-&lt;name&gt;` token) by another enabled named
+    /// transformation, or by an upload pre-transformation/post-transformation setting.
+    /// References from disabled named transformations don't count. This check is
+    /// best-effort and can't detect references in your own application code or in
+    /// previously generated URLs. </para>
     /// </summary>
     Task<Models::NamedTransformation> Update(
         NamedTransformationUpdateParams parameters,
@@ -86,16 +80,12 @@ public interface INamedTransformationService
     /// Permanently deletes the named transformation identified by `id` and returns the
     /// deleted object.
     ///
-    /// <para>**Note:**</para>
-    ///
-    /// <para>- If another *enabled* named transformation, or your account's upload
-    /// pre-transformation/post-transformation settings, reference this named
-    /// transformation (via the `n-&lt;name&gt;` token), the request fails with a `409`
-    /// error whose `message` describes what it is referenced by. A reference from a
-    /// named transformation that is itself disabled does not block this request. Remove
-    /// or disable those references first, then retry the deletion. This is a
-    /// best-effort check and cannot detect references baked into your own application
-    /// code or previously generated URLs. </para>
+    /// <para>Deletion fails with a `409` error if the named transformation is still
+    /// referenced (via the `n-&lt;name&gt;` token) by another enabled named
+    /// transformation, or by an upload pre-transformation/post-transformation setting.
+    /// References from disabled named transformations don't count. This check is
+    /// best-effort and can't detect references in your own application code or in
+    /// previously generated URLs. </para>
     /// </summary>
     Task<Models::NamedTransformation> Delete(
         NamedTransformationDeleteParams parameters,

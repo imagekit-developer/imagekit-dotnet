@@ -12,15 +12,11 @@ namespace Imagekit.Models.NamedTransformations;
 /// Permanently deletes the named transformation identified by `id` and returns the
 /// deleted object.
 ///
-/// <para>**Note:**</para>
-///
-/// <para>- If another *enabled* named transformation, or your account's upload pre-transformation/post-transformation
-/// settings, reference this named transformation (via the `n-&lt;name&gt;` token),
-/// the request fails with a `409` error whose `message` describes what it is referenced
-/// by. A reference from a named transformation that is itself disabled does not block
-/// this request. Remove or disable those references first, then retry the deletion.
-/// This is a best-effort check and cannot detect references baked into your own application
-/// code or previously generated URLs.</para>
+/// <para>Deletion fails with a `409` error if the named transformation is still
+/// referenced (via the `n-&lt;name&gt;` token) by another enabled named transformation,
+/// or by an upload pre-transformation/post-transformation setting. References from
+/// disabled named transformations don't count. This check is best-effort and can't
+/// detect references in your own application code or in previously generated URLs.</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that

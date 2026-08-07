@@ -12,13 +12,13 @@ public class NamedTransformationUpdateParamsTest : TestBase
         {
             ID = "id",
             Enabled = true,
-            Name = "small_thumbnail_v2",
+            Name = "small_thumbnail",
             Transformation = "w-200,h-200,fo-center,cm-resize",
         };
 
         string expectedID = "id";
         bool expectedEnabled = true;
-        string expectedName = "small_thumbnail_v2";
+        string expectedName = "small_thumbnail";
         string expectedTransformation = "w-200,h-200,fo-center,cm-resize";
 
         Assert.Equal(expectedID, parameters.ID);
@@ -80,7 +80,7 @@ public class NamedTransformationUpdateParamsTest : TestBase
         {
             ID = "id",
             Enabled = true,
-            Name = "small_thumbnail_v2",
+            Name = "small_thumbnail",
             Transformation = "w-200,h-200,fo-center,cm-resize",
         };
 
