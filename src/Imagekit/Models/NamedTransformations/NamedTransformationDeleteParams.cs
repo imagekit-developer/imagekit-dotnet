@@ -13,10 +13,9 @@ namespace Imagekit.Models.NamedTransformations;
 /// deleted object.
 ///
 /// <para>Deletion fails with a `409` error if the named transformation is still
-/// referenced (via the `n-&lt;name&gt;` token) by another enabled named transformation,
-/// or by an upload pre-transformation/post-transformation setting. References from
-/// disabled named transformations don't count. This check is best-effort and can't
-/// detect references in your own application code or in previously generated URLs.</para>
+/// referenced (via the `n-&lt;name&gt;` token) by an upload pre-transformation or
+/// post-transformation setting. This check is best-effort and can't detect references
+/// in your own application code or in previously generated URLs.</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that

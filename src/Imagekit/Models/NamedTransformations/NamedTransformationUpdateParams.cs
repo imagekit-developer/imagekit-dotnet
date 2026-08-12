@@ -14,10 +14,9 @@ namespace Imagekit.Models.NamedTransformations;
 /// Only the fields present in the request body are updated; other fields stay unchanged.
 ///
 /// <para>Renaming or disabling a named transformation fails with a `409` error if
-/// it is still referenced (via the `n-&lt;name&gt;` token) by another enabled named
-/// transformation, or by an upload pre-transformation/post-transformation setting.
-/// References from disabled named transformations don't count. This check is best-effort
-/// and can't detect references in your own application code or in previously generated URLs.</para>
+/// it is still referenced (via the `n-&lt;name&gt;` token) by an upload pre-transformation
+/// or post-transformation setting. This check is best-effort and can't detect references
+/// in your own application code or in previously generated URLs.</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -81,7 +80,9 @@ public record class NamedTransformationUpdateParams : ParamsBase
     /// <summary>
     /// The transformation string this name refers to, for example `w-150,h-150,fo-center,cm-resize`.
     /// The `tr:` prefix is optional — it's added automatically if missing, and validated
-    /// if present. Learn more about the [transformation syntax](https://imagekit.io/docs/transformations).
+    /// if present. The string must be a valid ImageKit transformation and cannot
+    /// itself reference another named transformation (no nesting). Learn more about
+    /// the [transformation syntax](https://imagekit.io/docs/transformations).
     /// </summary>
     public string? Transformation
     {

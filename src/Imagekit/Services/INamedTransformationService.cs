@@ -50,11 +50,10 @@ public interface INamedTransformationService
     /// stay unchanged.
     ///
     /// <para>Renaming or disabling a named transformation fails with a `409` error if
-    /// it is still referenced (via the `n-&lt;name&gt;` token) by another enabled named
-    /// transformation, or by an upload pre-transformation/post-transformation setting.
-    /// References from disabled named transformations don't count. This check is
-    /// best-effort and can't detect references in your own application code or in
-    /// previously generated URLs. </para>
+    /// it is still referenced (via the `n-&lt;name&gt;` token) by an upload
+    /// pre-transformation or post-transformation setting. This check is best-effort and
+    /// can't detect references in your own application code or in previously generated
+    /// URLs. </para>
     /// </summary>
     Task<Models::NamedTransformation> Update(
         NamedTransformationUpdateParams parameters,
@@ -81,11 +80,9 @@ public interface INamedTransformationService
     /// deleted object.
     ///
     /// <para>Deletion fails with a `409` error if the named transformation is still
-    /// referenced (via the `n-&lt;name&gt;` token) by another enabled named
-    /// transformation, or by an upload pre-transformation/post-transformation setting.
-    /// References from disabled named transformations don't count. This check is
-    /// best-effort and can't detect references in your own application code or in
-    /// previously generated URLs. </para>
+    /// referenced (via the `n-&lt;name&gt;` token) by an upload pre-transformation or
+    /// post-transformation setting. This check is best-effort and can't detect
+    /// references in your own application code or in previously generated URLs. </para>
     /// </summary>
     Task<Models::NamedTransformation> Delete(
         NamedTransformationDeleteParams parameters,
