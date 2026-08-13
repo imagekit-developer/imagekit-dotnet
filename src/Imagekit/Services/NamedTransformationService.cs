@@ -87,7 +87,7 @@ public sealed class NamedTransformationService : INamedTransformationService
     }
 
     /// <inheritdoc/>
-    public async Task<Models::NamedTransformation> Delete(
+    public async Task<NamedTransformationDeleteResponse> Delete(
         NamedTransformationDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -99,7 +99,7 @@ public sealed class NamedTransformationService : INamedTransformationService
     }
 
     /// <inheritdoc/>
-    public Task<Models::NamedTransformation> Delete(
+    public Task<NamedTransformationDeleteResponse> Delete(
         string id,
         NamedTransformationDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -261,7 +261,7 @@ public sealed class NamedTransformationServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<Models::NamedTransformation>> Delete(
+    public async Task<HttpResponse<NamedTransformationDeleteResponse>> Delete(
         NamedTransformationDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -282,7 +282,7 @@ public sealed class NamedTransformationServiceWithRawResponse
             async (token) =>
             {
                 var namedTransformation = await response
-                    .Deserialize<Models::NamedTransformation>(token)
+                    .Deserialize<NamedTransformationDeleteResponse>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
@@ -294,7 +294,7 @@ public sealed class NamedTransformationServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<Models::NamedTransformation>> Delete(
+    public Task<HttpResponse<NamedTransformationDeleteResponse>> Delete(
         string id,
         NamedTransformationDeleteParams? parameters = null,
         CancellationToken cancellationToken = default

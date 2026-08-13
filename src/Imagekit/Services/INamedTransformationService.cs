@@ -76,21 +76,20 @@ public interface INamedTransformationService
     );
 
     /// <summary>
-    /// Permanently deletes the named transformation identified by `id` and returns the
-    /// deleted object.
+    /// Permanently deletes the named transformation identified by `id`.
     ///
     /// <para>Deletion fails with a `409` error if the named transformation is still
     /// referenced (via the `n-&lt;name&gt;` token) by an upload pre-transformation or
     /// post-transformation setting. This check is best-effort and can't detect
     /// references in your own application code or in previously generated URLs. </para>
     /// </summary>
-    Task<Models::NamedTransformation> Delete(
+    Task<NamedTransformationDeleteResponse> Delete(
         NamedTransformationDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Delete(NamedTransformationDeleteParams, CancellationToken)"/>
-    Task<Models::NamedTransformation> Delete(
+    Task<NamedTransformationDeleteResponse> Delete(
         string id,
         NamedTransformationDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -165,13 +164,13 @@ public interface INamedTransformationServiceWithRawResponse
     /// Returns a raw HTTP response for <c>delete /v1/named-transformations/{id}</c>, but is otherwise the
     /// same as <see cref="INamedTransformationService.Delete(NamedTransformationDeleteParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<Models::NamedTransformation>> Delete(
+    Task<HttpResponse<NamedTransformationDeleteResponse>> Delete(
         NamedTransformationDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Delete(NamedTransformationDeleteParams, CancellationToken)"/>
-    Task<HttpResponse<Models::NamedTransformation>> Delete(
+    Task<HttpResponse<NamedTransformationDeleteResponse>> Delete(
         string id,
         NamedTransformationDeleteParams? parameters = null,
         CancellationToken cancellationToken = default

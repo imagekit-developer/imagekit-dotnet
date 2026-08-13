@@ -9,8 +9,7 @@ using Imagekit.Core;
 namespace Imagekit.Models.NamedTransformations;
 
 /// <summary>
-/// Permanently deletes the named transformation identified by `id` and returns the
-/// deleted object.
+/// Permanently deletes the named transformation identified by `id`.
 ///
 /// <para>Deletion fails with a `409` error if the named transformation is still
 /// referenced (via the `n-&lt;name&gt;` token) by an upload pre-transformation or

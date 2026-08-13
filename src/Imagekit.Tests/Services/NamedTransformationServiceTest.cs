@@ -18,7 +18,7 @@ public class NamedTransformationServiceTest : TestBase
     public async Task Update_Works()
     {
         var namedTransformation = await this.client.NamedTransformations.Update(
-            "id",
+            "6bZ9x2ZUx",
             new(),
             TestContext.Current.CancellationToken
         );
@@ -42,7 +42,7 @@ public class NamedTransformationServiceTest : TestBase
     public async Task Delete_Works()
     {
         var namedTransformation = await this.client.NamedTransformations.Delete(
-            "id",
+            "6bZ9x2ZUx",
             new(),
             TestContext.Current.CancellationToken
         );
@@ -53,7 +53,7 @@ public class NamedTransformationServiceTest : TestBase
     public async Task Get_Works()
     {
         var namedTransformation = await this.client.NamedTransformations.Get(
-            "id",
+            "6bZ9x2ZUx",
             new(),
             TestContext.Current.CancellationToken
         );

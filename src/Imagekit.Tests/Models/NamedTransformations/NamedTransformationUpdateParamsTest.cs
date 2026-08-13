@@ -10,14 +10,14 @@ public class NamedTransformationUpdateParamsTest : TestBase
     {
         var parameters = new NamedTransformationUpdateParams
         {
-            ID = "id",
-            Enabled = true,
+            ID = "6bZ9x2ZUx",
+            Enabled = false,
             Name = "small_thumbnail",
             Transformation = "w-200,h-200,fo-center,cm-resize",
         };
 
-        string expectedID = "id";
-        bool expectedEnabled = true;
+        string expectedID = "6bZ9x2ZUx";
+        bool expectedEnabled = false;
         string expectedName = "small_thumbnail";
         string expectedTransformation = "w-200,h-200,fo-center,cm-resize";
 
@@ -30,7 +30,7 @@ public class NamedTransformationUpdateParamsTest : TestBase
     [Fact]
     public void OptionalNonNullableParamsUnsetAreNotSet_Works()
     {
-        var parameters = new NamedTransformationUpdateParams { ID = "id" };
+        var parameters = new NamedTransformationUpdateParams { ID = "6bZ9x2ZUx" };
 
         Assert.Null(parameters.Enabled);
         Assert.False(parameters.RawBodyData.ContainsKey("enabled"));
@@ -45,7 +45,7 @@ public class NamedTransformationUpdateParamsTest : TestBase
     {
         var parameters = new NamedTransformationUpdateParams
         {
-            ID = "id",
+            ID = "6bZ9x2ZUx",
 
             // Null should be interpreted as omitted for these properties
             Enabled = null,
@@ -64,12 +64,15 @@ public class NamedTransformationUpdateParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        NamedTransformationUpdateParams parameters = new() { ID = "id" };
+        NamedTransformationUpdateParams parameters = new() { ID = "6bZ9x2ZUx" };
 
         var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.True(
-            TestBase.UrisEqual(new Uri("https://api.imagekit.io/v1/named-transformations/id"), url)
+            TestBase.UrisEqual(
+                new Uri("https://api.imagekit.io/v1/named-transformations/6bZ9x2ZUx"),
+                url
+            )
         );
     }
 
@@ -78,8 +81,8 @@ public class NamedTransformationUpdateParamsTest : TestBase
     {
         var parameters = new NamedTransformationUpdateParams
         {
-            ID = "id",
-            Enabled = true,
+            ID = "6bZ9x2ZUx",
+            Enabled = false,
             Name = "small_thumbnail",
             Transformation = "w-200,h-200,fo-center,cm-resize",
         };
