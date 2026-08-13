@@ -83,13 +83,13 @@ public interface INamedTransformationService
     /// post-transformation setting. This check is best-effort and can't detect
     /// references in your own application code or in previously generated URLs. </para>
     /// </summary>
-    Task<NamedTransformationDeleteResponse> Delete(
+    Task Delete(
         NamedTransformationDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Delete(NamedTransformationDeleteParams, CancellationToken)"/>
-    Task<NamedTransformationDeleteResponse> Delete(
+    Task Delete(
         string id,
         NamedTransformationDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -164,13 +164,13 @@ public interface INamedTransformationServiceWithRawResponse
     /// Returns a raw HTTP response for <c>delete /v1/named-transformations/{id}</c>, but is otherwise the
     /// same as <see cref="INamedTransformationService.Delete(NamedTransformationDeleteParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<NamedTransformationDeleteResponse>> Delete(
+    Task<HttpResponse> Delete(
         NamedTransformationDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Delete(NamedTransformationDeleteParams, CancellationToken)"/>
-    Task<HttpResponse<NamedTransformationDeleteResponse>> Delete(
+    Task<HttpResponse> Delete(
         string id,
         NamedTransformationDeleteParams? parameters = null,
         CancellationToken cancellationToken = default

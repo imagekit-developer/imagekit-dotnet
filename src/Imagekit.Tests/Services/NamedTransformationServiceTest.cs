@@ -41,12 +41,11 @@ public class NamedTransformationServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
-        var namedTransformation = await this.client.NamedTransformations.Delete(
+        await this.client.NamedTransformations.Delete(
             "6bZ9x2ZUx",
             new(),
             TestContext.Current.CancellationToken
         );
-        namedTransformation.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

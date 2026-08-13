@@ -87,19 +87,16 @@ public sealed class NamedTransformationService : INamedTransformationService
     }
 
     /// <inheritdoc/>
-    public async Task<NamedTransformationDeleteResponse> Delete(
+    public Task Delete(
         NamedTransformationDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        using var response = await this
-            .WithRawResponse.Delete(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.Delete(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task<NamedTransformationDeleteResponse> Delete(
+    public async Task Delete(
         string id,
         NamedTransformationDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -107,7 +104,7 @@ public sealed class NamedTransformationService : INamedTransformationService
     {
         parameters ??= new();
 
-        return this.Delete(parameters with { ID = id }, cancellationToken);
+        await this.Delete(parameters with { ID = id }, cancellationToken).ConfigureAwait(false);
     }
 
     /// <inheritdoc/>
@@ -261,7 +258,7 @@ public sealed class NamedTransformationServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<NamedTransformationDeleteResponse>> Delete(
+    public Task<HttpResponse> Delete(
         NamedTransformationDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -276,25 +273,11 @@ public sealed class NamedTransformationServiceWithRawResponse
             Method = HttpMethod.Delete,
             Params = parameters,
         };
-        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
-        return new(
-            response,
-            async (token) =>
-            {
-                var namedTransformation = await response
-                    .Deserialize<NamedTransformationDeleteResponse>(token)
-                    .ConfigureAwait(false);
-                if (this._client.ResponseValidation)
-                {
-                    namedTransformation.Validate();
-                }
-                return namedTransformation;
-            }
-        );
+        return this._client.Execute(request, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<NamedTransformationDeleteResponse>> Delete(
+    public Task<HttpResponse> Delete(
         string id,
         NamedTransformationDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
