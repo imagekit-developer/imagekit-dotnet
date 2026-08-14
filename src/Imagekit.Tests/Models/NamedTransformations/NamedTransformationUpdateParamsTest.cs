@@ -13,13 +13,13 @@ public class NamedTransformationUpdateParamsTest : TestBase
             ID = "6bZ9x2ZUx",
             Enabled = false,
             Name = "small_thumbnail",
-            Transformation = "w-200,h-200,fo-center,cm-resize",
+            Transformation = "w-200,h-200,fo-center,cm-pad_resize",
         };
 
         string expectedID = "6bZ9x2ZUx";
         bool expectedEnabled = false;
         string expectedName = "small_thumbnail";
-        string expectedTransformation = "w-200,h-200,fo-center,cm-resize";
+        string expectedTransformation = "w-200,h-200,fo-center,cm-pad_resize";
 
         Assert.Equal(expectedID, parameters.ID);
         Assert.Equal(expectedEnabled, parameters.Enabled);
@@ -84,7 +84,7 @@ public class NamedTransformationUpdateParamsTest : TestBase
             ID = "6bZ9x2ZUx",
             Enabled = false,
             Name = "small_thumbnail",
-            Transformation = "w-200,h-200,fo-center,cm-resize",
+            Transformation = "w-200,h-200,fo-center,cm-pad_resize",
         };
 
         NamedTransformationUpdateParams copied = new(parameters);

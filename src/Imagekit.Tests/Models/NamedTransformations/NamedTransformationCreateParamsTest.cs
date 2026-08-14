@@ -11,12 +11,12 @@ public class NamedTransformationCreateParamsTest : TestBase
         var parameters = new NamedTransformationCreateParams
         {
             Name = "small_thumbnail",
-            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-pad_resize",
             Enabled = true,
         };
 
         string expectedName = "small_thumbnail";
-        string expectedTransformation = "w-150,h-150,fo-center,cm-resize";
+        string expectedTransformation = "w-150,h-150,fo-center,cm-pad_resize";
         bool expectedEnabled = true;
 
         Assert.Equal(expectedName, parameters.Name);
@@ -30,7 +30,7 @@ public class NamedTransformationCreateParamsTest : TestBase
         var parameters = new NamedTransformationCreateParams
         {
             Name = "small_thumbnail",
-            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-pad_resize",
         };
 
         Assert.Null(parameters.Enabled);
@@ -43,7 +43,7 @@ public class NamedTransformationCreateParamsTest : TestBase
         var parameters = new NamedTransformationCreateParams
         {
             Name = "small_thumbnail",
-            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-pad_resize",
 
             // Null should be interpreted as omitted for these properties
             Enabled = null,
@@ -59,7 +59,7 @@ public class NamedTransformationCreateParamsTest : TestBase
         NamedTransformationCreateParams parameters = new()
         {
             Name = "small_thumbnail",
-            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-pad_resize",
         };
 
         var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
@@ -75,7 +75,7 @@ public class NamedTransformationCreateParamsTest : TestBase
         var parameters = new NamedTransformationCreateParams
         {
             Name = "small_thumbnail",
-            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-pad_resize",
             Enabled = true,
         };
 

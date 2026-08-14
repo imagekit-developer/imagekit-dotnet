@@ -8,7 +8,11 @@ public class NamedTransformationServiceTest : TestBase
     public async Task Create_Works()
     {
         var namedTransformation = await this.client.NamedTransformations.Create(
-            new() { Name = "small_thumbnail", Transformation = "w-150,h-150,fo-center,cm-resize" },
+            new()
+            {
+                Name = "small_thumbnail",
+                Transformation = "w-150,h-150,fo-center,cm-pad_resize",
+            },
             TestContext.Current.CancellationToken
         );
         namedTransformation.Validate();

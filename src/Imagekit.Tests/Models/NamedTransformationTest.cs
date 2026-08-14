@@ -16,14 +16,14 @@ public class NamedTransformationTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z"),
             Enabled = true,
             Name = "small_thumbnail",
-            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-pad_resize",
         };
 
         string expectedID = "6bZ9x2ZUx";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z");
         bool expectedEnabled = true;
         string expectedName = "small_thumbnail";
-        string expectedTransformation = "w-150,h-150,fo-center,cm-resize";
+        string expectedTransformation = "w-150,h-150,fo-center,cm-pad_resize";
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -41,7 +41,7 @@ public class NamedTransformationTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z"),
             Enabled = true,
             Name = "small_thumbnail",
-            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-pad_resize",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -62,7 +62,7 @@ public class NamedTransformationTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z"),
             Enabled = true,
             Name = "small_thumbnail",
-            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-pad_resize",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -76,7 +76,7 @@ public class NamedTransformationTest : TestBase
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z");
         bool expectedEnabled = true;
         string expectedName = "small_thumbnail";
-        string expectedTransformation = "w-150,h-150,fo-center,cm-resize";
+        string expectedTransformation = "w-150,h-150,fo-center,cm-pad_resize";
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -94,7 +94,7 @@ public class NamedTransformationTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z"),
             Enabled = true,
             Name = "small_thumbnail",
-            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-pad_resize",
         };
 
         model.Validate();
@@ -175,7 +175,7 @@ public class NamedTransformationTest : TestBase
             CreatedAt = DateTimeOffset.Parse("2024-01-10T09:00:00.000Z"),
             Enabled = true,
             Name = "small_thumbnail",
-            Transformation = "w-150,h-150,fo-center,cm-resize",
+            Transformation = "w-150,h-150,fo-center,cm-pad_resize",
         };
 
         NamedTransformation copied = new(model);
