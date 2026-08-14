@@ -14,6 +14,7 @@ public class CustomMetadataFieldUpdateParamsTest : TestBase
         var parameters = new CustomMetadataFieldUpdateParams
         {
             ID = "id",
+            Description = "description",
             Label = "price",
             Schema = new()
             {
@@ -36,6 +37,7 @@ public class CustomMetadataFieldUpdateParamsTest : TestBase
         };
 
         string expectedID = "id";
+        string expectedDescription = "description";
         string expectedLabel = "price";
         CustomMetadataFieldUpdateParamsSchema expectedSchema = new()
         {
@@ -55,6 +57,7 @@ public class CustomMetadataFieldUpdateParamsTest : TestBase
         };
 
         Assert.Equal(expectedID, parameters.ID);
+        Assert.Equal(expectedDescription, parameters.Description);
         Assert.Equal(expectedLabel, parameters.Label);
         Assert.Equal(expectedSchema, parameters.Schema);
     }
@@ -64,6 +67,8 @@ public class CustomMetadataFieldUpdateParamsTest : TestBase
     {
         var parameters = new CustomMetadataFieldUpdateParams { ID = "id" };
 
+        Assert.Null(parameters.Description);
+        Assert.False(parameters.RawBodyData.ContainsKey("description"));
         Assert.Null(parameters.Label);
         Assert.False(parameters.RawBodyData.ContainsKey("label"));
         Assert.Null(parameters.Schema);
@@ -78,10 +83,13 @@ public class CustomMetadataFieldUpdateParamsTest : TestBase
             ID = "id",
 
             // Null should be interpreted as omitted for these properties
+            Description = null,
             Label = null,
             Schema = null,
         };
 
+        Assert.Null(parameters.Description);
+        Assert.False(parameters.RawBodyData.ContainsKey("description"));
         Assert.Null(parameters.Label);
         Assert.False(parameters.RawBodyData.ContainsKey("label"));
         Assert.Null(parameters.Schema);
@@ -106,6 +114,7 @@ public class CustomMetadataFieldUpdateParamsTest : TestBase
         var parameters = new CustomMetadataFieldUpdateParams
         {
             ID = "id",
+            Description = "description",
             Label = "price",
             Schema = new()
             {
