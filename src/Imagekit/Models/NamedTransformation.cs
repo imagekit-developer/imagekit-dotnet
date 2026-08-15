@@ -19,65 +19,41 @@ public sealed record class NamedTransformation : JsonModel
     /// <summary>
     /// Unique identifier for a named transformation.
     /// </summary>
-    public string? ID
+    public required string ID
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("id");
+            return this._rawData.GetNotNullClass<string>("id");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("id", value);
-        }
+        init { this._rawData.Set("id", value); }
     }
 
     /// <summary>
     /// ISO 8601 timestamp of when the named transformation was created.
     /// </summary>
-    public DateTimeOffset? CreatedAt
+    public required DateTimeOffset CreatedAt
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<DateTimeOffset>("createdAt");
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("createdAt");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("createdAt", value);
-        }
+        init { this._rawData.Set("createdAt", value); }
     }
 
     /// <summary>
     /// Whether the named transformation is currently enabled. When set to `false`,
     /// requests using this named transformation fail at delivery time.
     /// </summary>
-    public bool? Enabled
+    public required bool Enabled
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("enabled");
+            return this._rawData.GetNotNullStruct<bool>("enabled");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("enabled", value);
-        }
+        init { this._rawData.Set("enabled", value); }
     }
 
     /// <summary>
@@ -85,44 +61,28 @@ public sealed record class NamedTransformation : JsonModel
     /// This is case-sensitive, contains only alphanumeric characters or `_` (underscore),
     /// and is unique across all named transformations for your account.
     /// </summary>
-    public string? Name
+    public required string Name
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("name");
+            return this._rawData.GetNotNullClass<string>("name");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("name", value);
-        }
+        init { this._rawData.Set("name", value); }
     }
 
     /// <summary>
     /// The transformation string this named transformation refers to. Learn more
     /// about the [transformation string syntax](https://imagekit.io/docs/transformations).
     /// </summary>
-    public string? Transformation
+    public required string Transformation
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("transformation");
+            return this._rawData.GetNotNullClass<string>("transformation");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("transformation", value);
-        }
+        init { this._rawData.Set("transformation", value); }
     }
 
     /// <inheritdoc/>
