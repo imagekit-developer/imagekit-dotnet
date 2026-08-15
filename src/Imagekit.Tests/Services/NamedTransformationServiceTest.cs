@@ -11,7 +11,7 @@ public class NamedTransformationServiceTest : TestBase
             new()
             {
                 Name = "small_thumbnail",
-                Transformation = "tr:w-150,h-150,fo-center,cm-resize",
+                Transformation = "w-150,h-150,fo-center,cm-pad_resize",
             },
             TestContext.Current.CancellationToken
         );
@@ -22,7 +22,7 @@ public class NamedTransformationServiceTest : TestBase
     public async Task Update_Works()
     {
         var namedTransformation = await this.client.NamedTransformations.Update(
-            "id",
+            "6bZ9x2ZUx",
             new(),
             TestContext.Current.CancellationToken
         );
@@ -45,19 +45,18 @@ public class NamedTransformationServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
-        var namedTransformation = await this.client.NamedTransformations.Delete(
-            "id",
+        await this.client.NamedTransformations.Delete(
+            "6bZ9x2ZUx",
             new(),
             TestContext.Current.CancellationToken
         );
-        namedTransformation.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Get_Works()
     {
         var namedTransformation = await this.client.NamedTransformations.Get(
-            "id",
+            "6bZ9x2ZUx",
             new(),
             TestContext.Current.CancellationToken
         );

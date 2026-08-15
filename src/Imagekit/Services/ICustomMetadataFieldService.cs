@@ -39,7 +39,8 @@ public interface ICustomMetadataFieldService
     );
 
     /// <summary>
-    /// This API updates the label or schema of an existing custom metadata field.
+    /// This API updates the label, description, or schema of an existing custom
+    /// metadata field.
     /// </summary>
     Task<CustomMetadataField> Update(
         CustomMetadataFieldUpdateParams parameters,

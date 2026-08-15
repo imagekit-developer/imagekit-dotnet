@@ -31,13 +31,13 @@ public interface INamedTransformationService
     /// <summary>
     /// Creates a new named transformation and returns the created object.
     ///
-    /// <para>Named transformations let you assign a short, reusable name to a complex
-    /// transformation string, so it can be applied in image and video URLs as
-    /// `tr:n-&lt;name&gt;` and later updated without changing any existing URLs.</para>
+    /// <para>A named transformation is a short, reusable name for a transformation
+    /// string. Use it in image and video URLs as `tr:n-&lt;name&gt;`, and update the
+    /// underlying transformation later without changing existing URLs. Learn more about
+    /// [named
+    /// transformations](https://imagekit.io/docs/transformations#named-transformations).</para>
     ///
-    /// <para>Learn more about [named
-    /// transformations](https://imagekit.io/docs/transformations#named-transformations).
-    /// </para>
+    /// <para>You can create up to 250 named transformations per account. </para>
     /// </summary>
     Task<Models::NamedTransformation> Create(
         NamedTransformationCreateParams parameters,
@@ -46,8 +46,14 @@ public interface INamedTransformationService
 
     /// <summary>
     /// Updates the named transformation identified by `id` and returns the updated
-    /// object. Only the fields present in the request body are updated; omitted fields
-    /// are left unchanged.
+    /// object. Only the fields present in the request body are updated; other fields
+    /// stay unchanged.
+    ///
+    /// <para>Renaming or disabling a named transformation fails with a `409` error if
+    /// it is still referenced (via the `n-&lt;name&gt;` token) by an upload
+    /// pre-transformation or post-transformation setting. This check is best-effort and
+    /// can't detect references in your own application code or in previously generated
+    /// URLs. </para>
     /// </summary>
     Task<Models::NamedTransformation> Update(
         NamedTransformationUpdateParams parameters,
@@ -70,26 +76,20 @@ public interface INamedTransformationService
     );
 
     /// <summary>
-    /// Permanently deletes the named transformation identified by `id` and returns the
-    /// deleted object.
+    /// Permanently deletes the named transformation identified by `id`.
     ///
-    /// <para>**Note:**</para>
-    ///
-    /// <para>- If another named transformation, or your account's upload
-    /// pre-transformation/post-transformation settings, reference this named
-    /// transformation (via the `n-&lt;name&gt;` token), the request fails with a `409`
-    /// error whose `message` describes what it is referenced by. Remove those
-    /// references first, then retry the deletion. This is a best-effort check and
-    /// cannot detect references baked into your own application code or previously
-    /// generated URLs. </para>
+    /// <para>Deletion fails with a `409` error if the named transformation is still
+    /// referenced (via the `n-&lt;name&gt;` token) by an upload pre-transformation or
+    /// post-transformation setting. This check is best-effort and can't detect
+    /// references in your own application code or in previously generated URLs. </para>
     /// </summary>
-    Task<Models::NamedTransformation> Delete(
+    Task Delete(
         NamedTransformationDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Delete(NamedTransformationDeleteParams, CancellationToken)"/>
-    Task<Models::NamedTransformation> Delete(
+    Task Delete(
         string id,
         NamedTransformationDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -164,13 +164,13 @@ public interface INamedTransformationServiceWithRawResponse
     /// Returns a raw HTTP response for <c>delete /v1/named-transformations/{id}</c>, but is otherwise the
     /// same as <see cref="INamedTransformationService.Delete(NamedTransformationDeleteParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<Models::NamedTransformation>> Delete(
+    Task<HttpResponse> Delete(
         NamedTransformationDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Delete(NamedTransformationDeleteParams, CancellationToken)"/>
-    Task<HttpResponse<Models::NamedTransformation>> Delete(
+    Task<HttpResponse> Delete(
         string id,
         NamedTransformationDeleteParams? parameters = null,
         CancellationToken cancellationToken = default

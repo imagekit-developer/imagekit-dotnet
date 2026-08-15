@@ -12,11 +12,11 @@ namespace Imagekit.Models.NamedTransformations;
 /// <summary>
 /// Creates a new named transformation and returns the created object.
 ///
-/// <para>Named transformations let you assign a short, reusable name to a complex
-/// transformation string, so it can be applied in image and video URLs as `tr:n-&lt;name&gt;`
-/// and later updated without changing any existing URLs.</para>
+/// <para>A named transformation is a short, reusable name for a transformation string.
+/// Use it in image and video URLs as `tr:n-&lt;name&gt;`, and update the underlying
+/// transformation later without changing existing URLs. Learn more about [named transformations](https://imagekit.io/docs/transformations#named-transformations).</para>
 ///
-/// <para>Learn more about [named transformations](https://imagekit.io/docs/transformations#named-transformations).</para>
+/// <para>You can create up to 250 named transformations per account.</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -31,10 +31,9 @@ public record class NamedTransformationCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Name of the named transformation. This is the alias used to refer to the
-    /// transformation string in image and video URLs, for example `tr:n-&lt;name&gt;`.
-    /// Can only contain alphanumeric characters, `_` and `-`, and must be unique
-    /// for your account (case-insensitive).
+    /// Alias for the transformation string, used in URLs as `tr:n-&lt;name&gt;`.
+    /// This is case-sensitive, contains only alphanumeric characters or `_` (underscore),
+    /// and is unique across all named transformations for your account.
     /// </summary>
     public required string Name
     {
@@ -47,9 +46,8 @@ public record class NamedTransformationCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// The transformation string this name refers to. It must start with `tr:` followed
-    /// by one or more transformation parameters, for example `tr:w-150,h-150,fo-center,cm-resize`.
-    /// Learn more about the [transformation syntax](https://imagekit.io/docs/transformations).
+    /// The transformation string this named transformation refers to. Learn more
+    /// about the [transformation string syntax](https://imagekit.io/docs/transformations).
     /// </summary>
     public required string Transformation
     {
@@ -62,16 +60,15 @@ public record class NamedTransformationCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Whether this named transformation is disabled. Set to `true` to temporarily
-    /// disable it without deleting it — requests using a disabled named transformation
-    /// fail at delivery time.
+    /// Whether the named transformation is currently enabled. When set to `false`,
+    /// requests using this named transformation fail at delivery time.
     /// </summary>
-    public bool? Disabled
+    public bool? Enabled
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<bool>("disabled");
+            return this._rawBodyData.GetNullableStruct<bool>("enabled");
         }
         init
         {
@@ -80,7 +77,7 @@ public record class NamedTransformationCreateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData.Set("disabled", value);
+            this._rawBodyData.Set("enabled", value);
         }
     }
 

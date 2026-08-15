@@ -11,7 +11,12 @@ namespace Imagekit.Models.NamedTransformations;
 
 /// <summary>
 /// Updates the named transformation identified by `id` and returns the updated object.
-/// Only the fields present in the request body are updated; omitted fields are left unchanged.
+/// Only the fields present in the request body are updated; other fields stay unchanged.
+///
+/// <para>Renaming or disabling a named transformation fails with a `409` error if
+/// it is still referenced (via the `n-&lt;name&gt;` token) by an upload pre-transformation
+/// or post-transformation setting. This check is best-effort and can't detect references
+/// in your own application code or in previously generated URLs.</para>
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -28,14 +33,15 @@ public record class NamedTransformationUpdateParams : ParamsBase
     public string? ID { get; init; }
 
     /// <summary>
-    /// Whether this named transformation is disabled.
+    /// Whether the named transformation is enabled. Omit to leave the current value
+    /// unchanged.
     /// </summary>
-    public bool? Disabled
+    public bool? Enabled
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNullableStruct<bool>("disabled");
+            return this._rawBodyData.GetNullableStruct<bool>("enabled");
         }
         init
         {
@@ -44,13 +50,14 @@ public record class NamedTransformationUpdateParams : ParamsBase
                 return;
             }
 
-            this._rawBodyData.Set("disabled", value);
+            this._rawBodyData.Set("enabled", value);
         }
     }
 
     /// <summary>
-    /// Updated name of the named transformation. Can only contain alphanumeric characters,
-    /// `_` and `-`, and must be unique for your account (case-insensitive).
+    /// Alias for the transformation string, used in URLs as `tr:n-&lt;name&gt;`.
+    /// This is case-sensitive, contains only alphanumeric characters or `_` (underscore),
+    /// and is unique across all named transformations for your account.
     /// </summary>
     public string? Name
     {
@@ -71,8 +78,8 @@ public record class NamedTransformationUpdateParams : ParamsBase
     }
 
     /// <summary>
-    /// Updated transformation string. It must start with `tr:` followed by one or
-    /// more transformation parameters.
+    /// The transformation string this named transformation refers to. Learn more
+    /// about the [transformation string syntax](https://imagekit.io/docs/transformations).
     /// </summary>
     public string? Transformation
     {

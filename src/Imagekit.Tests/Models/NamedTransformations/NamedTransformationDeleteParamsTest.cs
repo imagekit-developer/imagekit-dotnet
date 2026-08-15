@@ -8,9 +8,9 @@ public class NamedTransformationDeleteParamsTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var parameters = new NamedTransformationDeleteParams { ID = "id" };
+        var parameters = new NamedTransformationDeleteParams { ID = "6bZ9x2ZUx" };
 
-        string expectedID = "id";
+        string expectedID = "6bZ9x2ZUx";
 
         Assert.Equal(expectedID, parameters.ID);
     }
@@ -18,19 +18,22 @@ public class NamedTransformationDeleteParamsTest : TestBase
     [Fact]
     public void Url_Works()
     {
-        NamedTransformationDeleteParams parameters = new() { ID = "id" };
+        NamedTransformationDeleteParams parameters = new() { ID = "6bZ9x2ZUx" };
 
         var url = parameters.Url(new() { PrivateKey = "My Private Key", Password = "My Password" });
 
         Assert.True(
-            TestBase.UrisEqual(new Uri("https://api.imagekit.io/v1/named-transformations/id"), url)
+            TestBase.UrisEqual(
+                new Uri("https://api.imagekit.io/v1/named-transformations/6bZ9x2ZUx"),
+                url
+            )
         );
     }
 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var parameters = new NamedTransformationDeleteParams { ID = "id" };
+        var parameters = new NamedTransformationDeleteParams { ID = "6bZ9x2ZUx" };
 
         NamedTransformationDeleteParams copied = new(parameters);
 
