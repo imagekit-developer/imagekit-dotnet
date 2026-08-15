@@ -71,6 +71,29 @@ public sealed record class CustomMetadataField : JsonModel
         init { this._rawData.Set("schema", value); }
     }
 
+    /// <summary>
+    /// Optional description of the custom metadata field. Only present when a description
+    /// has been set. Shown as a hint to the users while setting the field's value
+    /// on an asset in the media library UI.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("description", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -78,6 +101,7 @@ public sealed record class CustomMetadataField : JsonModel
         _ = this.Label;
         _ = this.Name;
         this.Schema.Validate();
+        _ = this.Description;
     }
 
     public CustomMetadataField() { }
