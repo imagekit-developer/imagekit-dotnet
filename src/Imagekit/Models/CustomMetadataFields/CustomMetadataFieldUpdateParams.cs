@@ -13,7 +13,7 @@ using Text = System.Text;
 namespace Imagekit.Models.CustomMetadataFields;
 
 /// <summary>
-/// This API updates the label or schema of an existing custom metadata field.
+/// This API updates the label, description, or schema of an existing custom metadata field.
 ///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
@@ -28,6 +28,30 @@ public record class CustomMetadataFieldUpdateParams : ParamsBase
     }
 
     public string? ID { get; init; }
+
+    /// <summary>
+    /// Optional description for the custom metadata field. Can be up to 500 characters.
+    /// Send an empty string to clear an existing description. This is shown as a
+    /// hint to the users while setting the field's value on an asset in the media
+    /// library UI.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawBodyData.Set("description", value);
+        }
+    }
 
     /// <summary>
     /// Human readable name of the custom metadata field. This should be unique across

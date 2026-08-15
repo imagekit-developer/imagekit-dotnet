@@ -1,0 +1,133 @@
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Imagekit.Core;
+
+namespace Imagekit.Models;
+
+/// <summary>
+/// A named transformation is an alias for a transformation string, letting you apply
+/// and later update complex transformations without changing your image or video
+/// URLs. Learn more about [named transformations](https://imagekit.io/docs/transformations#named-transformations).
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<NamedTransformation, NamedTransformationFromRaw>))]
+public sealed record class NamedTransformation : JsonModel
+{
+    /// <summary>
+    /// Unique identifier for a named transformation.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// ISO 8601 timestamp of when the named transformation was created.
+    /// </summary>
+    public required DateTimeOffset CreatedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<DateTimeOffset>("createdAt");
+        }
+        init { this._rawData.Set("createdAt", value); }
+    }
+
+    /// <summary>
+    /// Whether the named transformation is currently enabled. When set to `false`,
+    /// requests using this named transformation fail at delivery time.
+    /// </summary>
+    public required bool Enabled
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("enabled");
+        }
+        init { this._rawData.Set("enabled", value); }
+    }
+
+    /// <summary>
+    /// Alias for the transformation string, used in URLs as `tr:n-&lt;name&gt;`.
+    /// This is case-sensitive, contains only alphanumeric characters or `_` (underscore),
+    /// and is unique across all named transformations for your account.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// The transformation string this named transformation refers to. Learn more
+    /// about the [transformation string syntax](https://imagekit.io/docs/transformations).
+    /// </summary>
+    public required string Transformation
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("transformation");
+        }
+        init { this._rawData.Set("transformation", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.CreatedAt;
+        _ = this.Enabled;
+        _ = this.Name;
+        _ = this.Transformation;
+    }
+
+    public NamedTransformation() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public NamedTransformation(NamedTransformation namedTransformation)
+        : base(namedTransformation) { }
+#pragma warning restore CS8618
+
+    public NamedTransformation(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    NamedTransformation(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="NamedTransformationFromRaw.FromRawUnchecked"/>
+    public static NamedTransformation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class NamedTransformationFromRaw : IFromRawJson<NamedTransformation>
+{
+    /// <inheritdoc/>
+    public NamedTransformation FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        NamedTransformation.FromRawUnchecked(rawData);
+}
