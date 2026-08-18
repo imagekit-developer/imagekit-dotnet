@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Text.Json;
 using Imagekit.Core;
 using Imagekit.Exceptions;
 
@@ -203,6 +204,43 @@ public class MultipartJsonDictionaryTest : TestBase
             dict.GetNotNullStruct<int>("text")
         );
         Assert.Contains("'text' must be of type", exception.Message);
+    }
+
+    [Fact]
+    public void GetNotAbsentElement_ReturnsValue()
+    {
+        var dict = new MultipartJsonDictionary();
+        dict.Set("age", 30);
+
+        var age = dict.GetNotAbsentElement("age");
+
+        Assert.Equal(30, age.GetInt32());
+    }
+
+    [Fact]
+    public void GetNotAbsentElement_ThrowsWhenKeyAbsent()
+    {
+        var dict = new MultipartJsonDictionary();
+
+        var exception = Assert.Throws<ImageKitInvalidDataException>(() =>
+            dict.GetNotAbsentElement("missing")
+        );
+        Assert.Contains("'missing' cannot be absent", exception.Message);
+    }
+
+    [Fact]
+    public void GetNotAbsentElement_ReturnsNullElementWhenValueIsNull()
+    {
+        var dict = new MultipartJsonDictionary(
+            new Dictionary<string, MultipartJsonElement>
+            {
+                ["nullable"] = MultipartJsonSerializer.SerializeToElement<string?>(null),
+            }
+        );
+
+        var element = dict.GetNotAbsentElement("nullable");
+
+        Assert.Equal(JsonValueKind.Null, element.ValueKind);
     }
 
     [Fact]

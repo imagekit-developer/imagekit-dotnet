@@ -122,6 +122,12 @@ public sealed class ImageKitClient : IImageKitClient
         get { return _assets.Value; }
     }
 
+    readonly Lazy<IAIFilterSearchService> _aiFilterSearch;
+    public IAIFilterSearchService AIFilterSearch
+    {
+        get { return _aiFilterSearch.Value; }
+    }
+
     readonly Lazy<ICacheService> _cache;
     public ICacheService Cache
     {
@@ -165,6 +171,7 @@ public sealed class ImageKitClient : IImageKitClient
         _savedExtensions = new(() => new SavedExtensionService(this));
         _namedTransformations = new(() => new NamedTransformationService(this));
         _assets = new(() => new AssetService(this));
+        _aiFilterSearch = new(() => new AIFilterSearchService(this));
         _cache = new(() => new CacheService(this));
         _folders = new(() => new FolderService(this));
         _accounts = new(() => new AccountService(this));
@@ -293,6 +300,12 @@ public sealed class ImageKitClientWithRawResponse : IImageKitClientWithRawRespon
     public IAssetServiceWithRawResponse Assets
     {
         get { return _assets.Value; }
+    }
+
+    readonly Lazy<IAIFilterSearchServiceWithRawResponse> _aiFilterSearch;
+    public IAIFilterSearchServiceWithRawResponse AIFilterSearch
+    {
+        get { return _aiFilterSearch.Value; }
     }
 
     readonly Lazy<ICacheServiceWithRawResponse> _cache;
@@ -529,6 +542,7 @@ public sealed class ImageKitClientWithRawResponse : IImageKitClientWithRawRespon
         _savedExtensions = new(() => new SavedExtensionServiceWithRawResponse(this));
         _namedTransformations = new(() => new NamedTransformationServiceWithRawResponse(this));
         _assets = new(() => new AssetServiceWithRawResponse(this));
+        _aiFilterSearch = new(() => new AIFilterSearchServiceWithRawResponse(this));
         _cache = new(() => new CacheServiceWithRawResponse(this));
         _folders = new(() => new FolderServiceWithRawResponse(this));
         _accounts = new(() => new AccountServiceWithRawResponse(this));
