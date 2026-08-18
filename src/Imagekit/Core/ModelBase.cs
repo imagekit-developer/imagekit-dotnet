@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Imagekit.Exceptions;
 using Imagekit.Models;
+using Imagekit.Models.AIFilterSearch;
 using Imagekit.Models.Cache.Invalidation;
 using Assets = Imagekit.Models.Assets;
 using CustomMetadataFields = Imagekit.Models.CustomMetadataFields;
@@ -81,6 +82,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Assets::FileType>(),
             new ApiEnumConverter<string, Assets::Sort>(),
             new ApiEnumConverter<string, Assets::Type>(),
+            new ApiEnumConverter<string, FileType>(),
             new ApiEnumConverter<string, Status>(),
             new ApiEnumConverter<string, Job::Status>(),
             new ApiEnumConverter<string, Job::Type>(),

@@ -81,6 +81,8 @@ public interface IImageKitClient : IDisposable
 
     IAssetService Assets { get; }
 
+    IAIFilterSearchService AIFilterSearch { get; }
+
     ICacheService Cache { get; }
 
     IFolderService Folders { get; }
@@ -151,6 +153,8 @@ public interface IImageKitClientWithRawResponse : IDisposable
     INamedTransformationServiceWithRawResponse NamedTransformations { get; }
 
     IAssetServiceWithRawResponse Assets { get; }
+
+    IAIFilterSearchServiceWithRawResponse AIFilterSearch { get; }
 
     ICacheServiceWithRawResponse Cache { get; }
 
