@@ -207,6 +207,43 @@ public class JsonDictionaryTest : TestBase
     }
 
     [Fact]
+    public void GetNotAbsentElement_ReturnsValue()
+    {
+        var dict = new JsonDictionary();
+        dict.Set("age", 30);
+
+        var age = dict.GetNotAbsentElement("age");
+
+        Assert.Equal(30, age.GetInt32());
+    }
+
+    [Fact]
+    public void GetNotAbsentElement_ThrowsWhenKeyAbsent()
+    {
+        var dict = new JsonDictionary();
+
+        var exception = Assert.Throws<ImageKitInvalidDataException>(() =>
+            dict.GetNotAbsentElement("missing")
+        );
+        Assert.Contains("'missing' cannot be absent", exception.Message);
+    }
+
+    [Fact]
+    public void GetNotAbsentElement_ReturnsNullElementWhenValueIsNull()
+    {
+        var dict = new JsonDictionary(
+            new Dictionary<string, JsonElement>
+            {
+                ["nullable"] = JsonSerializer.SerializeToElement<string?>(null),
+            }
+        );
+
+        var element = dict.GetNotAbsentElement("nullable");
+
+        Assert.Equal(JsonValueKind.Null, element.ValueKind);
+    }
+
+    [Fact]
     public void GetNullableClass_ReturnsValueWhenPresent()
     {
         var dict = new JsonDictionary();
