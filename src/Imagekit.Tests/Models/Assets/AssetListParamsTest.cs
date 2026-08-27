@@ -214,6 +214,10 @@ public class SortTest : TestBase
     [InlineData(Assets::Sort.DescSize)]
     [InlineData(Assets::Sort.AscRelevance)]
     [InlineData(Assets::Sort.DescRelevance)]
+    [InlineData(Assets::Sort.AscDuration)]
+    [InlineData(Assets::Sort.DescDuration)]
+    [InlineData(Assets::Sort.AscOriginalCreationDate)]
+    [InlineData(Assets::Sort.DescOriginalCreationDate)]
     public void Validation_Works(Assets::Sort rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -248,6 +252,10 @@ public class SortTest : TestBase
     [InlineData(Assets::Sort.DescSize)]
     [InlineData(Assets::Sort.AscRelevance)]
     [InlineData(Assets::Sort.DescRelevance)]
+    [InlineData(Assets::Sort.AscDuration)]
+    [InlineData(Assets::Sort.DescDuration)]
+    [InlineData(Assets::Sort.AscOriginalCreationDate)]
+    [InlineData(Assets::Sort.DescOriginalCreationDate)]
     public void SerializationRoundtrip_Works(Assets::Sort rawValue)
     {
         // force implicit conversion because Theory can't do that for us

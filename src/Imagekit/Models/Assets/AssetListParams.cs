@@ -352,6 +352,10 @@ public enum Sort
     DescSize,
     AscRelevance,
     DescRelevance,
+    AscDuration,
+    DescDuration,
+    AscOriginalCreationDate,
+    DescOriginalCreationDate,
 }
 
 sealed class SortConverter : JsonConverter<Sort>
@@ -378,6 +382,10 @@ sealed class SortConverter : JsonConverter<Sort>
             "DESC_SIZE" => Sort.DescSize,
             "ASC_RELEVANCE" => Sort.AscRelevance,
             "DESC_RELEVANCE" => Sort.DescRelevance,
+            "ASC_DURATION" => Sort.AscDuration,
+            "DESC_DURATION" => Sort.DescDuration,
+            "ASC_ORIGINAL_CREATION_DATE" => Sort.AscOriginalCreationDate,
+            "DESC_ORIGINAL_CREATION_DATE" => Sort.DescOriginalCreationDate,
             _ => (Sort)(-1),
         };
     }
@@ -402,6 +410,10 @@ sealed class SortConverter : JsonConverter<Sort>
                 Sort.DescSize => "DESC_SIZE",
                 Sort.AscRelevance => "ASC_RELEVANCE",
                 Sort.DescRelevance => "DESC_RELEVANCE",
+                Sort.AscDuration => "ASC_DURATION",
+                Sort.DescDuration => "DESC_DURATION",
+                Sort.AscOriginalCreationDate => "ASC_ORIGINAL_CREATION_DATE",
+                Sort.DescOriginalCreationDate => "DESC_ORIGINAL_CREATION_DATE",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
