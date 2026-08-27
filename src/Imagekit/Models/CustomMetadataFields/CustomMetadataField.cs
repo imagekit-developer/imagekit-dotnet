@@ -94,6 +94,28 @@ public sealed record class CustomMetadataField : JsonModel
         }
     }
 
+    /// <summary>
+    /// Present and set to `true` when the field is reserved. Omitted for regular
+    /// fields. Reserved fields cannot be deleted.
+    /// </summary>
+    public bool? Reserved
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("reserved");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("reserved", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -102,6 +124,7 @@ public sealed record class CustomMetadataField : JsonModel
         _ = this.Name;
         this.Schema.Validate();
         _ = this.Description;
+        _ = this.Reserved;
     }
 
     public CustomMetadataField() { }
