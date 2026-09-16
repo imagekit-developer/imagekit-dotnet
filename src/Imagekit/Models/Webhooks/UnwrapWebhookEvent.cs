@@ -719,6 +719,42 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
             {
                 try
                 {
+                    var deserialized = JsonSerializer.Deserialize<UploadPostTransformErrorEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<UploadPreTransformErrorEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
                     var deserialized = JsonSerializer.Deserialize<VideoTransformationAcceptedEvent>(
                         element,
                         options
@@ -773,42 +809,6 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UploadPreTransformSuccessEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        deserialized.Validate();
-                        return new(deserialized, element);
-                    }
-                }
-                catch (System::Exception e)
-                    when (e is JsonException || e is ImageKitInvalidDataException)
-                {
-                    // ignore
-                }
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<UploadPreTransformErrorEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        deserialized.Validate();
-                        return new(deserialized, element);
-                    }
-                }
-                catch (System::Exception e)
-                    when (e is JsonException || e is ImageKitInvalidDataException)
-                {
-                    // ignore
-                }
-
-                try
-                {
                     var deserialized = JsonSerializer.Deserialize<UploadPostTransformSuccessEvent>(
                         element,
                         options
@@ -827,7 +827,43 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<UploadPostTransformErrorEvent>(
+                    var deserialized = JsonSerializer.Deserialize<UploadPreTransformSuccessEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<FileVersionDeleteEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<FileDeleteEvent>(
                         element,
                         options
                     );
@@ -881,43 +917,7 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
 
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FileDeleteEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        deserialized.Validate();
-                        return new(deserialized, element);
-                    }
-                }
-                catch (System::Exception e)
-                    when (e is JsonException || e is ImageKitInvalidDataException)
-                {
-                    // ignore
-                }
-
-                try
-                {
                     var deserialized = JsonSerializer.Deserialize<FileVersionCreateEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        deserialized.Validate();
-                        return new(deserialized, element);
-                    }
-                }
-                catch (System::Exception e)
-                    when (e is JsonException || e is ImageKitInvalidDataException)
-                {
-                    // ignore
-                }
-
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<FileVersionDeleteEvent>(
                         element,
                         options
                     );

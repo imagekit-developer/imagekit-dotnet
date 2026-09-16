@@ -33,6 +33,7 @@ public class TransformationTest : TestBase
             Crop = Crop.Force,
             CropMode = CropMode.PadResize,
             DefaultImage = "defaultImage",
+            Density = 300,
             Distort = "distort",
             Dpr = 2,
             Duration = 0,
@@ -130,6 +131,7 @@ public class TransformationTest : TestBase
         ApiEnum<string, Crop> expectedCrop = Crop.Force;
         ApiEnum<string, CropMode> expectedCropMode = CropMode.PadResize;
         string expectedDefaultImage = "defaultImage";
+        Density expectedDensity = 300;
         string expectedDistort = "distort";
         double expectedDpr = 2;
         TransformationDuration expectedDuration = 0;
@@ -228,6 +230,7 @@ public class TransformationTest : TestBase
         Assert.Equal(expectedCrop, model.Crop);
         Assert.Equal(expectedCropMode, model.CropMode);
         Assert.Equal(expectedDefaultImage, model.DefaultImage);
+        Assert.Equal(expectedDensity, model.Density);
         Assert.Equal(expectedDistort, model.Distort);
         Assert.Equal(expectedDpr, model.Dpr);
         Assert.Equal(expectedDuration, model.Duration);
@@ -295,6 +298,7 @@ public class TransformationTest : TestBase
             Crop = Crop.Force,
             CropMode = CropMode.PadResize,
             DefaultImage = "defaultImage",
+            Density = 300,
             Distort = "distort",
             Dpr = 2,
             Duration = 0,
@@ -405,6 +409,7 @@ public class TransformationTest : TestBase
             Crop = Crop.Force,
             CropMode = CropMode.PadResize,
             DefaultImage = "defaultImage",
+            Density = 300,
             Distort = "distort",
             Dpr = 2,
             Duration = 0,
@@ -509,6 +514,7 @@ public class TransformationTest : TestBase
         ApiEnum<string, Crop> expectedCrop = Crop.Force;
         ApiEnum<string, CropMode> expectedCropMode = CropMode.PadResize;
         string expectedDefaultImage = "defaultImage";
+        Density expectedDensity = 300;
         string expectedDistort = "distort";
         double expectedDpr = 2;
         TransformationDuration expectedDuration = 0;
@@ -607,6 +613,7 @@ public class TransformationTest : TestBase
         Assert.Equal(expectedCrop, deserialized.Crop);
         Assert.Equal(expectedCropMode, deserialized.CropMode);
         Assert.Equal(expectedDefaultImage, deserialized.DefaultImage);
+        Assert.Equal(expectedDensity, deserialized.Density);
         Assert.Equal(expectedDistort, deserialized.Distort);
         Assert.Equal(expectedDpr, deserialized.Dpr);
         Assert.Equal(expectedDuration, deserialized.Duration);
@@ -674,6 +681,7 @@ public class TransformationTest : TestBase
             Crop = Crop.Force,
             CropMode = CropMode.PadResize,
             DefaultImage = "defaultImage",
+            Density = 300,
             Distort = "distort",
             Dpr = 2,
             Duration = 0,
@@ -798,6 +806,8 @@ public class TransformationTest : TestBase
         Assert.False(model.RawData.ContainsKey("cropMode"));
         Assert.Null(model.DefaultImage);
         Assert.False(model.RawData.ContainsKey("defaultImage"));
+        Assert.Null(model.Density);
+        Assert.False(model.RawData.ContainsKey("density"));
         Assert.Null(model.Distort);
         Assert.False(model.RawData.ContainsKey("distort"));
         Assert.Null(model.Dpr);
@@ -904,6 +914,7 @@ public class TransformationTest : TestBase
             Crop = null,
             CropMode = null,
             DefaultImage = null,
+            Density = null,
             Distort = null,
             Dpr = null,
             Duration = null,
@@ -981,6 +992,8 @@ public class TransformationTest : TestBase
         Assert.False(model.RawData.ContainsKey("cropMode"));
         Assert.Null(model.DefaultImage);
         Assert.False(model.RawData.ContainsKey("defaultImage"));
+        Assert.Null(model.Density);
+        Assert.False(model.RawData.ContainsKey("density"));
         Assert.Null(model.Distort);
         Assert.False(model.RawData.ContainsKey("distort"));
         Assert.Null(model.Dpr);
@@ -1079,6 +1092,7 @@ public class TransformationTest : TestBase
             Crop = null,
             CropMode = null,
             DefaultImage = null,
+            Density = null,
             Distort = null,
             Dpr = null,
             Duration = null,
@@ -1144,6 +1158,7 @@ public class TransformationTest : TestBase
             Crop = Crop.Force,
             CropMode = CropMode.PadResize,
             DefaultImage = "defaultImage",
+            Density = 300,
             Distort = "distort",
             Dpr = 2,
             Duration = 0,
@@ -1910,6 +1925,49 @@ public class CropModeTest : TestBase
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<ApiEnum<string, CropMode>>(
             json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class DensityTest : TestBase
+{
+    [Fact]
+    public void LongValidationWorks()
+    {
+        Density value = 1;
+        value.Validate();
+    }
+
+    [Fact]
+    public void StringValidationWorks()
+    {
+        Density value = "string";
+        value.Validate();
+    }
+
+    [Fact]
+    public void LongSerializationRoundtripWorks()
+    {
+        Density value = 1;
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Density>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void StringSerializationRoundtripWorks()
+    {
+        Density value = "string";
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Density>(
+            element,
             ModelBase.SerializerOptions
         );
 
