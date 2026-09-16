@@ -34,6 +34,7 @@ public class CustomMetadataFieldTest : TestBase
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
             Description = "description",
+            Reserved = true,
         };
 
         string expectedID = "id";
@@ -57,12 +58,14 @@ public class CustomMetadataFieldTest : TestBase
             SelectOptions = ["small", "medium", "large", 30, 40, true],
         };
         string expectedDescription = "description";
+        bool expectedReserved = true;
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedLabel, model.Label);
         Assert.Equal(expectedName, model.Name);
         Assert.Equal(expectedSchema, model.Schema);
         Assert.Equal(expectedDescription, model.Description);
+        Assert.Equal(expectedReserved, model.Reserved);
     }
 
     [Fact]
@@ -91,6 +94,7 @@ public class CustomMetadataFieldTest : TestBase
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
             Description = "description",
+            Reserved = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -128,6 +132,7 @@ public class CustomMetadataFieldTest : TestBase
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
             Description = "description",
+            Reserved = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -158,12 +163,14 @@ public class CustomMetadataFieldTest : TestBase
             SelectOptions = ["small", "medium", "large", 30, 40, true],
         };
         string expectedDescription = "description";
+        bool expectedReserved = true;
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedLabel, deserialized.Label);
         Assert.Equal(expectedName, deserialized.Name);
         Assert.Equal(expectedSchema, deserialized.Schema);
         Assert.Equal(expectedDescription, deserialized.Description);
+        Assert.Equal(expectedReserved, deserialized.Reserved);
     }
 
     [Fact]
@@ -192,6 +199,7 @@ public class CustomMetadataFieldTest : TestBase
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
             Description = "description",
+            Reserved = true,
         };
 
         model.Validate();
@@ -226,6 +234,8 @@ public class CustomMetadataFieldTest : TestBase
 
         Assert.Null(model.Description);
         Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.Reserved);
+        Assert.False(model.RawData.ContainsKey("reserved"));
     }
 
     [Fact]
@@ -286,10 +296,13 @@ public class CustomMetadataFieldTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             Description = null,
+            Reserved = null,
         };
 
         Assert.Null(model.Description);
         Assert.False(model.RawData.ContainsKey("description"));
+        Assert.Null(model.Reserved);
+        Assert.False(model.RawData.ContainsKey("reserved"));
     }
 
     [Fact]
@@ -320,6 +333,7 @@ public class CustomMetadataFieldTest : TestBase
 
             // Null should be interpreted as omitted for these properties
             Description = null,
+            Reserved = null,
         };
 
         model.Validate();
@@ -351,6 +365,7 @@ public class CustomMetadataFieldTest : TestBase
                 SelectOptions = ["small", "medium", "large", 30, 40, true],
             },
             Description = "description",
+            Reserved = true,
         };
 
         CustomMetadataField copied = new(model);
