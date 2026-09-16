@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.5.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.4.0...v6.5.0) (2026-09-16)
+
+
+### Features
+
+* add density parameter and new sorting options in search asset api ([b744ff3](https://github.com/imagekit-developer/imagekit-dotnet/commit/b744ff37825e0b84c7972f34085bdc096f40db1f))
+* serialize density as dn in SDK URL builders ([4707bc6](https://github.com/imagekit-developer/imagekit-dotnet/commit/4707bc67637802e9a8cef13e42fef13640464caa))
+
 ## [6.4.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.3.0...v6.4.0) (2026-08-15)
 
 
