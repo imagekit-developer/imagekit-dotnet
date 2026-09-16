@@ -404,6 +404,7 @@ public class HelperAdvancedTransformationsTest
                         Trim = 5.0,
                         Metadata = true,
                         ColorProfile = true,
+                        Density = 72L,
                         DefaultImage = "/folder/file.jpg/",
                         Dpr = 3.0,
                         X = 10.0,
@@ -449,7 +450,7 @@ public class HelperAdvancedTransformationsTest
         );
 
         Assert.Equal(
-            "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300,q-40,ar-4-3,c-force,cm-extract,fo-left,f-jpeg,r-50,bg-A94D34,b-5-A94D34,cr-FF0000_100_0000FF,di-folder@@file.jpg,dpr-3,x-10,y-20,xc-30,yc-40,o-0.8,z-2,rt-90,bl-10,n-some_name,pr-true,lo-true,fl-h,t-5,md-true,cp-true,vc-h264,ac-aac,so-5,eo-15,du-10,sr-1440_1080,e-grayscale,e-upscale,e-retouch,e-genvar,e-bgremove,e-contrast,e-dropshadow,e-changebg-prompt-car,e-edit-prompt-make it vintage,e-shadow-bl-15_st-40_x-10_y-N5,e-sharpen-10,e-usm-2-2-0.8-0.024,e-gradient-from-red_to-white,e-colorize-co-red_in-50,e-distort-a-45,orig-true,pg-2_4,h-200,w-300,l-image,i-logo.png,l-end",
+            "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300,q-40,ar-4-3,c-force,cm-extract,fo-left,f-jpeg,r-50,bg-A94D34,b-5-A94D34,cr-FF0000_100_0000FF,di-folder@@file.jpg,dpr-3,x-10,y-20,xc-30,yc-40,o-0.8,z-2,rt-90,bl-10,n-some_name,pr-true,lo-true,fl-h,t-5,md-true,cp-true,dn-72,vc-h264,ac-aac,so-5,eo-15,du-10,sr-1440_1080,e-grayscale,e-upscale,e-retouch,e-genvar,e-bgremove,e-contrast,e-dropshadow,e-changebg-prompt-car,e-edit-prompt-make it vintage,e-shadow-bl-15_st-40_x-10_y-N5,e-sharpen-10,e-usm-2-2-0.8-0.024,e-gradient-from-red_to-white,e-colorize-co-red_in-50,e-distort-a-45,orig-true,pg-2_4,h-200,w-300,l-image,i-logo.png,l-end",
             url
         );
     }

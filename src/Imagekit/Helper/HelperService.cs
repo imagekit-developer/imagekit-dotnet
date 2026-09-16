@@ -222,6 +222,14 @@ public sealed class HelperService : IHelperService
             // ColorProfile
             if (t.ColorProfile != null)
                 parts.Add("cp-" + t.ColorProfile.Value.ToString().ToLowerInvariant());
+            // Density
+            if (t.Density != null)
+            {
+                if (t.Density.TryPickLong(out var l))
+                    parts.Add("dn-" + l.Value.ToString(CultureInfo.InvariantCulture));
+                else if (t.Density.TryPickString(out var s))
+                    parts.Add("dn-" + s);
+            }
             // VideoCodec
             if (t.VideoCodec != null)
                 parts.Add("vc-" + t.VideoCodec.Raw());
