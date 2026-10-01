@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.5.1](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.5.0...v6.5.1) (2026-10-01)
+
+
+### Documentation
+
+* describe reserved original creation date field ([24391d6](https://github.com/imagekit-developer/imagekit-dotnet/commit/24391d6b929d069a271c8e542af6d07c64c43479))
+
 ## [6.5.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.4.0...v6.5.0) (2026-09-16)
 
 
