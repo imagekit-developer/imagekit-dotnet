@@ -82,7 +82,7 @@ public class FileServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Copy_Works()
     {
-        var response = await this.client.Files.Copy(
+        await this.client.Files.Copy(
             new()
             {
                 DestinationPath = "/folder/to/copy/into/",
@@ -90,7 +90,6 @@ public class FileServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]
@@ -107,7 +106,7 @@ public class FileServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Move_Works()
     {
-        var response = await this.client.Files.Move(
+        await this.client.Files.Move(
             new()
             {
                 DestinationPath = "/folder/to/move/into/",
@@ -115,7 +114,6 @@ public class FileServiceTest : TestBase
             },
             TestContext.Current.CancellationToken
         );
-        response.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

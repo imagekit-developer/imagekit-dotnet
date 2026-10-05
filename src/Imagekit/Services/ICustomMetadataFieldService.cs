@@ -73,13 +73,13 @@ public interface ICustomMetadataFieldService
     /// This API deletes a custom metadata field. Even after deleting a custom metadata
     /// field, you cannot create any new custom metadata field with the same name.
     /// </summary>
-    Task<CustomMetadataFieldDeleteResponse> Delete(
+    Task Delete(
         CustomMetadataFieldDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Delete(CustomMetadataFieldDeleteParams, CancellationToken)"/>
-    Task<CustomMetadataFieldDeleteResponse> Delete(
+    Task Delete(
         string id,
         CustomMetadataFieldDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -139,13 +139,13 @@ public interface ICustomMetadataFieldServiceWithRawResponse
     /// Returns a raw HTTP response for <c>delete /v1/customMetadataFields/{id}</c>, but is otherwise the
     /// same as <see cref="ICustomMetadataFieldService.Delete(CustomMetadataFieldDeleteParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<CustomMetadataFieldDeleteResponse>> Delete(
+    Task<HttpResponse> Delete(
         CustomMetadataFieldDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Delete(CustomMetadataFieldDeleteParams, CancellationToken)"/>
-    Task<HttpResponse<CustomMetadataFieldDeleteResponse>> Delete(
+    Task<HttpResponse> Delete(
         string id,
         CustomMetadataFieldDeleteParams? parameters = null,
         CancellationToken cancellationToken = default

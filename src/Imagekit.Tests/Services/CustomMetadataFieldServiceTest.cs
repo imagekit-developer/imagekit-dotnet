@@ -63,11 +63,10 @@ public class CustomMetadataFieldServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
-        var customMetadataField = await this.client.CustomMetadataFields.Delete(
+        await this.client.CustomMetadataFields.Delete(
             "id",
             new(),
             TestContext.Current.CancellationToken
         );
-        customMetadataField.Validate();
     }
 }
