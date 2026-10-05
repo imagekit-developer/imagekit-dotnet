@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Imagekit.Exceptions;
 using Imagekit.Models;
+using Imagekit.Models.Accounts.Webhooks;
 using Imagekit.Models.Cache.Invalidation;
 using Assets = Imagekit.Models.Assets;
 using CustomMetadataFields = Imagekit.Models.CustomMetadataFields;
@@ -84,6 +85,7 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Status>(),
             new ApiEnumConverter<string, Job::Status>(),
             new ApiEnumConverter<string, Job::Type>(),
+            new ApiEnumConverter<string, WebhookEventType>(),
             new ApiEnumConverter<string, V2Files::AIAutoDescription>(),
             new ApiEnumConverter<string, V2Files::AITasks>(),
             new ApiEnumConverter<string, V2Files::AwsAutoTagging>(),
