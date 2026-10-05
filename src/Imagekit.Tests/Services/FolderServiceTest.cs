@@ -17,11 +17,10 @@ public class FolderServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
-        var folder = await this.client.Folders.Delete(
+        await this.client.Folders.Delete(
             new() { FolderPath = "/folder/to/delete/" },
             TestContext.Current.CancellationToken
         );
-        folder.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

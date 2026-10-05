@@ -73,10 +73,7 @@ public interface IFileService
     /// then the source file and its versions (if `includeFileVersions` is set to true)
     /// will be appended to the destination file version history. </para>
     /// </summary>
-    Task<FileCopyResponse> Copy(
-        FileCopyParams parameters,
-        CancellationToken cancellationToken = default
-    );
+    Task Copy(FileCopyParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// This API returns an object with details or attributes about the current version
@@ -97,10 +94,7 @@ public interface IFileService
     /// <para>Note: If any file at the destination has the same name as the source file,
     /// then the source file and its versions will be appended to the destination file. </para>
     /// </summary>
-    Task<FileMoveResponse> Move(
-        FileMoveParams parameters,
-        CancellationToken cancellationToken = default
-    );
+    Task Move(FileMoveParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// You can rename an already existing file in the media library using rename file
@@ -203,7 +197,7 @@ public interface IFileServiceWithRawResponse
     /// Returns a raw HTTP response for <c>post /v1/files/copy</c>, but is otherwise the
     /// same as <see cref="IFileService.Copy(FileCopyParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<FileCopyResponse>> Copy(
+    Task<HttpResponse> Copy(
         FileCopyParams parameters,
         CancellationToken cancellationToken = default
     );
@@ -228,7 +222,7 @@ public interface IFileServiceWithRawResponse
     /// Returns a raw HTTP response for <c>post /v1/files/move</c>, but is otherwise the
     /// same as <see cref="IFileService.Move(FileMoveParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<FileMoveResponse>> Move(
+    Task<HttpResponse> Move(
         FileMoveParams parameters,
         CancellationToken cancellationToken = default
     );
