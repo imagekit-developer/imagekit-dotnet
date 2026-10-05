@@ -86,19 +86,16 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
     }
 
     /// <inheritdoc/>
-    public async Task<CustomMetadataFieldDeleteResponse> Delete(
+    public Task Delete(
         CustomMetadataFieldDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        using var response = await this
-            .WithRawResponse.Delete(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.Delete(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task<CustomMetadataFieldDeleteResponse> Delete(
+    public async Task Delete(
         string id,
         CustomMetadataFieldDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
@@ -106,7 +103,7 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
     {
         parameters ??= new();
 
-        return this.Delete(parameters with { ID = id }, cancellationToken);
+        await this.Delete(parameters with { ID = id }, cancellationToken).ConfigureAwait(false);
     }
 }
 
@@ -236,7 +233,7 @@ public sealed class CustomMetadataFieldServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<CustomMetadataFieldDeleteResponse>> Delete(
+    public Task<HttpResponse> Delete(
         CustomMetadataFieldDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -251,25 +248,11 @@ public sealed class CustomMetadataFieldServiceWithRawResponse
             Method = HttpMethod.Delete,
             Params = parameters,
         };
-        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
-        return new(
-            response,
-            async (token) =>
-            {
-                var customMetadataField = await response
-                    .Deserialize<CustomMetadataFieldDeleteResponse>(token)
-                    .ConfigureAwait(false);
-                if (this._client.ResponseValidation)
-                {
-                    customMetadataField.Validate();
-                }
-                return customMetadataField;
-            }
-        );
+        return this._client.Execute(request, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<CustomMetadataFieldDeleteResponse>> Delete(
+    public Task<HttpResponse> Delete(
         string id,
         CustomMetadataFieldDeleteParams? parameters = null,
         CancellationToken cancellationToken = default

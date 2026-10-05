@@ -42,10 +42,7 @@ public interface IFolderService
     /// This will delete a folder and all its contents permanently. The API returns an
     /// empty response.
     /// </summary>
-    Task<FolderDeleteResponse> Delete(
-        FolderDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    );
+    Task Delete(FolderDeleteParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// This will copy one folder into another. The selected folder, its nested folders,
@@ -109,7 +106,7 @@ public interface IFolderServiceWithRawResponse
     /// Returns a raw HTTP response for <c>delete /v1/folder</c>, but is otherwise the
     /// same as <see cref="IFolderService.Delete(FolderDeleteParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<FolderDeleteResponse>> Delete(
+    Task<HttpResponse> Delete(
         FolderDeleteParams parameters,
         CancellationToken cancellationToken = default
     );

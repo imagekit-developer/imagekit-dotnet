@@ -21,12 +21,11 @@ public class VersionServiceTest : TestBase
     [Fact(Skip = "Mock server tests are disabled")]
     public async Task Delete_Works()
     {
-        var version = await this.client.Files.Versions.Delete(
+        await this.client.Files.Versions.Delete(
             "versionId",
             new() { FileID = "fileId" },
             TestContext.Current.CancellationToken
         );
-        version.Validate();
     }
 
     [Fact(Skip = "Mock server tests are disabled")]

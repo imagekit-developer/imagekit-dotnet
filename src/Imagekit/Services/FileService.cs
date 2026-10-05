@@ -98,15 +98,9 @@ public sealed class FileService : IFileService
     }
 
     /// <inheritdoc/>
-    public async Task<FileCopyResponse> Copy(
-        FileCopyParams parameters,
-        CancellationToken cancellationToken = default
-    )
+    public Task Copy(FileCopyParams parameters, CancellationToken cancellationToken = default)
     {
-        using var response = await this
-            .WithRawResponse.Copy(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.Copy(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -134,15 +128,9 @@ public sealed class FileService : IFileService
     }
 
     /// <inheritdoc/>
-    public async Task<FileMoveResponse> Move(
-        FileMoveParams parameters,
-        CancellationToken cancellationToken = default
-    )
+    public Task Move(FileMoveParams parameters, CancellationToken cancellationToken = default)
     {
-        using var response = await this
-            .WithRawResponse.Move(parameters, cancellationToken)
-            .ConfigureAwait(false);
-        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+        return this.WithRawResponse.Move(parameters, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -283,7 +271,7 @@ public sealed class FileServiceWithRawResponse : IFileServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<FileCopyResponse>> Copy(
+    public Task<HttpResponse> Copy(
         FileCopyParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -293,21 +281,7 @@ public sealed class FileServiceWithRawResponse : IFileServiceWithRawResponse
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
-        return new(
-            response,
-            async (token) =>
-            {
-                var deserializedResponse = await response
-                    .Deserialize<FileCopyResponse>(token)
-                    .ConfigureAwait(false);
-                if (this._client.ResponseValidation)
-                {
-                    deserializedResponse.Validate();
-                }
-                return deserializedResponse;
-            }
-        );
+        return this._client.Execute(request, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -350,7 +324,7 @@ public sealed class FileServiceWithRawResponse : IFileServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<FileMoveResponse>> Move(
+    public Task<HttpResponse> Move(
         FileMoveParams parameters,
         CancellationToken cancellationToken = default
     )
@@ -360,21 +334,7 @@ public sealed class FileServiceWithRawResponse : IFileServiceWithRawResponse
             Method = HttpMethod.Post,
             Params = parameters,
         };
-        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
-        return new(
-            response,
-            async (token) =>
-            {
-                var deserializedResponse = await response
-                    .Deserialize<FileMoveResponse>(token)
-                    .ConfigureAwait(false);
-                if (this._client.ResponseValidation)
-                {
-                    deserializedResponse.Validate();
-                }
-                return deserializedResponse;
-            }
-        );
+        return this._client.Execute(request, cancellationToken);
     }
 
     /// <inheritdoc/>
