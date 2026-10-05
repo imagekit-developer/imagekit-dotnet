@@ -1,6 +1,6 @@
 using System;
 using Imagekit.Core;
-using Imagekit.Services.Accounts;
+using Accounts = Imagekit.Services.Accounts;
 
 namespace Imagekit.Services;
 
@@ -24,13 +24,15 @@ public interface IAccountService
     /// </summary>
     IAccountService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
-    IUsageService Usage { get; }
+    Accounts::IUsageService Usage { get; }
 
-    IUsageAnalyticsService UsageAnalytics { get; }
+    Accounts::IUsageAnalyticsService UsageAnalytics { get; }
 
-    IOriginService Origins { get; }
+    Accounts::IOriginService Origins { get; }
 
-    IUrlEndpointService UrlEndpoints { get; }
+    Accounts::IUrlEndpointService UrlEndpoints { get; }
+
+    Accounts::IWebhookService Webhooks { get; }
 }
 
 /// <summary>
@@ -46,11 +48,13 @@ public interface IAccountServiceWithRawResponse
     /// </summary>
     IAccountServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
-    IUsageServiceWithRawResponse Usage { get; }
+    Accounts::IUsageServiceWithRawResponse Usage { get; }
 
-    IUsageAnalyticsServiceWithRawResponse UsageAnalytics { get; }
+    Accounts::IUsageAnalyticsServiceWithRawResponse UsageAnalytics { get; }
 
-    IOriginServiceWithRawResponse Origins { get; }
+    Accounts::IOriginServiceWithRawResponse Origins { get; }
 
-    IUrlEndpointServiceWithRawResponse UrlEndpoints { get; }
+    Accounts::IUrlEndpointServiceWithRawResponse UrlEndpoints { get; }
+
+    Accounts::IWebhookServiceWithRawResponse Webhooks { get; }
 }

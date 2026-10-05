@@ -5,17 +5,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using Imagekit.Core;
 using Imagekit.Exceptions;
-using Imagekit.Models.CustomMetadataFields;
+using Imagekit.Models.Accounts.Webhooks;
 
-namespace Imagekit.Services;
+namespace Imagekit.Services.Accounts;
 
 /// <inheritdoc/>
-public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
+public sealed class WebhookService : IWebhookService
 {
-    readonly Lazy<ICustomMetadataFieldServiceWithRawResponse> _withRawResponse;
+    readonly Lazy<IWebhookServiceWithRawResponse> _withRawResponse;
 
     /// <inheritdoc/>
-    public ICustomMetadataFieldServiceWithRawResponse WithRawResponse
+    public IWebhookServiceWithRawResponse WithRawResponse
     {
         get { return _withRawResponse.Value; }
     }
@@ -23,23 +23,21 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
     readonly IImageKitClient _client;
 
     /// <inheritdoc/>
-    public ICustomMetadataFieldService WithOptions(Func<ClientOptions, ClientOptions> modifier)
+    public IWebhookService WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
-        return new CustomMetadataFieldService(this._client.WithOptions(modifier));
+        return new WebhookService(this._client.WithOptions(modifier));
     }
 
-    public CustomMetadataFieldService(IImageKitClient client)
+    public WebhookService(IImageKitClient client)
     {
         _client = client;
 
-        _withRawResponse = new(() =>
-            new CustomMetadataFieldServiceWithRawResponse(client.WithRawResponse)
-        );
+        _withRawResponse = new(() => new WebhookServiceWithRawResponse(client.WithRawResponse));
     }
 
     /// <inheritdoc/>
-    public async Task<CustomMetadataField> Create(
-        CustomMetadataFieldCreateParams parameters,
+    public async Task<Webhook> Create(
+        WebhookCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -50,8 +48,8 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
     }
 
     /// <inheritdoc/>
-    public async Task<CustomMetadataField> Update(
-        CustomMetadataFieldUpdateParams parameters,
+    public async Task<Webhook> Update(
+        WebhookUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -62,9 +60,9 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
     }
 
     /// <inheritdoc/>
-    public Task<CustomMetadataField> Update(
+    public Task<Webhook> Update(
         string id,
-        CustomMetadataFieldUpdateParams? parameters = null,
+        WebhookUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -74,8 +72,8 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
     }
 
     /// <inheritdoc/>
-    public async Task<List<CustomMetadataField>> List(
-        CustomMetadataFieldListParams? parameters = null,
+    public async Task<List<Webhook>> List(
+        WebhookListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -87,7 +85,7 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
 
     /// <inheritdoc/>
     public Task Delete(
-        CustomMetadataFieldDeleteParams parameters,
+        WebhookDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -97,7 +95,7 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
     /// <inheritdoc/>
     public async Task Delete(
         string id,
-        CustomMetadataFieldDeleteParams? parameters = null,
+        WebhookDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -105,34 +103,55 @@ public sealed class CustomMetadataFieldService : ICustomMetadataFieldService
 
         await this.Delete(parameters with { ID = id }, cancellationToken).ConfigureAwait(false);
     }
+
+    /// <inheritdoc/>
+    public async Task<Webhook> Get(
+        WebhookGetParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.Get(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<Webhook> Get(
+        string id,
+        WebhookGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Get(parameters with { ID = id }, cancellationToken);
+    }
 }
 
 /// <inheritdoc/>
-public sealed class CustomMetadataFieldServiceWithRawResponse
-    : ICustomMetadataFieldServiceWithRawResponse
+public sealed class WebhookServiceWithRawResponse : IWebhookServiceWithRawResponse
 {
     readonly IImageKitClientWithRawResponse _client;
 
     /// <inheritdoc/>
-    public ICustomMetadataFieldServiceWithRawResponse WithOptions(
-        Func<ClientOptions, ClientOptions> modifier
-    )
+    public IWebhookServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier)
     {
-        return new CustomMetadataFieldServiceWithRawResponse(this._client.WithOptions(modifier));
+        return new WebhookServiceWithRawResponse(this._client.WithOptions(modifier));
     }
 
-    public CustomMetadataFieldServiceWithRawResponse(IImageKitClientWithRawResponse client)
+    public WebhookServiceWithRawResponse(IImageKitClientWithRawResponse client)
     {
         _client = client;
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<CustomMetadataField>> Create(
-        CustomMetadataFieldCreateParams parameters,
+    public async Task<HttpResponse<Webhook>> Create(
+        WebhookCreateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
-        HttpRequest<CustomMetadataFieldCreateParams> request = new()
+        HttpRequest<WebhookCreateParams> request = new()
         {
             Method = HttpMethod.Post,
             Params = parameters,
@@ -142,21 +161,19 @@ public sealed class CustomMetadataFieldServiceWithRawResponse
             response,
             async (token) =>
             {
-                var customMetadataField = await response
-                    .Deserialize<CustomMetadataField>(token)
-                    .ConfigureAwait(false);
+                var webhook = await response.Deserialize<Webhook>(token).ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    customMetadataField.Validate();
+                    webhook.Validate();
                 }
-                return customMetadataField;
+                return webhook;
             }
         );
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<CustomMetadataField>> Update(
-        CustomMetadataFieldUpdateParams parameters,
+    public async Task<HttpResponse<Webhook>> Update(
+        WebhookUpdateParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -165,7 +182,7 @@ public sealed class CustomMetadataFieldServiceWithRawResponse
             throw new ImageKitInvalidDataException("'parameters.ID' cannot be null");
         }
 
-        HttpRequest<CustomMetadataFieldUpdateParams> request = new()
+        HttpRequest<WebhookUpdateParams> request = new()
         {
             Method = ImageKitClientWithRawResponse.PatchMethod,
             Params = parameters,
@@ -175,22 +192,20 @@ public sealed class CustomMetadataFieldServiceWithRawResponse
             response,
             async (token) =>
             {
-                var customMetadataField = await response
-                    .Deserialize<CustomMetadataField>(token)
-                    .ConfigureAwait(false);
+                var webhook = await response.Deserialize<Webhook>(token).ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    customMetadataField.Validate();
+                    webhook.Validate();
                 }
-                return customMetadataField;
+                return webhook;
             }
         );
     }
 
     /// <inheritdoc/>
-    public Task<HttpResponse<CustomMetadataField>> Update(
+    public Task<HttpResponse<Webhook>> Update(
         string id,
-        CustomMetadataFieldUpdateParams? parameters = null,
+        WebhookUpdateParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -200,14 +215,14 @@ public sealed class CustomMetadataFieldServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<List<CustomMetadataField>>> List(
-        CustomMetadataFieldListParams? parameters = null,
+    public async Task<HttpResponse<List<Webhook>>> List(
+        WebhookListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
-        HttpRequest<CustomMetadataFieldListParams> request = new()
+        HttpRequest<WebhookListParams> request = new()
         {
             Method = HttpMethod.Get,
             Params = parameters,
@@ -217,24 +232,24 @@ public sealed class CustomMetadataFieldServiceWithRawResponse
             response,
             async (token) =>
             {
-                var customMetadataFields = await response
-                    .Deserialize<List<CustomMetadataField>>(token)
+                var webhooks = await response
+                    .Deserialize<List<Webhook>>(token)
                     .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    foreach (var item in customMetadataFields)
+                    foreach (var item in webhooks)
                     {
                         item.Validate();
                     }
                 }
-                return customMetadataFields;
+                return webhooks;
             }
         );
     }
 
     /// <inheritdoc/>
     public Task<HttpResponse> Delete(
-        CustomMetadataFieldDeleteParams parameters,
+        WebhookDeleteParams parameters,
         CancellationToken cancellationToken = default
     )
     {
@@ -243,7 +258,7 @@ public sealed class CustomMetadataFieldServiceWithRawResponse
             throw new ImageKitInvalidDataException("'parameters.ID' cannot be null");
         }
 
-        HttpRequest<CustomMetadataFieldDeleteParams> request = new()
+        HttpRequest<WebhookDeleteParams> request = new()
         {
             Method = HttpMethod.Delete,
             Params = parameters,
@@ -254,12 +269,55 @@ public sealed class CustomMetadataFieldServiceWithRawResponse
     /// <inheritdoc/>
     public Task<HttpResponse> Delete(
         string id,
-        CustomMetadataFieldDeleteParams? parameters = null,
+        WebhookDeleteParams? parameters = null,
         CancellationToken cancellationToken = default
     )
     {
         parameters ??= new();
 
         return this.Delete(parameters with { ID = id }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<Webhook>> Get(
+        WebhookGetParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.ID == null)
+        {
+            throw new ImageKitInvalidDataException("'parameters.ID' cannot be null");
+        }
+
+        HttpRequest<WebhookGetParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var webhook = await response.Deserialize<Webhook>(token).ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    webhook.Validate();
+                }
+                return webhook;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<Webhook>> Get(
+        string id,
+        WebhookGetParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.Get(parameters with { ID = id }, cancellationToken);
     }
 }
