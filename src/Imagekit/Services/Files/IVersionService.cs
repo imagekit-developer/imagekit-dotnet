@@ -50,13 +50,10 @@ public interface IVersionService
     /// <para>Note: If you want to delete all versions of a file, use the delete file
     /// API. </para>
     /// </summary>
-    Task<VersionDeleteResponse> Delete(
-        VersionDeleteParams parameters,
-        CancellationToken cancellationToken = default
-    );
+    Task Delete(VersionDeleteParams parameters, CancellationToken cancellationToken = default);
 
     /// <inheritdoc cref="Delete(VersionDeleteParams, CancellationToken)"/>
-    Task<VersionDeleteResponse> Delete(
+    Task Delete(
         string versionID,
         VersionDeleteParams parameters,
         CancellationToken cancellationToken = default
@@ -123,13 +120,13 @@ public interface IVersionServiceWithRawResponse
     /// Returns a raw HTTP response for <c>delete /v1/files/{fileId}/versions/{versionId}</c>, but is otherwise the
     /// same as <see cref="IVersionService.Delete(VersionDeleteParams, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<VersionDeleteResponse>> Delete(
+    Task<HttpResponse> Delete(
         VersionDeleteParams parameters,
         CancellationToken cancellationToken = default
     );
 
     /// <inheritdoc cref="Delete(VersionDeleteParams, CancellationToken)"/>
-    Task<HttpResponse<VersionDeleteResponse>> Delete(
+    Task<HttpResponse> Delete(
         string versionID,
         VersionDeleteParams parameters,
         CancellationToken cancellationToken = default
