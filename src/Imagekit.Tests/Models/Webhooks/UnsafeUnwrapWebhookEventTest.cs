@@ -685,6 +685,69 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
     }
 
     [Fact]
+    public void FolderCreateValidationWorks()
+    {
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FolderCreateEvent()
+        {
+            ID = "id",
+            Type = "folder.created",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FolderID = "folderId",
+                FolderPath = "folderPath",
+                Name = "name",
+                Type = Files::FolderType.Folder,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void FolderUpdateValidationWorks()
+    {
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FolderUpdateEvent()
+        {
+            ID = "id",
+            Type = "folder.updated",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FolderID = "folderId",
+                FolderPath = "folderPath",
+                Name = "name",
+                Type = Files::FolderType.Folder,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void FolderDeleteValidationWorks()
+    {
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FolderDeleteEvent()
+        {
+            ID = "id",
+            Type = "folder.deleted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new("id"),
+        };
+        value.Validate();
+    }
+
+    [Fact]
     public void VideoTransformationAcceptedSerializationRoundtripWorks()
     {
         Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::VideoTransformationAcceptedEvent()
@@ -1420,6 +1483,87 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
             Type = "file-version.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new() { FileID = "fileId", VersionID = "versionId" },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnsafeUnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void FolderCreateSerializationRoundtripWorks()
+    {
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FolderCreateEvent()
+        {
+            ID = "id",
+            Type = "folder.created",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FolderID = "folderId",
+                FolderPath = "folderPath",
+                Name = "name",
+                Type = Files::FolderType.Folder,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnsafeUnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void FolderUpdateSerializationRoundtripWorks()
+    {
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FolderUpdateEvent()
+        {
+            ID = "id",
+            Type = "folder.updated",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomMetadata = new Dictionary<string, JsonElement>()
+                {
+                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                },
+                FolderID = "folderId",
+                FolderPath = "folderPath",
+                Name = "name",
+                Type = Files::FolderType.Folder,
+                UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnsafeUnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void FolderDeleteSerializationRoundtripWorks()
+    {
+        Webhooks::UnsafeUnwrapWebhookEvent value = new Webhooks::FolderDeleteEvent()
+        {
+            ID = "id",
+            Type = "folder.deleted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new("id"),
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Webhooks::UnsafeUnwrapWebhookEvent>(
