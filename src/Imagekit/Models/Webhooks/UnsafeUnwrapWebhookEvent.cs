@@ -46,7 +46,10 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
                 fileUpdate: (x) => x.ID,
                 fileDelete: (x) => x.ID,
                 fileVersionCreate: (x) => x.ID,
-                fileVersionDelete: (x) => x.ID
+                fileVersionDelete: (x) => x.ID,
+                folderCreate: (x) => x.ID,
+                folderUpdate: (x) => x.ID,
+                folderDelete: (x) => x.ID
             );
         }
     }
@@ -67,7 +70,10 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
                 fileUpdate: (x) => x.Type,
                 fileDelete: (x) => x.Type,
                 fileVersionCreate: (x) => x.Type,
-                fileVersionDelete: (x) => x.Type
+                fileVersionDelete: (x) => x.Type,
+                folderCreate: (x) => x.Type,
+                folderUpdate: (x) => x.Type,
+                folderDelete: (x) => x.Type
             );
         }
     }
@@ -88,7 +94,10 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
                 fileUpdate: (x) => x.CreatedAt,
                 fileDelete: (x) => x.CreatedAt,
                 fileVersionCreate: (x) => x.CreatedAt,
-                fileVersionDelete: (x) => x.CreatedAt
+                fileVersionDelete: (x) => x.CreatedAt,
+                folderCreate: (x) => x.CreatedAt,
+                folderUpdate: (x) => x.CreatedAt,
+                folderDelete: (x) => x.CreatedAt
             );
         }
     }
@@ -178,6 +187,24 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     }
 
     public UnsafeUnwrapWebhookEvent(FileVersionDeleteEvent value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public UnsafeUnwrapWebhookEvent(FolderCreateEvent value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public UnsafeUnwrapWebhookEvent(FolderUpdateEvent value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public UnsafeUnwrapWebhookEvent(FolderDeleteEvent value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -455,6 +482,69 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     }
 
     /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="FolderCreateEvent"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickFolderCreate(out var value)) {
+    ///     // `value` is of type `FolderCreateEvent`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickFolderCreate([NotNullWhen(true)] out FolderCreateEvent? value)
+    {
+        value = this.Value as FolderCreateEvent;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="FolderUpdateEvent"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickFolderUpdate(out var value)) {
+    ///     // `value` is of type `FolderUpdateEvent`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickFolderUpdate([NotNullWhen(true)] out FolderUpdateEvent? value)
+    {
+        value = this.Value as FolderUpdateEvent;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="FolderDeleteEvent"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickFolderDelete(out var value)) {
+    ///     // `value` is of type `FolderDeleteEvent`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickFolderDelete([NotNullWhen(true)] out FolderDeleteEvent? value)
+    {
+        value = this.Value as FolderDeleteEvent;
+        return value != null;
+    }
+
+    /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
     /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
@@ -479,7 +569,10 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     ///     (FileUpdateEvent value) =&gt; {...},
     ///     (FileDeleteEvent value) =&gt; {...},
     ///     (FileVersionCreateEvent value) =&gt; {...},
-    ///     (FileVersionDeleteEvent value) =&gt; {...}
+    ///     (FileVersionDeleteEvent value) =&gt; {...},
+    ///     (FolderCreateEvent value) =&gt; {...},
+    ///     (FolderUpdateEvent value) =&gt; {...},
+    ///     (FolderDeleteEvent value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -496,7 +589,10 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
         System::Action<FileUpdateEvent> fileUpdate,
         System::Action<FileDeleteEvent> fileDelete,
         System::Action<FileVersionCreateEvent> fileVersionCreate,
-        System::Action<FileVersionDeleteEvent> fileVersionDelete
+        System::Action<FileVersionDeleteEvent> fileVersionDelete,
+        System::Action<FolderCreateEvent> folderCreate,
+        System::Action<FolderUpdateEvent> folderUpdate,
+        System::Action<FolderDeleteEvent> folderDelete
     )
     {
         switch (this.Value)
@@ -537,6 +633,15 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             case FileVersionDeleteEvent value:
                 fileVersionDelete(value);
                 break;
+            case FolderCreateEvent value:
+                folderCreate(value);
+                break;
+            case FolderUpdateEvent value:
+                folderUpdate(value);
+                break;
+            case FolderDeleteEvent value:
+                folderDelete(value);
+                break;
             default:
                 throw new ImageKitInvalidDataException(
                     "Data did not match any variant of UnsafeUnwrapWebhookEvent"
@@ -570,7 +675,10 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     ///     (FileUpdateEvent value) =&gt; {...},
     ///     (FileDeleteEvent value) =&gt; {...},
     ///     (FileVersionCreateEvent value) =&gt; {...},
-    ///     (FileVersionDeleteEvent value) =&gt; {...}
+    ///     (FileVersionDeleteEvent value) =&gt; {...},
+    ///     (FolderCreateEvent value) =&gt; {...},
+    ///     (FolderUpdateEvent value) =&gt; {...},
+    ///     (FolderDeleteEvent value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -587,7 +695,10 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
         System::Func<FileUpdateEvent, T> fileUpdate,
         System::Func<FileDeleteEvent, T> fileDelete,
         System::Func<FileVersionCreateEvent, T> fileVersionCreate,
-        System::Func<FileVersionDeleteEvent, T> fileVersionDelete
+        System::Func<FileVersionDeleteEvent, T> fileVersionDelete,
+        System::Func<FolderCreateEvent, T> folderCreate,
+        System::Func<FolderUpdateEvent, T> folderUpdate,
+        System::Func<FolderDeleteEvent, T> folderDelete
     )
     {
         return this.Value switch
@@ -604,6 +715,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             FileDeleteEvent value => fileDelete(value),
             FileVersionCreateEvent value => fileVersionCreate(value),
             FileVersionDeleteEvent value => fileVersionDelete(value),
+            FolderCreateEvent value => folderCreate(value),
+            FolderUpdateEvent value => folderUpdate(value),
+            FolderDeleteEvent value => folderDelete(value),
             _ => throw new ImageKitInvalidDataException(
                 "Data did not match any variant of UnsafeUnwrapWebhookEvent"
             ),
@@ -646,6 +760,12 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     public static implicit operator UnsafeUnwrapWebhookEvent(FileVersionDeleteEvent value) =>
         new(value);
 
+    public static implicit operator UnsafeUnwrapWebhookEvent(FolderCreateEvent value) => new(value);
+
+    public static implicit operator UnsafeUnwrapWebhookEvent(FolderUpdateEvent value) => new(value);
+
+    public static implicit operator UnsafeUnwrapWebhookEvent(FolderDeleteEvent value) => new(value);
+
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
     /// (based on its own <c>Validate</c> method).
@@ -676,7 +796,10 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             (fileUpdate) => fileUpdate.Validate(),
             (fileDelete) => fileDelete.Validate(),
             (fileVersionCreate) => fileVersionCreate.Validate(),
-            (fileVersionDelete) => fileVersionDelete.Validate()
+            (fileVersionDelete) => fileVersionDelete.Validate(),
+            (folderCreate) => folderCreate.Validate(),
+            (folderUpdate) => folderUpdate.Validate(),
+            (folderDelete) => folderDelete.Validate()
         );
     }
 
@@ -712,6 +835,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             FileDeleteEvent _ => 9,
             FileVersionCreateEvent _ => 10,
             FileVersionDeleteEvent _ => 11,
+            FolderCreateEvent _ => 12,
+            FolderUpdateEvent _ => 13,
+            FolderDeleteEvent _ => 14,
             _ => -1,
         };
     }
@@ -904,6 +1030,24 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
 
                 try
                 {
+                    var deserialized = JsonSerializer.Deserialize<FolderDeleteEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
                     var deserialized = JsonSerializer.Deserialize<FileCreateEvent>(
                         element,
                         options
@@ -941,6 +1085,42 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<FileVersionCreateEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<FolderCreateEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<FolderUpdateEvent>(
                         element,
                         options
                     );
