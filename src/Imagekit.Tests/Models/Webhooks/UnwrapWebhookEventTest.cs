@@ -695,6 +695,7 @@ public class UnwrapWebhookEventTest : TestBase
             Data = new()
             {
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedBy = new() { Email = "email", Name = "name" },
                 CustomMetadata = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -720,6 +721,7 @@ public class UnwrapWebhookEventTest : TestBase
             Data = new()
             {
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedBy = new() { Email = "email", Name = "name" },
                 CustomMetadata = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -742,7 +744,7 @@ public class UnwrapWebhookEventTest : TestBase
             ID = "id",
             Type = "folder.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("id"),
+            Data = new("folderId"),
         };
         value.Validate();
     }
@@ -1504,6 +1506,7 @@ public class UnwrapWebhookEventTest : TestBase
             Data = new()
             {
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedBy = new() { Email = "email", Name = "name" },
                 CustomMetadata = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -1535,6 +1538,7 @@ public class UnwrapWebhookEventTest : TestBase
             Data = new()
             {
                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CreatedBy = new() { Email = "email", Name = "name" },
                 CustomMetadata = new Dictionary<string, JsonElement>()
                 {
                     { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -1563,7 +1567,7 @@ public class UnwrapWebhookEventTest : TestBase
             ID = "id",
             Type = "folder.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("id"),
+            Data = new("folderId"),
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(

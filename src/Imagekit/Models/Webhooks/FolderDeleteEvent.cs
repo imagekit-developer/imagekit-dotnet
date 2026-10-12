@@ -225,22 +225,22 @@ class FolderDeleteEventFolderDeleteEventFromRaw : IFromRawJson<FolderDeleteEvent
 public sealed record class FolderDeleteEventFolderDeleteEventData : JsonModel
 {
     /// <summary>
-    /// The unique identifier of the deleted folder.
+    /// The unique `folderId` of the deleted folder.
     /// </summary>
-    public required string ID
+    public required string FolderID
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("id");
+            return this._rawData.GetNotNullClass<string>("folderId");
         }
-        init { this._rawData.Set("id", value); }
+        init { this._rawData.Set("folderId", value); }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.ID;
+        _ = this.FolderID;
     }
 
     public FolderDeleteEventFolderDeleteEventData() { }
@@ -275,10 +275,10 @@ public sealed record class FolderDeleteEventFolderDeleteEventData : JsonModel
     }
 
     [SetsRequiredMembers]
-    public FolderDeleteEventFolderDeleteEventData(string id)
+    public FolderDeleteEventFolderDeleteEventData(string folderID)
         : this()
     {
-        this.ID = id;
+        this.FolderID = folderID;
     }
 }
 
