@@ -23,6 +23,9 @@ public enum WebhookEventType
     FileDeleted,
     FileVersionCreated,
     FileVersionDeleted,
+    FolderCreated,
+    FolderUpdated,
+    FolderDeleted,
 }
 
 sealed class WebhookEventTypeConverter : JsonConverter<WebhookEventType>
@@ -47,6 +50,9 @@ sealed class WebhookEventTypeConverter : JsonConverter<WebhookEventType>
             "file.deleted" => WebhookEventType.FileDeleted,
             "file-version.created" => WebhookEventType.FileVersionCreated,
             "file-version.deleted" => WebhookEventType.FileVersionDeleted,
+            "folder.created" => WebhookEventType.FolderCreated,
+            "folder.updated" => WebhookEventType.FolderUpdated,
+            "folder.deleted" => WebhookEventType.FolderDeleted,
             _ => (WebhookEventType)(-1),
         };
     }
@@ -73,6 +79,9 @@ sealed class WebhookEventTypeConverter : JsonConverter<WebhookEventType>
                 WebhookEventType.FileDeleted => "file.deleted",
                 WebhookEventType.FileVersionCreated => "file-version.created",
                 WebhookEventType.FileVersionDeleted => "file-version.deleted",
+                WebhookEventType.FolderCreated => "folder.created",
+                WebhookEventType.FolderUpdated => "folder.updated",
+                WebhookEventType.FolderDeleted => "folder.deleted",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

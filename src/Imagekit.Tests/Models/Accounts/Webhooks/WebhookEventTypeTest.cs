@@ -20,6 +20,9 @@ public class WebhookEventTypeTest : TestBase
     [InlineData(WebhookEventType.FileDeleted)]
     [InlineData(WebhookEventType.FileVersionCreated)]
     [InlineData(WebhookEventType.FileVersionDeleted)]
+    [InlineData(WebhookEventType.FolderCreated)]
+    [InlineData(WebhookEventType.FolderUpdated)]
+    [InlineData(WebhookEventType.FolderDeleted)]
     public void Validation_Works(WebhookEventType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -52,6 +55,9 @@ public class WebhookEventTypeTest : TestBase
     [InlineData(WebhookEventType.FileDeleted)]
     [InlineData(WebhookEventType.FileVersionCreated)]
     [InlineData(WebhookEventType.FileVersionDeleted)]
+    [InlineData(WebhookEventType.FolderCreated)]
+    [InlineData(WebhookEventType.FolderUpdated)]
+    [InlineData(WebhookEventType.FolderDeleted)]
     public void SerializationRoundtrip_Works(WebhookEventType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
