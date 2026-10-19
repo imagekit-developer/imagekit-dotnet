@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -36,6 +37,17 @@ public record class AssetListResponse : ModelBase
             return Match<System::DateTimeOffset?>(
                 file: (x) => x.CreatedAt,
                 folder: (x) => x.CreatedAt
+            );
+        }
+    }
+
+    public IReadOnlyDictionary<string, JsonElement>? CustomMetadata
+    {
+        get
+        {
+            return Match<IReadOnlyDictionary<string, JsonElement>?>(
+                file: (x) => x.CustomMetadata,
+                folder: (x) => x.CustomMetadata
             );
         }
     }
