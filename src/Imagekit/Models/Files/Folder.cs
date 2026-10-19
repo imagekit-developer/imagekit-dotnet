@@ -35,6 +35,28 @@ public sealed record class Folder : JsonModel
     }
 
     /// <summary>
+    /// Details of the user who created the folder. Present only when this information
+    /// is available. The `name` is the name of the user at the time of folder creation.
+    /// </summary>
+    public CreatedBy? CreatedBy
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<CreatedBy>("createdBy");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("createdBy", value);
+        }
+    }
+
+    /// <summary>
     /// An object with custom metadata for the folder. Returns empty object if no
     /// custom metadata is set.
     /// </summary>
@@ -174,6 +196,7 @@ public sealed record class Folder : JsonModel
     public override void Validate()
     {
         _ = this.CreatedAt;
+        this.CreatedBy?.Validate();
         _ = this.CustomMetadata;
         _ = this.FolderID;
         _ = this.FolderPath;
@@ -215,6 +238,97 @@ class FolderFromRaw : IFromRawJson<Folder>
     /// <inheritdoc/>
     public Folder FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
         Folder.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Details of the user who created the folder. Present only when this information
+/// is available. The `name` is the name of the user at the time of folder creation.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<CreatedBy, CreatedByFromRaw>))]
+public sealed record class CreatedBy : JsonModel
+{
+    /// <summary>
+    /// Email of the user who created the folder.
+    /// </summary>
+    public string? Email
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("email");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("email", value);
+        }
+    }
+
+    /// <summary>
+    /// Name of the user who created the folder.
+    /// </summary>
+    public string? Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("name", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.Email;
+        _ = this.Name;
+    }
+
+    public CreatedBy() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public CreatedBy(CreatedBy createdBy)
+        : base(createdBy) { }
+#pragma warning restore CS8618
+
+    public CreatedBy(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    CreatedBy(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="CreatedByFromRaw.FromRawUnchecked"/>
+    public static CreatedBy FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class CreatedByFromRaw : IFromRawJson<CreatedBy>
+{
+    /// <inheritdoc/>
+    public CreatedBy FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        CreatedBy.FromRawUnchecked(rawData);
 }
 
 /// <summary>
