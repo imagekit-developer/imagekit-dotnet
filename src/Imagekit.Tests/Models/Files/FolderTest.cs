@@ -15,6 +15,7 @@ public class FolderTest : TestBase
         var model = new Folder
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedBy = new() { Email = "email", Name = "name" },
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -27,6 +28,7 @@ public class FolderTest : TestBase
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        CreatedBy expectedCreatedBy = new() { Email = "email", Name = "name" };
         Dictionary<string, JsonElement> expectedCustomMetadata = new()
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -38,6 +40,7 @@ public class FolderTest : TestBase
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedCreatedBy, model.CreatedBy);
         Assert.NotNull(model.CustomMetadata);
         Assert.Equal(expectedCustomMetadata.Count, model.CustomMetadata.Count);
         foreach (var item in expectedCustomMetadata)
@@ -59,6 +62,7 @@ public class FolderTest : TestBase
         var model = new Folder
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedBy = new() { Email = "email", Name = "name" },
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -82,6 +86,7 @@ public class FolderTest : TestBase
         var model = new Folder
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedBy = new() { Email = "email", Name = "name" },
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -98,6 +103,7 @@ public class FolderTest : TestBase
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        CreatedBy expectedCreatedBy = new() { Email = "email", Name = "name" };
         Dictionary<string, JsonElement> expectedCustomMetadata = new()
         {
             { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -109,6 +115,7 @@ public class FolderTest : TestBase
         DateTimeOffset expectedUpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
 
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.Equal(expectedCreatedBy, deserialized.CreatedBy);
         Assert.NotNull(deserialized.CustomMetadata);
         Assert.Equal(expectedCustomMetadata.Count, deserialized.CustomMetadata.Count);
         foreach (var item in expectedCustomMetadata)
@@ -130,6 +137,7 @@ public class FolderTest : TestBase
         var model = new Folder
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedBy = new() { Email = "email", Name = "name" },
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -151,6 +159,8 @@ public class FolderTest : TestBase
 
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
+        Assert.Null(model.CreatedBy);
+        Assert.False(model.RawData.ContainsKey("createdBy"));
         Assert.Null(model.CustomMetadata);
         Assert.False(model.RawData.ContainsKey("customMetadata"));
         Assert.Null(model.FolderID);
@@ -180,6 +190,7 @@ public class FolderTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
+            CreatedBy = null,
             CustomMetadata = null,
             FolderID = null,
             FolderPath = null,
@@ -190,6 +201,8 @@ public class FolderTest : TestBase
 
         Assert.Null(model.CreatedAt);
         Assert.False(model.RawData.ContainsKey("createdAt"));
+        Assert.Null(model.CreatedBy);
+        Assert.False(model.RawData.ContainsKey("createdBy"));
         Assert.Null(model.CustomMetadata);
         Assert.False(model.RawData.ContainsKey("customMetadata"));
         Assert.Null(model.FolderID);
@@ -211,6 +224,7 @@ public class FolderTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             CreatedAt = null,
+            CreatedBy = null,
             CustomMetadata = null,
             FolderID = null,
             FolderPath = null,
@@ -228,6 +242,7 @@ public class FolderTest : TestBase
         var model = new Folder
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedBy = new() { Email = "email", Name = "name" },
             CustomMetadata = new Dictionary<string, JsonElement>()
             {
                 { "foo", JsonSerializer.SerializeToElement("bar") },
@@ -240,6 +255,117 @@ public class FolderTest : TestBase
         };
 
         Folder copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class CreatedByTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new CreatedBy { Email = "email", Name = "name" };
+
+        string expectedEmail = "email";
+        string expectedName = "name";
+
+        Assert.Equal(expectedEmail, model.Email);
+        Assert.Equal(expectedName, model.Name);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new CreatedBy { Email = "email", Name = "name" };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<CreatedBy>(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new CreatedBy { Email = "email", Name = "name" };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<CreatedBy>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedEmail = "email";
+        string expectedName = "name";
+
+        Assert.Equal(expectedEmail, deserialized.Email);
+        Assert.Equal(expectedName, deserialized.Name);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new CreatedBy { Email = "email", Name = "name" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new CreatedBy { };
+
+        Assert.Null(model.Email);
+        Assert.False(model.RawData.ContainsKey("email"));
+        Assert.Null(model.Name);
+        Assert.False(model.RawData.ContainsKey("name"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new CreatedBy { };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new CreatedBy
+        {
+            // Null should be interpreted as omitted for these properties
+            Email = null,
+            Name = null,
+        };
+
+        Assert.Null(model.Email);
+        Assert.False(model.RawData.ContainsKey("email"));
+        Assert.Null(model.Name);
+        Assert.False(model.RawData.ContainsKey("name"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new CreatedBy
+        {
+            // Null should be interpreted as omitted for these properties
+            Email = null,
+            Name = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreatedBy { Email = "email", Name = "name" };
+
+        CreatedBy copied = new(model);
 
         Assert.Equal(model, copied);
     }
