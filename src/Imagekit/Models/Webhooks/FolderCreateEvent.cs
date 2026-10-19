@@ -11,7 +11,9 @@ using Imagekit.Models.Files;
 namespace Imagekit.Models.Webhooks;
 
 /// <summary>
-/// Triggered when a folder is created.
+/// Triggered when a folder is created, whether explicitly, by copying or moving
+/// a folder, or implicitly when an upload creates missing parent folders. Copying
+/// or moving a folder tree sends one event per folder in the tree.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<FolderCreateEvent, FolderCreateEventFromRaw>))]
 public sealed record class FolderCreateEvent : JsonModel
@@ -115,7 +117,9 @@ class FolderCreateEventFromRaw : IFromRawJson<FolderCreateEvent>
 }
 
 /// <summary>
-/// Triggered when a folder is created.
+/// Triggered when a folder is created, whether explicitly, by copying or moving
+/// a folder, or implicitly when an upload creates missing parent folders. Copying
+/// or moving a folder tree sends one event per folder in the tree.
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<

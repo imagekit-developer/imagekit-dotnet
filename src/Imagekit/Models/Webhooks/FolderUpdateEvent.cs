@@ -11,7 +11,9 @@ using Imagekit.Models.Files;
 namespace Imagekit.Models.Webhooks;
 
 /// <summary>
-/// Triggered when a folder is updated.
+/// Triggered when a folder is updated, for example when its custom metadata changes
+/// or it is renamed. Renaming a folder sends one event per folder in the tree, each
+/// with its new `folderPath`.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<FolderUpdateEvent, FolderUpdateEventFromRaw>))]
 public sealed record class FolderUpdateEvent : JsonModel
@@ -115,7 +117,9 @@ class FolderUpdateEventFromRaw : IFromRawJson<FolderUpdateEvent>
 }
 
 /// <summary>
-/// Triggered when a folder is updated.
+/// Triggered when a folder is updated, for example when its custom metadata changes
+/// or it is renamed. Renaming a folder sends one event per folder in the tree, each
+/// with its new `folderPath`.
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
