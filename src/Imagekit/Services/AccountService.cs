@@ -1,6 +1,6 @@
 using System;
 using Imagekit.Core;
-using Imagekit.Services.Accounts;
+using Accounts = Imagekit.Services.Accounts;
 
 namespace Imagekit.Services;
 
@@ -28,34 +28,41 @@ public sealed class AccountService : IAccountService
         _client = client;
 
         _withRawResponse = new(() => new AccountServiceWithRawResponse(client.WithRawResponse));
-        _usage = new(() => new UsageService(client));
-        _usageAnalytics = new(() => new UsageAnalyticsService(client));
-        _origins = new(() => new OriginService(client));
-        _urlEndpoints = new(() => new UrlEndpointService(client));
+        _usage = new(() => new Accounts::UsageService(client));
+        _usageAnalytics = new(() => new Accounts::UsageAnalyticsService(client));
+        _origins = new(() => new Accounts::OriginService(client));
+        _urlEndpoints = new(() => new Accounts::UrlEndpointService(client));
+        _webhooks = new(() => new Accounts::WebhookService(client));
     }
 
-    readonly Lazy<IUsageService> _usage;
-    public IUsageService Usage
+    readonly Lazy<Accounts::IUsageService> _usage;
+    public Accounts::IUsageService Usage
     {
         get { return _usage.Value; }
     }
 
-    readonly Lazy<IUsageAnalyticsService> _usageAnalytics;
-    public IUsageAnalyticsService UsageAnalytics
+    readonly Lazy<Accounts::IUsageAnalyticsService> _usageAnalytics;
+    public Accounts::IUsageAnalyticsService UsageAnalytics
     {
         get { return _usageAnalytics.Value; }
     }
 
-    readonly Lazy<IOriginService> _origins;
-    public IOriginService Origins
+    readonly Lazy<Accounts::IOriginService> _origins;
+    public Accounts::IOriginService Origins
     {
         get { return _origins.Value; }
     }
 
-    readonly Lazy<IUrlEndpointService> _urlEndpoints;
-    public IUrlEndpointService UrlEndpoints
+    readonly Lazy<Accounts::IUrlEndpointService> _urlEndpoints;
+    public Accounts::IUrlEndpointService UrlEndpoints
     {
         get { return _urlEndpoints.Value; }
+    }
+
+    readonly Lazy<Accounts::IWebhookService> _webhooks;
+    public Accounts::IWebhookService Webhooks
+    {
+        get { return _webhooks.Value; }
     }
 }
 
@@ -74,33 +81,40 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
     {
         _client = client;
 
-        _usage = new(() => new UsageServiceWithRawResponse(client));
-        _usageAnalytics = new(() => new UsageAnalyticsServiceWithRawResponse(client));
-        _origins = new(() => new OriginServiceWithRawResponse(client));
-        _urlEndpoints = new(() => new UrlEndpointServiceWithRawResponse(client));
+        _usage = new(() => new Accounts::UsageServiceWithRawResponse(client));
+        _usageAnalytics = new(() => new Accounts::UsageAnalyticsServiceWithRawResponse(client));
+        _origins = new(() => new Accounts::OriginServiceWithRawResponse(client));
+        _urlEndpoints = new(() => new Accounts::UrlEndpointServiceWithRawResponse(client));
+        _webhooks = new(() => new Accounts::WebhookServiceWithRawResponse(client));
     }
 
-    readonly Lazy<IUsageServiceWithRawResponse> _usage;
-    public IUsageServiceWithRawResponse Usage
+    readonly Lazy<Accounts::IUsageServiceWithRawResponse> _usage;
+    public Accounts::IUsageServiceWithRawResponse Usage
     {
         get { return _usage.Value; }
     }
 
-    readonly Lazy<IUsageAnalyticsServiceWithRawResponse> _usageAnalytics;
-    public IUsageAnalyticsServiceWithRawResponse UsageAnalytics
+    readonly Lazy<Accounts::IUsageAnalyticsServiceWithRawResponse> _usageAnalytics;
+    public Accounts::IUsageAnalyticsServiceWithRawResponse UsageAnalytics
     {
         get { return _usageAnalytics.Value; }
     }
 
-    readonly Lazy<IOriginServiceWithRawResponse> _origins;
-    public IOriginServiceWithRawResponse Origins
+    readonly Lazy<Accounts::IOriginServiceWithRawResponse> _origins;
+    public Accounts::IOriginServiceWithRawResponse Origins
     {
         get { return _origins.Value; }
     }
 
-    readonly Lazy<IUrlEndpointServiceWithRawResponse> _urlEndpoints;
-    public IUrlEndpointServiceWithRawResponse UrlEndpoints
+    readonly Lazy<Accounts::IUrlEndpointServiceWithRawResponse> _urlEndpoints;
+    public Accounts::IUrlEndpointServiceWithRawResponse UrlEndpoints
     {
         get { return _urlEndpoints.Value; }
+    }
+
+    readonly Lazy<Accounts::IWebhookServiceWithRawResponse> _webhooks;
+    public Accounts::IWebhookServiceWithRawResponse Webhooks
+    {
+        get { return _webhooks.Value; }
     }
 }
