@@ -36,19 +36,6 @@ public sealed record class UploadPostTransformSuccessEvent : JsonModel
     }
 
     /// <summary>
-    /// The type of webhook event.
-    /// </summary>
-    public required string Type
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("type");
-        }
-        init { this._rawData.Set("type", value); }
-    }
-
-    /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
     /// </summary>
     public required System::DateTimeOffset CreatedAt
@@ -85,26 +72,42 @@ public sealed record class UploadPostTransformSuccessEvent : JsonModel
         init { this._rawData.Set("request", value); }
     }
 
+    public JsonElement Type
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("type");
+        }
+        init { this._rawData.Set("type", value); }
+    }
+
     public static implicit operator BaseWebhookEvent(
         UploadPostTransformSuccessEvent uploadPostTransformSuccessEvent
-    ) =>
-        new()
-        {
-            ID = uploadPostTransformSuccessEvent.ID,
-            Type = uploadPostTransformSuccessEvent.Type,
-        };
+    ) => new() { ID = uploadPostTransformSuccessEvent.ID };
 
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
-        _ = this.Type;
         _ = this.CreatedAt;
         this.Data.Validate();
         this.Request.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.Type,
+                JsonSerializer.SerializeToElement("upload.post-transform.success")
+            )
+        )
+        {
+            throw new ImageKitInvalidDataException("Invalid value given for constant");
+        }
     }
 
-    public UploadPostTransformSuccessEvent() { }
+    public UploadPostTransformSuccessEvent()
+    {
+        this.Type = JsonSerializer.SerializeToElement("upload.post-transform.success");
+    }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -117,6 +120,8 @@ public sealed record class UploadPostTransformSuccessEvent : JsonModel
     public UploadPostTransformSuccessEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
+
+        this.Type = JsonSerializer.SerializeToElement("upload.post-transform.success");
     }
 
 #pragma warning disable CS8618

@@ -32,19 +32,6 @@ public sealed record class FolderUpdateEvent : JsonModel
     }
 
     /// <summary>
-    /// The type of webhook event.
-    /// </summary>
-    public required string Type
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("type");
-        }
-        init { this._rawData.Set("type", value); }
-    }
-
-    /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
     /// </summary>
     public required DateTimeOffset CreatedAt
@@ -67,19 +54,38 @@ public sealed record class FolderUpdateEvent : JsonModel
         init { this._rawData.Set("data", value); }
     }
 
+    /// <summary>
+    /// Type of the webhook event.
+    /// </summary>
+    public JsonElement Type
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("type");
+        }
+        init { this._rawData.Set("type", value); }
+    }
+
     public static implicit operator BaseWebhookEvent(FolderUpdateEvent folderUpdateEvent) =>
-        new() { ID = folderUpdateEvent.ID, Type = folderUpdateEvent.Type };
+        new() { ID = folderUpdateEvent.ID };
 
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
-        _ = this.Type;
         _ = this.CreatedAt;
         this.Data.Validate();
+        if (!JsonElement.DeepEquals(this.Type, JsonSerializer.SerializeToElement("folder.updated")))
+        {
+            throw new ImageKitInvalidDataException("Invalid value given for constant");
+        }
     }
 
-    public FolderUpdateEvent() { }
+    public FolderUpdateEvent()
+    {
+        this.Type = JsonSerializer.SerializeToElement("folder.updated");
+    }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -90,6 +96,8 @@ public sealed record class FolderUpdateEvent : JsonModel
     public FolderUpdateEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
+
+        this.Type = JsonSerializer.SerializeToElement("folder.updated");
     }
 
 #pragma warning disable CS8618

@@ -35,19 +35,6 @@ public sealed record class VideoTransformationReadyEvent : JsonModel
     }
 
     /// <summary>
-    /// The type of webhook event.
-    /// </summary>
-    public required string Type
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("type");
-        }
-        init { this._rawData.Set("type", value); }
-    }
-
-    /// <summary>
     /// Timestamp when the event was created in ISO8601 format.
     /// </summary>
     public required System::DateTimeOffset CreatedAt
@@ -87,6 +74,16 @@ public sealed record class VideoTransformationReadyEvent : JsonModel
         init { this._rawData.Set("request", value); }
     }
 
+    public JsonElement Type
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("type");
+        }
+        init { this._rawData.Set("type", value); }
+    }
+
     /// <summary>
     /// Performance metrics for the transformation process.
     /// </summary>
@@ -110,20 +107,31 @@ public sealed record class VideoTransformationReadyEvent : JsonModel
 
     public static implicit operator BaseWebhookEvent(
         VideoTransformationReadyEvent videoTransformationReadyEvent
-    ) => new() { ID = videoTransformationReadyEvent.ID, Type = videoTransformationReadyEvent.Type };
+    ) => new() { ID = videoTransformationReadyEvent.ID };
 
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
-        _ = this.Type;
         _ = this.CreatedAt;
         this.Data.Validate();
         this.Request.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.Type,
+                JsonSerializer.SerializeToElement("video.transformation.ready")
+            )
+        )
+        {
+            throw new ImageKitInvalidDataException("Invalid value given for constant");
+        }
         this.Timings?.Validate();
     }
 
-    public VideoTransformationReadyEvent() { }
+    public VideoTransformationReadyEvent()
+    {
+        this.Type = JsonSerializer.SerializeToElement("video.transformation.ready");
+    }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -136,6 +144,8 @@ public sealed record class VideoTransformationReadyEvent : JsonModel
     public VideoTransformationReadyEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
+
+        this.Type = JsonSerializer.SerializeToElement("video.transformation.ready");
     }
 
 #pragma warning disable CS8618
