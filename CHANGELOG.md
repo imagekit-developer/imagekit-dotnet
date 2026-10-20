@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.6.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.5.1...v6.6.0) (2026-10-19)
+
+
+### Features
+
+* webhook crud api ([92117f8](https://github.com/imagekit-developer/imagekit-dotnet/commit/92117f8882da9ef2016da1c9b7d2f4f1af45b23e))
+
+
+### Bug Fixes
+
+* **openapi:** reference shared CustomMetadata schema from FolderDetail ([2c3ee7f](https://github.com/imagekit-developer/imagekit-dotnet/commit/2c3ee7fafe072353e668e591f2fecbe74b796df4))
+
 ## [6.5.1](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.5.0...v6.5.1) (2026-10-05)
 
 
