@@ -9,17 +9,19 @@ public class BaseWebhookEventTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new BaseWebhookEvent { ID = "id" };
+        var model = new BaseWebhookEvent { ID = "id", Type = "type" };
 
         string expectedID = "id";
+        string expectedType = "type";
 
         Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedType, model.Type);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new BaseWebhookEvent { ID = "id" };
+        var model = new BaseWebhookEvent { ID = "id", Type = "type" };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<BaseWebhookEvent>(
@@ -33,7 +35,7 @@ public class BaseWebhookEventTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new BaseWebhookEvent { ID = "id" };
+        var model = new BaseWebhookEvent { ID = "id", Type = "type" };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<BaseWebhookEvent>(
@@ -43,14 +45,16 @@ public class BaseWebhookEventTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
+        string expectedType = "type";
 
         Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedType, deserialized.Type);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new BaseWebhookEvent { ID = "id" };
+        var model = new BaseWebhookEvent { ID = "id", Type = "type" };
 
         model.Validate();
     }
@@ -58,7 +62,7 @@ public class BaseWebhookEventTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new BaseWebhookEvent { ID = "id" };
+        var model = new BaseWebhookEvent { ID = "id", Type = "type" };
 
         BaseWebhookEvent copied = new(model);
 

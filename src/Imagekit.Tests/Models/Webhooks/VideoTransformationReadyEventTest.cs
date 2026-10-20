@@ -15,6 +15,7 @@ public class VideoTransformationReadyEventTest : TestBase
         var model = new VideoTransformationReadyEvent
         {
             ID = "id",
+            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -60,6 +61,7 @@ public class VideoTransformationReadyEventTest : TestBase
         };
 
         string expectedID = "id";
+        string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         VideoTransformationReadyEventVideoTransformationReadyEventData expectedData = new()
         {
@@ -101,14 +103,13 @@ public class VideoTransformationReadyEventTest : TestBase
             XRequestID = "x_request_id",
             UserAgent = "user_agent",
         };
-        JsonElement expectedType = JsonSerializer.SerializeToElement("video.transformation.ready");
         Timings expectedTimings = new() { DownloadDuration = 0, EncodingDuration = 0 };
 
         Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedType, model.Type);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedData, model.Data);
         Assert.Equal(expectedRequest, model.Request);
-        Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
         Assert.Equal(expectedTimings, model.Timings);
     }
 
@@ -118,6 +119,7 @@ public class VideoTransformationReadyEventTest : TestBase
         var model = new VideoTransformationReadyEvent
         {
             ID = "id",
+            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -177,6 +179,7 @@ public class VideoTransformationReadyEventTest : TestBase
         var model = new VideoTransformationReadyEvent
         {
             ID = "id",
+            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -229,6 +232,7 @@ public class VideoTransformationReadyEventTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
+        string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         VideoTransformationReadyEventVideoTransformationReadyEventData expectedData = new()
         {
@@ -270,14 +274,13 @@ public class VideoTransformationReadyEventTest : TestBase
             XRequestID = "x_request_id",
             UserAgent = "user_agent",
         };
-        JsonElement expectedType = JsonSerializer.SerializeToElement("video.transformation.ready");
         Timings expectedTimings = new() { DownloadDuration = 0, EncodingDuration = 0 };
 
         Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedType, deserialized.Type);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedData, deserialized.Data);
         Assert.Equal(expectedRequest, deserialized.Request);
-        Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
         Assert.Equal(expectedTimings, deserialized.Timings);
     }
 
@@ -287,6 +290,7 @@ public class VideoTransformationReadyEventTest : TestBase
         var model = new VideoTransformationReadyEvent
         {
             ID = "id",
+            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -340,6 +344,7 @@ public class VideoTransformationReadyEventTest : TestBase
         var model = new VideoTransformationReadyEvent
         {
             ID = "id",
+            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -393,6 +398,7 @@ public class VideoTransformationReadyEventTest : TestBase
         var model = new VideoTransformationReadyEvent
         {
             ID = "id",
+            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -445,6 +451,7 @@ public class VideoTransformationReadyEventTest : TestBase
         var model = new VideoTransformationReadyEvent
         {
             ID = "id",
+            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -501,6 +508,7 @@ public class VideoTransformationReadyEventTest : TestBase
         var model = new VideoTransformationReadyEvent
         {
             ID = "id",
+            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -556,6 +564,7 @@ public class VideoTransformationReadyEventTest : TestBase
         var model = new VideoTransformationReadyEvent
         {
             ID = "id",
+            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {

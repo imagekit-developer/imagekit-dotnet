@@ -32,6 +32,19 @@ public sealed record class FolderCreateEvent : JsonModel
     }
 
     /// <summary>
+    /// The type of webhook event.
+    /// </summary>
+    public required string Type
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("type");
+        }
+        init { this._rawData.Set("type", value); }
+    }
+
+    /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
     /// </summary>
     public required DateTimeOffset CreatedAt
@@ -54,38 +67,19 @@ public sealed record class FolderCreateEvent : JsonModel
         init { this._rawData.Set("data", value); }
     }
 
-    /// <summary>
-    /// Type of the webhook event.
-    /// </summary>
-    public JsonElement Type
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("type");
-        }
-        init { this._rawData.Set("type", value); }
-    }
-
     public static implicit operator BaseWebhookEvent(FolderCreateEvent folderCreateEvent) =>
-        new() { ID = folderCreateEvent.ID };
+        new() { ID = folderCreateEvent.ID, Type = folderCreateEvent.Type };
 
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
+        _ = this.Type;
         _ = this.CreatedAt;
         this.Data.Validate();
-        if (!JsonElement.DeepEquals(this.Type, JsonSerializer.SerializeToElement("folder.created")))
-        {
-            throw new ImageKitInvalidDataException("Invalid value given for constant");
-        }
     }
 
-    public FolderCreateEvent()
-    {
-        this.Type = JsonSerializer.SerializeToElement("folder.created");
-    }
+    public FolderCreateEvent() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -96,8 +90,6 @@ public sealed record class FolderCreateEvent : JsonModel
     public FolderCreateEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
-
-        this.Type = JsonSerializer.SerializeToElement("folder.created");
     }
 
 #pragma warning disable CS8618

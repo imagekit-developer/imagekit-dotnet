@@ -29,6 +29,19 @@ public sealed record class FileDeleteEvent : JsonModel
     }
 
     /// <summary>
+    /// The type of webhook event.
+    /// </summary>
+    public required string Type
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("type");
+        }
+        init { this._rawData.Set("type", value); }
+    }
+
+    /// <summary>
     /// Timestamp of when the event occurred in ISO8601 format.
     /// </summary>
     public required DateTimeOffset CreatedAt
@@ -51,38 +64,19 @@ public sealed record class FileDeleteEvent : JsonModel
         init { this._rawData.Set("data", value); }
     }
 
-    /// <summary>
-    /// Type of the webhook event.
-    /// </summary>
-    public JsonElement Type
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<JsonElement>("type");
-        }
-        init { this._rawData.Set("type", value); }
-    }
-
     public static implicit operator BaseWebhookEvent(FileDeleteEvent fileDeleteEvent) =>
-        new() { ID = fileDeleteEvent.ID };
+        new() { ID = fileDeleteEvent.ID, Type = fileDeleteEvent.Type };
 
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
+        _ = this.Type;
         _ = this.CreatedAt;
         this.Data.Validate();
-        if (!JsonElement.DeepEquals(this.Type, JsonSerializer.SerializeToElement("file.deleted")))
-        {
-            throw new ImageKitInvalidDataException("Invalid value given for constant");
-        }
     }
 
-    public FileDeleteEvent()
-    {
-        this.Type = JsonSerializer.SerializeToElement("file.deleted");
-    }
+    public FileDeleteEvent() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -93,8 +87,6 @@ public sealed record class FileDeleteEvent : JsonModel
     public FileDeleteEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
-
-        this.Type = JsonSerializer.SerializeToElement("file.deleted");
     }
 
 #pragma warning disable CS8618

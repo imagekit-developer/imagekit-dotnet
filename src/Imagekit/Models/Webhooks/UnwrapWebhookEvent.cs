@@ -54,6 +54,30 @@ public record class UnwrapWebhookEvent : ModelBase
         }
     }
 
+    public string Type
+    {
+        get
+        {
+            return Match(
+                videoTransformationAccepted: (x) => x.Type,
+                videoTransformationReady: (x) => x.Type,
+                videoTransformationError: (x) => x.Type,
+                uploadPreTransformSuccess: (x) => x.Type,
+                uploadPreTransformError: (x) => x.Type,
+                uploadPostTransformSuccess: (x) => x.Type,
+                uploadPostTransformError: (x) => x.Type,
+                fileCreate: (x) => x.Type,
+                fileUpdate: (x) => x.Type,
+                fileDelete: (x) => x.Type,
+                fileVersionCreate: (x) => x.Type,
+                fileVersionDelete: (x) => x.Type,
+                folderCreate: (x) => x.Type,
+                folderUpdate: (x) => x.Type,
+                folderDelete: (x) => x.Type
+            );
+        }
+    }
+
     public System::DateTimeOffset CreatedAt
     {
         get
@@ -74,30 +98,6 @@ public record class UnwrapWebhookEvent : ModelBase
                 folderCreate: (x) => x.CreatedAt,
                 folderUpdate: (x) => x.CreatedAt,
                 folderDelete: (x) => x.CreatedAt
-            );
-        }
-    }
-
-    public JsonElement Type
-    {
-        get
-        {
-            return Match(
-                videoTransformationAccepted: (x) => x.Type,
-                videoTransformationReady: (x) => x.Type,
-                videoTransformationError: (x) => x.Type,
-                uploadPreTransformSuccess: (x) => x.Type,
-                uploadPreTransformError: (x) => x.Type,
-                uploadPostTransformSuccess: (x) => x.Type,
-                uploadPostTransformError: (x) => x.Type,
-                fileCreate: (x) => x.Type,
-                fileUpdate: (x) => x.Type,
-                fileDelete: (x) => x.Type,
-                fileVersionCreate: (x) => x.Type,
-                fileVersionDelete: (x) => x.Type,
-                folderCreate: (x) => x.Type,
-                folderUpdate: (x) => x.Type,
-                folderDelete: (x) => x.Type
             );
         }
     }
@@ -841,127 +841,7 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
 
         switch (type)
         {
-            case "video.transformation.accepted":
-            {
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<VideoTransformationAcceptedEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new(deserialized, element);
-                    }
-                }
-                catch (JsonException)
-                {
-                    // ignore
-                }
-
-                return new(element);
-            }
-            case "video.transformation.ready":
-            {
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<VideoTransformationReadyEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new(deserialized, element);
-                    }
-                }
-                catch (JsonException)
-                {
-                    // ignore
-                }
-
-                return new(element);
-            }
-            case "video.transformation.error":
-            {
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<VideoTransformationErrorEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new(deserialized, element);
-                    }
-                }
-                catch (JsonException)
-                {
-                    // ignore
-                }
-
-                return new(element);
-            }
-            case "upload.pre-transform.success":
-            {
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<UploadPreTransformSuccessEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new(deserialized, element);
-                    }
-                }
-                catch (JsonException)
-                {
-                    // ignore
-                }
-
-                return new(element);
-            }
-            case "upload.pre-transform.error":
-            {
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<UploadPreTransformErrorEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new(deserialized, element);
-                    }
-                }
-                catch (JsonException)
-                {
-                    // ignore
-                }
-
-                return new(element);
-            }
-            case "upload.post-transform.success":
-            {
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<UploadPostTransformSuccessEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new(deserialized, element);
-                    }
-                }
-                catch (JsonException)
-                {
-                    // ignore
-                }
-
-                return new(element);
-            }
-            case "upload.post-transform.error":
+            default:
             {
                 try
                 {
@@ -971,98 +851,124 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
                     );
                     if (deserialized != null)
                     {
+                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (JsonException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     // ignore
                 }
 
-                return new(element);
-            }
-            case "file.created":
-            {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FileCreateEvent>(
+                    var deserialized = JsonSerializer.Deserialize<UploadPreTransformErrorEvent>(
                         element,
                         options
                     );
                     if (deserialized != null)
                     {
+                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (JsonException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     // ignore
                 }
 
-                return new(element);
-            }
-            case "file.updated":
-            {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FileUpdateEvent>(
+                    var deserialized = JsonSerializer.Deserialize<VideoTransformationAcceptedEvent>(
                         element,
                         options
                     );
                     if (deserialized != null)
                     {
+                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (JsonException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     // ignore
                 }
 
-                return new(element);
-            }
-            case "file.deleted":
-            {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FileDeleteEvent>(
+                    var deserialized = JsonSerializer.Deserialize<VideoTransformationReadyEvent>(
                         element,
                         options
                     );
                     if (deserialized != null)
                     {
+                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (JsonException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     // ignore
                 }
 
-                return new(element);
-            }
-            case "file-version.created":
-            {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FileVersionCreateEvent>(
+                    var deserialized = JsonSerializer.Deserialize<VideoTransformationErrorEvent>(
                         element,
                         options
                     );
                     if (deserialized != null)
                     {
+                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (JsonException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     // ignore
                 }
 
-                return new(element);
-            }
-            case "file-version.deleted":
-            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<UploadPostTransformSuccessEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<UploadPreTransformSuccessEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<FileVersionDeleteEvent>(
@@ -1071,58 +977,34 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
                     );
                     if (deserialized != null)
                     {
+                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (JsonException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     // ignore
                 }
 
-                return new(element);
-            }
-            case "folder.created":
-            {
                 try
                 {
-                    var deserialized = JsonSerializer.Deserialize<FolderCreateEvent>(
+                    var deserialized = JsonSerializer.Deserialize<FileDeleteEvent>(
                         element,
                         options
                     );
                     if (deserialized != null)
                     {
+                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (JsonException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     // ignore
                 }
 
-                return new(element);
-            }
-            case "folder.updated":
-            {
-                try
-                {
-                    var deserialized = JsonSerializer.Deserialize<FolderUpdateEvent>(
-                        element,
-                        options
-                    );
-                    if (deserialized != null)
-                    {
-                        return new(deserialized, element);
-                    }
-                }
-                catch (JsonException)
-                {
-                    // ignore
-                }
-
-                return new(element);
-            }
-            case "folder.deleted":
-            {
                 try
                 {
                     var deserialized = JsonSerializer.Deserialize<FolderDeleteEvent>(
@@ -1131,19 +1013,107 @@ sealed class UnwrapWebhookEventConverter : JsonConverter<UnwrapWebhookEvent>
                     );
                     if (deserialized != null)
                     {
+                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (JsonException)
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<FileCreateEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<FileUpdateEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<FileVersionCreateEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<FolderCreateEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<FolderUpdateEvent>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
                 {
                     // ignore
                 }
 
                 return new(element);
-            }
-            default:
-            {
-                return new UnwrapWebhookEvent(element);
             }
         }
     }
