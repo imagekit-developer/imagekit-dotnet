@@ -23,24 +23,10 @@ public sealed record class BaseWebhookEvent : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
-    /// <summary>
-    /// The type of webhook event.
-    /// </summary>
-    public required string Type
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("type");
-        }
-        init { this._rawData.Set("type", value); }
-    }
-
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
-        _ = this.Type;
     }
 
     public BaseWebhookEvent() { }
@@ -70,6 +56,13 @@ public sealed record class BaseWebhookEvent : JsonModel
     )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public BaseWebhookEvent(string id)
+        : this()
+    {
+        this.ID = id;
     }
 }
 

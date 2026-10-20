@@ -16,7 +16,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationAcceptedEvent()
         {
             ID = "id",
-            Type = "video.transformation.accepted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -53,7 +52,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationReadyEvent()
         {
             ID = "id",
-            Type = "video.transformation.ready",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -106,7 +104,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationErrorEvent()
         {
             ID = "id",
-            Type = "video.transformation.error",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -148,7 +145,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPreTransformSuccessEvent()
         {
             ID = "id",
-            Type = "upload.pre-transform.success",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -338,7 +334,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPreTransformErrorEvent()
         {
             ID = "id",
-            Type = "upload.pre-transform.error",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -361,7 +356,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPostTransformSuccessEvent()
         {
             ID = "id",
-            Type = "upload.post-transform.success",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -391,7 +385,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPostTransformErrorEvent()
         {
             ID = "id",
-            Type = "upload.post-transform.error",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -421,7 +414,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FileCreateEvent()
         {
             ID = "id",
-            Type = "file.created",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -502,7 +494,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FileUpdateEvent()
         {
             ID = "id",
-            Type = "file.updated",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -583,7 +574,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FileDeleteEvent()
         {
             ID = "id",
-            Type = "file.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new("fileId"),
         };
@@ -596,7 +586,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FileVersionCreateEvent()
         {
             ID = "id",
-            Type = "file-version.created",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -677,7 +666,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FileVersionDeleteEvent()
         {
             ID = "id",
-            Type = "file-version.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new() { FileID = "fileId", VersionID = "versionId" },
         };
@@ -690,7 +678,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FolderCreateEvent()
         {
             ID = "id",
-            Type = "folder.created",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -716,7 +703,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FolderUpdateEvent()
         {
             ID = "id",
-            Type = "folder.updated",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -742,7 +728,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FolderDeleteEvent()
         {
             ID = "id",
-            Type = "folder.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new("folderId"),
         };
@@ -755,7 +740,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationAcceptedEvent()
         {
             ID = "id",
-            Type = "video.transformation.accepted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -798,7 +782,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationReadyEvent()
         {
             ID = "id",
-            Type = "video.transformation.ready",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -857,7 +840,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::VideoTransformationErrorEvent()
         {
             ID = "id",
-            Type = "video.transformation.error",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -905,7 +887,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPreTransformSuccessEvent()
         {
             ID = "id",
-            Type = "upload.pre-transform.success",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -1101,7 +1082,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPreTransformErrorEvent()
         {
             ID = "id",
-            Type = "upload.pre-transform.error",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -1130,7 +1110,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPostTransformSuccessEvent()
         {
             ID = "id",
-            Type = "upload.post-transform.success",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -1166,7 +1145,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::UploadPostTransformErrorEvent()
         {
             ID = "id",
-            Type = "upload.post-transform.error",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -1202,7 +1180,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FileCreateEvent()
         {
             ID = "id",
-            Type = "file.created",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -1289,7 +1266,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FileUpdateEvent()
         {
             ID = "id",
-            Type = "file.updated",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -1376,7 +1352,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FileDeleteEvent()
         {
             ID = "id",
-            Type = "file.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new("fileId"),
         };
@@ -1395,7 +1370,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FileVersionCreateEvent()
         {
             ID = "id",
-            Type = "file-version.created",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -1482,7 +1456,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FileVersionDeleteEvent()
         {
             ID = "id",
-            Type = "file-version.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new() { FileID = "fileId", VersionID = "versionId" },
         };
@@ -1501,7 +1474,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FolderCreateEvent()
         {
             ID = "id",
-            Type = "folder.created",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -1533,7 +1505,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FolderUpdateEvent()
         {
             ID = "id",
-            Type = "folder.updated",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -1565,7 +1536,6 @@ public class UnwrapWebhookEventTest : TestBase
         Webhooks::UnwrapWebhookEvent value = new Webhooks::FolderDeleteEvent()
         {
             ID = "id",
-            Type = "folder.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new("folderId"),
         };

@@ -37,19 +37,6 @@ public sealed record class VideoTransformationAcceptedEvent : JsonModel
     }
 
     /// <summary>
-    /// The type of webhook event.
-    /// </summary>
-    public required string Type
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("type");
-        }
-        init { this._rawData.Set("type", value); }
-    }
-
-    /// <summary>
     /// Timestamp when the event was created in ISO8601 format.
     /// </summary>
     public required System::DateTimeOffset CreatedAt
@@ -89,26 +76,42 @@ public sealed record class VideoTransformationAcceptedEvent : JsonModel
         init { this._rawData.Set("request", value); }
     }
 
+    public JsonElement Type
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("type");
+        }
+        init { this._rawData.Set("type", value); }
+    }
+
     public static implicit operator BaseWebhookEvent(
         VideoTransformationAcceptedEvent videoTransformationAcceptedEvent
-    ) =>
-        new()
-        {
-            ID = videoTransformationAcceptedEvent.ID,
-            Type = videoTransformationAcceptedEvent.Type,
-        };
+    ) => new() { ID = videoTransformationAcceptedEvent.ID };
 
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.ID;
-        _ = this.Type;
         _ = this.CreatedAt;
         this.Data.Validate();
         this.Request.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.Type,
+                JsonSerializer.SerializeToElement("video.transformation.accepted")
+            )
+        )
+        {
+            throw new ImageKitInvalidDataException("Invalid value given for constant");
+        }
     }
 
-    public VideoTransformationAcceptedEvent() { }
+    public VideoTransformationAcceptedEvent()
+    {
+        this.Type = JsonSerializer.SerializeToElement("video.transformation.accepted");
+    }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
@@ -121,6 +124,8 @@ public sealed record class VideoTransformationAcceptedEvent : JsonModel
     public VideoTransformationAcceptedEvent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
+
+        this.Type = JsonSerializer.SerializeToElement("video.transformation.accepted");
     }
 
 #pragma warning disable CS8618
