@@ -16,7 +16,6 @@ public class FileVersionCreateEventTest : TestBase
         var model = new FileVersionCreateEvent
         {
             ID = "id",
-            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -90,7 +89,6 @@ public class FileVersionCreateEventTest : TestBase
         };
 
         string expectedID = "id";
-        string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         Files::File expectedData = new()
         {
@@ -161,11 +159,12 @@ public class FileVersionCreateEventTest : TestBase
             VideoCodec = "videoCodec",
             Width = 0,
         };
+        JsonElement expectedType = JsonSerializer.SerializeToElement("file-version.created");
 
         Assert.Equal(expectedID, model.ID);
-        Assert.Equal(expectedType, model.Type);
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedData, model.Data);
+        Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
     }
 
     [Fact]
@@ -174,7 +173,6 @@ public class FileVersionCreateEventTest : TestBase
         var model = new FileVersionCreateEvent
         {
             ID = "id",
-            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -262,7 +260,6 @@ public class FileVersionCreateEventTest : TestBase
         var model = new FileVersionCreateEvent
         {
             ID = "id",
-            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -343,7 +340,6 @@ public class FileVersionCreateEventTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
-        string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         Files::File expectedData = new()
         {
@@ -414,11 +410,12 @@ public class FileVersionCreateEventTest : TestBase
             VideoCodec = "videoCodec",
             Width = 0,
         };
+        JsonElement expectedType = JsonSerializer.SerializeToElement("file-version.created");
 
         Assert.Equal(expectedID, deserialized.ID);
-        Assert.Equal(expectedType, deserialized.Type);
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedData, deserialized.Data);
+        Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
     }
 
     [Fact]
@@ -427,7 +424,6 @@ public class FileVersionCreateEventTest : TestBase
         var model = new FileVersionCreateEvent
         {
             ID = "id",
-            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
@@ -509,7 +505,6 @@ public class FileVersionCreateEventTest : TestBase
         var model = new FileVersionCreateEvent
         {
             ID = "id",
-            Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
             {
