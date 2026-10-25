@@ -545,6 +545,29 @@ public sealed record class UrlEndpointResponseUrlRewriterCloudinary : JsonModel
         init { this._rawData.Set("type", value); }
     }
 
+    /// <summary>
+    /// Whether to always rewrite Cloudinary layers to the improved ImageKit layer
+    /// specification (`l-image`, `l-text`, ..., `l-end`). When `false` or omitted,
+    /// the improved specification is used only for transformations that require it.
+    /// </summary>
+    public bool? UseImprovedLayerSpec
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("useImprovedLayerSpec");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("useImprovedLayerSpec", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -553,6 +576,7 @@ public sealed record class UrlEndpointResponseUrlRewriterCloudinary : JsonModel
         {
             throw new ImageKitInvalidDataException("Invalid value given for constant");
         }
+        _ = this.UseImprovedLayerSpec;
     }
 
     public UrlEndpointResponseUrlRewriterCloudinary()
