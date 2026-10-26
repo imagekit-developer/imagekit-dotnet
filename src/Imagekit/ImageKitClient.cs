@@ -122,6 +122,12 @@ public sealed class ImageKitClient : IImageKitClient
         get { return _assets.Value; }
     }
 
+    readonly Lazy<ITagService> _tags;
+    public ITagService Tags
+    {
+        get { return _tags.Value; }
+    }
+
     readonly Lazy<ICacheService> _cache;
     public ICacheService Cache
     {
@@ -165,6 +171,7 @@ public sealed class ImageKitClient : IImageKitClient
         _savedExtensions = new(() => new SavedExtensionService(this));
         _namedTransformations = new(() => new NamedTransformationService(this));
         _assets = new(() => new AssetService(this));
+        _tags = new(() => new TagService(this));
         _cache = new(() => new CacheService(this));
         _folders = new(() => new FolderService(this));
         _accounts = new(() => new AccountService(this));
@@ -293,6 +300,12 @@ public sealed class ImageKitClientWithRawResponse : IImageKitClientWithRawRespon
     public IAssetServiceWithRawResponse Assets
     {
         get { return _assets.Value; }
+    }
+
+    readonly Lazy<ITagServiceWithRawResponse> _tags;
+    public ITagServiceWithRawResponse Tags
+    {
+        get { return _tags.Value; }
     }
 
     readonly Lazy<ICacheServiceWithRawResponse> _cache;
@@ -529,6 +542,7 @@ public sealed class ImageKitClientWithRawResponse : IImageKitClientWithRawRespon
         _savedExtensions = new(() => new SavedExtensionServiceWithRawResponse(this));
         _namedTransformations = new(() => new NamedTransformationServiceWithRawResponse(this));
         _assets = new(() => new AssetServiceWithRawResponse(this));
+        _tags = new(() => new TagServiceWithRawResponse(this));
         _cache = new(() => new CacheServiceWithRawResponse(this));
         _folders = new(() => new FolderServiceWithRawResponse(this));
         _accounts = new(() => new AccountServiceWithRawResponse(this));
