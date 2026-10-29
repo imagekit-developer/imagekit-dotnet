@@ -21,6 +21,10 @@ namespace Imagekit.Models.Tags;
 /// those filters, while `assetCount` always counts every asset carrying the tag.
 /// Use `search` or `prefix` to narrow the listing and `cursor` to page through it.</para>
 ///
+/// <para>Tag counts are updated asynchronously. Changes to a file's tags usually
+/// appear in this list within about a minute, but can take longer during heavy tagging
+/// activity, so a tag you just added or removed may not be reflected immediately.</para>
+///
 /// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
 /// breaking changes in non-major versions. We may add new methods in the future that
 /// cause existing derived classes to break.</para>

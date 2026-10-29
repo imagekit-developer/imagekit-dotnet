@@ -35,7 +35,12 @@ public interface ITagService
     /// <para>Use `tagSource` and `fileType` to list only the tags in use on matching
     /// assets. `lastUsedAt` and the `ASC_LAST_USED` / `DESC_LAST_USED` sorts follow
     /// those filters, while `assetCount` always counts every asset carrying the tag.
-    /// Use `search` or `prefix` to narrow the listing and `cursor` to page through it. </para>
+    /// Use `search` or `prefix` to narrow the listing and `cursor` to page through it.</para>
+    ///
+    /// <para>Tag counts are updated asynchronously. Changes to a file's tags usually
+    /// appear in this list within about a minute, but can take longer during heavy
+    /// tagging activity, so a tag you just added or removed may not be reflected
+    /// immediately. </para>
     /// </summary>
     Task<TagListResponse> List(
         TagListParams? parameters = null,
