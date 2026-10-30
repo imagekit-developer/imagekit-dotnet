@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.7.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.6.0...v6.7.0) (2026-10-30)
+
+
+### Features
+
+* **api:** add accounts.contract.get() for contract consumption ([4a339f1](https://github.com/imagekit-developer/imagekit-dotnet/commit/4a339f10e84c331afc6965aadf7c42f3d69f77c9))
+* **api:** add useImprovedLayerSpec to the Cloudinary URL rewriter ([4a339f1](https://github.com/imagekit-developer/imagekit-dotnet/commit/4a339f10e84c331afc6965aadf7c42f3d69f77c9))
+
 ## [6.6.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.5.1...v6.6.0) (2026-10-19)
 
 
