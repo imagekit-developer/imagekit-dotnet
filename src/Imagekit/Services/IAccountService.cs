@@ -28,6 +28,8 @@ public interface IAccountService
 
     Accounts::IUsageAnalyticsService UsageAnalytics { get; }
 
+    Accounts::IContractService Contract { get; }
+
     Accounts::IOriginService Origins { get; }
 
     Accounts::IUrlEndpointService UrlEndpoints { get; }
@@ -51,6 +53,8 @@ public interface IAccountServiceWithRawResponse
     Accounts::IUsageServiceWithRawResponse Usage { get; }
 
     Accounts::IUsageAnalyticsServiceWithRawResponse UsageAnalytics { get; }
+
+    Accounts::IContractServiceWithRawResponse Contract { get; }
 
     Accounts::IOriginServiceWithRawResponse Origins { get; }
 
