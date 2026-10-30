@@ -17,13 +17,21 @@ public class UrlEndpointCreateParamsTest : TestBase
             Description = "My custom URL endpoint",
             Origins = ["origin-id-1"],
             UrlPrefix = "product-images",
-            UrlRewriter = new Cloudinary() { PreserveAssetDeliveryTypes = true },
+            UrlRewriter = new Cloudinary()
+            {
+                PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
+            },
         };
 
         string expectedDescription = "My custom URL endpoint";
         List<string> expectedOrigins = ["origin-id-1"];
         string expectedUrlPrefix = "product-images";
-        UrlRewriter expectedUrlRewriter = new Cloudinary() { PreserveAssetDeliveryTypes = true };
+        UrlRewriter expectedUrlRewriter = new Cloudinary()
+        {
+            PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
 
         Assert.Equal(expectedDescription, parameters.Description);
         Assert.NotNull(parameters.Origins);
@@ -90,7 +98,11 @@ public class UrlEndpointCreateParamsTest : TestBase
             Description = "My custom URL endpoint",
             Origins = ["origin-id-1"],
             UrlPrefix = "product-images",
-            UrlRewriter = new Cloudinary() { PreserveAssetDeliveryTypes = true },
+            UrlRewriter = new Cloudinary()
+            {
+                PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
+            },
         };
 
         UrlEndpointCreateParams copied = new(parameters);
@@ -104,7 +116,11 @@ public class UrlRewriterTest : TestBase
     [Fact]
     public void CloudinaryValidationWorks()
     {
-        UrlRewriter value = new Cloudinary() { PreserveAssetDeliveryTypes = true };
+        UrlRewriter value = new Cloudinary()
+        {
+            PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
         value.Validate();
     }
 
@@ -125,7 +141,11 @@ public class UrlRewriterTest : TestBase
     [Fact]
     public void CloudinarySerializationRoundtripWorks()
     {
-        UrlRewriter value = new Cloudinary() { PreserveAssetDeliveryTypes = true };
+        UrlRewriter value = new Cloudinary()
+        {
+            PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<UrlRewriter>(
             element,
@@ -167,19 +187,29 @@ public class CloudinaryTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Cloudinary { PreserveAssetDeliveryTypes = true };
+        var model = new Cloudinary
+        {
+            PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
 
         JsonElement expectedType = JsonSerializer.SerializeToElement("CLOUDINARY");
         bool expectedPreserveAssetDeliveryTypes = true;
+        bool expectedUseImprovedLayerSpec = true;
 
         Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
         Assert.Equal(expectedPreserveAssetDeliveryTypes, model.PreserveAssetDeliveryTypes);
+        Assert.Equal(expectedUseImprovedLayerSpec, model.UseImprovedLayerSpec);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Cloudinary { PreserveAssetDeliveryTypes = true };
+        var model = new Cloudinary
+        {
+            PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Cloudinary>(
@@ -193,7 +223,11 @@ public class CloudinaryTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Cloudinary { PreserveAssetDeliveryTypes = true };
+        var model = new Cloudinary
+        {
+            PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Cloudinary>(
@@ -204,15 +238,21 @@ public class CloudinaryTest : TestBase
 
         JsonElement expectedType = JsonSerializer.SerializeToElement("CLOUDINARY");
         bool expectedPreserveAssetDeliveryTypes = true;
+        bool expectedUseImprovedLayerSpec = true;
 
         Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
         Assert.Equal(expectedPreserveAssetDeliveryTypes, deserialized.PreserveAssetDeliveryTypes);
+        Assert.Equal(expectedUseImprovedLayerSpec, deserialized.UseImprovedLayerSpec);
     }
 
     [Fact]
     public void Validation_Works()
     {
-        var model = new Cloudinary { PreserveAssetDeliveryTypes = true };
+        var model = new Cloudinary
+        {
+            PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
 
         model.Validate();
     }
@@ -224,6 +264,8 @@ public class CloudinaryTest : TestBase
 
         Assert.Null(model.PreserveAssetDeliveryTypes);
         Assert.False(model.RawData.ContainsKey("preserveAssetDeliveryTypes"));
+        Assert.Null(model.UseImprovedLayerSpec);
+        Assert.False(model.RawData.ContainsKey("useImprovedLayerSpec"));
     }
 
     [Fact]
@@ -241,10 +283,13 @@ public class CloudinaryTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             PreserveAssetDeliveryTypes = null,
+            UseImprovedLayerSpec = null,
         };
 
         Assert.Null(model.PreserveAssetDeliveryTypes);
         Assert.False(model.RawData.ContainsKey("preserveAssetDeliveryTypes"));
+        Assert.Null(model.UseImprovedLayerSpec);
+        Assert.False(model.RawData.ContainsKey("useImprovedLayerSpec"));
     }
 
     [Fact]
@@ -254,6 +299,7 @@ public class CloudinaryTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             PreserveAssetDeliveryTypes = null,
+            UseImprovedLayerSpec = null,
         };
 
         model.Validate();
@@ -262,7 +308,11 @@ public class CloudinaryTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Cloudinary { PreserveAssetDeliveryTypes = true };
+        var model = new Cloudinary
+        {
+            PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
 
         Cloudinary copied = new(model);
 
