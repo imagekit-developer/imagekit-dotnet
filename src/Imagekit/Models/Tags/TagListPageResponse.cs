@@ -8,8 +8,8 @@ using Imagekit.Core;
 
 namespace Imagekit.Models.Tags;
 
-[JsonConverter(typeof(JsonModelConverter<TagListResponse, TagListResponseFromRaw>))]
-public sealed record class TagListResponse : JsonModel
+[JsonConverter(typeof(JsonModelConverter<TagListPageResponse, TagListPageResponseFromRaw>))]
+public sealed record class TagListPageResponse : JsonModel
 {
     /// <summary>
     /// Cursor for the next page, or `null` when there are no more tags.
@@ -50,37 +50,39 @@ public sealed record class TagListResponse : JsonModel
         }
     }
 
-    public TagListResponse() { }
+    public TagListPageResponse() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public TagListResponse(TagListResponse tagListResponse)
-        : base(tagListResponse) { }
+    public TagListPageResponse(TagListPageResponse tagListPageResponse)
+        : base(tagListPageResponse) { }
 #pragma warning restore CS8618
 
-    public TagListResponse(IReadOnlyDictionary<string, JsonElement> rawData)
+    public TagListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    TagListResponse(FrozenDictionary<string, JsonElement> rawData)
+    TagListPageResponse(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TagListResponseFromRaw.FromRawUnchecked"/>
-    public static TagListResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="TagListPageResponseFromRaw.FromRawUnchecked"/>
+    public static TagListPageResponse FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class TagListResponseFromRaw : IFromRawJson<TagListResponse>
+class TagListPageResponseFromRaw : IFromRawJson<TagListPageResponse>
 {
     /// <inheritdoc/>
-    public TagListResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        TagListResponse.FromRawUnchecked(rawData);
+    public TagListPageResponse FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        TagListPageResponse.FromRawUnchecked(rawData);
 }

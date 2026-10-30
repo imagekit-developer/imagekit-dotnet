@@ -6,12 +6,12 @@ using Imagekit.Models.Tags;
 
 namespace Imagekit.Tests.Models.Tags;
 
-public class TagListResponseTest : TestBase
+public class TagListPageResponseTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new TagListResponse
+        var model = new TagListPageResponse
         {
             NextCursor = "nextCursor",
             Tags =
@@ -49,7 +49,7 @@ public class TagListResponseTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new TagListResponse
+        var model = new TagListPageResponse
         {
             NextCursor = "nextCursor",
             Tags =
@@ -65,7 +65,7 @@ public class TagListResponseTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TagListResponse>(
+        var deserialized = JsonSerializer.Deserialize<TagListPageResponse>(
             json,
             ModelBase.SerializerOptions
         );
@@ -76,7 +76,7 @@ public class TagListResponseTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new TagListResponse
+        var model = new TagListPageResponse
         {
             NextCursor = "nextCursor",
             Tags =
@@ -92,7 +92,7 @@ public class TagListResponseTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<TagListResponse>(
+        var deserialized = JsonSerializer.Deserialize<TagListPageResponse>(
             element,
             ModelBase.SerializerOptions
         );
@@ -121,7 +121,7 @@ public class TagListResponseTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new TagListResponse
+        var model = new TagListPageResponse
         {
             NextCursor = "nextCursor",
             Tags =
@@ -142,7 +142,7 @@ public class TagListResponseTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new TagListResponse
+        var model = new TagListPageResponse
         {
             NextCursor = "nextCursor",
             Tags =
@@ -157,7 +157,7 @@ public class TagListResponseTest : TestBase
             ],
         };
 
-        TagListResponse copied = new(model);
+        TagListPageResponse copied = new(model);
 
         Assert.Equal(model, copied);
     }

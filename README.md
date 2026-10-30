@@ -424,6 +424,46 @@ Additionally, all 4xx errors inherit from `ImageKit4xxException`.
 
 - `ImageKitException`: Base class for all exceptions.
 
+## Pagination
+
+The SDK defines methods that return a paginated lists of results. It provides convenient ways to access the results either one page at a time or item-by-item across all pages.
+
+### Auto-pagination
+
+To iterate through all results across all pages, use the `Paginate` method, which automatically fetches more pages as needed. The method returns an [`IAsyncEnumerable`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1):
+
+```csharp
+using System;
+
+var page = await client.Tags.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```
+
+### Manual pagination
+
+To access individual page items and manually request the next page, use the `Items` property, and `HasNext` and `Next` methods:
+
+```csharp
+using System;
+
+var page = await client.Tags.List();
+while (true)
+{
+    foreach (var item in page.Items)
+    {
+        Console.WriteLine(item);
+    }
+    if (!page.HasNext())
+    {
+        break;
+    }
+    page = await page.Next();
+}
+```
+
 ## Network options
 
 ### Retries

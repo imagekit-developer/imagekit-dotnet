@@ -34,7 +34,7 @@ public sealed class TagService : ITagService
     }
 
     /// <inheritdoc/>
-    public async Task<TagListResponse> List(
+    public async Task<TagListPage> List(
         TagListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -63,7 +63,7 @@ public sealed class TagServiceWithRawResponse : ITagServiceWithRawResponse
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponse<TagListResponse>> List(
+    public async Task<HttpResponse<TagListPage>> List(
         TagListParams? parameters = null,
         CancellationToken cancellationToken = default
     )
@@ -76,12 +76,14 @@ public sealed class TagServiceWithRawResponse : ITagServiceWithRawResponse
             response,
             async (token) =>
             {
-                var tags = await response.Deserialize<TagListResponse>(token).ConfigureAwait(false);
+                var page = await response
+                    .Deserialize<TagListPageResponse>(token)
+                    .ConfigureAwait(false);
                 if (this._client.ResponseValidation)
                 {
-                    tags.Validate();
+                    page.Validate();
                 }
-                return tags;
+                return new TagListPage(this, parameters, page);
             }
         );
     }

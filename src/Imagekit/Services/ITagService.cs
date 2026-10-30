@@ -42,7 +42,7 @@ public interface ITagService
     /// tagging activity, so a tag you just added or removed may not be reflected
     /// immediately. </para>
     /// </summary>
-    Task<TagListResponse> List(
+    Task<TagListPage> List(
         TagListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
@@ -65,7 +65,7 @@ public interface ITagServiceWithRawResponse
     /// Returns a raw HTTP response for <c>get /v1/tags</c>, but is otherwise the
     /// same as <see cref="ITagService.List(TagListParams?, CancellationToken)"/>.
     /// </summary>
-    Task<HttpResponse<TagListResponse>> List(
+    Task<HttpResponse<TagListPage>> List(
         TagListParams? parameters = null,
         CancellationToken cancellationToken = default
     );
