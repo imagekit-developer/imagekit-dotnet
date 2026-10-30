@@ -17,7 +17,11 @@ public class UrlEndpointResponseTest : TestBase
             Description = "My custom URL endpoint",
             Origins = ["origin-id-1", "origin-id-2"],
             UrlPrefix = "product-images",
-            UrlRewriter = new UrlEndpointResponseUrlRewriterCloudinary(true),
+            UrlRewriter = new UrlEndpointResponseUrlRewriterCloudinary()
+            {
+                PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
+            },
         };
 
         string expectedID = "id";
@@ -25,7 +29,11 @@ public class UrlEndpointResponseTest : TestBase
         List<string> expectedOrigins = ["origin-id-1", "origin-id-2"];
         string expectedUrlPrefix = "product-images";
         UrlEndpointResponseUrlRewriter expectedUrlRewriter =
-            new UrlEndpointResponseUrlRewriterCloudinary(true);
+            new UrlEndpointResponseUrlRewriterCloudinary()
+            {
+                PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
+            };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedDescription, model.Description);
@@ -47,7 +55,11 @@ public class UrlEndpointResponseTest : TestBase
             Description = "My custom URL endpoint",
             Origins = ["origin-id-1", "origin-id-2"],
             UrlPrefix = "product-images",
-            UrlRewriter = new UrlEndpointResponseUrlRewriterCloudinary(true),
+            UrlRewriter = new UrlEndpointResponseUrlRewriterCloudinary()
+            {
+                PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
+            },
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -68,7 +80,11 @@ public class UrlEndpointResponseTest : TestBase
             Description = "My custom URL endpoint",
             Origins = ["origin-id-1", "origin-id-2"],
             UrlPrefix = "product-images",
-            UrlRewriter = new UrlEndpointResponseUrlRewriterCloudinary(true),
+            UrlRewriter = new UrlEndpointResponseUrlRewriterCloudinary()
+            {
+                PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
+            },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -83,7 +99,11 @@ public class UrlEndpointResponseTest : TestBase
         List<string> expectedOrigins = ["origin-id-1", "origin-id-2"];
         string expectedUrlPrefix = "product-images";
         UrlEndpointResponseUrlRewriter expectedUrlRewriter =
-            new UrlEndpointResponseUrlRewriterCloudinary(true);
+            new UrlEndpointResponseUrlRewriterCloudinary()
+            {
+                PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
+            };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedDescription, deserialized.Description);
@@ -105,7 +125,11 @@ public class UrlEndpointResponseTest : TestBase
             Description = "My custom URL endpoint",
             Origins = ["origin-id-1", "origin-id-2"],
             UrlPrefix = "product-images",
-            UrlRewriter = new UrlEndpointResponseUrlRewriterCloudinary(true),
+            UrlRewriter = new UrlEndpointResponseUrlRewriterCloudinary()
+            {
+                PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
+            },
         };
 
         model.Validate();
@@ -184,7 +208,11 @@ public class UrlEndpointResponseTest : TestBase
             Description = "My custom URL endpoint",
             Origins = ["origin-id-1", "origin-id-2"],
             UrlPrefix = "product-images",
-            UrlRewriter = new UrlEndpointResponseUrlRewriterCloudinary(true),
+            UrlRewriter = new UrlEndpointResponseUrlRewriterCloudinary()
+            {
+                PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
+            },
         };
 
         UrlEndpointResponse copied = new(model);
@@ -198,7 +226,11 @@ public class UrlEndpointResponseUrlRewriterTest : TestBase
     [Fact]
     public void CloudinaryValidationWorks()
     {
-        UrlEndpointResponseUrlRewriter value = new UrlEndpointResponseUrlRewriterCloudinary(true);
+        UrlEndpointResponseUrlRewriter value = new UrlEndpointResponseUrlRewriterCloudinary()
+        {
+            PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
         value.Validate();
     }
 
@@ -219,7 +251,11 @@ public class UrlEndpointResponseUrlRewriterTest : TestBase
     [Fact]
     public void CloudinarySerializationRoundtripWorks()
     {
-        UrlEndpointResponseUrlRewriter value = new UrlEndpointResponseUrlRewriterCloudinary(true);
+        UrlEndpointResponseUrlRewriter value = new UrlEndpointResponseUrlRewriterCloudinary()
+        {
+            PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<UrlEndpointResponseUrlRewriter>(
             element,
@@ -264,13 +300,16 @@ public class UrlEndpointResponseUrlRewriterCloudinaryTest : TestBase
         var model = new UrlEndpointResponseUrlRewriterCloudinary
         {
             PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
         };
 
         bool expectedPreserveAssetDeliveryTypes = true;
         JsonElement expectedType = JsonSerializer.SerializeToElement("CLOUDINARY");
+        bool expectedUseImprovedLayerSpec = true;
 
         Assert.Equal(expectedPreserveAssetDeliveryTypes, model.PreserveAssetDeliveryTypes);
         Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
+        Assert.Equal(expectedUseImprovedLayerSpec, model.UseImprovedLayerSpec);
     }
 
     [Fact]
@@ -279,6 +318,7 @@ public class UrlEndpointResponseUrlRewriterCloudinaryTest : TestBase
         var model = new UrlEndpointResponseUrlRewriterCloudinary
         {
             PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -296,6 +336,7 @@ public class UrlEndpointResponseUrlRewriterCloudinaryTest : TestBase
         var model = new UrlEndpointResponseUrlRewriterCloudinary
         {
             PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -307,9 +348,11 @@ public class UrlEndpointResponseUrlRewriterCloudinaryTest : TestBase
 
         bool expectedPreserveAssetDeliveryTypes = true;
         JsonElement expectedType = JsonSerializer.SerializeToElement("CLOUDINARY");
+        bool expectedUseImprovedLayerSpec = true;
 
         Assert.Equal(expectedPreserveAssetDeliveryTypes, deserialized.PreserveAssetDeliveryTypes);
         Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
+        Assert.Equal(expectedUseImprovedLayerSpec, deserialized.UseImprovedLayerSpec);
     }
 
     [Fact]
@@ -318,6 +361,59 @@ public class UrlEndpointResponseUrlRewriterCloudinaryTest : TestBase
         var model = new UrlEndpointResponseUrlRewriterCloudinary
         {
             PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new UrlEndpointResponseUrlRewriterCloudinary
+        {
+            PreserveAssetDeliveryTypes = true,
+        };
+
+        Assert.Null(model.UseImprovedLayerSpec);
+        Assert.False(model.RawData.ContainsKey("useImprovedLayerSpec"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new UrlEndpointResponseUrlRewriterCloudinary
+        {
+            PreserveAssetDeliveryTypes = true,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new UrlEndpointResponseUrlRewriterCloudinary
+        {
+            PreserveAssetDeliveryTypes = true,
+
+            // Null should be interpreted as omitted for these properties
+            UseImprovedLayerSpec = null,
+        };
+
+        Assert.Null(model.UseImprovedLayerSpec);
+        Assert.False(model.RawData.ContainsKey("useImprovedLayerSpec"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new UrlEndpointResponseUrlRewriterCloudinary
+        {
+            PreserveAssetDeliveryTypes = true,
+
+            // Null should be interpreted as omitted for these properties
+            UseImprovedLayerSpec = null,
         };
 
         model.Validate();
@@ -329,6 +425,7 @@ public class UrlEndpointResponseUrlRewriterCloudinaryTest : TestBase
         var model = new UrlEndpointResponseUrlRewriterCloudinary
         {
             PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
         };
 
         UrlEndpointResponseUrlRewriterCloudinary copied = new(model);

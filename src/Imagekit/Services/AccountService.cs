@@ -30,6 +30,7 @@ public sealed class AccountService : IAccountService
         _withRawResponse = new(() => new AccountServiceWithRawResponse(client.WithRawResponse));
         _usage = new(() => new Accounts::UsageService(client));
         _usageAnalytics = new(() => new Accounts::UsageAnalyticsService(client));
+        _contract = new(() => new Accounts::ContractService(client));
         _origins = new(() => new Accounts::OriginService(client));
         _urlEndpoints = new(() => new Accounts::UrlEndpointService(client));
         _webhooks = new(() => new Accounts::WebhookService(client));
@@ -45,6 +46,12 @@ public sealed class AccountService : IAccountService
     public Accounts::IUsageAnalyticsService UsageAnalytics
     {
         get { return _usageAnalytics.Value; }
+    }
+
+    readonly Lazy<Accounts::IContractService> _contract;
+    public Accounts::IContractService Contract
+    {
+        get { return _contract.Value; }
     }
 
     readonly Lazy<Accounts::IOriginService> _origins;
@@ -83,6 +90,7 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
 
         _usage = new(() => new Accounts::UsageServiceWithRawResponse(client));
         _usageAnalytics = new(() => new Accounts::UsageAnalyticsServiceWithRawResponse(client));
+        _contract = new(() => new Accounts::ContractServiceWithRawResponse(client));
         _origins = new(() => new Accounts::OriginServiceWithRawResponse(client));
         _urlEndpoints = new(() => new Accounts::UrlEndpointServiceWithRawResponse(client));
         _webhooks = new(() => new Accounts::WebhookServiceWithRawResponse(client));
@@ -98,6 +106,12 @@ public sealed class AccountServiceWithRawResponse : IAccountServiceWithRawRespon
     public Accounts::IUsageAnalyticsServiceWithRawResponse UsageAnalytics
     {
         get { return _usageAnalytics.Value; }
+    }
+
+    readonly Lazy<Accounts::IContractServiceWithRawResponse> _contract;
+    public Accounts::IContractServiceWithRawResponse Contract
+    {
+        get { return _contract.Value; }
     }
 
     readonly Lazy<Accounts::IOriginServiceWithRawResponse> _origins;

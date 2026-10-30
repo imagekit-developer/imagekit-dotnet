@@ -16,8 +16,8 @@ namespace Imagekit.Models.Tags;
 public sealed record class Tag : JsonModel
 {
     /// <summary>
-    /// The number of assets carrying the tag, counted across both tag sources and
-    /// all file types regardless of the request's filters.
+    /// The number of assets carrying the tag, counted across both tag sources (user-generated
+    /// tags and AI-generated tags) and all file types regardless of the request's filters.
     /// </summary>
     public required long AssetCount
     {
