@@ -21,6 +21,7 @@ public class UrlEndpointUpdateParamsTest : TestBase
             UrlRewriter = new UrlEndpointUpdateParamsUrlRewriterCloudinary()
             {
                 PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
             },
         };
 
@@ -32,6 +33,7 @@ public class UrlEndpointUpdateParamsTest : TestBase
             new UrlEndpointUpdateParamsUrlRewriterCloudinary()
             {
                 PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
             };
 
         Assert.Equal(expectedID, parameters.ID);
@@ -113,6 +115,7 @@ public class UrlEndpointUpdateParamsTest : TestBase
             UrlRewriter = new UrlEndpointUpdateParamsUrlRewriterCloudinary()
             {
                 PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
             },
         };
 
@@ -131,6 +134,7 @@ public class UrlEndpointUpdateParamsUrlRewriterTest : TestBase
             new UrlEndpointUpdateParamsUrlRewriterCloudinary()
             {
                 PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
             };
         value.Validate();
     }
@@ -156,6 +160,7 @@ public class UrlEndpointUpdateParamsUrlRewriterTest : TestBase
             new UrlEndpointUpdateParamsUrlRewriterCloudinary()
             {
                 PreserveAssetDeliveryTypes = true,
+                UseImprovedLayerSpec = true,
             };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<UrlEndpointUpdateParamsUrlRewriter>(
@@ -201,13 +206,16 @@ public class UrlEndpointUpdateParamsUrlRewriterCloudinaryTest : TestBase
         var model = new UrlEndpointUpdateParamsUrlRewriterCloudinary
         {
             PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
         };
 
         JsonElement expectedType = JsonSerializer.SerializeToElement("CLOUDINARY");
         bool expectedPreserveAssetDeliveryTypes = true;
+        bool expectedUseImprovedLayerSpec = true;
 
         Assert.True(JsonElement.DeepEquals(expectedType, model.Type));
         Assert.Equal(expectedPreserveAssetDeliveryTypes, model.PreserveAssetDeliveryTypes);
+        Assert.Equal(expectedUseImprovedLayerSpec, model.UseImprovedLayerSpec);
     }
 
     [Fact]
@@ -216,6 +224,7 @@ public class UrlEndpointUpdateParamsUrlRewriterCloudinaryTest : TestBase
         var model = new UrlEndpointUpdateParamsUrlRewriterCloudinary
         {
             PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -233,6 +242,7 @@ public class UrlEndpointUpdateParamsUrlRewriterCloudinaryTest : TestBase
         var model = new UrlEndpointUpdateParamsUrlRewriterCloudinary
         {
             PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -244,9 +254,11 @@ public class UrlEndpointUpdateParamsUrlRewriterCloudinaryTest : TestBase
 
         JsonElement expectedType = JsonSerializer.SerializeToElement("CLOUDINARY");
         bool expectedPreserveAssetDeliveryTypes = true;
+        bool expectedUseImprovedLayerSpec = true;
 
         Assert.True(JsonElement.DeepEquals(expectedType, deserialized.Type));
         Assert.Equal(expectedPreserveAssetDeliveryTypes, deserialized.PreserveAssetDeliveryTypes);
+        Assert.Equal(expectedUseImprovedLayerSpec, deserialized.UseImprovedLayerSpec);
     }
 
     [Fact]
@@ -255,6 +267,7 @@ public class UrlEndpointUpdateParamsUrlRewriterCloudinaryTest : TestBase
         var model = new UrlEndpointUpdateParamsUrlRewriterCloudinary
         {
             PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
         };
 
         model.Validate();
@@ -267,6 +280,8 @@ public class UrlEndpointUpdateParamsUrlRewriterCloudinaryTest : TestBase
 
         Assert.Null(model.PreserveAssetDeliveryTypes);
         Assert.False(model.RawData.ContainsKey("preserveAssetDeliveryTypes"));
+        Assert.Null(model.UseImprovedLayerSpec);
+        Assert.False(model.RawData.ContainsKey("useImprovedLayerSpec"));
     }
 
     [Fact]
@@ -284,10 +299,13 @@ public class UrlEndpointUpdateParamsUrlRewriterCloudinaryTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             PreserveAssetDeliveryTypes = null,
+            UseImprovedLayerSpec = null,
         };
 
         Assert.Null(model.PreserveAssetDeliveryTypes);
         Assert.False(model.RawData.ContainsKey("preserveAssetDeliveryTypes"));
+        Assert.Null(model.UseImprovedLayerSpec);
+        Assert.False(model.RawData.ContainsKey("useImprovedLayerSpec"));
     }
 
     [Fact]
@@ -297,6 +315,7 @@ public class UrlEndpointUpdateParamsUrlRewriterCloudinaryTest : TestBase
         {
             // Null should be interpreted as omitted for these properties
             PreserveAssetDeliveryTypes = null,
+            UseImprovedLayerSpec = null,
         };
 
         model.Validate();
@@ -308,6 +327,7 @@ public class UrlEndpointUpdateParamsUrlRewriterCloudinaryTest : TestBase
         var model = new UrlEndpointUpdateParamsUrlRewriterCloudinary
         {
             PreserveAssetDeliveryTypes = true,
+            UseImprovedLayerSpec = true,
         };
 
         UrlEndpointUpdateParamsUrlRewriterCloudinary copied = new(model);
