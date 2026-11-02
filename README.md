@@ -23,6 +23,7 @@ For additional details, refer to the [ImageKit REST API documentation](https://i
 - [Authentication parameters for client-side uploads](#authentication-parameters-for-client-side-uploads)
 - [Webhook verification](#webhook-verification)
 - [Error handling](#error-handling)
+- [Pagination](#pagination)
 - [Network options](#network-options)
   - [Retries](#retries)
   - [Timeouts](#timeouts)
@@ -426,7 +427,7 @@ Additionally, all 4xx errors inherit from `ImageKit4xxException`.
 
 ## Pagination
 
-The SDK defines methods that return a paginated lists of results. It provides convenient ways to access the results either one page at a time or item-by-item across all pages.
+Some SDK methods, such as `Tags.List()`, return paginated lists of results. The SDK provides convenient ways to access the results either one page at a time or item-by-item across all pages.
 
 ### Auto-pagination
 
