@@ -3,6 +3,7 @@ using Imagekit.Exceptions;
 using Imagekit.Models;
 using Imagekit.Models.Accounts.Webhooks;
 using Imagekit.Models.Cache.Invalidation;
+using Imagekit.Models.Tags;
 using Assets = Imagekit.Models.Assets;
 using CustomMetadataFields = Imagekit.Models.CustomMetadataFields;
 using Files = Imagekit.Models.Files;
@@ -82,6 +83,9 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, Assets::FileType>(),
             new ApiEnumConverter<string, Assets::Sort>(),
             new ApiEnumConverter<string, Assets::Type>(),
+            new ApiEnumConverter<string, FileType>(),
+            new ApiEnumConverter<string, Sort>(),
+            new ApiEnumConverter<string, TagSource>(),
             new ApiEnumConverter<string, Status>(),
             new ApiEnumConverter<string, Job::Status>(),
             new ApiEnumConverter<string, Job::Type>(),
