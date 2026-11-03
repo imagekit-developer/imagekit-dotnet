@@ -69,12 +69,14 @@ public sealed record class UploadPostTransformErrorEvent : JsonModel
         init { this._rawData.Set("data", value); }
     }
 
-    public required Request Request
+    public required UploadPostTransformErrorEventUploadPostTransformErrorEventRequest Request
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<Request>("request");
+            return this._rawData.GetNotNullClass<UploadPostTransformErrorEventUploadPostTransformErrorEventRequest>(
+                "request"
+            );
         }
         init { this._rawData.Set("request", value); }
     }
@@ -170,12 +172,14 @@ public sealed record class UploadPostTransformErrorEventUploadPostTransformError
         init { this._rawData.Set("data", value); }
     }
 
-    public required Request Request
+    public required UploadPostTransformErrorEventUploadPostTransformErrorEventRequest Request
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<Request>("request");
+            return this._rawData.GetNotNullClass<UploadPostTransformErrorEventUploadPostTransformErrorEventRequest>(
+                "request"
+            );
         }
         init { this._rawData.Set("request", value); }
     }
@@ -305,12 +309,14 @@ public sealed record class UploadPostTransformErrorEventUploadPostTransformError
         init { this._rawData.Set("path", value); }
     }
 
-    public required Transformation Transformation
+    public required UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation Transformation
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<Transformation>("transformation");
+            return this._rawData.GetNotNullClass<UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation>(
+                "transformation"
+            );
         }
         init { this._rawData.Set("transformation", value); }
     }
@@ -383,15 +389,23 @@ class UploadPostTransformErrorEventUploadPostTransformErrorEventDataFromRaw
     ) => UploadPostTransformErrorEventUploadPostTransformErrorEventData.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<Transformation, TransformationFromRaw>))]
-public sealed record class Transformation : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation,
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationFromRaw
+    >)
+)]
+public sealed record class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation
+    : JsonModel
 {
-    public required Error Error
+    public required UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError Error
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<Error>("error");
+            return this._rawData.GetNotNullClass<UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError>(
+                "error"
+            );
         }
         init { this._rawData.Set("error", value); }
     }
@@ -402,50 +416,71 @@ public sealed record class Transformation : JsonModel
         this.Error.Validate();
     }
 
-    public Transformation() { }
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Transformation(Transformation transformation)
-        : base(transformation) { }
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation uploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation
+    )
+        : base(uploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation) { }
 #pragma warning restore CS8618
 
-    public Transformation(IReadOnlyDictionary<string, JsonElement> rawData)
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Transformation(FrozenDictionary<string, JsonElement> rawData)
+    UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TransformationFromRaw.FromRawUnchecked"/>
-    public static Transformation FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationFromRaw.FromRawUnchecked"/>
+    public static UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Transformation(Error error)
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError error
+    )
         : this()
     {
         this.Error = error;
     }
 }
 
-class TransformationFromRaw : IFromRawJson<Transformation>
+class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationFromRaw
+    : IFromRawJson<UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation>
 {
     /// <inheritdoc/>
-    public Transformation FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Transformation.FromRawUnchecked(rawData);
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation.FromRawUnchecked(
+            rawData
+        );
 }
 
-[JsonConverter(typeof(JsonModelConverter<Error, ErrorFromRaw>))]
-public sealed record class Error : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError,
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationErrorFromRaw
+    >)
+)]
+public sealed record class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError
+    : JsonModel
 {
     /// <summary>
     /// Reason for the post-transformation failure.
@@ -466,57 +501,81 @@ public sealed record class Error : JsonModel
         _ = this.Reason;
     }
 
-    public Error() { }
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Error(Error error)
-        : base(error) { }
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError uploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError
+    )
+        : base(uploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError)
+    { }
 #pragma warning restore CS8618
 
-    public Error(IReadOnlyDictionary<string, JsonElement> rawData)
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Error(FrozenDictionary<string, JsonElement> rawData)
+    UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="ErrorFromRaw.FromRawUnchecked"/>
-    public static Error FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationErrorFromRaw.FromRawUnchecked"/>
+    public static UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Error(string reason)
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+        string reason
+    )
         : this()
     {
         this.Reason = reason;
     }
 }
 
-class ErrorFromRaw : IFromRawJson<Error>
+class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationErrorFromRaw
+    : IFromRawJson<UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError>
 {
     /// <inheritdoc/>
-    public Error FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Error.FromRawUnchecked(rawData);
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError.FromRawUnchecked(
+            rawData
+        );
 }
 
-[JsonConverter(typeof(JsonModelConverter<Request, RequestFromRaw>))]
-public sealed record class Request : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequest,
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestFromRaw
+    >)
+)]
+public sealed record class UploadPostTransformErrorEventUploadPostTransformErrorEventRequest
+    : JsonModel
 {
-    public required RequestTransformation Transformation
+    public required UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation Transformation
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<RequestTransformation>("transformation");
+            return this._rawData.GetNotNullClass<UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation>(
+                "transformation"
+            );
         }
         init { this._rawData.Set("transformation", value); }
     }
@@ -541,54 +600,77 @@ public sealed record class Request : JsonModel
         _ = this.XRequestID;
     }
 
-    public Request() { }
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventRequest() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Request(Request request)
-        : base(request) { }
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventRequest(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequest uploadPostTransformErrorEventUploadPostTransformErrorEventRequest
+    )
+        : base(uploadPostTransformErrorEventUploadPostTransformErrorEventRequest) { }
 #pragma warning restore CS8618
 
-    public Request(IReadOnlyDictionary<string, JsonElement> rawData)
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventRequest(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Request(FrozenDictionary<string, JsonElement> rawData)
+    UploadPostTransformErrorEventUploadPostTransformErrorEventRequest(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="RequestFromRaw.FromRawUnchecked"/>
-    public static Request FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="UploadPostTransformErrorEventUploadPostTransformErrorEventRequestFromRaw.FromRawUnchecked"/>
+    public static UploadPostTransformErrorEventUploadPostTransformErrorEventRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class RequestFromRaw : IFromRawJson<Request>
+class UploadPostTransformErrorEventUploadPostTransformErrorEventRequestFromRaw
+    : IFromRawJson<UploadPostTransformErrorEventUploadPostTransformErrorEventRequest>
 {
     /// <inheritdoc/>
-    public Request FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Request.FromRawUnchecked(rawData);
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventRequest FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequest.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(JsonModelConverter<RequestTransformation, RequestTransformationFromRaw>))]
-public sealed record class RequestTransformation : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation,
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationFromRaw
+    >)
+)]
+public sealed record class UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+    : JsonModel
 {
     /// <summary>
     /// Type of the requested post-transformation.
     /// </summary>
-    public required ApiEnum<string, global::Imagekit.Models.Webhooks.Type> Type
+    public required ApiEnum<
+        string,
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+    > Type
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Imagekit.Models.Webhooks.Type>
+                ApiEnum<
+                    string,
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+                >
             >("type");
         }
         init { this._rawData.Set("type", value); }
@@ -644,29 +726,35 @@ public sealed record class RequestTransformation : JsonModel
         _ = this.Value;
     }
 
-    public RequestTransformation() { }
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public RequestTransformation(RequestTransformation requestTransformation)
-        : base(requestTransformation) { }
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation uploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+    )
+        : base(uploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation) { }
 #pragma warning restore CS8618
 
-    public RequestTransformation(IReadOnlyDictionary<string, JsonElement> rawData)
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    RequestTransformation(FrozenDictionary<string, JsonElement> rawData)
+    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="RequestTransformationFromRaw.FromRawUnchecked"/>
-    public static RequestTransformation FromRawUnchecked(
+    /// <inheritdoc cref="UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationFromRaw.FromRawUnchecked"/>
+    public static UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -674,26 +762,37 @@ public sealed record class RequestTransformation : JsonModel
     }
 
     [SetsRequiredMembers]
-    public RequestTransformation(ApiEnum<string, global::Imagekit.Models.Webhooks.Type> type)
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation(
+        ApiEnum<
+            string,
+            UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+        > type
+    )
         : this()
     {
         this.Type = type;
     }
 }
 
-class RequestTransformationFromRaw : IFromRawJson<RequestTransformation>
+class UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationFromRaw
+    : IFromRawJson<UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation>
 {
     /// <inheritdoc/>
-    public RequestTransformation FromRawUnchecked(
+    public UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => RequestTransformation.FromRawUnchecked(rawData);
+    ) =>
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
 /// Type of the requested post-transformation.
 /// </summary>
-[JsonConverter(typeof(TypeConverter))]
-public enum Type
+[JsonConverter(
+    typeof(UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationTypeConverter)
+)]
+public enum UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
 {
     Transformation,
     Abs,
@@ -701,9 +800,10 @@ public enum Type
     Thumbnail,
 }
 
-sealed class TypeConverter : JsonConverter<global::Imagekit.Models.Webhooks.Type>
+sealed class UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationTypeConverter
+    : JsonConverter<UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType>
 {
-    public override global::Imagekit.Models.Webhooks.Type Read(
+    public override UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -711,17 +811,24 @@ sealed class TypeConverter : JsonConverter<global::Imagekit.Models.Webhooks.Type
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "transformation" => global::Imagekit.Models.Webhooks.Type.Transformation,
-            "abs" => global::Imagekit.Models.Webhooks.Type.Abs,
-            "gif-to-video" => global::Imagekit.Models.Webhooks.Type.GifToVideo,
-            "thumbnail" => global::Imagekit.Models.Webhooks.Type.Thumbnail,
-            _ => (global::Imagekit.Models.Webhooks.Type)(-1),
+            "transformation" =>
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+            "abs" =>
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Abs,
+            "gif-to-video" =>
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.GifToVideo,
+            "thumbnail" =>
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Thumbnail,
+            _ =>
+                (UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType)(
+                    -1
+                ),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Imagekit.Models.Webhooks.Type value,
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType value,
         JsonSerializerOptions options
     )
     {
@@ -729,10 +836,14 @@ sealed class TypeConverter : JsonConverter<global::Imagekit.Models.Webhooks.Type
             writer,
             value switch
             {
-                global::Imagekit.Models.Webhooks.Type.Transformation => "transformation",
-                global::Imagekit.Models.Webhooks.Type.Abs => "abs",
-                global::Imagekit.Models.Webhooks.Type.GifToVideo => "gif-to-video",
-                global::Imagekit.Models.Webhooks.Type.Thumbnail => "thumbnail",
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation =>
+                    "transformation",
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Abs =>
+                    "abs",
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.GifToVideo =>
+                    "gif-to-video",
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Thumbnail =>
+                    "thumbnail",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

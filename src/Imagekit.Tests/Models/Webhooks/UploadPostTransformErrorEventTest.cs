@@ -2,7 +2,7 @@ using System;
 using System.Text.Json;
 using Imagekit.Core;
 using Imagekit.Exceptions;
-using Webhooks = Imagekit.Models.Webhooks;
+using Imagekit.Models.Webhooks;
 
 namespace Imagekit.Tests.Models.Webhooks;
 
@@ -11,7 +11,7 @@ public class UploadPostTransformErrorEventTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEvent
+        var model = new UploadPostTransformErrorEvent
         {
             ID = "id",
             Type = "type",
@@ -21,15 +21,20 @@ public class UploadPostTransformErrorEventTest : TestBase
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
-                    Protocol = Webhooks::Protocol.Hls,
+                    Type =
+                        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                    Protocol = Protocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -39,21 +44,25 @@ public class UploadPostTransformErrorEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData =
-            new()
-            {
-                FileID = "fileId",
-                Name = "name",
-                Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
-                Url = "https://example.com",
-            };
-        Webhooks::Request expectedRequest = new()
+        UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData = new()
+        {
+            FileID = "fileId",
+            Name = "name",
+            Path = "path",
+            Transformation = new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            ),
+            Url = "https://example.com",
+        };
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequest expectedRequest = new()
         {
             Transformation = new()
             {
-                Type = Webhooks::Type.Transformation,
-                Protocol = Webhooks::Protocol.Hls,
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
@@ -69,7 +78,7 @@ public class UploadPostTransformErrorEventTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEvent
+        var model = new UploadPostTransformErrorEvent
         {
             ID = "id",
             Type = "type",
@@ -79,15 +88,20 @@ public class UploadPostTransformErrorEventTest : TestBase
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
-                    Protocol = Webhooks::Protocol.Hls,
+                    Type =
+                        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                    Protocol = Protocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -95,7 +109,7 @@ public class UploadPostTransformErrorEventTest : TestBase
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEvent>(
+        var deserialized = JsonSerializer.Deserialize<UploadPostTransformErrorEvent>(
             json,
             ModelBase.SerializerOptions
         );
@@ -106,7 +120,7 @@ public class UploadPostTransformErrorEventTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEvent
+        var model = new UploadPostTransformErrorEvent
         {
             ID = "id",
             Type = "type",
@@ -116,15 +130,20 @@ public class UploadPostTransformErrorEventTest : TestBase
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
-                    Protocol = Webhooks::Protocol.Hls,
+                    Type =
+                        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                    Protocol = Protocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -132,7 +151,7 @@ public class UploadPostTransformErrorEventTest : TestBase
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEvent>(
+        var deserialized = JsonSerializer.Deserialize<UploadPostTransformErrorEvent>(
             element,
             ModelBase.SerializerOptions
         );
@@ -141,21 +160,25 @@ public class UploadPostTransformErrorEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData =
-            new()
-            {
-                FileID = "fileId",
-                Name = "name",
-                Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
-                Url = "https://example.com",
-            };
-        Webhooks::Request expectedRequest = new()
+        UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData = new()
+        {
+            FileID = "fileId",
+            Name = "name",
+            Path = "path",
+            Transformation = new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            ),
+            Url = "https://example.com",
+        };
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequest expectedRequest = new()
         {
             Transformation = new()
             {
-                Type = Webhooks::Type.Transformation,
-                Protocol = Webhooks::Protocol.Hls,
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
@@ -171,7 +194,7 @@ public class UploadPostTransformErrorEventTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEvent
+        var model = new UploadPostTransformErrorEvent
         {
             ID = "id",
             Type = "type",
@@ -181,15 +204,20 @@ public class UploadPostTransformErrorEventTest : TestBase
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
-                    Protocol = Webhooks::Protocol.Hls,
+                    Type =
+                        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                    Protocol = Protocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -202,7 +230,7 @@ public class UploadPostTransformErrorEventTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEvent
+        var model = new UploadPostTransformErrorEvent
         {
             ID = "id",
             Type = "type",
@@ -212,22 +240,27 @@ public class UploadPostTransformErrorEventTest : TestBase
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
-                    Protocol = Webhooks::Protocol.Hls,
+                    Type =
+                        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                    Protocol = Protocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
             },
         };
 
-        Webhooks::UploadPostTransformErrorEvent copied = new(model);
+        UploadPostTransformErrorEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -238,7 +271,7 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -246,15 +279,20 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
-                    Protocol = Webhooks::Protocol.Hls,
+                    Type =
+                        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                    Protocol = Protocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -262,21 +300,25 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData =
-            new()
-            {
-                FileID = "fileId",
-                Name = "name",
-                Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
-                Url = "https://example.com",
-            };
-        Webhooks::Request expectedRequest = new()
+        UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData = new()
+        {
+            FileID = "fileId",
+            Name = "name",
+            Path = "path",
+            Transformation = new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            ),
+            Url = "https://example.com",
+        };
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequest expectedRequest = new()
         {
             Transformation = new()
             {
-                Type = Webhooks::Type.Transformation,
-                Protocol = Webhooks::Protocol.Hls,
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
@@ -292,7 +334,7 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -300,15 +342,20 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
-                    Protocol = Webhooks::Protocol.Hls,
+                    Type =
+                        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                    Protocol = Protocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -317,7 +364,7 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent>(
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEvent>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -328,7 +375,7 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -336,15 +383,20 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
-                    Protocol = Webhooks::Protocol.Hls,
+                    Type =
+                        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                    Protocol = Protocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -353,28 +405,32 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent>(
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEvent>(
                 element,
                 ModelBase.SerializerOptions
             );
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData =
-            new()
-            {
-                FileID = "fileId",
-                Name = "name",
-                Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
-                Url = "https://example.com",
-            };
-        Webhooks::Request expectedRequest = new()
+        UploadPostTransformErrorEventUploadPostTransformErrorEventData expectedData = new()
+        {
+            FileID = "fileId",
+            Name = "name",
+            Path = "path",
+            Transformation = new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            ),
+            Url = "https://example.com",
+        };
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequest expectedRequest = new()
         {
             Transformation = new()
             {
-                Type = Webhooks::Type.Transformation,
-                Protocol = Webhooks::Protocol.Hls,
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
@@ -390,7 +446,7 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -398,15 +454,20 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
-                    Protocol = Webhooks::Protocol.Hls,
+                    Type =
+                        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                    Protocol = Protocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
@@ -419,7 +480,7 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Data = new()
@@ -427,22 +488,27 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventTest : Te
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
-                    Protocol = Webhooks::Protocol.Hls,
+                    Type =
+                        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                    Protocol = Protocol.Hls,
                     Value = "value",
                 },
                 XRequestID = "x_request_id",
             },
         };
 
-        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEvent copied = new(model);
+        UploadPostTransformErrorEventUploadPostTransformErrorEvent copied = new(model);
 
         Assert.Equal(model, copied);
     }
@@ -453,21 +519,28 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTest 
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventData
         {
             FileID = "fileId",
             Name = "name",
             Path = "path",
-            Transformation = new(new Webhooks::Error("encoding_failed")),
+            Transformation = new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            ),
             Url = "https://example.com",
         };
 
         string expectedFileID = "fileId";
         string expectedName = "name";
         string expectedPath = "path";
-        Webhooks::Transformation expectedTransformation = new(
-            new Webhooks::Error("encoding_failed")
-        );
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation expectedTransformation =
+            new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            );
         string expectedUrl = "https://example.com";
 
         Assert.Equal(expectedFileID, model.FileID);
@@ -480,18 +553,22 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTest 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventData
         {
             FileID = "fileId",
             Name = "name",
             Path = "path",
-            Transformation = new(new Webhooks::Error("encoding_failed")),
+            Transformation = new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            ),
             Url = "https://example.com",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData>(
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEventData>(
                 json,
                 ModelBase.SerializerOptions
             );
@@ -502,18 +579,22 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTest 
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventData
         {
             FileID = "fileId",
             Name = "name",
             Path = "path",
-            Transformation = new(new Webhooks::Error("encoding_failed")),
+            Transformation = new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            ),
             Url = "https://example.com",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized =
-            JsonSerializer.Deserialize<Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData>(
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEventData>(
                 element,
                 ModelBase.SerializerOptions
             );
@@ -522,9 +603,12 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTest 
         string expectedFileID = "fileId";
         string expectedName = "name";
         string expectedPath = "path";
-        Webhooks::Transformation expectedTransformation = new(
-            new Webhooks::Error("encoding_failed")
-        );
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation expectedTransformation =
+            new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            );
         string expectedUrl = "https://example.com";
 
         Assert.Equal(expectedFileID, deserialized.FileID);
@@ -537,12 +621,16 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTest 
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventData
         {
             FileID = "fileId",
             Name = "name",
             Path = "path",
-            Transformation = new(new Webhooks::Error("encoding_failed")),
+            Transformation = new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            ),
             Url = "https://example.com",
         };
 
@@ -552,31 +640,38 @@ public class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTest 
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventData
         {
             FileID = "fileId",
             Name = "name",
             Path = "path",
-            Transformation = new(new Webhooks::Error("encoding_failed")),
+            Transformation = new(
+                new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                    "encoding_failed"
+                )
+            ),
             Url = "https://example.com",
         };
 
-        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventData copied = new(
-            model
-        );
+        UploadPostTransformErrorEventUploadPostTransformErrorEventData copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class TransformationTest : TestBase
+public class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::Transformation { Error = new("encoding_failed") };
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation
+        {
+            Error = new("encoding_failed"),
+        };
 
-        Webhooks::Error expectedError = new("encoding_failed");
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError expectedError =
+            new("encoding_failed");
 
         Assert.Equal(expectedError, model.Error);
     }
@@ -584,13 +679,17 @@ public class TransformationTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::Transformation { Error = new("encoding_failed") };
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation
+        {
+            Error = new("encoding_failed"),
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::Transformation>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -598,16 +697,21 @@ public class TransformationTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::Transformation { Error = new("encoding_failed") };
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation
+        {
+            Error = new("encoding_failed"),
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::Transformation>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
-        Webhooks::Error expectedError = new("encoding_failed");
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError expectedError =
+            new("encoding_failed");
 
         Assert.Equal(expectedError, deserialized.Error);
     }
@@ -615,7 +719,10 @@ public class TransformationTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::Transformation { Error = new("encoding_failed") };
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation
+        {
+            Error = new("encoding_failed"),
+        };
 
         model.Validate();
     }
@@ -623,20 +730,30 @@ public class TransformationTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::Transformation { Error = new("encoding_failed") };
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation
+        {
+            Error = new("encoding_failed"),
+        };
 
-        Webhooks::Transformation copied = new(model);
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformation copied = new(
+            model
+        );
 
         Assert.Equal(model, copied);
     }
 }
 
-public class ErrorTest : TestBase
+public class UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationErrorTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::Error { Reason = "encoding_failed" };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError
+            {
+                Reason = "encoding_failed",
+            };
 
         string expectedReason = "encoding_failed";
 
@@ -646,13 +763,18 @@ public class ErrorTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::Error { Reason = "encoding_failed" };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError
+            {
+                Reason = "encoding_failed",
+            };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::Error>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -660,13 +782,18 @@ public class ErrorTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::Error { Reason = "encoding_failed" };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError
+            {
+                Reason = "encoding_failed",
+            };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::Error>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedReason = "encoding_failed";
@@ -677,7 +804,11 @@ public class ErrorTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::Error { Reason = "encoding_failed" };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError
+            {
+                Reason = "encoding_failed",
+            };
 
         model.Validate();
     }
@@ -685,36 +816,44 @@ public class ErrorTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::Error { Reason = "encoding_failed" };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError
+            {
+                Reason = "encoding_failed",
+            };
 
-        Webhooks::Error copied = new(model);
+        UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError copied =
+            new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class RequestTest : TestBase
+public class UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::Request
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventRequest
         {
             Transformation = new()
             {
-                Type = Webhooks::Type.Transformation,
-                Protocol = Webhooks::Protocol.Hls,
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
         };
 
-        Webhooks::RequestTransformation expectedTransformation = new()
-        {
-            Type = Webhooks::Type.Transformation,
-            Protocol = Webhooks::Protocol.Hls,
-            Value = "value",
-        };
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation expectedTransformation =
+            new()
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
+                Value = "value",
+            };
         string expectedXRequestID = "x_request_id";
 
         Assert.Equal(expectedTransformation, model.Transformation);
@@ -724,22 +863,24 @@ public class RequestTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::Request
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventRequest
         {
             Transformation = new()
             {
-                Type = Webhooks::Type.Transformation,
-                Protocol = Webhooks::Protocol.Hls,
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::Request>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEventRequest>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -747,30 +888,34 @@ public class RequestTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::Request
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventRequest
         {
             Transformation = new()
             {
-                Type = Webhooks::Type.Transformation,
-                Protocol = Webhooks::Protocol.Hls,
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::Request>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEventRequest>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
-        Webhooks::RequestTransformation expectedTransformation = new()
-        {
-            Type = Webhooks::Type.Transformation,
-            Protocol = Webhooks::Protocol.Hls,
-            Value = "value",
-        };
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation expectedTransformation =
+            new()
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
+                Value = "value",
+            };
         string expectedXRequestID = "x_request_id";
 
         Assert.Equal(expectedTransformation, deserialized.Transformation);
@@ -780,12 +925,13 @@ public class RequestTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::Request
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventRequest
         {
             Transformation = new()
             {
-                Type = Webhooks::Type.Transformation,
-                Protocol = Webhooks::Protocol.Hls,
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
@@ -797,37 +943,45 @@ public class RequestTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::Request
+        var model = new UploadPostTransformErrorEventUploadPostTransformErrorEventRequest
         {
             Transformation = new()
             {
-                Type = Webhooks::Type.Transformation,
-                Protocol = Webhooks::Protocol.Hls,
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
                 Value = "value",
             },
             XRequestID = "x_request_id",
         };
 
-        Webhooks::Request copied = new(model);
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequest copied = new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class RequestTransformationTest : TestBase
+public class UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Webhooks::RequestTransformation
-        {
-            Type = Webhooks::Type.Transformation,
-            Protocol = Webhooks::Protocol.Hls,
-            Value = "value",
-        };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
+                Value = "value",
+            };
 
-        ApiEnum<string, Webhooks::Type> expectedType = Webhooks::Type.Transformation;
-        ApiEnum<string, Webhooks::Protocol> expectedProtocol = Webhooks::Protocol.Hls;
+        ApiEnum<
+            string,
+            UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+        > expectedType =
+            UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation;
+        ApiEnum<string, Protocol> expectedProtocol = Protocol.Hls;
         string expectedValue = "value";
 
         Assert.Equal(expectedType, model.Type);
@@ -838,18 +992,21 @@ public class RequestTransformationTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Webhooks::RequestTransformation
-        {
-            Type = Webhooks::Type.Transformation,
-            Protocol = Webhooks::Protocol.Hls,
-            Value = "value",
-        };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
+                Value = "value",
+            };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::RequestTransformation>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -857,22 +1014,29 @@ public class RequestTransformationTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Webhooks::RequestTransformation
-        {
-            Type = Webhooks::Type.Transformation,
-            Protocol = Webhooks::Protocol.Hls,
-            Value = "value",
-        };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
+                Value = "value",
+            };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Webhooks::RequestTransformation>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Webhooks::Type> expectedType = Webhooks::Type.Transformation;
-        ApiEnum<string, Webhooks::Protocol> expectedProtocol = Webhooks::Protocol.Hls;
+        ApiEnum<
+            string,
+            UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+        > expectedType =
+            UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation;
+        ApiEnum<string, Protocol> expectedProtocol = Protocol.Hls;
         string expectedValue = "value";
 
         Assert.Equal(expectedType, deserialized.Type);
@@ -883,12 +1047,14 @@ public class RequestTransformationTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Webhooks::RequestTransformation
-        {
-            Type = Webhooks::Type.Transformation,
-            Protocol = Webhooks::Protocol.Hls,
-            Value = "value",
-        };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
+                Value = "value",
+            };
 
         model.Validate();
     }
@@ -896,7 +1062,12 @@ public class RequestTransformationTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Webhooks::RequestTransformation { Type = Webhooks::Type.Transformation };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+            };
 
         Assert.Null(model.Protocol);
         Assert.False(model.RawData.ContainsKey("protocol"));
@@ -907,7 +1078,12 @@ public class RequestTransformationTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Webhooks::RequestTransformation { Type = Webhooks::Type.Transformation };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+            };
 
         model.Validate();
     }
@@ -915,14 +1091,16 @@ public class RequestTransformationTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Webhooks::RequestTransformation
-        {
-            Type = Webhooks::Type.Transformation,
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
 
-            // Null should be interpreted as omitted for these properties
-            Protocol = null,
-            Value = null,
-        };
+                // Null should be interpreted as omitted for these properties
+                Protocol = null,
+                Value = null,
+            };
 
         Assert.Null(model.Protocol);
         Assert.False(model.RawData.ContainsKey("protocol"));
@@ -933,14 +1111,16 @@ public class RequestTransformationTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Webhooks::RequestTransformation
-        {
-            Type = Webhooks::Type.Transformation,
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
 
-            // Null should be interpreted as omitted for these properties
-            Protocol = null,
-            Value = null,
-        };
+                // Null should be interpreted as omitted for these properties
+                Protocol = null,
+                Value = null,
+            };
 
         model.Validate();
     }
@@ -948,60 +1128,94 @@ public class RequestTransformationTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Webhooks::RequestTransformation
-        {
-            Type = Webhooks::Type.Transformation,
-            Protocol = Webhooks::Protocol.Hls,
-            Value = "value",
-        };
+        var model =
+            new UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation
+            {
+                Type =
+                    UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
+                Protocol = Protocol.Hls,
+                Value = "value",
+            };
 
-        Webhooks::RequestTransformation copied = new(model);
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformation copied =
+            new(model);
 
         Assert.Equal(model, copied);
     }
 }
 
-public class TypeTest : TestBase
+public class UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationTypeTest
+    : TestBase
 {
     [Theory]
-    [InlineData(Webhooks::Type.Transformation)]
-    [InlineData(Webhooks::Type.Abs)]
-    [InlineData(Webhooks::Type.GifToVideo)]
-    [InlineData(Webhooks::Type.Thumbnail)]
-    public void Validation_Works(Webhooks::Type rawValue)
+    [InlineData(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation
+    )]
+    [InlineData(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Abs
+    )]
+    [InlineData(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.GifToVideo
+    )]
+    [InlineData(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Thumbnail
+    )]
+    public void Validation_Works(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType rawValue
+    )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Webhooks::Type> value = rawValue;
+        ApiEnum<
+            string,
+            UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+        > value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Webhooks::Type>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
     }
 
     [Theory]
-    [InlineData(Webhooks::Type.Transformation)]
-    [InlineData(Webhooks::Type.Abs)]
-    [InlineData(Webhooks::Type.GifToVideo)]
-    [InlineData(Webhooks::Type.Thumbnail)]
-    public void SerializationRoundtrip_Works(Webhooks::Type rawValue)
+    [InlineData(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation
+    )]
+    [InlineData(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Abs
+    )]
+    [InlineData(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.GifToVideo
+    )]
+    [InlineData(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Thumbnail
+    )]
+    public void SerializationRoundtrip_Works(
+        UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType rawValue
+    )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Webhooks::Type> value = rawValue;
+        ApiEnum<
+            string,
+            UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+        > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Webhooks::Type>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+            >
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
@@ -1009,15 +1223,19 @@ public class TypeTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Webhooks::Type>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Webhooks::Type>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+            >
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
@@ -1026,19 +1244,19 @@ public class TypeTest : TestBase
 public class ProtocolTest : TestBase
 {
     [Theory]
-    [InlineData(Webhooks::Protocol.Hls)]
-    [InlineData(Webhooks::Protocol.Dash)]
-    public void Validation_Works(Webhooks::Protocol rawValue)
+    [InlineData(Protocol.Hls)]
+    [InlineData(Protocol.Dash)]
+    public void Validation_Works(Protocol rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Webhooks::Protocol> value = rawValue;
+        ApiEnum<string, Protocol> value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Webhooks::Protocol>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Protocol>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
@@ -1048,15 +1266,15 @@ public class ProtocolTest : TestBase
     }
 
     [Theory]
-    [InlineData(Webhooks::Protocol.Hls)]
-    [InlineData(Webhooks::Protocol.Dash)]
-    public void SerializationRoundtrip_Works(Webhooks::Protocol rawValue)
+    [InlineData(Protocol.Hls)]
+    [InlineData(Protocol.Dash)]
+    public void SerializationRoundtrip_Works(Protocol rawValue)
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Webhooks::Protocol> value = rawValue;
+        ApiEnum<string, Protocol> value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Webhooks::Protocol>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Protocol>>(
             json,
             ModelBase.SerializerOptions
         );
@@ -1067,12 +1285,12 @@ public class ProtocolTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Webhooks::Protocol>>(
+        var value = JsonSerializer.Deserialize<ApiEnum<string, Protocol>>(
             JsonSerializer.SerializeToElement("invalid value"),
             ModelBase.SerializerOptions
         );
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Webhooks::Protocol>>(
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Protocol>>(
             json,
             ModelBase.SerializerOptions
         );

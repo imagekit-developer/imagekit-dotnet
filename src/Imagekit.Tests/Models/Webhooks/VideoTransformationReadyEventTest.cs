@@ -103,7 +103,11 @@ public class VideoTransformationReadyEventTest : TestBase
             XRequestID = "x_request_id",
             UserAgent = "user_agent",
         };
-        Timings expectedTimings = new() { DownloadDuration = 0, EncodingDuration = 0 };
+        VideoTransformationReadyEventVideoTransformationReadyEventTimings expectedTimings = new()
+        {
+            DownloadDuration = 0,
+            EncodingDuration = 0,
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedType, model.Type);
@@ -274,7 +278,11 @@ public class VideoTransformationReadyEventTest : TestBase
             XRequestID = "x_request_id",
             UserAgent = "user_agent",
         };
-        Timings expectedTimings = new() { DownloadDuration = 0, EncodingDuration = 0 };
+        VideoTransformationReadyEventVideoTransformationReadyEventTimings expectedTimings = new()
+        {
+            DownloadDuration = 0,
+            EncodingDuration = 0,
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedType, deserialized.Type);
@@ -708,7 +716,11 @@ public class VideoTransformationReadyEventVideoTransformationReadyEventTest : Te
             UserAgent = "user_agent",
         };
         JsonElement expectedType = JsonSerializer.SerializeToElement("video.transformation.ready");
-        Timings expectedTimings = new() { DownloadDuration = 0, EncodingDuration = 0 };
+        VideoTransformationReadyEventVideoTransformationReadyEventTimings expectedTimings = new()
+        {
+            DownloadDuration = 0,
+            EncodingDuration = 0,
+        };
 
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedData, model.Data);
@@ -875,7 +887,11 @@ public class VideoTransformationReadyEventVideoTransformationReadyEventTest : Te
             UserAgent = "user_agent",
         };
         JsonElement expectedType = JsonSerializer.SerializeToElement("video.transformation.ready");
-        Timings expectedTimings = new() { DownloadDuration = 0, EncodingDuration = 0 };
+        VideoTransformationReadyEventVideoTransformationReadyEventTimings expectedTimings = new()
+        {
+            DownloadDuration = 0,
+            EncodingDuration = 0,
+        };
 
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedData, deserialized.Data);
@@ -1636,17 +1652,18 @@ public class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
                 VideoCodec =
                     VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
             };
-        Output expectedOutput = new()
-        {
-            Url = "https://example.com",
-            VideoMetadata = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput expectedOutput =
+            new()
             {
-                Bitrate = 0,
-                Duration = 0,
-                Height = 0,
-                Width = 0,
-            },
-        };
+                Url = "https://example.com",
+                VideoMetadata = new()
+                {
+                    Bitrate = 0,
+                    Duration = 0,
+                    Height = 0,
+                    Width = 0,
+                },
+            };
 
         Assert.Equal(expectedType, model.Type);
         Assert.Equal(expectedOptions, model.Options);
@@ -1759,17 +1776,18 @@ public class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
                 VideoCodec =
                     VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOptionsVideoCodec.H264,
             };
-        Output expectedOutput = new()
-        {
-            Url = "https://example.com",
-            VideoMetadata = new()
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput expectedOutput =
+            new()
             {
-                Bitrate = 0,
-                Duration = 0,
-                Height = 0,
-                Width = 0,
-            },
-        };
+                Url = "https://example.com",
+                VideoMetadata = new()
+                {
+                    Bitrate = 0,
+                    Duration = 0,
+                    Height = 0,
+                    Width = 0,
+                },
+            };
 
         Assert.Equal(expectedType, deserialized.Type);
         Assert.Equal(expectedOptions, deserialized.Options);
@@ -2658,22 +2676,24 @@ public class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
     }
 }
 
-public class OutputTest : TestBase
+public class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutputTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Output
-        {
-            Url = "https://example.com",
-            VideoMetadata = new()
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
             {
-                Bitrate = 0,
-                Duration = 0,
-                Height = 0,
-                Width = 0,
-            },
-        };
+                Url = "https://example.com",
+                VideoMetadata = new()
+                {
+                    Bitrate = 0,
+                    Duration = 0,
+                    Height = 0,
+                    Width = 0,
+                },
+            };
 
         string expectedUrl = "https://example.com";
         VideoMetadata expectedVideoMetadata = new()
@@ -2691,20 +2711,25 @@ public class OutputTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Output
-        {
-            Url = "https://example.com",
-            VideoMetadata = new()
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
             {
-                Bitrate = 0,
-                Duration = 0,
-                Height = 0,
-                Width = 0,
-            },
-        };
+                Url = "https://example.com",
+                VideoMetadata = new()
+                {
+                    Bitrate = 0,
+                    Duration = 0,
+                    Height = 0,
+                    Width = 0,
+                },
+            };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Output>(json, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -2712,20 +2737,25 @@ public class OutputTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Output
-        {
-            Url = "https://example.com",
-            VideoMetadata = new()
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
             {
-                Bitrate = 0,
-                Duration = 0,
-                Height = 0,
-                Width = 0,
-            },
-        };
+                Url = "https://example.com",
+                VideoMetadata = new()
+                {
+                    Bitrate = 0,
+                    Duration = 0,
+                    Height = 0,
+                    Width = 0,
+                },
+            };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Output>(element, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedUrl = "https://example.com";
@@ -2744,17 +2774,18 @@ public class OutputTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Output
-        {
-            Url = "https://example.com",
-            VideoMetadata = new()
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
             {
-                Bitrate = 0,
-                Duration = 0,
-                Height = 0,
-                Width = 0,
-            },
-        };
+                Url = "https://example.com",
+                VideoMetadata = new()
+                {
+                    Bitrate = 0,
+                    Duration = 0,
+                    Height = 0,
+                    Width = 0,
+                },
+            };
 
         model.Validate();
     }
@@ -2762,7 +2793,11 @@ public class OutputTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Output { Url = "https://example.com" };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
+            {
+                Url = "https://example.com",
+            };
 
         Assert.Null(model.VideoMetadata);
         Assert.False(model.RawData.ContainsKey("video_metadata"));
@@ -2771,7 +2806,11 @@ public class OutputTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Output { Url = "https://example.com" };
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
+            {
+                Url = "https://example.com",
+            };
 
         model.Validate();
     }
@@ -2779,13 +2818,14 @@ public class OutputTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Output
-        {
-            Url = "https://example.com",
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
+            {
+                Url = "https://example.com",
 
-            // Null should be interpreted as omitted for these properties
-            VideoMetadata = null,
-        };
+                // Null should be interpreted as omitted for these properties
+                VideoMetadata = null,
+            };
 
         Assert.Null(model.VideoMetadata);
         Assert.False(model.RawData.ContainsKey("video_metadata"));
@@ -2794,13 +2834,14 @@ public class OutputTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Output
-        {
-            Url = "https://example.com",
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
+            {
+                Url = "https://example.com",
 
-            // Null should be interpreted as omitted for these properties
-            VideoMetadata = null,
-        };
+                // Null should be interpreted as omitted for these properties
+                VideoMetadata = null,
+            };
 
         model.Validate();
     }
@@ -2808,19 +2849,21 @@ public class OutputTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Output
-        {
-            Url = "https://example.com",
-            VideoMetadata = new()
+        var model =
+            new VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
             {
-                Bitrate = 0,
-                Duration = 0,
-                Height = 0,
-                Width = 0,
-            },
-        };
+                Url = "https://example.com",
+                VideoMetadata = new()
+                {
+                    Bitrate = 0,
+                    Duration = 0,
+                    Height = 0,
+                    Width = 0,
+                },
+            };
 
-        Output copied = new(model);
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput copied =
+            new(model);
 
         Assert.Equal(model, copied);
     }
@@ -3083,12 +3126,16 @@ public class VideoTransformationReadyEventVideoTransformationReadyEventRequestTe
     }
 }
 
-public class TimingsTest : TestBase
+public class VideoTransformationReadyEventVideoTransformationReadyEventTimingsTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Timings { DownloadDuration = 0, EncodingDuration = 0 };
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventTimings
+        {
+            DownloadDuration = 0,
+            EncodingDuration = 0,
+        };
 
         long expectedDownloadDuration = 0;
         long expectedEncodingDuration = 0;
@@ -3100,10 +3147,18 @@ public class TimingsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Timings { DownloadDuration = 0, EncodingDuration = 0 };
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventTimings
+        {
+            DownloadDuration = 0,
+            EncodingDuration = 0,
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Timings>(json, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventTimings>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -3111,13 +3166,18 @@ public class TimingsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Timings { DownloadDuration = 0, EncodingDuration = 0 };
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventTimings
+        {
+            DownloadDuration = 0,
+            EncodingDuration = 0,
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Timings>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationReadyEventVideoTransformationReadyEventTimings>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         long expectedDownloadDuration = 0;
@@ -3130,7 +3190,11 @@ public class TimingsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Timings { DownloadDuration = 0, EncodingDuration = 0 };
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventTimings
+        {
+            DownloadDuration = 0,
+            EncodingDuration = 0,
+        };
 
         model.Validate();
     }
@@ -3138,7 +3202,7 @@ public class TimingsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Timings { };
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventTimings { };
 
         Assert.Null(model.DownloadDuration);
         Assert.False(model.RawData.ContainsKey("download_duration"));
@@ -3149,7 +3213,7 @@ public class TimingsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Timings { };
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventTimings { };
 
         model.Validate();
     }
@@ -3157,7 +3221,7 @@ public class TimingsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Timings
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventTimings
         {
             // Null should be interpreted as omitted for these properties
             DownloadDuration = null,
@@ -3173,7 +3237,7 @@ public class TimingsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Timings
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventTimings
         {
             // Null should be interpreted as omitted for these properties
             DownloadDuration = null,
@@ -3186,9 +3250,13 @@ public class TimingsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Timings { DownloadDuration = 0, EncodingDuration = 0 };
+        var model = new VideoTransformationReadyEventVideoTransformationReadyEventTimings
+        {
+            DownloadDuration = 0,
+            EncodingDuration = 0,
+        };
 
-        Timings copied = new(model);
+        VideoTransformationReadyEventVideoTransformationReadyEventTimings copied = new(model);
 
         Assert.Equal(model, copied);
     }

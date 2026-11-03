@@ -98,6 +98,19 @@ public abstract record class ModelBase
             new ApiEnumConverter<string, V2Files::ResponseField>(),
             new ApiEnumConverter<string, V2Files::Protocol>(),
             new ApiEnumConverter<string, Webhooks::Type>(),
+            new ApiEnumConverter<
+                string,
+                Webhooks::ImageAsyncTransformationErrorEventImageAsyncTransformationErrorEventDataTransformationType
+            >(),
+            new ApiEnumConverter<string, Webhooks::Reason>(),
+            new ApiEnumConverter<
+                string,
+                Webhooks::ImageAsyncTransformationReadyEventImageAsyncTransformationReadyEventDataTransformationType
+            >(),
+            new ApiEnumConverter<
+                string,
+                Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType
+            >(),
             new ApiEnumConverter<string, Webhooks::Protocol>(),
             new ApiEnumConverter<
                 string,
@@ -124,7 +137,10 @@ public abstract record class ModelBase
                 string,
                 Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType
             >(),
-            new ApiEnumConverter<string, Webhooks::Reason>(),
+            new ApiEnumConverter<
+                string,
+                Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+            >(),
             new ApiEnumConverter<
                 string,
                 Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsAudioCodec

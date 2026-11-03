@@ -24,7 +24,9 @@ public class VideoTransformationErrorEventTest : TestBase
                 {
                     Type =
                         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Reason.EncodingFailed),
+                    Error = new(
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -59,7 +61,9 @@ public class VideoTransformationErrorEventTest : TestBase
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -105,7 +109,9 @@ public class VideoTransformationErrorEventTest : TestBase
                 {
                     Type =
                         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Reason.EncodingFailed),
+                    Error = new(
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -154,7 +160,9 @@ public class VideoTransformationErrorEventTest : TestBase
                 {
                     Type =
                         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Reason.EncodingFailed),
+                    Error = new(
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -196,7 +204,9 @@ public class VideoTransformationErrorEventTest : TestBase
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -242,7 +252,9 @@ public class VideoTransformationErrorEventTest : TestBase
                 {
                     Type =
                         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Reason.EncodingFailed),
+                    Error = new(
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -285,7 +297,9 @@ public class VideoTransformationErrorEventTest : TestBase
                 {
                     Type =
                         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Reason.EncodingFailed),
+                    Error = new(
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -331,7 +345,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventTest : Te
                 {
                     Type =
                         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Reason.EncodingFailed),
+                    Error = new(
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -364,7 +380,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventTest : Te
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -408,7 +426,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventTest : Te
                 {
                     Type =
                         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Reason.EncodingFailed),
+                    Error = new(
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -456,7 +476,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventTest : Te
                 {
                     Type =
                         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Reason.EncodingFailed),
+                    Error = new(
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -497,7 +519,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventTest : Te
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -541,7 +565,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventTest : Te
                 {
                     Type =
                         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Reason.EncodingFailed),
+                    Error = new(
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -582,7 +608,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventTest : Te
                 {
                     Type =
                         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Reason.EncodingFailed),
+                    Error = new(
+                        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -625,7 +653,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTest 
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -651,7 +681,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTest 
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -682,7 +714,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTest 
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -720,7 +754,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTest 
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -754,7 +790,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTest 
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -785,7 +823,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTest 
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -816,7 +856,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTest 
             {
                 Type =
                     VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                Error = new(Reason.EncodingFailed),
+                Error = new(
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                ),
                 Options = new()
                 {
                     AudioCodec =
@@ -929,7 +971,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         {
             Type =
                 VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-            Error = new(Reason.EncodingFailed),
+            Error = new(
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+            ),
             Options = new()
             {
                 AudioCodec =
@@ -952,7 +996,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         > expectedType =
             VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation;
         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError expectedError =
-            new(Reason.EncodingFailed);
+            new(
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+            );
         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions expectedOptions =
             new()
             {
@@ -981,7 +1027,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         {
             Type =
                 VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-            Error = new(Reason.EncodingFailed),
+            Error = new(
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+            ),
             Options = new()
             {
                 AudioCodec =
@@ -1015,7 +1063,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         {
             Type =
                 VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-            Error = new(Reason.EncodingFailed),
+            Error = new(
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+            ),
             Options = new()
             {
                 AudioCodec =
@@ -1046,7 +1096,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         > expectedType =
             VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation;
         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError expectedError =
-            new(Reason.EncodingFailed);
+            new(
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+            );
         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptions expectedOptions =
             new()
             {
@@ -1075,7 +1127,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         {
             Type =
                 VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-            Error = new(Reason.EncodingFailed),
+            Error = new(
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+            ),
             Options = new()
             {
                 AudioCodec =
@@ -1164,7 +1218,9 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         {
             Type =
                 VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-            Error = new(Reason.EncodingFailed),
+            Error = new(
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+            ),
             Options = new()
             {
                 AudioCodec =
@@ -1289,10 +1345,15 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         var model =
             new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError
             {
-                Reason = Reason.EncodingFailed,
+                Reason =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed,
             };
 
-        ApiEnum<string, Reason> expectedReason = Reason.EncodingFailed;
+        ApiEnum<
+            string,
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+        > expectedReason =
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed;
 
         Assert.Equal(expectedReason, model.Reason);
     }
@@ -1303,7 +1364,8 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         var model =
             new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError
             {
-                Reason = Reason.EncodingFailed,
+                Reason =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed,
             };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -1322,7 +1384,8 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         var model =
             new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError
             {
-                Reason = Reason.EncodingFailed,
+                Reason =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed,
             };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -1333,7 +1396,11 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
             );
         Assert.NotNull(deserialized);
 
-        ApiEnum<string, Reason> expectedReason = Reason.EncodingFailed;
+        ApiEnum<
+            string,
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+        > expectedReason =
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed;
 
         Assert.Equal(expectedReason, deserialized.Reason);
     }
@@ -1344,7 +1411,8 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         var model =
             new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError
             {
-                Reason = Reason.EncodingFailed,
+                Reason =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed,
             };
 
         model.Validate();
@@ -1356,7 +1424,8 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
         var model =
             new VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError
             {
-                Reason = Reason.EncodingFailed,
+                Reason =
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed,
             };
 
         VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError copied =
@@ -1366,45 +1435,72 @@ public class VideoTransformationErrorEventVideoTransformationErrorEventDataTrans
     }
 }
 
-public class ReasonTest : TestBase
+public class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReasonTest
+    : TestBase
 {
     [Theory]
-    [InlineData(Reason.EncodingFailed)]
-    [InlineData(Reason.DownloadFailed)]
-    [InlineData(Reason.InternalServerError)]
-    public void Validation_Works(Reason rawValue)
+    [InlineData(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+    )]
+    [InlineData(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.DownloadFailed
+    )]
+    [InlineData(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.InternalServerError
+    )]
+    public void Validation_Works(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason rawValue
+    )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Reason> value = rawValue;
+        ApiEnum<
+            string,
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+        > value = rawValue;
         value.Validate();
     }
 
     [Fact]
     public void InvalidEnumValidationThrows_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
 
         Assert.NotNull(value);
         Assert.Throws<ImageKitInvalidDataException>(() => value.Validate());
     }
 
     [Theory]
-    [InlineData(Reason.EncodingFailed)]
-    [InlineData(Reason.DownloadFailed)]
-    [InlineData(Reason.InternalServerError)]
-    public void SerializationRoundtrip_Works(Reason rawValue)
+    [InlineData(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+    )]
+    [InlineData(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.DownloadFailed
+    )]
+    [InlineData(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.InternalServerError
+    )]
+    public void SerializationRoundtrip_Works(
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason rawValue
+    )
     {
         // force implicit conversion because Theory can't do that for us
-        ApiEnum<string, Reason> value = rawValue;
+        ApiEnum<
+            string,
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+        > value = rawValue;
 
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+            >
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }
@@ -1412,15 +1508,19 @@ public class ReasonTest : TestBase
     [Fact]
     public void InvalidEnumSerializationRoundtrip_Works()
     {
-        var value = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
-            JsonSerializer.SerializeToElement("invalid value"),
-            ModelBase.SerializerOptions
-        );
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+            >
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
         string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, Reason>>(
-            json,
-            ModelBase.SerializerOptions
-        );
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<
+                string,
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+            >
+        >(json, ModelBase.SerializerOptions);
 
         Assert.Equal(value, deserialized);
     }

@@ -672,12 +672,20 @@ public sealed record class VideoTransformationErrorEventVideoTransformationError
     /// during video encoding process - `download_failed`: Could not download source
     /// video - `internal_server_error`: Unexpected server error
     /// </summary>
-    public required ApiEnum<string, Reason> Reason
+    public required ApiEnum<
+        string,
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+    > Reason
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<ApiEnum<string, Reason>>("reason");
+            return this._rawData.GetNotNullClass<
+                ApiEnum<
+                    string,
+                    VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+                >
+            >("reason");
         }
         init { this._rawData.Set("reason", value); }
     }
@@ -726,7 +734,10 @@ public sealed record class VideoTransformationErrorEventVideoTransformationError
 
     [SetsRequiredMembers]
     public VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationError(
-        ApiEnum<string, Reason> reason
+        ApiEnum<
+            string,
+            VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
+        > reason
     )
         : this()
     {
@@ -751,17 +762,20 @@ class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformati
 /// video encoding process - `download_failed`: Could not download source video -
 /// `internal_server_error`: Unexpected server error
 /// </summary>
-[JsonConverter(typeof(ReasonConverter))]
-public enum Reason
+[JsonConverter(
+    typeof(VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReasonConverter)
+)]
+public enum VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason
 {
     EncodingFailed,
     DownloadFailed,
     InternalServerError,
 }
 
-sealed class ReasonConverter : JsonConverter<Reason>
+sealed class VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReasonConverter
+    : JsonConverter<VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason>
 {
-    public override Reason Read(
+    public override VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -769,22 +783,35 @@ sealed class ReasonConverter : JsonConverter<Reason>
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "encoding_failed" => Reason.EncodingFailed,
-            "download_failed" => Reason.DownloadFailed,
-            "internal_server_error" => Reason.InternalServerError,
-            _ => (Reason)(-1),
+            "encoding_failed" =>
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed,
+            "download_failed" =>
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.DownloadFailed,
+            "internal_server_error" =>
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.InternalServerError,
+            _ =>
+                (VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason)(
+                    -1
+                ),
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Reason value, JsonSerializerOptions options)
+    public override void Write(
+        Utf8JsonWriter writer,
+        VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason value,
+        JsonSerializerOptions options
+    )
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                Reason.EncodingFailed => "encoding_failed",
-                Reason.DownloadFailed => "download_failed",
-                Reason.InternalServerError => "internal_server_error",
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed =>
+                    "encoding_failed",
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.DownloadFailed =>
+                    "download_failed",
+                VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.InternalServerError =>
+                    "internal_server_error",
                 _ => throw new ImageKitInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

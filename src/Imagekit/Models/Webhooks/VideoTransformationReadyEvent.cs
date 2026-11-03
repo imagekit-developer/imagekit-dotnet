@@ -90,12 +90,14 @@ public sealed record class VideoTransformationReadyEvent : JsonModel
     /// <summary>
     /// Performance metrics for the transformation process.
     /// </summary>
-    public Timings? Timings
+    public VideoTransformationReadyEventVideoTransformationReadyEventTimings? Timings
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Timings>("timings");
+            return this._rawData.GetNullableClass<VideoTransformationReadyEventVideoTransformationReadyEventTimings>(
+                "timings"
+            );
         }
         init
         {
@@ -230,12 +232,14 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     /// <summary>
     /// Performance metrics for the transformation process.
     /// </summary>
-    public Timings? Timings
+    public VideoTransformationReadyEventVideoTransformationReadyEventTimings? Timings
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Timings>("timings");
+            return this._rawData.GetNullableClass<VideoTransformationReadyEventVideoTransformationReadyEventTimings>(
+                "timings"
+            );
         }
         init
         {
@@ -548,12 +552,14 @@ public sealed record class VideoTransformationReadyEventVideoTransformationReady
     /// <summary>
     /// Information about the transformed output video.
     /// </summary>
-    public Output? Output
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput? Output
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Output>("output");
+            return this._rawData.GetNullableClass<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput>(
+                "output"
+            );
         }
         init
         {
@@ -1203,8 +1209,14 @@ sealed class VideoTransformationReadyEventVideoTransformationReadyEventDataTrans
 /// <summary>
 /// Information about the transformed output video.
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<Output, OutputFromRaw>))]
-public sealed record class Output : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput,
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutputFromRaw
+    >)
+)]
+public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
+    : JsonModel
 {
     /// <summary>
     /// URL to access the transformed video.
@@ -1247,46 +1259,62 @@ public sealed record class Output : JsonModel
         this.VideoMetadata?.Validate();
     }
 
-    public Output() { }
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Output(Output output)
-        : base(output) { }
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput(
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput videoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput
+    )
+        : base(videoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput)
+    { }
 #pragma warning restore CS8618
 
-    public Output(IReadOnlyDictionary<string, JsonElement> rawData)
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Output(FrozenDictionary<string, JsonElement> rawData)
+    VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="OutputFromRaw.FromRawUnchecked"/>
-    public static Output FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutputFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Output(string url)
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput(
+        string url
+    )
         : this()
     {
         this.Url = url;
     }
 }
 
-class OutputFromRaw : IFromRawJson<Output>
+class VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutputFromRaw
+    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput>
 {
     /// <inheritdoc/>
-    public Output FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Output.FromRawUnchecked(rawData);
+    public VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        VideoTransformationReadyEventVideoTransformationReadyEventDataTransformationOutput.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -1507,8 +1535,14 @@ class VideoTransformationReadyEventVideoTransformationReadyEventRequestFromRaw
 /// <summary>
 /// Performance metrics for the transformation process.
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<Timings, TimingsFromRaw>))]
-public sealed record class Timings : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        VideoTransformationReadyEventVideoTransformationReadyEventTimings,
+        VideoTransformationReadyEventVideoTransformationReadyEventTimingsFromRaw
+    >)
+)]
+public sealed record class VideoTransformationReadyEventVideoTransformationReadyEventTimings
+    : JsonModel
 {
     /// <summary>
     /// Time spent downloading the source video from your origin or media library,
@@ -1560,37 +1594,48 @@ public sealed record class Timings : JsonModel
         _ = this.EncodingDuration;
     }
 
-    public Timings() { }
+    public VideoTransformationReadyEventVideoTransformationReadyEventTimings() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Timings(Timings timings)
-        : base(timings) { }
+    public VideoTransformationReadyEventVideoTransformationReadyEventTimings(
+        VideoTransformationReadyEventVideoTransformationReadyEventTimings videoTransformationReadyEventVideoTransformationReadyEventTimings
+    )
+        : base(videoTransformationReadyEventVideoTransformationReadyEventTimings) { }
 #pragma warning restore CS8618
 
-    public Timings(IReadOnlyDictionary<string, JsonElement> rawData)
+    public VideoTransformationReadyEventVideoTransformationReadyEventTimings(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Timings(FrozenDictionary<string, JsonElement> rawData)
+    VideoTransformationReadyEventVideoTransformationReadyEventTimings(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TimingsFromRaw.FromRawUnchecked"/>
-    public static Timings FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="VideoTransformationReadyEventVideoTransformationReadyEventTimingsFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationReadyEventVideoTransformationReadyEventTimings FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class TimingsFromRaw : IFromRawJson<Timings>
+class VideoTransformationReadyEventVideoTransformationReadyEventTimingsFromRaw
+    : IFromRawJson<VideoTransformationReadyEventVideoTransformationReadyEventTimings>
 {
     /// <inheritdoc/>
-    public Timings FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Timings.FromRawUnchecked(rawData);
+    public VideoTransformationReadyEventVideoTransformationReadyEventTimings FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        VideoTransformationReadyEventVideoTransformationReadyEventTimings.FromRawUnchecked(rawData);
 }
