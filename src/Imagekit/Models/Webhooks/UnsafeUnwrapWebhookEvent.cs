@@ -38,6 +38,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
                 videoTransformationAccepted: (x) => x.ID,
                 videoTransformationReady: (x) => x.ID,
                 videoTransformationError: (x) => x.ID,
+                imageAsyncTransformationAccepted: (x) => x.ID,
+                imageAsyncTransformationReady: (x) => x.ID,
+                imageAsyncTransformationError: (x) => x.ID,
                 uploadPreTransformSuccess: (x) => x.ID,
                 uploadPreTransformError: (x) => x.ID,
                 uploadPostTransformSuccess: (x) => x.ID,
@@ -62,6 +65,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
                 videoTransformationAccepted: (x) => x.Type,
                 videoTransformationReady: (x) => x.Type,
                 videoTransformationError: (x) => x.Type,
+                imageAsyncTransformationAccepted: (x) => x.Type,
+                imageAsyncTransformationReady: (x) => x.Type,
+                imageAsyncTransformationError: (x) => x.Type,
                 uploadPreTransformSuccess: (x) => x.Type,
                 uploadPreTransformError: (x) => x.Type,
                 uploadPostTransformSuccess: (x) => x.Type,
@@ -86,6 +92,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
                 videoTransformationAccepted: (x) => x.CreatedAt,
                 videoTransformationReady: (x) => x.CreatedAt,
                 videoTransformationError: (x) => x.CreatedAt,
+                imageAsyncTransformationAccepted: (x) => x.CreatedAt,
+                imageAsyncTransformationReady: (x) => x.CreatedAt,
+                imageAsyncTransformationError: (x) => x.CreatedAt,
                 uploadPreTransformSuccess: (x) => x.CreatedAt,
                 uploadPreTransformError: (x) => x.CreatedAt,
                 uploadPostTransformSuccess: (x) => x.CreatedAt,
@@ -122,6 +131,33 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
 
     public UnsafeUnwrapWebhookEvent(
         VideoTransformationErrorEvent value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public UnsafeUnwrapWebhookEvent(
+        ImageAsyncTransformationAcceptedEvent value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public UnsafeUnwrapWebhookEvent(
+        ImageAsyncTransformationReadyEvent value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public UnsafeUnwrapWebhookEvent(
+        ImageAsyncTransformationErrorEvent value,
         JsonElement? element = null
     )
     {
@@ -281,6 +317,75 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     )
     {
         value = this.Value as VideoTransformationErrorEvent;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ImageAsyncTransformationAcceptedEvent"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickImageAsyncTransformationAccepted(out var value)) {
+    ///     // `value` is of type `ImageAsyncTransformationAcceptedEvent`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickImageAsyncTransformationAccepted(
+        [NotNullWhen(true)] out ImageAsyncTransformationAcceptedEvent? value
+    )
+    {
+        value = this.Value as ImageAsyncTransformationAcceptedEvent;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ImageAsyncTransformationReadyEvent"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickImageAsyncTransformationReady(out var value)) {
+    ///     // `value` is of type `ImageAsyncTransformationReadyEvent`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickImageAsyncTransformationReady(
+        [NotNullWhen(true)] out ImageAsyncTransformationReadyEvent? value
+    )
+    {
+        value = this.Value as ImageAsyncTransformationReadyEvent;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="ImageAsyncTransformationErrorEvent"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickImageAsyncTransformationError(out var value)) {
+    ///     // `value` is of type `ImageAsyncTransformationErrorEvent`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickImageAsyncTransformationError(
+        [NotNullWhen(true)] out ImageAsyncTransformationErrorEvent? value
+    )
+    {
+        value = this.Value as ImageAsyncTransformationErrorEvent;
         return value != null;
     }
 
@@ -561,6 +666,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     ///     (VideoTransformationAcceptedEvent value) =&gt; {...},
     ///     (VideoTransformationReadyEvent value) =&gt; {...},
     ///     (VideoTransformationErrorEvent value) =&gt; {...},
+    ///     (ImageAsyncTransformationAcceptedEvent value) =&gt; {...},
+    ///     (ImageAsyncTransformationReadyEvent value) =&gt; {...},
+    ///     (ImageAsyncTransformationErrorEvent value) =&gt; {...},
     ///     (UploadPreTransformSuccessEvent value) =&gt; {...},
     ///     (UploadPreTransformErrorEvent value) =&gt; {...},
     ///     (UploadPostTransformSuccessEvent value) =&gt; {...},
@@ -581,6 +689,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
         System::Action<VideoTransformationAcceptedEvent> videoTransformationAccepted,
         System::Action<VideoTransformationReadyEvent> videoTransformationReady,
         System::Action<VideoTransformationErrorEvent> videoTransformationError,
+        System::Action<ImageAsyncTransformationAcceptedEvent> imageAsyncTransformationAccepted,
+        System::Action<ImageAsyncTransformationReadyEvent> imageAsyncTransformationReady,
+        System::Action<ImageAsyncTransformationErrorEvent> imageAsyncTransformationError,
         System::Action<UploadPreTransformSuccessEvent> uploadPreTransformSuccess,
         System::Action<UploadPreTransformErrorEvent> uploadPreTransformError,
         System::Action<UploadPostTransformSuccessEvent> uploadPostTransformSuccess,
@@ -605,6 +716,15 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
                 break;
             case VideoTransformationErrorEvent value:
                 videoTransformationError(value);
+                break;
+            case ImageAsyncTransformationAcceptedEvent value:
+                imageAsyncTransformationAccepted(value);
+                break;
+            case ImageAsyncTransformationReadyEvent value:
+                imageAsyncTransformationReady(value);
+                break;
+            case ImageAsyncTransformationErrorEvent value:
+                imageAsyncTransformationError(value);
                 break;
             case UploadPreTransformSuccessEvent value:
                 uploadPreTransformSuccess(value);
@@ -667,6 +787,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
     ///     (VideoTransformationAcceptedEvent value) =&gt; {...},
     ///     (VideoTransformationReadyEvent value) =&gt; {...},
     ///     (VideoTransformationErrorEvent value) =&gt; {...},
+    ///     (ImageAsyncTransformationAcceptedEvent value) =&gt; {...},
+    ///     (ImageAsyncTransformationReadyEvent value) =&gt; {...},
+    ///     (ImageAsyncTransformationErrorEvent value) =&gt; {...},
     ///     (UploadPreTransformSuccessEvent value) =&gt; {...},
     ///     (UploadPreTransformErrorEvent value) =&gt; {...},
     ///     (UploadPostTransformSuccessEvent value) =&gt; {...},
@@ -687,6 +810,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
         System::Func<VideoTransformationAcceptedEvent, T> videoTransformationAccepted,
         System::Func<VideoTransformationReadyEvent, T> videoTransformationReady,
         System::Func<VideoTransformationErrorEvent, T> videoTransformationError,
+        System::Func<ImageAsyncTransformationAcceptedEvent, T> imageAsyncTransformationAccepted,
+        System::Func<ImageAsyncTransformationReadyEvent, T> imageAsyncTransformationReady,
+        System::Func<ImageAsyncTransformationErrorEvent, T> imageAsyncTransformationError,
         System::Func<UploadPreTransformSuccessEvent, T> uploadPreTransformSuccess,
         System::Func<UploadPreTransformErrorEvent, T> uploadPreTransformError,
         System::Func<UploadPostTransformSuccessEvent, T> uploadPostTransformSuccess,
@@ -706,6 +832,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             VideoTransformationAcceptedEvent value => videoTransformationAccepted(value),
             VideoTransformationReadyEvent value => videoTransformationReady(value),
             VideoTransformationErrorEvent value => videoTransformationError(value),
+            ImageAsyncTransformationAcceptedEvent value => imageAsyncTransformationAccepted(value),
+            ImageAsyncTransformationReadyEvent value => imageAsyncTransformationReady(value),
+            ImageAsyncTransformationErrorEvent value => imageAsyncTransformationError(value),
             UploadPreTransformSuccessEvent value => uploadPreTransformSuccess(value),
             UploadPreTransformErrorEvent value => uploadPreTransformError(value),
             UploadPostTransformSuccessEvent value => uploadPostTransformSuccess(value),
@@ -733,6 +862,18 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
 
     public static implicit operator UnsafeUnwrapWebhookEvent(VideoTransformationErrorEvent value) =>
         new(value);
+
+    public static implicit operator UnsafeUnwrapWebhookEvent(
+        ImageAsyncTransformationAcceptedEvent value
+    ) => new(value);
+
+    public static implicit operator UnsafeUnwrapWebhookEvent(
+        ImageAsyncTransformationReadyEvent value
+    ) => new(value);
+
+    public static implicit operator UnsafeUnwrapWebhookEvent(
+        ImageAsyncTransformationErrorEvent value
+    ) => new(value);
 
     public static implicit operator UnsafeUnwrapWebhookEvent(
         UploadPreTransformSuccessEvent value
@@ -788,6 +929,9 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             (videoTransformationAccepted) => videoTransformationAccepted.Validate(),
             (videoTransformationReady) => videoTransformationReady.Validate(),
             (videoTransformationError) => videoTransformationError.Validate(),
+            (imageAsyncTransformationAccepted) => imageAsyncTransformationAccepted.Validate(),
+            (imageAsyncTransformationReady) => imageAsyncTransformationReady.Validate(),
+            (imageAsyncTransformationError) => imageAsyncTransformationError.Validate(),
             (uploadPreTransformSuccess) => uploadPreTransformSuccess.Validate(),
             (uploadPreTransformError) => uploadPreTransformError.Validate(),
             (uploadPostTransformSuccess) => uploadPostTransformSuccess.Validate(),
@@ -826,18 +970,21 @@ public record class UnsafeUnwrapWebhookEvent : ModelBase
             VideoTransformationAcceptedEvent _ => 0,
             VideoTransformationReadyEvent _ => 1,
             VideoTransformationErrorEvent _ => 2,
-            UploadPreTransformSuccessEvent _ => 3,
-            UploadPreTransformErrorEvent _ => 4,
-            UploadPostTransformSuccessEvent _ => 5,
-            UploadPostTransformErrorEvent _ => 6,
-            FileCreateEvent _ => 7,
-            FileUpdateEvent _ => 8,
-            FileDeleteEvent _ => 9,
-            FileVersionCreateEvent _ => 10,
-            FileVersionDeleteEvent _ => 11,
-            FolderCreateEvent _ => 12,
-            FolderUpdateEvent _ => 13,
-            FolderDeleteEvent _ => 14,
+            ImageAsyncTransformationAcceptedEvent _ => 3,
+            ImageAsyncTransformationReadyEvent _ => 4,
+            ImageAsyncTransformationErrorEvent _ => 5,
+            UploadPreTransformSuccessEvent _ => 6,
+            UploadPreTransformErrorEvent _ => 7,
+            UploadPostTransformSuccessEvent _ => 8,
+            UploadPostTransformErrorEvent _ => 9,
+            FileCreateEvent _ => 10,
+            FileUpdateEvent _ => 11,
+            FileDeleteEvent _ => 12,
+            FileVersionCreateEvent _ => 13,
+            FileVersionDeleteEvent _ => 14,
+            FolderCreateEvent _ => 15,
+            FolderUpdateEvent _ => 16,
+            FolderDeleteEvent _ => 17,
             _ => -1,
         };
     }
@@ -944,6 +1091,63 @@ sealed class UnsafeUnwrapWebhookEventConverter : JsonConverter<UnsafeUnwrapWebho
                         element,
                         options
                     );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<ImageAsyncTransformationAcceptedEvent>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<ImageAsyncTransformationReadyEvent>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        deserialized.Validate();
+                        return new(deserialized, element);
+                    }
+                }
+                catch (System::Exception e)
+                    when (e is JsonException || e is ImageKitInvalidDataException)
+                {
+                    // ignore
+                }
+
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<ImageAsyncTransformationErrorEvent>(
+                            element,
+                            options
+                        );
                     if (deserialized != null)
                     {
                         deserialized.Validate();

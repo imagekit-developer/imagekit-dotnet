@@ -115,7 +115,9 @@ public class UnwrapWebhookEventTest : TestBase
                 {
                     Type =
                         Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Webhooks::Reason.EncodingFailed),
+                    Error = new(
+                        Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -130,6 +132,96 @@ public class UnwrapWebhookEventTest : TestBase
                         VideoCodec =
                             Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void ImageAsyncTransformationAcceptedValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::ImageAsyncTransformationAcceptedEvent()
+        {
+            ID = "id",
+            Type = "image.async-transformation.accepted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type = Webhooks::Type.ImageTransformation,
+                    Options = new() { Transformation = "transformation" },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void ImageAsyncTransformationReadyValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::ImageAsyncTransformationReadyEvent()
+        {
+            ID = "id",
+            Type = "image.async-transformation.ready",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::ImageAsyncTransformationReadyEventImageAsyncTransformationReadyEventDataTransformationType.ImageTransformation,
+                    Options = new() { Transformation = "transformation" },
+                    Output = new()
+                    {
+                        Url = "https://example.com",
+                        ImageMetadata = new() { Size = 0, Format = "format" },
+                    },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+            Timings = new() { ProcessingDuration = 0, QueueDuration = 0 },
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void ImageAsyncTransformationErrorValidationWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::ImageAsyncTransformationErrorEvent()
+        {
+            ID = "id",
+            Type = "image.async-transformation.error",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::ImageAsyncTransformationErrorEventImageAsyncTransformationErrorEventDataTransformationType.ImageTransformation,
+                    Error = new() { Reason = Webhooks::Reason.DownloadFailed, Message = "message" },
+                    Options = new() { Transformation = "transformation" },
                 },
             },
             Request = new()
@@ -398,14 +490,19 @@ public class UnwrapWebhookEventTest : TestBase
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
+                    Type =
+                        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
                     Protocol = Webhooks::Protocol.Hls,
                     Value = "value",
                 },
@@ -866,7 +963,9 @@ public class UnwrapWebhookEventTest : TestBase
                 {
                     Type =
                         Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationType.VideoTransformation,
-                    Error = new(Webhooks::Reason.EncodingFailed),
+                    Error = new(
+                        Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationErrorReason.EncodingFailed
+                    ),
                     Options = new()
                     {
                         AudioCodec =
@@ -881,6 +980,114 @@ public class UnwrapWebhookEventTest : TestBase
                         VideoCodec =
                             Webhooks::VideoTransformationErrorEventVideoTransformationErrorEventDataTransformationOptionsVideoCodec.H264,
                     },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void ImageAsyncTransformationAcceptedSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::ImageAsyncTransformationAcceptedEvent()
+        {
+            ID = "id",
+            Type = "image.async-transformation.accepted",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type = Webhooks::Type.ImageTransformation,
+                    Options = new() { Transformation = "transformation" },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void ImageAsyncTransformationReadySerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::ImageAsyncTransformationReadyEvent()
+        {
+            ID = "id",
+            Type = "image.async-transformation.ready",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::ImageAsyncTransformationReadyEventImageAsyncTransformationReadyEventDataTransformationType.ImageTransformation,
+                    Options = new() { Transformation = "transformation" },
+                    Output = new()
+                    {
+                        Url = "https://example.com",
+                        ImageMetadata = new() { Size = 0, Format = "format" },
+                    },
+                },
+            },
+            Request = new()
+            {
+                Url = "https://example.com",
+                XRequestID = "x_request_id",
+                UserAgent = "user_agent",
+            },
+            Timings = new() { ProcessingDuration = 0, QueueDuration = 0 },
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void ImageAsyncTransformationErrorSerializationRoundtripWorks()
+    {
+        Webhooks::UnwrapWebhookEvent value = new Webhooks::ImageAsyncTransformationErrorEvent()
+        {
+            ID = "id",
+            Type = "image.async-transformation.error",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Data = new()
+            {
+                Asset = new("https://example.com"),
+                Transformation = new()
+                {
+                    Type =
+                        Webhooks::ImageAsyncTransformationErrorEventImageAsyncTransformationErrorEventDataTransformationType.ImageTransformation,
+                    Error = new() { Reason = Webhooks::Reason.DownloadFailed, Message = "message" },
+                    Options = new() { Transformation = "transformation" },
                 },
             },
             Request = new()
@@ -1173,14 +1380,19 @@ public class UnwrapWebhookEventTest : TestBase
                 FileID = "fileId",
                 Name = "name",
                 Path = "path",
-                Transformation = new(new Webhooks::Error("encoding_failed")),
+                Transformation = new(
+                    new Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventDataTransformationError(
+                        "encoding_failed"
+                    )
+                ),
                 Url = "https://example.com",
             },
             Request = new()
             {
                 Transformation = new()
                 {
-                    Type = Webhooks::Type.Transformation,
+                    Type =
+                        Webhooks::UploadPostTransformErrorEventUploadPostTransformErrorEventRequestTransformationType.Transformation,
                     Protocol = Webhooks::Protocol.Hls,
                     Value = "value",
                 },

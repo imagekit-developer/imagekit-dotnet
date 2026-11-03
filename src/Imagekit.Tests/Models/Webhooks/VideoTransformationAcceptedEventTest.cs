@@ -576,7 +576,8 @@ public class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDat
             },
         };
 
-        Asset expectedAsset = new("https://example.com");
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset expectedAsset =
+            new("https://example.com");
         VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformation expectedTransformation =
             new()
             {
@@ -662,7 +663,8 @@ public class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDat
             );
         Assert.NotNull(deserialized);
 
-        Asset expectedAsset = new("https://example.com");
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset expectedAsset =
+            new("https://example.com");
         VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformation expectedTransformation =
             new()
             {
@@ -739,12 +741,16 @@ public class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDat
     }
 }
 
-public class AssetTest : TestBase
+public class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAssetTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Asset { Url = "https://example.com" };
+        var model = new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset
+        {
+            Url = "https://example.com",
+        };
 
         string expectedUrl = "https://example.com";
 
@@ -754,10 +760,17 @@ public class AssetTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Asset { Url = "https://example.com" };
+        var model = new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset
+        {
+            Url = "https://example.com",
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Asset>(json, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -765,10 +778,17 @@ public class AssetTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Asset { Url = "https://example.com" };
+        var model = new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset
+        {
+            Url = "https://example.com",
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Asset>(element, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         string expectedUrl = "https://example.com";
@@ -779,7 +799,10 @@ public class AssetTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Asset { Url = "https://example.com" };
+        var model = new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset
+        {
+            Url = "https://example.com",
+        };
 
         model.Validate();
     }
@@ -787,9 +810,14 @@ public class AssetTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Asset { Url = "https://example.com" };
+        var model = new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset
+        {
+            Url = "https://example.com",
+        };
 
-        Asset copied = new(model);
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset copied = new(
+            model
+        );
 
         Assert.Equal(model, copied);
     }
@@ -823,16 +851,17 @@ public class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDat
             VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationType
         > expectedType =
             VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationType.VideoTransformation;
-        Options expectedOptions = new()
-        {
-            AudioCodec = AudioCodec.Aac,
-            AutoRotate = true,
-            Format = Format.Mp4,
-            Quality = 0,
-            StreamProtocol = StreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec = VideoCodec.H264,
-        };
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions expectedOptions =
+            new()
+            {
+                AudioCodec = AudioCodec.Aac,
+                AutoRotate = true,
+                Format = Format.Mp4,
+                Quality = 0,
+                StreamProtocol = StreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec = VideoCodec.H264,
+            };
 
         Assert.Equal(expectedType, model.Type);
         Assert.Equal(expectedOptions, model.Options);
@@ -901,16 +930,17 @@ public class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDat
             VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationType
         > expectedType =
             VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationType.VideoTransformation;
-        Options expectedOptions = new()
-        {
-            AudioCodec = AudioCodec.Aac,
-            AutoRotate = true,
-            Format = Format.Mp4,
-            Quality = 0,
-            StreamProtocol = StreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec = VideoCodec.H264,
-        };
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions expectedOptions =
+            new()
+            {
+                AudioCodec = AudioCodec.Aac,
+                AutoRotate = true,
+                Format = Format.Mp4,
+                Quality = 0,
+                StreamProtocol = StreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec = VideoCodec.H264,
+            };
 
         Assert.Equal(expectedType, deserialized.Type);
         Assert.Equal(expectedOptions, deserialized.Options);
@@ -1117,21 +1147,23 @@ public class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDat
     }
 }
 
-public class OptionsTest : TestBase
+public class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptionsTest
+    : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Options
-        {
-            AudioCodec = AudioCodec.Aac,
-            AutoRotate = true,
-            Format = Format.Mp4,
-            Quality = 0,
-            StreamProtocol = StreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec = VideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+            {
+                AudioCodec = AudioCodec.Aac,
+                AutoRotate = true,
+                Format = Format.Mp4,
+                Quality = 0,
+                StreamProtocol = StreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec = VideoCodec.H264,
+            };
 
         ApiEnum<string, AudioCodec> expectedAudioCodec = AudioCodec.Aac;
         bool expectedAutoRotate = true;
@@ -1158,19 +1190,24 @@ public class OptionsTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Options
-        {
-            AudioCodec = AudioCodec.Aac,
-            AutoRotate = true,
-            Format = Format.Mp4,
-            Quality = 0,
-            StreamProtocol = StreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec = VideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+            {
+                AudioCodec = AudioCodec.Aac,
+                AutoRotate = true,
+                Format = Format.Mp4,
+                Quality = 0,
+                StreamProtocol = StreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec = VideoCodec.H264,
+            };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Options>(json, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions>(
+                json,
+                ModelBase.SerializerOptions
+            );
 
         Assert.Equal(model, deserialized);
     }
@@ -1178,22 +1215,24 @@ public class OptionsTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Options
-        {
-            AudioCodec = AudioCodec.Aac,
-            AutoRotate = true,
-            Format = Format.Mp4,
-            Quality = 0,
-            StreamProtocol = StreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec = VideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+            {
+                AudioCodec = AudioCodec.Aac,
+                AutoRotate = true,
+                Format = Format.Mp4,
+                Quality = 0,
+                StreamProtocol = StreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec = VideoCodec.H264,
+            };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Options>(
-            element,
-            ModelBase.SerializerOptions
-        );
+        var deserialized =
+            JsonSerializer.Deserialize<VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions>(
+                element,
+                ModelBase.SerializerOptions
+            );
         Assert.NotNull(deserialized);
 
         ApiEnum<string, AudioCodec> expectedAudioCodec = AudioCodec.Aac;
@@ -1221,16 +1260,17 @@ public class OptionsTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Options
-        {
-            AudioCodec = AudioCodec.Aac,
-            AutoRotate = true,
-            Format = Format.Mp4,
-            Quality = 0,
-            StreamProtocol = StreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec = VideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+            {
+                AudioCodec = AudioCodec.Aac,
+                AutoRotate = true,
+                Format = Format.Mp4,
+                Quality = 0,
+                StreamProtocol = StreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec = VideoCodec.H264,
+            };
 
         model.Validate();
     }
@@ -1238,7 +1278,9 @@ public class OptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Options { };
+        var model =
+            new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+            { };
 
         Assert.Null(model.AudioCodec);
         Assert.False(model.RawData.ContainsKey("audio_codec"));
@@ -1259,7 +1301,9 @@ public class OptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Options { };
+        var model =
+            new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+            { };
 
         model.Validate();
     }
@@ -1267,17 +1311,18 @@ public class OptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
     {
-        var model = new Options
-        {
-            // Null should be interpreted as omitted for these properties
-            AudioCodec = null,
-            AutoRotate = null,
-            Format = null,
-            Quality = null,
-            StreamProtocol = null,
-            Variants = null,
-            VideoCodec = null,
-        };
+        var model =
+            new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+            {
+                // Null should be interpreted as omitted for these properties
+                AudioCodec = null,
+                AutoRotate = null,
+                Format = null,
+                Quality = null,
+                StreamProtocol = null,
+                Variants = null,
+                VideoCodec = null,
+            };
 
         Assert.Null(model.AudioCodec);
         Assert.False(model.RawData.ContainsKey("audio_codec"));
@@ -1298,17 +1343,18 @@ public class OptionsTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Options
-        {
-            // Null should be interpreted as omitted for these properties
-            AudioCodec = null,
-            AutoRotate = null,
-            Format = null,
-            Quality = null,
-            StreamProtocol = null,
-            Variants = null,
-            VideoCodec = null,
-        };
+        var model =
+            new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+            {
+                // Null should be interpreted as omitted for these properties
+                AudioCodec = null,
+                AutoRotate = null,
+                Format = null,
+                Quality = null,
+                StreamProtocol = null,
+                Variants = null,
+                VideoCodec = null,
+            };
 
         model.Validate();
     }
@@ -1316,18 +1362,20 @@ public class OptionsTest : TestBase
     [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new Options
-        {
-            AudioCodec = AudioCodec.Aac,
-            AutoRotate = true,
-            Format = Format.Mp4,
-            Quality = 0,
-            StreamProtocol = StreamProtocol.Hls,
-            Variants = ["string"],
-            VideoCodec = VideoCodec.H264,
-        };
+        var model =
+            new VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+            {
+                AudioCodec = AudioCodec.Aac,
+                AutoRotate = true,
+                Format = Format.Mp4,
+                Quality = 0,
+                StreamProtocol = StreamProtocol.Hls,
+                Variants = ["string"],
+                VideoCodec = VideoCodec.H264,
+            };
 
-        Options copied = new(model);
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions copied =
+            new(model);
 
         Assert.Equal(model, copied);
     }

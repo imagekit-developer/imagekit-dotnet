@@ -291,12 +291,14 @@ public sealed record class VideoTransformationAcceptedEventVideoTransformationAc
     /// <summary>
     /// Information about the source video asset being transformed.
     /// </summary>
-    public required Asset Asset
+    public required VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset Asset
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<Asset>("asset");
+            return this._rawData.GetNotNullClass<VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset>(
+                "asset"
+            );
         }
         init { this._rawData.Set("asset", value); }
     }
@@ -374,8 +376,14 @@ class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataFromRa
 /// <summary>
 /// Information about the source video asset being transformed.
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<Asset, AssetFromRaw>))]
-public sealed record class Asset : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset,
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAssetFromRaw
+    >)
+)]
+public sealed record class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset
+    : JsonModel
 {
     /// <summary>
     /// URL to download or access the source video file.
@@ -396,46 +404,59 @@ public sealed record class Asset : JsonModel
         _ = this.Url;
     }
 
-    public Asset() { }
+    public VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset() { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Asset(Asset asset)
-        : base(asset) { }
+    public VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset(
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset videoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset
+    )
+        : base(videoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset) { }
 #pragma warning restore CS8618
 
-    public Asset(IReadOnlyDictionary<string, JsonElement> rawData)
+    public VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Asset(FrozenDictionary<string, JsonElement> rawData)
+    VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="AssetFromRaw.FromRawUnchecked"/>
-    public static Asset FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAssetFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Asset(string url)
+    public VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset(string url)
         : this()
     {
         this.Url = url;
     }
 }
 
-class AssetFromRaw : IFromRawJson<Asset>
+class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAssetFromRaw
+    : IFromRawJson<VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset>
 {
     /// <inheritdoc/>
-    public Asset FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Asset.FromRawUnchecked(rawData);
+    public VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataAsset.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>
@@ -476,12 +497,14 @@ public sealed record class VideoTransformationAcceptedEventVideoTransformationAc
     /// <summary>
     /// Configuration options for video transformations.
     /// </summary>
-    public Options? Options
+    public VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions? Options
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<Options>("options");
+            return this._rawData.GetNullableClass<VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions>(
+                "options"
+            );
         }
         init
         {
@@ -629,8 +652,14 @@ sealed class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDat
 /// <summary>
 /// Configuration options for video transformations.
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<Options, OptionsFromRaw>))]
-public sealed record class Options : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions,
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptionsFromRaw
+    >)
+)]
+public sealed record class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+    : JsonModel
 {
     /// <summary>
     /// Audio codec used for encoding (aac or opus).
@@ -796,39 +825,55 @@ public sealed record class Options : JsonModel
         this.VideoCodec?.Validate();
     }
 
-    public Options() { }
+    public VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions()
+    { }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    public Options(Options options)
-        : base(options) { }
+    public VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions(
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions videoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+    )
+        : base(
+            videoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions
+        ) { }
 #pragma warning restore CS8618
 
-    public Options(IReadOnlyDictionary<string, JsonElement> rawData)
+    public VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Options(FrozenDictionary<string, JsonElement> rawData)
+    VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="OptionsFromRaw.FromRawUnchecked"/>
-    public static Options FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptionsFromRaw.FromRawUnchecked"/>
+    public static VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class OptionsFromRaw : IFromRawJson<Options>
+class VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptionsFromRaw
+    : IFromRawJson<VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions>
 {
     /// <inheritdoc/>
-    public Options FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Options.FromRawUnchecked(rawData);
+    public VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        VideoTransformationAcceptedEventVideoTransformationAcceptedEventDataTransformationOptions.FromRawUnchecked(
+            rawData
+        );
 }
 
 /// <summary>

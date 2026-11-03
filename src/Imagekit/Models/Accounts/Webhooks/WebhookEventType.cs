@@ -14,6 +14,9 @@ public enum WebhookEventType
     VideoTransformationAccepted,
     VideoTransformationReady,
     VideoTransformationError,
+    ImageAsyncTransformationAccepted,
+    ImageAsyncTransformationReady,
+    ImageAsyncTransformationError,
     UploadPreTransformSuccess,
     UploadPreTransformError,
     UploadPostTransformSuccess,
@@ -41,6 +44,10 @@ sealed class WebhookEventTypeConverter : JsonConverter<WebhookEventType>
             "video.transformation.accepted" => WebhookEventType.VideoTransformationAccepted,
             "video.transformation.ready" => WebhookEventType.VideoTransformationReady,
             "video.transformation.error" => WebhookEventType.VideoTransformationError,
+            "image.async-transformation.accepted" =>
+                WebhookEventType.ImageAsyncTransformationAccepted,
+            "image.async-transformation.ready" => WebhookEventType.ImageAsyncTransformationReady,
+            "image.async-transformation.error" => WebhookEventType.ImageAsyncTransformationError,
             "upload.pre-transform.success" => WebhookEventType.UploadPreTransformSuccess,
             "upload.pre-transform.error" => WebhookEventType.UploadPreTransformError,
             "upload.post-transform.success" => WebhookEventType.UploadPostTransformSuccess,
@@ -70,6 +77,12 @@ sealed class WebhookEventTypeConverter : JsonConverter<WebhookEventType>
                 WebhookEventType.VideoTransformationAccepted => "video.transformation.accepted",
                 WebhookEventType.VideoTransformationReady => "video.transformation.ready",
                 WebhookEventType.VideoTransformationError => "video.transformation.error",
+                WebhookEventType.ImageAsyncTransformationAccepted =>
+                    "image.async-transformation.accepted",
+                WebhookEventType.ImageAsyncTransformationReady =>
+                    "image.async-transformation.ready",
+                WebhookEventType.ImageAsyncTransformationError =>
+                    "image.async-transformation.error",
                 WebhookEventType.UploadPreTransformSuccess => "upload.pre-transform.success",
                 WebhookEventType.UploadPreTransformError => "upload.pre-transform.error",
                 WebhookEventType.UploadPostTransformSuccess => "upload.post-transform.success",
