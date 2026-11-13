@@ -243,10 +243,32 @@ public sealed record class FolderDeleteEventFolderDeleteEventData : JsonModel
         init { this._rawData.Set("folderId", value); }
     }
 
+    /// <summary>
+    /// Path of the deleted folder. For a moved folder, this is its path before the move.
+    /// </summary>
+    public string? FolderPath
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("folderPath");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("folderPath", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.FolderID;
+        _ = this.FolderPath;
     }
 
     public FolderDeleteEventFolderDeleteEventData() { }
