@@ -95,6 +95,7 @@ public class TransformationTest : TestBase
             Radius = 20,
             Raw = "raw",
             Rotation = 90,
+            Saturation = -100,
             Shadow = new ShadowDefault(),
             Sharpen = new SharpenDefault(),
             StartOffset = 0,
@@ -193,6 +194,7 @@ public class TransformationTest : TestBase
         TransformationRadius expectedRadius = 20;
         string expectedRaw = "raw";
         TransformationRotation expectedRotation = 90;
+        long expectedSaturation = -100;
         Shadow expectedShadow = new ShadowDefault();
         Sharpen expectedSharpen = new SharpenDefault();
         StartOffset expectedStartOffset = 0;
@@ -253,6 +255,7 @@ public class TransformationTest : TestBase
         Assert.Equal(expectedRadius, model.Radius);
         Assert.Equal(expectedRaw, model.Raw);
         Assert.Equal(expectedRotation, model.Rotation);
+        Assert.Equal(expectedSaturation, model.Saturation);
         Assert.Equal(expectedShadow, model.Shadow);
         Assert.Equal(expectedSharpen, model.Sharpen);
         Assert.Equal(expectedStartOffset, model.StartOffset);
@@ -360,6 +363,7 @@ public class TransformationTest : TestBase
             Radius = 20,
             Raw = "raw",
             Rotation = 90,
+            Saturation = -100,
             Shadow = new ShadowDefault(),
             Sharpen = new SharpenDefault(),
             StartOffset = 0,
@@ -471,6 +475,7 @@ public class TransformationTest : TestBase
             Radius = 20,
             Raw = "raw",
             Rotation = 90,
+            Saturation = -100,
             Shadow = new ShadowDefault(),
             Sharpen = new SharpenDefault(),
             StartOffset = 0,
@@ -576,6 +581,7 @@ public class TransformationTest : TestBase
         TransformationRadius expectedRadius = 20;
         string expectedRaw = "raw";
         TransformationRotation expectedRotation = 90;
+        long expectedSaturation = -100;
         Shadow expectedShadow = new ShadowDefault();
         Sharpen expectedSharpen = new SharpenDefault();
         StartOffset expectedStartOffset = 0;
@@ -636,6 +642,7 @@ public class TransformationTest : TestBase
         Assert.Equal(expectedRadius, deserialized.Radius);
         Assert.Equal(expectedRaw, deserialized.Raw);
         Assert.Equal(expectedRotation, deserialized.Rotation);
+        Assert.Equal(expectedSaturation, deserialized.Saturation);
         Assert.Equal(expectedShadow, deserialized.Shadow);
         Assert.Equal(expectedSharpen, deserialized.Sharpen);
         Assert.Equal(expectedStartOffset, deserialized.StartOffset);
@@ -743,6 +750,7 @@ public class TransformationTest : TestBase
             Radius = 20,
             Raw = "raw",
             Rotation = 90,
+            Saturation = -100,
             Shadow = new ShadowDefault(),
             Sharpen = new SharpenDefault(),
             StartOffset = 0,
@@ -852,6 +860,8 @@ public class TransformationTest : TestBase
         Assert.False(model.RawData.ContainsKey("raw"));
         Assert.Null(model.Rotation);
         Assert.False(model.RawData.ContainsKey("rotation"));
+        Assert.Null(model.Saturation);
+        Assert.False(model.RawData.ContainsKey("saturation"));
         Assert.Null(model.Shadow);
         Assert.False(model.RawData.ContainsKey("shadow"));
         Assert.Null(model.Sharpen);
@@ -937,6 +947,7 @@ public class TransformationTest : TestBase
             Radius = null,
             Raw = null,
             Rotation = null,
+            Saturation = null,
             Shadow = null,
             Sharpen = null,
             StartOffset = null,
@@ -1038,6 +1049,8 @@ public class TransformationTest : TestBase
         Assert.False(model.RawData.ContainsKey("raw"));
         Assert.Null(model.Rotation);
         Assert.False(model.RawData.ContainsKey("rotation"));
+        Assert.Null(model.Saturation);
+        Assert.False(model.RawData.ContainsKey("saturation"));
         Assert.Null(model.Shadow);
         Assert.False(model.RawData.ContainsKey("shadow"));
         Assert.Null(model.Sharpen);
@@ -1115,6 +1128,7 @@ public class TransformationTest : TestBase
             Radius = null,
             Raw = null,
             Rotation = null,
+            Saturation = null,
             Shadow = null,
             Sharpen = null,
             StartOffset = null,
@@ -1220,6 +1234,7 @@ public class TransformationTest : TestBase
             Radius = 20,
             Raw = "raw",
             Rotation = 90,
+            Saturation = -100,
             Shadow = new ShadowDefault(),
             Sharpen = new SharpenDefault(),
             StartOffset = 0,

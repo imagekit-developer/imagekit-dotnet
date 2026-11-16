@@ -732,6 +732,7 @@ public class UnwrapWebhookEventTest : TestBase
                 Type = Files::FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
+            Previous = new() { FolderPath = "folderPath" },
         };
         value.Validate();
     }
@@ -744,7 +745,7 @@ public class UnwrapWebhookEventTest : TestBase
             ID = "id",
             Type = "folder.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
         value.Validate();
     }
@@ -1549,6 +1550,7 @@ public class UnwrapWebhookEventTest : TestBase
                 Type = Files::FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
+            Previous = new() { FolderPath = "folderPath" },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(
@@ -1567,7 +1569,7 @@ public class UnwrapWebhookEventTest : TestBase
             ID = "id",
             Type = "folder.deleted",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Webhooks::UnwrapWebhookEvent>(

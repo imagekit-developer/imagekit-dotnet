@@ -12,8 +12,9 @@ namespace Imagekit.Models.Webhooks;
 
 /// <summary>
 /// Triggered when a folder is updated, for example when its custom metadata changes
-/// or it is renamed. Renaming a folder sends one event per folder in the tree, each
-/// with its new `folderPath`.
+/// or it is renamed. Renaming a folder sends one event per folder in the tree. In
+/// each of these events, `data.folderPath` is the folder's new path and `previous.folderPath`
+/// is its path before the rename.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<FolderUpdateEvent, FolderUpdateEventFromRaw>))]
 public sealed record class FolderUpdateEvent : JsonModel
@@ -67,6 +68,28 @@ public sealed record class FolderUpdateEvent : JsonModel
         init { this._rawData.Set("data", value); }
     }
 
+    /// <summary>
+    /// Present only when the folder or one of its parent folders was renamed. Contains
+    /// the folder's path before the rename.
+    /// </summary>
+    public Previous? Previous
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Previous>("previous");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("previous", value);
+        }
+    }
+
     public static implicit operator BaseWebhookEvent(FolderUpdateEvent folderUpdateEvent) =>
         new() { ID = folderUpdateEvent.ID, Type = folderUpdateEvent.Type };
 
@@ -77,6 +100,7 @@ public sealed record class FolderUpdateEvent : JsonModel
         _ = this.Type;
         _ = this.CreatedAt;
         this.Data.Validate();
+        this.Previous?.Validate();
     }
 
     public FolderUpdateEvent() { }
@@ -118,8 +142,9 @@ class FolderUpdateEventFromRaw : IFromRawJson<FolderUpdateEvent>
 
 /// <summary>
 /// Triggered when a folder is updated, for example when its custom metadata changes
-/// or it is renamed. Renaming a folder sends one event per folder in the tree, each
-/// with its new `folderPath`.
+/// or it is renamed. Renaming a folder sends one event per folder in the tree. In
+/// each of these events, `data.folderPath` is the folder's new path and `previous.folderPath`
+/// is its path before the rename.
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
@@ -165,6 +190,28 @@ public sealed record class FolderUpdateEventFolderUpdateEvent : JsonModel
         init { this._rawData.Set("type", value); }
     }
 
+    /// <summary>
+    /// Present only when the folder or one of its parent folders was renamed. Contains
+    /// the folder's path before the rename.
+    /// </summary>
+    public Previous? Previous
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Previous>("previous");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("previous", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
@@ -174,6 +221,7 @@ public sealed record class FolderUpdateEventFolderUpdateEvent : JsonModel
         {
             throw new ImageKitInvalidDataException("Invalid value given for constant");
         }
+        this.Previous?.Validate();
     }
 
     public FolderUpdateEventFolderUpdateEvent()
@@ -219,4 +267,73 @@ class FolderUpdateEventFolderUpdateEventFromRaw : IFromRawJson<FolderUpdateEvent
     public FolderUpdateEventFolderUpdateEvent FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     ) => FolderUpdateEventFolderUpdateEvent.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Present only when the folder or one of its parent folders was renamed. Contains
+/// the folder's path before the rename.
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<Previous, PreviousFromRaw>))]
+public sealed record class Previous : JsonModel
+{
+    /// <summary>
+    /// Path of the folder before it was renamed.
+    /// </summary>
+    public string? FolderPath
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("folderPath");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("folderPath", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.FolderPath;
+    }
+
+    public Previous() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Previous(Previous previous)
+        : base(previous) { }
+#pragma warning restore CS8618
+
+    public Previous(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    Previous(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PreviousFromRaw.FromRawUnchecked"/>
+    public static Previous FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PreviousFromRaw : IFromRawJson<Previous>
+{
+    /// <inheritdoc/>
+    public Previous FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Previous.FromRawUnchecked(rawData);
 }

@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.7.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.6.0...v6.7.0) (2026-11-02)
+
+
+### Features
+
+* **api:** add accounts.contract.get() for contract consumption ([4a339f1](https://github.com/imagekit-developer/imagekit-dotnet/commit/4a339f10e84c331afc6965aadf7c42f3d69f77c9))
+* **api:** Add GET /v1/tags to list media library tags ([f4edbb1](https://github.com/imagekit-developer/imagekit-dotnet/commit/f4edbb1f34e6d4605a56eef37454d97d55632fcb))
+* **api:** add useImprovedLayerSpec to the Cloudinary URL rewriter ([4a339f1](https://github.com/imagekit-developer/imagekit-dotnet/commit/4a339f10e84c331afc6965aadf7c42f3d69f77c9))
+
+
+### Documentation
+
+* add pagination example ([c0e2c2d](https://github.com/imagekit-developer/imagekit-dotnet/commit/c0e2c2df4a4ee782828283f157e22a4022fb69c9))
+
 ## [6.6.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.5.1...v6.6.0) (2026-10-19)
 
 
