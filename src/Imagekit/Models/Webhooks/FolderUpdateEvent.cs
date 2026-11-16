@@ -12,8 +12,9 @@ namespace Imagekit.Models.Webhooks;
 
 /// <summary>
 /// Triggered when a folder is updated, for example when its custom metadata changes
-/// or it is renamed. Renaming a folder sends one event per folder in the tree, each
-/// with its new `folderPath` in `data` and its old `folderPath` in `previous`.
+/// or it is renamed. Renaming a folder sends one event per folder in the tree. In
+/// each of these events, `data.folderPath` is the folder's new path and `previous.folderPath`
+/// is its path before the rename.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<FolderUpdateEvent, FolderUpdateEventFromRaw>))]
 public sealed record class FolderUpdateEvent : JsonModel
@@ -68,8 +69,8 @@ public sealed record class FolderUpdateEvent : JsonModel
     }
 
     /// <summary>
-    /// Values the folder had before this update. Present only when the folder was
-    /// renamed or its parent folder was renamed.
+    /// Present only when the folder or one of its parent folders was renamed. Contains
+    /// the folder's path before the rename.
     /// </summary>
     public Previous? Previous
     {
@@ -141,8 +142,9 @@ class FolderUpdateEventFromRaw : IFromRawJson<FolderUpdateEvent>
 
 /// <summary>
 /// Triggered when a folder is updated, for example when its custom metadata changes
-/// or it is renamed. Renaming a folder sends one event per folder in the tree, each
-/// with its new `folderPath` in `data` and its old `folderPath` in `previous`.
+/// or it is renamed. Renaming a folder sends one event per folder in the tree. In
+/// each of these events, `data.folderPath` is the folder's new path and `previous.folderPath`
+/// is its path before the rename.
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
@@ -189,8 +191,8 @@ public sealed record class FolderUpdateEventFolderUpdateEvent : JsonModel
     }
 
     /// <summary>
-    /// Values the folder had before this update. Present only when the folder was
-    /// renamed or its parent folder was renamed.
+    /// Present only when the folder or one of its parent folders was renamed. Contains
+    /// the folder's path before the rename.
     /// </summary>
     public Previous? Previous
     {
@@ -268,8 +270,8 @@ class FolderUpdateEventFolderUpdateEventFromRaw : IFromRawJson<FolderUpdateEvent
 }
 
 /// <summary>
-/// Values the folder had before this update. Present only when the folder was renamed
-/// or its parent folder was renamed.
+/// Present only when the folder or one of its parent folders was renamed. Contains
+/// the folder's path before the rename.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<Previous, PreviousFromRaw>))]
 public sealed record class Previous : JsonModel
