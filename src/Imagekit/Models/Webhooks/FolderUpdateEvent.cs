@@ -279,22 +279,14 @@ public sealed record class Previous : JsonModel
     /// <summary>
     /// Path of the folder before it was renamed.
     /// </summary>
-    public string? FolderPath
+    public required string FolderPath
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<string>("folderPath");
+            return this._rawData.GetNotNullClass<string>("folderPath");
         }
-        init
-        {
-            if (value == null)
-            {
-                return;
-            }
-
-            this._rawData.Set("folderPath", value);
-        }
+        init { this._rawData.Set("folderPath", value); }
     }
 
     /// <inheritdoc/>
@@ -328,6 +320,13 @@ public sealed record class Previous : JsonModel
     public static Previous FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+
+    [SetsRequiredMembers]
+    public Previous(string folderPath)
+        : this()
+    {
+        this.FolderPath = folderPath;
     }
 }
 

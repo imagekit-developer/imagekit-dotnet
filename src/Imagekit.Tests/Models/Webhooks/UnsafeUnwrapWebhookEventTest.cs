@@ -732,7 +732,7 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Type = Files::FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
         value.Validate();
     }
@@ -1550,7 +1550,7 @@ public class UnsafeUnwrapWebhookEventTest : TestBase
                 Type = Files::FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
         string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<Webhooks::UnsafeUnwrapWebhookEvent>(

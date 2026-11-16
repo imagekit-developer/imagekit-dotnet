@@ -31,7 +31,7 @@ public class FolderUpdateEventTest : TestBase
                 Type = FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
 
         string expectedID = "id";
@@ -51,7 +51,7 @@ public class FolderUpdateEventTest : TestBase
             Type = FolderType.Folder,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
-        Previous expectedPrevious = new() { FolderPath = "folderPath" };
+        Previous expectedPrevious = new("folderPath");
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedType, model.Type);
@@ -82,7 +82,7 @@ public class FolderUpdateEventTest : TestBase
                 Type = FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -116,7 +116,7 @@ public class FolderUpdateEventTest : TestBase
                 Type = FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -143,7 +143,7 @@ public class FolderUpdateEventTest : TestBase
             Type = FolderType.Folder,
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
-        Previous expectedPrevious = new() { FolderPath = "folderPath" };
+        Previous expectedPrevious = new("folderPath");
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedType, deserialized.Type);
@@ -174,7 +174,7 @@ public class FolderUpdateEventTest : TestBase
                 Type = FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
 
         model.Validate();
@@ -318,7 +318,7 @@ public class FolderUpdateEventTest : TestBase
                 Type = FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
 
         FolderUpdateEvent copied = new(model);
@@ -349,7 +349,7 @@ public class FolderUpdateEventFolderUpdateEventTest : TestBase
                 Type = FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
@@ -368,7 +368,7 @@ public class FolderUpdateEventFolderUpdateEventTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
         JsonElement expectedType = JsonSerializer.SerializeToElement("folder.updated");
-        Previous expectedPrevious = new() { FolderPath = "folderPath" };
+        Previous expectedPrevious = new("folderPath");
 
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
         Assert.Equal(expectedData, model.Data);
@@ -396,7 +396,7 @@ public class FolderUpdateEventFolderUpdateEventTest : TestBase
                 Type = FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -428,7 +428,7 @@ public class FolderUpdateEventFolderUpdateEventTest : TestBase
                 Type = FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -454,7 +454,7 @@ public class FolderUpdateEventFolderUpdateEventTest : TestBase
             UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
         };
         JsonElement expectedType = JsonSerializer.SerializeToElement("folder.updated");
-        Previous expectedPrevious = new() { FolderPath = "folderPath" };
+        Previous expectedPrevious = new("folderPath");
 
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
         Assert.Equal(expectedData, deserialized.Data);
@@ -482,7 +482,7 @@ public class FolderUpdateEventFolderUpdateEventTest : TestBase
                 Type = FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
 
         model.Validate();
@@ -616,7 +616,7 @@ public class FolderUpdateEventFolderUpdateEventTest : TestBase
                 Type = FolderType.Folder,
                 UpdatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             },
-            Previous = new() { FolderPath = "folderPath" },
+            Previous = new("folderPath"),
         };
 
         FolderUpdateEventFolderUpdateEvent copied = new(model);
@@ -669,48 +669,6 @@ public class PreviousTest : TestBase
     public void Validation_Works()
     {
         var model = new Previous { FolderPath = "folderPath" };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
-    {
-        var model = new Previous { };
-
-        Assert.Null(model.FolderPath);
-        Assert.False(model.RawData.ContainsKey("folderPath"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesUnsetValidation_Works()
-    {
-        var model = new Previous { };
-
-        model.Validate();
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
-    {
-        var model = new Previous
-        {
-            // Null should be interpreted as omitted for these properties
-            FolderPath = null,
-        };
-
-        Assert.Null(model.FolderPath);
-        Assert.False(model.RawData.ContainsKey("folderPath"));
-    }
-
-    [Fact]
-    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
-    {
-        var model = new Previous
-        {
-            // Null should be interpreted as omitted for these properties
-            FolderPath = null,
-        };
 
         model.Validate();
     }
