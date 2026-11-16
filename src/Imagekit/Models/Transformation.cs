@@ -1030,6 +1030,30 @@ public sealed record class Transformation : JsonModel
     }
 
     /// <summary>
+    /// Adjusts the color saturation of the image. Accepts an integer from -100 to
+    /// 100. Negative values desaturate (`-100` is fully gray), positive values increase
+    /// saturation, and `0` leaves the image unchanged. Supported inside image overlays.
+    /// Not supported for animated images. See [Saturation](https://imagekit.io/docs/effects-and-enhancements#saturation---e-saturation).
+    /// </summary>
+    public long? Saturation
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<long>("saturation");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("saturation", value);
+        }
+    }
+
+    /// <summary>
     /// Adds a shadow beneath solid objects in an image with a transparent background.
     ///  For AI-based drop shadows, refer to aiDropShadow. Pass `true` for a default
     /// shadow, or provide a string for a custom shadow. See [Shadow](https://imagekit.io/docs/effects-and-enhancements#shadow---e-shadow).
@@ -1372,6 +1396,7 @@ public sealed record class Transformation : JsonModel
         this.Radius?.Validate();
         _ = this.Raw;
         this.Rotation?.Validate();
+        _ = this.Saturation;
         this.Shadow?.Validate();
         this.Sharpen?.Validate();
         this.StartOffset?.Validate();

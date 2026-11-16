@@ -15,13 +15,17 @@ public class FolderDeleteEventTest : TestBase
             ID = "id",
             Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
 
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        FolderDeleteEventFolderDeleteEventData expectedData = new("folderId");
+        FolderDeleteEventFolderDeleteEventData expectedData = new()
+        {
+            FolderID = "folderId",
+            FolderPath = "folderPath",
+        };
 
         Assert.Equal(expectedID, model.ID);
         Assert.Equal(expectedType, model.Type);
@@ -37,7 +41,7 @@ public class FolderDeleteEventTest : TestBase
             ID = "id",
             Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -57,7 +61,7 @@ public class FolderDeleteEventTest : TestBase
             ID = "id",
             Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -70,7 +74,11 @@ public class FolderDeleteEventTest : TestBase
         string expectedID = "id";
         string expectedType = "type";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        FolderDeleteEventFolderDeleteEventData expectedData = new("folderId");
+        FolderDeleteEventFolderDeleteEventData expectedData = new()
+        {
+            FolderID = "folderId",
+            FolderPath = "folderPath",
+        };
 
         Assert.Equal(expectedID, deserialized.ID);
         Assert.Equal(expectedType, deserialized.Type);
@@ -86,7 +94,7 @@ public class FolderDeleteEventTest : TestBase
             ID = "id",
             Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
 
         model.Validate();
@@ -100,7 +108,7 @@ public class FolderDeleteEventTest : TestBase
             ID = "id",
             Type = "type",
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
 
         FolderDeleteEvent copied = new(model);
@@ -117,11 +125,15 @@ public class FolderDeleteEventFolderDeleteEventTest : TestBase
         var model = new FolderDeleteEventFolderDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        FolderDeleteEventFolderDeleteEventData expectedData = new("folderId");
+        FolderDeleteEventFolderDeleteEventData expectedData = new()
+        {
+            FolderID = "folderId",
+            FolderPath = "folderPath",
+        };
         JsonElement expectedType = JsonSerializer.SerializeToElement("folder.deleted");
 
         Assert.Equal(expectedCreatedAt, model.CreatedAt);
@@ -135,7 +147,7 @@ public class FolderDeleteEventFolderDeleteEventTest : TestBase
         var model = new FolderDeleteEventFolderDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -153,7 +165,7 @@ public class FolderDeleteEventFolderDeleteEventTest : TestBase
         var model = new FolderDeleteEventFolderDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -164,7 +176,11 @@ public class FolderDeleteEventFolderDeleteEventTest : TestBase
         Assert.NotNull(deserialized);
 
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
-        FolderDeleteEventFolderDeleteEventData expectedData = new("folderId");
+        FolderDeleteEventFolderDeleteEventData expectedData = new()
+        {
+            FolderID = "folderId",
+            FolderPath = "folderPath",
+        };
         JsonElement expectedType = JsonSerializer.SerializeToElement("folder.deleted");
 
         Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
@@ -178,7 +194,7 @@ public class FolderDeleteEventFolderDeleteEventTest : TestBase
         var model = new FolderDeleteEventFolderDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
 
         model.Validate();
@@ -190,7 +206,7 @@ public class FolderDeleteEventFolderDeleteEventTest : TestBase
         var model = new FolderDeleteEventFolderDeleteEvent
         {
             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-            Data = new("folderId"),
+            Data = new() { FolderID = "folderId", FolderPath = "folderPath" },
         };
 
         FolderDeleteEventFolderDeleteEvent copied = new(model);
@@ -204,17 +220,27 @@ public class FolderDeleteEventFolderDeleteEventDataTest : TestBase
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new FolderDeleteEventFolderDeleteEventData { FolderID = "folderId" };
+        var model = new FolderDeleteEventFolderDeleteEventData
+        {
+            FolderID = "folderId",
+            FolderPath = "folderPath",
+        };
 
         string expectedFolderID = "folderId";
+        string expectedFolderPath = "folderPath";
 
         Assert.Equal(expectedFolderID, model.FolderID);
+        Assert.Equal(expectedFolderPath, model.FolderPath);
     }
 
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new FolderDeleteEventFolderDeleteEventData { FolderID = "folderId" };
+        var model = new FolderDeleteEventFolderDeleteEventData
+        {
+            FolderID = "folderId",
+            FolderPath = "folderPath",
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<FolderDeleteEventFolderDeleteEventData>(
@@ -228,7 +254,11 @@ public class FolderDeleteEventFolderDeleteEventDataTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new FolderDeleteEventFolderDeleteEventData { FolderID = "folderId" };
+        var model = new FolderDeleteEventFolderDeleteEventData
+        {
+            FolderID = "folderId",
+            FolderPath = "folderPath",
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
         var deserialized = JsonSerializer.Deserialize<FolderDeleteEventFolderDeleteEventData>(
@@ -238,12 +268,35 @@ public class FolderDeleteEventFolderDeleteEventDataTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedFolderID = "folderId";
+        string expectedFolderPath = "folderPath";
 
         Assert.Equal(expectedFolderID, deserialized.FolderID);
+        Assert.Equal(expectedFolderPath, deserialized.FolderPath);
     }
 
     [Fact]
     public void Validation_Works()
+    {
+        var model = new FolderDeleteEventFolderDeleteEventData
+        {
+            FolderID = "folderId",
+            FolderPath = "folderPath",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new FolderDeleteEventFolderDeleteEventData { FolderID = "folderId" };
+
+        Assert.Null(model.FolderPath);
+        Assert.False(model.RawData.ContainsKey("folderPath"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
         var model = new FolderDeleteEventFolderDeleteEventData { FolderID = "folderId" };
 
@@ -251,9 +304,42 @@ public class FolderDeleteEventFolderDeleteEventDataTest : TestBase
     }
 
     [Fact]
+    public void OptionalNonNullablePropertiesSetToNullAreNotSet_Works()
+    {
+        var model = new FolderDeleteEventFolderDeleteEventData
+        {
+            FolderID = "folderId",
+
+            // Null should be interpreted as omitted for these properties
+            FolderPath = null,
+        };
+
+        Assert.Null(model.FolderPath);
+        Assert.False(model.RawData.ContainsKey("folderPath"));
+    }
+
+    [Fact]
+    public void OptionalNonNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new FolderDeleteEventFolderDeleteEventData
+        {
+            FolderID = "folderId",
+
+            // Null should be interpreted as omitted for these properties
+            FolderPath = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
     public void CopyConstructor_Works()
     {
-        var model = new FolderDeleteEventFolderDeleteEventData { FolderID = "folderId" };
+        var model = new FolderDeleteEventFolderDeleteEventData
+        {
+            FolderID = "folderId",
+            FolderPath = "folderPath",
+        };
 
         FolderDeleteEventFolderDeleteEventData copied = new(model);
 
