@@ -439,6 +439,7 @@ public class HelperAdvancedTransformationsTest
                         Gradient = "from-red_to-white",
                         ColorReplace = "FF0000_100_0000FF",
                         Colorize = "co-red_in-50",
+                        Saturation = 50,
                         Distort = "a-45",
                         Original = true,
                         Page = "2_4",
@@ -450,7 +451,66 @@ public class HelperAdvancedTransformationsTest
         );
 
         Assert.Equal(
-            "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300,q-40,ar-4-3,c-force,cm-extract,fo-left,f-jpeg,r-50,bg-A94D34,b-5-A94D34,cr-FF0000_100_0000FF,di-folder@@file.jpg,dpr-3,x-10,y-20,xc-30,yc-40,o-0.8,z-2,rt-90,bl-10,n-some_name,pr-true,lo-true,fl-h,t-5,md-true,cp-true,dn-72,vc-h264,ac-aac,so-5,eo-15,du-10,sr-1440_1080,e-grayscale,e-upscale,e-retouch,e-genvar,e-bgremove,e-contrast,e-dropshadow,e-changebg-prompt-car,e-edit-prompt-make it vintage,e-shadow-bl-15_st-40_x-10_y-N5,e-sharpen-10,e-usm-2-2-0.8-0.024,e-gradient-from-red_to-white,e-colorize-co-red_in-50,e-distort-a-45,orig-true,pg-2_4,h-200,w-300,l-image,i-logo.png,l-end",
+            "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=w-400,h-300,q-40,ar-4-3,c-force,cm-extract,fo-left,f-jpeg,r-50,bg-A94D34,b-5-A94D34,cr-FF0000_100_0000FF,di-folder@@file.jpg,dpr-3,x-10,y-20,xc-30,yc-40,o-0.8,z-2,rt-90,bl-10,n-some_name,pr-true,lo-true,fl-h,t-5,md-true,cp-true,dn-72,vc-h264,ac-aac,so-5,eo-15,du-10,sr-1440_1080,e-grayscale,e-upscale,e-retouch,e-genvar,e-bgremove,e-contrast,e-dropshadow,e-changebg-prompt-car,e-edit-prompt-make it vintage,e-shadow-bl-15_st-40_x-10_y-N5,e-sharpen-10,e-usm-2-2-0.8-0.024,e-gradient-from-red_to-white,e-colorize-co-red_in-50,e-saturation-50,e-distort-a-45,orig-true,pg-2_4,h-200,w-300,l-image,i-logo.png,l-end",
+            url
+        );
+    }
+
+    [Fact]
+    public void NegativeNumbers_UseNPrefix_AndNPrefixedStringsAreKept()
+    {
+        var url = _client.Helper.BuildUrl(
+            new SrcOptions
+            {
+                UrlEndpoint = "https://ik.imagekit.io/test_url_endpoint",
+                Src = "/test_path.jpg",
+                Transformation =
+                [
+                    new Transformation
+                    {
+                        Rotation = -40,
+                        X = -10,
+                        Y = -20.5,
+                        Saturation = -50,
+                    },
+                    new Transformation
+                    {
+                        Rotation = "N40",
+                        X = "N10",
+                        Y = 10,
+                        Saturation = 0,
+                    },
+                    new Transformation
+                    {
+                        Overlay = new ImageOverlay("logo.png")
+                        {
+                            Position = new OverlayPosition
+                            {
+                                X = -10,
+                                Y = "N20",
+                                XCenter = -30,
+                                YCenter = -40.5,
+                            },
+                            Transformation =
+                            [
+                                new Transformation { Rotation = -15, Saturation = -100 },
+                            ],
+                        },
+                    },
+                    new Transformation
+                    {
+                        Overlay = new TextOverlay("Hello")
+                        {
+                            Transformation = [new TextOverlayTransformation { Rotation = -45 }],
+                        },
+                    },
+                ],
+                TransformationPosition = TransformationPosition.Query,
+            }
+        );
+
+        Assert.Equal(
+            "https://ik.imagekit.io/test_url_endpoint/test_path.jpg?tr=x-N10,y-N20.5,rt-N40,e-saturation-N50:x-N10,y-10,rt-N40,e-saturation-0:l-image,i-logo.png,lx-N10,ly-N20,lxc-N30,lyc-N40.5,rt-N15,e-saturation-N100,l-end:l-text,i-Hello,rt-N45,l-end",
             url
         );
     }

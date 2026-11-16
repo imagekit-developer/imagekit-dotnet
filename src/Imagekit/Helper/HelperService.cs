@@ -151,7 +151,7 @@ public sealed class HelperService : IHelperService
             if (t.X != null)
             {
                 if (t.X.TryPickDouble(out var d))
-                    parts.Add("x-" + Fmt(d!.Value));
+                    parts.Add("x-" + FmtSigned(d!.Value));
                 else if (t.X.TryPickString(out var s))
                     parts.Add("x-" + s);
             }
@@ -159,7 +159,7 @@ public sealed class HelperService : IHelperService
             if (t.Y != null)
             {
                 if (t.Y.TryPickDouble(out var d))
-                    parts.Add("y-" + Fmt(d!.Value));
+                    parts.Add("y-" + FmtSigned(d!.Value));
                 else if (t.Y.TryPickString(out var s))
                     parts.Add("y-" + s);
             }
@@ -189,7 +189,7 @@ public sealed class HelperService : IHelperService
             if (t.Rotation != null)
             {
                 if (t.Rotation.TryPickDouble(out var d))
-                    parts.Add("rt-" + Fmt(d!.Value));
+                    parts.Add("rt-" + FmtSigned(d!.Value));
                 else if (t.Rotation.TryPickString(out var s))
                     parts.Add("rt-" + s);
             }
@@ -330,6 +330,9 @@ public sealed class HelperService : IHelperService
             // Colorize
             if (!string.IsNullOrEmpty(t.Colorize))
                 parts.Add("e-colorize-" + t.Colorize);
+            // Saturation
+            if (t.Saturation is long saturation)
+                parts.Add("e-saturation-" + FmtSigned(saturation));
             // Distort
             if (!string.IsNullOrEmpty(t.Distort))
                 parts.Add("e-distort-" + t.Distort);
@@ -478,6 +481,9 @@ public sealed class HelperService : IHelperService
 
     private static string Fmt(double value) => value.ToString("G", CultureInfo.InvariantCulture);
 
+    // "-" separates a key from its value in the URL, so negative numbers use the N prefix, e.g. -40 becomes N40.
+    private static string FmtSigned(double value) => value < 0 ? "N" + Fmt(-value) : Fmt(value);
+
     private static void ParseUrl(
         string url,
         out string scheme,
@@ -600,28 +606,28 @@ public sealed class HelperService : IHelperService
             if (position.X != null)
             {
                 if (position.X.TryPickDouble(out var d))
-                    entries.Add("lx-" + Fmt(d!.Value));
+                    entries.Add("lx-" + FmtSigned(d!.Value));
                 else if (position.X.TryPickString(out var s))
                     entries.Add("lx-" + s);
             }
             if (position.Y != null)
             {
                 if (position.Y.TryPickDouble(out var d))
-                    entries.Add("ly-" + Fmt(d!.Value));
+                    entries.Add("ly-" + FmtSigned(d!.Value));
                 else if (position.Y.TryPickString(out var s))
                     entries.Add("ly-" + s);
             }
             if (position.XCenter != null)
             {
                 if (position.XCenter.TryPickDouble(out var d))
-                    entries.Add("lxc-" + Fmt(d!.Value));
+                    entries.Add("lxc-" + FmtSigned(d!.Value));
                 else if (position.XCenter.TryPickString(out var s))
                     entries.Add("lxc-" + s);
             }
             if (position.YCenter != null)
             {
                 if (position.YCenter.TryPickDouble(out var d))
-                    entries.Add("lyc-" + Fmt(d!.Value));
+                    entries.Add("lyc-" + FmtSigned(d!.Value));
                 else if (position.YCenter.TryPickString(out var s))
                     entries.Add("lyc-" + s);
             }
@@ -712,7 +718,7 @@ public sealed class HelperService : IHelperService
             if (t.Rotation != null)
             {
                 if (t.Rotation.TryPickDouble(out var d))
-                    parts.Add("rt-" + Fmt(d!.Value));
+                    parts.Add("rt-" + FmtSigned(d!.Value));
                 else if (t.Rotation.TryPickString(out var s))
                     parts.Add("rt-" + s);
             }
