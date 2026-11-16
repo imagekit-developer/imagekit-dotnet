@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.8.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.7.0...v6.8.0) (2026-11-16)
+
+
+### Features
+
+* **transformation:** add saturation and encode negative numbers with the N prefix in URL generation ([b58a704](https://github.com/imagekit-developer/imagekit-dotnet/commit/b58a7045b1683d4331070e5fc41e0c0d1e6c0d63))
+* **webhooks:** add folder paths to folder.deleted and folder.updated events ([2102da0](https://github.com/imagekit-developer/imagekit-dotnet/commit/2102da0c6a3843add0e9519451415fcbd5231a94))
+
 ## [6.7.0](https://github.com/imagekit-developer/imagekit-dotnet/compare/v6.6.0...v6.7.0) (2026-11-02)
 
 
